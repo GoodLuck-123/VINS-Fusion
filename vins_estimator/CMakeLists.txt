@@ -76,6 +76,6 @@ install(TARGETS vins_node kitti_odom_test kitti_gps_test vins_lib vins_component
 install(DIRECTORY include/ DESTINATION include)
 ament_export_include_directories(include)
 ament_export_libraries(vins_component)
-ament_export_dependencies(rclcpp)
+ament_export_dependencies(rclcpp cv_bridge sensor_msgs)
 install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
 ament_package()
