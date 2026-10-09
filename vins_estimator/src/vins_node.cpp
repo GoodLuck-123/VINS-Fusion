@@ -16,6 +16,7 @@
 #include <mutex>
 #include <vins_ros/ros2_utils.hpp>
 #include <vins/vins_node.hpp>
+#include <vins/image_frame.hpp>
 #include <rclcpp_components/register_node_macro.hpp>
 #include <fstream>
 #include <stdexcept>
@@ -49,6 +50,10 @@ queue<sensor_msgs::msg::Image::ConstSharedPtr> img1_buf;
 std::mutex m_buf;
 std::atomic<uint64_t> received_img0{0}, received_img1{0}, received_imu{0};
 uint64_t processed_images = 0;
+bool share_images = true, trace_images = false;
+uint64_t traced_views = 0;
+ImageFrame previous_left_frame;
+uint64_t shared_images = 0, image_materializations = 0, materialized_bytes = 0;
 
 
     std::atomic<bool> stop_requested{false};
@@ -62,6 +67,11 @@ uint64_t processed_images = 0;
         const auto config = n.declare_parameter<std::string>("config_file", "");
         if (config.empty() || !std::ifstream(config).good())
             throw std::invalid_argument("config_file must name a readable OpenCV YAML file");
+        const auto image_mode = n.declare_parameter<std::string>("image_mode", "share");
+        if (image_mode != "copy" && image_mode != "share")
+            throw std::invalid_argument("image_mode must be copy or share");
+        share_images = image_mode == "share";
+        trace_images = n.declare_parameter<bool>("trace_image_pointers", false);
         // Upstream settings/publishers are process globals: one VINS per process.
         RIC.clear(); TIC.clear(); CAM_NAMES.clear(); STEREO = 0;
         try
@@ -104,10 +114,16 @@ uint64_t processed_images = 0;
         shutdownPub();
         printf("sensor_counts img0=%lu img1=%lu imu=%lu processed=%lu\n",
                received_img0.load(), received_img1.load(), received_imu.load(), processed_images);
+        printf("image_ingress mode=%s shared=%lu materializations=%lu bytes=%lu\n",
+               share_images ? "share" : "copy", shared_images, image_materializations, materialized_bytes);
     }
 void img0_callback(const sensor_msgs::msg::Image::ConstSharedPtr &img_msg)
 {
     ++received_img0;
+    if (trace_images && received_img0.load() <= 3)
+        RCLCPP_INFO(n.get_logger(), "image_receive img0 stamp_ns=%ld message=%p data=%p",
+            static_cast<int64_t>(img_msg->header.stamp.sec)*1000000000+img_msg->header.stamp.nanosec,
+            static_cast<const void *>(img_msg.get()), static_cast<const void *>(img_msg->data.data()));
     m_buf.lock();
     img0_buf.push(img_msg);
     m_buf.unlock();
@@ -116,32 +132,27 @@ void img0_callback(const sensor_msgs::msg::Image::ConstSharedPtr &img_msg)
 void img1_callback(const sensor_msgs::msg::Image::ConstSharedPtr &img_msg)
 {
     ++received_img1;
+    if (trace_images && received_img1.load() <= 3)
+        RCLCPP_INFO(n.get_logger(), "image_receive img1 stamp_ns=%ld message=%p data=%p",
+            static_cast<int64_t>(img_msg->header.stamp.sec)*1000000000+img_msg->header.stamp.nanosec,
+            static_cast<const void *>(img_msg.get()), static_cast<const void *>(img_msg->data.data()));
     m_buf.lock();
     img1_buf.push(img_msg);
     m_buf.unlock();
 }
 
 
-cv::Mat getImageFromMsg(const sensor_msgs::msg::Image::ConstSharedPtr &img_msg)
+ImageFrame getImageFromMsg(const sensor_msgs::msg::Image::ConstSharedPtr &message, const char *camera)
 {
-    cv_bridge::CvImageConstPtr ptr;
-    if (img_msg->encoding == "8UC1")
-    {
-        sensor_msgs::msg::Image img;
-        img.header = img_msg->header;
-        img.height = img_msg->height;
-        img.width = img_msg->width;
-        img.is_bigendian = img_msg->is_bigendian;
-        img.step = img_msg->step;
-        img.data = img_msg->data;
-        img.encoding = "mono8";
-        ptr = cv_bridge::toCvCopy(img, sensor_msgs::image_encodings::MONO8);
-    }
-    else
-        ptr = cv_bridge::toCvCopy(img_msg, sensor_msgs::image_encodings::MONO8);
-
-    cv::Mat img = ptr->image.clone();
-    return img;
+    auto frame = imageFrame(message, share_images);
+    if (trace_images && traced_views++ < 6)
+        RCLCPP_INFO(n.get_logger(), "image_view %s stamp_ns=%ld message=%p data=%p",
+            camera, static_cast<int64_t>(message->header.stamp.sec)*1000000000+message->header.stamp.nanosec,
+            static_cast<const void *>(message.get()), static_cast<const void *>(frame.image.data));
+    shared_images += frame.shared;
+    image_materializations += frame.materializations;
+    materialized_bytes += frame.materialized_bytes;
+    return frame;
 }
 
 // extract images with same timestamp from two topics
@@ -151,7 +162,7 @@ void sync_process()
     {
         if(STEREO)
         {
-            cv::Mat image0, image1;
+            ImageFrame image0, image1;
             std_msgs::msg::Header header;
             double time = 0;
             m_buf.lock();
@@ -174,23 +185,26 @@ void sync_process()
                 {
                     time = vins_ros::seconds(img0_buf.front()->header.stamp);
                     header = img0_buf.front()->header;
-                    image0 = getImageFromMsg(img0_buf.front());
+                    image0 = getImageFromMsg(img0_buf.front(), "img0");
                     img0_buf.pop();
-                    image1 = getImageFromMsg(img1_buf.front());
+                    image1 = getImageFromMsg(img1_buf.front(), "img1");
                     img1_buf.pop();
                     //printf("find img0 and img1\n");
                 }
             }
             m_buf.unlock();
-            if(!image0.empty())
+            if(!image0.image.empty())
             {
-                estimator.inputImage(time, image0, image1);
+                estimator.inputImage(time, image0.image, image1.image);
+                // trackImage stores prev_img as a Mat view. Retain the new left
+                // owner only after LK has finished reading the previous owner.
+                previous_left_frame = std::move(image0);
                 ++processed_images;
             }
         }
         else
         {
-            cv::Mat image;
+            ImageFrame image;
             std_msgs::msg::Header header;
             double time = 0;
             m_buf.lock();
@@ -198,13 +212,14 @@ void sync_process()
             {
                 time = vins_ros::seconds(img0_buf.front()->header.stamp);
                 header = img0_buf.front()->header;
-                image = getImageFromMsg(img0_buf.front());
+                image = getImageFromMsg(img0_buf.front(), "img0");
                 img0_buf.pop();
             }
             m_buf.unlock();
-            if(!image.empty())
+            if(!image.image.empty())
             {
-                estimator.inputImage(time, image);
+                estimator.inputImage(time, image.image);
+                previous_left_frame = std::move(image);
                 ++processed_images;
             }
         }

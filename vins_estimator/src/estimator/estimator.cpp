@@ -20,6 +20,7 @@ Estimator::Estimator(): f_manager{Rs}
 Estimator::~Estimator()
 {
     stop();
+    clearState();
 }
 
 void Estimator::stop()
@@ -80,6 +81,8 @@ void Estimator::clearState()
     frame_count = 0;
     solver_flag = INITIAL;
     initial_timestamp = 0;
+    for (auto &frame : all_image_frame)
+        delete frame.second.pre_integration;
     all_image_frame.clear();
 
     if (tmp_pre_integration != nullptr)
@@ -1385,6 +1388,7 @@ void Estimator::slideWindow()
                 map<double, ImageFrame>::iterator it_0;
                 it_0 = all_image_frame.find(t_0);
                 delete it_0->second.pre_integration;
+                it_0->second.pre_integration = nullptr;
                 all_image_frame.erase(all_image_frame.begin(), it_0);
             }
             slideWindowOld();
