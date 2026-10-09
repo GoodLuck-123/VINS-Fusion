@@ -181,4 +181,4 @@ For commercial inquiries, please contact Shaojie Shen <eeshaojieATust.hk>.
 - [Ubuntu 22.04 ROS 1 baseline setup](docs/UBUNTU22_ROS1_BASELINE_SETUP.md)
 - [EuRoC baseline reference report](docs/BASELINE_REFERENCE_REPORT.md)
 
-Versioned environment scripts and locks are in `infra/desktop/`. To restore the parent workspace aliases, run `python3 infra/desktop/scripts/init_workspace.py` from this repository root.
+Versioned environment scripts and locks are in `infra/desktop/`. Run the scripts directly from this repository root; native environments and data live in the parent runtime workspace.

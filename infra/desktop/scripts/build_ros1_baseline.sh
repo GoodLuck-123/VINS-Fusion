@@ -2,7 +2,7 @@
 set -eo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/workspace_root.sh"
 ROOT="$VINS_WORKSPACE_DIR"
-source "$ROOT/scripts/ros1_env.sh"
+source "$VINS_DESKTOP_DIR/scripts/ros1_env.sh"
 set -u
 JOBS="${VINS_BUILD_JOBS:-4}"
 mkdir -p "$ROOT/.infra/src" "$ROOT/.infra/build" "$ROOT/.infra/legacy"
@@ -60,7 +60,7 @@ for package in camera_models vins_estimator loop_fusion global_fusion; do
 done
 cmake -S "$ROOT/.infra/vins_ws/src" -B "$ROOT/.infra/vins_ws/build" \
   -DCMAKE_BUILD_TYPE=Release -DCATKIN_DEVEL_PREFIX="$ROOT/.infra/vins_ws/devel" \
-  -DCMAKE_PROJECT_INCLUDE="$ROOT/scripts/native_cmake_overrides.cmake" \
+  -DCMAKE_PROJECT_INCLUDE="$VINS_DESKTOP_DIR/scripts/native_cmake_overrides.cmake" \
   -DPYTHON_EXECUTABLE="$CONDA_PREFIX/bin/python" -DOpenCV_DIR="$OpenCV_DIR" -DCeres_DIR="$Ceres_DIR" \
   -DCMAKE_PREFIX_PATH="$ROOT/.infra/bridge_ws/devel;$ROOT/.infra/legacy;$CONDA_PREFIX" \
   -DEIGEN3_INCLUDE_DIR="$CONDA_PREFIX/include/eigen3" -DCATKIN_ENABLE_TESTING=OFF

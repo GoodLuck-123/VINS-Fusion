@@ -5,11 +5,11 @@ from pathlib import Path
 import shutil
 
 
-from workspace_paths import WORKSPACE_ROOT as ROOT
+from workspace_paths import WORKSPACE_ROOT as ROOT, DESKTOP_ROOT, DOCS_ROOT
 native = json.loads((ROOT / "results/ros1/native_environment.json").read_text())
 bag = json.loads((ROOT / "results/ros1/MH_01_easy_bag.json").read_text())
 records = []
-snapshot = ROOT / "baseline_reference"
+snapshot = DESKTOP_ROOT / "baseline_reference"
 snapshot.mkdir(exist_ok=True)
 for name in ("MH_01_easy_run1", "MH_01_easy_run2"):
     source = ROOT / "results/ros1" / name
@@ -34,7 +34,7 @@ shutil.copy2(ROOT / "results/ros1/MH_01_easy_bag.json", snapshot / "MH_01_easy_b
 manifest = []
 for path in sorted(snapshot.rglob("*")):
     if path.is_file() and path.name != "SHA256SUMS":
-        manifest.append(f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.relative_to(ROOT)}")
+        manifest.append(f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.relative_to(DESKTOP_ROOT)}")
 (snapshot / "SHA256SUMS").write_text("\n".join(manifest) + "\n")
 
 lines = ["# VINS-Fusion / Ubuntu 22.04 原版参照实测报告", "", "日期：2026-10-09", "",
@@ -73,8 +73,8 @@ lines += ["", "两轮均以 1 倍速完整回放；播放进程退出 0；节点
           "环境重建说明：[Ubuntu 22.04 搭建说明](UBUNTU22_ROS1_BASELINE_SETUP.md)。", "",
           "后续迁移使用相同数据/配置进行 A/B；先扩大原版重复和序列，再确定精度容差。"]
 report = "\n".join(lines) + "\n"
-(ROOT / "BASELINE_REFERENCE_REPORT.md").write_text(report)
-setup = ROOT / "UBUNTU22_ROS1_BASELINE_SETUP.md"
+(DOCS_ROOT / "BASELINE_REFERENCE_REPORT.md").write_text(report)
+setup = DOCS_ROOT / "UBUNTU22_ROS1_BASELINE_SETUP.md"
 content = setup.read_text()
 start = content.index("## 8. 本次实测结果\n")
 end = content.index("## 9. 官方及数据来源\n", start)

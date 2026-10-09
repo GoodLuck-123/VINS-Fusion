@@ -22,7 +22,7 @@ uv 管理 Python 数据检查/评估工具及其完整依赖锁；ROS 1/C++ 工�
 | .infra/downloads/ | 工具和源码下载缓存 |
 | .infra/build/ | 原生依赖构建缓存 |
 | .infra/ros-home/ | ROS 日志、运行状态 |
-| .venv/ | uv 工具环境，不与 ROS Python 混用 |
+| VINS-Fusion/infra/desktop/.venv/ | uv 工具环境，不与 ROS Python 混用 |
 | data/euroc/ | EuRoC bag 和真值 |
 | results/ros1/ | 逐次实验、轨迹、日志、资源采样与评估 |
 
@@ -62,23 +62,21 @@ ROS Noetic 官方目标为 Ubuntu 20.04，已结束官方支持；这里通过�
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Git 仓库根目录为 `VINS-Fusion/`。文档位于 `docs/`，脚本、依赖锁和小体积参照快照位于 `infra/desktop/`，均纳入版本控制。运行工作区为仓库的父目录；安装前缀、数据和完整日志留在工作区，不纳入 Git。
+Git 仓库根目录为 `VINS-Fusion/`。文档位于 `docs/`，脚本、依赖锁和小体积参照快照位于 `infra/desktop/`，均纳入版本控制。安装前缀、数据和完整日志位于仓库父目录（运行工作区），不纳入 Git；根目录不创建软链接。
 
-新机器可按以下布局克隆并恢复工作区入口（已有本地 checkout 跳过 clone）：
+新机器按以下布局克隆；已有 checkout 则直接进入仓库：
 
 ```bash
 mkdir -p ~/codespace/ros_ws
 cd ~/codespace/ros_ws
 git clone https://github.com/GoodLuck-123/VINS-Fusion.git
 cd VINS-Fusion
-python3 infra/desktop/scripts/init_workspace.py
-cd ..
 ```
 
-初始化脚本创建指向仓库内版本化文件的软链接；发现同名普通文件时保留文件并报错。须使用包含这些 infra 文件的版本；当前本地改动尚未提交或推送时，远端克隆不会包含它们。以下命令均在仓库父目录（运行工作区）执行：
+须使用包含 infra 文件的版本。以下命令均在 Git 仓库根目录执行：
 
 ```bash
-bash scripts/bootstrap_baseline.sh
+bash infra/desktop/scripts/bootstrap_baseline.sh
 ```
 
 脚本依次安装固定版本 micromamba、按 ros1-linux-64.lock 创建 ROS/C++ 环境、uv sync、下载源码和数据、校验 SHA256、构建 OpenCV/Ceres/cv_bridge/VINS。依赖均写入本工程，不运行 sudo、不修改系统包源、不写全局 bashrc。
@@ -88,7 +86,7 @@ WSL 使用 Windows 代理时，先确认镜像网络与代理监听配置能让 
 默认 4 并发构建；内存不足时使用：
 
 ```bash
-VINS_BUILD_JOBS=2 bash scripts/build_ros1_baseline.sh
+VINS_BUILD_JOBS=2 bash infra/desktop/scripts/build_ros1_baseline.sh
 ```
 
 已有下载/原生环境时可只重复 build 脚本，构建会增量进行。不要删除 VINS-Fusion 来重建环境。若要重新创建环境，先停止依赖该环境的进程，把旧 .infra 前缀移到备份位置，再按锁文件创建；旧结果可保留。
@@ -97,15 +95,15 @@ VINS_BUILD_JOBS=2 bash scripts/build_ros1_baseline.sh
 
 搭建前检查了 dpkg、/usr 和 /usr/local 常见库/头文件/CMake/pkg-config 路径，本机未发现预装 OpenCV。即便新机器有系统 OpenCV，也不应直接依赖自动搜索的结果。
 
-scripts/ros1_env.sh 为 OpenCV_DIR、Ceres_DIR、CMAKE_PREFIX_PATH、LD_LIBRARY_PATH 和 PKG_CONFIG_PATH 设置工程路径；构建明确传入 OpenCV_DIR/Ceres_DIR。cv_bridge 从源码重建，禁止混用与其他 OpenCV 版本链接的预编译 cv_bridge。
+infra/desktop/scripts/ros1_env.sh 为 OpenCV_DIR、Ceres_DIR、CMAKE_PREFIX_PATH、LD_LIBRARY_PATH 和 PKG_CONFIG_PATH 设置工程路径；构建明确传入 OpenCV_DIR/Ceres_DIR。cv_bridge 从源码重建，禁止混用与其他 OpenCV 版本链接的预编译 cv_bridge。
 
-原工程会覆盖 CMAKE_CXX_FLAGS，丢掉 conda 初始化时加入的头文件路径；scripts/native_cmake_overrides.cmake 使 CMake 显式保留包的 include 路径。原工程使用旧 CV_* 常量，scripts/opencv4_legacy_compat.h 在编译时补充 OpenCV 4.2 的兼容头文件。这两项属于构建适配，不修改 VINS 源码或算法。
+原工程会覆盖 CMAKE_CXX_FLAGS，丢掉 conda 初始化时加入的头文件路径；infra/desktop/scripts/native_cmake_overrides.cmake 使 CMake 显式保留包的 include 路径。原工程使用旧 CV_* 常量，infra/desktop/scripts/opencv4_legacy_compat.h 在编译时补充 OpenCV 4.2 的兼容头文件。这两项属于构建适配，不修改 VINS 源码或算法。
 
 新终端中执行：
 
 ```bash
-source scripts/ros1_env.sh
-python scripts/verify_native_environment.py
+source infra/desktop/scripts/ros1_env.sh
+python infra/desktop/scripts/verify_native_environment.py
 ```
 
 此检查对 vins_node、loop_fusion_node、global_fusion_node、libcv_bridge.so 执行 ldd，并检查 catkin CMakeCache。OpenCV 必须来自 .infra/legacy/lib 的 .so.4.2，Ceres 必须来自同一前缀；存在 not found 或混入其他视觉库路径则失败。
@@ -117,9 +115,9 @@ python scripts/verify_native_environment.py
 入口序列：EuRoC MH_01_easy，图像 752×480、mono8、双目 20 Hz，IMU 200 Hz。使用原始 /cam0/image_raw、/cam1/image_raw、/imu0 话题和时间戳，不需要实物传感器驱动。
 
 ```bash
-bash scripts/download_baseline_assets.sh
-UV_CACHE_DIR="$PWD/.infra/uv-cache" uv run --locked python scripts/inspect_euroc.py \
-  data/euroc/MH_01_easy.bag --output results/ros1/MH_01_easy_bag.json
+bash infra/desktop/scripts/download_baseline_assets.sh
+UV_CACHE_DIR="$PWD/../.infra/uv-cache" uv run --project infra/desktop --locked python infra/desktop/scripts/inspect_euroc.py \
+  ../data/euroc/MH_01_easy.bag --output ../results/ros1/MH_01_easy_bag.json
 ```
 
 ETH 旧官方下载地址在本次网络中连接失败，bag 使用脚本中列出的公开镜像；校验公开文件 SHA256：
@@ -132,8 +130,8 @@ ETH 旧官方下载地址在本次网络中连接失败，bag 使用脚本中列
 ROS shell 中：
 
 ```bash
-source scripts/ros1_env.sh
-python scripts/run_euroc_baseline.py --rate 1 --name MH_01_easy_run1
+source infra/desktop/scripts/ros1_env.sh
+python infra/desktop/scripts/run_euroc_baseline.py --rate 1 --name MH_01_easy_run1
 ```
 
 脚本使用独立端口 11321 的 ROS master，开启 use_sim_time，等待 VINS 订阅就绪，再以 1 倍速完整回放图像/IMU和 /clock。已有运行结果不会被覆盖，同名目录再次运行会拒绝。
@@ -143,8 +141,8 @@ python scripts/run_euroc_baseline.py --rate 1 --name MH_01_easy_run1
 普通终端中评估：
 
 ```bash
-UV_CACHE_DIR="$PWD/.infra/uv-cache" uv run --locked python scripts/evaluate_baseline.py \
-  results/ros1/MH_01_easy_run1
+UV_CACHE_DIR="$PWD/../.infra/uv-cache" uv run --project infra/desktop --locked python infra/desktop/scripts/evaluate_baseline.py \
+  ../results/ros1/MH_01_easy_run1
 ```
 
 必要时第二次完整回放使用新的 --name，用于初步观察参照结果波动；需要精度统计结论时增加序列和重复次数。机器忙导致输入积压时，可另做 --rate 0.5 的功能排查，但不能将减速实验当作 1 倍速通过。

@@ -16,9 +16,9 @@ PY
 fi
 if [[ ! -f .infra/ros1/conda-meta/history ]]; then
   .infra/bin/micromamba create -y -r "$ROOT/.infra/mamba" -p "$ROOT/.infra/ros1" \
-    -f "$ROOT/ros1-linux-64.lock"
+    -f "$VINS_DESKTOP_DIR/ros1-linux-64.lock"
 fi
-UV_CACHE_DIR="$ROOT/.infra/uv-cache" uv sync --locked --python /usr/bin/python3.10
-bash "$ROOT/scripts/download_baseline_assets.sh"
-sha256sum --check baseline-assets.sha256
-bash "$ROOT/scripts/build_ros1_baseline.sh"
+UV_CACHE_DIR="$ROOT/.infra/uv-cache" uv sync --project "$VINS_DESKTOP_DIR" --locked --python /usr/bin/python3.10
+bash "$VINS_DESKTOP_DIR/scripts/download_baseline_assets.sh"
+sha256sum --check "$VINS_DESKTOP_DIR/baseline-assets.sha256"
+bash "$VINS_DESKTOP_DIR/scripts/build_ros1_baseline.sh"
