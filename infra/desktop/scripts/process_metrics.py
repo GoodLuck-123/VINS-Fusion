@@ -103,7 +103,7 @@ class ProcessMetrics:
                 result[f"peak_sampled_{key}_kib"] = max(s[key] for s in self.samples)
         result["host_observations"] = {key: last[key] - value for key, value in self.host_first.items()
                                        if key in last and key != "load1"}
-        result["scope"] = "Node process incl. threads; startup-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+        result["scope"] = "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
         return result
 
     def close(self):

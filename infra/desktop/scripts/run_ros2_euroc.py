@@ -102,7 +102,7 @@ def main():
         metadata["trajectory_poses"] = len(rows)
         metadata["first_timestamp_ns"] = int(rows[0].split(",")[0])
         metadata["last_timestamp_ns"] = int(rows[-1].split(",")[0])
-        expected = json.loads((ROOT / "results/ros1/MH_01_easy_bag.json").read_text())["last_sensor_header_timestamps_ns"]["/cam0/image_raw"]
+        expected = json.loads((ROOT / "results/ros2/bag_conversion.json").read_text())["ros2"]["/cam0/image_raw"]["last_header_ns"]
         if len(rows) < 100 or abs(metadata["last_timestamp_ns"] - expected) > 1_000_000:
             raise RuntimeError("Incomplete trajectory coverage")
         metadata["success"] = True
