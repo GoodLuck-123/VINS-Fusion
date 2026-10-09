@@ -1,33 +1,37 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.16)
 project(global_fusion)
 
-set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS "-std=c++11")
-#-DEIGEN_USE_MKL_ALL")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+# Match the ROS 1 Release flags; ROS 2 requires the C++17 language level.
+set(CMAKE_CXX_FLAGS "-std=c++17")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
-
-find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-  std_msgs
-)
-
-find_package(Ceres REQUIRED)
-
-add_subdirectory(./ThirdParty/GeographicLib/)
-
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-  ${CERES_INCLUDE_DIRS}
-  ./ThirdParty/GeographicLib/include/
-)
-
-
-catkin_package()
-
+list(REMOVE_ITEM CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "$ENV{CONDA_PREFIX}/include")
+find_package(ament_cmake REQUIRED)
+find_package(OpenCV 4.2.0 EXACT REQUIRED)
+find_package(Ceres 1.14.0 EXACT REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(ament_index_cpp REQUIRED)
+include_directories(include ../ros2/include ${CERES_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
+add_subdirectory(ThirdParty/GeographicLib)
+include_directories(ThirdParty/GeographicLib/include)
 
 add_executable(global_fusion_node 
 	src/globalOptNode.cpp
 	src/globalOpt.cpp)
 
-target_link_libraries(global_fusion_node ${catkin_LIBRARIES} ${CERES_LIBRARIES} libGeographiccc) 
+target_link_libraries(global_fusion_node ${OpenCV_LIBS} ${CERES_LIBRARIES} Eigen3::Eigen libGeographiccc)
+ament_target_dependencies(global_fusion_node rclcpp std_msgs sensor_msgs geometry_msgs nav_msgs visualization_msgs tf2_ros ament_index_cpp)
+install(TARGETS global_fusion_node ARCHIVE DESTINATION lib LIBRARY DESTINATION lib RUNTIME DESTINATION lib/${PROJECT_NAME})
+install(DIRECTORY models DESTINATION share/${PROJECT_NAME})
+ament_package()

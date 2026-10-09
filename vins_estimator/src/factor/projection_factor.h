@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include <ros/assert.h>
+#include <vins_ros/ros2_utils.hpp>
 #include <ceres/ceres.h>
 #include <Eigen/Dense>
 #include "../utility/utility.h"

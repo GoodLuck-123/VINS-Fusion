@@ -22,7 +22,13 @@ GlobalOptimization::GlobalOptimization()
 
 GlobalOptimization::~GlobalOptimization()
 {
-    threadOpt.detach();
+    stop();
+}
+
+void GlobalOptimization::stop()
+{
+    stop_requested.store(true);
+    if (threadOpt.joinable()) threadOpt.join();
 }
 
 void GlobalOptimization::GPS2XYZ(double latitude, double longitude, double altitude, double* xyz)
@@ -54,8 +60,8 @@ void GlobalOptimization::inputOdom(double t, Eigen::Vector3d OdomP, Eigen::Quate
     lastP = globalP;
     lastQ = globalQ;
 
-    geometry_msgs::PoseStamped pose_stamped;
-    pose_stamped.header.stamp = ros::Time(t);
+    geometry_msgs::msg::PoseStamped pose_stamped;
+    pose_stamped.header.stamp = vins_ros::stamp(t);
     pose_stamped.header.frame_id = "world";
     pose_stamped.pose.position.x = lastP.x();
     pose_stamped.pose.position.y = lastP.y();
@@ -89,7 +95,7 @@ void GlobalOptimization::inputGPS(double t, double latitude, double longitude, d
 
 void GlobalOptimization::optimize()
 {
-    while(true)
+    while(!stop_requested.load())
     {
         if(newGPS)
         {
@@ -254,8 +260,8 @@ void GlobalOptimization::updateGlobalPath()
     map<double, vector<double>>::iterator iter;
     for (iter = globalPoseMap.begin(); iter != globalPoseMap.end(); iter++)
     {
-        geometry_msgs::PoseStamped pose_stamped;
-        pose_stamped.header.stamp = ros::Time(iter->first);
+        geometry_msgs::msg::PoseStamped pose_stamped;
+        pose_stamped.header.stamp = vins_ros::stamp(iter->first);
         pose_stamped.header.frame_id = "world";
         pose_stamped.pose.position.x = iter->second[0];
         pose_stamped.pose.position.y = iter->second[1];

@@ -12,14 +12,20 @@
 
 Estimator::Estimator(): f_manager{Rs}
 {
-    ROS_INFO("init begins");
+    RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), "init begins");
     initThreadFlag = false;
     clearState();
 }
 
 Estimator::~Estimator()
 {
-    if (MULTIPLE_THREAD)
+    stop();
+}
+
+void Estimator::stop()
+{
+    stop_requested.store(true);
+    if (processThread.joinable())
     {
         processThread.join();
         printf("join thread \n");
@@ -269,7 +275,7 @@ bool Estimator::IMUAvailable(double t)
 
 void Estimator::processMeasurements()
 {
-    while (1)
+    while (!stop_requested.load())
     {
         //printf("process measurments\n");
         pair<double, map<int, vector<pair<int, Eigen::Matrix<double, 7, 1> > > > > feature;
@@ -280,6 +286,8 @@ void Estimator::processMeasurements()
             curTime = feature.first + td;
             while(1)
             {
+                if (stop_requested.load())
+                    return;
                 if ((!USE_IMU  || IMUAvailable(feature.first + td)))
                     break;
                 else
@@ -320,9 +328,9 @@ void Estimator::processMeasurements()
 
             printStatistics(*this, 0);
 
-            std_msgs::Header header;
+            std_msgs::msg::Header header;
             header.frame_id = "world";
-            header.stamp = ros::Time(feature.first);
+            header.stamp = vins_ros::stamp(feature.first);
 
             pubOdometry(*this, header);
             pubKeyPoses(*this, header);
@@ -410,8 +418,8 @@ void Estimator::processIMU(double t, double dt, const Vector3d &linear_accelerat
 
 void Estimator::processImage(const map<int, vector<pair<int, Eigen::Matrix<double, 7, 1>>>> &image, const double header)
 {
-    ROS_DEBUG("new image coming ------------------------------------------");
-    ROS_DEBUG("Adding feature points %lu", image.size());
+    RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "new image coming ------------------------------------------");
+    RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "Adding feature points %lu", image.size());
     if (f_manager.addFeatureCheckParallax(frame_count, image, td))
     {
         marginalization_flag = MARGIN_OLD;
@@ -423,9 +431,9 @@ void Estimator::processImage(const map<int, vector<pair<int, Eigen::Matrix<doubl
         //printf("non-keyframe\n");
     }
 
-    ROS_DEBUG("%s", marginalization_flag ? "Non-keyframe" : "Keyframe");
-    ROS_DEBUG("Solving %d", frame_count);
-    ROS_DEBUG("number of feature: %d", f_manager.getFeatureCount());
+    RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "%s", marginalization_flag ? "Non-keyframe" : "Keyframe");
+    RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "Solving %d", frame_count);
+    RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "number of feature: %d", f_manager.getFeatureCount());
     Headers[frame_count] = header;
 
     ImageFrame imageframe(image, header);
@@ -435,15 +443,15 @@ void Estimator::processImage(const map<int, vector<pair<int, Eigen::Matrix<doubl
 
     if(ESTIMATE_EXTRINSIC == 2)
     {
-        ROS_INFO("calibrating extrinsic param, rotation movement is needed");
+        RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), "calibrating extrinsic param, rotation movement is needed");
         if (frame_count != 0)
         {
             vector<pair<Vector3d, Vector3d>> corres = f_manager.getCorresponding(frame_count - 1, frame_count);
             Matrix3d calib_ric;
             if (initial_ex_rotation.CalibrationExRotation(corres, pre_integrations[frame_count]->delta_q, calib_ric))
             {
-                ROS_WARN("initial extrinsic rotation calib success");
-                ROS_WARN_STREAM("initial extrinsic rotation: " << endl << calib_ric);
+                RCLCPP_WARN(rclcpp::get_logger("vins_estimator"), "initial extrinsic rotation calib success");
+                RCLCPP_WARN_STREAM(rclcpp::get_logger("vins_estimator"), "initial extrinsic rotation: " << endl << calib_ric);
                 ric[0] = calib_ric;
                 RIC[0] = calib_ric;
                 ESTIMATE_EXTRINSIC = 1;
@@ -470,7 +478,7 @@ void Estimator::processImage(const map<int, vector<pair<int, Eigen::Matrix<doubl
                     updateLatestStates();
                     solver_flag = NON_LINEAR;
                     slideWindow();
-                    ROS_INFO("Initialization finish!");
+                    RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), "Initialization finish!");
                 }
                 else
                     slideWindow();
@@ -501,7 +509,7 @@ void Estimator::processImage(const map<int, vector<pair<int, Eigen::Matrix<doubl
                 updateLatestStates();
                 solver_flag = NON_LINEAR;
                 slideWindow();
-                ROS_INFO("Initialization finish!");
+                RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), "Initialization finish!");
             }
         }
 
@@ -518,7 +526,7 @@ void Estimator::processImage(const map<int, vector<pair<int, Eigen::Matrix<doubl
                 updateLatestStates();
                 solver_flag = NON_LINEAR;
                 slideWindow();
-                ROS_INFO("Initialization finish!");
+                RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), "Initialization finish!");
             }
         }
 
@@ -550,15 +558,15 @@ void Estimator::processImage(const map<int, vector<pair<int, Eigen::Matrix<doubl
             predictPtsInNextFrame();
         }
             
-        ROS_DEBUG("solver costs: %fms", t_solve.toc());
+        RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "solver costs: %fms", t_solve.toc());
 
         if (failureDetection())
         {
-            ROS_WARN("failure detection!");
+            RCLCPP_WARN(rclcpp::get_logger("vins_estimator"), "failure detection!");
             failure_occur = 1;
             clearState();
             setParameter();
-            ROS_WARN("system reboot!");
+            RCLCPP_WARN(rclcpp::get_logger("vins_estimator"), "system reboot!");
             return;
         }
 
@@ -601,10 +609,10 @@ bool Estimator::initialStructure()
             //cout << "frame g " << tmp_g.transpose() << endl;
         }
         var = sqrt(var / ((int)all_image_frame.size() - 1));
-        //ROS_WARN("IMU variation %f!", var);
+        //RCLCPP_WARN(rclcpp::get_logger("vins_estimator"), "IMU variation %f!", var);
         if(var < 0.25)
         {
-            ROS_INFO("IMU excitation not enouth!");
+            RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), "IMU excitation not enouth!");
             //return false;
         }
     }
@@ -632,7 +640,7 @@ bool Estimator::initialStructure()
     int l;
     if (!relativePose(relative_R, relative_T, l))
     {
-        ROS_INFO("Not enough features or parallax; Move device around");
+        RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), "Not enough features or parallax; Move device around");
         return false;
     }
     GlobalSFM sfm;
@@ -640,7 +648,7 @@ bool Estimator::initialStructure()
               relative_R, relative_T,
               sfm_f, sfm_tracked_points))
     {
-        ROS_DEBUG("global SFM failed!");
+        RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "global SFM failed!");
         marginalization_flag = MARGIN_OLD;
         return false;
     }
@@ -695,12 +703,12 @@ bool Estimator::initialStructure()
         if(pts_3_vector.size() < 6)
         {
             cout << "pts_3_vector size " << pts_3_vector.size() << endl;
-            ROS_DEBUG("Not enough points for solve pnp !");
+            RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "Not enough points for solve pnp !");
             return false;
         }
         if (! cv::solvePnP(pts_3_vector, pts_2_vector, K, D, rvec, t, 1))
         {
-            ROS_DEBUG("solve pnp fail!");
+            RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "solve pnp fail!");
             return false;
         }
         cv::Rodrigues(rvec, r);
@@ -717,7 +725,7 @@ bool Estimator::initialStructure()
         return true;
     else
     {
-        ROS_INFO("misalign visual structure with IMU");
+        RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), "misalign visual structure with IMU");
         return false;
     }
 
@@ -731,7 +739,7 @@ bool Estimator::visualInitialAlign()
     bool result = VisualIMUAlignment(all_image_frame, Bgs, g, x);
     if(!result)
     {
-        ROS_DEBUG("solve g failed!");
+        RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "solve g failed!");
         return false;
     }
 
@@ -775,8 +783,8 @@ bool Estimator::visualInitialAlign()
         Rs[i] = rot_diff * Rs[i];
         Vs[i] = rot_diff * Vs[i];
     }
-    ROS_DEBUG_STREAM("g0     " << g.transpose());
-    ROS_DEBUG_STREAM("my R0  " << Utility::R2ypr(Rs[0]).transpose()); 
+    RCLCPP_DEBUG_STREAM(rclcpp::get_logger("vins_estimator"), "g0     " << g.transpose());
+    RCLCPP_DEBUG_STREAM(rclcpp::get_logger("vins_estimator"), "my R0  " << Utility::R2ypr(Rs[0]).transpose());
 
     f_manager.clearDepth();
     f_manager.triangulate(frame_count, Ps, Rs, tic, ric);
@@ -807,7 +815,7 @@ bool Estimator::relativePose(Matrix3d &relative_R, Vector3d &relative_T, int &l)
             if(average_parallax * 460 > 30 && m_estimator.solveRelativeRT(corres, relative_R, relative_T))
             {
                 l = i;
-                ROS_DEBUG("average_parallax %f choose l %d and newest frame to triangulate the whole structure", average_parallax * 460, l);
+                RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "average_parallax %f choose l %d and newest frame to triangulate the whole structure", average_parallax * 460, l);
                 return true;
             }
         }
@@ -887,7 +895,7 @@ void Estimator::double2vector()
         Matrix3d rot_diff = Utility::ypr2R(Vector3d(y_diff, 0, 0));
         if (abs(abs(origin_R0.y()) - 90) < 1.0 || abs(abs(origin_R00.y()) - 90) < 1.0)
         {
-            ROS_DEBUG("euler singular point!");
+            RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "euler singular point!");
             rot_diff = Rs[0] * Quaterniond(para_Pose[0][6],
                                            para_Pose[0][3],
                                            para_Pose[0][4],
@@ -957,35 +965,35 @@ bool Estimator::failureDetection()
     return false;
     if (f_manager.last_track_num < 2)
     {
-        ROS_INFO(" little feature %d", f_manager.last_track_num);
+        RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), " little feature %d", f_manager.last_track_num);
         //return true;
     }
     if (Bas[WINDOW_SIZE].norm() > 2.5)
     {
-        ROS_INFO(" big IMU acc bias estimation %f", Bas[WINDOW_SIZE].norm());
+        RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), " big IMU acc bias estimation %f", Bas[WINDOW_SIZE].norm());
         return true;
     }
     if (Bgs[WINDOW_SIZE].norm() > 1.0)
     {
-        ROS_INFO(" big IMU gyr bias estimation %f", Bgs[WINDOW_SIZE].norm());
+        RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), " big IMU gyr bias estimation %f", Bgs[WINDOW_SIZE].norm());
         return true;
     }
     /*
     if (tic(0) > 1)
     {
-        ROS_INFO(" big extri param estimation %d", tic(0) > 1);
+        RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), " big extri param estimation %d", tic(0) > 1);
         return true;
     }
     */
     Vector3d tmp_P = Ps[WINDOW_SIZE];
     if ((tmp_P - last_P).norm() > 5)
     {
-        //ROS_INFO(" big translation");
+        //RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), " big translation");
         //return true;
     }
     if (abs(tmp_P.z() - last_P.z()) > 1)
     {
-        //ROS_INFO(" big z translation");
+        //RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), " big z translation");
         //return true; 
     }
     Matrix3d tmp_R = Rs[WINDOW_SIZE];
@@ -995,7 +1003,7 @@ bool Estimator::failureDetection()
     delta_angle = acos(delta_Q.w()) * 2.0 / 3.14 * 180.0;
     if (delta_angle > 50)
     {
-        ROS_INFO(" big delta_angle ");
+        RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), " big delta_angle ");
         //return true;
     }
     return false;
@@ -1028,12 +1036,12 @@ void Estimator::optimization()
         problem.AddParameterBlock(para_Ex_Pose[i], SIZE_POSE, local_parameterization);
         if ((ESTIMATE_EXTRINSIC && frame_count == WINDOW_SIZE && Vs[0].norm() > 0.2) || openExEstimation)
         {
-            //ROS_INFO("estimate extinsic param");
+            //RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), "estimate extinsic param");
             openExEstimation = 1;
         }
         else
         {
-            //ROS_INFO("fix extinsic param");
+            //RCLCPP_INFO(rclcpp::get_logger("vins_estimator"), "fix extinsic param");
             problem.SetParameterBlockConstant(para_Ex_Pose[i]);
         }
     }
@@ -1107,7 +1115,7 @@ void Estimator::optimization()
         }
     }
 
-    ROS_DEBUG("visual measurement count: %d", f_m_cnt);
+    RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "visual measurement count: %d", f_m_cnt);
     //printf("prepare for ceres: %f \n", t_prepare.toc());
 
     ceres::Solver::Options options;
@@ -1127,7 +1135,7 @@ void Estimator::optimization()
     ceres::Solver::Summary summary;
     ceres::Solve(options, &problem, &summary);
     //cout << summary.BriefReport() << endl;
-    ROS_DEBUG("Iterations : %d", static_cast<int>(summary.iterations.size()));
+    RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "Iterations : %d", static_cast<int>(summary.iterations.size()));
     //printf("solver costs: %f \n", t_solver.toc());
 
     double2vector();
@@ -1228,11 +1236,11 @@ void Estimator::optimization()
 
         TicToc t_pre_margin;
         marginalization_info->preMarginalize();
-        ROS_DEBUG("pre marginalization %f ms", t_pre_margin.toc());
+        RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "pre marginalization %f ms", t_pre_margin.toc());
         
         TicToc t_margin;
         marginalization_info->marginalize();
-        ROS_DEBUG("marginalization %f ms", t_margin.toc());
+        RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "marginalization %f ms", t_margin.toc());
 
         std::unordered_map<long, double *> addr_shift;
         for (int i = 1; i <= WINDOW_SIZE; i++)
@@ -1267,7 +1275,7 @@ void Estimator::optimization()
                 vector<int> drop_set;
                 for (int i = 0; i < static_cast<int>(last_marginalization_parameter_blocks.size()); i++)
                 {
-                    ROS_ASSERT(last_marginalization_parameter_blocks[i] != para_SpeedBias[WINDOW_SIZE - 1]);
+                    VINS_ASSERT(last_marginalization_parameter_blocks[i] != para_SpeedBias[WINDOW_SIZE - 1]);
                     if (last_marginalization_parameter_blocks[i] == para_Pose[WINDOW_SIZE - 1])
                         drop_set.push_back(i);
                 }
@@ -1281,14 +1289,14 @@ void Estimator::optimization()
             }
 
             TicToc t_pre_margin;
-            ROS_DEBUG("begin marginalization");
+            RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "begin marginalization");
             marginalization_info->preMarginalize();
-            ROS_DEBUG("end pre marginalization, %f ms", t_pre_margin.toc());
+            RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "end pre marginalization, %f ms", t_pre_margin.toc());
 
             TicToc t_margin;
-            ROS_DEBUG("begin marginalization");
+            RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "begin marginalization");
             marginalization_info->marginalize();
-            ROS_DEBUG("end marginalization, %f ms", t_margin.toc());
+            RCLCPP_DEBUG(rclcpp::get_logger("vins_estimator"), "end marginalization, %f ms", t_margin.toc());
             
             std::unordered_map<long, double *> addr_shift;
             for (int i = 0; i <= WINDOW_SIZE; i++)

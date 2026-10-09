@@ -10,9 +10,10 @@
 #pragma once
  
 #include <thread>
+#include <atomic>
 #include <mutex>
-#include <std_msgs/Header.h>
-#include <std_msgs/Float32.h>
+#include <std_msgs/msg/header.hpp>
+#include <std_msgs/msg/float32.hpp>
 #include <ceres/ceres.h>
 #include <unordered_map>
 #include <queue>
@@ -42,6 +43,7 @@ class Estimator
   public:
     Estimator();
     ~Estimator();
+    void stop();
     void setParameter();
 
     // interface
@@ -103,6 +105,7 @@ class Estimator
 
     std::thread trackThread;
     std::thread processThread;
+    std::atomic<bool> stop_requested{false};
 
     FeatureTracker featureTracker;
 

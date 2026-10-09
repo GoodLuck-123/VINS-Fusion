@@ -41,4 +41,3 @@ cmake -S "$ROOT/.infra/src/ceres-1.14.0" -B "$ROOT/.infra/build/ros2-ceres" -G N
   -DEIGEN_INCLUDE_DIR="$CONDA_PREFIX/include/eigen3" -DCXX11=ON
 cmake --build "$ROOT/.infra/build/ros2-ceres" -j "$JOBS"
 cmake --install "$ROOT/.infra/build/ros2-ceres"
-

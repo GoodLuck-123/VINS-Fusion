@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include <ros/ros.h>
+#include <vins_ros/ros2_utils.hpp>
 #include <vector>
 #include <eigen3/Eigen/Dense>
 #include "../utility/utility.h"
