@@ -8,6 +8,8 @@
 
 uv 管理 Python 数据检查/评估工具及其完整依赖锁；ROS 1/C++ 工具链采用工程内 micromamba 隔离环境，OpenCV/Ceres 在独立工程内前缀源码构建。uv 不是 ROS/C++ 系统依赖管理器，不用 pip/uv 的 opencv-python 代替 C++ OpenCV。
 
+`master` 保留本页的 ROS 1 参照；ROS 2 升级在独立 `ros2-humble` 分支维护。切换分支后在新终端激活对应环境并运行该分支的构建脚本，避免源码与二进制版本混淆。
+
 本环境保留实验室的 OpenCV 4.2.0、Ceres 1.14.0，但 ROS 包构建、Python、Boost、编译器及数值库与 Ubuntu 20.04 实验室环境不同。因此它是新的 Ubuntu 22.04 原版参照，不能声称与实验室二进制环境完全相同。实验室运行结果仍可作为独立参照。
 
 目录职责：
@@ -98,6 +100,8 @@ VINS_BUILD_JOBS=2 bash infra/desktop/scripts/build_ros1_baseline.sh
 infra/desktop/scripts/ros1_env.sh 为 OpenCV_DIR、Ceres_DIR、CMAKE_PREFIX_PATH、LD_LIBRARY_PATH 和 PKG_CONFIG_PATH 设置工程路径；构建明确传入 OpenCV_DIR/Ceres_DIR。cv_bridge 从源码重建，禁止混用与其他 OpenCV 版本链接的预编译 cv_bridge。
 
 原工程会覆盖 CMAKE_CXX_FLAGS，丢掉 conda 初始化时加入的头文件路径；infra/desktop/scripts/native_cmake_overrides.cmake 使 CMake 显式保留包的 include 路径。原工程使用旧 CV_* 常量，infra/desktop/scripts/opencv4_legacy_compat.h 在编译时补充 OpenCV 4.2 的兼容头文件。这两项属于构建适配，不修改 VINS 源码或算法。
+
+显式关闭未使用的 G-API/ADE，避免旧 ADE 在 GCC 13 上缺失标准头文件导致重建失败；VINS 使用的 OpenCV 模块和版本保持一致。
 
 新终端中执行：
 
