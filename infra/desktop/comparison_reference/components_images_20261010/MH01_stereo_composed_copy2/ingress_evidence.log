@@ -1,0 +1,21 @@
+[INFO] [1791559922.984456326] [euroc_player]: image_source img1 stamp_ns=1403636579763555500 message=0x70651c00d040 data=0x70651c0fbbc0
+[INFO] [1791559922.984596783] [vins_estimator]: image_receive img1 stamp_ns=1403636579763555500 message=0x70651c00d040 data=0x70651c0fbbc0
+[INFO] [1791559923.014413540] [euroc_player]: image_source img0 stamp_ns=1403636579763555500 message=0x70651c011a30 data=0x70651c1ae7b0
+[INFO] [1791559923.014558193] [vins_estimator]: image_receive img0 stamp_ns=1403636579763555500 message=0x70651c011a30 data=0x70651c1ae7b0
+[INFO] [1791559923.015205903] [vins_estimator]: image_view img0 stamp_ns=1403636579763555500 message=0x70651c011a30 data=0x706520058f00
+[INFO] [1791559923.015553402] [vins_estimator]: image_view img1 stamp_ns=1403636579763555500 message=0x70651c00d040 data=0x706520109400
+[INFO] [1791559923.024309422] [euroc_player]: image_source img0 stamp_ns=1403636579813555500 message=0x70651c2069c0 data=0x70651c0fbbc0
+[INFO] [1791559923.024478325] [vins_estimator]: image_receive img0 stamp_ns=1403636579813555500 message=0x70651c2069c0 data=0x70651c0fbbc0
+[INFO] [1791559923.031075031] [euroc_player]: image_source img1 stamp_ns=1403636579813555500 message=0x70651c1ae7b0 data=0x70651c206c00
+[INFO] [1791559923.031375126] [vins_estimator]: image_receive img1 stamp_ns=1403636579813555500 message=0x70651c1ae7b0 data=0x70651c206c00
+[INFO] [1791559923.038145637] [vins_estimator]: image_view img0 stamp_ns=1403636579813555500 message=0x70651c2069c0 data=0x706520161680
+[INFO] [1791559923.038249396] [vins_estimator]: image_view img1 stamp_ns=1403636579813555500 message=0x70651c1ae7b0 data=0x7065201b98c0
+[INFO] [1791559923.070411253] [euroc_player]: image_source img1 stamp_ns=1403636579863555500 message=0x70651c1aea90 data=0x70651c0fbbc0
+[INFO] [1791559923.070548706] [vins_estimator]: image_receive img1 stamp_ns=1403636579863555500 message=0x70651c1aea90 data=0x70651c0fbbc0
+[INFO] [1791559923.085888466] [euroc_player]: image_source img0 stamp_ns=1403636579863555500 message=0x70651c1af670 data=0x70651c206c00
+[INFO] [1791559923.086040249] [vins_estimator]: image_receive img0 stamp_ns=1403636579863555500 message=0x70651c1af670 data=0x70651c206c00
+[INFO] [1791559923.087213156] [vins_estimator]: image_view img0 stamp_ns=1403636579863555500 message=0x70651c1af670 data=0x7065200b1180
+[INFO] [1791559923.087325086] [vins_estimator]: image_view img1 stamp_ns=1403636579863555500 message=0x70651c1aea90 data=0x7065201b98c0
+t[INFO] [1791560107.024474880] [euroc_player]: replay_counts img0=3682 img1=3682 imu=36820 status=ok
+sensor_counts img0=3682 img1=3682 imu=36820 processed=3682
+image_ingress mode=copy shared=0 materializations=14728 bytes=5316218880

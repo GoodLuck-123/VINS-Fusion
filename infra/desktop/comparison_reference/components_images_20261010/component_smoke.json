@@ -1,0 +1,26 @@
+{
+  "cycles": [
+    {
+      "mode": "stereo",
+      "load_unload": "passed",
+      "duplicate_rejected": true
+    },
+    {
+      "mode": "mono",
+      "load_unload": "passed",
+      "duplicate_rejected": true
+    },
+    {
+      "mode": "stereo",
+      "load_unload": "passed",
+      "duplicate_rejected": true
+    },
+    {
+      "mode": "mono",
+      "load_unload": "passed",
+      "duplicate_rejected": true
+    }
+  ],
+  "invalid_config_rejected": true,
+  "container_exit": 0
+}

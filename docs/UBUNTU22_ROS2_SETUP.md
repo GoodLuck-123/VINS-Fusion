@@ -7,7 +7,7 @@
 从仓库根目录执行本页命令。切换分支前检查 `git status`，在新终端激活对应环境。
 源码工作树随分支切换；切换版本后运行该分支的 build 脚本，再执行实验，避免源码和二进制版本混淆。
 
-迁移覆盖四个 package 及 KITTI 入口；EuRoC 双目 IMU VIO 是本次实际实验的主范围。
+迁移覆盖四个 package 及 KITTI 入口；EuRoC 单目 IMU 和双目 IMU VIO 均已完成实际回放。
 回环、GNSS、KITTI 数据及 RViz 的完整功能验收另列，不用 VIO 成功代替它们的验收。
 RealSense 等 ROS 1 硬件 launch 不属于本轮 EuRoC 迁移范围。
 
@@ -163,6 +163,12 @@ WSL 未采集内存控制器带宽、硬件 cycles/cache misses、温度或功�
 四个 package 和重建的 cv_bridge 已编译通过；三个主节点启动和 SIGINT 正常退出、KITTI 参数检查已通过。
 原版的同步线程退出 abort 与 ROS 2 全局发布器/后台线程的销毁顺序在迁移中处理；核心计算范围检查通过。
 两个版本各完成两轮完整 MH_01_easy 实验，结果见 [ROS 1 / ROS 2 对比报告](ROS1_ROS2_COMPARISON.md)。
+
+后续组件化/减拷贝版本另完成八轮完整实验：双目独立节点 copy/share 各两轮、双目同进程数据源 copy/share 各一轮、单目独立节点 copy/share 各一轮。
+单目两条路径的 ATE 均为 0.185564 m；每轮处理 3682 张图像、36820 条 IMU，正常退出。
+组件单目/双目反复加载和卸载、重复实例拒绝、无效配置拒绝通过；图像 owner、非连续 stride、转换回退和前端 copy/share 特征一致性通过本地探针。
+ASan 仅用于适配器/测试可执行文件，依赖库未全部插桩、泄漏检测未启用；其启动期加载器故障通过仅测试进程设置 `LD_BIND_NOW=1` 后连续三轮通过。
+这些探针不能代替板端长期稳定性验收。当前双目 share 的整体 CPU 均值略高，入口减拷贝成立，但没有整机提速结论。
 
 今后的版本对比统一追加到上述报告，不重写历史结果。先完成回放和同口径 evo 评估，再用
 `append_euroc_comparison.py --section 唯一标识 --title "实验标题" 结果目录...` 追加表格并冻结小体积快照。

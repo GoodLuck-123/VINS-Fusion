@@ -85,6 +85,7 @@ def main():
         lines.append(f"{key[0]} / {key[1]} / {key[2]}：copy/share 轮数 {len(variants['copy'])}/{len(variants['share'])}，"
                      f"CPU 均值 {values['copy'][0]:.2f}% / {values['share'][0]:.2f}%，"
                      f"RSS 峰值均值 {values['copy'][1]:.2f} / {values['share'][1]:.2f} MiB。")
+        lines.append("")
     lines += ["", "standalone 采样 VINS 进程；component 采样容器 + VINS；composed 采样容器 + VINS + C++ EuRoC 数据源。",
               "composed 的数据源先反序列化 bag，再移动 typed 消息到 VINS，保留记录/头时间戳；每条传感器记录发布 /clock，外部播放器参照为 100 Hz /clock。",
               "composed 改变数据源、RMW 及资源范围，不能用它与旧节点表直接计算组件化加速比。", ""]
@@ -93,6 +94,7 @@ def main():
             checks = run["image_pointer_checks"]
             lines.append(f"{source.name}：{len(checks)} 组起始图像指针核验通过，数据源与订阅端的消息/像素地址一致；"
                          f"入口视图{'共享' if run['image_mode']=='share' else '复制'}像素符合所选路径。全序列共享数量另见上表。")
+            lines.append("")
     lines += ["", "各轮干净退出、末帧覆盖和传感器计数已由 runner 检查；ATE/RPE 仍使用相同 evo、SE(3) 无尺度对齐与 0.01 s 匹配容差。",
               "少量重复只用于发现回归；WSL 宿主调度与求解器时间预算仍会造成波动，不能宣称统计显著加速。", "",
               "本轮未实施跨进程共享内存、相机 DMA-BUF、RGA、NEON 或全程序零拷贝；未测 DDR 带宽和功耗。", "",

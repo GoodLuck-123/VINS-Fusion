@@ -1,0 +1,20 @@
+{
+  "adapter_and_frontend": "passed",
+  "asan_repetitions": 3,
+  "asan_options": "detect_leaks=0:handle_segv=0",
+  "test_only_env": {
+    "LD_BIND_NOW": "1"
+  },
+  "scope": "Image adapter probe instrumented; VINS/OpenCV/ROS dependency libraries are not instrumented; no full-program leak claim.",
+  "cases": [
+    "mono8",
+    "8UC1",
+    "padded stride",
+    "conversion fallback",
+    "invalid stride rejection",
+    "message lifetime",
+    "read-only input",
+    "copy/share feature parity"
+  ],
+  "sanitizer_startup_issue": "GDB located intermittent failure in ld-linux and ASan allocator initialization before main. Immediate symbol binding was used only for tests."
+}

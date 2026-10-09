@@ -1,6 +1,6 @@
 # VINS-Fusion / ROS 2 / RK3588 顶层任务书
 
-更新日期：2026-10-09
+更新日期：2026-10-10
 
 ## 一、目标与总体结论
 
@@ -129,6 +129,8 @@ Rockchip 的能力表区分 RK3588 上的 RGA2 与 RGA3，灰度格式及对齐�
 阶段 0 执行进展（2026-10-09）：Ubuntu 22.04 工程内 ROS 1 隔离环境已建立；OpenCV 4.2.0 / Ceres 1.14.0 保留；EuRoC MH_01_easy 两轮完整 1 倍速双目 IMU 回放和真值评估已通过。`master` 保留 ROS 1 算法源码与参照环境。搭建与实测详见 [Ubuntu 22.04 搭建说明](UBUNTU22_ROS1_BASELINE_SETUP.md)、[原版参照实测报告](BASELINE_REFERENCE_REPORT.md)。
 
 阶段 1 桌面进展（2026-10-09）：独立 `ros2-humble` 分支完成 ROS 2 接口和构建迁移，保持同版本视觉/求解依赖及算法配置；两个版本各完成两轮 MH_01_easy 双目 IMU VIO 对比，包含 CPU、内存、I/O 和调度压力指标。详见 [ROS 2 环境说明](UBUNTU22_ROS2_SETUP.md)、[对比报告](ROS1_ROS2_COMPARISON.md)。回环/GNSS/KITTI/RViz 的完整数据验收、其他 EuRoC 序列及板端工作尚未完成。
+
+阶段 4a/4c 桌面进展（2026-10-10）：按当前需求提前完成 VINS 组件入口、图像 owner 跨帧持有及同进程 EuRoC 数据源，保留独立节点和 copy 回退。单目视惯作为实验室目标模式已完整验证；新增八轮单目/双目 A/B，结果统一追加到同一对比报告。原生灰度入口的冗余深拷贝消除、同进程消息地址一致性已验证，但双目整机 CPU 未体现收益；不得等同于全程序零拷贝或板端加速完成。单进程限一个 VINS 估计器；硬件数据源、长期运行、其他编码和板端缓存/带宽测量仍是后续门槛。
 
 [1]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_Developer_Guide_RGA_EN.md "Rockchip RGA 官方开发指南"
 [2]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_FAQ_RGA_EN.md "Rockchip RGA 官方 FAQ"

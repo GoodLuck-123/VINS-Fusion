@@ -1,0 +1,2 @@
+sensor_counts img0=3682 img1=0 imu=36820 processed=3682
+image_ingress mode=share shared=3682 materializations=0 bytes=0

@@ -1,0 +1,35 @@
+{
+  "scope": "hot-buffer adapter only, excluding DDS, tracking and solver",
+  "width": 752,
+  "height": 480,
+  "trials": [
+    {
+      "mode": "copy",
+      "iterations": 2000,
+      "wall_s": 0.346652,
+      "mean_per_image_us": 173.326
+    },
+    {
+      "mode": "share",
+      "iterations": 2000,
+      "wall_s": 0.000153634,
+      "mean_per_image_us": 0.076817
+    },
+    {
+      "mode": "share",
+      "iterations": 2000,
+      "wall_s": 0.000159652,
+      "mean_per_image_us": 0.079826
+    },
+    {
+      "mode": "copy",
+      "iterations": 2000,
+      "wall_s": 0.344947,
+      "mean_per_image_us": 172.473
+    }
+  ],
+  "checksum": 737100,
+  "source_commit": "00658b0b4c05563114fd7b6e6ef1e4c64cef09b5",
+  "adapter_sha256": "5780038ed94366e8a2d63913dfe23464b96aeecd3b81757a4f5bd669a1a71ed7",
+  "probe_sha256": "0eee1a389a81e9dcdb6af1b1e10ca66d81d9718146e7990a036099bd71854f0b"
+}
