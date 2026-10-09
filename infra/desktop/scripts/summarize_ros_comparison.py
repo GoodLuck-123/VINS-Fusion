@@ -8,6 +8,9 @@ from statistics import mean
 
 from workspace_paths import DESKTOP_ROOT, DOCS_ROOT, WORKSPACE_ROOT as ROOT
 
+if (DOCS_ROOT / "ROS1_ROS2_COMPARISON.md").exists():
+    raise SystemExit("Initial report already exists. Preserve it; use append_euroc_comparison.py for later versions.")
+
 snapshot = DESKTOP_ROOT / "ros2_reference"
 snapshot.mkdir(exist_ok=True)
 records = []

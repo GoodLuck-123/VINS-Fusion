@@ -25,7 +25,8 @@ RealSense 等 ROS 1 硬件 launch 不属于本轮 EuRoC 迁移范围。
 | 构建工作区 | `../.infra/vins_ws`、`bridge_ws` | `../.infra/ros2_ws` |
 
 保留原配置的标定、特征数、反向光流、跟踪图发布、线程模型、隔帧后端入队、3 ms 双目配对和求解器时间预算。
-图像入口仍保持原来的 `toCvCopy` 和 `clone`；此阶段不加入 RGA、NEON 或减拷贝。
+首轮迁移参照保持原来的 `toCvCopy` 和 `clone`；当前版本默认 `image_mode=share`，可选择 `copy` 恢复原图像入口用于 A/B。
+此阶段不加入 RGA、NEON，不修改特征提取、光流或求解器计算。
 输入使用同一个 MH_01_easy 序列、原始时间戳和像素，评估使用相同 IMU/body 真值和 SE(3) 对齐，不校正尺度。
 
 Ceres 导出的 CMake 配置包含其构建环境的依赖路径，因此在两个环境中分别编译同版本 Ceres/OpenCV。
@@ -72,6 +73,37 @@ ros2 launch vins euroc_components.launch.py config:=/absolute/config.yaml
 本机 WSL 的动态加载服务在默认 Fast DDS 下未能完成请求响应；标准服务探针也复现，Cyclone DDS 下加载/卸载通过。
 因此组件服务入口在本机使用已包含在锁文件中的 Cyclone DDS，未升级原生依赖。
 原始参照及独立入口的 Fast DDS 设置保留；改变 RMW 的实验必须单独标记，不与原始结果混成同条件对比。
+
+### 图像所有权与共享路径
+
+默认原生 `mono8` / `8UC1` 输入使用 `toCvShare`，不复制消息像素、不额外 `clone`。
+同步线程持有上一左图的消息 owner，直到下一次 `trackImage` 返回才替换，保证 `prev_img` 的底层内存仍存活。
+右图 owner 保持到当前跟踪结束；颜色转换、字节序不匹配等情形允许 cv_bridge 分配输出，不能称为所有输入零拷贝。
+前端只读使用这些视图；金字塔、跟踪图、回环长期图像等计算产物和必要复制仍保留。
+若今后启用原地修改图像的预处理，必须先建立可写的独立输出。
+
+单目和双目共用同一图像适配器与 owner 规则。`copy` 保留历史入口，包含 `8UC1` 消息复制，便于隔离减拷贝效果。
+停止并卸载组件时同步/后端线程先 join，再释放发布器与图像 owner；估计器拥有的积分对象在销毁时回收。
+
+```bash
+source infra/desktop/scripts/ros2_env.sh
+python infra/desktop/scripts/run_ros2_euroc.py --name MH01_mono_share1 --mode mono_imu --image-mode share
+python infra/desktop/scripts/run_ros2_euroc.py --name MH01_stereo_copy1 --mode stereo_imu --image-mode copy
+```
+
+真正的同进程 EuRoC 数据源 + VINS 链路：
+
+```bash
+export VINS_RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+source infra/desktop/scripts/ros2_env.sh
+python infra/desktop/scripts/run_ros2_euroc.py --name MH01_composed_share1 --deployment composed --image-mode share
+```
+
+`vins_ros::EurocPlayer` 从 rosbag2 反序列化 typed 消息，再移动消息给 VINS；磁盘读取/反序列化仍有分配和复制。
+等待传感器和完成通知订阅就绪、延迟 3 秒后按记录时间回放。保留传感器 header/记录时间，每条传感器记录更新 `/clock`。
+runner 检查全序列传感器数量、共享/物化统计，以及起始图像在数据源、订阅端、视图之间的指针关系。
+这里采样整个容器、VINS 和数据源；不能与旧报告仅 VINS 的 CPU/RSS 直接计算加速比。
+`--deployment component` 仅把 VINS 放入容器，继续使用外部 `ros2 bag play`；主要用于接口/生命周期回归。
 
 ### 数据转换和独立入口
 
@@ -131,6 +163,10 @@ WSL 未采集内存控制器带宽、硬件 cycles/cache misses、温度或功�
 四个 package 和重建的 cv_bridge 已编译通过；三个主节点启动和 SIGINT 正常退出、KITTI 参数检查已通过。
 原版的同步线程退出 abort 与 ROS 2 全局发布器/后台线程的销毁顺序在迁移中处理；核心计算范围检查通过。
 两个版本各完成两轮完整 MH_01_easy 实验，结果见 [ROS 1 / ROS 2 对比报告](ROS1_ROS2_COMPARISON.md)。
+
+今后的版本对比统一追加到上述报告，不重写历史结果。先完成回放和同口径 evo 评估，再用
+`append_euroc_comparison.py --section 唯一标识 --title "实验标题" 结果目录...` 追加表格并冻结小体积快照。
+各轮参数、源码和二进制哈希、RMW、资源采样范围必须留在 `run.json`，组件容器与独立节点的口径区别须保留。
 
 ## 参考
 

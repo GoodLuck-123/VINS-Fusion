@@ -7,6 +7,7 @@ dependencies:
   - python=3.11
   - ros-humble-ros-core
   - ros-humble-rclcpp-components
+  - ros-humble-rosbag2-cpp
   - ros-humble-tf2-ros
   - ros-humble-visualization-msgs
   - ros-humble-rosbag2-py

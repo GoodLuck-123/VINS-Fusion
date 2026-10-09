@@ -12,6 +12,10 @@ targets = {"vins": workspace / "install/lib/vins/vins_node",
            "loop_fusion": workspace / "install/lib/loop_fusion/loop_fusion_node",
            "global_fusion": workspace / "install/lib/global_fusion/global_fusion_node",
            "cv_bridge": workspace / "install/lib/libcv_bridge.so"}
+if (workspace / "install/lib/libvins_component.so").exists():
+    targets["vins_component"] = workspace / "install/lib/libvins_component.so"
+if (workspace / "install/lib/libvins_euroc_component.so").exists():
+    targets["euroc_player"] = workspace / "install/lib/libvins_euroc_component.so"
 forbidden = ("/.infra/ros1/", "/.infra/legacy/", "/.infra/bridge_ws/")
 report = {"opencv": "4.2.0", "ceres": "1.14.0", "targets": {}}
 for name, binary in targets.items():
