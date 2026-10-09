@@ -1,0 +1,29 @@
+# Maintain constraints here; rebuild from the explicit platform lock.
+name: vins-ros2-humble
+channels:
+  - robostack-humble
+  - conda-forge
+dependencies:
+  - python=3.11
+  - ros-humble-ros-core
+  - ros-humble-tf2-ros
+  - ros-humble-visualization-msgs
+  - ros-humble-rosbag2-py
+  - ros-humble-rosbag2-storage-default-plugins
+  - ros-humble-rosbag2-transport
+  - ros-humble-ros2bag
+  - gxx_linux-64=13
+  - cmake=3.31
+  - ninja
+  - pkg-config
+  - colcon-common-extensions
+  - eigen=3.3.9
+  - libboost-devel=1.86
+  - libboost-python-devel=1.86
+  - numpy=1.26
+  - glog=0.6
+  - gflags
+  - suitesparse=5.10
+  - libpng
+  - libjpeg-turbo
+  - zlib
