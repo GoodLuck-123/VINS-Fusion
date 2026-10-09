@@ -42,6 +42,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("run", type=Path)
     parser.add_argument("--groundtruth", type=Path, default=ROOT / "data/euroc/MH_01_easy_groundtruth.csv")
+    parser.add_argument("--label", default="VINS")
     parser.add_argument("--max-diff", type=float, default=0.01)
     args = parser.parse_args()
     estimate_all = read_csv(args.run / "vio.csv")
@@ -79,7 +80,7 @@ def main():
     import matplotlib.pyplot as plt
     fig, axes = plt.subplots(1, 2, figsize=(11, 4.5))
     axes[0].plot(reference.positions_xyz[:, 0], reference.positions_xyz[:, 1], label="Ground truth")
-    axes[0].plot(estimate.positions_xyz[:, 0], estimate.positions_xyz[:, 1], label="VINS ROS 1")
+    axes[0].plot(estimate.positions_xyz[:, 0], estimate.positions_xyz[:, 1], label=args.label)
     axes[0].set(xlabel="x (m)", ylabel="y (m)", title="EuRoC MH_01_easy: SE(3) aligned")
     axes[0].axis("equal")
     axes[0].legend()

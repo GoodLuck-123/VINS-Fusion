@@ -1,5 +1,6 @@
 """Run untouched VINS against a complete EuRoC bag in a private ROS master."""
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -15,6 +16,7 @@ import rosbag
 
 
 from workspace_paths import WORKSPACE_ROOT as ROOT
+from process_metrics import ProcessMetrics
 
 
 def main():
@@ -42,13 +44,16 @@ def main():
     # Preserve calibration selection and all algorithm parameters from the repository.
     for calibration in ("cam0_mei.yaml", "cam1_mei.yaml"):
         shutil.copy2(original / calibration, output / calibration)
+    monitor = None
     processes = []
     logs = []
     metadata = {"bag": str(args.bag.resolve()), "rate": args.rate,
-                "source_commit": subprocess.check_output(
+                "source_commit": "be55a937a57436548ddfb1bd324bc1e9a9e828e0",
+                "runner_commit": subprocess.check_output(
                     ["git", "-C", str(ROOT / "VINS-Fusion"), "rev-parse", "HEAD"], text=True).strip(),
                 "config": str(config_path), "start_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "success": False}
+    metadata["binary_sha256"] = hashlib.sha256((ROOT / ".infra/vins_ws/devel/lib/vins/vins_node").read_bytes()).hexdigest()
     metadata["bag_duration_s"] = bag_duration
 
     def launch(command, name):
@@ -89,6 +94,7 @@ def main():
             if time.monotonic() > deadline:
                 raise TimeoutError("VINS sensor subscriptions did not become ready")
             time.sleep(0.25)
+        monitor = ProcessMetrics(node.pid, output / "resource_details.csv")
         playback = launch(["rosbag", "play", "--clock", "--rate", str(args.rate), "--delay", "3",
                            "--topics", "/cam0/image_raw", "/cam1/image_raw", "/imu0",
                            "--bags", str(args.bag.resolve())], "playback")
@@ -100,6 +106,7 @@ def main():
                 assert_alive(node, "vins_node")
                 if time.monotonic() - start > bag_duration / args.rate + 120:
                     raise TimeoutError("Playback exceeded expected duration")
+                monitor.sample()
                 stat = Path(f"/proc/{node.pid}/stat").read_text().split()
                 cpu_ticks = int(stat[13]) + int(stat[14])
                 status = Path(f"/proc/{node.pid}/status").read_text()
@@ -119,6 +126,7 @@ def main():
         deadline = time.monotonic() + 60
         while stable < 5:
             assert_alive(node, "vins_node")
+            monitor.sample()
             current = trajectory.stat().st_size if trajectory.exists() else 0
             stable = stable + 1 if current == previous else 0
             previous = current
@@ -131,6 +139,7 @@ def main():
         metadata["trajectory_poses"] = len(rows)
         metadata["first_timestamp_ns"] = int(rows[0].split(",")[0])
         metadata["last_timestamp_ns"] = int(rows[-1].split(",")[0])
+        metadata["resources"] = monitor.summary()
         metadata["success"] = True
         print(json.dumps(metadata, indent=2), flush=True)
     finally:
@@ -147,6 +156,8 @@ def main():
                         os.killpg(process.pid, signal.SIGKILL)
                         process.wait()
             metadata[f"{name}_exit_code"] = process.returncode
+        if monitor:
+            monitor.close()
         for log in logs:
             log.close()
         metadata["note"] = "Unmodified ROS 1 node has an unjoined sync thread; shutdown exit is recorded separately from playback success."
