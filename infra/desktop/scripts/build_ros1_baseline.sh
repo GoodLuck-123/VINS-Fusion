@@ -30,7 +30,8 @@ cmake -S "$ROOT/.infra/src/opencv-4.2.0" -B "$ROOT/.infra/build/opencv" -G Ninja
   -DBUILD_opencv_python3=OFF -DWITH_QT=OFF -DWITH_GTK=OFF -DWITH_FFMPEG=OFF \
   -DWITH_GSTREAMER=OFF -DWITH_V4L=OFF -DWITH_OPENCL=OFF -DWITH_IPP=OFF -DWITH_ITT=OFF \
   -DWITH_EIGEN=OFF -DWITH_TIFF=OFF -DWITH_OPENEXR=OFF -DWITH_WEBP=OFF \
-  -DWITH_JASPER=OFF -DWITH_PROTOBUF=OFF -DBUILD_JAVA=OFF
+  -DWITH_JASPER=OFF -DWITH_PROTOBUF=OFF -DBUILD_JAVA=OFF \
+  -DWITH_ADE=OFF -DBUILD_opencv_gapi=OFF
 cmake --build "$ROOT/.infra/build/opencv" -j "$JOBS"
 cmake --install "$ROOT/.infra/build/opencv"
 

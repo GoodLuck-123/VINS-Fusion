@@ -22,3 +22,6 @@ data/
 results/
 __pycache__/
 *.pyc
+
+# Local development probes; reproducible runners remain under infra/.
+.local-tests/
