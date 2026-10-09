@@ -22,7 +22,7 @@ from workspace_paths import REPO_ROOT, WORKSPACE_ROOT as ROOT
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--name", required=True)
-    parser.add_argument("--rate", type=float, default=1)
+    parser.add_argument("--rate", type=float, default=1.0)
     parser.add_argument("--mode", choices=("stereo_imu", "mono_imu"), default="stereo_imu")
     parser.add_argument("--deployment", choices=("standalone", "component", "composed"), default="standalone")
     parser.add_argument("--image-mode", choices=("copy", "share"), default="share")
