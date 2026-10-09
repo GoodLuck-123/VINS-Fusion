@@ -1,3 +1,14 @@
+# VINS-Fusion ROS 2 (Humble)
+
+`ros2-humble` 是独立的 ROS 2 版本，`master` 保留 ROS 1 原版参照。
+保留 OpenCV 4.2.0、Ceres 1.14.0、算法与 EuRoC 配置，隔离两个版本的环境和构建产物。
+
+- [ROS 2 环境搭建与实验](docs/UBUNTU22_ROS2_SETUP.md)
+- [ROS 1 / ROS 2 实测对比](docs/ROS1_ROS2_COMPARISON.md)
+- [顶层部署任务书](docs/RK3588_DEPLOYMENT_TASK_BRIEF.md)
+
+以下上游说明描述 ROS 1 的历史用法；本分支的运行命令以 ROS 2 搭建文档为准。
+
 # VINS-Fusion
 ## An optimization-based multi-sensor state estimator
 

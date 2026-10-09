@@ -1,0 +1,20 @@
+{
+  "vins_node": {
+    "idle_startup": "passed",
+    "sigint_exit_code": 0
+  },
+  "loop_fusion_node": {
+    "idle_startup": "passed",
+    "sigint_exit_code": 0
+  },
+  "global_fusion_node": {
+    "idle_startup": "passed",
+    "sigint_exit_code": 0
+  },
+  "kitti_odom_test": {
+    "argument_validation": "passed"
+  },
+  "kitti_gps_test": {
+    "argument_validation": "passed"
+  }
+}

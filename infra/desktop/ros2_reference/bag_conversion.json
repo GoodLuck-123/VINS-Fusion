@@ -1,0 +1,50 @@
+{
+  "success": true,
+  "ros1": {
+    "/imu0": {
+      "count": 36820,
+      "serialized_bytes": 11635120,
+      "first_header_ns": 1403636579758555500,
+      "last_header_ns": 1403636763853555500,
+      "sensor_fields_sha256": "682042207a28da08f88c7c61717798faea323e418b4407208898f2d448b1fd73"
+    },
+    "/cam1/image_raw": {
+      "count": 3682,
+      "serialized_bytes": 1329224092,
+      "first_header_ns": 1403636579763555500,
+      "last_header_ns": 1403636763813555500,
+      "sensor_fields_sha256": "006dc6d19e6dd664bb084fdfcd95b96586166b3741228690f2356fcd69ae8e95"
+    },
+    "/cam0/image_raw": {
+      "count": 3682,
+      "serialized_bytes": 1329224092,
+      "first_header_ns": 1403636579763555500,
+      "last_header_ns": 1403636763813555500,
+      "sensor_fields_sha256": "cdb73e994c001b27ee09a25f61ae106ddbbf6798850a1a2327d17d994eac5def"
+    }
+  },
+  "ros2": {
+    "/imu0": {
+      "count": 36820,
+      "serialized_bytes": 11929680,
+      "first_header_ns": 1403636579758555500,
+      "last_header_ns": 1403636763853555500,
+      "sensor_fields_sha256": "682042207a28da08f88c7c61717798faea323e418b4407208898f2d448b1fd73"
+    },
+    "/cam1/image_raw": {
+      "count": 3682,
+      "serialized_bytes": 1329246184,
+      "first_header_ns": 1403636579763555500,
+      "last_header_ns": 1403636763813555500,
+      "sensor_fields_sha256": "006dc6d19e6dd664bb084fdfcd95b96586166b3741228690f2356fcd69ae8e95"
+    },
+    "/cam0/image_raw": {
+      "count": 3682,
+      "serialized_bytes": 1329246184,
+      "first_header_ns": 1403636579763555500,
+      "last_header_ns": 1403636763813555500,
+      "sensor_fields_sha256": "cdb73e994c001b27ee09a25f61ae106ddbbf6798850a1a2327d17d994eac5def"
+    }
+  },
+  "scope": "All sensor fields incl. image pixels, IMU covariances, frame IDs, header and recorded times; ROS 1 Header.seq excluded (removed in ROS 2)."
+}

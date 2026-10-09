@@ -126,7 +126,9 @@ Rockchip 的能力表区分 RK3588 上的 RGA2 与 RGA3，灰度格式及对齐�
 
 ## 当前进展
 
-阶段 0 执行进展（2026-10-09）：Ubuntu 22.04 工程内 ROS 1 隔离环境已建立；OpenCV 4.2.0 / Ceres 1.14.0 保留；EuRoC MH_01_easy 两轮完整 1 倍速双目 IMU 回放和真值评估已通过。构建兼容处理位于 scripts，VINS 原始源码未修改。搭建与实测详见 [Ubuntu 22.04 搭建说明](UBUNTU22_ROS1_BASELINE_SETUP.md)、[原版参照实测报告](BASELINE_REFERENCE_REPORT.md)；后续尚未开展 ROS 2 迁移和板端工作。
+阶段 0 执行进展（2026-10-09）：Ubuntu 22.04 工程内 ROS 1 隔离环境已建立；OpenCV 4.2.0 / Ceres 1.14.0 保留；EuRoC MH_01_easy 两轮完整 1 倍速双目 IMU 回放和真值评估已通过。`master` 保留 ROS 1 算法源码与参照环境。搭建与实测详见 [Ubuntu 22.04 搭建说明](UBUNTU22_ROS1_BASELINE_SETUP.md)、[原版参照实测报告](BASELINE_REFERENCE_REPORT.md)。
+
+阶段 1 桌面进展（2026-10-09）：独立 `ros2-humble` 分支完成 ROS 2 接口和构建迁移，保持同版本视觉/求解依赖及算法配置；两个版本各完成两轮 MH_01_easy 双目 IMU VIO 对比，包含 CPU、内存、I/O 和调度压力指标。详见 [ROS 2 环境说明](UBUNTU22_ROS2_SETUP.md)、[对比报告](ROS1_ROS2_COMPARISON.md)。回环/GNSS/KITTI/RViz 的完整数据验收、其他 EuRoC 序列及板端工作尚未完成。
 
 [1]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_Developer_Guide_RGA_EN.md "Rockchip RGA 官方开发指南"
 [2]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_FAQ_RGA_EN.md "Rockchip RGA 官方 FAQ"
