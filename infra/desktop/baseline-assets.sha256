@@ -1,0 +1,6 @@
+1296330fcf1e09e6c2f926301916f64d4a4c5c0ff12d460a9bc5d4c48411518f  .infra/downloads/ceres-1.14.0.tar.gz
+9ccb2192d7e8c03c58fee07051364d94ed7599363f3b0dce1c5e6cc11c1bb0ec  .infra/downloads/opencv-4.2.0.tar.gz
+046f3bac5dcdaea5678bf5e6be10d895bbd670cc16c7b97ba4c1a6b661f8557e  .infra/downloads/vision_opencv-1.16.2.tar.gz
+57f440ccd68ec8dc8f9461269f5909656b86198bac3adfd677b1fcc7a1428fa9  data/euroc/MH_01_easy.bag
+aae2d7c5684724c8afe364d2fd8499a6ed77a9169adf03736531f67d8e7b2117  data/euroc/MH_01_easy_groundtruth.csv
+8761c382127e6363bd9e0a2451aa3ef90d071a79133f736e2f759a3bf13040dd  .infra/downloads/micromamba.tar.bz2

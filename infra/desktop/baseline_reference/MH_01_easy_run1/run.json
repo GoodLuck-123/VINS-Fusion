@@ -1,0 +1,18 @@
+{
+  "bag": "/home/eric/codespace/ros_ws/data/euroc/MH_01_easy.bag",
+  "rate": 1.0,
+  "source_commit": "be55a937a57436548ddfb1bd324bc1e9a9e828e0",
+  "config": "/home/eric/codespace/ros_ws/results/ros1/MH_01_easy_run1/euroc_stereo_imu_config.yaml",
+  "start_utc": "2026-10-09T09:12:19Z",
+  "success": true,
+  "bag_duration_s": 186.88638639450073,
+  "playback_wall_s": 189.0983030829998,
+  "peak_sampled_rss_kib": 76640,
+  "trajectory_poses": 1831,
+  "first_timestamp_ns": 1403636580813555456,
+  "last_timestamp_ns": 1403636763813555456,
+  "playback_exit_code": 0,
+  "vins_exit_code": -6,
+  "roscore_exit_code": 0,
+  "note": "Unmodified ROS 1 node has an unjoined sync thread; shutdown exit is recorded separately from playback success."
+}

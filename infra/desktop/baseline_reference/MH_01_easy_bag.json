@@ -1,0 +1,55 @@
+{
+  "bag": "/home/eric/codespace/ros_ws/data/euroc/MH_01_easy.bag",
+  "duration_s": 187.749443067,
+  "connections": [
+    {
+      "topic": "/imu0",
+      "type": "sensor_msgs/msg/Imu",
+      "count": 36820
+    },
+    {
+      "topic": "/cam1/image_raw",
+      "type": "sensor_msgs/msg/Image",
+      "count": 3682
+    },
+    {
+      "topic": "/cam0/image_raw",
+      "type": "sensor_msgs/msg/Image",
+      "count": 3682
+    },
+    {
+      "topic": "/leica/position",
+      "type": "geometry_msgs/msg/PointStamped",
+      "count": 3099
+    }
+  ],
+  "first_sensor_messages": {
+    "/imu0": {
+      "bag_timestamp_ns": 1403636579809262870,
+      "header_timestamp_ns": 1403636579758555500
+    },
+    "/cam1/image_raw": {
+      "bag_timestamp_ns": 1403636579810358543,
+      "header_timestamp_ns": 1403636579763555500,
+      "width": 752,
+      "height": 480,
+      "encoding": "mono8",
+      "step": 752,
+      "data_bytes": 360960
+    },
+    "/cam0/image_raw": {
+      "bag_timestamp_ns": 1403636579842242034,
+      "header_timestamp_ns": 1403636579763555500,
+      "width": 752,
+      "height": 480,
+      "encoding": "mono8",
+      "step": 752,
+      "data_bytes": 360960
+    }
+  },
+  "last_sensor_header_timestamps_ns": {
+    "/imu0": 1403636763853555500,
+    "/cam1/image_raw": 1403636763813555500,
+    "/cam0/image_raw": 1403636763813555500
+  }
+}

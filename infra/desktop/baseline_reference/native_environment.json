@@ -1,0 +1,41 @@
+{
+  "targets": {
+    "vins_node": [
+      "libcv_bridge.so => /home/eric/codespace/ros_ws/.infra/bridge_ws/devel/lib/libcv_bridge.so (0x00007876e4614000)",
+      "libopencv_core.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_core.so.4.2 (0x00007876e4000000)",
+      "libopencv_calib3d.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_calib3d.so.4.2 (0x00007876e3400000)",
+      "libopencv_video.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_video.so.4.2 (0x00007876e3f0c000)",
+      "libopencv_imgproc.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_imgproc.so.4.2 (0x00007876e2c00000)",
+      "libceres.so.1 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libceres.so.1 (0x00007876e2400000)",
+      "libopencv_imgcodecs.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_imgcodecs.so.4.2 (0x00007876e3ad6000)",
+      "libopencv_features2d.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_features2d.so.4.2 (0x00007876e366a000)",
+      "libopencv_flann.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_flann.so.4.2 (0x00007876e337e000)"
+    ],
+    "loop_fusion_node": [
+      "libcv_bridge.so => /home/eric/codespace/ros_ws/.infra/bridge_ws/devel/lib/libcv_bridge.so (0x00007ae967757000)",
+      "libopencv_calib3d.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_calib3d.so.4.2 (0x00007ae967000000)",
+      "libopencv_features2d.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_features2d.so.4.2 (0x00007ae96768b000)",
+      "libopencv_core.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_core.so.4.2 (0x00007ae966a00000)",
+      "libopencv_imgproc.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_imgproc.so.4.2 (0x00007ae966200000)",
+      "libopencv_imgcodecs.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_imgcodecs.so.4.2 (0x00007ae967237000)",
+      "libceres.so.1 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libceres.so.1 (0x00007ae965e00000)",
+      "libopencv_flann.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_flann.so.4.2 (0x00007ae96690b000)"
+    ],
+    "global_fusion_node": [
+      "libceres.so.1 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libceres.so.1 (0x000073a343600000)"
+    ],
+    "cv_bridge": [
+      "libopencv_imgcodecs.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_imgcodecs.so.4.2 (0x000073a11b068000)",
+      "libopencv_imgproc.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_imgproc.so.4.2 (0x000073a11a800000)",
+      "libopencv_core.so.4.2 => /home/eric/codespace/ros_ws/.infra/legacy/lib/libopencv_core.so.4.2 (0x000073a11a200000)"
+    ]
+  },
+  "legacy_prefix": "/home/eric/codespace/ros_ws/.infra/legacy",
+  "opencv_version": "4.2.0",
+  "ceres_version": "1.14.0",
+  "native_python": "Python 3.11.17",
+  "compiler": "x86_64-conda-linux-gnu-c++ (conda-forge gcc 13.4.0-20) 13.4.0",
+  "source_commit": "be55a937a57436548ddfb1bd324bc1e9a9e828e0",
+  "source_modified": false,
+  "ceres_shared_library": "/home/eric/codespace/ros_ws/.infra/legacy/lib/libceres.so.1.14.0"
+}

@@ -1,3 +1,6 @@
+# Related papers
+
+```bibtex
 @misc{qin2019a,
   Author = {Tong Qin and Jie Pan and Shaozu Cao and Shaojie Shen},
   Title = {A General Optimization-based Framework for Local Odometry Estimation with Multiple Sensors},
@@ -30,3 +33,4 @@
   number={4}, 
   pages={1004-1020}
 }
+```

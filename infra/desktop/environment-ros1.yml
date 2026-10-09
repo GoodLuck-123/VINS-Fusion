@@ -1,0 +1,25 @@
+# ROS runtime and native toolchain; legacy vision/solver are built separately.
+name: vins-ros1-baseline
+channels:
+  - robostack-noetic
+  - conda-forge
+dependencies:
+  - python=3.11
+  - ros-noetic-ros-core
+  - ros-noetic-tf
+  - ros-noetic-image-transport
+  - ros-noetic-visualization-msgs
+  - gxx_linux-64=13
+  - cmake=3.31
+  - make
+  - ninja
+  - pkg-config
+  - eigen=3.3.9
+  - libboost-python-devel=1.86
+  - glog=0.6
+  - gflags
+  - suitesparse=5.10
+  - libpng
+  - libjpeg-turbo
+  - libtiff
+  - zlib

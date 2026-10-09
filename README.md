@@ -30,7 +30,7 @@ alt="VINS" width="320" height="240" border="10" /></a>
 * **VINS-Mono: A Robust and Versatile Monocular Visual-Inertial State Estimator**, Tong Qin, Peiliang Li, Shaojie Shen, IEEE Transactions on Robotics [pdf](https://ieeexplore.ieee.org/document/8421746/?arnumber=8421746&source=authoralert) 
 
 
-*If you use VINS-Fusion for your academic research, please cite our related papers. [bib](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/paper_bib.txt)*
+*If you use VINS-Fusion for your academic research, please cite our related papers. [bib](support_files/paper_bib.md)*
 
 ## 1. Prerequisites
 ### 1.1 **Ubuntu** and **ROS**
@@ -174,3 +174,11 @@ The source code is released under [GPLv3](http://www.gnu.org/licenses/) license.
 We are still working on improving the code reliability. For any technical issues, please contact Tong Qin <qintonguavATgmail.com>.
 
 For commercial inquiries, please contact Shaojie Shen <eeshaojieATust.hk>.
+
+## Desktop baseline and deployment plan
+
+- [RK3588 deployment task brief](docs/RK3588_DEPLOYMENT_TASK_BRIEF.md)
+- [Ubuntu 22.04 ROS 1 baseline setup](docs/UBUNTU22_ROS1_BASELINE_SETUP.md)
+- [EuRoC baseline reference report](docs/BASELINE_REFERENCE_REPORT.md)
+
+Versioned environment scripts and locks are in `infra/desktop/`. To restore the parent workspace aliases, run `python3 infra/desktop/scripts/init_workspace.py` from this repository root.
