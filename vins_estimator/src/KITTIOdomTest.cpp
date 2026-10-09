@@ -57,7 +57,7 @@ int main(int argc, char** argv)
 
 	readParameters(config_file);
 	estimator.setParameter();
-	registerPub(n);
+	registerPub(*n);
 
 	// load image list
 	FILE* file;

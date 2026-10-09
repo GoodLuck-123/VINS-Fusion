@@ -33,22 +33,27 @@ static Vector3d last_path(0.0, 0.0, 0.0);
 
 size_t pub_counter = 0;
 
-void registerPub(const rclcpp::Node::SharedPtr &n)
+void registerPub(rclcpp::Node &n)
 {
     tf_broadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(n);
-    pub_latest_odometry = n->create_publisher<nav_msgs::msg::Odometry>(vins_ros::private_topic("imu_propagate"), rclcpp::QoS(1000));
-    pub_path = n->create_publisher<nav_msgs::msg::Path>(vins_ros::private_topic("path"), rclcpp::QoS(1000));
-    pub_odometry = n->create_publisher<nav_msgs::msg::Odometry>(vins_ros::private_topic("odometry"), rclcpp::QoS(1000));
-    pub_point_cloud = n->create_publisher<sensor_msgs::msg::PointCloud>(vins_ros::private_topic("point_cloud"), rclcpp::QoS(1000));
-    pub_margin_cloud = n->create_publisher<sensor_msgs::msg::PointCloud>(vins_ros::private_topic("margin_cloud"), rclcpp::QoS(1000));
-    pub_key_poses = n->create_publisher<visualization_msgs::msg::Marker>(vins_ros::private_topic("key_poses"), rclcpp::QoS(1000));
-    pub_camera_pose = n->create_publisher<nav_msgs::msg::Odometry>(vins_ros::private_topic("camera_pose"), rclcpp::QoS(1000));
-    pub_camera_pose_visual = n->create_publisher<visualization_msgs::msg::MarkerArray>(vins_ros::private_topic("camera_pose_visual"), rclcpp::QoS(1000));
-    pub_keyframe_pose = n->create_publisher<nav_msgs::msg::Odometry>(vins_ros::private_topic("keyframe_pose"), rclcpp::QoS(1000));
-    pub_keyframe_point = n->create_publisher<sensor_msgs::msg::PointCloud>(vins_ros::private_topic("keyframe_point"), rclcpp::QoS(1000));
-    pub_extrinsic = n->create_publisher<nav_msgs::msg::Odometry>(vins_ros::private_topic("extrinsic"), rclcpp::QoS(1000));
-    pub_image_track = n->create_publisher<sensor_msgs::msg::Image>(vins_ros::private_topic("image_track"), rclcpp::QoS(1000));
+    pub_latest_odometry = n.create_publisher<nav_msgs::msg::Odometry>(vins_ros::private_topic("imu_propagate"), rclcpp::QoS(1000));
+    pub_path = n.create_publisher<nav_msgs::msg::Path>(vins_ros::private_topic("path"), rclcpp::QoS(1000));
+    pub_odometry = n.create_publisher<nav_msgs::msg::Odometry>(vins_ros::private_topic("odometry"), rclcpp::QoS(1000));
+    pub_point_cloud = n.create_publisher<sensor_msgs::msg::PointCloud>(vins_ros::private_topic("point_cloud"), rclcpp::QoS(1000));
+    pub_margin_cloud = n.create_publisher<sensor_msgs::msg::PointCloud>(vins_ros::private_topic("margin_cloud"), rclcpp::QoS(1000));
+    pub_key_poses = n.create_publisher<visualization_msgs::msg::Marker>(vins_ros::private_topic("key_poses"), rclcpp::QoS(1000));
+    pub_camera_pose = n.create_publisher<nav_msgs::msg::Odometry>(vins_ros::private_topic("camera_pose"), rclcpp::QoS(1000));
+    pub_camera_pose_visual = n.create_publisher<visualization_msgs::msg::MarkerArray>(vins_ros::private_topic("camera_pose_visual"), rclcpp::QoS(1000));
+    pub_keyframe_pose = n.create_publisher<nav_msgs::msg::Odometry>(vins_ros::private_topic("keyframe_pose"), rclcpp::QoS(1000));
+    pub_keyframe_point = n.create_publisher<sensor_msgs::msg::PointCloud>(vins_ros::private_topic("keyframe_point"), rclcpp::QoS(1000));
+    pub_extrinsic = n.create_publisher<nav_msgs::msg::Odometry>(vins_ros::private_topic("extrinsic"), rclcpp::QoS(1000));
+    pub_image_track = n.create_publisher<sensor_msgs::msg::Image>(vins_ros::private_topic("image_track"), rclcpp::QoS(1000));
 
+    path.poses.clear();
+    sum_of_path = 0;
+    last_path.setZero();
+    pub_counter = 0;
+    cameraposevisual.reset();
     cameraposevisual.setScale(0.1);
     cameraposevisual.setLineWidth(0.01);
 }

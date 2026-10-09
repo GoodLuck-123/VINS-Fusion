@@ -94,7 +94,7 @@ int main(int argc, char** argv)
 
 	readParameters(config_file);
 	estimator.setParameter();
-	registerPub(n);
+	registerPub(*n);
 
 	FILE* outFile;
 	outFile = fopen((OUTPUT_FOLDER + "/vio.txt").c_str(),"w");

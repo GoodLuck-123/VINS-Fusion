@@ -15,7 +15,7 @@ export LD_LIBRARY_PATH="$VINS_WORKSPACE_DIR/.infra/legacy_ros2/lib:$CONDA_PREFIX
 export PKG_CONFIG_PATH="$VINS_WORKSPACE_DIR/.infra/legacy_ros2/lib/pkgconfig:$CONDA_PREFIX/lib/pkgconfig"
 export ROS_LOCALHOST_ONLY=1
 export ROS_DOMAIN_ID="${ROS_DOMAIN_ID:-42}"
-export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export RMW_IMPLEMENTATION="${VINS_RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}"
 if [[ -f "$VINS_WORKSPACE_DIR/.infra/ros2_ws/install/.vins-ready" && "${VINS_ROS2_BUILD:-0}" != 1 ]]; then
   source "$VINS_WORKSPACE_DIR/.infra/ros2_ws/install/setup.bash"
 fi

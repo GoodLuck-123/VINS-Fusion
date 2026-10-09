@@ -54,6 +54,27 @@ python infra/desktop/scripts/verify_ros2_environment.py
 
 ## 数据和完整实验
 
+### 组件入口
+
+`vins_ros::VinsNode` 可作为共享库动态加载，也可通过原有 `vins_node config.yaml` 独立运行。
+组件把 ROS 接口封装为带 `NodeOptions` 的节点；同一容器中的数据源和 VINS 都启用进程内通信时，才能减少通信复制。
+外部 `ros2 bag play` 仍经过跨进程通信，单独把 VINS 放进容器不能消除这条边界。
+
+上游配置/发布器仍有全局状态，因此一个进程只允许一个 VINS 估计器，可与数据源等其他组件共存。
+重复加载会返回错误；卸载会停止同步和估计线程、销毁发布器；支持卸载后重新加载单目/双目配置。
+
+```bash
+export VINS_RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+source infra/desktop/scripts/ros2_env.sh
+ros2 launch vins euroc_components.launch.py config:=/absolute/config.yaml
+```
+
+本机 WSL 的动态加载服务在默认 Fast DDS 下未能完成请求响应；标准服务探针也复现，Cyclone DDS 下加载/卸载通过。
+因此组件服务入口在本机使用已包含在锁文件中的 Cyclone DDS，未升级原生依赖。
+原始参照及独立入口的 Fast DDS 设置保留；改变 RMW 的实验必须单独标记，不与原始结果混成同条件对比。
+
+### 数据转换和独立入口
+
 普通终端执行转换与校验：
 
 ```bash
