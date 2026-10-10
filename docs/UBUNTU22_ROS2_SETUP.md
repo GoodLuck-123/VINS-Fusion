@@ -174,6 +174,29 @@ ASan 仅用于适配器/测试可执行文件，依赖库未全部插桩、泄�
 `append_euroc_comparison.py --section 唯一标识 --title "实验标题" 结果目录...` 追加表格并冻结小体积快照。
 各轮参数、源码和二进制哈希、RMW、资源采样范围必须留在 `run.json`，组件容器与独立节点的口径区别须保留。
 
+### 硬件计数器
+
+普通终端可读取能力清单，不安装系统工具、不改内核权限：
+
+```bash
+python3 infra/desktop/scripts/probe_hardware_metrics.py --output ../results/ros2/hardware_probe_new.json
+```
+
+文件不得覆盖；输出不存在的 DDR/功耗值为 null。PMU 名称存在不等于有可用字节计数；虚拟电池读数不作为功耗。
+当前 WSL 核验 CPU PMU 可用，DDR 控制器事件、RAPL energy_uj、物理 hwmon 功率读数均未暴露。
+
+ROS 2 终端可额外记录 VINS 进程全部新建线程的用户态 CPU 事件：
+
+```bash
+source infra/desktop/scripts/ros2_env.sh
+python infra/desktop/scripts/run_ros2_euroc.py --name MH01_stereo_pmu_new --image-mode share --perf-counters
+```
+
+通过同 PID 的启动门控，在原生程序建立工作线程前设置 inherit 计数器。事件包含 cycles、instructions、cache references/misses。
+计数在正常退出后读取，包括启动、稳定等待和退出；与原来的 subscription-ready-to-drain CPU 采样窗口有区别。
+各事件保留 time_enabled/time_running，未自动修正 multiplex；失败事件保留原因，不用零值伪装成测量结果。
+虚拟化 PMU 的 cache misses 仅为诊断，不乘 cache-line 大小换算 DDR；这里没有测量功耗。
+
 ## 参考
 
 - [RoboStack 隔离环境说明](https://robostack.github.io/GettingStarted.html)

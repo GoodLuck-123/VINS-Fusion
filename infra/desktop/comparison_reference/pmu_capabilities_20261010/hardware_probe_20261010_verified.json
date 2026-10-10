@@ -1,0 +1,116 @@
+{
+  "timestamp_utc": "2026-10-10T02:15:57Z",
+  "kernel": "6.18.33.2-microsoft-standard-WSL2",
+  "architecture": "x86_64",
+  "wsl": true,
+  "scope": "Read-only capability probe; no EuRoC playback or host-wide energy attribution",
+  "perf_event_paranoid": "2",
+  "perf_counter_access": {
+    "task_clock": {
+      "available": true,
+      "probe_count": 7901421,
+      "time_enabled_ns": 7900935,
+      "time_running_ns": 7900935,
+      "scope": "Counter access test only, not a VINS measurement",
+      "checksum": 333328333350000
+    },
+    "cpu_cycles": {
+      "available": true,
+      "probe_count": 24350106,
+      "time_enabled_ns": 7943446,
+      "time_running_ns": 7943446,
+      "scope": "Counter access test only, not a VINS measurement",
+      "checksum": 333328333350000
+    },
+    "cache_misses": {
+      "available": true,
+      "probe_count": 1848,
+      "time_enabled_ns": 8843068,
+      "time_running_ns": 8843068,
+      "scope": "Counter access test only, not a VINS measurement",
+      "checksum": 333328333350000
+    }
+  },
+  "pmus": {
+    "breakpoint": {
+      "type": "5",
+      "events": {}
+    },
+    "cpu": {
+      "type": "4",
+      "events": {
+        "branch-instructions": "event=0xc4",
+        "branch-misses": "event=0xc5",
+        "bus-cycles": "event=0x3c,umask=0x01",
+        "cache-misses": "event=0x2e,umask=0x41",
+        "cache-references": "event=0x2e,umask=0x4f",
+        "cpu-cycles": "event=0x3c",
+        "instructions": "event=0xc0",
+        "ref-cycles": "event=0x00,umask=0x03",
+        "slots": "event=0x00,umask=0x4",
+        "topdown-bad-spec": "event=0x00,umask=0x81",
+        "topdown-be-bound": "event=0x00,umask=0x83",
+        "topdown-fe-bound": "event=0x00,umask=0x82",
+        "topdown-retiring": "event=0x00,umask=0x80"
+      }
+    },
+    "kprobe": {
+      "type": "8",
+      "events": {}
+    },
+    "msr": {
+      "type": "11",
+      "events": {
+        "pperf": "event=0x03",
+        "smi": "event=0x04",
+        "tsc": "event=0x00"
+      }
+    },
+    "power": {
+      "type": "10",
+      "events": {}
+    },
+    "software": {
+      "type": "1",
+      "events": {}
+    },
+    "tracepoint": {
+      "type": "2",
+      "events": {}
+    },
+    "uprobe": {
+      "type": "9",
+      "events": {}
+    }
+  },
+  "memory_controller_candidates": [],
+  "rapl_energy_zones": {},
+  "hwmon": {
+    "hwmon0": {
+      "name": "AC1",
+      "power_inputs": {}
+    },
+    "hwmon1": {
+      "name": "BAT1",
+      "power_inputs": {
+        "power1_input": "0"
+      }
+    }
+  },
+  "power_supplies": {
+    "AC1": "DEVTYPE=power_supply\nPOWER_SUPPLY_NAME=AC1\nPOWER_SUPPLY_TYPE=Mains\nPOWER_SUPPLY_ONLINE=1\nPOWER_SUPPLY_TYPE=Mains",
+    "BAT1": "DEVTYPE=power_supply\nPOWER_SUPPLY_NAME=BAT1\nPOWER_SUPPLY_TYPE=Battery\nPOWER_SUPPLY_STATUS=Not charging\nPOWER_SUPPLY_PRESENT=1\nPOWER_SUPPLY_TECHNOLOGY=Unknown\nPOWER_SUPPLY_CYCLE_COUNT=-1\nPOWER_SUPPLY_VOLTAGE_MIN_DESIGN=5000000\nPOWER_SUPPLY_VOLTAGE_NOW=5000000\nPOWER_SUPPLY_POWER_NOW=0\nPOWER_SUPPLY_ENERGY_FULL_DESIGN=5000000\nPOWER_SUPPLY_ENERGY_FULL=5000000\nPOWER_SUPPLY_ENERGY_NOW=4917000\nPOWER_SUPPLY_CAPACITY=98\nPOWER_SUPPLY_CAPACITY_LEVEL=Normal\nPOWER_SUPPLY_TYPE=Battery\nPOWER_SUPPLY_MODEL_NAME=Microsoft Hyper-V Virtual Battery\nPOWER_SUPPLY_MANUFACTURER=\nPOWER_SUPPLY_SERIAL_NUMBER=Virtual"
+  },
+  "measurement": {
+    "ddr_read_bytes": null,
+    "ddr_write_bytes": null,
+    "energy_j": null,
+    "average_power_w": null
+  },
+  "limitations": [
+    "PMU names alone do not establish usable counters or byte/event scaling.",
+    "RAPL/package or rail counters are host/device-wide, not process-only.",
+    "Virtual battery readings are not physical power measurements.",
+    "Logical copy bytes and cache misses must not substitute for DDR traffic."
+  ]
+}

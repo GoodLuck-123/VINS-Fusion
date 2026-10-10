@@ -132,6 +132,23 @@ Rockchip 的能力表区分 RK3588 上的 RGA2 与 RGA3，灰度格式及对齐�
 
 阶段 4a/4c 桌面进展（2026-10-10）：按当前需求提前完成 VINS 组件入口、图像 owner 跨帧持有及同进程 EuRoC 数据源，保留独立节点和 copy 回退。单目视惯作为实验室目标模式已完整验证；新增八轮单目/双目 A/B，结果统一追加到同一对比报告。原生灰度入口的冗余深拷贝消除、同进程消息地址一致性已验证，但双目整机 CPU 未体现收益；不得等同于全程序零拷贝或板端加速完成。单进程限一个 VINS 估计器；硬件数据源、长期运行、其他编码和板端缓存/带宽测量仍是后续门槛。
 
+### 共享内存与 DMA-BUF 的补充评估（2026-10-10）
+
+以下仍按一名熟悉 ROS/C++/Linux 的工程师估算，包含 A/B 和必要故障恢复验证；不能保证所有相机无改动接入。
+
+| 范围 | 估算 | 通用边界 |
+| --- | --- | --- |
+| 现有只读视图 / 同进程组件 | 已完成基础链路 | 标准 Image 的 mono8/8UC1 与 owner 规则较通用；相机 SDK 到 Image 的复制尚未消除 |
+| DDS 共享内存传输核验 | 2–5 工作日，含本机 RMW 服务问题排查；复杂情况另计 | 对标准消息较通用，但共享内存传输仍可能有序列化和复制，不等于零拷贝 |
+| 真正跨进程共享像素 | 2–4 人周 | 通用缓冲池可复用，需双方支持共享帧协议/类型；普通 Image、bag、RViz 保留转换回退 |
+| 一个已有 DMA-BUF 驱动的相机 → CPU/VINS | 1–2 人周 | 依赖该驱动支持导出/导入、CPU 可读布局、同步与缓冲归还 |
+| 相机 → RGA → CPU/VINS，含跨进程句柄 | 2–4 人周，涵盖上一行基础，不简单相加 | 需协商格式、stride、fence、cache；换接口/驱动要新增适配器 |
+| 驱动/封闭 SDK 不提供可共享缓冲 | 无统一工期承诺 | 可能只能在 SDK 输出后复制一次；不默认纳入内核驱动开发 |
+
+建议保留统一的只读帧视图及 owner/归还规则，在数据源层分别接标准 ROS Image、普通共享内存和 DMA-BUF；算法层保持现有图像接口。普通共享内存的协议可与相机型号解耦，DMA-BUF 则以 Linux 驱动/SDK 能力为前提。进程间不能只发送指针或 fd 数字；共享内存用区域/偏移/代次标识，DMA-BUF 要传递实际句柄及元数据。先优先图像等大数据，不为小体积 IMU/GNSS 扩大基础设施。
+
+本机 WSL 未暴露 DDR 控制器计数器和物理能量接口；CPU PMU 可用，但不能据此换算 DDR 搬运或功耗。后续实测需物理主机计数器或目标板接口/电源仪表，统一记录整个数据链与空闲背景，避免用仅 VINS 资源表推导整机能耗。具体核验与补充实验统一续写在 [对比报告](ROS1_ROS2_COMPARISON.md)。
+
 [1]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_Developer_Guide_RGA_EN.md "Rockchip RGA 官方开发指南"
 [2]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_FAQ_RGA_EN.md "Rockchip RGA 官方 FAQ"
 [3]: https://github.com/opencv/opencv/blob/4.x/modules/video/src/lkpyramid.cpp "OpenCV LK 官方源码"

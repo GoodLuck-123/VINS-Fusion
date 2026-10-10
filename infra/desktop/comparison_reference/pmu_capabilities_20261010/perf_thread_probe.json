@@ -1,0 +1,31 @@
+{
+  "scope": "Native process and inherited threads, userspace only; includes exec/startup/teardown and a short Python gate",
+  "errors": {},
+  "events": {
+    "cpu_cycles": {
+      "count": 1299917932,
+      "time_enabled_ns": 327464505,
+      "time_running_ns": 327464505,
+      "running_fraction": 1.0
+    },
+    "instructions": {
+      "count": 4922728990,
+      "time_enabled_ns": 327464505,
+      "time_running_ns": 327464505,
+      "running_fraction": 1.0
+    },
+    "cache_references": {
+      "count": 816663,
+      "time_enabled_ns": 327464505,
+      "time_running_ns": 327464505,
+      "running_fraction": 1.0
+    },
+    "cache_misses": {
+      "count": 157827,
+      "time_enabled_ns": 327464505,
+      "time_running_ns": 327464505,
+      "running_fraction": 1.0
+    }
+  },
+  "limitations": "Virtualized CPU PMU; cache misses are not DDR bytes; not an energy measurement. No multiplex scaling is applied."
+}

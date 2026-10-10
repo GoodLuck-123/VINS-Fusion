@@ -60,6 +60,25 @@ def main():
                      f"{run['image_mode']} | {run['trajectory_poses']} | {evaluation['ate_translation_m']['rmse']:.6f} | "
                      f"{evaluation['rpe_translation_m_one_pose_step']['rmse']:.6f} | {resource['mean_cpu_percent_one_core']:.2f} | "
                      f"{resource['peak_sampled_rss_kib']/1024:.2f} |")
+    if any("cpu_perf_counters" in run for _, run, _ in records):
+        lines += ["", "| 实验 | cycles (十亿) | instructions (十亿) | cache misses (百万) | IPC | misses / 千条指令 |",
+                  "| --- | ---: | ---: | ---: | ---: | ---: |"]
+        for source, run, _ in records:
+            events = run.get("cpu_perf_counters", {}).get("events", {})
+            values = []
+            for name, divisor in (("cpu_cycles", 1e9), ("instructions", 1e9), ("cache_misses", 1e6)):
+                event = events.get(name, {})
+                values.append(f"{event['count']/divisor:.3f}" if event.get("running_fraction") == 1.0 else "—")
+            if all(events.get(n, {}).get("running_fraction") == 1.0 for n in ("cpu_cycles", "instructions", "cache_misses")) and events["cpu_cycles"]["count"] and events["instructions"]["count"]:
+                ipc = events["instructions"]["count"] / events["cpu_cycles"]["count"]
+                mpki = 1000 * events["cache_misses"]["count"] / events["instructions"]["count"]
+                values += [f"{ipc:.3f}", f"{mpki:.3f}"]
+            else:
+                values += ["—", "—"]
+            lines.append(f"| {source.name} | " + " | ".join(values) + " |")
+        lines += ["", "CPU PMU 统计用户态及继承的工作线程，含启动/退出及短暂门控；与 subscription-ready-to-drain 的资源采样窗口不同。",
+                  "表中仅显示无计数器轮换的事件；原始 time_enabled/time_running 和错误保存在 run.json。",
+                  "WSL 虚拟化 PMU 的 IPC/cache misses 仅用于诊断，不是 DDR 流量、memory-bound 判定或功耗实测。"]
     lines += ["", "copy 保留原入口的 toCvCopy + clone；share 在原生 mono8/8UC1 输入上共享只读视图并持有消息 owner。",
               "前端保存 prev_img 时，同步线程保留上一左图 owner，直到下一次跟踪返回才替换。颜色转换或字节序不匹配时允许有复制。", "",
               "| 实验 | 左 / 右 / IMU / 处理图像 | 共享图像 | 入口物化次数 | 入口物化数据 (MiB) |",

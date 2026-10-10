@@ -133,3 +133,74 @@ MH01_stereo_composed_share1：6 组起始图像指针核验通过，数据源与
 本地所有权探针覆盖 mono8/8UC1、padding stride、颜色转换回退、无效 stride、消息存活、输入只读及五帧双目 copy/share 特征一致性。ASan 仅插桩适配器/测试可执行文件，未对所有依赖库插桩，关闭泄漏检查；其初始化期故障经 GDB 定位到 main 前的加载器/ASan 初始化，仅测试进程设置 LD_BIND_NOW=1 后连续三次通过。不能据此宣称全程序无泄漏。证据见同一快照内 ownership_checks.json、component_smoke.json 和 smoke.json。
 
 以上八轮使用源码 00658b0；随后 70c0b3b 仅补齐组件公开头文件的依赖导出，增量构建后 VINS/组件二进制哈希保持一致。完整构建和隔离检查通过，仍加载独立 ROS 2 前缀中的 OpenCV 4.2.0 / Ceres 1.14.0。历史参照快照未改写，未来版本继续在本文末尾追加。
+
+<!-- experiment:pmu_capabilities_20261010 -->
+## DDR/功耗可测性核验与 CPU PMU 对照（2026-10-10）
+
+本节追加记录后续版本；此前结果与参照快照保留。原生依赖、算法参数和标定未升级。
+使用 MH_01_easy 完整 1 倍速回放；未运行回环/GNSS/RViz。
+
+| 实验 | 模式 / 部署 | RMW | 入口 | poses | ATE RMSE (m) | RPE RMSE (m) | CPU (%) | RSS 峰值 (MiB) |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
+| MH01_stereo_pmu_copy1 | stereo_imu_vio / standalone | fastrtps_cpp | copy | 1831 | 0.252750 | 0.003083 | 165.76 | 91.50 |
+| MH01_stereo_pmu_share1 | stereo_imu_vio / standalone | fastrtps_cpp | share | 1831 | 0.252710 | 0.003083 | 176.71 | 93.88 |
+
+| 实验 | cycles (十亿) | instructions (十亿) | cache misses (百万) | IPC | misses / 千条指令 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| MH01_stereo_pmu_copy1 | 910.289 | 1111.060 | 2044.252 | 1.221 | 1.840 |
+| MH01_stereo_pmu_share1 | 931.805 | 1110.565 | 2152.260 | 1.192 | 1.938 |
+
+CPU PMU 统计用户态及继承的工作线程，含启动/退出及短暂门控；与 subscription-ready-to-drain 的资源采样窗口不同。
+表中仅显示无计数器轮换的事件；原始 time_enabled/time_running 和错误保存在 run.json。
+WSL 虚拟化 PMU 的 IPC/cache misses 仅用于诊断，不是 DDR 流量、memory-bound 判定或功耗实测。
+
+copy 保留原入口的 toCvCopy + clone；share 在原生 mono8/8UC1 输入上共享只读视图并持有消息 owner。
+前端保存 prev_img 时，同步线程保留上一左图 owner，直到下一次跟踪返回才替换。颜色转换或字节序不匹配时允许有复制。
+
+| 实验 | 左 / 右 / IMU / 处理图像 | 共享图像 | 入口物化次数 | 入口物化数据 (MiB) |
+| --- | --- | ---: | ---: | ---: |
+| MH01_stereo_pmu_copy1 | 3682 / 3682 / 36820 / 3682 | 0 | 14728 | 5069.94 |
+| MH01_stereo_pmu_share1 | 3682 / 3682 / 36820 / 3682 | 7364 | 0 | 0.00 |
+
+以上物化统计只覆盖图像入口显式复制/转换，不是全程序复制计数；颜色转换计为物化。未计入 OpenCV 金字塔、跟踪图、回环、DDS 或磁盘读包内部的复制。
+
+同模式、同部署、同 RMW 的重复实验才做 A/B。不同传感器模式不能直接比较精度；不同资源采样范围不能直接比较 CPU/RSS。
+
+stereo_imu_vio / standalone / rmw_fastrtps_cpp：copy/share 轮数 1/1，CPU 均值 165.76% / 176.71%，RSS 峰值均值 91.50 / 93.88 MiB。
+
+
+standalone 采样 VINS 进程；component 采样容器 + VINS；composed 采样容器 + VINS + C++ EuRoC 数据源。
+composed 的数据源先反序列化 bag，再移动 typed 消息到 VINS，保留记录/头时间戳；每条传感器记录发布 /clock，外部播放器参照为 100 Hz /clock。
+composed 改变数据源、RMW 及资源范围，不能用它与旧节点表直接计算组件化加速比。
+
+
+各轮干净退出、末帧覆盖和传感器计数已由 runner 检查；ATE/RPE 仍使用相同 evo、SE(3) 无尺度对齐与 0.01 s 匹配容差。
+少量重复只用于发现回归；WSL 宿主调度与求解器时间预算仍会造成波动，不能宣称统计显著加速。
+
+本轮未实施跨进程共享内存、相机 DMA-BUF、RGA、NEON 或全程序零拷贝；未测 DDR 带宽和功耗。
+
+[本节参照快照](../infra/desktop/comparison_reference/pmu_capabilities_20261010/)。源码/二进制哈希、RMW、资源口径及原始采样见各轮 run.json / resource_samples.csv。
+
+本轮只增加测量工具，VINS/组件二进制与上一节一致，没有改算法、依赖、回环开关或图像频率。两轮都完整接收左右各 3682 张图像、36820 条 IMU，正常退出。指令数从 1.111060 万亿到 1.110565 万亿（约 -0.045%），cycles 从 910.289 十亿到 931.805 十亿（约 +2.36%），cache misses 从 2044.252 百万到 2152.260 百万（约 +5.28%）。本轮没有显示缓存/执行压力下降；各一轮且未控制宿主调度、温控和频率，不定位为算法回归，不建立性能显著性结论。计数器可能引入开销，不能与此前不带 PMU 的 CPU 表直接计算加速比。
+
+**进程与线程。** 正式实验均未启动 loop_fusion/global_fusion/RViz，是开环 VIO。standalone 和仅 VINS component 的业务链各有两个进程：VINS（或组件容器）及外部播放器；composed 把数据源和 VINS 放进同一容器，业务链只有一个进程。另有 Python runner（订阅观察与采样），以及启动 shell/controller 等辅助进程，它们不属于原表的 VINS 资源采样。一个进程含一个或多个线程，共享地址空间；进程 CPU 统计累计全部线程，线程数不能解释为同时占用的核数。上一节 VINS 双目线程采样峰值 31–32、单目 29–31，同进程容器峰值 31，包含 DDS、计算库及 VINS 工作线程。
+
+**RSS 峰值。** RSS 是进程当前驻留在物理内存中的页面总量，包含代码、栈、图像、求解器对象及共享库等；表中峰值取约 1 秒采样的最大值，可能错过短峰。run.json 另有 VmHWM 高水位参考；proc 驻留核算有延迟，采样 RSS 与 VmHWM 不必完全吻合。RSS 不是累计分配或 DDR 搬运，共享页面相加可能重复计算，多进程可同时看 PSS。一个峰值不能证明泄漏；后续长回放关注预热后的持续增长，再针对异常 debug。[Linux proc 说明](https://docs.kernel.org/filesystems/proc.html)
+
+**减拷贝预期。** 复制本身消耗 CPU 指令、缓存读写和分配，减少它也可能降低 CPU 时间、DDR 压力和功耗。但逻辑复制不一定到 DDR：缓存命中会减少外存访问，写分配/回写又可能增加访问，不能直接把复制字节当作 DDR 流量。CPU 占用也不是有效算术单元利用率。若瓶颈是访存等待，减少争用可能提高有效吞吐；仍需热点/profile 才能证明 VINS 是 memory bound。固定 1 倍速供给适合完整性和资源对照，不能单凭它测出最大吞吐。
+
+**DDR 与功耗目前未测得。** WSL2 / i5-1135G7 暴露 CPU PMU，但没有 IMC/DDR/DFI 事件、RAPL energy_uj 或物理 hwmon 功率输入，/dev/cpu 也不存在。power PMU 的 events 目录为空；BAT1 标注 Microsoft Hyper-V Virtual Battery，power_now 为 0，不能解释为实验功耗为零。Windows 宿主的 PATH 工具查找及运行进程查找未发现现成 PCM/HWiNFO/VTune 读数入口；未做全盘安装扫描或安装驱动。因此 DDR 读/写字节、能量和平均功率保留 null，不用 cache_misses×64、rchar/wchar 或累计复制字节替代。证据见 [能力清单](../infra/desktop/comparison_reference/pmu_capabilities_20261010/hardware_probe_20261010_verified.json)；CPU 计数器的 inherit 机制见 [Linux 接口](https://man7.org/linux/man-pages/man2/perf_event_open.2.html)。
+
+真正测量需要物理主机上支持该 CPU 的内存控制器计数器，或目标板的 DFI/DMC/BSP 接口；事件到字节的换算由硬件文档决定。[Intel PCM](https://github.com/intel/pcm) 是可评估的 Windows 宿主路径，实际 CPU/驱动支持项须核验。功耗用有效能量差/时间算平均功率，没有板端传感器则用输入电源仪表。RAPL package/DRAM 是硬件域，不能称作某个进程的独占能耗，也不等于整板/插座功率。[Linux RAPL 接口](https://docs.kernel.org/power/powercap/powercap.html)
+
+后续物理平台 A/B 应统一整个数据源 + VINS 链、供给频率、预热和计时区间，记录宿主空闲及数据源背景，交替顺序重复；报告 DDR read/write MiB/s、累计字节、能量 J、平均/峰值 W 和每帧能量。空闲差分用于估计增量，同时保留原始读数。长期泄漏排查随实际实验推进，不以峰值或局部 ASan 代替全程序验收。
+
+**共享内存与 DMA-BUF 的通用性。** 工作量详见 [任务书补充评估](RK3588_DEPLOYMENT_TASK_BRIEF.md#共享内存与-dma-buf-的补充评估2026-10-10)。现有 mono8/8UC1 视图与相机品牌解耦，但不消除 SDK 到 ROS 消息的复制；颜色转换/压缩解码仍有必要输出。换相机仍需更新标定、时间戳和噪声参数。
+
+DDS 共享内存传输和 Data-sharing 是两层机制，不能都称作零拷贝。当前 Fast DDS 为 2.6.10；Data-sharing 要求 bounded 类型，完整零拷贝还限制 plain 类型。标准 Image 有可变长像素数组、encoding/header 字符串，仅开启 SHM 无法自动获得端到端零拷贝。[Data-sharing](https://fast-dds.docs.eprosima.com/en/2.6.x/fastdds/transport/datasharing.html)、[零拷贝条件](https://fast-dds.docs.eprosima.com/en/2.6.x/fastdds/use_cases/zero_copy/zero_copy.html)、[Image 定义](https://github.com/ros2/common_interfaces/blob/humble/sensor_msgs/msg/Image.msg)
+
+真正跨进程共享像素估计 2–4 人周：采用区域/偏移/代次描述符和共享 owner，处理尺寸上限、prev_img 持有、慢消费者、崩溃回收和重连。协议可复用于图像、深度和点云，但生产者/消费者都需适配。若 SDK 不能写入共享池，SDK → 池仍可能复制一次，后续消费者可共享；普通 Image、bag、RViz 和远端网络保留边界转换。IMU/GNSS 数据较小，先保持标准消息。
+
+已有 DMA-BUF 驱动的单相机接入约 1–2 人周；连同 RGA 和跨进程句柄约 2–4 人周，包含前者基础，不简单相加。DMA-BUF 可作为跨进程共享像素的底层，两者并非二选一。能力取决于驱动/SDK，不能仅凭 USB/MIPI 判断。要传递真实 fd 句柄（例如 Unix socket SCM_RIGHTS），不能只在 ROS topic 里发 fd 数字或进程指针；同时协商格式、planes、offset/stride、同步和归还。普通共享内存不自动成为 RGA 可用 DMA 缓冲。硬件写完后 CPU 才能读，所有消费者包括 prev_img 完成后才归还相机；封闭 SDK 无接口时不保证无复制。[Linux DMA-BUF](https://docs.kernel.org/driver-api/dma-buf.html)、[布局协商](https://docs.kernel.org/userspace-api/dma-buf-alloc-exchange.html)、[V4L2 导出](https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/vidioc-expbuf.html)
+
+建议保持算法层只读图像及 owner 规则，在数据源层分别接 ROS Image、共享内存和 DMA-BUF：支持则共享，不匹配则明确回退。Rockchip 已有 fd 导入示例，但 cache 同步本身也可能产生 CPU 负载，不能预设自动提速。[RGA 示例](https://github.com/airockchip/librga/blob/main/samples/allocator_demo/src/rga_allocator_dma32_demo.cpp)、[RGA FAQ](https://github.com/airockchip/librga/blob/main/docs/Rockchip_FAQ_RGA_EN.md)

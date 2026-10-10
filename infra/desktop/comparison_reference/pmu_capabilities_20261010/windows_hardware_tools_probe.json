@@ -1,0 +1,20 @@
+{
+  "timestamp_utc": "2026-10-10T02:21:32Z",
+  "scope": "Read-only Windows PATH command lookup and running process lookup; no exhaustive installed-file scan",
+  "tools_checked": [
+    "pcm.exe",
+    "pcm-memory.exe",
+    "pcm-power.exe",
+    "HWiNFO64.exe",
+    "vtune.exe"
+  ],
+  "running_processes_checked": [
+    "HWiNFO64",
+    "HWiNFO32",
+    "pcm",
+    "pcm-memory"
+  ],
+  "output_empty": true,
+  "usable_measurement_source_found": false,
+  "changes_to_host": false
+}
