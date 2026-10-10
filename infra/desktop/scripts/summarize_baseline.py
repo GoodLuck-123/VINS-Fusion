@@ -6,6 +6,7 @@ import shutil
 
 
 from workspace_paths import WORKSPACE_ROOT as ROOT, DESKTOP_ROOT, DOCS_ROOT
+from markdown_docs import format_prose
 native = json.loads((ROOT / "results/ros1/native_environment.json").read_text())
 bag = json.loads((ROOT / "results/ros1/MH_01_easy_bag.json").read_text())
 records = []
@@ -70,11 +71,11 @@ lines += ["", "两轮均以 1 倍速完整回放；播放进程退出 0；节点
           "完整回放成功与清理退出状态分别记录，未修改原版来隐藏此问题。", "",
           "小体积参照快照：[baseline_reference/](../infra/desktop/baseline_reference/)，包含轨迹、配置、评估、环境、校验清单。", "",
           "全部原始实验日志：运行工作区内的 `results/ros1/MH_01_easy_run1` 和 `MH_01_easy_run2`，不纳入 Git。", "",
-          "环境重建说明：[Ubuntu 22.04 搭建说明](UBUNTU22_ROS1_BASELINE_SETUP.md)。", "",
+          "环境重建说明：[Ubuntu 22.04 搭建说明](02_UBUNTU22_ROS1_SETUP.md)。", "",
           "后续迁移使用相同数据/配置进行 A/B；先扩大原版重复和序列，再确定精度容差。"]
-report = "\n".join(lines) + "\n"
-(DOCS_ROOT / "BASELINE_REFERENCE_REPORT.md").write_text(report)
-setup = DOCS_ROOT / "UBUNTU22_ROS1_BASELINE_SETUP.md"
+report = format_prose("\n".join(lines) + "\n")
+(DOCS_ROOT / "03_EUROC_ROS1_BASELINE.md").write_text(report)
+setup = DOCS_ROOT / "02_UBUNTU22_ROS1_SETUP.md"
 content = setup.read_text()
 start = content.index("## 8. 本次实测结果\n")
 end = content.index("## 9. 官方及数据来源\n", start)
@@ -86,6 +87,6 @@ for name, run, evaluation in records:
                 f"{evaluation['ate_translation_m']['rmse']:.6f} | "
                 f"{evaluation['rpe_translation_m_one_pose_step']['rmse']:.6f} |\n")
 summary += ("\n原算法源码未修改；两轮输出均覆盖最后图像，退出清理 abort 如第 7 节所述。\n\n"
-            "详细报告见 [原版参照实测报告](BASELINE_REFERENCE_REPORT.md)，小体积参照快照在 [baseline_reference/](../infra/desktop/baseline_reference/)。\n\n")
-setup.write_text(content[:start] + summary + content[end:])
+            "详细报告见 [原版参照实测报告](03_EUROC_ROS1_BASELINE.md)，小体积参照快照在 [baseline_reference/](../infra/desktop/baseline_reference/)。\n\n")
+setup.write_text(content[:start] + format_prose(summary) + content[end:])
 print(report)

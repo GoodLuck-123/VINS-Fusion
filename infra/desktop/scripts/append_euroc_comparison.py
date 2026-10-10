@@ -8,6 +8,7 @@ import shutil
 from statistics import mean
 
 from workspace_paths import DESKTOP_ROOT, DOCS_ROOT
+from markdown_docs import format_prose
 
 
 def main():
@@ -19,7 +20,7 @@ def main():
     args = parser.parse_args()
     if not re.fullmatch(r"[A-Za-z0-9_-]+", args.section):
         parser.error("section must be a simple identifier")
-    report = DOCS_ROOT / "ROS1_ROS2_COMPARISON.md"
+    report = DOCS_ROOT / "05_EUROC_ROS1_ROS2_COMPARISON.md"
     original = report.read_text()
     marker = f"<!-- experiment:{args.section} -->"
     if marker in original:
@@ -166,7 +167,7 @@ def main():
     manifest = [f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(DESKTOP_ROOT)}"
                 for p in sorted(snapshot.rglob('*')) if p.is_file()]
     (snapshot / "SHA256SUMS").write_text("\n".join(manifest) + "\n")
-    report.write_text(original + "\n".join(lines) + "\n")
+    report.write_text(original + format_prose("\n".join(lines) + "\n"))
     assert report.read_text().startswith(original)
     print(f"Appended {len(records)} experiments; prior report retained.")
 

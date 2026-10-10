@@ -1,16 +1,21 @@
 # VINS-Fusion ROS 2 (Humble)
 
-`ros2-humble` 是独立的 ROS 2 版本，`master` 保留 ROS 1 原版参照。
-保留 OpenCV 4.2.0、Ceres 1.14.0、算法与 EuRoC 配置，隔离两个版本的环境和构建产物。
-单目 IMU 和双目 IMU 已通过完整 EuRoC 回放；支持独立节点和可加载组件，提供 `copy/share` 图像入口对照。
-同进程 EuRoC 数据源可共享消息像素；新增双进程 memfd / 真实 VGEM DMA-BUF 实验，单目与双目完整输入已验证。
-收益依运行环境与模式而异；本机 VGEM CPU 开销较高，双目还存在背压减速，保持普通 ROS 消息默认。结果持续追加到下方报告。
+`ros2-humble` 是独立的 ROS 2 版本，`master` 保留 ROS 1 原版参照。保留 OpenCV 4.2.0、Ceres 1.14.0、算法与 EuRoC 配置，隔离两个版本的环境和构建产物
 
-- [ROS 2 环境搭建与实验](docs/UBUNTU22_ROS2_SETUP.md)
-- [ROS 1 / ROS 2 实测对比](docs/ROS1_ROS2_COMPARISON.md)
-- [顶层部署任务书](docs/RK3588_DEPLOYMENT_TASK_BRIEF.md)
+单目 IMU 和双目 IMU 已通过完整 EuRoC 回放；支持独立节点和可加载组件，提供 `copy/share` 图像入口对照。同进程 EuRoC 数据源可共享消息像素；新增双进程 memfd / 真实 VGEM DMA-BUF 实验，单目与双目完整输入已验证
 
-以下上游说明描述 ROS 1 的历史用法；本分支的运行命令以 ROS 2 搭建文档为准。
+收益依运行环境与模式而异；本机 VGEM CPU 开销较高，双目还存在背压减速，保持普通 ROS 消息默认。结果持续追加到下方报告
+
+| 编号 | 文档 | 用途 |
+| --- | --- | --- |
+| 01 | [RK3588 顶层任务书](docs/01_RK3588_DEPLOYMENT_PLAN.md) | 目标、阶段与验收边界 |
+| 02 | [Ubuntu 22.04 / ROS 1 环境](docs/02_UBUNTU22_ROS1_SETUP.md) | 隔离环境、原版运行与重建 |
+| 03 | [EuRoC / ROS 1 原版参照](docs/03_EUROC_ROS1_BASELINE.md) | 最初参照结果与复现入口 |
+| 04 | [Ubuntu 22.04 / ROS 2 环境](docs/04_UBUNTU22_ROS2_SETUP.md) | 构建、组件、共享传输与版本切换 |
+| 05 | [ROS 1 / ROS 2 EuRoC 对比实验](docs/05_EUROC_ROS1_ROS2_COMPARISON.md) | 所有版本的实测结果，按阶段续写 |
+| 06 | [x86 CPU 候选实验](docs/06_X86_CPU_EXPERIMENTS.md) | 下一步的优先级、工作量与迁移价值 |
+
+以下上游说明描述 ROS 1 的历史用法；本分支的运行命令以 ROS 2 搭建文档为准
 
 # VINS-Fusion
 ## An optimization-based multi-sensor state estimator
@@ -191,8 +196,8 @@ For commercial inquiries, please contact Shaojie Shen <eeshaojieATust.hk>.
 
 ## Desktop baseline and deployment plan
 
-- [RK3588 deployment task brief](docs/RK3588_DEPLOYMENT_TASK_BRIEF.md)
-- [Ubuntu 22.04 ROS 1 baseline setup](docs/UBUNTU22_ROS1_BASELINE_SETUP.md)
-- [EuRoC baseline reference report](docs/BASELINE_REFERENCE_REPORT.md)
+- [RK3588 deployment task brief](docs/01_RK3588_DEPLOYMENT_PLAN.md)
+- [Ubuntu 22.04 ROS 1 baseline setup](docs/02_UBUNTU22_ROS1_SETUP.md)
+- [EuRoC baseline reference report](docs/03_EUROC_ROS1_BASELINE.md)
 
 Versioned environment scripts and locks are in `infra/desktop/`. Run the scripts directly from this repository root; native environments and data live in the parent runtime workspace.

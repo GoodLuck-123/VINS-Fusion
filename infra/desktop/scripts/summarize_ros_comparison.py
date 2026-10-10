@@ -7,8 +7,9 @@ import shutil
 from statistics import mean
 
 from workspace_paths import DESKTOP_ROOT, DOCS_ROOT, WORKSPACE_ROOT as ROOT
+from markdown_docs import format_prose
 
-if (DOCS_ROOT / "ROS1_ROS2_COMPARISON.md").exists():
+if (DOCS_ROOT / "05_EUROC_ROS1_ROS2_COMPARISON.md").exists():
     raise SystemExit("Initial report already exists. Preserve it; use append_euroc_comparison.py for later versions.")
 
 snapshot = DESKTOP_ROOT / "ros2_reference"
@@ -98,7 +99,7 @@ lines += ["", "物理 I/O 受页缓存影响；rchar/wchar 也不是内存带宽
           "## 结论边界与复现", "",
           "两轮结果用于本机迁移参照与发现回归，不能建立多序列精度容差或宣称统计性能提升；没有调整算法参数来追平指标。",
           "回环/GNSS 的完整数据功能、KITTI 数据及 RViz 尚未验收；三个主节点的无输入启动和正常退出、KITTI 参数检查已通过。", "",
-          "[搭建与实验命令](UBUNTU22_ROS2_SETUP.md)；[版本化参照快照](../infra/desktop/ros2_reference/)。原始日志在仓库父目录的 results/，不纳入 Git。"]
+          "[搭建与实验命令](04_UBUNTU22_ROS2_SETUP.md)；[版本化参照快照](../infra/desktop/ros2_reference/)。原始日志在仓库父目录的 results/，不纳入 Git。"]
 averages = {}
 for version in ("ros1", "ros2"):
     group = [(run, evaluation) for v, _, run, evaluation in records if v == version]
@@ -112,5 +113,5 @@ summary = (f"两轮均值：ATE ROS 1 为 {averages['ros1']['ate']:.6f} m、ROS 
            f"RSS 峰值均值分别为 {averages['ros1']['rss']:.2f} / {averages['ros2']['rss']:.2f} MiB。"
            "本序列精度接近，CPU 差异较小；ROS 2 的内存开销更高。")
 lines[4:4] = [summary, ""]
-(DOCS_ROOT / "ROS1_ROS2_COMPARISON.md").write_text("\n".join(lines) + "\n")
+(DOCS_ROOT / "05_EUROC_ROS1_ROS2_COMPARISON.md").write_text(format_prose("\n".join(lines) + "\n"))
 print("Comparison report and reference snapshots written.")

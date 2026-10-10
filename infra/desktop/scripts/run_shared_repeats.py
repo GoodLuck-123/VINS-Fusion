@@ -18,6 +18,7 @@ import time
 
 from process_metrics import host_snapshot, percentile
 from workspace_paths import REPO_ROOT, WORKSPACE_ROOT
+from markdown_docs import format_prose
 
 SCRIPTS = REPO_ROOT / "infra/desktop/scripts"
 RESULTS = WORKSPACE_ROOT / "results/ros2"
@@ -190,12 +191,12 @@ def summarize(state, directory):
               "原始 CSV/summary.json 还记录两进程分别的 CPU、RSS/PSS 峰值、池满等待与 ATE/RPE；两个独立 PSS 峰值不能相加当作同时峰值。",
               "每轮原始资源采样含 WSL 主机负载和 PSI；宿主指标包含其他程序，不是 Windows 全机观测。SHA256 校验的线程位置随路径不同，结果包含校验成本。",
               "各轮完整处理、干净退出、全像素/时间戳一致和共享槽位归还均已通过；DDR 流量和功耗未实测。", ""]
-    (directory / "summary.md").write_text("\n".join(lines))
+    (directory / "summary.md").write_text(format_prose("\n".join(lines)))
     return summary
 
 
 def archive(state, directory):
-    report = REPO_ROOT / "docs/ROS1_ROS2_COMPARISON.md"
+    report = REPO_ROOT / "docs/05_EUROC_ROS1_ROS2_COMPARISON.md"
     marker = f"<!-- experiment:{state['batch']} -->"
     original = report.read_text()
     if marker in original:
@@ -220,8 +221,8 @@ def archive(state, directory):
         (destination / "ingress_evidence.log").write_text("\n".join(evidence) + "\n")
     checksums = [f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(snapshot)}" for p in sorted(snapshot.rglob('*')) if p.is_file()]
     (snapshot / "SHA256SUMS").write_text("\n".join(checksums) + "\n")
-    report.write_text(original + "\n" + marker + "\n" + (directory / "summary.md").read_text() +
-                      f"\n[本轮 {len(state['completed'])} 次实验快照](../infra/desktop/comparison_reference/{state['batch']}/)。\n")
+    report.write_text(original + format_prose("\n" + marker + "\n" + (directory / "summary.md").read_text() +
+                      f"\n[本轮 {len(state['completed'])} 次实验快照](../infra/desktop/comparison_reference/{state['batch']}/)。\n"))
     assert report.read_text().startswith(original)
 
 
