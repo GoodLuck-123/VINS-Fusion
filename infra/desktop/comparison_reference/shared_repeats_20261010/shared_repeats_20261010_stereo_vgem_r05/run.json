@@ -1,0 +1,151 @@
+{
+  "success": true,
+  "rate": 1.0,
+  "mode": "stereo_imu_vio",
+  "deployment": "split",
+  "image_transport": "vgem",
+  "image_mode": "share",
+  "rmw": "rmw_cyclonedds_cpp",
+  "resource_scope": "VINS (+ container if loaded)",
+  "config_file": "euroc_stereo_imu_config.yaml",
+  "vins_component_sha256": "4d6265759a20ec64c5fba306b9a104a3dd56e89894d4e685f86d508e3d7e8388",
+  "source_commit": "0918493d37ce6e9e06d9ac80a08ecfd22b805af6",
+  "source_modified": false,
+  "binary_sha256": "41b73bcdae0f9b59820bfef28cd917c57312aa4b2d8cb17be5ed5690bc9ace90",
+  "ros_domain_id": "42",
+  "start_utc": "2026-10-10T05:39:45Z",
+  "cyclonedds_uri": "file:///home/eric/codespace/ros_ws/VINS-Fusion/infra/desktop/cyclonedds_wsl.xml",
+  "dds_profile_sha256": "b3f1c88386ba0359fa0928b4a70bd11e67048651cfaf415a34b90004ad05c3b1",
+  "player_component_sha256": "8fb452dbd039882ff94baca22c98332ecd269733361b5dae225858530b5eb2f0",
+  "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides",
+  "player_binary_sha256": "3277c425e040f24545ea6b6dda0eaa2178ec000a8d56e091330bac31c34bb12d",
+  "vins_pid": 544859,
+  "player_pid": 544879,
+  "replay_result_code": 0,
+  "playback_exit_code": 0,
+  "playback_wall_s": 193.5770791929972,
+  "settling_wait_s": 6.014034341002116,
+  "resources": {
+    "measurement_wall_s": 198.59708252600103,
+    "logical_cpus": 8,
+    "cpu_time_s": 636.16,
+    "peak_sampled_rss_kib": 77376,
+    "kernel_peak_rss_kib": 77052,
+    "peak_threads": 31,
+    "mean_cpu_percent_one_core": 320.32696145811286,
+    "sampled_cpu_percent_one_core": {
+      "p50": 332.9489451041763,
+      "p95": 365.12739529126947,
+      "p99": 386.9362443203197
+    },
+    "minor_faults": 8308962,
+    "major_faults": 0,
+    "read_bytes": 0,
+    "write_bytes": 417792,
+    "rchar": 9,
+    "wchar": 370172,
+    "main_voluntary_switches": 8583,
+    "main_involuntary_switches": 55,
+    "peak_sampled_pss_kib": 66733,
+    "peak_sampled_private_dirty_kib": 45664,
+    "host_observations": {
+      "loopback_rx_bytes": 0,
+      "loopback_tx_bytes": 0,
+      "cpu_some_stall_us": 6381353,
+      "cpu_full_stall_us": 0,
+      "memory_some_stall_us": 0,
+      "memory_full_stall_us": 0,
+      "io_some_stall_us": 17341,
+      "io_full_stall_us": 11099
+    },
+    "scope": "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+  },
+  "source_resources": {
+    "measurement_wall_s": 198.58801554699312,
+    "logical_cpus": 8,
+    "cpu_time_s": 8.72,
+    "peak_sampled_rss_kib": 27424,
+    "kernel_peak_rss_kib": 27052,
+    "peak_threads": 11,
+    "mean_cpu_percent_one_core": 4.391000119509495,
+    "sampled_cpu_percent_one_core": {
+      "p50": 3.9888583368223864,
+      "p95": 5.982973294906956,
+      "p99": 6.996724471844724
+    },
+    "minor_faults": 919804,
+    "major_faults": 0,
+    "read_bytes": 0,
+    "write_bytes": 8192,
+    "rchar": 2675783082,
+    "wchar": 362,
+    "main_voluntary_switches": 33,
+    "main_involuntary_switches": 0,
+    "peak_sampled_pss_kib": 17207,
+    "peak_sampled_private_dirty_kib": 8452,
+    "host_observations": {
+      "loopback_rx_bytes": 0,
+      "loopback_tx_bytes": 0,
+      "cpu_some_stall_us": 6381349,
+      "cpu_full_stall_us": 0,
+      "memory_some_stall_us": 0,
+      "memory_full_stall_us": 0,
+      "io_some_stall_us": 17341,
+      "io_full_stall_us": 11099
+    },
+    "scope": "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+  },
+  "combined_cpu_time_s": 644.88,
+  "combined_mean_cpu_percent_one_core": 324.7177611058662,
+  "combined_scope": "Two independent native processes: VINS and typed EuRoC replay; initialization before readiness excluded for VINS. Same measurement end, source begins at launch.",
+  "peak_sampled_rss_kib": 77376,
+  "trajectory_poses": 1831,
+  "first_timestamp_ns": 1403636580813555456,
+  "last_timestamp_ns": 1403636763813555456,
+  "vins_exit_code": 0,
+  "sensor_counts": {
+    "img0": 3682,
+    "img1": 3682,
+    "imu": 36820,
+    "processed": 3682
+  },
+  "image_ingress": {
+    "mode": "share",
+    "shared": 7364,
+    "materializations": 0,
+    "bytes": 0
+  },
+  "pixel_timestamp_sha256": {
+    "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+    "img1": "1e60c909475c5e83dfc530e47aade8cd3ea33a748395d2bc2f1075dbf66497a1",
+    "source_matches_consumer": true
+  },
+  "shared_writer": {
+    "backend": "vgem",
+    "frames": 7364,
+    "source_materializations": 7364,
+    "source_bytes": 2658109440,
+    "waits": 2747,
+    "reuses": 7332,
+    "outstanding": 0,
+    "failed": 0
+  },
+  "shared_reader": {
+    "backend": 3,
+    "frames": 7364,
+    "verified": 7364,
+    "failed": 0
+  },
+  "shared_peers": [
+    {
+      "local_pid": 544859,
+      "peer_pid": 544879,
+      "uid": 1000
+    },
+    {
+      "local_pid": 544879,
+      "peer_pid": 544859,
+      "uid": 1000
+    }
+  ]
+}

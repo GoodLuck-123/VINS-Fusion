@@ -256,8 +256,9 @@ python infra/desktop/scripts/run_ros2_euroc.py --name MH01_split_vgem_new \
 | `milestone-ros2-pmu-v1` | PMU 与 DDR/功耗能力核验 |
 | `milestone-ros2-shared-memory-v1` | EuRoC 跨进程共享像素的完整实验 |
 | `milestone-ros2-dmabuf-v1` | 真实 VGEM DMA-BUF 的完整 EuRoC 实验 |
+| `milestone-ros2-shared-repeats-v1` | 三种传输 × 单目/双目 × 各 5 次串行完整实验及重复性结论 |
 
-最后两个里程碑本轮已按验收结果分别提交报告并打 tag；共享内存里程碑源码包含同接口的 DMA-BUF 后端，DMA-BUF tag 标识其独立数据验收完成，不表示相机 DMA 或 RGA 已完成。后续每个小目标在实现、验证及文档归档完成后打 annotated tag；已发出的 tag 不移动。
+共享内存与 DMA-BUF 两个里程碑已按验收结果分别提交报告并打 tag；共享内存里程碑源码包含同接口的 DMA-BUF 后端，DMA-BUF tag 标识其独立数据验收完成，不表示相机 DMA 或 RGA 已完成。重复实验里程碑记录后续 30 次串行完整回放及统计审阅。后续每个小目标在实现、验证及文档归档完成后打 annotated tag；已发出的 tag 不移动。
 
 ```bash
 git tag --list

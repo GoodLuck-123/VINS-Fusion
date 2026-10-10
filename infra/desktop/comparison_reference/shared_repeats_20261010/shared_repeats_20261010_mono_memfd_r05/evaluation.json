@@ -1,0 +1,53 @@
+{
+  "evaluation": "evo; SE(3) alignment, no scale correction; IMU/body poses",
+  "reference_source": "/home/eric/codespace/ros_ws/data/euroc/MH_01_easy_groundtruth.csv",
+  "quaternion_normalization": "Original CSV rounding normalized before evaluation",
+  "max_timestamp_difference_s": 0.01,
+  "estimated_poses": 1831,
+  "matched_poses": 1819,
+  "matched_estimate_fraction": 0.9934462042599672,
+  "estimate_span_s": 183.0,
+  "groundtruth_span_s": 181.90499997138977,
+  "trajectory_length_m": 80.97563804072061,
+  "alignment_rotation": [
+    [
+      -0.8746887216204388,
+      -0.48466416076076446,
+      -0.004504613642267037
+    ],
+    [
+      0.48468468053947394,
+      -0.8746380602058681,
+      -0.009435257795340024
+    ],
+    [
+      0.0006330247628903937,
+      -0.010436230803321437,
+      0.9999453406893146
+    ]
+  ],
+  "alignment_translation_m": [
+    4.65607250378504,
+    -1.5688343560324522,
+    0.9124721270144784
+  ],
+  "alignment_scale": 1.0,
+  "ate_translation_m": {
+    "rmse": 0.18556437620557886,
+    "mean": 0.16444208067511035,
+    "median": 0.1642423983823488,
+    "std": 0.08598220641392094,
+    "min": 0.018585179848899885,
+    "max": 0.39136393458320623,
+    "sse": 62.635696506432836
+  },
+  "rpe_translation_m_one_pose_step": {
+    "rmse": 0.002937961042087902,
+    "mean": 0.0023225261552584655,
+    "median": 0.0020856027611205483,
+    "std": 0.0017993019043413933,
+    "min": 1.190068222376875e-05,
+    "max": 0.016504881691939095,
+    "sse": 0.01569227622421409
+  }
+}

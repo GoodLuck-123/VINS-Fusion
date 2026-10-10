@@ -1,0 +1,32 @@
+{
+  "batch": "shared_repeats_20261010",
+  "validated_utc": "2026-10-10T05:55:35Z",
+  "trials": 30,
+  "groups": 6,
+  "repeats_per_group": 5,
+  "elapsed_s": 6275.0,
+  "frozen_files_verified": 347,
+  "snapshot_checksums_before_this_audit": 305,
+  "snapshot_raw_files_match_runtime": true,
+  "nonoverlapping_replay_intervals": true,
+  "identical_pixel_timestamp_digest_per_mode": true,
+  "identical_algorithm_config_per_mode": true,
+  "binary_and_profile_match_previous_six_trials": true,
+  "all_clean_exit_and_complete_sensor_counts": true,
+  "poses_per_trial": 1831,
+  "matched_poses_per_trial": 1819,
+  "all_shared_buffers_returned": true,
+  "tracking_failures_or_pairing_drops": 0,
+  "remaining_native_processes": [],
+  "controls": {
+    "vins_component_sha256": "4d6265759a20ec64c5fba306b9a104a3dd56e89894d4e685f86d508e3d7e8388",
+    "player_component_sha256": "8fb452dbd039882ff94baca22c98332ecd269733361b5dae225858530b5eb2f0",
+    "binary_sha256": "41b73bcdae0f9b59820bfef28cd917c57312aa4b2d8cb17be5ed5690bc9ace90",
+    "player_binary_sha256": "3277c425e040f24545ea6b6dda0eaa2178ec000a8d56e091330bac31c34bb12d",
+    "dds_profile_sha256": "b3f1c88386ba0359fa0928b4a70bd11e67048651cfaf415a34b90004ad05c3b1",
+    "source_commit": "0918493d37ce6e9e06d9ac80a08ecfd22b805af6",
+    "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides"
+  },
+  "scope": "Independent post-batch audit. No rerun or algorithm modification. CPU seconds include two processes and SHA256; no DDR or power measurements.",
+  "notification_note": "Completion queue/add delivered one request to the existing thread; subsequent queue/start raced with automatic consumption and returned queued submission not found. Raw hook.log and state.json retain that diagnostic."
+}

@@ -1,0 +1,6 @@
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain id="any">
+    <General><MaxMessageSize>1400 B</MaxMessageSize><FragmentSize>1024 B</FragmentSize></General>
+    <Internal><SocketReceiveBufferSize min="4 MB"/></Internal>
+  </Domain>
+</CycloneDDS>
