@@ -118,6 +118,10 @@ uint64_t shared_images = 0, image_materializations = 0, materialized_bytes = 0;
         }
         catch (...)
         {
+            stop_requested.store(true);
+            if(sync_thread.joinable()) sync_thread.join();
+            if(shared_reader) shared_reader->stop();
+            shared_reader.reset(); // Its callback must stop before other members are destroyed.
             estimator.stop();
             shutdownPub();
             throw;

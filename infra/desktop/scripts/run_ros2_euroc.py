@@ -61,6 +61,17 @@ def main():
                 "binary_sha256": hashlib.sha256(binary.read_bytes()).hexdigest(),
                 "ros_domain_id": os.environ.get("ROS_DOMAIN_ID"),
                 "start_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    profile_uri = os.environ.get("CYCLONEDDS_URI")
+    if profile_uri:
+        metadata["cyclonedds_uri"] = profile_uri
+        profile_path = Path(profile_uri.removeprefix("file://"))
+        if profile_path.is_file():
+            shutil.copy2(profile_path, output / "cyclonedds.xml")
+            metadata["dds_profile_sha256"] = hashlib.sha256(profile_path.read_bytes()).hexdigest()
+    player_library = ROOT / ".infra/ros2_ws/install/lib/libvins_euroc_component.so"
+    if args.deployment == "split":
+        metadata["player_component_sha256"] = hashlib.sha256(player_library.read_bytes()).hexdigest()
+        metadata["verification"] = "Full per-frame pixel SHA256 and original header timestamp on both sides"
     bag = ROOT / "data/euroc/MH_01_easy_ros2"
     processes, logs = [], []
     monitor = None
@@ -191,6 +202,9 @@ def main():
         if len(rows) < 100 or abs(metadata["last_timestamp_ns"] - expected) > 1_000_000:
             raise RuntimeError("Incomplete trajectory coverage")
         metadata["success"] = True
+    except Exception as error:
+        metadata["failure"] = str(error)
+        raise
     finally:
         for name, process in (processes if args.deployment=="split" else reversed(processes)):
             if process.poll() is None:
