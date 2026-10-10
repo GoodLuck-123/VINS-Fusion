@@ -47,7 +47,7 @@ def main():
     snapshot.mkdir(parents=True, exist_ok=False)
     lines = ["", marker, f"## {args.title}", "",
              "本节追加记录后续版本；此前结果与参照快照保留。原生依赖、算法参数和标定未升级。",
-             "使用 MH_01_easy 完整 1 倍速回放；未运行回环/GNSS/RViz。", "",
+             "使用 MH_01_easy 完整回放，目标供给倍率为 1；背压可能延长实际墙钟时间，不能以配置倍率证明实时性。未运行回环/GNSS/RViz。", "",
              "| 实验 | 模式 / 部署 | RMW | 传输 / 入口 | poses | ATE RMSE (m) | RPE RMSE (m) | CPU (%) | RSS 峰值 (MiB) |",
              "| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |"]
     for source, run, evaluation in records:
@@ -87,6 +87,12 @@ def main():
                   "memfd 是普通共享像素；vgem 为内核 DRM 导出的真实 DMA-BUF。通过 SCM_RIGHTS 传递内核句柄，在独立 PID 内导入并核验 device/inode/长度，消费端只读 mmap；不传裸指针或 fd 数字。",
                   "32 个有界槽位记录代次，缓冲用完会阻塞；归还发生在当前与上一左帧 owner 全部释放之后。DMA-BUF CPU 读写各有 START/END 同步，无硬件 DMA/fence/RGA 参与本次回放。",
                   "bag 反序列化仍分配图像；共享数据源每帧仍复制一次到池中。此次消除的是跨进程图像消息的序列化/像素搬运路径及 VINS 入口复制，不是全链路零拷贝，也没有完整统计 DDS 内部复制次数。"]
+    if shared_phase:
+        lines += ["", "| 实验 | 回放墙钟 (s) | 后端稳定等待 (s) |",
+                  "| --- | ---: | ---: |"]
+        for source,run,_ in records:
+            lines.append(f"| {source.name} | {run['playback_wall_s']:.2f} | {run['settling_wait_s']:.2f} |")
+        lines += ["", "回放墙钟含启动就绪、3 秒预延迟和完成通知观察；同来源对照可比较额外阻塞，不能直接等同于传感器记录时长。稳定等待含统一至少约 6 秒的观测条件。"]
     if shared_phase:
         shared_records=[(source,run) for source,run,_ in records if "shared_writer" in run]
         if shared_records:

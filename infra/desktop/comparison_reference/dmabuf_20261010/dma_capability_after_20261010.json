@@ -1,0 +1,12 @@
+{
+  "kernel": "6.18.33.2-microsoft-standard-WSL2",
+  "device": "/dev/dri/card0",
+  "uid": 1000,
+  "gid": 44,
+  "mode": "0o660",
+  "read_write_access": true,
+  "vgem_loaded": true,
+  "dma_heap_present": false,
+  "udmabuf_present": false,
+  "scope": "User-loaded VGEM, temporary card node ownership. No camera/RGA DMA or DDR/energy measurement."
+}

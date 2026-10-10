@@ -1,0 +1,13 @@
+{
+  "backend": "vgem DMA-BUF",
+  "allocated": true,
+  "mapped": true,
+  "cpu_sync_write_read": true,
+  "width": 752,
+  "height": 480,
+  "stride": 752,
+  "allocation_bytes": 364544,
+  "fd_link": "/dmabuf:",
+  "inode": 1,
+  "scope": "Real kernel DMA-BUF allocation/export/map/CPU sync; no camera or RGA hardware DMA"
+}

@@ -257,7 +257,7 @@ python infra/desktop/scripts/run_ros2_euroc.py --name MH01_split_vgem_new \
 | `milestone-ros2-shared-memory-v1` | EuRoC 跨进程共享像素的完整实验 |
 | `milestone-ros2-dmabuf-v1` | 真实 VGEM DMA-BUF 的完整 EuRoC 实验 |
 
-最后两个里程碑按验收结果分别提交报告并打 tag；共享内存里程碑源码包含同接口的 DMA-BUF 后端，DMA-BUF tag 标识其独立数据验收完成，不表示相机 DMA 或 RGA 已完成。后续每个小目标在实现、验证及文档归档完成后打 annotated tag；已发出的 tag 不移动。
+最后两个里程碑本轮已按验收结果分别提交报告并打 tag；共享内存里程碑源码包含同接口的 DMA-BUF 后端，DMA-BUF tag 标识其独立数据验收完成，不表示相机 DMA 或 RGA 已完成。后续每个小目标在实现、验证及文档归档完成后打 annotated tag；已发出的 tag 不移动。
 
 ```bash
 git tag --list
@@ -269,3 +269,5 @@ git switch ros2-humble
 ```
 
 切换源码后要重新 source 对应 ROS 环境并构建，tag 不切换 `.infra` 中的现有二进制。ROS 1/ROS 2 各自有独立前缀和构建目录，不能拿旧 install 验证新 checkout。所有 tag/提交目前保存在本地，不自动 push。
+
+本轮验收结果：六轮完整单目/双目回放，三种传输逐帧像素与 header 时间戳签名相同，每轮处理 3682 帧左图、36820 条 IMU，正常退出。memfd/VGEM 未归还槽位均为 0。VGEM 双目虽然完整处理数据，但背压令回放墙钟达到 206.84 秒（ROS 对照 188.77 秒），未通过稳定实时性验收；单目 VGEM CPU 同样高于对照。VGEM tag 标识真实句柄/完整数据功能实验完成，不标识加速完成。默认保留普通 ROS 路径；实际板端需选择适合 CPU 读图的缓存属性，再与硬件流水线共同验证。详见统一对比报告末节。

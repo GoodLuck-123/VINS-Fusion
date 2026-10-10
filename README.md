@@ -3,7 +3,8 @@
 `ros2-humble` 是独立的 ROS 2 版本，`master` 保留 ROS 1 原版参照。
 保留 OpenCV 4.2.0、Ceres 1.14.0、算法与 EuRoC 配置，隔离两个版本的环境和构建产物。
 单目 IMU 和双目 IMU 已通过完整 EuRoC 回放；支持独立节点和可加载组件，提供 `copy/share` 图像入口对照。
-同进程 EuRoC 数据源可共享消息像素；当前 WSL 实验尚未显示整体 CPU 收益，结果持续追加到下方报告。
+同进程 EuRoC 数据源可共享消息像素；新增双进程 memfd / 真实 VGEM DMA-BUF 实验，单目与双目完整输入已验证。
+收益依运行环境与模式而异；本机 VGEM CPU 开销较高，双目还存在背压减速，保持普通 ROS 消息默认。结果持续追加到下方报告。
 
 - [ROS 2 环境搭建与实验](docs/UBUNTU22_ROS2_SETUP.md)
 - [ROS 1 / ROS 2 实测对比](docs/ROS1_ROS2_COMPARISON.md)

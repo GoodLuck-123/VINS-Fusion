@@ -1,0 +1,69 @@
+{
+  "runs": [
+    {
+      "name": "MH01_stereo_split_ros_tuned1",
+      "success": true,
+      "source_commit": "95d02e12ab391239a8a17062319496971707d660",
+      "cpu_s": 656.7299999999999,
+      "replay_wall_s": 188.76736425500712,
+      "ate_rmse_m": 0.25124509811731205,
+      "estimated_poses": 1831,
+      "matched_poses": 1819
+    },
+    {
+      "name": "MH01_stereo_split_memfd_tuned1",
+      "success": true,
+      "source_commit": "95d02e12ab391239a8a17062319496971707d660",
+      "cpu_s": 391.26,
+      "replay_wall_s": 188.7381184140104,
+      "ate_rmse_m": 0.25381059554395013,
+      "estimated_poses": 1831,
+      "matched_poses": 1819
+    },
+    {
+      "name": "MH01_stereo_split_vgem_tuned1",
+      "success": true,
+      "source_commit": "95d02e12ab391239a8a17062319496971707d660",
+      "cpu_s": 734.64,
+      "replay_wall_s": 206.8412722380017,
+      "ate_rmse_m": 0.25265769180902237,
+      "estimated_poses": 1831,
+      "matched_poses": 1819
+    },
+    {
+      "name": "MH01_mono_split_ros_tuned1",
+      "success": true,
+      "source_commit": "95d02e12ab391239a8a17062319496971707d660",
+      "cpu_s": 215.91,
+      "replay_wall_s": 188.69413258699933,
+      "ate_rmse_m": 0.18556233085365292,
+      "estimated_poses": 1831,
+      "matched_poses": 1819
+    },
+    {
+      "name": "MH01_mono_split_memfd_tuned1",
+      "success": true,
+      "source_commit": "95d02e12ab391239a8a17062319496971707d660",
+      "cpu_s": 225.34,
+      "replay_wall_s": 188.68584980999003,
+      "ate_rmse_m": 0.18556041507453866,
+      "estimated_poses": 1831,
+      "matched_poses": 1819
+    },
+    {
+      "name": "MH01_mono_split_vgem_tuned1",
+      "success": true,
+      "source_commit": "9bd5cb23fa820d3ece4d0f75982bd2cf2352de36",
+      "cpu_s": 367.55,
+      "replay_wall_s": 188.54523002500355,
+      "ate_rmse_m": 0.18556421089948055,
+      "estimated_poses": 1831,
+      "matched_poses": 1819
+    }
+  ],
+  "all_modes_inputs_identical": true,
+  "one_vins_component_sha256": "4d6265759a20ec64c5fba306b9a104a3dd56e89894d4e685f86d508e3d7e8388",
+  "one_player_component_sha256": "8fb452dbd039882ff94baca22c98332ecd269733361b5dae225858530b5eb2f0",
+  "one_dds_profile_sha256": "b3f1c88386ba0359fa0928b4a70bd11e67048651cfaf415a34b90004ad05c3b1",
+  "scope": "Offline full-data correctness and process resource comparison; VGEM stereo replay has backpressure slowdown, not realtime acceptance. No camera/RGA/DDR/power claim."
+}

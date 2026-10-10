@@ -151,7 +151,7 @@ Rockchip 的能力表区分 RK3588 上的 RGA2 与 RGA3，灰度格式及对齐�
 
 ### EuRoC 共享缓冲原型的范围
 
-当前 ROS 2 分支提供独立数据源/VINS 的 memfd 共享像素与 VGEM DMA-BUF 后端，算法仍消费只读图像视图。共享内存协议采用有界池、代次及 owner 归还；设备句柄通过 SCM_RIGHTS 传递。EuRoC 源端仍复制一次像素，尚非相机 DMA → VINS 的全链路零拷贝。DDS、共享内存、DMA-BUF 的完整单目/双目实验按各里程碑验收后续写 [统一对比报告](ROS1_ROS2_COMPARISON.md)，各进程 CPU/PSS 分别记录。
+当前 ROS 2 分支提供独立数据源/VINS 的 memfd 共享像素与 VGEM DMA-BUF 后端，算法仍消费只读图像视图。共享内存协议采用有界池、代次及 owner 归还；设备句柄通过 SCM_RIGHTS 传递。EuRoC 源端仍复制一次像素，尚非相机 DMA → VINS 的全链路零拷贝。DDS、共享内存、DMA-BUF 共六轮完整单目/双目实验已归档在 [统一对比报告](ROS1_ROS2_COMPARISON.md)，各进程 CPU/PSS 分别记录。功能验证通过，不承诺收益：本机单目 memfd 没有 CPU 提升，VGEM 两模式 CPU 更高，双目还因背压未保持稳定 1 倍速；VGEM 只作桌面机制验证，普通 ROS 消息保持默认。
 
 VGEM 只用于桌面真实内核句柄、映射及 CPU 同步验证；无相机/RGA硬件 DMA，不据此证明 ARM 的物理连续布局、fence、缓存行为或驱动通用性。通用灰度帧/owner 接口已落地，换相机仍需源端适配；Linux DMA heap 后端是未在本机验收的可选入口。板端工作量与原有通用性评估保持条件性，驱动稳定性与长期运行未因桌面原型而豁免。
 
