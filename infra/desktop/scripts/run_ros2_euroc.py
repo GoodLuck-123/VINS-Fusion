@@ -16,6 +16,7 @@ from std_msgs.msg import Bool
 from component_tools import load_component
 
 from process_metrics import ProcessMetrics
+from perf_counters import PerfCounters
 from workspace_paths import REPO_ROOT, WORKSPACE_ROOT as ROOT
 
 
@@ -26,6 +27,7 @@ def main():
     parser.add_argument("--mode", choices=("stereo_imu", "mono_imu"), default="stereo_imu")
     parser.add_argument("--deployment", choices=("standalone", "component", "composed"), default="standalone")
     parser.add_argument("--image-mode", choices=("copy", "share"), default="share")
+    parser.add_argument("--perf-counters", action="store_true", help="Optional inherited userspace CPU PMU counters; not DDR/power")
     args = parser.parse_args()
     if not 0 < args.rate <= 1:
         parser.error("Use a replay rate in (0, 1]")
@@ -58,6 +60,7 @@ def main():
     bag = ROOT / "data/euroc/MH_01_easy_ros2"
     processes, logs = [], []
     monitor = None
+    perf_monitor = None
     rclpy.init()
     observer = Node("baseline_observer")
     completed = {"seen": False, "success": False}
@@ -68,9 +71,14 @@ def main():
     finish_subscription = observer.create_subscription(Bool, "/euroc_player/finished", finish, 10)
 
     def launch(command, name):
+        nonlocal perf_monitor
         log = (output / f"{name}.log").open("w")
         logs.append(log)
-        process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+        if args.perf_counters and name == "vins":
+            perf_monitor = PerfCounters(command, log)
+            process = perf_monitor.process
+        else:
+            process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
         processes.append((name, process))
         return process
 
@@ -166,6 +174,11 @@ def main():
             metadata[f"{name}_exit_code"] = process.returncode
         if monitor:
             monitor.close()
+        if perf_monitor:
+            try:
+                metadata["cpu_perf_counters"] = perf_monitor.summary()
+            finally:
+                perf_monitor.close()
         for log in logs:
             log.close()
         sensor_counts = re.search(r"sensor_counts img0=(\d+) img1=(\d+) imu=(\d+) processed=(\d+)",
