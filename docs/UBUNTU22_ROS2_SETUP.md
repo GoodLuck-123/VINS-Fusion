@@ -271,3 +271,20 @@ git switch ros2-humble
 切换源码后要重新 source 对应 ROS 环境并构建，tag 不切换 `.infra` 中的现有二进制。ROS 1/ROS 2 各自有独立前缀和构建目录，不能拿旧 install 验证新 checkout。所有 tag/提交目前保存在本地，不自动 push。
 
 本轮验收结果：六轮完整单目/双目回放，三种传输逐帧像素与 header 时间戳签名相同，每轮处理 3682 帧左图、36820 条 IMU，正常退出。memfd/VGEM 未归还槽位均为 0。VGEM 双目虽然完整处理数据，但背压令回放墙钟达到 206.84 秒（ROS 对照 188.77 秒），未通过稳定实时性验收；单目 VGEM CPU 同样高于对照。VGEM tag 标识真实句柄/完整数据功能实验完成，不标识加速完成。默认保留普通 ROS 路径；实际板端需选择适合 CPU 读图的缓存属性，再与硬件流水线共同验证。详见统一对比报告末节。
+
+## 三种传输的后台串行重复实验
+
+`run_shared_repeats.py` 在新终端的普通系统 Python 下运行，内部按任务分别启用隔离 ROS 2 和 uv 评估环境。默认 3 种传输 × 单目/双目 × 5 次，共 30 次完整 MH_01_easy 回放；不复用先前单次结果。每个重复编号内轮换 ROS/memfd/VGEM 顺序，单目/双目块顺序交替。五次不能完全平衡所有排列，位置出现次数相差最多一次。每轮回放、正常退出和 evo 评估完成后间隔 10 秒，再启动下一轮；不同时启动多套 VINS。
+
+```bash
+# 当前源码和脚本先提交；保持 VGEM 节点可访问，不在实验期间构建或改源码。
+python3 infra/desktop/scripts/run_shared_repeats.py --batch shared_repeats_new --dry-run
+nohup python3 infra/desktop/scripts/run_shared_repeats.py --batch shared_repeats_new \
+  > ../results/ros2/shared_repeats_new.controller.log 2>&1 < /dev/null &
+```
+
+启动时检查没有其他 VINS/player/组件容器运行，检查已提交工作区和原生依赖隔离。每轮前后核验冻结源码、二进制、算法配置和 DDS XML 的哈希；目标倍率为 1，全帧 SHA256 保持开启。失败立即停止，保留失败目录与已完成轮次，不把不完整数据混入统计。WSL 和宿主机需持续运行，避免睡眠或停止 WSL；没有固定 Windows 宿主频率/温度。
+
+后台任务不调用模型、不轮询对话。`--completion-hook /path/to/hook-argv.json` 可指定 JSON 字符串数组形式的本地回调，例如 `["python3", "/absolute/path/notify.py"]`；任务仅在完成或失败时调用一次，并把 `event.json` 的绝对路径作为末尾参数。当前会话的 Codex 回调和 thread ID 留在 Git 忽略的 `.local-tests/`，不修改全局 hooks、代理或认证配置。通知失败也保留事件及 `hook.log`；查看 `state.json` 能区分实验状态和通知状态。
+
+结果位于 `../results/ros2/<batch>/`，包含逐轮状态、控制台日志、`trials.csv`、`summary.json` 和 `summary.md`。成功后自动复制小体积证据到 `infra/desktop/comparison_reference/<batch>/` 并追加统一对比文档，保留历史内容；人工/完成 hook 审阅后再 Git 提交和打 tag。统计按传输和模式报告 CPU 秒中位数、四分位数、范围，以及同重复编号相对 ROS 的变化；另外记录墙钟、ATE/RPE、RSS/PSS、池等待和主机 PSI/负载。资源口径及 SHA256 成本与此前三路径试跑一致，不代表 DDR 或功耗实测。
