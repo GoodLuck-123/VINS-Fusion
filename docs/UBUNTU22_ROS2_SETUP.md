@@ -203,3 +203,69 @@ python infra/desktop/scripts/run_ros2_euroc.py --name MH01_stereo_pmu_new --imag
 - [ROS 2 Humble rclcpp 源码](https://github.com/ros2/rclcpp/tree/humble)
 - [cv_bridge 3.2.1 官方源码](https://github.com/ros-perception/vision_opencv/tree/3.2.1)
 - [rosbags 文档](https://ternaris.gitlab.io/rosbags/)
+
+## EuRoC 跨进程共享像素与 DMA-BUF
+
+`split` 使用两个原生进程：`euroc_player_node` 读包，`vins_node` 做 VIO。IMU、时钟和完成通知仍走 ROS 2；图像可选标准 Image、memfd 或真实 DMA-BUF。同进程组件及普通节点用法继续可用，默认 `image_transport=ros`。
+
+源数据反序列化后，memfd/DMA-BUF 路径各复制一次像素到 32 槽位有界池；通过 Unix socket 的 SCM_RIGHTS 注册实际句柄，只发送逐帧元数据。消费端只读映射，并在当前帧和上一左帧不再使用时归还槽位。没有后台驱动、系统服务或永久设备权限改动。异常/对端退出会结束本次实验；当前原型不支持热重连、多消费者或相机热切换。
+
+本次 WSL 内核无 dma_heap/udmabuf，可加载 VGEM 提供真实 DMA-BUF。VGEM 是软件 DRM 分配器；EuRoC 回放没有相机 DMA、RGA 或其他硬件参与。CPU 映射访问使用 `DMA_BUF_IOCTL_SYNC` START/END；缓冲生命周期协议负责防止同时改写，SYNC 本身不是互斥锁。参见 [Linux DMA-BUF 接口](https://docs.kernel.org/driver-api/dma-buf.html)。
+
+仅 VGEM 路径需要设备准备（已有权限时无需重复执行）：
+
+```bash
+sudo modprobe vgem
+# 确认本机 VGEM 对应的 card 节点；card0 是本次 WSL 实际节点。
+sudo chown "$USER" /dev/dri/card0
+```
+
+只改变本次设备节点所有者，模块重载/重启可恢复。程序核验 DRM 驱动名必须为 vgem，不会对其他 GPU 自动尝试分配。memfd 不需要 sudo。已有具备权限的 DMA heap 可用 `--image-transport dma_heap --shared-device /dev/dma_heap/system`；该后端本机未测试，不自动回退，也不代表支持任意 ARM 驱动。SDK 已锁定的 OpenSSL 3.6.5 提供 SHA256，未升级 OpenCV/Ceres 或引入系统 OpenCV/libdrm。
+
+统一 ROS 2 终端（三条路径都设置同一个 RMW）：
+
+```bash
+export VINS_RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+export CYCLONEDDS_URI="file://$PWD/infra/desktop/cyclonedds_wsl.xml"
+source infra/desktop/scripts/ros2_env.sh
+python infra/desktop/scripts/run_ros2_euroc.py --name MH01_split_ros_new \
+  --deployment split --image-mode share --image-transport ros
+python infra/desktop/scripts/run_ros2_euroc.py --name MH01_split_memfd_new \
+  --deployment split --image-mode share --image-transport memfd
+python infra/desktop/scripts/run_ros2_euroc.py --name MH01_split_vgem_new \
+  --deployment split --image-mode share --image-transport vgem --shared-device /dev/dri/card0
+```
+
+单目视惯为相同命令添加 `--mode mono_imu`，使用新的 name；源端过滤右图。逐条串行运行，实验期间停止构建。Fast DDS 的首个 split 启动探针停在数据源订阅就绪等待，未产生轨迹，因此本次完整对照统一用已锁定的 Cyclone DDS；默认 Cyclone 大图像也出现延迟/丢弃；短回放证实进程级 XML 将 MaxMessageSize 设为 1400 B、FragmentSize 设为 1024 B、接收缓冲请求设为 4 MB 后可正常传输，避免本机镜像网络的大包 IP 重组问题。不改系统 sysctl，三条正式路径统一此配置。配置及 SHA256 随每轮归档；见 [Cyclone 0.10.5 配置原理](https://cyclonedds.io/docs/cyclonedds/0.10.5/config/cyclonedds_specifics.html)。失败记录留在本地，不能混入性能表。默认普通节点的 RMW 未改；其他环境需重新验证这个传输配置。
+
+每轮启用逐帧有效像素 SHA256，并将 header 时间戳与摘要累积为每摄像头签名；源端/消费端必须一致。共享路径核验导入 fd 的内核对象身份和长度、独立 PID、代次、完整帧数与正常退出。数据源与 VINS 分别留 CPU/RSS/PSS/线程/缺页采样；联合 CPU 为两进程 CPU 秒之和，RSS/PSS 峰值分别列出，不相加伪装同时峰值。校验本身有计算成本，不与此前未启用 SHA256 的结果直接算加速比。
+
+普通终端仍使用同一 uv 环境评估，然后用 `append_euroc_comparison.py` 追加到 [统一对比报告](ROS1_ROS2_COMPARISON.md)。本地压力探针留在 Git 忽略的 `.local-tests/shared_probe.cpp`，正式回放/采样/评估脚本与小体积证据快照纳入 Git。该探针使用单独 ASan 可执行文件和非 PIE 链接规避 WSL 启动期加载器异常；不是全工程依赖插桩或长期泄漏验收。
+
+通用边界：当前共享协议限同机 Linux、单生产者/单消费者、线性 8 位灰度帧，EuRoC 数据源池为 752×480。只读视图、stride 和 owner 规则可复用；新相机仍需数据源适配、格式/布局协商、驱动导出能力及硬件 fence 验证。普通 ROS Image 是通用回退。不能将 VGEM 跑通等同于换相机即用或板端 DMA/RGA 验收。DDR 与功耗仍无可用硬件接口。
+
+## 版本里程碑与切换
+
+过去的版本可以补 annotated tag，tag 直接指向原提交，不会移动分支；`master` 仍为 ROS 1 参照。
+
+| tag | 内容 |
+| --- | --- |
+| `baseline-ros1-euroc-v1` | ROS 1 隔离环境、原版 EuRoC 参照 |
+| `baseline-ros2-humble-v1` | 最小 ROS 2 迁移与初始对比 |
+| `milestone-ros2-components-v1` | 组件、图像 owner、单目/双目减拷贝对比 |
+| `milestone-ros2-pmu-v1` | PMU 与 DDR/功耗能力核验 |
+| `milestone-ros2-shared-memory-v1` | EuRoC 跨进程共享像素的完整实验 |
+| `milestone-ros2-dmabuf-v1` | 真实 VGEM DMA-BUF 的完整 EuRoC 实验 |
+
+最后两个里程碑按验收结果分别提交报告并打 tag；共享内存里程碑源码包含同接口的 DMA-BUF 后端，DMA-BUF tag 标识其独立数据验收完成，不表示相机 DMA 或 RGA 已完成。后续每个小目标在实现、验证及文档归档完成后打 annotated tag；已发出的 tag 不移动。
+
+```bash
+git tag --list
+git switch --detach milestone-ros2-components-v1
+# 如需在该版本继续修改：
+git switch -c experiment/from-components milestone-ros2-components-v1
+# 回到当前 ROS 2 主线：
+git switch ros2-humble
+```
+
+切换源码后要重新 source 对应 ROS 环境并构建，tag 不切换 `.infra` 中的现有二进制。ROS 1/ROS 2 各自有独立前缀和构建目录，不能拿旧 install 验证新 checkout。所有 tag/提交目前保存在本地，不自动 push。

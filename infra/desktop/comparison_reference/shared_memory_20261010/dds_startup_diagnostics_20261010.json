@@ -1,0 +1,142 @@
+{
+  "status": "diagnostic failures excluded from full-trial comparisons",
+  "fastdds_default": {
+    "result": "readiness gate did not finish; manually interrupted",
+    "partial_logs": "MH01_stereo_split_ros1",
+    "complete_metadata": false
+  },
+  "cyclone_default": {
+    "success": false,
+    "rate": 1.0,
+    "mode": "stereo_imu_vio",
+    "deployment": "split",
+    "image_transport": "ros",
+    "image_mode": "share",
+    "rmw": "rmw_cyclonedds_cpp",
+    "resource_scope": "VINS (+ container if loaded)",
+    "config_file": "euroc_stereo_imu_config.yaml",
+    "vins_component_sha256": "61e7954c78a871bdeaa90bc0a9b4470ec870121582627b07a4da8517ea7b4524",
+    "source_commit": "55792e8af046cae625ecc62d36d10e8c1c5b6075",
+    "source_modified": false,
+    "binary_sha256": "41b73bcdae0f9b59820bfef28cd917c57312aa4b2d8cb17be5ed5690bc9ace90",
+    "ros_domain_id": "42",
+    "start_utc": "2026-10-10T03:03:11Z",
+    "player_binary_sha256": "3277c425e040f24545ea6b6dda0eaa2178ec000a8d56e091330bac31c34bb12d",
+    "vins_pid": 325730,
+    "player_pid": 325752,
+    "replay_result_code": 0,
+    "playback_exit_code": 0,
+    "playback_wall_s": 188.56368175499665,
+    "settling_wait_s": 8.030018855992239,
+    "resources": {
+      "measurement_wall_s": 195.59652165199805,
+      "logical_cpus": 8,
+      "cpu_time_s": 17.45,
+      "peak_sampled_rss_kib": 114296,
+      "kernel_peak_rss_kib": 113752,
+      "peak_threads": 27,
+      "mean_cpu_percent_one_core": 8.921426543078685,
+      "sampled_cpu_percent_one_core": {
+        "p50": 3.985484221606333,
+        "p95": 4.986408996988662,
+        "p99": 112.09934310665429
+      },
+      "minor_faults": 249006,
+      "major_faults": 0,
+      "read_bytes": 0,
+      "write_bytes": 12288,
+      "rchar": 9,
+      "wchar": 5831,
+      "main_voluntary_switches": 11286,
+      "main_involuntary_switches": 4,
+      "peak_sampled_pss_kib": 103662,
+      "peak_sampled_private_dirty_kib": 82788,
+      "host_observations": {
+        "loopback_rx_bytes": 1343232,
+        "loopback_tx_bytes": 1343232,
+        "cpu_some_stall_us": 647017,
+        "cpu_full_stall_us": 0,
+        "memory_some_stall_us": 0,
+        "memory_full_stall_us": 0,
+        "io_some_stall_us": 190952,
+        "io_full_stall_us": 183743
+      },
+      "scope": "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+    },
+    "source_resources": {
+      "measurement_wall_s": 195.59112585701223,
+      "logical_cpus": 8,
+      "cpu_time_s": 13.55,
+      "peak_sampled_rss_kib": 98704,
+      "kernel_peak_rss_kib": 98200,
+      "peak_threads": 10,
+      "mean_cpu_percent_one_core": 6.927717165402375,
+      "sampled_cpu_percent_one_core": {
+        "p50": 6.976431014239893,
+        "p95": 8.974962208994281,
+        "p99": 13.346724632103225
+      },
+      "minor_faults": 20994,
+      "major_faults": 2,
+      "read_bytes": 2677755904,
+      "write_bytes": 8192,
+      "rchar": 2675782826,
+      "wchar": 362,
+      "main_voluntary_switches": 19,
+      "main_involuntary_switches": 0,
+      "peak_sampled_pss_kib": 88515,
+      "peak_sampled_private_dirty_kib": 79720,
+      "host_observations": {
+        "loopback_rx_bytes": 1343232,
+        "loopback_tx_bytes": 1343232,
+        "cpu_some_stall_us": 647017,
+        "cpu_full_stall_us": 0,
+        "memory_some_stall_us": 0,
+        "memory_full_stall_us": 0,
+        "io_some_stall_us": 190952,
+        "io_full_stall_us": 183743
+      },
+      "scope": "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+    },
+    "combined_cpu_time_s": 31.0,
+    "combined_mean_cpu_percent_one_core": 15.848952598019439,
+    "combined_scope": "Two independent native processes: VINS and typed EuRoC replay; initialization before readiness excluded for VINS. Same measurement end, source begins at launch.",
+    "peak_sampled_rss_kib": 114296,
+    "trajectory_poses": 40,
+    "first_timestamp_ns": 1403636759913555456,
+    "last_timestamp_ns": 1403636763813555456,
+    "vins_exit_code": 0,
+    "sensor_counts": {
+      "img0": 212,
+      "img1": 100,
+      "imu": 36820,
+      "processed": 100
+    },
+    "image_ingress": {
+      "mode": "share",
+      "shared": 200,
+      "materializations": 0,
+      "bytes": 0
+    }
+  },
+  "fragmentation_safe_profile": {
+    "file": "infra/desktop/cyclonedds_wsl.xml",
+    "sha256": "b3f1c88386ba0359fa0928b4a70bd11e67048651cfaf415a34b90004ad05c3b1",
+    "max_message_bytes": 1400,
+    "fragment_bytes": 1024,
+    "socket_receive_buffer_request_bytes": 4194304,
+    "system_settings_changed": false
+  },
+  "short_smoke_after_tuning": {
+    "source_image0": 241,
+    "source_image1": 242,
+    "source_imu": 2419,
+    "vins_image0": 237,
+    "vins_image1": 237,
+    "vins_imu": 2370,
+    "processed": 237,
+    "stopped_before_drain": true,
+    "scope": "Intentionally short and stopped without drain, not full data or performance evidence"
+  },
+  "interpretation": "WSL mirrored network showed many IP reassembly failures. Small DDS datagrams restored timely image reception in a short smoke test; complete tuned controls validate coverage separately. This does not establish portable DDR/power gains."
+}

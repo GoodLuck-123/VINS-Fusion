@@ -149,6 +149,14 @@ Rockchip 的能力表区分 RK3588 上的 RGA2 与 RGA3，灰度格式及对齐�
 
 本机 WSL 未暴露 DDR 控制器计数器和物理能量接口；CPU PMU 可用，但不能据此换算 DDR 搬运或功耗。后续实测需物理主机计数器或目标板接口/电源仪表，统一记录整个数据链与空闲背景，避免用仅 VINS 资源表推导整机能耗。具体核验与补充实验统一续写在 [对比报告](ROS1_ROS2_COMPARISON.md)。
 
+### EuRoC 共享缓冲原型的范围
+
+当前 ROS 2 分支提供独立数据源/VINS 的 memfd 共享像素与 VGEM DMA-BUF 后端，算法仍消费只读图像视图。共享内存协议采用有界池、代次及 owner 归还；设备句柄通过 SCM_RIGHTS 传递。EuRoC 源端仍复制一次像素，尚非相机 DMA → VINS 的全链路零拷贝。DDS、共享内存、DMA-BUF 的完整单目/双目实验按各里程碑验收后续写 [统一对比报告](ROS1_ROS2_COMPARISON.md)，各进程 CPU/PSS 分别记录。
+
+VGEM 只用于桌面真实内核句柄、映射及 CPU 同步验证；无相机/RGA硬件 DMA，不据此证明 ARM 的物理连续布局、fence、缓存行为或驱动通用性。通用灰度帧/owner 接口已落地，换相机仍需源端适配；Linux DMA heap 后端是未在本机验收的可选入口。板端工作量与原有通用性评估保持条件性，驱动稳定性与长期运行未因桌面原型而豁免。
+
+历史基线/组件/PMU 已补 annotated tag；共享内存与 DMA-BUF 在各自数据验收、报告归档后分别打 tag。每个后续小目标沿用此规则，不移动已有 tag。源码切换后重建对应隔离环境；tag 及具体命令见 [ROS 2 环境说明](UBUNTU22_ROS2_SETUP.md#版本里程碑与切换)。
+
 [1]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_Developer_Guide_RGA_EN.md "Rockchip RGA 官方开发指南"
 [2]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_FAQ_RGA_EN.md "Rockchip RGA 官方 FAQ"
 [3]: https://github.com/opencv/opencv/blob/4.x/modules/video/src/lkpyramid.cpp "OpenCV LK 官方源码"

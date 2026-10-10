@@ -1,0 +1,7 @@
+shared_peer local_pid=324868 peer_pid=324867 uid=1000
+shared_writer backend=memfd frames=1000 source_materializations=1000 source_bytes=3072000 waits=996 reuses=996 outstanding=0 failed=0 sha0=1b04c472679c0a2c73b1bf650465d79ee3160d900cfea0f5f27c260919c2c813 sha1=90aa8c4458240c4c840a1dcd09cdd62ff6abc648b27b7a6378bc551f034fa94a
+shared_peer local_pid=324867 peer_pid=324868 uid=1000
+shared_buffer slot=0 backend=1 device=1 inode=6145 stride=64 bytes=4096
+shared_buffer slot=1 backend=1 device=1 inode=6146 stride=64 bytes=4096
+shared_reader backend=1 frames=1000 verified=1000 failed=0 sha0=1b04c472679c0a2c73b1bf650465d79ee3160d900cfea0f5f27c260919c2c813 sha1=90aa8c4458240c4c840a1dcd09cdd62ff6abc648b27b7a6378bc551f034fa94a
+shared_probe backend=memfd frames=1000 padded_source=1 previous_leases=3 result=passed

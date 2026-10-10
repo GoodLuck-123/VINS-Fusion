@@ -1,0 +1,29 @@
+{
+  "scope": "Local development probes; formal full EuRoC trials are separate.",
+  "transport_source_sha256": "87dd20b3eed959e17183baa546b275a70c79dec3a1b429ac7ac637439000149b",
+  "probe_source_sha256": "d28b53ebb9c0ff0ce292768c32842c09f1761d326c3fe981bb11ce6769894f10",
+  "assertions": [
+    "Two different PIDs; SCM_RIGHTS imported handle device/inode and length checked",
+    "1000 patterned frames each for memfd and real VGEM DMA-BUF",
+    "Non-contiguous source stride 80 for width 64",
+    "Hold three previous leases while delivering a fourth; pool has four slots",
+    "Validate pixels and timestamps on delivery and while old leases remain live",
+    "Backpressure and reuse exercised; all leases returned; socket removed on exit"
+  ],
+  "instrumentation": "Test executable and transport source compiled with AddressSanitizer, detect_leaks=1, non-PIE. SDK/OpenCV/ROS dependencies are not fully instrumented; forked writer destructs its buffers before _exit, so child LeakSanitizer finalization is not run.",
+  "runtime_caveat": "Initial PIE ASan executable showed WSL startup DEADLYSIGNAL; failed probes were stopped. Only final non-PIE runs archived as passing evidence.",
+  "memfd": {
+    "passed": true,
+    "log": "shared_probe_memfd_final.log",
+    "sha256": "86e1d21b3e829bcbe347f6c61a6f4d1456c6fc3fe661512047e054200a710f64"
+  },
+  "vgem": {
+    "passed": true,
+    "log": "shared_probe_vgem_final.log",
+    "sha256": "dd96a038b7dc3d53c0c054758d398b1f4cf61d9e91ea920ec52fce97ff759e50"
+  },
+  "frozen_core_commit": "95d02e1",
+  "native_environment_evidence": "native_environment.json",
+  "unchanged_computational_translation_units": 13,
+  "minimal_change_scope": "Image ingress/source, leased buffer transport, build and experiment infrastructure. Estimator/factor/initialization/feature tracking computations and EuRoC algorithm settings remain unchanged."
+}

@@ -204,3 +204,73 @@ DDS 共享内存传输和 Data-sharing 是两层机制，不能都称作零拷�
 已有 DMA-BUF 驱动的单相机接入约 1–2 人周；连同 RGA 和跨进程句柄约 2–4 人周，包含前者基础，不简单相加。DMA-BUF 可作为跨进程共享像素的底层，两者并非二选一。能力取决于驱动/SDK，不能仅凭 USB/MIPI 判断。要传递真实 fd 句柄（例如 Unix socket SCM_RIGHTS），不能只在 ROS topic 里发 fd 数字或进程指针；同时协商格式、planes、offset/stride、同步和归还。普通共享内存不自动成为 RGA 可用 DMA 缓冲。硬件写完后 CPU 才能读，所有消费者包括 prev_img 完成后才归还相机；封闭 SDK 无接口时不保证无复制。[Linux DMA-BUF](https://docs.kernel.org/driver-api/dma-buf.html)、[布局协商](https://docs.kernel.org/userspace-api/dma-buf-alloc-exchange.html)、[V4L2 导出](https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/vidioc-expbuf.html)
 
 建议保持算法层只读图像及 owner 规则，在数据源层分别接 ROS Image、共享内存和 DMA-BUF：支持则共享，不匹配则明确回退。Rockchip 已有 fd 导入示例，但 cache 同步本身也可能产生 CPU 负载，不能预设自动提速。[RGA 示例](https://github.com/airockchip/librga/blob/main/samples/allocator_demo/src/rga_allocator_dma32_demo.cpp)、[RGA FAQ](https://github.com/airockchip/librga/blob/main/docs/Rockchip_FAQ_RGA_EN.md)
+
+<!-- experiment:shared_memory_20261010 -->
+## EuRoC 双进程共享像素：ROS Image / memfd（单目、双目）
+
+本节追加记录后续版本；此前结果与参照快照保留。原生依赖、算法参数和标定未升级。
+使用 MH_01_easy 完整 1 倍速回放；未运行回环/GNSS/RViz。
+
+| 实验 | 模式 / 部署 | RMW | 传输 / 入口 | poses | ATE RMSE (m) | RPE RMSE (m) | CPU (%) | RSS 峰值 (MiB) |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
+| MH01_stereo_split_ros_tuned1 | stereo_imu_vio / split | cyclonedds_cpp | ros / share | 1831 | 0.251245 | 0.003099 | 292.74 | 132.89 |
+| MH01_stereo_split_memfd_tuned1 | stereo_imu_vio / split | cyclonedds_cpp | memfd / share | 1831 | 0.253811 | 0.003087 | 186.79 | 78.82 |
+| MH01_mono_split_ros_tuned1 | mono_imu_vio / split | cyclonedds_cpp | ros / share | 1831 | 0.185562 | 0.002938 | 102.77 | 75.60 |
+| MH01_mono_split_memfd_tuned1 | mono_imu_vio / split | cyclonedds_cpp | memfd / share | 1831 | 0.185560 | 0.002938 | 106.60 | 81.09 |
+
+本节 split 每轮均运行两个独立原生进程：同一个 typed EuRoC 数据源 + VINS。ROS 对照也启用全像素 SHA256，使用相同时间戳、数据源、Cyclone DDS 和线程/算法配置。
+上表 CPU/RSS 为 VINS 单进程；下表包含数据源，CPU 之和以共同观测墙钟归一。SHA256 每张图像在数据源、消费端各计算一次，CPU 数值包含校验成本。
+三条路径使用相同的进程级 cyclonedds_wsl.xml（1400 B 数据报上限、1024 B 分片）；WSL 镜像网络的大包故障诊断单独归档。小分片会增加 DDS 开销，不能把本机省去 DDS 图像路径的 CPU 收益外推为 ARM/DDR/功耗提升。
+共享路径消费端校验在线程接收处，ROS 对照校验在同步入口，因此调度与执行阶段仍有差异。PSS 较适合共享页比较；各进程独立采样峰值之和不是同时峰值，也不是 DDR 用量。
+
+| 实验 | 数据源 CPU 秒 | 两进程 CPU 秒 | 两进程平均 CPU (%) | VINS / 数据源 PSS 峰值 (MiB) | 逐帧校验 | 数据源显式像素复制 (MiB) |
+| --- | ---: | ---: | ---: | --- | --- | ---: |
+| MH01_stereo_split_ros_tuned1 | 89.39 | 656.73 | 338.86 | 120.83 / 86.64 | 全帧通过 | 未统计 DDS 内部复制 |
+| MH01_stereo_split_memfd_tuned1 | 29.33 | 391.26 | 201.92 | 66.87 / 18.29 | 全帧通过 | 2534.97 |
+| MH01_mono_split_ros_tuned1 | 16.82 | 215.91 | 111.46 | 63.63 / 51.74 | 全帧通过 | 未统计 DDS 内部复制 |
+| MH01_mono_split_memfd_tuned1 | 18.85 | 225.34 | 116.33 | 66.15 / 22.04 | 全帧通过 | 1267.49 |
+
+每摄像头累计 SHA256 包括每帧原始 header 时间戳和逐行有效像素摘要，忽略行尾填充；数据源与消费端一致，且同模式的三种传输应一致。
+memfd 是普通共享像素；vgem 为内核 DRM 导出的真实 DMA-BUF。通过 SCM_RIGHTS 传递内核句柄，在独立 PID 内导入并核验 device/inode/长度，消费端只读 mmap；不传裸指针或 fd 数字。
+32 个有界槽位记录代次，缓冲用完会阻塞；归还发生在当前与上一左帧 owner 全部释放之后。DMA-BUF CPU 读写各有 START/END 同步，无硬件 DMA/fence/RGA 参与本次回放。
+bag 反序列化仍分配图像；共享数据源每帧仍复制一次到池中。此次消除的是跨进程图像消息的序列化/像素搬运路径及 VINS 入口复制，不是全链路零拷贝，也没有完整统计 DDS 内部复制次数。
+
+| 实验 | 池复用次数 | 池满等待次数 | 退出未归还槽位 | 源端 / 消费端错误 | 独立进程句柄核验 |
+| --- | ---: | ---: | ---: | --- | --- |
+| MH01_stereo_split_memfd_tuned1 | 7355 | 0 | 0 | 0 / 0 | 通过 |
+| MH01_mono_split_memfd_tuned1 | 3650 | 133 | 0 | 0 / 0 | 通过 |
+
+池为每轮重新创建，停止后关闭 fd、解除映射、删除本轮 socket；源码及本地 ASan 压力证据补充生命周期核验，未进行长时间故障恢复验收。
+
+copy 保留原入口的 toCvCopy + clone；share 在原生 mono8/8UC1 输入上共享只读视图并持有消息 owner。
+前端保存 prev_img 时，同步线程保留上一左图 owner，直到下一次跟踪返回才替换。颜色转换或字节序不匹配时允许有复制。
+
+| 实验 | 左 / 右 / IMU / 处理图像 | 共享图像 | 入口物化次数 | 入口物化数据 (MiB) |
+| --- | --- | ---: | ---: | ---: |
+| MH01_stereo_split_ros_tuned1 | 3682 / 3682 / 36820 / 3682 | 7364 | 0 | 0.00 |
+| MH01_stereo_split_memfd_tuned1 | 3682 / 3682 / 36820 / 3682 | 7364 | 0 | 0.00 |
+| MH01_mono_split_ros_tuned1 | 3682 / 0 / 36820 / 3682 | 3682 | 0 | 0.00 |
+| MH01_mono_split_memfd_tuned1 | 3682 / 0 / 36820 / 3682 | 3682 | 0 | 0.00 |
+
+以上物化统计只覆盖图像入口显式复制/转换，不是全程序复制计数；颜色转换计为物化。未计入 OpenCV 金字塔、跟踪图、回环、DDS 或磁盘读包内部的复制。
+
+同模式、同部署、同 RMW 的重复实验才做 A/B。不同传感器模式不能直接比较精度；不同资源采样范围不能直接比较 CPU/RSS。
+
+
+standalone 采样 VINS 进程；component 采样容器 + VINS；composed 采样容器 + VINS + C++ EuRoC 数据源。
+composed 的数据源先反序列化 bag，再移动 typed 消息到 VINS，保留记录/头时间戳；每条传感器记录发布 /clock，外部播放器参照为 100 Hz /clock。
+composed 改变数据源、RMW 及资源范围，不能用它与旧节点表直接计算组件化加速比。
+
+
+各轮干净退出、末帧覆盖和传感器计数已由 runner 检查；ATE/RPE 仍使用相同 evo、SE(3) 无尺度对齐与 0.01 s 匹配容差。
+少量重复只用于发现回归；WSL 宿主调度与求解器时间预算仍会造成波动，不能宣称统计显著加速。
+
+本轮实现 EuRoC 跨进程共享像素与可选 VGEM DMA-BUF；相机 DMA、RGA、NEON、全程序零拷贝未实施，DDR 带宽和功耗未实测。
+
+[本节参照快照](../infra/desktop/comparison_reference/shared_memory_20261010/)。源码/二进制哈希、RMW、资源口径及原始采样见各轮 run.json / resource_samples.csv。
+
+共享内存里程碑结论：四轮全部处理 3682 帧左图与 36820 条 IMU，双目右图同为 3682，均输出 1831 个后端位姿，正常退出。两种传输同模式输入签名一致；双目 ATE 0.251245 / 0.253811 m，单目 0.185562 / 0.185560 m，未观察到跟踪失败或配对丢弃。两进程 CPU 秒：双目 ROS/memfd 为 656.73 / 391.26，单目为 215.91 / 225.34。单目没有 CPU 收益，不能把双目的结果视作普遍加速；这轮只有各一遍。
+
+memfd 单目出现 133 次池满等待，退出未归还槽位为 0；这是背压而非丢弃，完整 1 倍速回放与末帧覆盖通过。次数不提供等待时长或单帧尾延迟证明，后续实际相机需测队列龄期、生产者阻塞时长及长期运行。消费端入口物化为 0，但源端每图仍复制一次：双目累计 2534.97 MiB、单目 1267.49 MiB；这些不是 DDR 实测字节。
+
+本里程碑源码冻结于 `95d02e1`（后续归档提交不改算法/二进制）。环境动态库审计、两后端各 1000 帧局部 ASan 压力验证及失败启动记录在上述快照；ASan 未覆盖全部依赖，fork 子进程在析构后 `_exit`，未运行子进程 LeakSanitizer 收尾。VGEM 的完整 EuRoC 验收另列下一节，不能用本节 memfd 结果代替。版本回退与历史 tag 见 [环境文档](UBUNTU22_ROS2_SETUP.md#版本里程碑与切换)。
