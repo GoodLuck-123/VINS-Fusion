@@ -7,6 +7,7 @@ namespace vins_ros {
 // Shared pixels are read-only; image processing outputs own separate storage.
 struct ImageFrame {
     cv_bridge::CvImageConstPtr owner;
+    std::shared_ptr<void> memory_owner; // External mapping/lease, including prev_img.
     cv::Mat image;
     bool shared = false;
     uint64_t materializations = 0;

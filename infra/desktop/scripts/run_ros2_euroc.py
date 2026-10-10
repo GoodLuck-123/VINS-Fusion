@@ -25,10 +25,14 @@ def main():
     parser.add_argument("--name", required=True)
     parser.add_argument("--rate", type=float, default=1.0)
     parser.add_argument("--mode", choices=("stereo_imu", "mono_imu"), default="stereo_imu")
-    parser.add_argument("--deployment", choices=("standalone", "component", "composed"), default="standalone")
+    parser.add_argument("--deployment", choices=("standalone", "component", "composed", "split"), default="standalone")
     parser.add_argument("--image-mode", choices=("copy", "share"), default="share")
     parser.add_argument("--perf-counters", action="store_true", help="Optional inherited userspace CPU PMU counters; not DDR/power")
+    parser.add_argument("--image-transport", choices=("ros","memfd","vgem","dma_heap"), default="ros")
+    parser.add_argument("--shared-device", default="/dev/dri/card0")
     args = parser.parse_args()
+    if args.image_transport!="ros" and (args.deployment!="split" or args.image_mode!="share"):
+        parser.error("Shared backends require --deployment split --image-mode share")
     if not 0 < args.rate <= 1:
         parser.error("Use a replay rate in (0, 1]")
     output = ROOT / "results/ros2" / args.name
@@ -47,7 +51,7 @@ def main():
     binary = ROOT / ".infra/ros2_ws/install/lib/vins/vins_node"
     component = ROOT / ".infra/ros2_ws/install/lib/libvins_component.so"
     metadata = {"success": False, "rate": args.rate, "mode": f"{args.mode}_vio",
-                "deployment": args.deployment, "image_mode": args.image_mode,
+                "deployment": args.deployment, "image_transport":args.image_transport, "image_mode": args.image_mode,
                 "rmw": os.environ.get("RMW_IMPLEMENTATION"),
                 "resource_scope": "VINS + EuRoC player + container" if args.deployment == "composed" else "VINS (+ container if loaded)",
                 "config_file": config_path.name,
@@ -60,6 +64,8 @@ def main():
     bag = ROOT / "data/euroc/MH_01_easy_ros2"
     processes, logs = [], []
     monitor = None
+    source_monitor = None
+    socket_path=f"/tmp/vins-{os.getpid()}.sock"
     perf_monitor = None
     rclpy.init()
     observer = Node("baseline_observer")
@@ -87,9 +93,12 @@ def main():
             raise RuntimeError(f"Process exited {process.returncode}; see {output}")
 
     try:
-        if args.deployment == "standalone":
+        if args.deployment in ("standalone","split"):
             node = launch([str(binary), str(config_path), "--ros-args", "-p", "use_sim_time:=true",
-                           "-p", f"image_mode:={args.image_mode}"], "vins")
+                           "-p", f"image_mode:={args.image_mode}",
+                           "-p", f"image_transport:={'ros' if args.image_transport=='ros' else 'shared'}",
+                           "-p", f"shared_socket:={socket_path}",
+                           "-p", f"verify_pixels:={str(args.deployment=='split' and args.image_transport=='ros').lower()}"], "vins")
         else:
             container_binary = Path(os.environ["CONDA_PREFIX"]) / "lib/rclcpp_components/component_container"
             node = launch([str(container_binary), "--ros-args", "-r", "__node:=vins_container"], "vins")
@@ -99,6 +108,7 @@ def main():
                            "vins_estimator")
         deadline = time.monotonic() + 30
         topics = ("/cam0/image_raw", "/imu0") + (("/cam1/image_raw",) if args.mode == "stereo_imu" else ())
+        if args.image_transport!="ros": topics=("/imu0",)
         while not all(observer.count_subscribers(topic) >= 1 for topic in topics):
             alive(node)
             rclpy.spin_once(observer, timeout_sec=0.2)
@@ -106,7 +116,23 @@ def main():
                 raise TimeoutError("Sensor subscriptions did not become ready")
         monitor = ProcessMetrics(node.pid, output / "resource_samples.csv")
         start = time.monotonic()
-        if args.deployment == "composed":
+        if args.deployment == "split":
+            player_binary=ROOT / ".infra/ros2_ws/install/lib/vins/euroc_player_node"
+            metadata["player_binary_sha256"]=hashlib.sha256(player_binary.read_bytes()).hexdigest()
+            metadata["vins_pid"]=node.pid
+            playback=launch([str(player_binary),"--ros-args","-p",f"bag_path:={bag}","-p",f"rate:={args.rate}",
+                "-p",f"stereo:={str(args.mode=='stereo_imu').lower()}","-p",f"image_transport:={args.image_transport}",
+                "-p",f"shared_socket:={socket_path}","-p",f"shared_device:={args.shared_device}","-p","verify_pixels:=true"],"playback")
+            metadata["player_pid"]=playback.pid
+            source_monitor=ProcessMetrics(playback.pid,output / "source_resource_samples.csv")
+            while not completed["seen"]:
+                alive(node); alive(playback)
+                monitor.sample(); source_monitor.sample()
+                rclpy.spin_once(observer,timeout_sec=0.1)
+                if time.monotonic()-start>310/args.rate: raise TimeoutError("Split replay exceeded expected duration")
+                time.sleep(0.9)
+            playback_code=0 if completed["success"] else 1
+        elif args.deployment == "composed":
             player_library = ROOT / ".infra/ros2_ws/install/lib/libvins_euroc_component.so"
             metadata["player_component_sha256"] = hashlib.sha256(player_library.read_bytes()).hexdigest()
             load_component(observer, "vins_container", "vins_ros::EurocPlayer",
@@ -130,6 +156,7 @@ def main():
                     raise TimeoutError("Playback exceeded expected duration")
                 time.sleep(1)
             playback_code = playback.returncode
+        metadata["replay_result_code"] = playback_code
         metadata["playback_exit_code"] = playback_code
         metadata["playback_wall_s"] = time.monotonic() - start
         if playback_code != 0:
@@ -141,6 +168,7 @@ def main():
         while stable < 5:
             alive(node)
             monitor.sample()
+            if source_monitor: source_monitor.sample()
             size = trajectory.stat().st_size if trajectory.exists() else 0
             stable = stable + 1 if previous == size else 0
             previous = size
@@ -149,6 +177,11 @@ def main():
             time.sleep(1)
         metadata["settling_wait_s"] = time.monotonic() - drain_start
         metadata["resources"] = monitor.summary()
+        if source_monitor:
+            metadata["source_resources"]=source_monitor.summary()
+            metadata["combined_cpu_time_s"]=metadata["resources"]["cpu_time_s"]+metadata["source_resources"]["cpu_time_s"]
+            metadata["combined_mean_cpu_percent_one_core"]=100*metadata["combined_cpu_time_s"]/metadata["resources"]["measurement_wall_s"]
+            metadata["combined_scope"]="Two independent native processes: VINS and typed EuRoC replay; initialization before readiness excluded for VINS. Same measurement end, source begins at launch."
         metadata["peak_sampled_rss_kib"] = metadata["resources"]["peak_sampled_rss_kib"]
         rows = [row for row in trajectory.read_text().splitlines() if row.strip()]
         metadata["trajectory_poses"] = len(rows)
@@ -159,7 +192,7 @@ def main():
             raise RuntimeError("Incomplete trajectory coverage")
         metadata["success"] = True
     finally:
-        for name, process in reversed(processes):
+        for name, process in (processes if args.deployment=="split" else reversed(processes)):
             if process.poll() is None:
                 os.killpg(process.pid, signal.SIGINT)
                 try:
@@ -174,6 +207,7 @@ def main():
             metadata[f"{name}_exit_code"] = process.returncode
         if monitor:
             monitor.close()
+        if source_monitor: source_monitor.close()
         if perf_monitor:
             try:
                 metadata["cpu_perf_counters"] = perf_monitor.summary()
@@ -220,6 +254,30 @@ def main():
                     c["ipc_same_message_and_pixels"] and c["view_shares_pixels"] == (args.image_mode == "share") for c in checks):
                 metadata["success"] = False
                 metadata["failure"] = "Intra-process pointer path verification failed"
+        if args.deployment=="split" and metadata["success"]:
+            consumer=(output/"vins.log").read_text(); source=(output/"playback.log").read_text()
+            digest_pattern=r"(?:image_digest (?:source|consumer)|shared_(?:writer|reader)[^\n]*?) sha0=([0-9a-f]{64}) sha1=([0-9a-f]{64})"
+            left=re.search(digest_pattern,consumer); right=re.search(digest_pattern,source)
+            if not left or not right or left.groups()!=right.groups():
+                metadata.update(success=False,failure="Full pixel/timestamp digest differs")
+            else: metadata["pixel_timestamp_sha256"]={"img0":left[1],"img1":left[2],"source_matches_consumer":True}
+            replay=re.search(r"replay_counts img0=(\d+) img1=(\d+) imu=(\d+) status=ok",source)
+            if not replay or list(map(int,replay.groups()))!=expected_counts[:3] or metadata.get("playback_exit_code")!=0:
+                metadata.update(success=False,failure="Typed source incomplete")
+            if args.image_transport!="ros":
+                writer=re.search(r"shared_writer backend=(\w+) frames=(\d+) source_materializations=(\d+) source_bytes=(\d+) waits=(\d+) reuses=(\d+) outstanding=(\d+) failed=(\d+)",source)
+                reader=re.search(r"shared_reader backend=(\d+) frames=(\d+) verified=(\d+) failed=(\d+)",consumer)
+                if writer:
+                    metadata["shared_writer"]=dict(zip(("backend","frames","source_materializations","source_bytes","waits","reuses","outstanding","failed"),[writer[1],*map(int,writer.groups()[1:])]))
+                if reader: metadata["shared_reader"]=dict(zip(("backend","frames","verified","failed"),map(int,reader.groups())))
+                peers=re.findall(r"shared_peer local_pid=(\d+) peer_pid=(\d+) uid=(\d+)",consumer+source)
+                metadata["shared_peers"]=[dict(zip(("local_pid","peer_pid","uid"),map(int,p))) for p in peers]
+                if (not writer or not reader or int(writer[2])!=image_count or int(writer[3])!=image_count or
+                    int(writer[4])!=image_count*752*480 or int(writer[7]) or int(writer[8]) or
+                    int(reader[2])!=image_count or int(reader[3])!=image_count or int(reader[4]) or
+                    len(peers)!=2 or not all(int(p[0])!=int(p[1]) for p in peers) or
+                    any("shared_" in line and "error" in line for line in (consumer+source).splitlines())):
+                    metadata.update(success=False,failure="Shared transport ownership/verification failed")
         observer.destroy_node()
         rclpy.shutdown()
         (output / "run.json").write_text(json.dumps(metadata, indent=2) + "\n")

@@ -17,6 +17,7 @@
 #include <vins_ros/ros2_utils.hpp>
 #include <vins/vins_node.hpp>
 #include <vins/image_frame.hpp>
+#include <vins/shared_frames.hpp>
 #include <rclcpp_components/register_node_macro.hpp>
 #include <fstream>
 #include <stdexcept>
@@ -45,8 +46,11 @@ Estimator estimator;
 
 queue<sensor_msgs::msg::Imu::ConstSharedPtr> imu_buf;
 queue<sensor_msgs::msg::PointCloud::ConstSharedPtr> feature_buf;
-queue<sensor_msgs::msg::Image::ConstSharedPtr> img0_buf;
-queue<sensor_msgs::msg::Image::ConstSharedPtr> img1_buf;
+struct InputImage { std_msgs::msg::Header header; sensor_msgs::msg::Image::ConstSharedPtr message; ImageFrame external; };
+queue<InputImage> img0_buf, img1_buf;
+std::unique_ptr<SharedReader> shared_reader;
+ImageDigest pixel_digest;
+bool verify_pixels=false;
 std::mutex m_buf;
 std::atomic<uint64_t> received_img0{0}, received_img1{0}, received_imu{0};
 uint64_t processed_images = 0;
@@ -72,6 +76,11 @@ uint64_t shared_images = 0, image_materializations = 0, materialized_bytes = 0;
             throw std::invalid_argument("image_mode must be copy or share");
         share_images = image_mode == "share";
         trace_images = n.declare_parameter<bool>("trace_image_pointers", false);
+        verify_pixels = n.declare_parameter<bool>("verify_pixels", false);
+        const auto transport=n.declare_parameter<std::string>("image_transport", "ros");
+        const auto socket=n.declare_parameter<std::string>("shared_socket", "");
+        if (transport!="ros" && transport!="shared") throw std::invalid_argument("image_transport must be ros or shared");
+        if (transport=="shared" && (!share_images || socket.empty())) throw std::invalid_argument("Shared transport requires share mode and socket");
         // Upstream settings/publishers are process globals: one VINS per process.
         RIC.clear(); TIC.clear(); CAM_NAMES.clear(); STEREO = 0;
         try
@@ -84,11 +93,21 @@ uint64_t shared_images = 0, image_materializations = 0, materialized_bytes = 0;
                     [this](sensor_msgs::msg::Imu::ConstSharedPtr msg) { imu_callback(msg); });
             sub_feature = n.create_subscription<sensor_msgs::msg::PointCloud>("/feature_tracker/feature", rclcpp::QoS(2000).reliable(),
                 [this](sensor_msgs::msg::PointCloud::ConstSharedPtr msg) { feature_callback(msg); });
-            sub_img0 = n.create_subscription<sensor_msgs::msg::Image>(IMAGE0_TOPIC, rclcpp::QoS(100).reliable(),
-                [this](sensor_msgs::msg::Image::ConstSharedPtr msg) { img0_callback(msg); });
-            if (STEREO)
-                sub_img1 = n.create_subscription<sensor_msgs::msg::Image>(IMAGE1_TOPIC, rclcpp::QoS(100).reliable(),
+            if (transport=="ros") {
+                sub_img0 = n.create_subscription<sensor_msgs::msg::Image>(IMAGE0_TOPIC, rclcpp::QoS(100).reliable(),
+                    [this](sensor_msgs::msg::Image::ConstSharedPtr msg) { img0_callback(msg); });
+                if (STEREO) sub_img1 = n.create_subscription<sensor_msgs::msg::Image>(IMAGE1_TOPIC, rclcpp::QoS(100).reliable(),
                     [this](sensor_msgs::msg::Image::ConstSharedPtr msg) { img1_callback(msg); });
+            } else {
+                shared_reader=std::make_unique<SharedReader>(socket,[this](SharedImage input) {
+                    if(input.camera==1 && !STEREO) return;
+                    InputImage image; image.header.stamp=rclcpp::Time(input.stamp_ns);
+                    image.external=std::move(input.frame);
+                    std::lock_guard<std::mutex> lock(m_buf);
+                    if(input.camera==0) { ++received_img0; img0_buf.push(std::move(image)); }
+                    else { ++received_img1; img1_buf.push(std::move(image)); }
+                });
+            }
             sub_restart = n.create_subscription<std_msgs::msg::Bool>("/vins_restart", rclcpp::QoS(100).reliable(),
                 [this](std_msgs::msg::Bool::ConstSharedPtr msg) { restart_callback(msg); });
             sub_imu_switch = n.create_subscription<std_msgs::msg::Bool>("/vins_imu_switch", rclcpp::QoS(100).reliable(),
@@ -110,8 +129,13 @@ uint64_t shared_images = 0, image_materializations = 0, materialized_bytes = 0;
     {
         stop_requested.store(true);
         if (sync_thread.joinable()) sync_thread.join();
+        if(shared_reader) shared_reader->stop();
         estimator.stop();
+        previous_left_frame={};
+        while(!img0_buf.empty()) img0_buf.pop();
+        while(!img1_buf.empty()) img1_buf.pop();
         shutdownPub();
+        if(verify_pixels) printf("image_digest consumer sha0=%s sha1=%s\n",pixel_digest.value(0).c_str(),pixel_digest.value(1).c_str());
         printf("sensor_counts img0=%lu img1=%lu imu=%lu processed=%lu\n",
                received_img0.load(), received_img1.load(), received_imu.load(), processed_images);
         printf("image_ingress mode=%s shared=%lu materializations=%lu bytes=%lu\n",
@@ -125,7 +149,7 @@ void img0_callback(const sensor_msgs::msg::Image::ConstSharedPtr &img_msg)
             static_cast<int64_t>(img_msg->header.stamp.sec)*1000000000+img_msg->header.stamp.nanosec,
             static_cast<const void *>(img_msg.get()), static_cast<const void *>(img_msg->data.data()));
     m_buf.lock();
-    img0_buf.push(img_msg);
+    img0_buf.push(InputImage{img_msg->header,img_msg,{}});
     m_buf.unlock();
 }
 
@@ -137,15 +161,17 @@ void img1_callback(const sensor_msgs::msg::Image::ConstSharedPtr &img_msg)
             static_cast<int64_t>(img_msg->header.stamp.sec)*1000000000+img_msg->header.stamp.nanosec,
             static_cast<const void *>(img_msg.get()), static_cast<const void *>(img_msg->data.data()));
     m_buf.lock();
-    img1_buf.push(img_msg);
+    img1_buf.push(InputImage{img_msg->header,img_msg,{}});
     m_buf.unlock();
 }
 
 
-ImageFrame getImageFromMsg(const sensor_msgs::msg::Image::ConstSharedPtr &message, const char *camera)
+ImageFrame getImageFromMsg(InputImage &input, const char *camera)
 {
-    auto frame = imageFrame(message, share_images);
-    if (trace_images && traced_views++ < 6)
+    const auto &message=input.message;
+    auto frame = message ? imageFrame(message, share_images) : std::move(input.external);
+    if(verify_pixels) pixel_digest.add(camera[3]-'0',rclcpp::Time(input.header.stamp).nanoseconds(),pixelHash(frame.image));
+    if (message && trace_images && traced_views++ < 6)
         RCLCPP_INFO(n.get_logger(), "image_view %s stamp_ns=%ld message=%p data=%p",
             camera, static_cast<int64_t>(message->header.stamp.sec)*1000000000+message->header.stamp.nanosec,
             static_cast<const void *>(message.get()), static_cast<const void *>(frame.image.data));
@@ -168,8 +194,8 @@ void sync_process()
             m_buf.lock();
             if (!img0_buf.empty() && !img1_buf.empty())
             {
-                double time0 = vins_ros::seconds(img0_buf.front()->header.stamp);
-                double time1 = vins_ros::seconds(img1_buf.front()->header.stamp);
+                double time0 = vins_ros::seconds(img0_buf.front().header.stamp);
+                double time1 = vins_ros::seconds(img1_buf.front().header.stamp);
                 // 0.003s sync tolerance
                 if(time0 < time1 - 0.003)
                 {
@@ -183,8 +209,8 @@ void sync_process()
                 }
                 else
                 {
-                    time = vins_ros::seconds(img0_buf.front()->header.stamp);
-                    header = img0_buf.front()->header;
+                    time = vins_ros::seconds(img0_buf.front().header.stamp);
+                    header = img0_buf.front().header;
                     image0 = getImageFromMsg(img0_buf.front(), "img0");
                     img0_buf.pop();
                     image1 = getImageFromMsg(img1_buf.front(), "img1");
@@ -210,8 +236,8 @@ void sync_process()
             m_buf.lock();
             if(!img0_buf.empty())
             {
-                time = vins_ros::seconds(img0_buf.front()->header.stamp);
-                header = img0_buf.front()->header;
+                time = vins_ros::seconds(img0_buf.front().header.stamp);
+                header = img0_buf.front().header;
                 image = getImageFromMsg(img0_buf.front(), "img0");
                 img0_buf.pop();
             }

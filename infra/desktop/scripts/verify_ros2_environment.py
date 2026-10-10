@@ -16,6 +16,8 @@ if (workspace / "install/lib/libvins_component.so").exists():
     targets["vins_component"] = workspace / "install/lib/libvins_component.so"
 if (workspace / "install/lib/libvins_euroc_component.so").exists():
     targets["euroc_player"] = workspace / "install/lib/libvins_euroc_component.so"
+if (workspace / "install/lib/vins/euroc_player_node").exists():
+    targets["euroc_player_node"] = workspace / "install/lib/vins/euroc_player_node"
 forbidden = ("/.infra/ros1/", "/.infra/legacy/", "/.infra/bridge_ws/")
 report = {"opencv": "4.2.0", "ceres": "1.14.0", "targets": {}}
 for name, binary in targets.items():
@@ -27,6 +29,8 @@ for name, binary in targets.items():
             raise RuntimeError(f"Mixed OpenCV: {line}")
         if "libceres" in line and str(legacy / "lib") not in line:
             raise RuntimeError(f"Mixed Ceres: {line}")
+        if "libcrypto.so" in line and str(ROOT / ".infra/ros2/lib") not in line:
+            raise RuntimeError(f"Mixed OpenSSL: {line}")
     report["targets"][name] = {"ldd": text.splitlines(), "binary_sha256": hashlib.sha256(binary.read_bytes()).hexdigest()}
 for path in workspace.glob("build/*/compile_commands.json"):
     if any(prefix in path.read_text() for prefix in forbidden):
