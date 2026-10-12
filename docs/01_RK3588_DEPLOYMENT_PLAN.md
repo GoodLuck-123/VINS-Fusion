@@ -1,6 +1,8 @@
 # VINS-Fusion / ROS 2 / RK3588 顶层任务书
 
-更新日期：2026-10-10
+更新日期：2026-10-12
+
+当前桌面阶段已完成最小 ROS 2 迁移、组件/图像 owner 和 30 次共享传输对照，当前 WSL 阶段结束；下一步在新 Ubuntu 主机和 RK3588 建立目标环境。原有估算和历史阶段保留，接手顺序见 [第 00 份文档](00_HANDOFF.md)，实测结论以 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md) 为准
 
 ## 一、目标与总体结论
 
@@ -8,7 +10,7 @@
 
 优先级：正确迁移与可复现验证 > 冗余复制消除 > 有收益的 RGA 算子 > 自研 NEON。ROS 2 是部署基础，不承诺直接提速；RGA 不能承接全部 OpenCV；NEON 不预设能超过优化后的 OpenCV；零拷贝以消除不必要复制为目标，必要的图像输出与长期存储不强求零复制
 
-初次评估时已检查本地源码和公开官方资料。源码目录 VINS-Fusion，HEAD 为 be55a93（fix a memory issue），origin 为 GoodLuck-123/VINS-Fusion，初次评估时工作树无修改。初次评估未逐提交证明与上游完全一致，也未构建、回放或运行板端 benchmark；后续基线进展见文末。当前主机 Ubuntu 22.04.5，未发现 /opt/ros；data 下已有约 4.4 GB 的 2025-06-07-06-46-12.bag，其话题、编码、标定与真值尚未核查。以下工期是工程估算，收益是条件判断
+初次评估时已检查本地源码和公开官方资料。源码目录 VINS-Fusion，HEAD 为 be55a93（fix a memory issue），origin 为 GoodLuck-123/VINS-Fusion，初次评估时工作树无修改。初次评估未逐提交证明与上游完全一致，也未构建、回放或运行板端 benchmark；后续基线进展见文末。当时主机为 Ubuntu 22.04.5，未发现 /opt/ros；data 下已有约 4.4 GB 的 2025-06-07-06-46-12.bag，其话题、编码、标定与真值尚未核查。以下工期是工程估算，收益是条件判断
 
 ## 二、工作量与收益
 
@@ -29,6 +31,8 @@
 收益必须报告局部和端到端两层，不能把各阶段加速比相加。目标占串行耗时 p，局部快 s 倍，理想整体加速为 1/((1-p)+p/s)。例如占比 10% 的部分快 3 倍，整机约快 7%；异步流水线还受排队和带宽影响。优化即使不降延迟，也可能减少 CPU 时间或功耗，需分别衡量
 
 ## 三、源码核查对任务范围的约束
+
+以下记录最初 ROS 1 源码的核查结果；当前 ROS 2 的图像入口已有 share/owner 实现，第 3 项原始深拷贝保留在 copy 对照路径
 
 1. VIO 前端是 goodFeaturesToTrack（GFTT）补点和 calcOpticalFlowPyrLK（LK）跟踪；双目及反向检查会重复使用 LK。CLAHE 代码已注释，常规路径按特征点做相机模型反投影，并非逐帧全图 remap。
 2. 回环另用 FAST + DVision BRIEF；关键帧生成 80×60 缩略图，BRIEF 内部有 GaussianBlur。不能把回环和 VIO 的特征算法合并估算，也不能用 RGA 缩放替代高斯滤波。
@@ -113,7 +117,7 @@ RGA 的 impyramind/缩放不能直接视为等价的 OpenCV LK 金字塔，滤�
 - [社区参考 zinuok（Foxy）][7]
 - [社区参考 snktshrma（Humble/ARM）][8]
 
-社区仓库目前仅经公开页面初筛，未完成维护活跃度/CI/issue 闭环审计，也未复现其运行结果。分支链接会变化，实施时固定经验证的 commit。本任务书不表示算法迁移或板端验证已完成
+社区仓库仅经公开页面初筛，未完成维护活跃度/CI/issue 闭环审计，也未复现其运行结果。分支链接会变化，实施时固定经验证的 commit。当前仓库自身的迁移状态见下节；社区初筛不作为板端验证完成的证据
 
 ## 当前进展
 
@@ -147,6 +151,8 @@ RGA 的 impyramind/缩放不能直接视为等价的 OpenCV LK 金字塔，滤�
 VGEM 只用于桌面真实内核句柄、映射及 CPU 同步验证；无相机/RGA硬件 DMA，不据此证明 ARM 的物理连续布局、fence、缓存行为或驱动通用性。通用灰度帧/owner 接口已落地，换相机仍需源端适配；Linux DMA heap 后端是未在本机验收的可选入口。板端工作量与原有通用性评估保持条件性，驱动稳定性与长期运行未因桌面原型而豁免
 
 历史基线/组件/PMU 已补 annotated tag；共享内存与 DMA-BUF 在各自数据验收、报告归档后分别打 tag。每个后续小目标沿用此规则，不移动已有 tag。源码切换后重建对应隔离环境；tag 及具体命令见 [ROS 2 环境说明](04_UBUNTU22_ROS2_SETUP.md#版本里程碑与切换)
+
+后续 30 次串行重复已完成：三种传输 × 单目/双目 × 各五次。双目 memfd 配对 CPU 变化中位数 −11.99%，单目 CPU 收益未确定；共享路径源端 PSS 降低，VGEM CPU 增加且双目背压仍存在。完整输入验收通过，板端性能、DDR 和功耗仍需重测；详见 [重复实验结论](05_EUROC_ROS1_ROS2_COMPARISON.md#shared-repeats)，里程碑为 `milestone-ros2-shared-repeats-v1`
 
 [1]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_Developer_Guide_RGA_EN.md "Rockchip RGA 官方开发指南"
 [2]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_FAQ_RGA_EN.md "Rockchip RGA 官方 FAQ"

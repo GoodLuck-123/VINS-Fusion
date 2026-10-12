@@ -78,8 +78,11 @@ cd VINS-Fusion
 须使用包含 infra 文件的版本。以下命令均在 Git 仓库根目录执行：
 
 ```bash
+git switch master
 bash infra/desktop/scripts/bootstrap_baseline.sh
 ```
+
+必须先切回 ROS 1 源码；当前 ROS 2 分支的 package 使用 ament，不能直接调用 catkin。master 保留原先的文档文件名，切换后按该分支 README 查找，先保存所需命令并打开新终端。当前 ROS 2 的新机接手路径见 [第 00 份文档](00_HANDOFF.md)
 
 脚本依次安装固定版本 micromamba、按 ros1-linux-64.lock 创建 ROS/C++ 环境、uv sync、下载源码和数据、校验 SHA256、构建 OpenCV/Ceres/cv_bridge/VINS。依赖均写入本工程，不运行 sudo、不修改系统包源、不写全局 bashrc
 

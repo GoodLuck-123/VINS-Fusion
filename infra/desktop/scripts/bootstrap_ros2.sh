@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
+if [[ "$(uname -s)" != Linux || "$(uname -m)" != x86_64 ]]; then
+  echo "This bootstrap uses Linux x86_64 locks; create a separate ARM environment for RK3588. See docs/00_HANDOFF.md." >&2
+  exit 1
+fi
 source "$(dirname "${BASH_SOURCE[0]}")/workspace_root.sh"
 mkdir -p "$VINS_WORKSPACE_DIR/.infra/bin" "$VINS_WORKSPACE_DIR/.infra/downloads"
 if [[ ! -x "$VINS_WORKSPACE_DIR/.infra/bin/micromamba" ]]; then

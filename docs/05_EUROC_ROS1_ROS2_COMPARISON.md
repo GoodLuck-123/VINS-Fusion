@@ -1,12 +1,12 @@
 # ROS 1 / ROS 2 EuRoC 对比实验
 
-本文按实验阶段保留历史记录，后续版本继续在末尾追加；候选工作安排见 [x86 CPU 实验计划](06_X86_CPU_EXPERIMENTS.md)
+本文按实验阶段保留历史记录，后续版本继续在末尾追加；当前接手状态见 [第 00 份文档](00_HANDOFF.md)，候选工作安排见 [CPU 优化候选](06_X86_CPU_EXPERIMENTS.md)
 
 - 原版迁移：[精度与完整性](#精度与完整性)、[节点资源压力](#节点资源压力)
-- 组件与测量：[图像所有权 A/B](#组件化与图像所有权单目双目-ab2026-10-10)、[DDR/功耗及 PMU](#ddr功耗可测性核验与-cpu-pmu-对照2026-10-10)
-- 跨进程传输：[memfd 首轮](#euroc-双进程共享像素ros-image--memfd单目双目)、[VGEM 首轮](#euroc-真实-vgem-dma-buf与-ros-image--memfd-对照)、[30 次串行重复实验](#euroc-串行重复实验shared_repeats_20261010)
+- 组件与测量：[图像所有权 A/B](#components-images)、[DDR/功耗及 PMU](#pmu-capabilities)
+- 跨进程传输：[memfd 首轮](#shared-memory)、[VGEM 首轮](#dmabuf)、[30 次串行重复实验](#shared-repeats)
 
-日期：2026-10-09
+以下首轮迁移实验日期：2026-10-09
 
 两轮均值：ATE ROS 1 为 0.252696 m、ROS 2 为 0.252744 m；平均 CPU 占用分别为 151.93% / 152.74%；RSS 峰值均值分别为 76.40 / 90.45 MiB。本序列精度接近，CPU 差异较小；ROS 2 的内存开销更高
 
@@ -60,6 +60,8 @@ ros2 输入序列化数据量 / 图像时间跨度：约 13.837 MiB/s（逻辑�
 [搭建与实验命令](04_UBUNTU22_ROS2_SETUP.md)；[版本化参照快照](../infra/desktop/ros2_reference/)。原始日志在仓库父目录的 results/，不纳入 Git
 
 <!-- experiment:components_images_20261010 -->
+<a id="components-images"></a>
+
 ## 组件化与图像所有权：单目/双目 A/B（2026-10-10）
 
 本节追加记录后续版本；此前结果与参照快照保留。原生依赖、算法参数和标定未升级。使用 MH_01_easy 完整 1 倍速回放；未运行回环/GNSS/RViz
@@ -127,6 +129,8 @@ MH01_stereo_composed_share1：6 组起始图像指针核验通过，数据源与
 以上八轮使用源码 00658b0；随后 70c0b3b 仅补齐组件公开头文件的依赖导出，增量构建后 VINS/组件二进制哈希保持一致。完整构建和隔离检查通过，仍加载独立 ROS 2 前缀中的 OpenCV 4.2.0 / Ceres 1.14.0。历史参照快照未改写，未来版本继续在本文末尾追加
 
 <!-- experiment:pmu_capabilities_20261010 -->
+<a id="pmu-capabilities"></a>
+
 ## DDR/功耗可测性核验与 CPU PMU 对照（2026-10-10）
 
 本节追加记录后续版本；此前结果与参照快照保留。原生依赖、算法参数和标定未升级。使用 MH_01_easy 完整 1 倍速回放；未运行回环/GNSS/RViz
@@ -195,6 +199,8 @@ DDS 共享内存传输和 Data-sharing 是两层机制，不能都称作零拷�
 建议保持算法层只读图像及 owner 规则，在数据源层分别接 ROS Image、共享内存和 DMA-BUF：支持则共享，不匹配则明确回退。Rockchip 已有 fd 导入示例，但 cache 同步本身也可能产生 CPU 负载，不能预设自动提速。[RGA 示例](https://github.com/airockchip/librga/blob/main/samples/allocator_demo/src/rga_allocator_dma32_demo.cpp)、[RGA FAQ](https://github.com/airockchip/librga/blob/main/docs/Rockchip_FAQ_RGA_EN.md)
 
 <!-- experiment:shared_memory_20261010 -->
+<a id="shared-memory"></a>
+
 ## EuRoC 双进程共享像素：ROS Image / memfd（单目、双目）
 
 本节追加记录后续版本；此前结果与参照快照保留。原生依赖、算法参数和标定未升级。使用 MH_01_easy 完整 1 倍速回放；未运行回环/GNSS/RViz
@@ -256,6 +262,8 @@ memfd 单目出现 133 次池满等待，退出未归还槽位为 0；这是背�
 本里程碑源码冻结于 `95d02e1`（后续归档提交不改算法/二进制）。环境动态库审计、两后端各 1000 帧局部 ASan 压力验证及失败启动记录在上述快照；ASan 未覆盖全部依赖，fork 子进程在析构后 `_exit`，未运行子进程 LeakSanitizer 收尾。VGEM 的完整 EuRoC 验收另列下一节，不能用本节 memfd 结果代替。版本回退与历史 tag 见 [环境文档](04_UBUNTU22_ROS2_SETUP.md#版本里程碑与切换)
 
 <!-- experiment:dmabuf_20261010 -->
+<a id="dmabuf"></a>
+
 ## EuRoC 真实 VGEM DMA-BUF：与 ROS Image / memfd 对照
 
 本节新增 VGEM 单目/双目两轮；ROS/memfd 四份对照复用上一节结果，合计六次完整实验，表格复用不计为新回放
@@ -358,6 +366,8 @@ DMA-BUF 里程碑结论：VGEM 双目/单目分别逐帧核验 7364/3682 张真�
 执行与通知为本地后台程序：正常轮次不调用模型，不在线轮询；仅在批次完成或失败时向原对话触发一次处理请求。调度和统计脚本纳入 Git；回调及开发探针留在忽略的 `.local-tests/`。预定方案不是新的性能结果，完成统计由下一节及对应快照给出
 
 <!-- experiment:shared_repeats_20261010 -->
+<a id="shared-repeats"></a>
+
 ## EuRoC 串行重复实验：shared_repeats_20261010
 
 新增 30 次完整实验：单目/双目，各传输独立重复 5 次；不包含此前六次试跑。每轮仅一个数据源和一个 VINS；上一轮完成、退出、评估后再启动下一轮。顺序轮换，每轮间隔 10 秒。同一冻结二进制、MH_01_easy 输入/标定、1 倍目标供给、Cyclone DDS 小分片配置、share 入口和全像素 SHA256 校验；无回环/RViz
