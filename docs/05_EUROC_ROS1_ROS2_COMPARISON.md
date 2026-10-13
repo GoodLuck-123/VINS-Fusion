@@ -115,3 +115,31 @@ share 消除了原生灰度入口的显式物化，copy 保留历史入口。两
 composed 两轮各六组起始消息/像素地址核验通过，源端与订阅端一致，入口视图的共享或复制符合参数；全序列共享/物化计数另列上表。只读 owner、stride/回退、单目/双目前端十帧特征一致性与两种 RMW 组件生命周期探针已归档；局部 ASan 不覆盖全部依赖，不代表长期泄漏验收
 
 本阶段提交直接位于 ros2-humble，新 annotated tag 为 `milestone-ros2-components-native-ubuntu22-v1`。VINS 组件二进制与前一阶段相同，未改算法、标定、依赖或默认线程参数
+
+<!-- native-phase:pmu -->
+## 用户态 CPU PMU 对照
+
+| 实验 | 模式 / 部署 / 入口 | poses / 匹配 | ATE RMSE (m) | RPE RMSE (m) | 回放 / 排空 (s) | VINS 退出 |
+| --- | --- | ---: | ---: | ---: | --- | ---: |
+| native_pmu_stereo_standalone_copy_ros_01 | stereo_imu_vio / standalone / ros/copy | 1831 / 1819 | 0.252745 | 0.003083 | 188.22 / 6.00 | 0 |
+| native_pmu_stereo_standalone_share_ros_02 | stereo_imu_vio / standalone / ros/share | 1831 / 1819 | 0.252745 | 0.003083 | 187.23 / 6.01 | 0 |
+
+CPU 秒为各进程全部线程累计值；RSS/PSS 是各进程独立采样峰值，不能相加当作同时峰值。回放、排空分别列出，完整处理不等于实时验收
+
+| 实验 | VINS CPU (s) | 源端 CPU (s) | 合计 CPU (s) | VINS RSS / PSS (MiB) | 源端 RSS / PSS (MiB) |
+| --- | ---: | ---: | ---: | --- | --- |
+| native_pmu_stereo_standalone_copy_ros_01 | 162.16 | 未采样 | 仅 VINS | 94.69 / 82.38 | 未采样 |
+| native_pmu_stereo_standalone_share_ros_02 | 162.93 | 未采样 | 仅 VINS | 96.55 / 82.73 | 未采样 |
+
+[本阶段证据](../infra/desktop/comparison_reference/native_ubuntu22_20261013/pmu/)
+
+四类事件在本机均可用，time_running / time_enabled 为 1，无复用缩放。计数覆盖 VINS 原生进程及继承线程的用户态，包括启动、退出和短暂 Python gate；与资源采样的 subscription-ready-to-drain 窗口不同
+
+| 入口 | cycles (十亿) | instructions (十亿) | cache references (十亿) | cache misses (十亿) | IPC | misses / 千条指令 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| copy | 669.518 | 1128.723 | 21.976 | 2.639 | 1.686 | 2.338 |
+| share | 668.862 | 1128.692 | 22.125 | 2.589 | 1.687 | 2.294 |
+
+两轮完整接收左右各 3682 张图像、36820 条 IMU，处理 3682 帧，各一次初始化，无重置/配对丢弃，轨迹逐字节一致，进程均正常退出。CPU 分别为 162.16 / 162.93 秒，单轮差异不支持稳定提速结论；灰度 share 入口零物化仍由入口计数单独证明
+
+cache misses 是 CPU 缓存诊断事件，不能换算为 DDR 字节或功耗。本机未发现 DDR 控制器事件；CPU 能量节点存在但当前用户不可读，二者均记不可用。未改 PMU 逻辑，仅修正旧报告中的虚拟化主机描述

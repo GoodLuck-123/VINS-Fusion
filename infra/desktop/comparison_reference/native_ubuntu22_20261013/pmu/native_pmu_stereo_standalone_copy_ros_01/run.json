@@ -1,0 +1,104 @@
+{
+  "success": true,
+  "rate": 1.0,
+  "mode": "stereo_imu_vio",
+  "deployment": "standalone",
+  "image_transport": "ros",
+  "image_mode": "copy",
+  "rmw": "rmw_fastrtps_cpp",
+  "resource_scope": "VINS (+ container if loaded)",
+  "config_file": "euroc_stereo_imu_config.yaml",
+  "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+  "source_commit": "d03feafb9435c491a4c889f799d442877b47b4d0",
+  "source_modified": false,
+  "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+  "ros_domain_id": "42",
+  "start_utc": "2026-10-13T09:13:07Z",
+  "replay_result_code": 0,
+  "playback_exit_code": 0,
+  "playback_wall_s": 188.21547240200016,
+  "settling_wait_s": 6.004587330999129,
+  "resources": {
+    "measurement_wall_s": 193.22092649700062,
+    "logical_cpus": 16,
+    "cpu_time_s": 162.16,
+    "peak_sampled_rss_kib": 96960,
+    "kernel_peak_rss_kib": 97080,
+    "peak_threads": 44,
+    "mean_cpu_percent_one_core": 83.92465709583337,
+    "sampled_cpu_percent_one_core": {
+      "p50": 89.8969999742808,
+      "p95": 98.2359414708743,
+      "p99": 100.96272073696484
+    },
+    "minor_faults": 8305885,
+    "major_faults": 0,
+    "read_bytes": 0,
+    "write_bytes": 671744,
+    "rchar": 11,
+    "wchar": 374095,
+    "main_voluntary_switches": 36007,
+    "main_involuntary_switches": 224,
+    "peak_sampled_pss_kib": 84359,
+    "peak_sampled_private_dirty_kib": 59748,
+    "host_observations": {
+      "loopback_rx_bytes": 1014752,
+      "loopback_tx_bytes": 1014752,
+      "cpu_some_stall_us": 151772,
+      "cpu_full_stall_us": 0,
+      "memory_some_stall_us": 0,
+      "memory_full_stall_us": 0,
+      "io_some_stall_us": 25072,
+      "io_full_stall_us": 24595
+    },
+    "scope": "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+  },
+  "peak_sampled_rss_kib": 96960,
+  "trajectory_poses": 1831,
+  "first_timestamp_ns": 1403636580813555456,
+  "last_timestamp_ns": 1403636763813555456,
+  "vins_exit_code": 0,
+  "cpu_perf_counters": {
+    "scope": "Native process and inherited threads, userspace only; includes exec/startup/teardown and a short Python gate",
+    "errors": {},
+    "events": {
+      "cpu_cycles": {
+        "count": 669517694186,
+        "time_enabled_ns": 162933061997,
+        "time_running_ns": 162933061997,
+        "running_fraction": 1.0
+      },
+      "instructions": {
+        "count": 1128723007785,
+        "time_enabled_ns": 162933042159,
+        "time_running_ns": 162933042159,
+        "running_fraction": 1.0
+      },
+      "cache_references": {
+        "count": 21975731899,
+        "time_enabled_ns": 162933031459,
+        "time_running_ns": 162933031459,
+        "running_fraction": 1.0
+      },
+      "cache_misses": {
+        "count": 2639388560,
+        "time_enabled_ns": 162933020759,
+        "time_running_ns": 162933020759,
+        "running_fraction": 1.0
+      }
+    },
+    "limitations": "CPU PMU diagnostics; cache misses are not DDR bytes; not an energy measurement. No multiplex scaling is applied."
+  },
+  "sensor_counts": {
+    "img0": 3682,
+    "img1": 3682,
+    "imu": 36820,
+    "processed": 3682
+  },
+  "image_ingress": {
+    "mode": "copy",
+    "shared": 0,
+    "materializations": 14728,
+    "bytes": 5316218880
+  }
+}

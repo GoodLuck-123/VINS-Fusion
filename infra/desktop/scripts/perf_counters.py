@@ -36,7 +36,7 @@ class PerfCounters:
             raise RuntimeError("Read inherited totals only after all process threads exit")
         result = {"scope": "Native process and inherited threads, userspace only; includes exec/startup/teardown and a short Python gate",
                   "errors": dict(self.errors), "events": {},
-                  "limitations": "Virtualized CPU PMU; cache misses are not DDR bytes; not an energy measurement. No multiplex scaling is applied."}
+                  "limitations": "CPU PMU diagnostics; cache misses are not DDR bytes; not an energy measurement. No multiplex scaling is applied."}
         for name, fd in self.events.items():
             try:
                 count, enabled, running = struct.unpack("=QQQ", os.read(fd, 24))

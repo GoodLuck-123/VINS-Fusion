@@ -1,0 +1,94 @@
+[
+  {
+    "name": "native_pmu_stereo_standalone_copy_ros_01",
+    "counts": {
+      "img0": 3682,
+      "img1": 3682,
+      "imu": 36820,
+      "processed": 3682
+    },
+    "trajectory_sha256": "24a45d6599b7060444a75631d4909c889fa14a5a3a2a52290eadd55c5d4a029f",
+    "first_timestamp_ns": 1403636580813555456,
+    "last_timestamp_ns": 1403636763813555456,
+    "cpu_s": 162.16,
+    "pmu": {
+      "scope": "Native process and inherited threads, userspace only; includes exec/startup/teardown and a short Python gate",
+      "errors": {},
+      "events": {
+        "cpu_cycles": {
+          "count": 669517694186,
+          "time_enabled_ns": 162933061997,
+          "time_running_ns": 162933061997,
+          "running_fraction": 1.0
+        },
+        "instructions": {
+          "count": 1128723007785,
+          "time_enabled_ns": 162933042159,
+          "time_running_ns": 162933042159,
+          "running_fraction": 1.0
+        },
+        "cache_references": {
+          "count": 21975731899,
+          "time_enabled_ns": 162933031459,
+          "time_running_ns": 162933031459,
+          "running_fraction": 1.0
+        },
+        "cache_misses": {
+          "count": 2639388560,
+          "time_enabled_ns": 162933020759,
+          "time_running_ns": 162933020759,
+          "running_fraction": 1.0
+        }
+      },
+      "limitations": "CPU PMU diagnostics; cache misses are not DDR bytes; not an energy measurement. No multiplex scaling is applied."
+    },
+    "ate": 0.2527445705844378,
+    "rpe": 0.0030832180472346268
+  },
+  {
+    "name": "native_pmu_stereo_standalone_share_ros_02",
+    "counts": {
+      "img0": 3682,
+      "img1": 3682,
+      "imu": 36820,
+      "processed": 3682
+    },
+    "trajectory_sha256": "24a45d6599b7060444a75631d4909c889fa14a5a3a2a52290eadd55c5d4a029f",
+    "first_timestamp_ns": 1403636580813555456,
+    "last_timestamp_ns": 1403636763813555456,
+    "cpu_s": 162.93,
+    "pmu": {
+      "scope": "Native process and inherited threads, userspace only; includes exec/startup/teardown and a short Python gate",
+      "errors": {},
+      "events": {
+        "cpu_cycles": {
+          "count": 668862037599,
+          "time_enabled_ns": 163697894709,
+          "time_running_ns": 163697894709,
+          "running_fraction": 1.0
+        },
+        "instructions": {
+          "count": 1128691978049,
+          "time_enabled_ns": 163697894709,
+          "time_running_ns": 163697894709,
+          "running_fraction": 1.0
+        },
+        "cache_references": {
+          "count": 22124536882,
+          "time_enabled_ns": 163697894709,
+          "time_running_ns": 163697894709,
+          "running_fraction": 1.0
+        },
+        "cache_misses": {
+          "count": 2588900901,
+          "time_enabled_ns": 163697894709,
+          "time_running_ns": 163697894709,
+          "running_fraction": 1.0
+        }
+      },
+      "limitations": "CPU PMU diagnostics; cache misses are not DDR bytes; not an energy measurement. No multiplex scaling is applied."
+    },
+    "ate": 0.2527445705844378,
+    "rpe": 0.0030832180472346268
+  }
+]

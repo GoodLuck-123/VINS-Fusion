@@ -19,7 +19,7 @@ Ubuntu 22.04.5、Linux 6.8.0-138-generic、AMD Ryzen 7 9800X3D，8 核 16 线程
 | `baseline-ros1-euroc-v1` | 双目 IMU 两轮原版参照，加两轮 ROS 1/2 对照资源采样 | 4 | 已完成，`baseline-ros1-native-ubuntu22-v1` |
 | `baseline-ros2-humble-v1` | 独立节点、双目 IMU、copy，保持迁移前入口；与 ROS 1 同口径对照 | 2 | 已完成，`baseline-ros2-native-ubuntu22-v1` |
 | `milestone-ros2-components-v1` | 双目 standalone copy/share 各两轮、composed 各一轮；单目 standalone 各一轮；owner/stride/回退与组件生命周期检查 | 8 | 已完成，`milestone-ros2-components-native-ubuntu22-v1` |
-| `milestone-ros2-pmu-v1` | 硬件能力探测、双目 copy/share 用户态 PMU 对照 | 2 | 能力已核验，回放待执行 |
+| `milestone-ros2-pmu-v1` | 硬件能力探测、双目 copy/share 用户态 PMU 对照 | 2 | 已完成，`milestone-ros2-pmu-native-ubuntu22-v1` |
 | `milestone-ros2-shared-memory-v1` | 单目/双目 split，ROS Image/memfd，各一轮；像素签名与槽位归还 | 4 | 待执行 |
 | `milestone-ros2-dmabuf-v1` | 单目/双目 split VGEM，与前一阶段同条件 ROS/memfd 对照 | 2 | 设备已核验，回放待执行 |
 | `milestone-ros2-shared-repeats-v1` | 三传输 × 两模式 × 各五次，顺序轮换、冻结二进制与参数 | 30 | 待执行 |
@@ -80,3 +80,7 @@ ROS 2 参照里程碑已直接提交到 ros2-humble `d198095`，tag 为 baseline
 八轮完整组件/owner 对照由 `vins-native-components01.service` 执行，阶段事件在 `../results/ubuntu22-reproduction/components01/`，逐轮冻结状态与日志在 `../results/ubuntu22-reproduction/native_components/`；预计约 27 分钟，成功或失败才通知一次，不在线模型轮询
 
 八轮组件/owner 对照已完成，同模式轨迹逐字节一致，全部输入/末帧/退出通过；share 灰度入口物化为零，但少量重复没有稳定整机 CPU 提速结论。下一阶段为两轮双目 copy/share 用户态 PMU 对照
+
+组件/owner 里程碑 commit 为 ros2-humble `d03feaf`。PMU 阶段由 `vins-native-pmu01.service` 串行运行两轮 copy/share，事件在 `../results/ubuntu22-reproduction/pmu01/`、逐轮状态在 `../results/ubuntu22-reproduction/native_pmu/`。能力复核仍为物理主机、权限值 2、CPU PMU 可用；DDR 及 CPU 功耗不可用。仅将报告中的 Virtualized CPU PMU 描述改为通用 CPU PMU diagnostics，未改计数逻辑
+
+PMU 两轮已验收，四类用户态 CPU 事件均可用且无复用，完整输入、初始化、末帧和退出通过，同模式轨迹字节一致。资源采样 CPU 为 copy 162.16 秒、share 162.93 秒，不将单轮差异写成稳定收益；本阶段累计完成 16 轮正式回放，证据与测量范围见第 05 份报告

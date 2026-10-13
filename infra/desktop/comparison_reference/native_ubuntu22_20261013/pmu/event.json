@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_native_ros2_phase.py",
+    "--phase",
+    "pmu",
+    "--prefix",
+    "native_pmu"
+  ],
+  "pid": 131070,
+  "status": "complete",
+  "start_utc": "2026-10-13T09:13:06Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-13T09:19:57Z"
+}
