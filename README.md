@@ -8,7 +8,7 @@
 
 `master` 保留 ROS 1 Noetic 参照；`ros2-humble` 包含 ROS 2 迁移、组件化、图像 owner 与 ROS Image / memfd / VGEM 三种可选传输，后者由运行参数选择。默认普通 ROS Image + share 图像入口，OpenCV 4.2.0 / Ceres 1.14.0 保持不变
 
-当前正在物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机复现全部桌面里程碑。ROS 1 四轮已完成并直接提交到 master；ROS 2 在现有 ros2-humble 上完成锁定依赖重建及两轮完整双目 copy 验收。组件/owner 八轮已验收，同模式轨迹完全一致，入口减拷贝成立但未证明稳定整机提速；两轮 PMU 及四轮共享传输已验收，摘要与轨迹一致、memfd 槽位全部归还；VGEM 两轮正确性也已通过，但消费端 CPU 代价明显增加，30 次重复仍待本机验收，不沿用旧 WSL 性能数值作为本机结论。实际结果见 [05 本机实测](docs/05_EUROC_ROS1_ROS2_COMPARISON.md)，进度见 [07 复现清单](docs/07_NATIVE_UBUNTU_REPRODUCTION.md)
+当前正在物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机复现全部桌面里程碑。ROS 1 四轮已完成并直接提交到 master；ROS 2 在现有 ros2-humble 上完成锁定依赖重建及两轮完整双目 copy 验收。组件/owner 八轮已验收，同模式轨迹完全一致，入口减拷贝成立但未证明稳定整机提速；两轮 PMU 及四轮共享传输已验收，摘要与轨迹一致、memfd 槽位全部归还；VGEM 两轮及 30 次重复均已验收，52 轮完整复现结束。五次重复未显示 memfd 合计 CPU 收益，VGEM 消费端 CPU 明显增加，共享路径源端 PSS 较低，不沿用旧 WSL 性能数值作为本机结论。实际结果见 [05 本机实测](docs/05_EUROC_ROS1_ROS2_COMPARISON.md)，进度见 [07 复现清单](docs/07_NATIVE_UBUNTU_REPRODUCTION.md)
 
 板端依赖、实际相机、RGA、NEON、NPU、DDR 和功耗尚未验收；回环/GNSS/KITTI/RViz 也未做完整数据验收。本轮先完成原生 Ubuntu 复现，历史 WSL tag 与冻结归档保持原样
 

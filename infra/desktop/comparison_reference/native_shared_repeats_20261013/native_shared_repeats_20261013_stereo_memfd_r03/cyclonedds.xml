@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CycloneDDS xmlns="https://cdds.io/config">
+  <!-- Explicit profile retaining native Cyclone DDS defaults; no WSL fragment tuning. -->
+  <Domain id="any" />
+</CycloneDDS>

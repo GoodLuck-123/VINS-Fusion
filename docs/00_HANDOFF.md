@@ -2,7 +2,7 @@
 
 更新日期：2026-10-13
 
-当前在物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机复现已完成的 WSL 桌面实验，累计验收 22 轮完整回放；余下 30 次重复和最终交接核验。实测统一见 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，清单、失败记录和批次方案见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)，重建/运行入口见 [第 04 份说明](04_UBUNTU22_ROS2_SETUP.md)
+当前在物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机复现已完成的 WSL 桌面实验，累计验收全部 52 轮完整回放；最终交接核验继续。实测统一见 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，清单、失败记录和批次方案见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)，重建/运行入口见 [第 04 份说明](04_UBUNTU22_ROS2_SETUP.md)
 
 ## 分支与里程碑
 
@@ -15,18 +15,19 @@
 | ros2-humble / 组件与 owner | 八轮，commit `d03feaf`；同模式轨迹字节一致，灰度 share 入口零物化 | `milestone-ros2-components-native-ubuntu22-v1` |
 | ros2-humble / PMU | 两轮，commit `24fd362`；四类用户态事件可用、无复用 | `milestone-ros2-pmu-native-ubuntu22-v1` |
 | ros2-humble / 共享内存 | 四轮，commit `dd68d8d`；ROS Image/memfd 摘要与轨迹一致、槽位全部归还 | `milestone-ros2-shared-memory-native-ubuntu22-v1` |
-| ros2-humble / VGEM | 两轮；完整输入、DMA-BUF 注册、摘要/轨迹及退出/槽位归还通过 | `milestone-ros2-dmabuf-native-ubuntu22-v1` |
-| ros2-humble / 30 次重复、最终交接 | 待完成，保持同一实现与控制条件 | 验收后新增 |
+| ros2-humble / VGEM | 两轮，commit `511f08f`；完整输入、DMA-BUF 注册、摘要/轨迹及退出/槽位归还通过 | `milestone-ros2-dmabuf-native-ubuntu22-v1` |
+| ros2-humble / 30 次重复 | 已完成，三路径 × 两模式 × 各五次，完整输入、轨迹和槽位归还通过 | `milestone-ros2-shared-repeats-native-ubuntu22-v1` |
+| ros2-humble / 最终交接 | 归档、文档与环境核验继续 | 验收后新增 |
 
 ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改；ROS 1 输入计数由 bag 核验，不是节点实收计数。ROS 2 正式轮次均要求正常退出、完整消费和末帧覆盖。局部 ASan、owner/stride/回退、前端十帧一致性与两种 RMW 生命周期探针已通过，证据和覆盖边界见第 05/07 份文档
 
-VGEM 在本机机制正确，但单轮双目/单目合计 CPU 为 440.87 / 244.58 秒，明显高于 ROS/memfd，主要增加在 VINS 消费进程，具体原因尚未定位。保持实现和全帧校验做五次重复，不将旧 WSL 收益或少量轮次当作本机稳定性能结论
+五次重复的本机结论：memfd 相对 ROS 的合计 CPU 变化中位数为双目 −0.05%、单目 +0.41%，没有明确省 CPU 收益；VGEM 为 +163.33% / +120.26%，增加主要在 VINS 消费端，具体原因未定位。共享路径源端 PSS 较低，具体范围与测量口径见第 05 份报告，不沿用旧 WSL 收益
 
-## 继续执行
+## 交接核验
 
-即将执行 `native_shared_repeats_20261013` 三路径 × 两模式 × 五次串行批次，统一 `infra/desktop/cyclonedds_native.xml` 原生默认配置与 `/dev/dri/card0` VGEM 节点。源码、实际 XML、二进制和已加载 SDK 动态库冻结，期间不编译/改脚本/切换分支；历史 WSL 小分片 XML 保留
+`native_shared_repeats_20261013` 已完成，统一原生默认 DDS XML 与 VGEM 节点，353 个冻结文件未变。临时服务 `vins-native-repeats01.service` 已结束且没有 VINS/播放器残留；外层事件在 `../results/ubuntu22-reproduction/repeats01/`，状态/日志在 `../results/ros2/native_shared_repeats_20261013/`
 
-用户级临时服务为 `vins-native-repeats01.service`，外层事件在 `../results/ubuntu22-reproduction/repeats01/`，批次状态/日志在 `../results/ros2/native_shared_repeats_20261013/`，预计约 104 分钟。只在完成或失败时向当前聊天通知一次，不在线模型轮询；hook 与聊天 ID 只在本机忽略的 `.local-tests/`，不安装持久服务或 timer
+继续核验历史/本机归档 SHA256、分支/tag、文档入口和隔离环境，并恢复临时 PMU/VGEM 设置。完成通知只在阶段终止时触发一次，hook 与聊天 ID 不迁移，不安装持久服务或 timer
 
 每阶段验收后独立提交并新增 annotated tag，失败结果保留且不混入成功统计。切换分支前确认服务结束且无 VINS/播放器残留；源码切换后重建，再在新 shell source 对应环境，已有 install 不代表当前源码
 

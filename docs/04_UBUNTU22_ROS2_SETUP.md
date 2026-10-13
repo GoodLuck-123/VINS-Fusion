@@ -2,7 +2,7 @@
 
 更新日期：2026-10-13
 
-先读 [交接入口](00_HANDOFF.md)和[复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)。本页命令针对当前物理 Ubuntu 22.04.5 x86_64 主机；锁定依赖、四个 package 和数据转换已从零重建，实际动态库隔离核验通过。本机双目 copy 两轮完整 VIO 已验收，后续里程碑仍在逐项复现，结果统一写 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
+先读 [交接入口](00_HANDOFF.md)和[复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)。本页命令针对当前物理 Ubuntu 22.04.5 x86_64 主机；锁定依赖、四个 package 和数据转换已从零重建，实际动态库隔离核验通过。本机各里程碑累计 52 轮完整 VIO 已验收，最终交接核验继续，结果统一写 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
 
 ## 分支与固定依赖
 
@@ -76,7 +76,7 @@ split 可选择 `--image-transport ros/memfd/vgem/dma_heap`，共享后端要求
 
 本机用户已加载 VGEM，DRM 查询确认 `/dev/dri/card0` 驱动名 vgem 且可读写，不对真实 GPU 节点尝试分配。VGEM 是 CPU 映射的软件分配器，没有相机 DMA、RGA 或 GPU 算法加速；DMA heap 本机仍待验证
 
-组件/composed/split 对照使用已锁定的 Cyclone DDS。本机四轮 split ROS Image/memfd 已通过，采用 `cyclonedds_native.xml` 明确保留原生默认值；VGEM 两轮已使用相同 XML，后续重复实验继续统一并冻结实际文件。历史 `cyclonedds_wsl.xml` 保留，不把旧 WSL 网络故障当成本机原因，不与不同配置混算收益
+组件/composed/split 对照使用已锁定的 Cyclone DDS。本机四轮 split ROS Image/memfd 已通过，采用 `cyclonedds_native.xml` 明确保留原生默认值；VGEM 两轮已使用相同 XML，已完成的 30 次重复也统一并冻结实际文件。历史 `cyclonedds_wsl.xml` 保留，不把旧 WSL 网络故障当成本机原因，不与不同配置混算收益
 
 ## 正式阶段与后台
 
@@ -102,4 +102,6 @@ ASan 只覆盖测试可执行文件与共享协议源码，依赖未全插桩、
 
 扩展入口冒烟通过：loop_fusion_node、global_fusion_node 启动存活并 SIGINT 退出 0，两个 KITTI 入口缺少参数时退出 1；VINS 启动/退出由两轮完整回放验证。源码和记录见本机 ROS 2 参照快照的 entrypoints_smoke 子目录，仅接口检查，不等于回环/GNSS/KITTI 数据验收
 
-VGEM 两轮完整输入、摘要/轨迹、DMA-BUF 身份与槽位归还已通过，但本机消费进程 CPU 代价明显增加。机制正确性与性能分开判断；30 次重复保持同一实现、配置和全像素校验，具体本机观测见第 05 份报告
+VGEM 两轮完整输入、摘要/轨迹、DMA-BUF 身份与槽位归还已通过，但本机消费进程 CPU 代价明显增加。机制正确性与性能分开判断；已完成的 30 次重复保持同一实现、配置和全像素校验，具体本机观测见第 05 份报告
+
+30 次重复已验收：memfd 同轮合计 CPU 变化中位数双目 −0.05%、单目 +0.41%，VGEM 为 +163.33% / +120.26%。三路径全输入、轨迹/摘要和退出通过，共享槽位全部归还且无池满等待；共享源端 PSS 较低。完整统计与测量窗口见第 05 份报告，不沿用旧 WSL 收益

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_shared_repeats.py",
+    "--batch",
+    "native_shared_repeats_20261013",
+    "--repetitions",
+    "5",
+    "--cooldown",
+    "10",
+    "--dds-profile",
+    "/home/eric/projects/VINS-Fusion/infra/desktop/cyclonedds_native.xml",
+    "--shared-device",
+    "/dev/dri/card0"
+  ],
+  "pid": 184126,
+  "status": "complete",
+  "start_utc": "2026-10-13T10:01:04Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-13T11:43:59Z"
+}

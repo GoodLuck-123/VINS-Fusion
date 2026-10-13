@@ -22,7 +22,7 @@ Ubuntu 22.04.5、Linux 6.8.0-138-generic、AMD Ryzen 7 9800X3D，8 核 16 线程
 | `milestone-ros2-pmu-v1` | 硬件能力探测、双目 copy/share 用户态 PMU 对照 | 2 | 已完成，`milestone-ros2-pmu-native-ubuntu22-v1` |
 | `milestone-ros2-shared-memory-v1` | 单目/双目 split，ROS Image/memfd，各一轮；像素签名与槽位归还 | 4 | 已完成，`milestone-ros2-shared-memory-native-ubuntu22-v1` |
 | `milestone-ros2-dmabuf-v1` | 单目/双目 split VGEM，与前一阶段同条件 ROS/memfd 对照 | 2 | 已完成，`milestone-ros2-dmabuf-native-ubuntu22-v1` |
-| `milestone-ros2-shared-repeats-v1` | 三传输 × 两模式 × 各五次，顺序轮换、冻结二进制与参数 | 30 | 待执行 |
+| `milestone-ros2-shared-repeats-v1` | 三传输 × 两模式 × 各五次，顺序轮换、冻结二进制与参数 | 30 | 已完成，`milestone-ros2-shared-repeats-native-ubuntu22-v1` |
 | `milestone-ros2-desktop-handoff-v1` | 文档、入口、归档校验、分支重建及新主机交接 | 0 | 待执行 |
 
 合计 52 轮完整回放。除原版 ROS 1 已知清理 abort 外，正式 ROS 2 结果要求正常退出。失败立即停止当前批次，保存日志与已完成结果；修复后用新名称补跑，失败不混入成功统计
@@ -106,3 +106,5 @@ python3 infra/desktop/scripts/run_shared_repeats.py \
 启动前工作树须干净、无活动 VINS/播放器，复核原生环境，冻结源码、实际 DDS XML、VINS/数据源二进制和已加载 SDK 动态库。失败立即停止并保留已完成结果，失败不混入统计；期间不编译、改脚本或切换分支。统计包括中位数/四分位/范围、同轮 ROS 对照 CPU 变化、各进程 RSS/PSS、回放/排空、等待计数及 ATE/RPE，不把独立峰值相加当作同时峰值
 
 本机用户级临时服务名为 `vins-native-repeats01.service`，外层事件在 `../results/ubuntu22-reproduction/repeats01/`，批次状态/日志/统计在 `../results/ros2/native_shared_repeats_20261013/`。预计约 104 分钟，只在完成或失败时由外层 hook 通知当前聊天一次，批次内部不另发通知，不在线模型轮询
+
+30 次重复已完成，source commit 为 ros2-humble `511f08f`，353 个冻结文件未变。完整输入、一次初始化、末帧、摘要/同模式轨迹字节、退出及共享槽位归还全部通过，无失败轮次或池满等待；原始 CPU 增量和重复分布已独立核验。memfd 没有明确合计 CPU 收益，VGEM 高 CPU 代价持续出现，共享源端 PSS 较低；完整统计见第 05 份报告。累计 52 轮完整回放全部完成，随后做最终交接核验与临时权限恢复

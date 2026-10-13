@@ -1,0 +1,9 @@
+shared_peer local_pid=297447 peer_pid=297475 uid=1000
+shared_buffer slot=0 backend=1 device=1 inode=19540 stride=752 bytes=364544
+shared_buffer slot=1 backend=1 device=1 inode=19541 stride=752 bytes=364544
+sensor_counts img0=3682 img1=0 imu=36820 processed=3682
+image_ingress mode=share shared=3682 materializations=0 bytes=0
+shared_reader backend=1 frames=3682 verified=3682 failed=0 sha0=cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c sha1=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+[INFO] [1791889769.528357661] [euroc_player]: replay_counts img0=3682 img1=0 imu=36820 status=ok
+shared_peer local_pid=297475 peer_pid=297447 uid=1000
+shared_writer backend=memfd frames=3682 source_materializations=3682 source_bytes=1329054720 waits=0 reuses=3680 outstanding=0 failed=0 sha0=cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c sha1=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
