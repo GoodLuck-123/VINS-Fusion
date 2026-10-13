@@ -1,0 +1,180 @@
+[INFO] [1791879565.027433931] [native_lifecycle_container]: Load Library: /home/eric/projects/.infra/ros2_ws/install/lib/libvins_component.so
+[INFO] [1791879565.038753945] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.038771448] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.039686503] [vins_estimator]: init begins
+USE_IMU: 1
+IMU_TOPIC: /imu0
+result path /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/vio.csv
+[WARN] [1791879565.040419807] [vins_estimator]:  fix extrinsic param 
+[INFO] [1791879565.040453770] [vins_estimator]: Synchronized sensors, fix time offset: 0
+[INFO] [1791879565.040457087] [vins_estimator]: ROW: 480 COL: 752 
+camera number 1
+ exitrinsic cam 0
+ 0.0148655  -0.999881  0.0041403
+  0.999557  0.0149672  0.0257155
+-0.0257744 0.00375619   0.999661
+-0.0216401  -0.064677 0.00981073
+set g       0       0 9.81007
+[INFO] [1791879565.040478357] [vins_estimator]: reading paramerter of camera /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/cam0_mei.yaml
+[INFO] [1791879565.044498791] [native_probe_vins]: VINS component ready (mono)
+[INFO] [1791879565.044792712] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.044810996] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[WARN] [1791879565.044856742] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[ERROR] [1791879565.046308953] [native_lifecycle_container]: Component constructor threw an exception: Only one VINS estimator is supported in a process (upstream global settings)
+[INFO] [1791879565.058784543] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.058800743] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.059455350] [vins_estimator]: init begins
+MULTIPLE_THREAD is 1
+join thread 
+sensor_counts img0=0 img1=0 imu=0 processed=0
+image_ingress mode=share shared=0 materializations=0 bytes=0
+USE_IMU: 1
+IMU_TOPIC: /imu0
+result path /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/vio.csv
+[WARN] [1791879565.059561649] [vins_estimator]:  fix extrinsic param 
+[INFO] [1791879565.059579202] [vins_estimator]: Synchronized sensors, fix time offset: 0
+[INFO] [1791879565.059582137] [vins_estimator]: ROW: 480 COL: 752 
+camera number 2
+ exitrinsic cam 0
+ 0.0148655  -0.999881  0.0041403
+  0.999557  0.0149672  0.0257155
+-0.0257744 0.00375619   0.999661
+-0.0216401  -0.064677 0.00981073
+ exitrinsic cam 1
+ 0.0125553  -0.999755  0.0182238
+  0.999599  0.0130119  0.0251588
+-0.0253898  0.0179006   0.999517
+-0.0198436  0.0453689 0.00786212
+set g       0       0 9.81007
+[INFO] [1791879565.059611062] [vins_estimator]: reading paramerter of camera /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/cam0_mei.yaml
+[INFO] [1791879565.059643993] [vins_estimator]: reading paramerter of camera /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/cam1_mei.yaml
+[INFO] [1791879565.060558196] [native_probe_vins]: VINS component ready (stereo)
+[INFO] [1791879565.061002399] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.061010785] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[WARN] [1791879565.061041552] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[ERROR] [1791879565.066162279] [native_lifecycle_container]: Component constructor threw an exception: Only one VINS estimator is supported in a process (upstream global settings)
+[INFO] [1791879565.070987972] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.070999233] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.075729177] [vins_estimator]: init begins
+MULTIPLE_THREAD is 1
+join thread 
+sensor_counts img0=0 img1=0 imu=0 processed=0
+image_ingress mode=share shared=0 materializations=0 bytes=0
+USE_IMU: 1
+IMU_TOPIC: /imu0
+result path /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/vio.csv
+[WARN] [1791879565.075822352] [vins_estimator]:  fix extrinsic param 
+[INFO] [1791879565.075835056] [vins_estimator]: Synchronized sensors, fix time offset: 0
+[INFO] [1791879565.075844844] [vins_estimator]: ROW: 480 COL: 752 
+camera number 1
+ exitrinsic cam 0
+ 0.0148655  -0.999881  0.0041403
+  0.999557  0.0149672  0.0257155
+-0.0257744 0.00375619   0.999661
+-0.0216401  -0.064677 0.00981073
+set g       0       0 9.81007
+[INFO] [1791879565.075863509] [vins_estimator]: reading paramerter of camera /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/cam0_mei.yaml
+[INFO] [1791879565.076729942] [native_probe_vins]: VINS component ready (mono)
+[INFO] [1791879565.077097251] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.077104084] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[WARN] [1791879565.077132968] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[ERROR] [1791879565.078760408] [native_lifecycle_container]: Component constructor threw an exception: Only one VINS estimator is supported in a process (upstream global settings)
+[INFO] [1791879565.089852104] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.089863515] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.092250919] [vins_estimator]: init begins
+MULTIPLE_THREAD is 1
+join thread 
+sensor_counts img0=0 img1=0 imu=0 processed=0
+image_ingress mode=share shared=0 materializations=0 bytes=0
+USE_IMU: 1
+IMU_TOPIC: /imu0
+result path /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/vio.csv
+[WARN] [1791879565.092344564] [vins_estimator]:  fix extrinsic param 
+[INFO] [1791879565.092358270] [vins_estimator]: Synchronized sensors, fix time offset: 0
+[INFO] [1791879565.092361015] [vins_estimator]: ROW: 480 COL: 752 
+camera number 2
+ exitrinsic cam 0
+ 0.0148655  -0.999881  0.0041403
+  0.999557  0.0149672  0.0257155
+-0.0257744 0.00375619   0.999661
+-0.0216401  -0.064677 0.00981073
+ exitrinsic cam 1
+ 0.0125553  -0.999755  0.0182238
+  0.999599  0.0130119  0.0251588
+-0.0253898  0.0179006   0.999517
+-0.0198436  0.0453689 0.00786212
+set g       0       0 9.81007
+[INFO] [1791879565.092387625] [vins_estimator]: reading paramerter of camera /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/cam0_mei.yaml
+[INFO] [1791879565.092416499] [vins_estimator]: reading paramerter of camera /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/cam1_mei.yaml
+[INFO] [1791879565.095889368] [native_probe_vins]: VINS component ready (stereo)
+[INFO] [1791879565.096065838] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.096079384] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[WARN] [1791879565.096110502] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[ERROR] [1791879565.097161201] [native_lifecycle_container]: Component constructor threw an exception: Only one VINS estimator is supported in a process (upstream global settings)
+[INFO] [1791879565.099818561] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.099828139] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.100367880] [vins_estimator]: init begins
+MULTIPLE_THREAD is 1
+join thread 
+sensor_counts img0=0 img1=0 imu=0 processed=0
+image_ingress mode=share shared=0 materializations=0 bytes=0
+USE_IMU: 1
+IMU_TOPIC: /imu0
+result path /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/vio.csv
+[WARN] [1791879565.100442220] [vins_estimator]:  fix extrinsic param 
+[INFO] [1791879565.100451607] [vins_estimator]: Synchronized sensors, fix time offset: 0
+[INFO] [1791879565.100453751] [vins_estimator]: ROW: 480 COL: 752 
+camera number 1
+ exitrinsic cam 0
+ 0.0148655  -0.999881  0.0041403
+  0.999557  0.0149672  0.0257155
+-0.0257744 0.00375619   0.999661
+-0.0216401  -0.064677 0.00981073
+set g       0       0 9.81007
+[INFO] [1791879565.100468068] [vins_estimator]: reading paramerter of camera /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/cam0_mei.yaml
+[INFO] [1791879565.101220228] [native_probe_vins]: VINS component ready (mono)
+[INFO] [1791879565.101345472] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.101349290] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[WARN] [1791879565.101369858] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[ERROR] [1791879565.102308848] [native_lifecycle_container]: Component constructor threw an exception: Only one VINS estimator is supported in a process (upstream global settings)
+[INFO] [1791879565.105854913] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.105864351] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.106385557] [vins_estimator]: init begins
+MULTIPLE_THREAD is 1
+join thread 
+sensor_counts img0=0 img1=0 imu=0 processed=0
+image_ingress mode=share shared=0 materializations=0 bytes=0
+USE_IMU: 1
+IMU_TOPIC: /imu0
+result path /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/vio.csv
+[WARN] [1791879565.106460638] [vins_estimator]:  fix extrinsic param 
+[INFO] [1791879565.106471368] [vins_estimator]: Synchronized sensors, fix time offset: 0
+[INFO] [1791879565.106473472] [vins_estimator]: ROW: 480 COL: 752 
+camera number 2
+ exitrinsic cam 0
+ 0.0148655  -0.999881  0.0041403
+  0.999557  0.0149672  0.0257155
+-0.0257744 0.00375619   0.999661
+-0.0216401  -0.064677 0.00981073
+ exitrinsic cam 1
+ 0.0125553  -0.999755  0.0182238
+  0.999599  0.0130119  0.0251588
+-0.0253898  0.0179006   0.999517
+-0.0198436  0.0453689 0.00786212
+set g       0       0 9.81007
+[INFO] [1791879565.106497197] [vins_estimator]: reading paramerter of camera /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/cam0_mei.yaml
+[INFO] [1791879565.106521332] [vins_estimator]: reading paramerter of camera /home/eric/projects/results/ubuntu22-reproduction/component-probe-fastdds01/cam1_mei.yaml
+[INFO] [1791879565.107263603] [native_probe_vins]: VINS component ready (stereo)
+[INFO] [1791879565.107408825] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.107412652] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[WARN] [1791879565.107433351] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[ERROR] [1791879565.108357102] [native_lifecycle_container]: Component constructor threw an exception: Only one VINS estimator is supported in a process (upstream global settings)
+[INFO] [1791879565.111846562] [native_lifecycle_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.111856119] [native_lifecycle_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1791879565.112375453] [vins_estimator]: init begins
+[ERROR] [1791879565.112754222] [native_lifecycle_container]: Component constructor threw an exception: config_file must name a readable OpenCV YAML file
+[INFO] [1791879565.113666522] [rclcpp]: signal_handler(signum=2)
+MULTIPLE_THREAD is 1
+join thread 
+sensor_counts img0=0 img1=0 imu=0 processed=0
+image_ingress mode=share shared=0 materializations=0 bytes=0

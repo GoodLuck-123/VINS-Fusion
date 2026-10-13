@@ -1,0 +1,19 @@
+{
+  "successful_trials": 2,
+  "counts_each": {
+    "img0": 3682,
+    "img1": 3682,
+    "imu": 36820,
+    "processed": 3682
+  },
+  "initializations_each": 1,
+  "resets_and_pair_drops": 0,
+  "poses_each": 1831,
+  "matched_each": 1819,
+  "vins_and_playback_exit_codes": [
+    0,
+    0
+  ],
+  "last_image_covered_each": true,
+  "current_branch_behavior": "latest ros2-humble b250dc0 standalone/copy; not old minimal-migration binary"
+}

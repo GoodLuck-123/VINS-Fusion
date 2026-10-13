@@ -1,0 +1,9 @@
+Source: traceback captured when the agent read second-trial startup.log before starting phase03.
+This is a transcript excerpt, not a recovered original log file.
+
+Traceback (most recent call last):
+  File "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_euroc_baseline.py", line 174, in <module>
+    main()
+  File "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_euroc_baseline.py", line 35, in main
+    check.bind(("127.0.0.1", args.port))
+OSError: [Errno 98] Address already in use

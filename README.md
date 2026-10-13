@@ -8,9 +8,9 @@
 
 `master` 保留 ROS 1 Noetic 参照；`ros2-humble` 包含 ROS 2 迁移、组件化、图像 owner 与 ROS Image / memfd / VGEM 三种可选传输，后者由运行参数选择。默认普通 ROS Image + share 图像入口，OpenCV 4.2.0 / Ceres 1.14.0 保持不变
 
-单目/双目完整 EuRoC 输入、轨迹和进程退出已验证，三种传输各五次、两种模式共 30 次串行实验已归档。双目 memfd 在本机的配对 CPU 变化中位数为 −11.99%，单目 CPU 收益未确定；共享路径源端 PSS 明显降低，VGEM CPU 更高且双目背压减速。性能结论限本机 WSL/x86，数据和统计边界见 [05 对比实验](docs/05_EUROC_ROS1_ROS2_COMPARISON.md#shared-repeats)
+当前正在物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机复现全部桌面里程碑。ROS 1 四轮已完成并直接提交到 master；ROS 2 在现有 ros2-humble 上完成锁定依赖重建及两轮完整双目 copy 验收。组件、共享传输和 30 次重复实验仍待本机验收，不沿用旧 WSL 性能数值作为本机结论。实际结果见 [05 本机实测](docs/05_EUROC_ROS1_ROS2_COMPARISON.md)，进度见 [07 复现清单](docs/07_NATIVE_UBUNTU_REPRODUCTION.md)
 
-板端依赖、实际相机、RGA、NEON、NPU、DDR 和功耗尚未验收；回环/GNSS/KITTI/RViz 也未做完整数据验收。下一步在新的 Ubuntu 主机和 RK3588 环境推进，当前 WSL 实验阶段结束
+板端依赖、实际相机、RGA、NEON、NPU、DDR 和功耗尚未验收；回环/GNSS/KITTI/RViz 也未做完整数据验收。本轮先完成原生 Ubuntu 复现，历史 WSL tag 与冻结归档保持原样
 
 ## 文档与源码导航
 
@@ -19,10 +19,11 @@
 | [00 接手与迁移](docs/00_HANDOFF.md) | 当前状态、目录职责、新机起步和板端入口 |
 | [01 RK3588 顶层任务书](docs/01_RK3588_DEPLOYMENT_PLAN.md) | 阶段、工作量与验收边界 |
 | [02 Ubuntu 22.04 / ROS 1](docs/02_UBUNTU22_ROS1_SETUP.md) | 原版隔离环境重建 |
-| [03 EuRoC / ROS 1 参照](docs/03_EUROC_ROS1_BASELINE.md) | 最初两轮运行与精度参照 |
+| [03 EuRoC / ROS 1 参照](docs/03_EUROC_ROS1_BASELINE.md) | 本机四轮运行与精度参照 |
 | [04 Ubuntu 22.04 / ROS 2](docs/04_UBUNTU22_ROS2_SETUP.md) | 构建、回放、组件和传输参数 |
-| [05 ROS 1 / ROS 2 对比实验](docs/05_EUROC_ROS1_ROS2_COMPARISON.md) | 历史与后续实验的统一报告 |
+| [05 ROS 1 / ROS 2 对比实验](docs/05_EUROC_ROS1_ROS2_COMPARISON.md) | 当前物理主机实测，旧报告保存在 tag |
 | [06 CPU 候选优化](docs/06_X86_CPU_EXPERIMENTS.md) | 尚未实施的候选项，供板端热点分析参考 |
+| [07 原生 Ubuntu 复现](docs/07_NATIVE_UBUNTU_REPRODUCTION.md) | 里程碑顺序、状态及失败处理 |
 
 `vins_estimator/` 是主 VIO 与 ROS 2 数据源/共享缓冲入口，`camera_models/` 是相机模型，`loop_fusion/` 和 `global_fusion/` 保留扩展模块，`config/` 保存传感器配置。构建、实验、评估、依赖锁和已提交证据在 `infra/desktop/`；新 agent 的工作约定见 [AGENTS.md](AGENTS.md)
 

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/usr/bin/bash",
+    "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_native_ros1_reproduction.sh"
+  ],
+  "pid": 27683,
+  "status": "failed",
+  "start_utc": "2026-10-13T07:44:22Z",
+  "exit_code": 1,
+  "end_utc": "2026-10-13T07:47:50Z"
+}

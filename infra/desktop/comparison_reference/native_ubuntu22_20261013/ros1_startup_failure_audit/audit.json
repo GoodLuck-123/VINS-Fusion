@@ -1,0 +1,7 @@
+{
+  "original_stderr_overwritten_by_phase03": true,
+  "previous_archived_second_trial_startup_log_empty": true,
+  "traceback_source": "current chat tool output from failure inspection",
+  "successful_VIO_trials_affected": false,
+  "fix": "Controller logs go into unique VINS_PHASE_DIRECTORY/trials; frozen prior archives remain untouched"
+}

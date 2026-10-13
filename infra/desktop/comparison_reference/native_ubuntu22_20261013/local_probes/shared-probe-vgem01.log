@@ -1,0 +1,7 @@
+shared_peer local_pid=66342 peer_pid=66341 uid=1000
+shared_buffer slot=0 backend=3 device=10 inode=302 stride=32 bytes=4096
+shared_buffer slot=1 backend=3 device=10 inode=303 stride=32 bytes=4096
+shared_reader backend=3 frames=1000 verified=1000 failed=0 sha0=8cc4feedf064fe1d8142326860f53fdfd937ca59a1682794d78b2c66235eb44b sha1=6da0862eae83143fe6fbc4502787e09b9ec9bd38fc3a3aa0e1ddc609b78cf903
+shared_peer local_pid=66341 peer_pid=66342 uid=1000
+shared_writer backend=vgem frames=1000 source_materializations=1000 source_bytes=512000 waits=996 reuses=996 outstanding=0 failed=0 sha0=8cc4feedf064fe1d8142326860f53fdfd937ca59a1682794d78b2c66235eb44b sha1=6da0862eae83143fe6fbc4502787e09b9ec9bd38fc3a3aa0e1ddc609b78cf903
+PASS vgem: independent processes, 1000 frames, padded input, retained previous frame, 4-slot backpressure

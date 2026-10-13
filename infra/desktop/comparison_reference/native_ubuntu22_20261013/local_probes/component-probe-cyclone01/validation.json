@@ -1,0 +1,51 @@
+{
+  "status": "complete",
+  "cycles": [
+    {
+      "cycle": 1,
+      "mode": "mono_imu",
+      "load": true,
+      "duplicate_rejected": true,
+      "unload": true
+    },
+    {
+      "cycle": 1,
+      "mode": "stereo_imu",
+      "load": true,
+      "duplicate_rejected": true,
+      "unload": true
+    },
+    {
+      "cycle": 2,
+      "mode": "mono_imu",
+      "load": true,
+      "duplicate_rejected": true,
+      "unload": true
+    },
+    {
+      "cycle": 2,
+      "mode": "stereo_imu",
+      "load": true,
+      "duplicate_rejected": true,
+      "unload": true
+    },
+    {
+      "cycle": 3,
+      "mode": "mono_imu",
+      "load": true,
+      "duplicate_rejected": true,
+      "unload": true
+    },
+    {
+      "cycle": 3,
+      "mode": "stereo_imu",
+      "load": true,
+      "duplicate_rejected": true,
+      "unload": true
+    }
+  ],
+  "rmw": "rmw_cyclonedds_cpp",
+  "invalid_config_rejected": true,
+  "container_exit_code": 0,
+  "finished_utc": "2026-10-13T08:19:26Z"
+}

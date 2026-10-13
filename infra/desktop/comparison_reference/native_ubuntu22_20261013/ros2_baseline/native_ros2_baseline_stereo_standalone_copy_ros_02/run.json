@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "rate": 1.0,
+  "mode": "stereo_imu_vio",
+  "deployment": "standalone",
+  "image_transport": "ros",
+  "image_mode": "copy",
+  "rmw": "rmw_fastrtps_cpp",
+  "resource_scope": "VINS (+ container if loaded)",
+  "config_file": "euroc_stereo_imu_config.yaml",
+  "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+  "source_commit": "b250dc09d1bcdd62a86dd916045aff0863be9a2e",
+  "source_modified": false,
+  "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+  "ros_domain_id": "42",
+  "start_utc": "2026-10-13T08:24:09Z",
+  "replay_result_code": 0,
+  "playback_exit_code": 0,
+  "playback_wall_s": 187.24355804899915,
+  "settling_wait_s": 6.004693288999988,
+  "resources": {
+    "measurement_wall_s": 192.24929840599998,
+    "logical_cpus": 16,
+    "cpu_time_s": 159.78,
+    "peak_sampled_rss_kib": 97352,
+    "kernel_peak_rss_kib": 97180,
+    "peak_threads": 45,
+    "mean_cpu_percent_one_core": 83.11083646327282,
+    "sampled_cpu_percent_one_core": {
+      "p50": 87.88727779890351,
+      "p95": 97.26089616628936,
+      "p99": 99.86706555317356
+    },
+    "minor_faults": 7244118,
+    "major_faults": 0,
+    "read_bytes": 0,
+    "write_bytes": 417792,
+    "rchar": 11,
+    "wchar": 374095,
+    "main_voluntary_switches": 36636,
+    "main_involuntary_switches": 239,
+    "peak_sampled_pss_kib": 83314,
+    "peak_sampled_private_dirty_kib": 58800,
+    "host_observations": {
+      "loopback_rx_bytes": 1725122,
+      "loopback_tx_bytes": 1725122,
+      "cpu_some_stall_us": 146520,
+      "cpu_full_stall_us": 0,
+      "memory_some_stall_us": 0,
+      "memory_full_stall_us": 0,
+      "io_some_stall_us": 222254,
+      "io_full_stall_us": 213078
+    },
+    "scope": "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+  },
+  "peak_sampled_rss_kib": 97352,
+  "trajectory_poses": 1831,
+  "first_timestamp_ns": 1403636580813555456,
+  "last_timestamp_ns": 1403636763813555456,
+  "vins_exit_code": 0,
+  "sensor_counts": {
+    "img0": 3682,
+    "img1": 3682,
+    "imu": 36820,
+    "processed": 3682
+  },
+  "image_ingress": {
+    "mode": "copy",
+    "shared": 0,
+    "materializations": 14728,
+    "bytes": 5316218880
+  }
+}

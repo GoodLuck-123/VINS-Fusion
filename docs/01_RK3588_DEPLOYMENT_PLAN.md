@@ -1,8 +1,8 @@
 # VINS-Fusion / ROS 2 / RK3588 顶层任务书
 
-更新日期：2026-10-12
+更新日期：2026-10-13
 
-当前桌面阶段已完成最小 ROS 2 迁移、组件/图像 owner 和 30 次共享传输对照，当前 WSL 阶段结束；下一步在新 Ubuntu 主机和 RK3588 建立目标环境。原有估算和历史阶段保留，接手顺序见 [第 00 份文档](00_HANDOFF.md)，实测结论以 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md) 为准
+当前在物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机复现已完成的桌面实验。ROS 1 四轮和 ROS 2 双目 copy 两轮已验收，组件/共享缓冲局部探针通过；其余完整里程碑逐项继续，详见 [复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)。当前实测结论只取 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，旧 WSL 结论保存在历史 tag，不作为当前主机结果
 
 ## 一、目标与总体结论
 
@@ -119,40 +119,29 @@ RGA 的 impyramind/缩放不能直接视为等价的 OpenCV LK 金字塔，滤�
 
 社区仓库仅经公开页面初筛，未完成维护活跃度/CI/issue 闭环审计，也未复现其运行结果。分支链接会变化，实施时固定经验证的 commit。当前仓库自身的迁移状态见下节；社区初筛不作为板端验证完成的证据
 
-## 当前进展
+## 当前原生 Ubuntu 进展
 
-阶段 0 执行进展（2026-10-09）：Ubuntu 22.04 工程内 ROS 1 隔离环境已建立；OpenCV 4.2.0 / Ceres 1.14.0 保留；EuRoC MH_01_easy 两轮完整 1 倍速双目 IMU 回放和真值评估已通过。`master` 保留 ROS 1 算法源码与参照环境。搭建与实测详见 [Ubuntu 22.04 搭建说明](02_UBUNTU22_ROS1_SETUP.md)、[原版参照实测报告](03_EUROC_ROS1_BASELINE.md)
+ROS 1 四轮与 ROS 2 双目 copy 两轮完整 MH_01_easy 输入、末帧、初始化及精度验收通过。两版本均为 1831 个位姿、1819 个真值匹配，ATE RMSE 0.252745 m、相邻位姿 RPE RMSE 0.003083 m；ROS 1 原版清理 abort 如实记录，ROS 2 退出正常。同版本 OpenCV 4.2.0 / Ceres 1.14.0 和原算法参数保持不变
 
-阶段 1 桌面进展（2026-10-09）：独立 `ros2-humble` 分支完成 ROS 2 接口和构建迁移，保持同版本视觉/求解依赖及算法配置；两个版本各完成两轮 MH_01_easy 双目 IMU VIO 对比，包含 CPU、内存、I/O 和调度压力指标。详见 [ROS 2 环境说明](04_UBUNTU22_ROS2_SETUP.md)、[对比报告](05_EUROC_ROS1_ROS2_COMPARISON.md)。回环/GNSS/KITTI/RViz 的完整数据验收、其他 EuRoC 序列及板端工作尚未完成
+提交直接位于所属原分支：ROS 1 为 master，ROS 2 为 ros2-humble，不另建复现分支、不移动历史 tag。ROS 1 里程碑为 baseline-ros1-native-ubuntu22-v1，ROS 2 为 baseline-ros2-native-ubuntu22-v1；其余状态和版本见第 07 份文档
 
-阶段 4a/4c 桌面进展（2026-10-10）：按当前需求提前完成 VINS 组件入口、图像 owner 跨帧持有及同进程 EuRoC 数据源，保留独立节点和 copy 回退。单目视惯作为实验室目标模式已完整验证；新增八轮单目/双目 A/B，结果统一追加到同一对比报告。原生灰度入口的冗余深拷贝消除、同进程消息地址一致性已验证，但双目整机 CPU 未体现收益；不得等同于全程序零拷贝或板端加速完成。单进程限一个 VINS 估计器；硬件数据源、长期运行、其他编码和板端缓存/带宽测量仍是后续门槛
+本机图像适配器、只读 owner/stride/转换、两种 RMW 的组件加载卸载，以及 memfd/VGEM 各 1000 帧局部 ASan 压力已通过。Fast DDS 组件服务未复现旧 WSL 故障；组件/owner 的八轮完整对照、共享像素和真实 VGEM 完整回放、30 次重复统计仍待本机完成，暂不沿用旧性能结论
 
-### 共享内存与 DMA-BUF 的补充评估（2026-10-10）
+实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。RK3588、真实相机、RGA/NEON/NPU 尚未验收；本轮不同时开发这些功能。源端 EuRoC 仍复制像素到池，VGEM 是软件分配/CPU 映射路径，不代表相机 DMA 或板端缓存/fence 验证
 
-以下仍按一名熟悉 ROS/C++/Linux 的工程师估算，包含 A/B 和必要故障恢复验证；不能保证所有相机无改动接入
+### 共享缓冲与板端边界
 
-| 范围 | 估算 | 通用边界 |
+| 后续目标 | 原工程估算 | 验收条件 |
 | --- | --- | --- |
-| 现有只读视图 / 同进程组件 | 已完成基础链路 | 标准 Image 的 mono8/8UC1 与 owner 规则较通用；相机 SDK 到 Image 的复制尚未消除 |
-| DDS 共享内存传输核验 | 2–5 工作日，含本机 RMW 服务问题排查；复杂情况另计 | 对标准消息较通用，但共享内存传输仍可能有序列化和复制，不等于零拷贝 |
-| 真正跨进程共享像素 | 2–4 人周 | 通用缓冲池可复用，需双方支持共享帧协议/类型；普通 Image、bag、RViz 保留转换回退 |
-| 一个已有 DMA-BUF 驱动的相机 → CPU/VINS | 1–2 人周 | 依赖该驱动支持导出/导入、CPU 可读布局、同步与缓冲归还 |
-| 相机 → RGA → CPU/VINS，含跨进程句柄 | 2–4 人周，涵盖上一行基础，不简单相加 | 需协商格式、stride、fence、cache；换接口/驱动要新增适配器 |
-| 驱动/封闭 SDK 不提供可共享缓冲 | 无统一工期承诺 | 可能只能在 SDK 输出后复制一次；不默认纳入内核驱动开发 |
+| 真实相机到 CPU/VINS 的 DMA-BUF | 1–2 人周 | 驱动/SDK 可导出，格式、stride、缓存同步和归还可靠 |
+| 相机到 RGA 再到 CPU/VINS | 2–4 人周，包含上一项 | 实际 heap/RGA 能力、fence 和全链路精度/资源 A/B |
+| 多消费者、热重连与崩溃恢复 | 另立目标 | 当前单生产者/单消费者原型不覆盖这些行为 |
 
-建议保留统一的只读帧视图及 owner/归还规则，在数据源层分别接标准 ROS Image、普通共享内存和 DMA-BUF；算法层保持现有图像接口。普通共享内存的协议可与相机型号解耦，DMA-BUF 则以 Linux 驱动/SDK 能力为前提。进程间不能只发送指针或 fd 数字；共享内存用区域/偏移/代次标识，DMA-BUF 要传递实际句柄及元数据。先优先图像等大数据，不为小体积 IMU/GNSS 扩大基础设施
+现有只读帧视图/owner 可复用，换相机仍需源端适配和标定/时间同步，封闭 SDK 可能保留一次复制。普通 ROS Image 为通用回退；不能把 DDS loaned API、共享协议或 VGEM 跑通当作全链路零拷贝
 
-本机 WSL 未暴露 DDR 控制器计数器和物理能量接口；CPU PMU 可用，但不能据此换算 DDR 搬运或功耗。后续实测需物理主机计数器或目标板接口/电源仪表，统一记录整个数据链与空闲背景，避免用仅 VINS 资源表推导整机能耗。具体核验与补充实验统一续写在 [对比报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
+本机 CPU PMU 通过临时权限调整可读；未发现 DDR 控制器事件，CPU 能量节点普通用户不可读。分别记录不可用项，不用 cache misses、CPU 秒、逻辑复制量或 GPU 功率替代 DDR/CPU 功耗。板端应读取实际 BSP 接口或外部电源仪表；不能把本机 CPU/PSS 表外推到 RK3588
 
-### EuRoC 共享缓冲原型的范围
-
-当前 ROS 2 分支提供独立数据源/VINS 的 memfd 共享像素与 VGEM DMA-BUF 后端，算法仍消费只读图像视图。共享内存协议采用有界池、代次及 owner 归还；设备句柄通过 SCM_RIGHTS 传递。EuRoC 源端仍复制一次像素，尚非相机 DMA → VINS 的全链路零拷贝。DDS、共享内存、DMA-BUF 共六轮完整单目/双目实验已归档在 [统一对比报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，各进程 CPU/PSS 分别记录。功能验证通过，不承诺收益：本机单目 memfd 没有 CPU 提升，VGEM 两模式 CPU 更高，双目还因背压未保持稳定 1 倍速；VGEM 只作桌面机制验证，普通 ROS 消息保持默认
-
-VGEM 只用于桌面真实内核句柄、映射及 CPU 同步验证；无相机/RGA硬件 DMA，不据此证明 ARM 的物理连续布局、fence、缓存行为或驱动通用性。通用灰度帧/owner 接口已落地，换相机仍需源端适配；Linux DMA heap 后端是未在本机验收的可选入口。板端工作量与原有通用性评估保持条件性，驱动稳定性与长期运行未因桌面原型而豁免
-
-历史基线/组件/PMU 已补 annotated tag；共享内存与 DMA-BUF 在各自数据验收、报告归档后分别打 tag。每个后续小目标沿用此规则，不移动已有 tag。源码切换后重建对应隔离环境；tag 及具体命令见 [ROS 2 环境说明](04_UBUNTU22_ROS2_SETUP.md#版本里程碑与切换)
-
-后续 30 次串行重复已完成：三种传输 × 单目/双目 × 各五次。双目 memfd 配对 CPU 变化中位数 −11.99%，单目 CPU 收益未确定；共享路径源端 PSS 降低，VGEM CPU 增加且双目背压仍存在。完整输入验收通过，板端性能、DDR 和功耗仍需重测；详见 [重复实验结论](05_EUROC_ROS1_ROS2_COMPARISON.md#shared-repeats)，里程碑为 `milestone-ros2-shared-repeats-v1`
+环境重建与传输参数见 [第 04 份文档](04_UBUNTU22_ROS2_SETUP.md)，阶段按局部正确性、完整串行 A/B、归档 SHA256、独立提交和新 annotated tag 的顺序推进。原设计工期是工程估算，尚未完成的功能不因局部探针通过而标记验收
 
 [1]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_Developer_Guide_RGA_EN.md "Rockchip RGA 官方开发指南"
 [2]: https://github.com/airockchip/librga/blob/main/docs/Rockchip_FAQ_RGA_EN.md "Rockchip RGA 官方 FAQ"

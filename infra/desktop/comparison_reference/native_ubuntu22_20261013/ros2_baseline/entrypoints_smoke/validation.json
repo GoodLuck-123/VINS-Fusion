@@ -1,0 +1,24 @@
+{
+  "status": "complete",
+  "checks": [
+    {
+      "binary": "loop_fusion_node",
+      "survived_startup": true,
+      "sigint_exit_code": 0
+    },
+    {
+      "binary": "global_fusion_node",
+      "survived_startup": true,
+      "sigint_exit_code": 0
+    },
+    {
+      "binary": "kitti_odom_test",
+      "missing_arguments_exit_code": 1
+    },
+    {
+      "binary": "kitti_gps_test",
+      "missing_arguments_exit_code": 1
+    }
+  ],
+  "scope": "Startup/SIGINT or argument validation only; no loop/GNSS/KITTI dataset acceptance"
+}

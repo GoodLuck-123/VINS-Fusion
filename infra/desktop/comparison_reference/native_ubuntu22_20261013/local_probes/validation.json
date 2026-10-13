@@ -1,0 +1,39 @@
+{
+  "source_commit": "b250dc09d1bcdd62a86dd916045aff0863be9a2e",
+  "image_adapter_asan_runs": 3,
+  "image_checks": [
+    "mono8/8UC1",
+    "copy/share pixel equality",
+    "padded stride",
+    "retained owner",
+    "RGB conversion fallback",
+    "invalid stride rejection"
+  ],
+  "shared_backends": {
+    "memfd": {
+      "frames": 1000,
+      "verified": 1000,
+      "outstanding": 0,
+      "errors": 0,
+      "pool_waits": 996
+    },
+    "vgem": {
+      "frames": 1000,
+      "verified": 1000,
+      "outstanding": 0,
+      "errors": 0,
+      "pool_waits": 996
+    }
+  },
+  "component_cycles_per_rmw": 6,
+  "component_rmws": [
+    "rmw_fastrtps_cpp",
+    "rmw_cyclonedds_cpp"
+  ],
+  "duplicate_and_invalid_config_rejected": true,
+  "container_exit_codes": [
+    0,
+    0
+  ],
+  "scope": "ASan test executables and shared_frames.cpp; dependencies not fully instrumented, leak detection disabled; child exits with _exit after destructors; not full-project or long-term leak validation"
+}

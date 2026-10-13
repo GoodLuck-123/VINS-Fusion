@@ -1,0 +1,25 @@
+{
+  "successful_trials": 4,
+  "binary_sha256": "0bc42486336d759588edc3148c3045ed89a744bd3c32988385c53c35725432bf",
+  "one_initialization_each": true,
+  "tracking_resets": 0,
+  "pair_drops": 0,
+  "last_image_covered_each": true,
+  "poses_each": 1831,
+  "matched_poses_each": 1819,
+  "vins_exit_codes": [
+    -6,
+    -6,
+    -6,
+    -6
+  ],
+  "playback_exit_codes": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "source_core_modified": false,
+  "port_precheck_fix_only_between_first_and_remaining_trials": true,
+  "ros1_callback_counts_instrumented": false
+}
