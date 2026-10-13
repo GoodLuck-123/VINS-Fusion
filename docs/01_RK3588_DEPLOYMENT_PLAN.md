@@ -125,7 +125,7 @@ ROS 1 四轮与 ROS 2 双目 copy 两轮完整 MH_01_easy 输入、末帧、初�
 
 提交直接位于所属原分支：ROS 1 为 master，ROS 2 为 ros2-humble，不另建复现分支、不移动历史 tag。ROS 1 里程碑为 baseline-ros1-native-ubuntu22-v1，ROS 2 为 baseline-ros2-native-ubuntu22-v1；其余状态和版本见第 07 份文档
 
-本机图像适配器、只读 owner/stride/转换、两种 RMW 的组件加载卸载，以及 memfd/VGEM 各 1000 帧局部 ASan 压力已通过。Fast DDS 组件服务未复现旧 WSL 故障；组件/owner 的八轮完整对照已通过；共享像素四轮与 PMU 两轮完整回放已通过；真实 VGEM 完整回放、30 次重复统计仍待本机完成，暂不沿用旧性能结论
+本机图像适配器、只读 owner/stride/转换、两种 RMW 的组件加载卸载，以及 memfd/VGEM 各 1000 帧局部 ASan 压力已通过。Fast DDS 组件服务未复现旧 WSL 故障；组件/owner 的八轮完整对照已通过；共享像素四轮与 PMU 两轮完整回放已通过；真实 VGEM 两轮完整回放也已通过，CPU 代价较 ROS/memfd 增加；30 次重复统计仍待本机完成，暂不沿用旧性能结论
 
 实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。RK3588、真实相机、RGA/NEON/NPU 尚未验收；本轮不同时开发这些功能。源端 EuRoC 仍复制像素到池，VGEM 是软件分配/CPU 映射路径，不代表相机 DMA 或板端缓存/fence 验证
 

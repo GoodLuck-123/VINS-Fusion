@@ -1,0 +1,158 @@
+[
+  {
+    "name": "native_vgem_stereo_split_share_vgem_01",
+    "mode": "stereo_imu",
+    "transport": "vgem",
+    "counts": {
+      "img0": 3682,
+      "img1": 3682,
+      "imu": 36820,
+      "processed": 3682
+    },
+    "trajectory_sha256": "24a45d6599b7060444a75631d4909c889fa14a5a3a2a52290eadd55c5d4a029f",
+    "pixel_timestamp_sha256": {
+      "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+      "img1": "1e60c909475c5e83dfc530e47aade8cd3ea33a748395d2bc2f1075dbf66497a1",
+      "source_matches_consumer": true
+    },
+    "initializations": 1,
+    "resets": 0,
+    "paired_drops": 0,
+    "first_timestamp_ns": 1403636580813555456,
+    "last_timestamp_ns": 1403636763813555456,
+    "writer": {
+      "backend": "vgem",
+      "frames": 7364,
+      "source_materializations": 7364,
+      "source_bytes": 2658109440,
+      "waits": 0,
+      "reuses": 7359,
+      "outstanding": 0,
+      "failed": 0
+    },
+    "reader": {
+      "backend": 3,
+      "frames": 7364,
+      "verified": 7364,
+      "failed": 0
+    },
+    "peers": [
+      {
+        "local_pid": 170653,
+        "peer_pid": 170681,
+        "uid": 1000
+      },
+      {
+        "local_pid": 170681,
+        "peer_pid": 170653,
+        "uid": 1000
+      }
+    ],
+    "logged_buffer_identity_samples": [
+      [
+        "0",
+        "3",
+        "10",
+        "307",
+        "752",
+        "364544"
+      ],
+      [
+        "1",
+        "3",
+        "10",
+        "308",
+        "752",
+        "364544"
+      ]
+    ],
+    "cpu_sample_delta_verified": true,
+    "control": {
+      "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+      "player_component_sha256": "0540a6e323a84a2d08a05573c39559e0a809fe60277ff342bd224477c7c0033a",
+      "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+      "player_binary_sha256": "1accdbaa5268ab9a281c3b1110bda241bf495a89eebe152053422af21f548ab4",
+      "dds_profile_sha256": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+      "source_commit": "dd68d8d03f3ad187219461ef56f04c386d15e69c",
+      "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides"
+    }
+  },
+  {
+    "name": "native_vgem_mono_split_share_vgem_02",
+    "mode": "mono_imu",
+    "transport": "vgem",
+    "counts": {
+      "img0": 3682,
+      "img1": 0,
+      "imu": 36820,
+      "processed": 3682
+    },
+    "trajectory_sha256": "dfa4aa463317805b3113214c4cab54fd6512e45d93cc7e0adf88c5e6773c85b7",
+    "pixel_timestamp_sha256": {
+      "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+      "img1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_matches_consumer": true
+    },
+    "initializations": 1,
+    "resets": 0,
+    "paired_drops": 0,
+    "first_timestamp_ns": 1403636580813555456,
+    "last_timestamp_ns": 1403636763813555456,
+    "writer": {
+      "backend": "vgem",
+      "frames": 3682,
+      "source_materializations": 3682,
+      "source_bytes": 1329054720,
+      "waits": 0,
+      "reuses": 3679,
+      "outstanding": 0,
+      "failed": 0
+    },
+    "reader": {
+      "backend": 3,
+      "frames": 3682,
+      "verified": 3682,
+      "failed": 0
+    },
+    "peers": [
+      {
+        "local_pid": 177002,
+        "peer_pid": 177030,
+        "uid": 1000
+      },
+      {
+        "local_pid": 177030,
+        "peer_pid": 177002,
+        "uid": 1000
+      }
+    ],
+    "logged_buffer_identity_samples": [
+      [
+        "0",
+        "3",
+        "10",
+        "339",
+        "752",
+        "364544"
+      ],
+      [
+        "1",
+        "3",
+        "10",
+        "340",
+        "752",
+        "364544"
+      ]
+    ],
+    "cpu_sample_delta_verified": true,
+    "control": {
+      "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+      "player_component_sha256": "0540a6e323a84a2d08a05573c39559e0a809fe60277ff342bd224477c7c0033a",
+      "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+      "player_binary_sha256": "1accdbaa5268ab9a281c3b1110bda241bf495a89eebe152053422af21f548ab4",
+      "dds_profile_sha256": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+      "source_commit": "dd68d8d03f3ad187219461ef56f04c386d15e69c",
+      "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides"
+    }
+  }
+]

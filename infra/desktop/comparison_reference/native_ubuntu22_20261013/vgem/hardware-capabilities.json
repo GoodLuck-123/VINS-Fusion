@@ -1,0 +1,172 @@
+{
+  "timestamp_utc": "2026-10-13T07:18:58Z",
+  "kernel": "6.8.0-138-generic",
+  "architecture": "x86_64",
+  "wsl": false,
+  "scope": "Read-only capability probe; no EuRoC playback or host-wide energy attribution",
+  "perf_event_paranoid": "4",
+  "perf_counter_access": {
+    "task_clock": {
+      "available": false,
+      "errno": 13,
+      "errno_name": "EACCES",
+      "reason": "[Errno 13] Permission denied"
+    },
+    "cpu_cycles": {
+      "available": false,
+      "errno": 13,
+      "errno_name": "EACCES",
+      "reason": "[Errno 13] Permission denied"
+    },
+    "cache_misses": {
+      "available": false,
+      "errno": 13,
+      "errno_name": "EACCES",
+      "reason": "[Errno 13] Permission denied"
+    }
+  },
+  "pmus": {
+    "amd_iommu_0": {
+      "type": "12",
+      "events": {
+        "cmd_processed": "csource=0x11",
+        "cmd_processed_inv": "csource=0x12",
+        "ign_rd_wr_mmio_1ff8h": "csource=0x14",
+        "int_dte_hit": "csource=0x0f",
+        "int_dte_mis": "csource=0x10",
+        "mem_dte_hit": "csource=0x0a",
+        "mem_dte_mis": "csource=0x0b",
+        "mem_iommu_tlb_pde_hit": "csource=0x08",
+        "mem_iommu_tlb_pde_mis": "csource=0x09",
+        "mem_iommu_tlb_pte_hit": "csource=0x06",
+        "mem_iommu_tlb_pte_mis": "csource=0x07",
+        "mem_pass_excl": "csource=0x03",
+        "mem_pass_pretrans": "csource=0x02",
+        "mem_pass_untrans": "csource=0x01",
+        "mem_target_abort": "csource=0x04",
+        "mem_trans_total": "csource=0x05",
+        "page_tbl_read_gst": "csource=0x0e",
+        "page_tbl_read_nst": "csource=0x0d",
+        "page_tbl_read_tot": "csource=0x0c",
+        "smi_blk": "csource=0x18",
+        "smi_recv": "csource=0x17",
+        "tlb_inv": "csource=0x13",
+        "vapic_int_guest": "csource=0x16",
+        "vapic_int_non_guest": "csource=0x15"
+      }
+    },
+    "breakpoint": {
+      "type": "5",
+      "events": {}
+    },
+    "cpu": {
+      "type": "4",
+      "events": {
+        "branch-instructions": "event=0xc2",
+        "branch-misses": "event=0xc3",
+        "cache-misses": "event=0x64,umask=0x09",
+        "cache-references": "event=0x60,umask=0xff",
+        "cpu-cycles": "event=0x76",
+        "instructions": "event=0xc0",
+        "stalled-cycles-frontend": "event=0xa9"
+      }
+    },
+    "ibs_fetch": {
+      "type": "10",
+      "events": {}
+    },
+    "ibs_op": {
+      "type": "11",
+      "events": {}
+    },
+    "kprobe": {
+      "type": "8",
+      "events": {}
+    },
+    "msr": {
+      "type": "13",
+      "events": {
+        "aperf": "event=0x01",
+        "irperf": "event=0x06",
+        "mperf": "event=0x02",
+        "tsc": "event=0x00"
+      }
+    },
+    "power": {
+      "type": "14",
+      "events": {
+        "energy-pkg": "event=0x02",
+        "energy-pkg.scale": "2.3283064365386962890625e-10",
+        "energy-pkg.unit": "Joules"
+      }
+    },
+    "software": {
+      "type": "1",
+      "events": {}
+    },
+    "tracepoint": {
+      "type": "2",
+      "events": {}
+    },
+    "uprobe": {
+      "type": "9",
+      "events": {}
+    }
+  },
+  "memory_controller_candidates": [],
+  "rapl_energy_zones": {
+    "/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/intel-rapl:0:0/energy_uj": {
+      "name": "core",
+      "energy_uj": {
+        "error": "[Errno 13] Permission denied: '/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/intel-rapl:0:0/energy_uj'",
+        "errno": 13
+      },
+      "max_energy_range_uj": "65532610987"
+    },
+    "/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/energy_uj": {
+      "name": "package-0",
+      "energy_uj": {
+        "error": "[Errno 13] Permission denied: '/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/energy_uj'",
+        "errno": 13
+      },
+      "max_energy_range_uj": "65532610987"
+    }
+  },
+  "hwmon": {
+    "hwmon0": {
+      "name": "nvme",
+      "power_inputs": {}
+    },
+    "hwmon1": {
+      "name": "nvme",
+      "power_inputs": {}
+    },
+    "hwmon2": {
+      "name": "k10temp",
+      "power_inputs": {}
+    },
+    "hwmon3": {
+      "name": "iwlwifi_1",
+      "power_inputs": {}
+    },
+    "hwmon4": {
+      "name": "amdgpu",
+      "power_inputs": {
+        "power1_input": "8000"
+      }
+    }
+  },
+  "power_supplies": {},
+  "measurement": {
+    "ddr_read_bytes": null,
+    "ddr_write_bytes": null,
+    "energy_j": null,
+    "average_power_w": null
+  },
+  "limitations": [
+    "PMU names alone do not establish usable counters or byte/event scaling.",
+    "RAPL/package or rail counters are host/device-wide, not process-only.",
+    "Virtual battery readings are not physical power measurements.",
+    "Logical copy bytes and cache misses must not substitute for DDR traffic."
+  ]
+}

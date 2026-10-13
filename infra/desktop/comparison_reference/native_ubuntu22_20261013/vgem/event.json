@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_native_ros2_phase.py",
+    "--phase",
+    "vgem",
+    "--prefix",
+    "native_vgem",
+    "--dds-profile",
+    "/home/eric/projects/VINS-Fusion/infra/desktop/cyclonedds_native.xml"
+  ],
+  "pid": 170615,
+  "status": "complete",
+  "start_utc": "2026-10-13T09:45:59Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-13T09:52:51Z"
+}

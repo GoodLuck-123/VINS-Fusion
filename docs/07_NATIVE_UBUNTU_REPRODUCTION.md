@@ -21,7 +21,7 @@ Ubuntu 22.04.5、Linux 6.8.0-138-generic、AMD Ryzen 7 9800X3D，8 核 16 线程
 | `milestone-ros2-components-v1` | 双目 standalone copy/share 各两轮、composed 各一轮；单目 standalone 各一轮；owner/stride/回退与组件生命周期检查 | 8 | 已完成，`milestone-ros2-components-native-ubuntu22-v1` |
 | `milestone-ros2-pmu-v1` | 硬件能力探测、双目 copy/share 用户态 PMU 对照 | 2 | 已完成，`milestone-ros2-pmu-native-ubuntu22-v1` |
 | `milestone-ros2-shared-memory-v1` | 单目/双目 split，ROS Image/memfd，各一轮；像素签名与槽位归还 | 4 | 已完成，`milestone-ros2-shared-memory-native-ubuntu22-v1` |
-| `milestone-ros2-dmabuf-v1` | 单目/双目 split VGEM，与前一阶段同条件 ROS/memfd 对照 | 2 | 设备已核验，回放待执行 |
+| `milestone-ros2-dmabuf-v1` | 单目/双目 split VGEM，与前一阶段同条件 ROS/memfd 对照 | 2 | 已完成，`milestone-ros2-dmabuf-native-ubuntu22-v1` |
 | `milestone-ros2-shared-repeats-v1` | 三传输 × 两模式 × 各五次，顺序轮换、冻结二进制与参数 | 30 | 待执行 |
 | `milestone-ros2-desktop-handoff-v1` | 文档、入口、归档校验、分支重建及新主机交接 | 0 | 待执行 |
 
@@ -45,7 +45,7 @@ WSL 的 Cyclone DDS 小分片 XML 不直接视为本机必需配置。先核验�
 
 ## 结果与通知
 
-统一结果页为 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，新增证据放在 `infra/desktop/comparison_reference/native_ubuntu22_20261013/`，不覆盖旧目录
+统一结果页为 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，新增证据放在 `infra/desktop/comparison_reference/native_ubuntu22_20261013/`，30 次重复快照为 `infra/desktop/comparison_reference/native_shared_repeats_20261013/`，不覆盖旧目录
 
 正式 ROS 1 入口为 `infra/desktop/scripts/run_native_ros1_reproduction.sh`。它依次完成四轮回放、独立 uv 评估和验收；每轮结果名不同，拒绝覆盖已有结果
 
@@ -88,3 +88,21 @@ PMU 两轮已验收，四类用户态 CPU 事件均可用且无复用，完整�
 PMU 里程碑 commit 为 ros2-humble `24fd362`，tag 为 `milestone-ros2-pmu-native-ubuntu22-v1`。共享像素四轮计划由 `vins-native-shared01.service` 执行，事件在 `../results/ubuntu22-reproduction/shared01/`，逐轮状态在 `../results/ubuntu22-reproduction/native_shared/`；原生默认 Cyclone DDS XML 在本阶段及后续 VGEM/重复实验统一使用、冻结并归档。执行器只补充实际 XML 冻结与配置/设备参数，记录重复阶段排空时间，不改算法
 
 共享传输四轮已验收：原生 DDS 默认配置通过；同模式输入摘要与轨迹字节一致，全部计数/末帧/初始化/退出通过，memfd 零错误、零未归还、零池满等待。源端仍向池中复制一次，不声明全链路零拷贝；本轮累计完成 20 轮，后续保持相同二进制、配置和校验条件运行 VGEM 两轮
+
+共享内存里程碑 commit 为 ros2-humble `dd68d8d`，tag 为 `milestone-ros2-shared-memory-native-ubuntu22-v1`。VGEM 两轮计划由 `vins-native-vgem01.service` 执行，事件在 `../results/ubuntu22-reproduction/vgem01/`、逐轮状态在 `../results/ubuntu22-reproduction/native_vgem/`。不改 VINS C++，仅将传输改为 vgem；沿用前阶段原生默认 DDS XML 和 SHA256 校验
+
+VGEM 两轮已验收，三路径同模式输入摘要与轨迹完全一致，DMA-BUF 注册、完整计数/末帧/初始化/退出及零未归还槽位通过。CPU 合计双目 440.87 秒、单目 244.58 秒，明显高于此前 ROS/memfd，主要增加在 VINS 消费进程；原始采样增量核验一致，具体原因未定位。本阶段累计完成 22 轮，不改实现或关闭校验来追求收益
+
+## 30 次重复的冻结方案
+
+三路径单轮均已验收。批次名为 `native_shared_repeats_20261013`，单目/双目各 ROS Image、memfd、VGEM 五次，共 30 次；各轮串行，模式及传输顺序轮换，间隔 10 秒。沿用同一二进制、标定/算法参数、share 入口、1 倍目标供给和全帧 SHA256 校验，显式指定原生默认 XML 与已核验的 VGEM 节点
+
+```bash
+python3 infra/desktop/scripts/run_shared_repeats.py \
+  --batch native_shared_repeats_20261013 --repetitions 5 --cooldown 10 \
+  --dds-profile infra/desktop/cyclonedds_native.xml --shared-device /dev/dri/card0
+```
+
+启动前工作树须干净、无活动 VINS/播放器，复核原生环境，冻结源码、实际 DDS XML、VINS/数据源二进制和已加载 SDK 动态库。失败立即停止并保留已完成结果，失败不混入统计；期间不编译、改脚本或切换分支。统计包括中位数/四分位/范围、同轮 ROS 对照 CPU 变化、各进程 RSS/PSS、回放/排空、等待计数及 ATE/RPE，不把独立峰值相加当作同时峰值
+
+本机用户级临时服务名为 `vins-native-repeats01.service`，外层事件在 `../results/ubuntu22-reproduction/repeats01/`，批次状态/日志/统计在 `../results/ros2/native_shared_repeats_20261013/`。预计约 104 分钟，只在完成或失败时由外层 hook 通知当前聊天一次，批次内部不另发通知，不在线模型轮询

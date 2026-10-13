@@ -1,0 +1,11 @@
+{
+  "device": "/dev/dri/card0",
+  "driver": "vgem",
+  "version": [
+    1,
+    0,
+    0
+  ],
+  "rw_access": true,
+  "timestamp_utc": "2026-10-13T09:45:59Z"
+}

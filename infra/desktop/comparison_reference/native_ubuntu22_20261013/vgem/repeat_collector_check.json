@@ -1,0 +1,72 @@
+[
+  {
+    "name": "native_vgem_stereo_split_share_vgem_01",
+    "mode": "stereo_imu",
+    "transport": "vgem",
+    "repeat": 1,
+    "index": 1,
+    "cpu_s": 440.87,
+    "vins_cpu_s": 437.9,
+    "source_cpu_s": 2.97,
+    "playback_wall_s": 188.1991391419997,
+    "drain_s": 6.005239623000307,
+    "ate_rmse_m": 0.2527445705844378,
+    "rpe_rmse_m": 0.0030832180472346268,
+    "vins_pss_mib": 68.8359375,
+    "source_pss_mib": 16.40625,
+    "vins_rss_mib": 78.93359375,
+    "source_rss_mib": 26.3984375,
+    "pool_waits": 0,
+    "poses": 1831,
+    "matched_poses": 1819,
+    "pixel_timestamp_sha256": {
+      "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+      "img1": "1e60c909475c5e83dfc530e47aade8cd3ea33a748395d2bc2f1075dbf66497a1",
+      "source_matches_consumer": true
+    },
+    "control": {
+      "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+      "player_component_sha256": "0540a6e323a84a2d08a05573c39559e0a809fe60277ff342bd224477c7c0033a",
+      "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+      "player_binary_sha256": "1accdbaa5268ab9a281c3b1110bda241bf495a89eebe152053422af21f548ab4",
+      "dds_profile_sha256": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+      "source_commit": "dd68d8d03f3ad187219461ef56f04c386d15e69c",
+      "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides"
+    }
+  },
+  {
+    "name": "native_vgem_mono_split_share_vgem_02",
+    "mode": "mono_imu",
+    "transport": "vgem",
+    "repeat": 1,
+    "index": 2,
+    "cpu_s": 244.58,
+    "vins_cpu_s": 242.68,
+    "source_cpu_s": 1.9,
+    "playback_wall_s": 188.15001273099915,
+    "drain_s": 6.004520169999523,
+    "ate_rmse_m": 0.1855643673102663,
+    "rpe_rmse_m": 0.0029379608528768597,
+    "vins_pss_mib": 62.857421875,
+    "source_pss_mib": 16.4384765625,
+    "vins_rss_mib": 73.375,
+    "source_rss_mib": 26.41796875,
+    "pool_waits": 0,
+    "poses": 1831,
+    "matched_poses": 1819,
+    "pixel_timestamp_sha256": {
+      "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+      "img1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_matches_consumer": true
+    },
+    "control": {
+      "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+      "player_component_sha256": "0540a6e323a84a2d08a05573c39559e0a809fe60277ff342bd224477c7c0033a",
+      "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+      "player_binary_sha256": "1accdbaa5268ab9a281c3b1110bda241bf495a89eebe152053422af21f548ab4",
+      "dds_profile_sha256": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+      "source_commit": "dd68d8d03f3ad187219461ef56f04c386d15e69c",
+      "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides"
+    }
+  }
+]

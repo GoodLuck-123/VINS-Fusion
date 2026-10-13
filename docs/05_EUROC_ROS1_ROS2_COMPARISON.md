@@ -8,7 +8,7 @@
 
 DDR 流量不可用；CPU 能量节点默认不可读。GPU hwmon 功率不代表 CPU VIO 功耗
 
-ROS 1 四轮、ROS 2 两轮参照、八轮组件/owner、两轮 PMU 和四轮共享传输已完成，累计 20 轮；VGEM 和 30 次重复待执行。完整清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
+ROS 1 四轮、ROS 2 两轮参照、八轮组件/owner、两轮 PMU、四轮共享传输及两轮 VGEM 已完成，累计 22 轮；30 次重复待执行。完整清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
 
 <!-- native-phase:ros1 -->
 ## ROS 1 原版参照与资源对照（2026-10-13）
@@ -181,3 +181,40 @@ memfd 源端与消费端为不同 PID，双方 peer 凭据一致；注册时消�
 回放墙钟约 188 秒，包含启动/完成观察；约 6 秒排空含固定等待，不是逐帧延迟或实时通过证明。上述资源结果包含双方全帧 SHA256 校验成本，DDR/CPU 功耗仍不可用
 
 本阶段最小改动为显式原生 DDS 默认 XML、实际 XML 冻结，以及重复执行器的配置/设备参数和排空时间记录。VINS C++、依赖、算法参数与二进制未改；新 tag 为 `milestone-ros2-shared-memory-native-ubuntu22-v1`
+
+<!-- native-phase:vgem -->
+## VGEM DMA-BUF 原生完整回放
+
+| 实验 | 模式 / 部署 / 入口 | poses / 匹配 | ATE RMSE (m) | RPE RMSE (m) | 回放 / 排空 (s) | VINS 退出 |
+| --- | --- | ---: | ---: | ---: | --- | ---: |
+| native_vgem_stereo_split_share_vgem_01 | stereo_imu_vio / split / vgem/share | 1831 / 1819 | 0.252745 | 0.003083 | 188.20 / 6.01 | 0 |
+| native_vgem_mono_split_share_vgem_02 | mono_imu_vio / split / vgem/share | 1831 / 1819 | 0.185564 | 0.002938 | 188.15 / 6.00 | 0 |
+
+CPU 秒为各进程全部线程累计值；RSS/PSS 是各进程独立采样峰值，不能相加当作同时峰值。回放、排空分别列出，完整处理不等于实时验收
+
+| 实验 | VINS CPU (s) | 源端 CPU (s) | 合计 CPU (s) | VINS RSS / PSS (MiB) | 源端 RSS / PSS (MiB) |
+| --- | ---: | ---: | ---: | --- | --- |
+| native_vgem_stereo_split_share_vgem_01 | 437.90 | 2.97 | 440.87 | 78.93 / 68.84 | 26.40 / 16.41 |
+| native_vgem_mono_split_share_vgem_02 | 242.68 | 1.90 | 244.58 | 73.38 / 62.86 | 26.42 / 16.44 |
+
+[本阶段证据](../infra/desktop/comparison_reference/native_ubuntu22_20261013/vgem/)
+
+两轮 VGEM 使用前阶段相同的原生默认 DDS XML、share 入口、1 倍目标供给和全帧 SHA256 校验，VINS/数据源二进制及标定、算法参数均相同。代码提交号由 `24fd362` 变为 `dd68d8d`，变化为文档、执行器和显式配置归档，不是算法或传输 C++ 修改
+
+| VGEM 模式 | 源端复制帧数 | 源端复制量 (MiB) | 消费端校验帧数 | 槽位复用 | 池满等待 | 未归还 / 错误 |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| stereo_imu | 7364 | 2534.97 | 7364 | 7359 | 0 | 0 / 0 |
+| mono_imu | 3682 | 1267.49 | 3682 | 3679 | 0 | 0 / 0 |
+
+设备重新查询为 `/dev/dri/card0`、vgem 1.0.0，当前用户可读写。独立 PID 的双方 peer 凭据一致，消费端注册时逐槽核验 DMA-BUF 的 device/inode/尺寸，日志记录前两槽身份；752×480、stride 752，分配大小 364544 字节。现有协议执行 CPU 读写 START/END 同步、代次检查和 owner 归还，两轮均无错误或未归还槽位
+
+单目/双目均完整处理 3682 帧、接收 36820 条 IMU，双目左右各 3682 张、单目右图为 0；各一次初始化、无重置/配对丢弃，1831 个位姿、1819 个匹配，覆盖末帧且两个进程退出 0。同模式下 ROS Image/memfd/VGEM 的输入摘要和轨迹字节全部一致
+
+| 模式 | ROS Image 合计 CPU (s) | memfd 合计 CPU (s) | VGEM 合计 CPU (s) | VGEM VINS / 源端 CPU (s) |
+| --- | ---: | ---: | ---: | --- |
+| stereo_imu | 168.85 | 167.62 | 440.87 | 437.90 / 2.97 |
+| mono_imu | 111.53 | 111.79 | 244.58 | 242.68 / 1.90 |
+
+**本机 VGEM 正确性通过，但这两轮 CPU 代价明显高于 ROS/memfd，增加主要在 VINS 消费进程**。逐秒原始采样的 CPU 增量与 run.json 一致；回放仍约 188 秒、排空约 6 秒、无池满等待。现有进程采样不能分离映射像素访问、SHA256 校验和跟踪计算的具体代价，不将原因归于未经验证的缓存机制，也不为得到预期收益关闭校验或改算法；后续五次重复保持实现不变
+
+VGEM 是软件 DMA-BUF 分配/CPU 映射机制验证，未使用 GPU 计算、相机 DMA、RGA 或板端 fence；EuRoC 源端仍复制一次到池。DDR/CPU 功耗不可用，不能用 CPU 差异或逻辑复制量替代。新 tag 为 `milestone-ros2-dmabuf-native-ubuntu22-v1`
