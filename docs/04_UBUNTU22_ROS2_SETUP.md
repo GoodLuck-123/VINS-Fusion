@@ -76,7 +76,7 @@ split 可选择 `--image-transport ros/memfd/vgem/dma_heap`，共享后端要求
 
 本机用户已加载 VGEM，DRM 查询确认 `/dev/dri/card0` 驱动名 vgem 且可读写，不对真实 GPU 节点尝试分配。VGEM 是 CPU 映射的软件分配器，没有相机 DMA、RGA 或 GPU 算法加速；DMA heap 本机仍待验证
 
-组件/composed/split 对照使用已锁定的 Cyclone DDS。先核验本机默认传输；若对照沿用历史小分片 `cyclonedds_wsl.xml`，应统一三路径并记录配置哈希，不把旧 WSL 网络故障当成本机原因，不与不同配置混算收益
+组件/composed/split 对照使用已锁定的 Cyclone DDS。本机四轮 split ROS Image/memfd 已通过，采用 `cyclonedds_native.xml` 明确保留原生默认值；后续 VGEM/重复实验也使用相同 XML 并冻结实际文件。历史 `cyclonedds_wsl.xml` 保留，不把旧 WSL 网络故障当成本机原因，不与不同配置混算收益
 
 ## 正式阶段与后台
 
@@ -84,7 +84,7 @@ split 可选择 `--image-transport ros/memfd/vgem/dma_heap`，共享后端要求
 
 本机后台由用户级临时 systemd unit 承接 `run_local_phase.py`，不安装持久服务或 timer。事件/state 与逐轮日志留在唯一阶段目录；完成或失败才通知当前聊天一次。不要在线模型轮询，不迁移旧机器 hook 或聊天 ID；临时 probe 源码需可重建，不能当作已跟踪依赖
 
-30 次重复实验使用现有 `run_shared_repeats.py`，先完成单轮三路径验收并提交冻结方案，再运行；每模式每传输各五次，顺序轮换，期间不编译/切换源码。该 runner 的历史设备/配置固定项只在本机实测核实后使用，不能直接当板端入口
+30 次重复实验使用现有 `run_shared_repeats.py`，先完成单轮三路径验收并提交冻结方案，再运行；每模式每传输各五次，顺序轮换，期间不编译/切换源码。本机显式指定 `--dds-profile infra/desktop/cyclonedds_native.xml --shared-device /dev/dri/card0`；默认参数仍保留历史配置，实际 XML/设备写入状态，不把桌面入口直接当板端入口
 
 ## 指标、权限和版本
 

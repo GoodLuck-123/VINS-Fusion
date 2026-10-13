@@ -8,7 +8,7 @@
 
 DDR 流量不可用；CPU 能量节点默认不可读。GPU hwmon 功率不代表 CPU VIO 功耗
 
-ROS 1 四轮及 ROS 2 两轮双目 copy 参照已完成，后续里程碑待执行。完整清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
+ROS 1 四轮、ROS 2 两轮参照、八轮组件/owner、两轮 PMU 和四轮共享传输已完成，累计 20 轮；VGEM 和 30 次重复待执行。完整清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
 
 <!-- native-phase:ros1 -->
 ## ROS 1 原版参照与资源对照（2026-10-13）
@@ -143,3 +143,41 @@ CPU 秒为各进程全部线程累计值；RSS/PSS 是各进程独立采样峰�
 两轮完整接收左右各 3682 张图像、36820 条 IMU，处理 3682 帧，各一次初始化，无重置/配对丢弃，轨迹逐字节一致，进程均正常退出。CPU 分别为 162.16 / 162.93 秒，单轮差异不支持稳定提速结论；灰度 share 入口零物化仍由入口计数单独证明
 
 cache misses 是 CPU 缓存诊断事件，不能换算为 DDR 字节或功耗。本机未发现 DDR 控制器事件；CPU 能量节点存在但当前用户不可读，二者均记不可用。未改 PMU 逻辑，仅修正旧报告中的虚拟化主机描述
+
+<!-- native-phase:shared -->
+## 跨进程 ROS Image 与 memfd 对照
+
+| 实验 | 模式 / 部署 / 入口 | poses / 匹配 | ATE RMSE (m) | RPE RMSE (m) | 回放 / 排空 (s) | VINS 退出 |
+| --- | --- | ---: | ---: | ---: | --- | ---: |
+| native_shared_stereo_split_share_ros_01 | stereo_imu_vio / split / ros/share | 1831 / 1819 | 0.252745 | 0.003083 | 188.31 / 6.01 | 0 |
+| native_shared_stereo_split_share_memfd_02 | stereo_imu_vio / split / memfd/share | 1831 / 1819 | 0.252745 | 0.003083 | 188.21 / 6.01 | 0 |
+| native_shared_mono_split_share_ros_03 | mono_imu_vio / split / ros/share | 1831 / 1819 | 0.185564 | 0.002938 | 188.20 / 6.00 | 0 |
+| native_shared_mono_split_share_memfd_04 | mono_imu_vio / split / memfd/share | 1831 / 1819 | 0.185564 | 0.002938 | 188.15 / 6.01 | 0 |
+
+CPU 秒为各进程全部线程累计值；RSS/PSS 是各进程独立采样峰值，不能相加当作同时峰值。回放、排空分别列出，完整处理不等于实时验收
+
+| 实验 | VINS CPU (s) | 源端 CPU (s) | 合计 CPU (s) | VINS RSS / PSS (MiB) | 源端 RSS / PSS (MiB) |
+| --- | ---: | ---: | ---: | --- | --- |
+| native_shared_stereo_split_share_ros_01 | 165.88 | 2.97 | 168.85 | 82.18 / 71.47 | 95.86 / 85.86 |
+| native_shared_stereo_split_share_memfd_02 | 164.59 | 3.03 | 167.62 | 76.81 / 65.78 | 27.50 / 17.00 |
+| native_shared_mono_split_share_ros_03 | 109.81 | 1.72 | 111.53 | 77.77 / 67.25 | 61.50 / 51.39 |
+| native_shared_mono_split_share_memfd_04 | 109.97 | 1.82 | 111.79 | 73.16 / 62.42 | 27.04 / 16.70 |
+
+[本阶段证据](../infra/desktop/comparison_reference/native_ubuntu22_20261013/shared/)
+
+四轮均采用 split、share、1 倍目标供给及同一原生 Cyclone DDS 默认 XML，配置 SHA256 为 `85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1`。本机默认配置已完成两种模式的完整 ROS Image 回放；历史 WSL 小分片参数未启用，不将旧网络故障作为本机事实
+
+左右图/IMU/处理计数完整，各一次初始化，无重置或配对丢弃，1831 个位姿、1819 个匹配，末帧覆盖完整，两个进程均退出 0。同模式下 ROS Image/memfd 轨迹及全帧像素/原始时间戳摘要一致，轨迹也与前阶段相同；消费端灰度入口物化均为零
+
+| memfd 模式 | 源端复制帧数 | 源端复制量 (MiB) | 消费端校验帧数 | 槽位复用 | 池满等待 | 未归还 / 错误 |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| stereo_imu | 7364 | 2534.97 | 7364 | 7361 | 0 | 0 / 0 |
+| mono_imu | 3682 | 1267.49 | 3682 | 3680 | 0 | 0 / 0 |
+
+memfd 源端与消费端为不同 PID，双方 peer 凭据一致；注册时消费端逐槽核验 fd 的 device/inode/尺寸，日志记录前两槽身份。图像尺寸 752×480、stride 752；32 槽位经代次与 owner 归还协议复用。EuRoC 解包后仍向池中复制一次像素，不能称为端到端零拷贝
+
+双目合计 CPU 为 ROS 168.85 / memfd 167.62 秒，单目为 111.53 / 111.79 秒；单次方向不一致，稳定收益留待重复统计。源端 PSS 峰值分别为双目 85.86 / 17.00 MiB、单目 51.39 / 16.70 MiB，是本次观测；每进程峰值分别记录，不能相加作为同时峰值
+
+回放墙钟约 188 秒，包含启动/完成观察；约 6 秒排空含固定等待，不是逐帧延迟或实时通过证明。上述资源结果包含双方全帧 SHA256 校验成本，DDR/CPU 功耗仍不可用
+
+本阶段最小改动为显式原生 DDS 默认 XML、实际 XML 冻结，以及重复执行器的配置/设备参数和排空时间记录。VINS C++、依赖、算法参数与二进制未改；新 tag 为 `milestone-ros2-shared-memory-native-ubuntu22-v1`

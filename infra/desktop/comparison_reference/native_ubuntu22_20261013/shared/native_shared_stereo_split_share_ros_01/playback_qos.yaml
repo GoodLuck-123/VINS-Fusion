@@ -1,0 +1,15 @@
+/cam0/image_raw:
+  reliability: reliable
+  history: keep_last
+  depth: 100
+  durability: volatile
+/cam1/image_raw:
+  reliability: reliable
+  history: keep_last
+  depth: 100
+  durability: volatile
+/imu0:
+  reliability: reliable
+  history: keep_last
+  depth: 2000
+  durability: volatile

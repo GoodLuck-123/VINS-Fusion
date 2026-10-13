@@ -26,7 +26,7 @@ TRANSPORTS = ("ros", "memfd", "vgem")
 MODES = ("stereo_imu", "mono_imu")
 ORDERS = (TRANSPORTS, ("memfd", "vgem", "ros"), ("vgem", "ros", "memfd"),
           ("vgem", "memfd", "ros"), ("memfd", "ros", "vgem"), ("ros", "vgem", "memfd"))
-METRICS = ("cpu_s", "vins_cpu_s", "source_cpu_s", "playback_wall_s", "ate_rmse_m",
+METRICS = ("cpu_s", "vins_cpu_s", "source_cpu_s", "playback_wall_s", "drain_s", "ate_rmse_m",
            "rpe_rmse_m", "vins_pss_mib", "source_pss_mib", "vins_rss_mib", "source_rss_mib", "pool_waits")
 
 
@@ -130,6 +130,7 @@ def collect(trial):
     resources, source = run["resources"], run["source_resources"]
     return dict(**trial, cpu_s=run["combined_cpu_time_s"], vins_cpu_s=resources["cpu_time_s"],
                 source_cpu_s=source["cpu_time_s"], playback_wall_s=run["playback_wall_s"],
+                drain_s=run["settling_wait_s"],
                 ate_rmse_m=evaluation["ate_translation_m"]["rmse"], rpe_rmse_m=evaluation["rpe_translation_m_one_pose_step"]["rmse"],
                 vins_pss_mib=resources["peak_sampled_pss_kib"] / 1024,
                 source_pss_mib=source["peak_sampled_pss_kib"] / 1024,
@@ -180,7 +181,7 @@ def summarize(state, directory):
     lines = [f"## EuRoC 串行重复实验：{state['batch']}", "",
              f"新增 {len(records)} 次完整实验：单目/双目，各传输独立重复 {state['repetitions']} 次；不包含此前六次试跑。",
              "每轮仅一个数据源和一个 VINS；上一轮完成、退出、评估后再启动下一轮。顺序轮换，每轮间隔 " + str(state["cooldown_s"]) + " 秒。",
-             "同一冻结二进制、MH_01_easy 输入/标定、1 倍目标供给、Cyclone DDS 小分片配置、share 入口和全像素 SHA256 校验；无回环/RViz。", "",
+             "同一冻结二进制、MH_01_easy 输入/标定、1 倍目标供给、统一且冻结的 Cyclone DDS 配置、share 入口和全像素 SHA256 校验；无回环/RViz。", "",
              "| 模式 | 传输 | n | 合计 CPU 秒中位数 [Q25, Q75] | CPU 秒范围 | 回放秒中位数 | ATE RMSE 中位数 (m) | 同轮对照 CPU 变化中位数 |",
              "| --- | --- | ---: | --- | --- | ---: | ---: | ---: |"]
     for group in groups:
@@ -188,8 +189,8 @@ def summarize(state, directory):
         lines.append(f"| {group['mode']} | {group['transport']} | {c['n']} | {c['median']:.2f} [{c['q25']:.2f}, {c['q75']:.2f}] | {c['min']:.2f}–{c['max']:.2f} | {m['playback_wall_s']['median']:.2f} | {m['ate_rmse_m']['median']:.6f} | {group['paired_cpu_change_percent']['median']:+.2f}% |")
     lines += ["", "CPU 秒是数据源与 VINS 所有线程累计 CPU 时间之和；负的对照变化表示省 CPU。回放墙钟含启动与完成通知观察，目标 1 倍不能保证无背压。",
               "五轮顺序轮换缓解顺序偏差，但不构成完全平衡设计；未固定宿主频率/温度，不能据此宣称统计显著或外推 RK3588。",
-              "原始 CSV/summary.json 还记录两进程分别的 CPU、RSS/PSS 峰值、池满等待与 ATE/RPE；两个独立 PSS 峰值不能相加当作同时峰值。",
-              "每轮原始资源采样含 WSL 主机负载和 PSI；宿主指标包含其他程序，不是 Windows 全机观测。SHA256 校验的线程位置随路径不同，结果包含校验成本。",
+              "原始 CSV/summary.json 还记录两进程分别的 CPU、RSS/PSS 峰值、排空时间、池满等待与 ATE/RPE；两个独立 PSS 峰值不能相加当作同时峰值。",
+              "每轮原始资源采样含 Linux 主机负载和 PSI；宿主指标包含其他程序。SHA256 校验的线程位置随路径不同，结果包含校验成本。",
               "各轮完整处理、干净退出、全像素/时间戳一致和共享槽位归还均已通过；DDR 流量和功耗未实测。", ""]
     (directory / "summary.md").write_text(format_prose("\n".join(lines)))
     return summary
@@ -244,11 +245,16 @@ def main():
     parser.add_argument("--batch", required=True)
     parser.add_argument("--repetitions", type=int, default=5)
     parser.add_argument("--cooldown", type=float, default=10)
+    parser.add_argument("--dds-profile", type=Path, default=REPO_ROOT / "infra/desktop/cyclonedds_wsl.xml")
+    parser.add_argument("--shared-device", default="/dev/dri/card0")
     parser.add_argument("--completion-hook", type=Path, help="JSON file containing an argv array; event.json path is appended")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     if not re.fullmatch(r"[A-Za-z0-9_-]+", args.batch) or args.repetitions < 1 or args.cooldown < 0:
         parser.error("Invalid batch name, repetitions or cooldown")
+    args.dds_profile = args.dds_profile.resolve()
+    if not args.dds_profile.is_file():
+        parser.error("DDS profile must be an existing file")
     trials = schedule(args.batch, args.repetitions)
     if args.dry_run:
         print(json.dumps(trials, indent=2)); return
@@ -261,16 +267,17 @@ def main():
         if not isinstance(hook, list) or not all(isinstance(item, str) for item in hook):
             raise ValueError("Completion hook must be a JSON argv array")
         state = dict(batch=args.batch, status="preflight", pid=os.getpid(), start_utc=utc(),
-                     repetitions=args.repetitions, cooldown_s=args.cooldown, trials=trials, completed=[], completion_hook=hook)
+                     repetitions=args.repetitions, cooldown_s=args.cooldown, trials=trials, completed=[], completion_hook=hook,
+                     dds_profile=str(args.dds_profile), shared_device=args.shared_device)
         write_json(directory / "state.json", state)
         env = os.environ.copy()
         env["VINS_RMW_IMPLEMENTATION"] = "rmw_cyclonedds_cpp"
-        env["CYCLONEDDS_URI"] = "file://" + str(REPO_ROOT / "infra/desktop/cyclonedds_wsl.xml")
+        env["CYCLONEDDS_URI"] = "file://" + str(args.dds_profile)
         evaluation_env = os.environ.copy()
         evaluation_env["UV_CACHE_DIR"] = str(WORKSPACE_ROOT / ".infra/uv-cache")
         try:
             assert_quiet()
-            with open("/dev/dri/card0", "r+b", buffering=0):
+            with open(args.shared_device, "r+b", buffering=0):
                 pass
             dirty = subprocess.check_output(["git", "status", "--porcelain"], cwd=REPO_ROOT, text=True)
             if dirty:
@@ -289,17 +296,18 @@ def main():
                         if "/.infra/" in path:
                             libraries.add(path)
             state["loaded_sdk_libraries"] = sorted(libraries)
-            state["frozen_files"] = frozen_files(libraries)
+            frozen_paths = [*libraries, args.dds_profile]
+            state["frozen_files"] = frozen_files(frozen_paths)
             for trial in trials:
                 assert_quiet()
-                if frozen_files(libraries) != state["frozen_files"]:
+                if frozen_files(frozen_paths) != state["frozen_files"]:
                     raise RuntimeError("Frozen source/binary/profile changed during the batch")
                 state.update(status="running", current=trial, host_before=host_snapshot())
                 write_json(directory / "state.json", state)
                 print(f"{utc()} START {trial['index']}/{len(trials)} {trial['name']}", flush=True)
                 command = ["python", str(SCRIPTS / "run_ros2_euroc.py"), "--name", trial["name"],
                            "--mode", trial["mode"], "--deployment", "split", "--image-mode", "share",
-                           "--image-transport", trial["transport"]]
+                           "--image-transport", trial["transport"], "--shared-device", args.shared_device]
                 execute(["bash", "-c", source_env + shlex.join(command)], directory / (trial["name"] + ".log"), env, 440)
                 assert_quiet()
                 execute(["uv", "run", "--offline", "--project", str(REPO_ROOT / "infra/desktop"), "--locked", "python",
@@ -309,7 +317,7 @@ def main():
                 record.update(host_before=state["host_before"], host_after=host_snapshot(), completed_utc=utc())
                 state["completed"].append(record)
                 validate_controls(state["completed"])
-                if frozen_files(libraries) != state["frozen_files"]:
+                if frozen_files(frozen_paths) != state["frozen_files"]:
                     raise RuntimeError("Frozen source/binary/profile changed during replay")
                 write_json(directory / "state.json", state)
                 print(f"{utc()} DONE CPU={record['cpu_s']:.2f}s ATE={record['ate_rmse_m']:.6f}m", flush=True)

@@ -1,0 +1,142 @@
+[
+  {
+    "name": "native_shared_stereo_split_share_ros_01",
+    "mode": "stereo_imu",
+    "transport": "ros",
+    "repeat": 1,
+    "index": 1,
+    "cpu_s": 168.85,
+    "vins_cpu_s": 165.88,
+    "source_cpu_s": 2.97,
+    "playback_wall_s": 188.30919160600024,
+    "drain_s": 6.006614919999265,
+    "ate_rmse_m": 0.2527445705844378,
+    "rpe_rmse_m": 0.0030832180472346268,
+    "vins_pss_mib": 71.46875,
+    "source_pss_mib": 85.86328125,
+    "vins_rss_mib": 82.17578125,
+    "source_rss_mib": 95.86328125,
+    "pool_waits": 0,
+    "poses": 1831,
+    "matched_poses": 1819,
+    "pixel_timestamp_sha256": {
+      "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+      "img1": "1e60c909475c5e83dfc530e47aade8cd3ea33a748395d2bc2f1075dbf66497a1",
+      "source_matches_consumer": true
+    },
+    "control": {
+      "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+      "player_component_sha256": "0540a6e323a84a2d08a05573c39559e0a809fe60277ff342bd224477c7c0033a",
+      "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+      "player_binary_sha256": "1accdbaa5268ab9a281c3b1110bda241bf495a89eebe152053422af21f548ab4",
+      "dds_profile_sha256": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+      "source_commit": "24fd3623776fc7f35486cd16db33e0b734c5a42d",
+      "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides"
+    }
+  },
+  {
+    "name": "native_shared_stereo_split_share_memfd_02",
+    "mode": "stereo_imu",
+    "transport": "memfd",
+    "repeat": 1,
+    "index": 2,
+    "cpu_s": 167.62,
+    "vins_cpu_s": 164.59,
+    "source_cpu_s": 3.03,
+    "playback_wall_s": 188.20515717099988,
+    "drain_s": 6.00628620399948,
+    "ate_rmse_m": 0.2527445705844378,
+    "rpe_rmse_m": 0.0030832180472346268,
+    "vins_pss_mib": 65.779296875,
+    "source_pss_mib": 17.0048828125,
+    "vins_rss_mib": 76.8125,
+    "source_rss_mib": 27.49609375,
+    "pool_waits": 0,
+    "poses": 1831,
+    "matched_poses": 1819,
+    "pixel_timestamp_sha256": {
+      "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+      "img1": "1e60c909475c5e83dfc530e47aade8cd3ea33a748395d2bc2f1075dbf66497a1",
+      "source_matches_consumer": true
+    },
+    "control": {
+      "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+      "player_component_sha256": "0540a6e323a84a2d08a05573c39559e0a809fe60277ff342bd224477c7c0033a",
+      "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+      "player_binary_sha256": "1accdbaa5268ab9a281c3b1110bda241bf495a89eebe152053422af21f548ab4",
+      "dds_profile_sha256": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+      "source_commit": "24fd3623776fc7f35486cd16db33e0b734c5a42d",
+      "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides"
+    }
+  },
+  {
+    "name": "native_shared_mono_split_share_ros_03",
+    "mode": "mono_imu",
+    "transport": "ros",
+    "repeat": 1,
+    "index": 3,
+    "cpu_s": 111.53,
+    "vins_cpu_s": 109.81,
+    "source_cpu_s": 1.72,
+    "playback_wall_s": 188.20442337699933,
+    "drain_s": 6.004846714999076,
+    "ate_rmse_m": 0.1855643673102663,
+    "rpe_rmse_m": 0.0029379608528768597,
+    "vins_pss_mib": 67.25390625,
+    "source_pss_mib": 51.392578125,
+    "vins_rss_mib": 77.7734375,
+    "source_rss_mib": 61.50390625,
+    "pool_waits": 0,
+    "poses": 1831,
+    "matched_poses": 1819,
+    "pixel_timestamp_sha256": {
+      "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+      "img1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_matches_consumer": true
+    },
+    "control": {
+      "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+      "player_component_sha256": "0540a6e323a84a2d08a05573c39559e0a809fe60277ff342bd224477c7c0033a",
+      "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+      "player_binary_sha256": "1accdbaa5268ab9a281c3b1110bda241bf495a89eebe152053422af21f548ab4",
+      "dds_profile_sha256": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+      "source_commit": "24fd3623776fc7f35486cd16db33e0b734c5a42d",
+      "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides"
+    }
+  },
+  {
+    "name": "native_shared_mono_split_share_memfd_04",
+    "mode": "mono_imu",
+    "transport": "memfd",
+    "repeat": 1,
+    "index": 4,
+    "cpu_s": 111.78999999999999,
+    "vins_cpu_s": 109.97,
+    "source_cpu_s": 1.82,
+    "playback_wall_s": 188.15204346999963,
+    "drain_s": 6.0088663669994276,
+    "ate_rmse_m": 0.1855643673102663,
+    "rpe_rmse_m": 0.0029379608528768597,
+    "vins_pss_mib": 62.4189453125,
+    "source_pss_mib": 16.7041015625,
+    "vins_rss_mib": 73.1640625,
+    "source_rss_mib": 27.03515625,
+    "pool_waits": 0,
+    "poses": 1831,
+    "matched_poses": 1819,
+    "pixel_timestamp_sha256": {
+      "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+      "img1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_matches_consumer": true
+    },
+    "control": {
+      "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+      "player_component_sha256": "0540a6e323a84a2d08a05573c39559e0a809fe60277ff342bd224477c7c0033a",
+      "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+      "player_binary_sha256": "1accdbaa5268ab9a281c3b1110bda241bf495a89eebe152053422af21f548ab4",
+      "dds_profile_sha256": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+      "source_commit": "24fd3623776fc7f35486cd16db33e0b734c5a42d",
+      "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides"
+    }
+  }
+]

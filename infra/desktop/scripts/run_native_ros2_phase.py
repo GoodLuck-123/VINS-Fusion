@@ -23,11 +23,12 @@ PRESETS = {
 }
 
 
-def freeze():
+def freeze(extra_paths=()):
     paths = subprocess.check_output(['git', 'ls-files', '-z', 'camera_models', 'vins_estimator',
             'loop_fusion', 'global_fusion', 'ros2', 'config/euroc', 'infra/desktop/scripts', 'infra/desktop/uv.lock'],
             cwd=REPO).decode().split('\0')
     files = [REPO / p for p in paths if p] + [Path(__file__).resolve()]
+    files += list(extra_paths)
     files += list((WORKSPACE / '.infra/ros2_ws/install/lib').rglob('*.so'))
     files += [WORKSPACE / '.infra/ros2_ws/install/lib/vins/vins_node',
               WORKSPACE / '.infra/ros2_ws/install/lib/vins/euroc_player_node']
@@ -43,6 +44,9 @@ def main():
     args = parser.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9_-]+', args.prefix):
         parser.error('Use a simple result prefix without path separators')
+    profile_paths = [args.dds_profile.resolve()] if args.dds_profile else []
+    if profile_paths and not profile_paths[0].is_file():
+        parser.error('DDS profile must be an existing file')
     trials = []
     for i, (mode, deployment, image_mode, transport, pmu) in enumerate(PRESETS[args.phase], 1):
         trials.append(dict(name=f'{args.prefix}_{mode.split("_")[0]}_{deployment}_{image_mode}_{transport}_{i:02d}',
@@ -53,7 +57,7 @@ def main():
     assert_quiet()
     directory = WORKSPACE / 'results/ubuntu22-reproduction' / args.prefix
     directory.mkdir(exist_ok=False)
-    state = dict(status='running', trials=trials, completed=[], frozen_files=freeze())
+    state = dict(status='running', trials=trials, completed=[], frozen_files=freeze(profile_paths))
     env = os.environ.copy()
     evaluation_env = env.copy()
     evaluation_env['UV_CACHE_DIR'] = str(WORKSPACE / '.infra/uv-cache')
@@ -61,7 +65,7 @@ def main():
     try:
         for trial in trials:
             assert_quiet()
-            if freeze() != state['frozen_files']:
+            if freeze(profile_paths) != state['frozen_files']:
                 raise RuntimeError('Source or native binaries changed during the phase')
             state['current'] = trial
             (directory / 'state.json').write_text(json.dumps(state, indent=2) + '\n')
@@ -100,7 +104,7 @@ def main():
             if trial['pmu'] and run['cpu_perf_counters']['errors']:
                 raise RuntimeError('PMU counter unavailable')
             state['completed'].append(str(output))
-            if freeze() != state['frozen_files']:
+            if freeze(profile_paths) != state['frozen_files']:
                 raise RuntimeError('Source or native binaries changed during replay')
             (directory / 'state.json').write_text(json.dumps(state, indent=2) + '\n')
             time.sleep(10)

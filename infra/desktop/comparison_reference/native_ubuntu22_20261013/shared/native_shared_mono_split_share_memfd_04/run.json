@@ -1,0 +1,151 @@
+{
+  "success": true,
+  "rate": 1.0,
+  "mode": "mono_imu_vio",
+  "deployment": "split",
+  "image_transport": "memfd",
+  "image_mode": "share",
+  "rmw": "rmw_cyclonedds_cpp",
+  "resource_scope": "VINS (+ container if loaded)",
+  "config_file": "euroc_mono_imu_config.yaml",
+  "vins_component_sha256": "06e89fde98eecf5efee938f80523eee4a071c3c187a174a2400def6a373cc615",
+  "source_commit": "24fd3623776fc7f35486cd16db33e0b734c5a42d",
+  "source_modified": false,
+  "binary_sha256": "ceca5be26a4168d422c4ac63bac09633a57210a8746e54499307867476a1202a",
+  "ros_domain_id": "42",
+  "start_utc": "2026-10-13T09:38:32Z",
+  "cyclonedds_uri": "file:///home/eric/projects/VINS-Fusion/infra/desktop/cyclonedds_native.xml",
+  "dds_profile_sha256": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+  "player_component_sha256": "0540a6e323a84a2d08a05573c39559e0a809fe60277ff342bd224477c7c0033a",
+  "verification": "Full per-frame pixel SHA256 and original header timestamp on both sides",
+  "player_binary_sha256": "1accdbaa5268ab9a281c3b1110bda241bf495a89eebe152053422af21f548ab4",
+  "vins_pid": 163524,
+  "player_pid": 163552,
+  "replay_result_code": 0,
+  "playback_exit_code": 0,
+  "playback_wall_s": 188.15204346999963,
+  "settling_wait_s": 6.0088663669994276,
+  "resources": {
+    "measurement_wall_s": 193.1589924330001,
+    "logical_cpus": 16,
+    "cpu_time_s": 109.97,
+    "peak_sampled_rss_kib": 74920,
+    "kernel_peak_rss_kib": 75600,
+    "peak_threads": 43,
+    "mean_cpu_percent_one_core": 56.93237400694385,
+    "sampled_cpu_percent_one_core": {
+      "p50": 61.93145856650897,
+      "p95": 64.93582998207677,
+      "p99": 65.9355424990975
+    },
+    "minor_faults": 6907304,
+    "major_faults": 0,
+    "read_bytes": 0,
+    "write_bytes": 688128,
+    "rchar": 11,
+    "wchar": 394871,
+    "main_voluntary_switches": 36873,
+    "main_involuntary_switches": 86,
+    "peak_sampled_pss_kib": 63917,
+    "peak_sampled_private_dirty_kib": 42172,
+    "host_observations": {
+      "loopback_rx_bytes": 20162850,
+      "loopback_tx_bytes": 20162850,
+      "cpu_some_stall_us": 75142,
+      "cpu_full_stall_us": 0,
+      "memory_some_stall_us": 11,
+      "memory_full_stall_us": 10,
+      "io_some_stall_us": 31930,
+      "io_full_stall_us": 31383
+    },
+    "scope": "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+  },
+  "source_resources": {
+    "measurement_wall_s": 193.15780223000002,
+    "logical_cpus": 16,
+    "cpu_time_s": 1.82,
+    "peak_sampled_rss_kib": 27684,
+    "kernel_peak_rss_kib": 27136,
+    "peak_threads": 11,
+    "mean_cpu_percent_one_core": 0.9422347836785074,
+    "sampled_cpu_percent_one_core": {
+      "p50": 0.9987897365130968,
+      "p95": 1.9978573996293811,
+      "p99": 1.9980691312090058
+    },
+    "minor_faults": 690869,
+    "major_faults": 0,
+    "read_bytes": 0,
+    "write_bytes": 8192,
+    "rchar": 1348613492,
+    "wchar": 351,
+    "main_voluntary_switches": 17,
+    "main_involuntary_switches": 0,
+    "peak_sampled_pss_kib": 17105,
+    "peak_sampled_private_dirty_kib": 8096,
+    "host_observations": {
+      "loopback_rx_bytes": 20162850,
+      "loopback_tx_bytes": 20162850,
+      "cpu_some_stall_us": 75142,
+      "cpu_full_stall_us": 0,
+      "memory_some_stall_us": 11,
+      "memory_full_stall_us": 10,
+      "io_some_stall_us": 31930,
+      "io_full_stall_us": 31383
+    },
+    "scope": "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+  },
+  "combined_cpu_time_s": 111.78999999999999,
+  "combined_mean_cpu_percent_one_core": 57.874602984779976,
+  "combined_scope": "Two independent native processes: VINS and typed EuRoC replay; initialization before readiness excluded for VINS. Same measurement end, source begins at launch.",
+  "peak_sampled_rss_kib": 74920,
+  "trajectory_poses": 1831,
+  "first_timestamp_ns": 1403636580813555456,
+  "last_timestamp_ns": 1403636763813555456,
+  "vins_exit_code": 0,
+  "sensor_counts": {
+    "img0": 3682,
+    "img1": 0,
+    "imu": 36820,
+    "processed": 3682
+  },
+  "image_ingress": {
+    "mode": "share",
+    "shared": 3682,
+    "materializations": 0,
+    "bytes": 0
+  },
+  "pixel_timestamp_sha256": {
+    "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+    "img1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_matches_consumer": true
+  },
+  "shared_writer": {
+    "backend": "memfd",
+    "frames": 3682,
+    "source_materializations": 3682,
+    "source_bytes": 1329054720,
+    "waits": 0,
+    "reuses": 3680,
+    "outstanding": 0,
+    "failed": 0
+  },
+  "shared_reader": {
+    "backend": 1,
+    "frames": 3682,
+    "verified": 3682,
+    "failed": 0
+  },
+  "shared_peers": [
+    {
+      "local_pid": 163524,
+      "peer_pid": 163552,
+      "uid": 1000
+    },
+    {
+      "local_pid": 163552,
+      "peer_pid": 163524,
+      "uid": 1000
+    }
+  ]
+}
