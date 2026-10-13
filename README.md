@@ -177,6 +177,8 @@ For commercial inquiries, please contact Shaojie Shen <eeshaojieATust.hk>.
 
 ## Desktop baseline and deployment plan
 
+- [Current handoff](docs/00_HANDOFF.md)
+- [Native Ubuntu reproduction status](docs/07_NATIVE_UBUNTU_REPRODUCTION.md)
 - [RK3588 deployment task brief](docs/RK3588_DEPLOYMENT_TASK_BRIEF.md)
 - [Ubuntu 22.04 ROS 1 baseline setup](docs/UBUNTU22_ROS1_BASELINE_SETUP.md)
 - [EuRoC baseline reference report](docs/BASELINE_REFERENCE_REPORT.md)

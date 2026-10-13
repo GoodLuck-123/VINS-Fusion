@@ -1,0 +1,5 @@
+{
+  "status": "interrupted",
+  "reason": "Background child disappeared after launching tool shell exited; no VIO trial started",
+  "checked_utc": "2026-10-13T07:44:22Z"
+}

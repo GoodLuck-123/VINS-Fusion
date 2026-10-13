@@ -1,0 +1,13 @@
+# 接手与当前状态
+
+更新日期：2026-10-13
+
+当前任务是在物理 Ubuntu 22.04 主机复现 WSL 已完成的全部桌面实验，按里程碑更新文档并分别提交。先读 [复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)；当前 checkout 为 `master`，ROS 1 结果直接提交在此；后续 ROS 2 直接使用 `ros2-humble` 最新提交，不另建复现分支
+
+ROS 1 锁定依赖已重新安装，OpenCV 4.2.0 / Ceres 1.14.0 / cv_bridge / 四个 package 已完成源码构建。四轮完整 EuRoC 回放、采样和评估已通过；同一二进制、各一次初始化、无重置/配对丢弃、末帧覆盖。新里程碑为 `baseline-ros1-native-ubuntu22-v1`，原版清理 abort 单列记录
+
+本分支的详细环境入口是 [ROS 1 搭建说明](UBUNTU22_ROS1_BASELINE_SETUP.md)。本分支环境及实测页已替换为原生 Ubuntu 结果；统一实测在 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
+
+命令从仓库根目录执行。ROS/C++ 前缀与 Python 评估环境分开；安装、数据和完整日志在父目录 `.infra/`、`data/`、`results/`，不要在根目录建软链接。每次切换源码先重建，再在新 shell source 对应环境
+
+历史分支、tag、归档及 SHA256 保留。复现成功前不覆盖冻结数据、不写“完成”，失败现场保留；无需重启神经网络或板端实验。本轮没有远端 push 授权

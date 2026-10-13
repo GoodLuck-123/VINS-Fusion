@@ -1,0 +1,11 @@
+{
+  "failure_scope": "phase02 second trial failed before VIO startup; phase02 first trial passed validation",
+  "native_processes_after_failure": [],
+  "fix": "Enable SO_REUSEADDR only for ROS master port precheck",
+  "checks": {
+    "unused_port_rebind": true,
+    "active_listener_rejected": true
+  },
+  "algorithm_changed": false,
+  "successful_first_trial_preserved": true
+}

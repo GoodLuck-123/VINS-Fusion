@@ -1,0 +1,13 @@
+{
+  "complete_playback": true,
+  "last_image_covered": true,
+  "tracking_resets_or_pairing_drops": false,
+  "shutdown": "original unjoined sync thread abort (-6)",
+  "input_counts": {
+    "/imu0": 36820,
+    "/cam1/image_raw": 3682,
+    "/cam0/image_raw": 3682,
+    "/leica/position": 3099
+  },
+  "input_count_scope": "bag records, not instrumented ROS 1 callback counters"
+}

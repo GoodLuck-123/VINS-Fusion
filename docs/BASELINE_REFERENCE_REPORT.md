@@ -1,48 +1,26 @@
-# VINS-Fusion / Ubuntu 22.04 原版参照实测报告
+# 原生 Ubuntu 22.04 ROS 1 参照
 
-日期：2026-10-09
+日期：2026-10-13
 
-源码：`be55a937a57436548ddfb1bd324bc1e9a9e828e0`，原算法源码未修改；仓库新增环境设施和文档。
+本报告已替换为当前物理主机的实测。Ubuntu 22.04.5、Linux 6.8.0-138-generic、Ryzen 7 9800X3D；ROS Noetic 与 C++ 依赖隔离，OpenCV 4.2.0 / Ceres 1.14.0 从源码重建。源码参照为 master `f85e0f1`，VINS 算法、标定和参数未修改
 
-环境：工程内 ROS Noetic / OpenCV 4.2.0 / Ceres 1.14.0；Python 评估由 uv 管理。
+MH_01_easy 双目 IMU、开环 VIO；每轮完整 1 倍目标回放，输入为 3682 对图像和 36820 条 IMU，bag SHA256 为 `57f440ccd68ec8dc8f9461269f5909656b86198bac3adfd677b1fcc7a1428fa9`
 
-模式：原版 EuRoC 双目 IMU VIO；无回环；原算法参数与 MEI 标定保持不变。
+| 实验 | poses / 真值匹配 | ATE RMSE (m) | 相邻位姿 RPE RMSE (m) | VINS CPU (s) |
+| --- | ---: | ---: | ---: | ---: |
+| native_MH01_baseline_r01 | 1831 / 1819 | 0.252745 | 0.003083 | 163.33 |
+| native_MH01_baseline_r02 | 1831 / 1819 | 0.252745 | 0.003083 | 163.50 |
+| native_MH01_metrics_r01 | 1831 / 1819 | 0.252745 | 0.003083 | 163.91 |
+| native_MH01_metrics_r02 | 1831 / 1819 | 0.252745 | 0.003083 | 163.31 |
 
-## 数据与评估
+四轮使用同一个二进制，均初始化一次、无重置或配对丢弃，轨迹覆盖末帧。evo 以 IMU/body 真值作 SE(3) 对齐，不校正尺度；真值时间略短于末尾，匹配率约 99.34%。RPE 为相邻位姿间隔，约 0.1 秒
 
-数据：MH_01_easy；3682 对图像、36820 条 IMU；双目 header 时间跨度 184.05 s。
+回放进程均退出 0，VINS 清理均退出 −6：原版同步线程未 join 的 abort 仍保留，不能把功能完整性验收称为干净退出或长期稳定性通过。ROS 1 未添加回调计数器，输入计数为 bag 记录，不能声明每个消费端回调都已计数
 
-bag SHA256：`57f440ccd68ec8dc8f9461269f5909656b86198bac3adfd677b1fcc7a1428fa9`。
+CPU 为 VINS 全部线程累计秒，RSS/PSS 各轮峰值、回放/排空及失败记录统一见 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)。外部 rosbag 与 roscore 未纳入本次资源表，不能用 VINS 数值代表整条链或全机
 
-真值：OpenVINS 保存的 EuRoC IMU/body 状态 CSV，校验值见 [baseline-assets.sha256](../infra/desktop/baseline-assets.sha256)。
+![第一轮轨迹](../infra/desktop/comparison_reference/native_ubuntu22_20261013/ros1/native_MH01_baseline_r01/trajectory.png)
 
-评估：evo，SE(3) 对齐，尺度固定 1，最大匹配差 0.01 s。
+[本机证据与 SHA256](../infra/desktop/comparison_reference/native_ubuntu22_20261013/ros1/)包含配置、轨迹、评估、逐秒资源和验收摘要；完整日志在 `../results/ros1/`。历史 WSL 报告可从 `baseline-ros1-euroc-v1` 查阅，旧归档与冻结哈希保持原样
 
-## 实测结果
-
-| 实验 | poses | 匹配率 | ATE RMSE (m) | 相邻位姿 RPE RMSE (m) | RSS 采样峰值 (MiB) |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| [MH_01_easy_run1](../infra/desktop/baseline_reference/MH_01_easy_run1/) | 1831 | 99.34% | 0.253458 | 0.003085 | 74.84 |
-| [MH_01_easy_run2](../infra/desktop/baseline_reference/MH_01_easy_run2/) | 1831 | 99.34% | 0.252677 | 0.003083 | 76.99 |
-
-两轮均以 1 倍速完整回放；播放进程退出 0；节点在回放期间持续运行。
-轨迹均覆盖最后一帧图像；日志未见双目配对丢弃或 failure detection。
-
-匹配率不足 100% 的部分主要位于状态真值未覆盖的序列末尾，不等同输入丢帧。
-ATE 为本机原配置参照，不是跨平台性能结论；两轮不足以建立统计容差。
-相邻位姿 RPE 的间隔约 0.1 s，不是固定 1 s 的误差。
-
-![第一轮轨迹与位置误差](../infra/desktop/baseline_reference/MH_01_easy_run1/trajectory.png)
-
-## 原版行为与复现入口
-
-原版生命周期缺陷：清理时未 join 的 sync_thread 触发 terminate/abort，vins 退出 -6。
-完整回放成功与清理退出状态分别记录，未修改原版来隐藏此问题。
-
-小体积参照快照：[baseline_reference/](../infra/desktop/baseline_reference/)，包含轨迹、配置、评估、环境、校验清单。
-
-全部原始实验日志：运行工作区内的 `results/ros1/MH_01_easy_run1` 和 `MH_01_easy_run2`，不纳入 Git。
-
-环境重建说明：[Ubuntu 22.04 搭建说明](UBUNTU22_ROS1_BASELINE_SETUP.md)。
-
-后续迁移使用相同数据/配置进行 A/B；先扩大原版重复和序列，再确定精度容差。
+新 annotated tag 为 `baseline-ros1-native-ubuntu22-v1`，提交位于 master。后续步骤见 [复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)，环境入口见 [搭建说明](UBUNTU22_ROS1_BASELINE_SETUP.md)
