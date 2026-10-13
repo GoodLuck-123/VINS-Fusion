@@ -60,3 +60,7 @@ phase02 首轮回放与评估通过，第二轮在启动前的端口预检查返
 余下三轮由 `vins-native-ros1-phase03.service` 串行补跑，`run_native_ros1_reproduction.sh` 可接收显式补跑名称。当前服务检查命令为 `systemctl --user status vins-native-ros1-phase03.service`，阶段事件在 `../results/ubuntu22-reproduction/ros1-phase03/`
 
 phase03 已完成并正常通知，四轮成功结果全部核验；VINS 二进制哈希一致，各有一次初始化、1831 个位姿、1819 个真值匹配，无重置/配对丢弃，末帧覆盖完整。回放正常结束，ROS 1 清理 abort 如实记录；主机无残留 ROS/VINS 进程及 master 监听。旧实验分支仅是本轮最初的误建入口，没有复现 commit，已将未提交改动转回 master
+
+补跑日志审计：phase03 复用了原控制台日志路径，使 phase02 的第二轮启动 stderr 被覆盖；旧归档中的该日志为空，保留原冻结清单，不伪装成完整 stderr。失败事件仍在，当时读取到的 traceback 按聊天工具输出补充为[注明来源的摘录](../infra/desktop/comparison_reference/native_ubuntu22_20261013/ros1_startup_failure_audit/)。四个成功轮次的轨迹、采样、验收和哈希不受影响
+
+正式阶段执行器现将控制台日志放入每个唯一阶段目录的 trials 子目录，补跑不再复用前次日志。该修正只改变日志路径，不改回放、算法或二进制

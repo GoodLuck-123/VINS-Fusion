@@ -3,7 +3,7 @@
 set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/workspace_root.sh"
 cd "$VINS_REPO_DIR"
-batch="$VINS_WORKSPACE_DIR/results/ubuntu22-reproduction/ros1"
+batch="${VINS_PHASE_DIRECTORY:-$VINS_WORKSPACE_DIR/results/ubuntu22-reproduction/ros1}/trials"
 mkdir -p "$batch"
 bash -c 'source infra/desktop/scripts/ros1_env.sh; python infra/desktop/scripts/verify_native_environment.py' > "$batch/native-check.log" 2>&1
 UV_CACHE_DIR="$VINS_WORKSPACE_DIR/.infra/uv-cache" uv run --project "$VINS_DESKTOP_DIR" --locked python \

@@ -24,7 +24,9 @@ event = dict(command=command, pid=os.getpid(), status='running',
 (directory / 'state.json').write_text(json.dumps(event, indent=2) + '\n')
 try:
     with (directory / 'console.log').open('x') as log:
-        result = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT)
+        env = os.environ.copy()
+        env['VINS_PHASE_DIRECTORY'] = str(directory)
+        result = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, env=env)
     event.update(status='complete' if result.returncode == 0 else 'failed', exit_code=result.returncode)
 except BaseException as error:
     event.update(status='failed', reason=str(error))
