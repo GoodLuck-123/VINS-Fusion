@@ -1,0 +1,10 @@
+USE_IMU: 1
+IMU_TOPIC: /imu0
+result path /home/eric/projects/results/ubuntu22-reproduction/feature-probe01/vio.csv
+[WARN] [1791880704.726126389] [vins_estimator]:  fix extrinsic param 
+[INFO] [1791880704.726199378] [vins_estimator]: Synchronized sensors, fix time offset: 0
+[INFO] [1791880704.726215068] [vins_estimator]: ROW: 480 COL: 752 
+[INFO] [1791880704.726258160] [vins_estimator]: reading paramerter of camera ../results/ubuntu22-reproduction/feature-probe01/cam0_mei.yaml
+[INFO] [1791880704.726370304] [vins_estimator]: reading paramerter of camera ../results/ubuntu22-reproduction/feature-probe01/cam0_mei.yaml
+camera number 1
+PASS mono: ten real EuRoC frames, identical copy/share feature IDs and observations

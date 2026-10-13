@@ -67,3 +67,51 @@ CPU 秒为各进程全部线程累计值；RSS/PSS 是各进程独立采样峰�
 按用户要求在最新 ros2-humble `b250dc0` 的入口与参数上复现最小迁移里程碑行为；该实现已有组件/owner 框架，不能说它就是历史 `baseline-ros2-humble-v1` 的二进制。新 annotated tag 为 `baseline-ros2-native-ubuntu22-v1`，提交直接位于 ros2-humble
 
 扩展入口冒烟通过：loop_fusion_node、global_fusion_node 启动存活并 SIGINT 退出 0，两个 KITTI 入口缺少参数时退出 1；VINS 启动/退出由两轮完整回放验证。源码和记录见本机 ROS 2 参照快照的 entrypoints_smoke 子目录，仅接口检查，不等于回环/GNSS/KITTI 数据验收
+
+<!-- native-phase:components -->
+## 组件与图像 owner：八轮单目/双目对照（2026-10-13）
+
+| 实验 | 模式 / 部署 / 入口 | poses / 匹配 | ATE RMSE (m) | RPE RMSE (m) | 回放 / 排空 (s) | VINS 退出 |
+| --- | --- | ---: | ---: | ---: | --- | ---: |
+| native_components_stereo_standalone_copy_ros_01 | stereo_imu_vio / standalone / ros/copy | 1831 / 1819 | 0.252745 | 0.003083 | 187.24 / 6.00 | 0 |
+| native_components_stereo_standalone_share_ros_02 | stereo_imu_vio / standalone / ros/share | 1831 / 1819 | 0.252745 | 0.003083 | 187.23 / 6.00 | 0 |
+| native_components_stereo_standalone_share_ros_03 | stereo_imu_vio / standalone / ros/share | 1831 / 1819 | 0.252745 | 0.003083 | 188.23 / 6.00 | 0 |
+| native_components_stereo_standalone_copy_ros_04 | stereo_imu_vio / standalone / ros/copy | 1831 / 1819 | 0.252745 | 0.003083 | 188.22 / 6.00 | 0 |
+| native_components_mono_standalone_copy_ros_05 | mono_imu_vio / standalone / ros/copy | 1831 / 1819 | 0.185564 | 0.002938 | 188.21 / 6.00 | 0 |
+| native_components_mono_standalone_share_ros_06 | mono_imu_vio / standalone / ros/share | 1831 / 1819 | 0.185564 | 0.002938 | 188.21 / 6.01 | 0 |
+| native_components_stereo_composed_copy_ros_07 | stereo_imu_vio / composed / ros/copy | 1831 / 1819 | 0.252745 | 0.003083 | 188.88 / 6.00 | 0 |
+| native_components_stereo_composed_share_ros_08 | stereo_imu_vio / composed / ros/share | 1831 / 1819 | 0.252745 | 0.003083 | 188.80 / 6.01 | 0 |
+
+CPU 秒为各进程全部线程累计值；RSS/PSS 是各进程独立采样峰值，不能相加当作同时峰值。回放、排空分别列出，完整处理不等于实时验收
+
+| 实验 | VINS CPU (s) | 源端 CPU (s) | 合计 CPU (s) | VINS RSS / PSS (MiB) | 源端 RSS / PSS (MiB) |
+| --- | ---: | ---: | ---: | --- | --- |
+| native_components_stereo_standalone_copy_ros_01 | 162.65 | 未采样 | 仅 VINS | 96.22 / 82.47 | 未采样 |
+| native_components_stereo_standalone_share_ros_02 | 162.24 | 未采样 | 仅 VINS | 94.70 / 80.95 | 未采样 |
+| native_components_stereo_standalone_share_ros_03 | 161.52 | 未采样 | 仅 VINS | 92.27 / 80.99 | 未采样 |
+| native_components_stereo_standalone_copy_ros_04 | 159.07 | 未采样 | 仅 VINS | 96.75 / 83.09 | 未采样 |
+| native_components_mono_standalone_copy_ros_05 | 109.67 | 未采样 | 仅 VINS | 88.37 / 74.61 | 未采样 |
+| native_components_mono_standalone_share_ros_06 | 108.08 | 未采样 | 仅 VINS | 84.09 / 74.05 | 未采样 |
+| native_components_stereo_composed_copy_ros_07 | 164.33 | 未采样 | 仅 VINS | 77.75 / 70.68 | 未采样 |
+| native_components_stereo_composed_share_ros_08 | 165.48 | 未采样 | 仅 VINS | 77.08 / 69.97 | 未采样 |
+
+[本阶段证据](../infra/desktop/comparison_reference/native_ubuntu22_20261013/components/)
+
+八轮完整处理输入、末帧、初始化/重置及退出验收全部通过，各输出 1831 个位姿、1819 个真值匹配。同模式轨迹 CSV 的 SHA256 逐轮完全一致，单目 ATE/RPE 为 0.185564 / 0.002938 m，双目为 0.252745 / 0.003083 m；没有观察到 copy/share 精度变化
+
+| 实验 | 共享图像数 | 入口物化次数 | 入口物化 (MiB) |
+| --- | ---: | ---: | ---: |
+| native_components_stereo_standalone_copy_ros_01 | 0 | 14728 | 5069.94 |
+| native_components_stereo_standalone_share_ros_02 | 7364 | 0 | 0.00 |
+| native_components_stereo_standalone_share_ros_03 | 7364 | 0 | 0.00 |
+| native_components_stereo_standalone_copy_ros_04 | 0 | 14728 | 5069.94 |
+| native_components_mono_standalone_copy_ros_05 | 0 | 7364 | 2534.97 |
+| native_components_mono_standalone_share_ros_06 | 3682 | 0 | 0.00 |
+| native_components_stereo_composed_copy_ros_07 | 0 | 14728 | 5069.94 |
+| native_components_stereo_composed_share_ros_08 | 7364 | 0 | 0.00 |
+
+share 消除了原生灰度入口的显式物化，copy 保留历史入口。两轮双目 standalone copy CPU 均值 160.86 秒，share 为 161.88 秒；单目单次 copy/share 为 109.67 / 108.08 秒；同进程 composed 为 164.33 / 165.48 秒。**入口减拷贝成立，当前少量重复不支持整机稳定提速结论**。同一部署/模式/RMW 内比较，composed 含数据源和容器，standalone 仅 VINS，不能跨范围直接算组件化加速比
+
+composed 两轮各六组起始消息/像素地址核验通过，源端与订阅端一致，入口视图的共享或复制符合参数；全序列共享/物化计数另列上表。只读 owner、stride/回退、单目/双目前端十帧特征一致性与两种 RMW 组件生命周期探针已归档；局部 ASan 不覆盖全部依赖，不代表长期泄漏验收
+
+本阶段提交直接位于 ros2-humble，新 annotated tag 为 `milestone-ros2-components-native-ubuntu22-v1`。VINS 组件二进制与前一阶段相同，未改算法、标定、依赖或默认线程参数

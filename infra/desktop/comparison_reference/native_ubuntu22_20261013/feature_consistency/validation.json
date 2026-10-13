@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "source_commit": "d198095",
+  "algorithm_binary_unchanged": true,
+  "modes": [
+    "mono_imu",
+    "stereo_imu"
+  ],
+  "real_EuRoC_image_pairs": 10,
+  "features_checked": [
+    "feature IDs",
+    "camera IDs",
+    "7D observations and velocity"
+  ],
+  "absolute_tolerance": 1e-12,
+  "owner_rule": "retains previous left owner until next trackImage returns",
+  "initial_probe_compile_failure": "missing explicit Ceres header include path; fixed only in local probe CMake",
+  "scope": "No IMU prediction branch or full-project ASan coverage; full-sequence regression is separate"
+}

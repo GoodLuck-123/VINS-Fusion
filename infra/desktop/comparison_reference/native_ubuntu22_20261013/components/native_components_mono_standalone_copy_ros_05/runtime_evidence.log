@@ -1,0 +1,3 @@
+[INFO] [1791881769.859903052] [vins_estimator]: Initialization finish!
+sensor_counts img0=3682 img1=0 imu=36820 processed=3682
+image_ingress mode=copy shared=0 materializations=7364 bytes=2658109440

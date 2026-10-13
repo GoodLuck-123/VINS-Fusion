@@ -1,0 +1,13 @@
+{
+  "successful_trials": 8,
+  "all_inputs_complete": true,
+  "initializations_each": 1,
+  "resets_or_pair_drops": 0,
+  "last_image_covered_each": true,
+  "poses_each": 1831,
+  "matched_each": 1819,
+  "exit_codes_all_zero": true,
+  "within_mode_trajectory_bytes_equal": true,
+  "composed_pointer_checks_each": 6,
+  "component_binary_unchanged": true
+}

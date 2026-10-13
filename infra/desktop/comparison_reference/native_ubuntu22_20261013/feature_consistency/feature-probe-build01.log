@@ -1,0 +1,48 @@
+-- Found ament_cmake: 1.3.12 (/home/eric/projects/.infra/ros2/share/ament_cmake/cmake)
+-- Found cv_bridge: 3.2.1 (/home/eric/projects/.infra/ros2_ws/install/share/cv_bridge/cmake)
+-- Found rosidl_generator_c: 3.1.6 (/home/eric/projects/.infra/ros2/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.6 (/home/eric/projects/.infra/ros2/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.6 (/home/eric/projects/.infra/ros2/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rclcpp: 16.0.13 (/home/eric/projects/.infra/ros2/share/rclcpp/cmake)
+-- Checking for module 'yaml-0.1'
+--   Found yaml-0.1, version 0.2.5
+-- Found rmw_implementation_cmake: 6.1.2 (/home/eric/projects/.infra/ros2/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.7 (/home/eric/projects/.infra/ros2/share/rmw_fastrtps_cpp/cmake)
+-- Found FastRTPS: /home/eric/projects/.infra/ros2/include
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found camera_models: 0.1.0 (/home/eric/projects/.infra/ros2_ws/install/share/camera_models/cmake)
+-- Found installed version of Eigen: /home/eric/projects/.infra/ros2/share/eigen3/cmake
+-- Found required Ceres dependency: Eigen version 3.3.9 in /home/eric/projects/.infra/ros2/include/eigen3
+-- Found installed version of glog: /home/eric/projects/.infra/ros2/lib/cmake/glog
+-- Detected glog version: 0.6.0
+-- Found required Ceres dependency: glog
+-- Found installed version of gflags: /home/eric/projects/.infra/ros2/lib/cmake/gflags
+-- Detected gflags version: 2.2.2
+-- Found required Ceres dependency: gflags
+-- Ceres version 1.14.0 detected here: /home/eric/projects/.infra/legacy_ros2 was built with C++11. Ceres target will add C++11 flags to compile options for targets using it.
+-- Found Ceres version: 1.14.0 installed in: /home/eric/projects/.infra/legacy_ros2 with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, CXSparse, SchurSpecializations, C++11, OpenMP, Multithreading]
+CMake Warning (dev) at /home/eric/projects/.infra/ros2_ws/install/share/camera_models/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package):
+  Policy CMP0167 is not set: The FindBoost module is removed.  Run "cmake
+  --help-policy CMP0167" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+Call Stack (most recent call first):
+  /home/eric/projects/.infra/ros2_ws/install/share/camera_models/cmake/camera_modelsConfig.cmake:41 (include)
+  CMakeLists.txt:21 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/eric/projects/.infra/build/native-probes
+[1/2] Building CXX object CMakeFiles/native_feature_probe.dir/native_feature_probe.cpp.o
+FAILED: [code=1] CMakeFiles/native_feature_probe.dir/native_feature_probe.cpp.o 
+/home/eric/projects/.infra/ros2/bin/x86_64-conda-linux-gnu-c++ -DDEFAULT_RMW_IMPLEMENTATION=rmw_fastrtps_cpp -I/home/eric/projects/VINS-Fusion/.local-tests/../vins_estimator/include -I/home/eric/projects/VINS-Fusion/.local-tests/../ros2/include -I/home/eric/projects/.infra/ros2_ws/install/include -isystem /home/eric/projects/.infra/legacy_ros2/include/opencv4 -isystem /home/eric/projects/.infra/ros2_ws/install/include/cv_bridge -isystem /home/eric/projects/.infra/ros2/include/rclcpp -isystem /home/eric/projects/.infra/ros2/include/sensor_msgs -isystem /home/eric/projects/.infra/ros2/include/ament_index_cpp -isystem /home/eric/projects/.infra/ros2/include/libstatistics_collector -isystem /home/eric/projects/.infra/ros2/include/builtin_interfaces -isystem /home/eric/projects/.infra/ros2/include/rosidl_runtime_c -isystem /home/eric/projects/.infra/ros2/include/rcutils -isystem /home/eric/projects/.infra/ros2/include/rosidl_typesupport_interface -isystem /home/eric/projects/.infra/ros2/include/rosidl_runtime_cpp -isystem /home/eric/projects/.infra/ros2/include/rosidl_typesupport_fastrtps_cpp -isystem /home/eric/projects/.infra/ros2/include/rmw -isystem /home/eric/projects/.infra/ros2/include/rosidl_typesupport_fastrtps_c -isystem /home/eric/projects/.infra/ros2/include/rosidl_typesupport_introspection_c -isystem /home/eric/projects/.infra/ros2/include/rosidl_typesupport_introspection_cpp -isystem /home/eric/projects/.infra/ros2/include/rcl -isystem /home/eric/projects/.infra/ros2/include/rcl_interfaces -isystem /home/eric/projects/.infra/ros2/include/rcl_logging_interface -isystem /home/eric/projects/.infra/ros2/include/rcl_yaml_param_parser -isystem /home/eric/projects/.infra/ros2/include/tracetools -isystem /home/eric/projects/.infra/ros2/include/rcpputils -isystem /home/eric/projects/.infra/ros2/include/statistics_msgs -isystem /home/eric/projects/.infra/ros2/include/rosgraph_msgs -isystem /home/eric/projects/.infra/ros2/include/rosidl_typesupport_cpp -isystem /home/eric/projects/.infra/ros2/include/rosidl_typesupport_c -isystem /home/eric/projects/.infra/ros2/include/geometry_msgs -isystem /home/eric/projects/.infra/ros2/include/std_msgs -isystem /home/eric/projects/.infra/ros2/include/eigen3 -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/eric/projects/.infra/ros2/include -g -std=gnu++17 -O1 -g -UNDEBUG -fsanitize=address -fno-omit-frame-pointer -fno-pie -MD -MT CMakeFiles/native_feature_probe.dir/native_feature_probe.cpp.o -MF CMakeFiles/native_feature_probe.dir/native_feature_probe.cpp.o.d -o CMakeFiles/native_feature_probe.dir/native_feature_probe.cpp.o -c /home/eric/projects/VINS-Fusion/.local-tests/native_feature_probe.cpp
+In file included from /home/eric/projects/VINS-Fusion/.local-tests/../vins_estimator/src/featureTracker/feature_tracker.h:23,
+                 from /home/eric/projects/VINS-Fusion/.local-tests/native_feature_probe.cpp:2:
+/home/eric/projects/.infra/ros2_ws/install/include/camodocal/camera_models/CataCamera.h:7:10: fatal error: ceres/rotation.h: No such file or directory
+    7 | #include "ceres/rotation.h"
+      |          ^~~~~~~~~~~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.

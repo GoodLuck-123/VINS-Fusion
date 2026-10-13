@@ -1,0 +1,19 @@
+{
+  "sensor_counts": {
+    "img0": 3682,
+    "img1": 0,
+    "imu": 36820,
+    "processed": 3682
+  },
+  "initializations": 1,
+  "tracking_resets": 0,
+  "pair_drops": 0,
+  "poses": 1831,
+  "matched": 1819,
+  "last_image_covered": true,
+  "exit_codes": [
+    0,
+    0
+  ],
+  "pointer_checks": []
+}

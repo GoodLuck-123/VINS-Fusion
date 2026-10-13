@@ -18,7 +18,7 @@ Ubuntu 22.04.5、Linux 6.8.0-138-generic、AMD Ryzen 7 9800X3D，8 核 16 线程
 | --- | --- | ---: | --- |
 | `baseline-ros1-euroc-v1` | 双目 IMU 两轮原版参照，加两轮 ROS 1/2 对照资源采样 | 4 | 已完成，`baseline-ros1-native-ubuntu22-v1` |
 | `baseline-ros2-humble-v1` | 独立节点、双目 IMU、copy，保持迁移前入口；与 ROS 1 同口径对照 | 2 | 已完成，`baseline-ros2-native-ubuntu22-v1` |
-| `milestone-ros2-components-v1` | 双目 standalone copy/share 各两轮、composed 各一轮；单目 standalone 各一轮；owner/stride/回退与组件生命周期检查 | 8 | 待执行 |
+| `milestone-ros2-components-v1` | 双目 standalone copy/share 各两轮、composed 各一轮；单目 standalone 各一轮；owner/stride/回退与组件生命周期检查 | 8 | 已完成，`milestone-ros2-components-native-ubuntu22-v1` |
 | `milestone-ros2-pmu-v1` | 硬件能力探测、双目 copy/share 用户态 PMU 对照 | 2 | 能力已核验，回放待执行 |
 | `milestone-ros2-shared-memory-v1` | 单目/双目 split，ROS Image/memfd，各一轮；像素签名与槽位归还 | 4 | 待执行 |
 | `milestone-ros2-dmabuf-v1` | 单目/双目 split VGEM，与前一阶段同条件 ROS/memfd 对照 | 2 | 设备已核验，回放待执行 |
@@ -74,3 +74,9 @@ ROS 2 从零重建、动态库隔离和全消息转换校验已通过。当前�
 ASan 只覆盖测试可执行文件与共享协议源码，依赖未全插桩、泄漏检测关闭，子进程析构后 _exit；不代表全工程或长期泄漏验收
 
 ROS 2 双目 copy 两轮验收完成，完整传感器计数、末帧、初始化和退出通过，精度与本机 ROS 1 参照一致。新 tag 为 baseline-ros2-native-ubuntu22-v1，直接提交于 ros2-humble；后续将运行真实 EuRoC 前端 copy/share 一致性探针及八轮组件/图像入口对照
+
+ROS 2 参照里程碑已直接提交到 ros2-humble `d198095`，tag 为 baseline-ros2-native-ubuntu22-v1。单目/双目真实 EuRoC 前十帧 copy/share 特征 ID、相机编号和七维观测在 1e-12 容差内一致，证据见 [前端一致性归档](../infra/desktop/comparison_reference/native_ubuntu22_20261013/feature_consistency/)；局部探针首次编译缺 Ceres 头路径的错误已保留，只补齐探针依赖声明，未改 VINS 源码
+
+八轮完整组件/owner 对照由 `vins-native-components01.service` 执行，阶段事件在 `../results/ubuntu22-reproduction/components01/`，逐轮冻结状态与日志在 `../results/ubuntu22-reproduction/native_components/`；预计约 27 分钟，成功或失败才通知一次，不在线模型轮询
+
+八轮组件/owner 对照已完成，同模式轨迹逐字节一致，全部输入/末帧/退出通过；share 灰度入口物化为零，但少量重复没有稳定整机 CPU 提速结论。下一阶段为两轮双目 copy/share 用户态 PMU 对照

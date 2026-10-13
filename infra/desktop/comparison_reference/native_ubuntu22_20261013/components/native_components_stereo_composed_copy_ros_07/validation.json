@@ -1,0 +1,56 @@
+{
+  "sensor_counts": {
+    "img0": 3682,
+    "img1": 3682,
+    "imu": 36820,
+    "processed": 3682
+  },
+  "initializations": 1,
+  "tracking_resets": 0,
+  "pair_drops": 0,
+  "poses": 1831,
+  "matched": 1819,
+  "last_image_covered": true,
+  "exit_codes": [
+    0,
+    0
+  ],
+  "pointer_checks": [
+    {
+      "camera": "img1",
+      "timestamp_ns": 1403636579763555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": false
+    },
+    {
+      "camera": "img0",
+      "timestamp_ns": 1403636579763555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": false
+    },
+    {
+      "camera": "img0",
+      "timestamp_ns": 1403636579813555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": false
+    },
+    {
+      "camera": "img1",
+      "timestamp_ns": 1403636579813555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": false
+    },
+    {
+      "camera": "img1",
+      "timestamp_ns": 1403636579863555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": false
+    },
+    {
+      "camera": "img0",
+      "timestamp_ns": 1403636579863555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": false
+    }
+  ]
+}
