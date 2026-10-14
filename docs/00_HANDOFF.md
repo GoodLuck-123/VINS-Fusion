@@ -6,7 +6,7 @@
 
 ## 桌面与板端里程碑
 
-原生 Ubuntu 桌面 ROS 1 四轮已在 master 验收，tag baseline-ros1-native-ubuntu22-v1，原清理 abort 单列。桌面 ROS 2 全部 52 轮总体记录在所属 ros2-humble；本分支的历史冻结数据保持原样，实测统一写 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
+原生 Ubuntu 桌面 ROS 1 四轮已在 master 验收，tag baseline-ros1-native-ubuntu22-v1，原清理 abort 单列。原生 Ubuntu 全部 52 轮总体记录在所属 ros2-humble；本分支的历史冻结数据保持原样，实测统一写 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
 
 | ROS 1 板端目标 | 验收提交 / annotated tag |
 | --- | --- |
@@ -16,7 +16,7 @@
 | 私有 Noetic/Python 3.8、4210 文件/导入/动态库/订阅就绪 | 92b1bbb / milestone-rk3588-ros1-runtime-v1 |
 | 唯一双目配置一轮完整回放和主机评估 | 2d76d3a / baseline-rk3588-ros1-v1 |
 
-ROS 1 bag 左右图各 3682、IMU 36820，1831 姿态/1819 匹配、末帧覆盖、一次初始化、无重置/配对丢帧。ATE/RPE 为 0.260330 / 0.00312228 m，VINS 全线程 CPU 690.02 s，RSS/PSS 峰值 61.55/55.21 MiB，回放/排空 189.59/6.10 s；源端资源、DDR/功耗不可用，不当作合计 CPU或实时性验收
+ROS 1 bag 左右图各 3682、IMU 36820，1831 姿态/1819 匹配、末帧覆盖、一次初始化、无重置/配对丢帧。ATE/RPE 为 0.260330 / 0.00312228 m，VINS 全线程 CPU 690.02 s，RSS/PSS 峰值 61.55/55.21 MiB，回放/排空 189.59/6.10 s；源端资源、DDR/功耗不可用，不当作合计 CPU 或实时性验收
 
 输入计数是 bag records，未新增原节点实收计数；ROS master/rosbag 退出 0，原未 join 同步线程的 VINS 清理 abort −6 与桌面一致，明确保留，不称正常退出。外层 ros1-baseline01 因日志已收回后的主机评估参数错误失败，ros1-evaluation01 仅补评估并通过，没有第二次回放；失败事件/日志不改写。完整证据见 infra/rk3588/reference/ros1_baseline_20261014/
 
@@ -33,7 +33,7 @@ ROS 1 bag 左右图各 3682、IMU 36820，1831 姿态/1819 匹配、末帧覆盖
 | 本分支 checkout | /home/eric/projects/VINS-Fusion-rk3588-ros1 |
 | 同源码 C++ 远端工具 | infra/remote/，../.infra/bin/vins-remote |
 
-编译器/ARM binutils 主机库隔离，SDK 绝对链接与 Python/原生 CMake 导出重定位可重做；失败证据保留。cv_bridge C++ 下载源码不变，构建副本只关闭可选 Python 扩展，不提供目标 Python cv_bridge。CPP算法/core/config 与 master 8c7c8d2 一致；运行包旧来源字段的 tag 对象与剥离提交对应关系在第 05 份报告说明，冻结包/哈希不改
+编译器/ARM binutils 主机库隔离，SDK 绝对链接与 Python/原生 CMake 导出重定位可重做；失败证据保留。cv_bridge C++ 下载源码不变，构建副本只关闭可选 Python 扩展，不提供目标 Python cv_bridge。C++ 算法/core/config 与 master 8c7c8d2 一致；运行包旧来源字段的 tag 对象与剥离提交对应关系在第 05 份报告说明，冻结包/哈希不改
 
 工作流见 [第 08 份说明](08_RK3588_WORKFLOW.md)，统一下载见 [第 09 份说明](09_DEPENDENCIES.md)。run_ros1_board_phase.py 一次调用完成传 bag/核验/原回放/回收/主机评估，--evaluate-only 只恢复既有轨迹的主机评估；默认核对已接受归档的文件清单。ROS/C++ 与 uv shell 分开，每次源码改变先重建，每次结果用新名称/目录，不覆盖失败或成功
 
