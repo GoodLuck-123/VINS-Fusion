@@ -115,3 +115,13 @@ python3 infra/rk3588/scripts/prepare_ros2_sysroot.py
 perf 候选工具从同一已认证的 Ubuntu ARM 仓库下载。厂商内核为 5.10，Ubuntu 工具版本可能为 5.15；跳过按 uname 选路径的 wrapper，只有实际计数、采样及符号解析检查通过才采用该用户态二进制，不更换板端内核
 
 交叉准备里程碑已验收：25 个工具链包、807 个 ARM SDK 包的全部 SHA256 通过；本机 x86_64/GCC 11.4.0 编译出的 ELF64 AArch64 小程序在厂商 5.10.110 板端退出 0，指针宽度 8、动态库无缺失。证据见 [交叉 SDK 快照](../infra/rk3588/reference/cross_sdk_20261014/)，新 tag 为 milestone-rk3588-cross-sdk-v1；这仅证明工具链与 SDK 准备，不当作 VINS 验收
+
+## ARM 固定版本视觉库构建
+
+```bash
+bash infra/rk3588/scripts/build_legacy.sh
+```
+
+使用统一下载目录及 cross_env.sh，为 ARM 安装 Eigen 3.3.9、OpenCV 4.2.0、Ceres 1.14.0，默认安装前缀 `../.infra/rk3588/legacy/`、构建目录 `../.infra/rk3588/build-legacy/`。OpenCV 模块和关闭的第三方特性沿用原生参照，不开启新的板端算法优化；使用主机 GNU Make，默认四个编译任务，可通过 VINS_BUILD_JOBS 调整
+
+首次配置因主机 fresh shell 没有 Ninja 而失败，未生成视觉库，证据见 [配置失败记录](../infra/rk3588/reference/legacy01_failure/)。已改用现有 Make、新建构建目录，依赖版本和原失败记录不变。后续重建由临时服务 vins-rk-legacy02.service 承接，唯一阶段目录 `../results/rk3588/legacy02/`，完成或失败才通知一次；截至提交入口时尚未验收库或 VINS
