@@ -10,7 +10,7 @@
 
 物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机已完成全部桌面里程碑与交接核验。ROS 1 四轮已完成并直接提交到 master；ROS 2 在现有 ros2-humble 上完成锁定依赖重建及两轮完整双目 copy 验收。组件/owner 八轮已验收，同模式轨迹完全一致，入口减拷贝成立但未证明稳定整机提速；两轮 PMU 及四轮共享传输已验收，摘要与轨迹一致、memfd 槽位全部归还；VGEM 两轮及 30 次重复均已验收，52 轮完整复现结束。五次重复未显示 memfd 合计 CPU 收益，VGEM 消费端 CPU 明显增加，共享路径源端 PSS 较低，不沿用旧 WSL 性能数值作为本机结论。实际结果见 [05 本机实测](docs/05_EUROC_ROS1_ROS2_COMPARISON.md)，进度见 [07 复现清单](docs/07_NATIVE_UBUNTU_REPRODUCTION.md)
 
-板端依赖和首轮双目基线已验收，单目/组件/共享与 ROS 1 对照继续进行；实际相机、RGA、自研 NEON、NPU、DDR 带宽和功耗尚未验收，回环/GNSS/KITTI/RViz 也未做完整数据验收。原生 Ubuntu 复现已完成，历史 WSL tag 与冻结归档保持原样
+板端依赖、首轮双目基线及单目/组件/owner 对照已验收，PMU/共享与 ROS 1 对照继续进行；实际相机、RGA、自研 NEON、NPU、DDR 带宽和功耗尚未验收，回环/GNSS/KITTI/RViz 也未做完整数据验收。原生 Ubuntu 复现已完成，历史 WSL tag 与冻结归档保持原样
 
 ## 文档与源码导航
 
