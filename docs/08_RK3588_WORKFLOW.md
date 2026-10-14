@@ -16,6 +16,7 @@ ROS 2 分支 codex/rk3588-ros2 从桌面交接 7d42fac 建立，ROS 1 板端代�
 | 下载与 SDK | 一条命令按固定版本/SHA256 补齐，见第 09 份说明 |
 | 视觉库 | ../.infra/rk3588/legacy/，主机交叉编译与板端计算通过 |
 | ROS 2 项目 | ../.infra/rk3588/ros2_ws_overlay/install/，五个包构建完成，76 个 ARM ELF 闭包无缺库或混链 |
+| ROS 2 板端运行环境 | runtime01 通过文件哈希、导入、独立节点/组件生命周期，tag milestone-rk3588-ros2-runtime-v1 |
 | profile | perf 计数/采样/函数符号解析通过，尚无 VINS 热点结果 |
 | 板端 VIO / ROS 1 ARM | 待部署、运行与轨迹验收 |
 
@@ -120,6 +121,18 @@ Arm Streamline 可选路线需要目标 gatord，主要使用 Linux Perf API；�
 ## 实验与事件处理
 
 部署需携带完整 install、运行时库和必要 ROS/Python 资源，不假定一个可执行文件足够。先核验板端动态库来源、节点/组件生命周期与回放，再按单目/双目 copy/share、组件、split ROS/memfd 去重各跑一轮，严格串行，不跑五次重复
+
+完整回放的固定入口为 run_ros2_board_phase.py；--runtime 填已验收部署作业下运行包的绝对路径，--directory 必须为新的本机结果目录。首轮用 --upload-data 传输数据，此后省略该参数复用板端数据；每阶段均核验 bag 与运行包 SHA256，失败即停止并回收日志，不自动重跑
+
+```bash
+python3 infra/rk3588/scripts/run_ros2_board_phase.py \
+  --runtime /home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload \
+  --phase baseline --directory ../results/rk3588/新的完整回放 --upload-data
+```
+
+后续阶段为 components、pmu、shared，按桌面配置去掉重复轮次，完整输入和标定保持不变。baseline 为双目 standalone/copy/Fast DDS；components 复用该参照，增加双目 share、单目 copy/share 和双目 composed copy/share。pmu 为双目 copy/share 加计数，shared 为单目/双目 split ROS/memfd。composed/split 使用 Cyclone DDS，standalone 使用 Fast DDS，与原生阶段对应
+
+板端数据只放置在 home 的 vins-workspace/datasets 下，运行包工作区增加数据指向和结果目录，已验收文件保持不变。每轮保存 telemetry.jsonl 中实际可读温度/CPU 与 dmc 频率，CPU/RSS/PSS、回放/排空及计数仍由原 runner 记录；DDR 带宽和功耗不可用
 
 保留 MH_01_easy、标定和算法参数，核验输入计数、初始化/重置、末帧、ATE/RPE、退出与共享槽位归还；报告全线程 CPU、每进程 RSS/PSS、回放/排空时间、频率/温度。排空后完成不能称实时通过，评估在主机同一 uv.lock 环境执行，结果续写第 05 份报告
 

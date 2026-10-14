@@ -45,9 +45,11 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 目标 firefly@10.106.0.220，RK3588S / Ubuntu 22.04.5 / 厂商内核 5.10.110。免密 SSH、C++ 远端工具、交叉 GCC/ARM SDK、统一依赖下载、perf 及视觉库板端计算探针均已验收；OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保持不变，传递依赖差异见第 05 份报告
 
-最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。板端 VINS 部署、完整 VIO 与 ROS 1 ARM 实验尚待验收
+最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。完整 VIO 与 ROS 1 ARM 实验尚待验收
 
 运行包生成与部署检查已固定为 prepare_ros2_runtime.py / deploy_ros2_runtime.sh，runtime01 板端文件哈希、导入、独立节点与组件加载/卸载及退出全部通过，OpenCV maps 为运行包 4.2；结果目录 ../results/rk3588/runtime01/，证据见第 08 份文档。该探针没有 VIO 输入，完整回放仍待验收
+
+运行环境里程碑 commit 55fdcd8 / tag milestone-rk3588-ros2-runtime-v1 已提交。board-baseline01 正在后台传输 EuRoC 数据并执行一轮原配置双目 copy 基线，固定 driver commit 82e68e3，结束通知后核验并在主机评估；期间不修改已部署运行包
 
 2026-10-14 已统一读取全部 52 个 event/state、核对 29 个阶段和全部归档；主机无活构建/实验，板端七个旧作业均已结束。积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
 
