@@ -21,8 +21,13 @@ mkdir -p "$vins_host_libs"
 for vins_host_name in libisl.so.22 libgmp.so.10 libmpc.so.3 libmpfr.so.6; do
   ln -sfn "$VINS_CROSS_ROOT/usr/lib/x86_64-linux-gnu/$vins_host_name" "$vins_host_libs/$vins_host_name"
 done
+# The private cross assembler/linker also use private ARM binutils libraries.
+for vins_host_path in "$VINS_CROSS_ROOT"/usr/lib/x86_64-linux-gnu/lib{bfd,opcodes,ctf}*-arm64.so*; do
+  [[ -e "$vins_host_path" ]] || continue
+  ln -sfn "$vins_host_path" "$vins_host_libs/$(basename "$vins_host_path")"
+done
 export LD_LIBRARY_PATH="$vins_host_libs${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export PKG_CONFIG_SYSROOT_DIR="$VINS_ARM_SYSROOT"
 export PKG_CONFIG_LIBDIR="$VINS_ARM_SYSROOT/usr/lib/aarch64-linux-gnu/pkgconfig:$VINS_ARM_SYSROOT/usr/share/pkgconfig"
 export PKG_CONFIG_PATH="$VINS_ARM_PREFIX/lib/pkgconfig:$VINS_ARM_PREFIX/share/pkgconfig"
-unset vins_cross_repo vins_cross_path vins_host_libs vins_host_name
+unset vins_cross_repo vins_cross_path vins_host_libs vins_host_name vins_host_path
