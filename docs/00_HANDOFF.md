@@ -17,3 +17,5 @@ ROS 1 锁定依赖已重新安装，OpenCV 4.2.0 / Ceres 1.14.0 / cv_bridge / �
 当前板端工作位于 codex/rk3588-ros1，从 master 最新 8c7c8d2 新建独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1。原 master、ROS 2 分支/tag 保留；ROS 2 组件批次的源码/运行包固定，本分支只准备主机侧 ROS 1 依赖，尚未构建或运行板端节点
 
 Noetic final ARM 索引及 Ubuntu Focal 索引认证通过，807 个目标 SDK 包、36 个 GCC 9.4 工具链包已固定 SHA256；OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保留。一条命令下载和空目录约定见 [第 09 份文档](09_DEPENDENCIES.md)。实际 Ubuntu 22.04 板端 ABI/视觉库/节点和完整回放仍需验收；板端依旧离线，下载仅在本机进行
+
+ros1-fetch01 已完成并离线重验四个源码/843 个锁定包，GCC 9.4 主机探针通过，依赖证据见第 09 份文档。下一阶段在独立 ../.infra/rk3588/ros1-legacy/ 构建固定版本视觉库，实际板端库/节点尚未验收；当前主机准备工作不影响 ROS 2 板端批次

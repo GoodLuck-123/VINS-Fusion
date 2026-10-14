@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "offline_recheck_passed": true,
+  "locks": {
+    "toolchain": {
+      "package_count": 36,
+      "lock_sha256": "2f8023cb18aa33b4e7a8b70f4a890a306c23b66014e66e319a610911e9e27a48"
+    },
+    "ros1-sdk": {
+      "package_count": 807,
+      "lock_sha256": "27bbd60eead5849ac1f14653def824a4b8259dc8cf9495dd47793fb748ebdbac"
+    }
+  },
+  "sources": 4,
+  "compiler": "GCC 9.4.0",
+  "scope": "Downloaded/validated sources and target SDK; not board ROS 1 runtime validation",
+  "console_raw_sha256": "471ec930e44544753dc11e112453a49d4782e0fa8e180fc3717c7aaaad269235"
+}

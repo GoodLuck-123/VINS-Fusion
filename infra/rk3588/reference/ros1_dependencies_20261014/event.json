@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/dependencies/fetch.py",
+    "--cache-from",
+    "/home/eric/projects/VINS-Fusion/dependencies/cache"
+  ],
+  "pid": 110694,
+  "status": "complete",
+  "start_utc": "2026-10-14T07:46:12Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-14T08:05:25Z"
+}
