@@ -15,7 +15,7 @@
 | ROS 2 完整 VIO | baseline02、components01、pmu01 | 八轮去重配置完整输入/末帧/评估/退出通过，PMU 无错误或复用 |
 | 共享计算探针 / 完整 memfd | shared-probe01、board-shared01 | 两后端计算探针与四轮完整共享 VIO 通过，槽位全部归还 |
 | ROS 1 ARM | ros1-fetch01、ros1-legacy02、ros1-build02 | 依赖、视觉库与五包/六程序/70 个 ELF 闭包通过，视觉库实际板端计算通过，Noetic 节点/回放仍待验收 |
-| 当前后台任务 | 无 | board-dma-heap01 已结束且无残留，下一项串行部署 ROS 1 |
+| 当前后台任务 | ros1-runtime01 | DMA heap 已结束且无残留，串行部署 ROS 1/私有 Python 3.8 并检查生命周期 |
 
 初次统一审计时主机只剩 Docker 准备服务的 failed 状态，没有活进程；后续任务见上表。失败日志保留，终止状态不当作仍在运行。Git 核心实现和 config 与桌面交接 7d42fac 一致，没有并发修改或合并冲突；本轮改变的是依赖准备、构建兼容和部署工具
 
@@ -77,3 +77,5 @@ board-dma-heap01 在完整共享里程碑 5e685b1 与 ROS 1 视觉库实际计�
 shared-probe01 迟到事件与共享计算归档逐字节一致，SHA256 为 757f875ddf4c1a7a557a4182a39d399f5058e3d3979216ecb6a47464b9fd4055，只去重，里程碑 8f04c3f 不重复提交。ROS 1 分支已固定单调用完整回放入口并冻结主机运行包准备证据，板端部署/回放等待 board-dma-heap01 完成，不并行启动
 
 board-dma-heap01 已接受为实际 system DMA heap 双目/单目完整回放，全部输入/末帧、摘要、归还、退出与主机评估通过，事件/SHA256 见 [归档](../infra/rk3588/reference/dma_heap_20261014/)，结束审计无活作业。ros1-legacy01 迟到失败与 ROS 1 分支失败归档逐字节一致，已被后续构建/计算验收替代，不撤回修复或有效产物
+
+DMA heap 里程碑 commit 4213e2a / tag milestone-rk3588-dmabuf-v1；按本机 presets 去重核对，14 个 ROS 2 完整配置已覆盖。桌面 VGEM 软件分配机制在板端用既有实际 DMA heap 后端验收，分别记录 allocator/backend，不当作相同 VGEM 设备。ros1-runtime01 已启动后台单调用部署/生命周期检查，未同时运行另一批 VIO

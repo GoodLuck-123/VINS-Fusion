@@ -59,11 +59,11 @@ board-components01 五轮去重对照已通过完整输入/末帧、初始化/�
 
 board-pmu01 两轮已通过完整输入/末帧、评估与退出，四类用户态 CPU 事件无错误、无复用，权限保持 2；证据和计数范围见第 05 份报告。shared-probe01 实际板端 memfd 与 /dev/dma_heap/system 各通过 1000 帧逐像素/owner/归还校验，结束 outstanding=0；完整共享 VIO 已在后续阶段验收，不将计算探针当作真实相机或端到端零拷贝
 
-共享计算探针里程碑 commit 8f04c3f / tag milestone-rk3588-shared-probe-v1；board-shared01 四轮完整输入/末帧/摘要/退出、槽位归还与主机评估已通过，结束审计无残留。完整共享里程碑 commit 5e685b1 / tag milestone-rk3588-shared-memory-v1。board-dma-heap01 双目/单目各一轮实际 system DMA heap 已通过完整输入/末帧/摘要/退出、归还和主机评估，结束无残留；合计 CPU 701.18 / 571.96 s，与 memfd 接近，不宣称稳定收益
+共享计算探针里程碑 commit 8f04c3f / tag milestone-rk3588-shared-probe-v1；board-shared01 四轮完整输入/末帧/摘要/退出、槽位归还与主机评估已通过，结束审计无残留。完整共享里程碑 commit 5e685b1 / tag milestone-rk3588-shared-memory-v1。board-dma-heap01 双目/单目各一轮实际 system DMA heap 已通过完整输入/末帧/摘要/退出、归还和主机评估，结束无残留；合计 CPU 701.18 / 571.96 s，与 memfd 接近，不宣称稳定收益；里程碑 commit 4213e2a / tag milestone-rk3588-dmabuf-v1
 
 ROS 1 板端目标 codex/rk3588-ros1 已从 master 最新 8c7c8d2 建立独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1，依赖锁 commit 6578b00。主机只读 APT 解析已验签，807 个 Focal/Noetic SDK 包和 36 个 GCC 9.4 工具链包固定 SHA256；ros1-fetch01 下载及离线复核已通过，依赖里程碑 commit 30b9d96；ros1-legacy01 因旧主机 libstdc++ 抢占 CMake 失败，已隔离编译器/汇编器支持库并通过系统 CMake 与 ARM 编译探针，ros1-legacy02 已退出 0，消费端链接及 25 个 ARM 运行库闭包通过；视觉库实际板端计算 ros1-legacy-smoke01 已通过，里程碑 commit 6c4703a / tag milestone-rk3588-ros1-legacy-libs-v1，ROS 1 完整回放仍未验收
 
-ROS 1 工程首次构建 ros1-build01 的 SDK 绝对 log4cxx/Boost 库路径问题已修正并保留失败证据，fetch.py 对目标库/头文件导出做可重复的 sysroot 重定位。ros1-build02 已完成并通过五包/六程序/70 个 ARM ELF 闭包核验，ROS 1 交叉构建里程碑 commit 30790b0 / tag milestone-rk3588-ros1-cross-build-v1；ros1-package01 已完成独立 Noetic/Python 3.8 运行包准备，4209 文件/105 个运行库，板端仍待验证，仅重建 C++ cv_bridge，不生成目标 Python 扩展。当前 ROS 2 工作区与已部署运行包保持固定
+ROS 1 工程首次构建 ros1-build01 的 SDK 绝对 log4cxx/Boost 库路径问题已修正并保留失败证据，fetch.py 对目标库/头文件导出做可重复的 sysroot 重定位。ros1-build02 已完成并通过五包/六程序/70 个 ARM ELF 闭包核验，ROS 1 交叉构建里程碑 commit 30790b0 / tag milestone-rk3588-ros1-cross-build-v1；ros1-package01 已完成独立 Noetic/Python 3.8 运行包准备，4209 文件/105 个运行库，板端仍待验证，仅重建 C++ cv_bridge，不生成目标 Python 扩展。ROS 2 的 14 个去重完整配置已验收，涵盖参照、入口/组件、PMU、ROS Image/memfd 与实际 DMA heap，各配置一次。ROS 1 runtime01 已交给后台固定工具部署并做私有 Python 3.8/节点生命周期检查，完整回放仍待运行。当前 ROS 2 工作区与已部署运行包保持固定
 
 2026-10-14 全局核对时已统一读取 52 个 event/state、核对 29 个阶段和全部归档；当时主机无活构建/实验，板端七个旧作业均已结束。后续新阶段续写账本，积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
 
