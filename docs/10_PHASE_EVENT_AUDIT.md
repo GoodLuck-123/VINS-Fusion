@@ -73,3 +73,5 @@ shared-probe-build01 与 shared_probe_20261014/build_event.json 逐字节一致�
 board-shared01 四轮完整回放/主机评估、逐帧摘要与槽位归还已接受，事件/SHA256 见 [归档](../infra/rk3588/reference/shared_20261014/)，结束审计无活作业。ros1-fetch01 迟到事件与 ROS 1 分支冻结归档逐字节一致，只去重；ros1-package01 主机完成，板端运行环境仍待验收。ROS 1 视觉库的实际板端计算探针 ros1-legacy-smoke01 已通过，提交在其所属分支
 
 board-dma-heap01 在完整共享里程碑 5e685b1 与 ROS 1 视觉库实际计算里程碑 6c4703a 均提交后启动，板端只有这一批活动 VIO；每配置一次、明确 system heap，无自动回退。ROS 1 运行包和生命周期脚本已在主机准备，待本批结束后再部署，不并发板端工作
+
+shared-probe01 迟到事件与共享计算归档逐字节一致，SHA256 为 757f875ddf4c1a7a557a4182a39d399f5058e3d3979216ecb6a47464b9fd4055，只去重，里程碑 8f04c3f 不重复提交。ROS 1 分支已固定单调用完整回放入口并冻结主机运行包准备证据，板端部署/回放等待 board-dma-heap01 完成，不并行启动
