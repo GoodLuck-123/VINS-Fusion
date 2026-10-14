@@ -1,26 +1,31 @@
-# RK3588 本机交叉编译与远端实验
+# RK3588 交叉编译与远端实验
 
 更新日期：2026-10-14
 
-当前目标是免密 SSH、固定 scp/部署/运行/日志回收流程，在已联网的 Ubuntu 主机下载并交叉编译 ARM 产物，板端离线执行。原生桌面 52 轮已完成；本轮每种板端配置只执行一次，不重启历史重复批次、神经网络或新的算法优化
+本轮在联网 Ubuntu 主机下载、交叉编译和打包，离线板端执行，再自动回收日志。当前依赖与构建已验收，板端 VINS/VIO 尚待验收；各配置只执行一轮，不运行历史重复批次或新的算法优化
 
-## 已确认环境与分支
+## 当前环境与有效产物
 
-目标为 `firefly@10.106.0.220`，设备树型号 Rockchip RK3588S LP4X LIXU Board；Ubuntu 22.04.5、aarch64、厂商内核 5.10.110，4 个 A55 + 4 个 A76、约 16 GiB 内存，root/home 约 95 GiB 可用。根文件系统 overlay 的 upper 位于 userdata，本轮不重启或替换系统
+目标 firefly@10.106.0.220，Rockchip RK3588S LP4X LIXU Board；Ubuntu 22.04.5/aarch64、厂商内核 5.10.110，4 个 A55 + 4 个 A76、约 16 GiB RAM、约 95 GiB 磁盘可用。root overlay 的 upper 在 userdata，不重启或替换系统；板端 sudo 非交互可用，下载只在主机完成
 
-板端已有 GCC/CMake/Python 3.10 和系统 OpenCV 4.5.4，未发现 ROS/Ceres。sudo 非交互可用，但下载只在主机完成。ARM 依赖需独立建立，优先保留 OpenCV 4.2.0 / Ceres 1.14.0；有兼容性障碍时先保存证据，不直接混用系统 4.5.4
+ROS 2 分支 codex/rk3588-ros2 从桌面交接 7d42fac 建立，ROS 1 板端代码另从 master 最新提交继续，不合并 ROS 2 核心。当前核心和 config 与桌面交接一致，板端依赖兼容修补、失败和传递依赖差异均单独保存
 
-ROS 2 工作从原生交接 commit `7d42fac` 建立 `codex/rk3588-ros2`，保留 ros2-humble 与历史 tag。ROS 1 若需源码兼容修改，从 master 最新提交建立自己的目标分支，不合并 ROS 2 核心实现
+| 环节 | 当前有效状态 / 位置 |
+| --- | --- |
+| SSH / 远端工具 | 免密及 scp/运行/日志回收已验收，../.infra/bin/vins-remote |
+| 下载与 SDK | 一条命令按固定版本/SHA256 补齐，见第 09 份说明 |
+| 视觉库 | ../.infra/rk3588/legacy/，主机交叉编译与板端计算通过 |
+| ROS 2 项目 | ../.infra/rk3588/ros2_ws_overlay/install/，五个包构建完成，76 个 ARM ELF 闭包无缺库或混链 |
+| profile | perf 计数/采样/函数符号解析通过，尚无 VINS 热点结果 |
+| 板端 VIO / ROS 1 ARM | 待部署、运行与轨迹验收 |
 
-## 免密 SSH
+旧 ros2_ws/、legacy_before_sysroot_links/ 只保留失败追溯，不再作为有效部署输入。积压事件的统一结论和去重规则见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)，不要按通知到达顺序改代码
 
-已生成专用 ed25519 密钥、追加板端 authorized_keys，并在主机 SSH config 仅为该 IP 配置 IdentityFile。`ssh -o BatchMode=yes firefly@10.106.0.220` 已实测成功，密码和私钥不进入工程、日志或 Git
+## 免密 SSH 与 C++ 远端工具
 
-密钥位于本机 `~/.ssh/id_ed25519_vins_rk3588`。该私钥只用于本机；其他开发机应独立生成并添加自己的公钥，不复制这台机器的私钥。公开指纹及环境证据见 [连接快照](../infra/rk3588/reference/connection_20261014/)
+本机专用密钥 ~/.ssh/id_ed25519_vins_rk3588 已添加板端 authorized_keys，SSH config 只为该 IP 指定 IdentityFile，BatchMode 实测通过。密码和私钥不入 Git；其他开发机生成自己的密钥，不复制这台机器私钥。公开指纹和板端能力快照见 [连接证据](../infra/rk3588/reference/connection_20261014/)
 
-## scp 与运行工具
-
-辅助工程为 `infra/remote/`，使用 C++17 和系统 OpenSSH，不实现新的 RPC 协议。当前工具面向 Linux/POSIX 主机、通过 SSH 跨 x86/ARM 架构通信；依赖 ssh、scp，远端需要 bash、setsid、timeout
+辅助工程 infra/remote/ 使用 C++17 与系统 OpenSSH，面向 Linux/POSIX 主机，通过 SSH 跨 x86/ARM 通信；远端需要 bash、setsid、timeout
 
 ```bash
 cmake -S infra/remote -B ../.infra/remote-build \
@@ -29,42 +34,62 @@ cmake --build ../.infra/remote-build -j4
 cmake --install ../.infra/remote-build --prefix ../.infra
 ```
 
-默认传文件或目录到用户 home 的 vins-workspace/incoming，可明确指定目的目录：
+默认传文件或目录到 home 的 vins-workspace/incoming，也可指定目录：
 
 ```bash
 ../.infra/bin/vins-remote firefly@10.106.0.220 文件或目录
 ../.infra/bin/vins-remote firefly@10.106.0.220 install --dest vins-workspace/releases
 ```
 
-一次调用上传 payload 和本地脚本，执行后自动回传日志；脚本使用 VINS_REMOTE_PAYLOAD、VINS_REMOTE_ROOT 定位输入及作业目录，把需要回收的结果放到 logs 子目录：
+一次调用上传 payload 与本地脚本，远端执行后自动回传结果；以下脚本名和结果名由实际阶段选择，脚本使用 VINS_REMOTE_PAYLOAD、VINS_REMOTE_ROOT 定位输入/作业目录，将需要回收的文件写入 logs 子目录：
 
 ```bash
 ../.infra/bin/vins-remote firefly@10.106.0.220 install \
   --run 本地实验脚本.sh --output ../results/rk3588/新结果名 --timeout 1800
 ```
 
-每次运行创建唯一远端作业目录，回传 console.log、起止 UTC、退出码及脚本写入的日志。远端失败也先回收日志，然后返回原退出码；本地结果目录拒绝覆盖。SSH 中断时远端 detached 作业继续，工具打印的 job 路径可直接回收，不重新上传或重跑：
+作业目录唯一，回收 console.log、起止 UTC、退出码和脚本输出。远端失败也先回收日志再返回退出码，本地结果目录拒绝覆盖；SSH 中断时 detached 作业继续，按已打印的 job 路径回收，不重新跑：
 
 ```bash
 ../.infra/bin/vins-remote firefly@10.106.0.220 vins-workspace/jobs/作业名 \
   --collect ../results/rk3588/新回收名
 ```
 
-文件传输明确使用 scp 的 legacy 模式以固定远端 POSIX 路径转义，ssh/scp 都启用 BatchMode，使用已有免密设置。真实板端验证已覆盖本地空格/单引号路径、远端空格路径、故意退出 7、失败后自动日志回收及不重跑回收；没有运行 VIO 来测试这个工具
+scp 明确使用 legacy 模式固定 POSIX 路径转义，SSH/scp 均启用 BatchMode。真实板端测试覆盖空格/单引号路径、故意退出 7、失败日志回收和不重跑回收；连接测试不算 VIO 实验
 
-## 本机交叉编译路线
+## 主机下载与交叉构建
 
-普通重建先执行 `python3 infra/dependencies/fetch.py`，统一补齐锁定源码、交叉工具链和 ARM ROS 2 sysroot；目录和缓存规则见 [第 09 份说明](09_DEPENDENCIES.md)。下文两次 apt 准备是建立原始 SDK 的历史步骤，不是新 clone 的下载入口；冻结 SDK 和失败记录保留原位
+主机执行，不在 ARM 运行 desktop bootstrap，也不传 x86 install 代替重建：
 
-当前 x86_64 install 不能部署到 ARM。本机用 aarch64 编译器和独立 sysroot 构建；目标头文件/库来自板端系统快照及主机下载的 ARM 包，主机运行的 CMake/Python/代码生成器与 ARM 库分开。保留桌面安装前缀，不在 ARM 调用只支持 x86 的 bootstrap
+```bash
+python3 infra/dependencies/fetch.py
+bash infra/rk3588/scripts/build_legacy.sh
+bash infra/rk3588/scripts/build_ros2_cross.sh
+```
 
-先用小型 ARM 可执行文件完成编译、ELF 架构/依赖审计、部署和运行，再构建 OpenCV/Ceres/cv_bridge、ROS/VINS。完整 install 与运行依赖打包传输；不假设仅一个可执行文件足够，也不把模拟器内执行称为交叉编译提速
+依赖源码、交叉工具链与目标 sysroot 在 dependencies/ 的 Git 占位目录，下载内容忽略；构建、安装、数据与完整日志仍在父工作区。包锁、缓存复用、离线重跑以及 sysroot 链接/CMake 导出重定位见 [第 09 份说明](09_DEPENDENCIES.md)
 
-联网下载、版本/校验锁定、构建和部署逐步固定为脚本；板端不执行在线 apt/pip/curl。ROS 2 官方旧 cross_compile 工具已停止支持，本工程使用明确的 CMake 工具链/sysroot，不引入该旧工具，[ROS 官方说明](https://github.com/ros2/ros2_documentation/blob/humble/source/How-To-Guides/Cross-compilation.rst)
+工具链为主机 GCC 11.4.0 → aarch64，位于 infra/rk3588/cmake/aarch64.cmake；cross_env.sh 在新的 bash 中为配置与编译提供主机工具动态库和目标库查找路径。源码/依赖变化后重建，不复用旧 CMake 缓存或错误安装；不 source 桌面或 ARM ROS 环境来构建
 
-## Profile 能力
+视觉库固定 Eigen 3.3.9、OpenCV 4.2.0、Ceres 1.14.0，默认四个 Make 编译任务，可用 VINS_BUILD_JOBS 调整。Carotene 补丁只修正 GCC 参数名称，在独立源码副本应用；OpenCV 模块/关闭特性及 Ceres 求解器功能保留。传递依赖差异和板端计算探针见 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
 
-本机板端探针确认 CONFIG_PERF_EVENTS、CONFIG_HW_PERF_EVENTS、CONFIG_ARM_PMU 可用，armv8_pmuv3 注册；普通用户 task_clock、cycles、cache_misses 访问成功，当前 PMU 权限值为 2。系统原先未安装 perf、trace-cmd 或 gatord；现已通过主机下载的 ARM perf 验证实际计数、采样和函数符号解析，不安装或替换板端内核
+ROS 2 直接 CMake 顺序构建 cv_bridge 3.2.1、camera_models、vins_estimator、loop_fusion、global_fusion。主机 Python 3.10 执行纯 Python ament/catkin 构建工具，Python/NumPy 头文件与 libpython 来自 ARM SDK；固定使用重建 cv_bridge/camera_models，防止 SDK OpenCV 4.5 混链。编译和 ELF 核验通过不等于回环/GNSS/KITTI或板端 VIO 数据验收
+
+ROS 官方旧 cross_compile 工具已经停止支持，本工程使用明确 CMake 工具链/sysroot，[官方说明](https://github.com/ros2/ros2_documentation/blob/humble/source/How-To-Guides/Cross-compilation.rst)
+
+## 板端依赖运行探针
+
+```bash
+bash infra/rk3588/scripts/prepare_legacy_smoke.sh
+../.infra/bin/vins-remote firefly@10.106.0.220 ../.infra/rk3588/legacy-smoke-payload \
+  --run infra/rk3588/scripts/legacy_smoke.sh --output ../results/rk3588/新的依赖探针 --timeout 90
+```
+
+准备脚本拒绝覆盖已有 payload；复用已验收 payload 时只执行第二条并指定新结果目录。源码在 infra/rk3588/probes/legacy/，检查 padded 灰度输入、八个角点的 LK 位移及输入不变，实际 SuiteSparse/CXSparse 求解均得到 x=10，25 个 ARM 动态库齐全、退出 0，见 [验收快照](../infra/rk3588/reference/legacy_20261014/)
+
+## Profile 与时间口径
+
+板端原先无 perf。主机从锁定包准备 ARM perf 与 11 个动态库，保留板端 glibc/loader：
 
 ```bash
 bash infra/rk3588/scripts/prepare_perf.sh
@@ -72,80 +97,18 @@ bash infra/rk3588/scripts/prepare_perf.sh
   --run infra/rk3588/scripts/profile_smoke.sh --output ../results/rk3588/新的采样探针 --timeout 90
 ```
 
-准备脚本从统一包锁中取得实际 perf 二进制及 11 个 ARM 动态库，保留板端 glibc/loader，拒绝覆盖现有 payload。工具实测版本 5.15.216，在厂商 5.10.110 上完成五类用户态事件计数、99 Hz cycles 采样与 frame-pointer 调用栈；298 个样本、丢样为 0，热点函数 profile_work 可解析。证据见 [perf 快照](../infra/rk3588/reference/perf_20261014/) 和第 05 份报告，覆盖的是测试程序，不是 VINS 热点结论
+准备脚本拒绝覆盖已有 payload。perf 实测版本 5.15.216，在厂商 5.10.110 内核上通过五类用户态事件计数、99 Hz cycles/frame-pointer 采样和函数符号解析；298 个样本、零丢样，PMU 权限保持板端原值 2，见 [profile 证据](../infra/rk3588/reference/perf_20261014/)。不替换内核，不能把测试函数热点作为 VINS 热点
 
-板端墙上时钟未同步，perf 文件头/远端 start_utc 的日期偏离主机；本轮不修改板端时钟。阶段事件使用主机 UTC，程序耗时用单调时钟，避免跨机器相减绝对时间
+Arm Streamline 可选路线需要目标 gatord，主要使用 Linux Perf API；当前已验证的 CPU 路线为 perf，[Arm 官方说明](https://github.com/ARM-software/gator)。厂商启用 DMC/DFI、sysfs 有 dmc 频率/governor，但未验证 DDR 字节/秒或 CPU 功耗计量；缺接口填不可用，不用频率、负载、cache misses 或 GPU/NPU 读数替代
 
-可选 Arm Streamline 需要目标 gatord，主要使用 Linux Perf API；先验证 CPU perf，再决定是否值得引入更重的工具，不自动改内核或安装 GPU/NPU profiler，[Arm gator 官方说明](https://github.com/ARM-software/gator)
+板端墙上时钟未同步，远端绝对日期偏离主机。外层阶段按主机 UTC 归档，程序耗时用单调时钟，本轮未修改板端时间
 
-厂商内核启用了 DMC/DFI，当前 sysfs 有 dmc 频率及 governor，但没有 DDR perf PMU。频率、负载比例不能直接作为 DDR 字节/秒；继续核验厂商接口的单位、采样窗口及读写口径，证据不足时填不可用。CPU 功耗也需实际可读的板端计量接口或外部仪表，不以 GPU/NPU 读数替代
+## 实验与事件处理
 
-## 实验与验收
+部署需携带完整 install、运行时库和必要 ROS/Python 资源，不假定一个可执行文件足够。先核验板端动态库来源、节点/组件生命周期与回放，再按单目/双目 copy/share、组件、split ROS/memfd 去重各跑一轮，严格串行，不跑五次重复
 
-ARM 构建通过后锁定一次性实验矩阵：ROS 1 参照、ROS 2 单目/双目 copy/share、组件及 split ROS/memfd 对照去重执行；不运行五次重复。VGEM 是桌面夹具，板端若使用 DMA heap 需先独立核验实际分配、stride、缓存同步和归还，不冒充 VGEM 或真实相机全链路验收
+保留 MH_01_easy、标定和算法参数，核验输入计数、初始化/重置、末帧、ATE/RPE、退出与共享槽位归还；报告全线程 CPU、每进程 RSS/PSS、回放/排空时间、频率/温度。排空后完成不能称实时通过，评估在主机同一 uv.lock 环境执行，结果续写第 05 份报告
 
-固定 MH_01_easy、标定和算法参数；实验串行，明确回放与排空时间、全线程 CPU、每进程 RSS/PSS、频率/温度及输入/初始化/重置/末帧/退出。共享路径核验全像素/时间戳摘要与槽位归还，结果回主机用同一 uv.lock 离线评估 ATE/RPE，统一续写第 05 份报告
+VGEM 仅是桌面夹具。板端 DMA heap 若使用，需先实际验证分配、stride、缓存同步、owner 和归还，不能冒充 VGEM、真实相机或端到端零拷贝验收
 
-目前连接、工作流、统一依赖下载、交叉 GCC、ARM ROS 2 sysroot 与 perf 已验收，ARM 小程序运行通过；VINS 与板端 VIO 尚未完成。大批次交给本地执行器，仅阶段完成、失败或需要处理时通知当前聊天，不由模型在线轮询；手动 ssh 留给初期核实和必要调试
-
-## 交叉工具链准备与失败回退
-
-首次 Docker 准备阶段在拉取基础镜像前失败，daemon 的代理端口 7890 没有服务。本机实际代理为 7897，直连 Ubuntu 仓库也已验证；失败事件与原始日志见 [准备失败快照](../infra/rk3588/reference/cross_sdk01_failure/)。未编译 ARM 程序，相关准备 commit 8406859 已撤回，不混入成功实验
-
-现改用主机私有目录下载/解包 Ubuntu aarch64 GCC 包与基础运行库，读取已认证的 apt 索引但不安装或修改系统包。包版本/架构/SHA256 保存，本机 x86_64 编译出 ARM ELF 后，仍通过 C++ 工具在板端验证运行和依赖；先验收编译器，再建立完整 ARM ROS sysroot
-
-```bash
-bash infra/rk3588/scripts/prepare_cross_toolchain.sh
-```
-
-默认前缀 `../.infra/rk3588/toolchain/`，板端小程序结果 `../results/rk3588/cross-smoke02/`。本机临时服务 `vins-rk-toolchain02.service` 承接阶段，事件在 `../results/rk3588/toolchain02/`，只在完成或失败通知一次。已有 ready 的工具链拒绝重新下载覆盖；后续 OpenCV/Ceres/ROS/VINS 尚未构建或验收
-
-## ARM ROS 2 sysroot 下载
-
-独立 `prepare_ros2_sysroot.py` 使用 Ubuntu/ROS 签名验证，下载 ARM Jammy/Humble 的运行与开发依赖闭包，不执行板端 apt、不安装本机系统包。独立 apt 索引/状态/cache 不与交叉 GCC 下载互相覆盖；同时下载 Ubuntu 的 ARM linux-tools/perf 作为待实测候选，只接受 arm64/all 包，保存版本及 SHA256，完成后 ready 前缀拒绝在线覆盖
-
-```bash
-python3 infra/rk3588/scripts/prepare_ros2_sysroot.py
-```
-
-默认前缀 `../.infra/rk3588/ros2-sdk/`，sysroot 子目录只供交叉编译。其中 apt cv_bridge/OpenCV 4.5.4 依赖不是最终 VINS 参照；后续仍重建 OpenCV 4.2.0 / Ceres 1.14.0 / cv_bridge 3.2.1 并审计链接。CMake 工具链位于 `infra/rk3588/cmake/aarch64.cmake`，主机程序和目标库查找分开
-
-本阶段由 `vins-rk-sysroot03.service` 承接，事件在 `../results/rk3588/sysroot03/`。SDK 下载可与编译器下载独立进行，VIO 和性能实验仍严格串行；完成或失败才通知一次，不能将下载成功当作 ARM 构建或 VIO 验收
-
-perf 候选工具从同一已认证的 Ubuntu ARM 仓库下载。厂商内核为 5.10，Ubuntu 工具版本可能为 5.15；跳过按 uname 选路径的 wrapper，只有实际计数、采样及符号解析检查通过才采用该用户态二进制，不更换板端内核
-
-交叉准备里程碑已验收：25 个工具链包、807 个 ARM SDK 包的全部 SHA256 通过；本机 x86_64/GCC 11.4.0 编译出的 ELF64 AArch64 小程序在厂商 5.10.110 板端退出 0，指针宽度 8、动态库无缺失。证据见 [交叉 SDK 快照](../infra/rk3588/reference/cross_sdk_20261014/)，新 tag 为 milestone-rk3588-cross-sdk-v1；这仅证明工具链与 SDK 准备，不当作 VINS 验收
-
-## ARM 固定版本视觉库构建
-
-```bash
-bash infra/rk3588/scripts/build_legacy.sh
-```
-
-使用统一下载目录及 cross_env.sh，为 ARM 安装 Eigen 3.3.9、OpenCV 4.2.0、Ceres 1.14.0，默认安装前缀 `../.infra/rk3588/legacy/`、构建目录 `../.infra/rk3588/build-legacy-sysroot/`。OpenCV 模块和关闭的第三方特性沿用原生参照，不开启新的板端算法优化；使用主机 GNU Make，默认四个编译任务，可通过 VINS_BUILD_JOBS 调整
-
-首次配置因主机 fresh shell 没有 Ninja 而失败，未生成视觉库，证据见 [配置失败记录](../infra/rk3588/reference/legacy01_failure/)。已改用现有 Make、新建构建目录，依赖版本和原失败记录不变。后续重建由临时服务 vins-rk-legacy02.service 承接，唯一阶段目录 `../results/rk3588/legacy02/`，完成或失败才通知一次；截至提交入口时尚未验收库或 VINS
-
-legacy02 随后在 Carotene 编译失败：OpenCV 4.2.0 使用旧参数 ipcp-unit-growth，GCC 11 已改名为 ipa-cp-unit-growth，见 [GCC 官方记录](https://gcc.gnu.org/legacy-ml/gcc-patches/2020-01/msg00425.html)。失败日志见 [兼容性证据](../infra/rk3588/reference/legacy02_failure/)。仅修正参数名，保留数值和默认 ARM Carotene，不升级 OpenCV；补丁位于 infra/rk3588/patches/，在独立源码副本应用，下载目录保持原样
-
-下一构建阶段为 vins-rk-legacy03.service，事件在 `../results/rk3588/legacy03/`；仍须完成库构建、ARM ELF 与板端运行验收，不能将补丁应用通过称为视觉库或 VIO 通过
-
-## ARM ROS 2 项目构建入口
-
-视觉库验收完成后执行 `bash infra/rk3588/scripts/build_ros2_cross.sh`。脚本按 cv_bridge、camera_models、vins_estimator、loop_fusion、global_fusion 顺序直接调用 CMake，不依赖桌面 colcon 或 source ARM 环境；安装目录为 `../.infra/rk3588/ros2_ws/install/`，构建目录为其同级 build
-
-代码生成使用主机 `/usr/bin/python3` 及 SDK 中可在主机运行的纯 Python ament/catkin 工具；Python/NumPy 头文件与 libpython 显式取 ARM SDK。已独立验证主机 Python 3.10.12、目标开发文件查找，以及编译得到 ELF64 AArch64 Python 模块，见 [Python 交叉探针](../infra/rk3588/reference/python_cross_20261014/)。此探针尚未在板端导入，也不表示 cv_bridge 或完整 ROS 2/VINS 已构建通过
-
-legacy03 已完成 OpenCV 4.2.0，但 Ceres 配置失败，证据见 [Ceres 配置失败](../infra/rk3588/reference/legacy03_failure/)。解包 SDK 不执行 postinst，BLAS/LAPACK 的 alternatives 链接不存在；显式查找实际 blas/lapack 子目录。此 SDK 的 libspqr.so 未依赖 TBB，关闭旧 Ceres 的可选 TBB 探测，保留 OpenMP、SuiteSparse/LAPACK/CXSparse；安装后检查不允许这些参照功能静默关闭。新目录局部配置已通过，下一完整构建为 legacy04
-
-legacy04 的库构建退出 0，但消费端链接探针失败，未接受为里程碑，见 [共享库链接失败](../infra/rk3588/reference/legacy04_link_failure/)。SDK 绝对符号链接使 libm.so 无法在主机解析，构建退回静态数学库；统一下载入口已将 36 个绝对链接改为目标 SDK 内的相对链接。另补齐目标库 rpath-link，解析间接 BLAS/LAPACK 依赖。包锁和归档哈希不变，旧视觉库前缀及失败构建保留，完整重建使用新目录，下一阶段为 legacy05
-
-视觉库必须同时通过消费端链接和板端运行：`bash infra/rk3588/scripts/prepare_legacy_smoke.sh` 构建/打包探针，再用 C++ 工具传输并运行 `infra/rk3588/scripts/legacy_smoke.sh`。探针检查带 padding 的灰度输入、GFTT/LK 位移与输入不变，以及 SuiteSparse/CXSparse 两种实际稀疏求解；源码在 infra/rk3588/probes/legacy/，不能将 ldd 或 ELF 检查替代这些运行验收
-
-legacy05 与 legacy-smoke01 已通过完整库构建、消费端链接及板端实际计算验收，见 [视觉库快照](../infra/rk3588/reference/legacy_20261014/)。OpenCV/Ceres/Eigen 版本固定，Ceres 启用宏与原生一致；传递依赖的版本/BLAS 实现差异及旧 SuiteSparse 说明更正在第 05 份报告明确列出。下一步执行 ARM ROS 2 项目构建，仍未运行板端 VIO
-
-ARM ROS 2 首次配置在 typesupport 资源索引查询前停止，包实际已存在，见 [配置失败](../infra/rk3588/reference/ros2_build01_failure/)。构建脚本补上目标 AMENT_PREFIX_PATH，与 CMake 包路径一致；主机/目标 Python 和 Boost 查找已通过，不修改 VINS 核心。后续阶段为 ros2-build02，仍需完整构建及板端运行验收
-
-ros2-build02 配置已通过，但 Humble 预编译消息导出的 INTERFACE_LINK_LIBRARIES 硬编码 libpython 绝对路径，构建误查主机根目录，见 [SDK 导出路径失败](../infra/rk3588/reference/ros2_build02_failure/)。统一解包规则在 ROS CMake 导出中仅为该路径添加 CMAKE_SYSROOT，记录前后哈希，原包/二进制不变。下一阶段为 ros2-build03，不修改 VINS 核心或伪装其他平台
-
-ros2-build03 编译退出 0，但链接警告暴露 SDK cv_bridge 引入 OpenCV 4.5，混链验收不通过，未部署，见 [混链证据](../infra/rk3588/reference/ros2_build03_mixed_libraries/)。固定 cv_bridge_DIR、camera_models_DIR 为重建安装目录，并将其间接库搜索路径放在 SDK 前；新 workspace 为 `../.infra/rk3588/ros2_ws_overlay/`，旧 workspace 保留。下一阶段 ros2-build04，全量重建后还需验证动态库来源和板端运行
+大阶段由主机后台 runner 执行，结束/失败才通知一次，不在线模型轮询。积压通知按 [第 10 份账本](10_PHASE_EVENT_AUDIT.md) 去重，先统一核对当前事件、源代码和有效产物，再决定唯一下一阶段；源码与正在运行的实验产物固定，避免按旧通知反复修改

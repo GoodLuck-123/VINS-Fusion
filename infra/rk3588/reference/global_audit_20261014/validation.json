@@ -1,0 +1,17 @@
+{
+  "files_read": 52,
+  "unique_stages": 29,
+  "rk_stages": 13,
+  "event_state_mismatches": 0,
+  "live_host_task_processes": 0,
+  "live_prior_board_task_processes": 0,
+  "board_prior_jobs_closed": 7,
+  "rk_manifests_checked": 14,
+  "rk_hash_records": 103,
+  "source_core_and_configs_equal_desktop_handoff": true,
+  "final_ros2_app_closure_elfs": 76,
+  "missing_runtime_libraries": 0,
+  "opencv45_mixed_dependencies": 0,
+  "board_vio_run": false,
+  "queue_messages_deleted": false
+}

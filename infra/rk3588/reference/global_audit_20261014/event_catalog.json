@@ -1,0 +1,503 @@
+[
+  {
+    "path": "rk3588/cross-sdk01/event.json",
+    "status": "failed",
+    "exit": 1,
+    "pid": 41640,
+    "start": "2026-10-14T04:10:41Z",
+    "end": "2026-10-14T04:10:41Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/prepare_cross_ros2.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "2ccf9e3a85b3a0ffda52fde9bed181bae6214fac3f090bf1ece33c2d65f46346",
+    "disposition": "rejected_reverted",
+    "evidence_commit": "32cbd9b"
+  },
+  {
+    "path": "rk3588/dependencies01/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 62363,
+    "start": "2026-10-14T04:56:29Z",
+    "end": "2026-10-14T04:56:33Z",
+    "command": [
+      "/usr/bin/python3",
+      "/home/eric/projects/VINS-Fusion/infra/dependencies/fetch.py",
+      "--cache-from",
+      "/home/eric/projects/.infra/downloads",
+      "--cache-from",
+      "/tmp",
+      "--cache-from",
+      "/home/eric/projects/.infra/rk3588/toolchain/debs",
+      "--cache-from",
+      "/home/eric/projects/.infra/rk3588/ros2-sdk/cache/archives"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "eee8e3f0ced5370a252ece3cdd8c27e5886b24f43484e1face3bbf4b0992feff",
+    "disposition": "accepted_fetch_followup_sdk_relocations",
+    "evidence_commit": "8068c50"
+  },
+  {
+    "path": "rk3588/legacy01/event.json",
+    "status": "failed",
+    "exit": 1,
+    "pid": 70039,
+    "start": "2026-10-14T05:12:54Z",
+    "end": "2026-10-14T05:12:54Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_legacy.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "7bfb19eedbdbfcbe5fa9c3c694f0c47a156955efa37f863a5543a44d6cf65fe9",
+    "disposition": "rejected_superseded_by_legacy05",
+    "evidence_commit": "01b0534"
+  },
+  {
+    "path": "rk3588/legacy02/event.json",
+    "status": "failed",
+    "exit": 2,
+    "pid": 71155,
+    "start": "2026-10-14T05:15:51Z",
+    "end": "2026-10-14T05:15:55Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_legacy.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "421bffb33afa1ff15d283c3a9a826ab6a4acb65f8f1eddcbc2d5d6a9333c4c7a",
+    "disposition": "rejected_superseded_by_legacy05",
+    "evidence_commit": "f3f686f"
+  },
+  {
+    "path": "rk3588/legacy03/event.json",
+    "status": "failed",
+    "exit": 1,
+    "pid": 74053,
+    "start": "2026-10-14T05:21:32Z",
+    "end": "2026-10-14T05:22:43Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_legacy.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "f31069c8631a4148721a40a6b11e88db4c942b25df08a72440748108f7d7ebbc",
+    "disposition": "rejected_superseded_by_legacy05",
+    "evidence_commit": "1b44e0d"
+  },
+  {
+    "path": "rk3588/legacy04/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 79943,
+    "start": "2026-10-14T05:30:52Z",
+    "end": "2026-10-14T05:31:46Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_legacy.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "9935cd644b31e9e5a91ae0efef85611396031fd8be330ac562ad07b5942e60b6",
+    "disposition": "exit_zero_but_rejected_link_failure",
+    "evidence_commit": "7759262"
+  },
+  {
+    "path": "rk3588/legacy05/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 83835,
+    "start": "2026-10-14T05:46:25Z",
+    "end": "2026-10-14T05:48:31Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_legacy.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "30f9f8a71cd08cd7064100dad638ffacc20bd5b279fafc6c934bbfd6f3cd59d2",
+    "disposition": "accepted_library_and_board_probe",
+    "evidence_commit": "fb57978"
+  },
+  {
+    "path": "rk3588/ros2-build01/event.json",
+    "status": "failed",
+    "exit": 1,
+    "pid": 90446,
+    "start": "2026-10-14T05:55:21Z",
+    "end": "2026-10-14T05:55:22Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_ros2_cross.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "c0ba5d3dd8b72191e5013aabeab4f332a0725f8c9e8543a63ac4b7ea75b58433",
+    "disposition": "rejected_superseded_by_ros2_build04",
+    "evidence_commit": "eaf518c"
+  },
+  {
+    "path": "rk3588/ros2-build02/event.json",
+    "status": "failed",
+    "exit": 2,
+    "pid": 90673,
+    "start": "2026-10-14T05:58:12Z",
+    "end": "2026-10-14T05:58:16Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_ros2_cross.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "f5043efa288e1830fdd999c8a64f9664c768fc778b7f79cd0b0bafa489d50fe7",
+    "disposition": "rejected_superseded_by_ros2_build04",
+    "evidence_commit": "285c9b4"
+  },
+  {
+    "path": "rk3588/ros2-build03/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 91741,
+    "start": "2026-10-14T06:04:09Z",
+    "end": "2026-10-14T06:06:18Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_ros2_cross.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "3eabcd6007bd9045c9b3ebb2f5aea3affdd895e3fcdeb54c04d36ff374154462",
+    "disposition": "exit_zero_but_rejected_mixed_opencv",
+    "evidence_commit": "c0ae27d"
+  },
+  {
+    "path": "rk3588/ros2-build04/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 93031,
+    "start": "2026-10-14T06:09:30Z",
+    "end": "2026-10-14T06:11:41Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_ros2_cross.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "0a13f9936a767e6beb2ff9fab3306e3ec1d4bcfee5b4f6fd1711fa8681f4d3bb",
+    "disposition": "accepted_host_build_and_elf_closure_board_vio_pending",
+    "evidence_commit": "c0ae27d"
+  },
+  {
+    "path": "rk3588/sysroot03/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 43437,
+    "start": "2026-10-14T04:31:07Z",
+    "end": "2026-10-14T04:33:07Z",
+    "command": [
+      "/usr/bin/python3",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/prepare_ros2_sysroot.py"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "b76db5869f7b7921f231c634d8b3483474c265681efe2f1bff11d004d16615f3",
+    "disposition": "accepted_packages_followup_sdk_relocations",
+    "evidence_commit": "7afa71e"
+  },
+  {
+    "path": "rk3588/toolchain02/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 42098,
+    "start": "2026-10-14T04:18:33Z",
+    "end": "2026-10-14T04:19:27Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/prepare_cross_toolchain.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "f7ed14318a6f691af9baeb77ed552218669eef0538b561256dc8eb720fa9ae70",
+    "disposition": "accepted_cross_compiler_and_board_smoke",
+    "evidence_commit": "7afa71e"
+  },
+  {
+    "path": "ros2/native_shared_repeats_20261013/event.json",
+    "status": "complete",
+    "exit": null,
+    "pid": null,
+    "start": null,
+    "end": null,
+    "command": null,
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "87ab6fffdf9e68933b42efb099aecaeccc5a1f49ce0c347312bed5dc0cb1a632",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/components01/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 82089,
+    "start": "2026-10-13T08:42:23Z",
+    "end": "2026-10-13T09:09:49Z",
+    "command": [
+      "/usr/bin/python3",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_native_ros2_phase.py",
+      "--phase",
+      "components",
+      "--prefix",
+      "native_components"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "28fd2a1139bee1e45a2a9b96ac1a5fa980e555cae122673d1531853b4dd2e4e6",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/native_components/state.json",
+    "status": "complete",
+    "exit": null,
+    "pid": null,
+    "start": null,
+    "end": null,
+    "command": null,
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "64ab47d84a38f646337c4b13f7eabab05e1a373d4b727bb4a6fcd1ddfb236e3b",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/native_pmu/state.json",
+    "status": "complete",
+    "exit": null,
+    "pid": null,
+    "start": null,
+    "end": null,
+    "command": null,
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "a428e1fd966729802cb65b738b6998994fc78f25c327272d20f62b8ce7d530b9",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/native_ros2_baseline/state.json",
+    "status": "complete",
+    "exit": null,
+    "pid": null,
+    "start": null,
+    "end": null,
+    "command": null,
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "0581f32fea0ae456b163d517347e88a41f2b312b137ee78e59515df23e76e9ac",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/native_shared/state.json",
+    "status": "complete",
+    "exit": null,
+    "pid": null,
+    "start": null,
+    "end": null,
+    "command": null,
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "654434a847b94823af357f7dbd1efc496573df497436145e53e836cfb73c940c",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/native_vgem/state.json",
+    "status": "complete",
+    "exit": null,
+    "pid": null,
+    "start": null,
+    "end": null,
+    "command": null,
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "5c156da8e5fc9a374b7ba05ca46bf1e47b58e90e4448a0c0c852b8ab86f3e804",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/pmu01/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 131070,
+    "start": "2026-10-13T09:13:06Z",
+    "end": "2026-10-13T09:19:57Z",
+    "command": [
+      "/usr/bin/python3",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_native_ros2_phase.py",
+      "--phase",
+      "pmu",
+      "--prefix",
+      "native_pmu"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "89ff954bb6f16ba27ba1d248f51cbfb9c827fd8f0a0654b2cfa7daa39fd2c9cd",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/repeats01/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 184126,
+    "start": "2026-10-13T10:01:04Z",
+    "end": "2026-10-13T11:43:59Z",
+    "command": [
+      "/usr/bin/python3",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_shared_repeats.py",
+      "--batch",
+      "native_shared_repeats_20261013",
+      "--repetitions",
+      "5",
+      "--cooldown",
+      "10",
+      "--dds-profile",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/cyclonedds_native.xml",
+      "--shared-device",
+      "/dev/dri/card0"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "476f495d3d87ebc97569fcb98dd6c2a4724ce52caa1bfe220d4b6d664815755a",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/ros1-phase01/event.json",
+    "status": "interrupted",
+    "exit": null,
+    "pid": null,
+    "start": null,
+    "end": null,
+    "command": null,
+    "reason": "Background child disappeared after launching tool shell exited; no VIO trial started",
+    "notification_exit": null,
+    "sha256": "8851ffbae5af588f0b6a6307e0f68b25b8f9a84e6fa7de95fafd99feb7ced7df",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/ros1-phase02/event.json",
+    "status": "failed",
+    "exit": 1,
+    "pid": 27683,
+    "start": "2026-10-13T07:44:22Z",
+    "end": "2026-10-13T07:47:50Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_native_ros1_reproduction.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "5f5497184efd52b6e50b526ad9ac7ec47bd5320f6db0b35198744613c64fc9ac",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/ros1-phase03/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 34508,
+    "start": "2026-10-13T07:49:14Z",
+    "end": "2026-10-13T07:59:34Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_native_ros1_reproduction.sh",
+      "native_MH01_baseline_r02",
+      "native_MH01_metrics_r01",
+      "native_MH01_metrics_r02"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "02719d5ecc401c899f3a00b89dfa8a7968daaaab148d70bc7b221cc8781e1c8f",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/ros2-baseline01/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 67403,
+    "start": "2026-10-13T08:20:43Z",
+    "end": "2026-10-13T08:27:34Z",
+    "command": [
+      "/usr/bin/python3",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_native_ros2_phase.py",
+      "--phase",
+      "baseline",
+      "--prefix",
+      "native_ros2_baseline"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "2eaa12dc9eedadec5dc455aa26c9816a4793273cc86e58ec562e0df334a553e1",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/ros2-bootstrap01/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 56486,
+    "start": "2026-10-13T08:10:17Z",
+    "end": "2026-10-13T08:15:35Z",
+    "command": [
+      "/usr/bin/bash",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/bootstrap_ros2.sh"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "3a0cc27433051886b27c36859cb26b83d4c37a8ea9fdebf2daa932c552465adb",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/shared01/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 145060,
+    "start": "2026-10-13T09:28:13Z",
+    "end": "2026-10-13T09:41:57Z",
+    "command": [
+      "/usr/bin/python3",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_native_ros2_phase.py",
+      "--phase",
+      "shared",
+      "--prefix",
+      "native_shared",
+      "--dds-profile",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/cyclonedds_native.xml"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "02619ae925008ba72523cf0470616465f97b2051acd5291bd8e081128fa133e1",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  },
+  {
+    "path": "ubuntu22-reproduction/vgem01/event.json",
+    "status": "complete",
+    "exit": 0,
+    "pid": 170615,
+    "start": "2026-10-13T09:45:59Z",
+    "end": "2026-10-13T09:52:51Z",
+    "command": [
+      "/usr/bin/python3",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/scripts/run_native_ros2_phase.py",
+      "--phase",
+      "vgem",
+      "--prefix",
+      "native_vgem",
+      "--dds-profile",
+      "/home/eric/projects/VINS-Fusion/infra/desktop/cyclonedds_native.xml"
+    ],
+    "reason": null,
+    "notification_exit": null,
+    "sha256": "e34399152de72e202550db1d21ce6072353464e271b14462b2beb47505c4b394",
+    "disposition": "desktop_already_closed_keep_original_evidence"
+  }
+]

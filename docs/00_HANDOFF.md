@@ -39,12 +39,14 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。EuRoC 源端仍向池中复制像素，VGEM 仅为软件 DMA-BUF/CPU 映射验证。RK3588、真实相机、RGA/NEON/NPU 未验收，回环/GNSS/KITTI/RViz 未完成数据验收；设计范围见 [第 01 份任务书](01_RK3588_DEPLOYMENT_PLAN.md)
 
-下一项为用户已授权的 RK3588 板端工作：配置免密 SSH、固定 scp/部署/运行/日志回收工具、在联网主机下载依赖并优先交叉编译，再按配置各跑一轮。板端 Ubuntu 22.04.5/aarch64 已连通，尚未做板端 VIO 验收；已从 ROS 2 原生交接最新提交 7d42fac 建立目标分支，保留本轮分支/tag
+## RK3588 当前状态
 
-板端工作入口为 [第 08 份文档](08_RK3588_WORKFLOW.md)，当前分支 codex/rk3588-ros2。免密 SSH、C++ scp/远端脚本/日志回收已验证，板端只读能力快照已保存；下一步本机 ARM 工具链、sysroot 与运行依赖重建，不把连接或 PMU 访问当作 VIO 验收
+板端工作位于 codex/rk3588-ros2，从桌面 ROS 2 交接 7d42fac 建立；ROS 1 板端实现另从 master 最新提交继续，保留已有分支/tag。本轮授权范围为免密 SSH、固定 scp/远端运行与日志回收、主机交叉编译、各配置一轮板端实验；不重启历史桌面批次
 
-RK3588 的交叉 GCC 11.4.0、25 个工具链包与 807 个 ARM Humble sysroot 包已验收，ARM 小程序在板端运行通过；当前阶段继续固定版本视觉库、perf 和 VINS 构建，详见第 08 份文档。原 Docker 失败已归档并撤回，不混入成功结果
+目标 firefly@10.106.0.220，RK3588S / Ubuntu 22.04.5 / 厂商内核 5.10.110。免密 SSH、C++ 远端工具、交叉 GCC/ARM SDK、统一依赖下载、perf 及视觉库板端计算探针均已验收；OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保持不变，传递依赖差异见第 05 份报告
 
-统一依赖下载已提交 8068c50，并新增 milestone-rk3588-dependencies-v1；五个源码包及 832 个工具链/sysroot 包锁可用一个命令补齐，离线重跑和新目录 CMake/板端运行通过。板端 perf 计数、采样和函数符号解析已通过，证据见第 05/08 份文档；仍未运行板端 VINS。板端墙上时钟未同步，按主机阶段 UTC 归档、单调时钟计时
+最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。板端 VINS 部署、完整 VIO 与 ROS 1 ARM 实验尚待验收
 
-RK3588 固定版本视觉库已在主机交叉构建并通过板端计算探针，新增 milestone-rk3588-legacy-libs-v1；源码、传递依赖差异及完整失败记录见第 05/08 份文档。OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保持不变，下一项为 ARM ROS 2/VINS 构建与部署
+2026-10-14 已统一读取全部 52 个 event/state、核对 29 个阶段和全部归档；主机无活构建/实验，板端七个旧作业均已结束。积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
+
+工作流见 [第 08 份说明](08_RK3588_WORKFLOW.md)，clone 后一条命令补齐依赖见 [第 09 份说明](09_DEPENDENCIES.md)。板端墙上时钟未同步，按主机阶段 UTC 归档、单调时钟计时；profile 探针不代表 VINS 性能验收

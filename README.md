@@ -26,6 +26,7 @@
 | [07 原生 Ubuntu 复现](docs/07_NATIVE_UBUNTU_REPRODUCTION.md) | 里程碑顺序、状态及失败处理 |
 | [08 RK3588 工作流](docs/08_RK3588_WORKFLOW.md) | 免密 SSH、scp/远端作业、交叉编译及板端验收 |
 | [09 依赖下载](docs/09_DEPENDENCIES.md) | clone 后一个命令下载固定版本源码、交叉工具链与 ARM ROS 2 SDK |
+| [10 阶段事件核对](docs/10_PHASE_EVENT_AUDIT.md) | 积压通知去重、有效产物和失败阶段统一结论 |
 
 `vins_estimator/` 是主 VIO 与 ROS 2 数据源/共享缓冲入口，`camera_models/` 是相机模型，`loop_fusion/` 和 `global_fusion/` 保留扩展模块，`config/` 保存传感器配置。构建、实验、评估、依赖锁和已提交证据在 `infra/desktop/`；新 agent 的工作约定见 [AGENTS.md](AGENTS.md)
 
@@ -35,6 +36,6 @@
 
 源自 HKUST Aerial Robotics 的 [VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion)，作者、论文、引用及原版示例保存在 [上游历史说明](support_files/UPSTREAM_README.md)。源码遵循 [GPLv3](LICENCE)；上游 ROS 1 Docker 和硬件 launch 作为历史文件保留，当前 ROS 2 的可靠运行入口以第 04 份文档为准
 
-RK3588 板端工作位于 codex/rk3588-ros2，免密 SSH 与 C++ scp/运行/日志回收工具已验证；ARM 小程序交叉构建/运行、统一依赖下载与 perf 计数/采样/符号解析通过，VINS ARM 构建和 VIO 尚待验收。下载在联网主机完成，优先本机交叉编译，各配置仅一轮，具体见第 08 份文档
+RK3588 板端工作位于 codex/rk3588-ros2，免密 SSH 与 C++ scp/运行/日志回收工具已验证；ARM 视觉库板端计算、统一依赖下载与 perf 计数/采样/符号解析通过；ROS 2/VINS ARM 构建及依赖闭包通过，板端 VIO 尚待验收。下载在联网主机完成，优先本机交叉编译，各配置仅一轮，具体见第 08 份文档
 
 板端依赖统一执行 `python3 infra/dependencies/fetch.py` 下载，Git 只保留锁和空目录占位；OpenCV/Ceres/Eigen/cv_bridge、交叉工具链及 ARM Humble 包按 SHA256 校验，详见第 09 份说明

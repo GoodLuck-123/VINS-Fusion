@@ -301,3 +301,11 @@ OpenCV 在步长 80 字节的 64×64 灰度图上检测八个角点，LK 位移�
 保留指定 OpenCV/Ceres/Eigen 版本和求解器功能，传递依赖使用 ARM Ubuntu 包；后续跨主机性能差异不能仅归因于架构。更正旧失败归档关于 SuiteSparse 版本不同的错误描述，两端实际均 5.10.1；原冻结文件与哈希保留，更正说明及实测见 [视觉库证据](../infra/rk3588/reference/legacy_20261014/)
 
 前期 GCC 参数、SDK alternatives 与绝对符号链接问题的失败证据单独保存，均未运行 VINS、不计入成功实验统计。最终 sysroot 内链接已修正并完整重建，消费者链接和板端实际计算均已通过
+
+## RK3588 ARM ROS 2 构建与全局事件核对（2026-10-14）
+
+ros2-build04 在独立 ros2_ws_overlay 完成 cv_bridge 与四个项目 package 的交叉构建。四个主节点的递归依赖共 76 个 ARM ELF，运行库均可找到，只包含 OpenCV 4.2 SONAME；cv_bridge_DIR/camera_models_DIR 指向重建前缀，未选择 SDK OpenCV 4.5。此阶段验收的是主机构建与 ELF 闭包，尚未执行板端节点或 VIO，不提供轨迹、CPU 或实时性结论
+
+同次核对一次性读取全部 52 个 event/state、覆盖 29 个阶段，确认配对记录无不一致；板端 13 个阶段已统一归类，两次退出 0 的不合格构建未接受为成功。主机无活动任务，板端七个先前作业均已结束；桌面 19 份清单/1316 条哈希、板端原有 14 份清单/103 条哈希及 1276 个桌面交接快照文件核验通过，核心/config 与 7d42fac 一致
+
+[全局证据和事件路径/SHA256 账本](../infra/rk3588/reference/global_audit_20261014/)，当前有效产物与迟到通知处理规则见 [第 10 份说明](10_PHASE_EVENT_AUDIT.md)。下一项仅使用已核验的 ros2_ws_overlay/install 与 legacy 部署，不复用旧混链产物
