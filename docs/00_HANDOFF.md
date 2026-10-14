@@ -39,3 +39,5 @@ ROS 1 主机交叉构建里程碑 commit 30790b0 / tag milestone-rk3588-ros1-cro
 首次运行包/失败归档保持不变，新候选 ros1-payload02 含 4210 文件/105 个运行库。后续完整实验默认从已接受运行环境归档读取文件清单，可通过 --runtime-manifest 指定其他已验收清单，避免沿用旧失败候选；当前尚未接受 Noetic 运行环境或完整 VIO
 
 ros1-runtime02 已通过文件 SHA256、私有 Python 3.8/NumPy/rosbag、版本启动器、实际动态库与订阅就绪；结束无旧作业残留。ROS master 退出 0，原 VINS 清理 abort −6 如实单列，不称正常退出；无 bag 输入，完整回放另行验收。已接受路径 /home/firefly/vins-workspace/jobs/1791970072506-133971/ros1-payload02，清单默认取冻结归档，旧失败包不覆盖
+
+Noetic 环境里程碑 commit 92b1bbb / tag milestone-rk3588-ros1-runtime-v1；ros1-baseline01 已交本地后台单调用入口，首次传输原 ROS 1 bag，哈希/输入核验后执行唯一双目配置一轮回放、回收并在主机同一 uv.lock 下评估。已部署运行包/标定不变，ROS 2 批次均已结束；完整 ROS 1 回放尚未验收，不重复桌面四轮同配置实验

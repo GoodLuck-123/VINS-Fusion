@@ -64,7 +64,7 @@ python3 infra/rk3588/scripts/run_ros1_board_phase.py \
 
 工具统一执行 bag/运行包 SHA256、bag 输入计数、原 runner 双目 rate=1 回放、日志/资源/telemetry 回收及同一 uv.lock 主机评估。每次用新结果目录与前缀，失败保留，不覆盖失败或成功证据；板端只传运行文件，不在板端编译或联网
 
-VINS 输入实收计数未新增，报告 bag 计数并另验收初始化/无重置、末帧、ATE/RPE 和进程退出。原同步线程清理 abort 单列，不能叫正常退出；本轮 VINS CPU/RSS/PSS 来自原采样器，未采 rosbag 进程时源端资源标不可用，不当合计 CPU。当前接口已固定，完整回放尚未执行/验收
+VINS 输入实收计数未新增，报告 bag 计数并另验收初始化/无重置、末帧、ATE/RPE 和进程退出。原同步线程清理 abort 单列，不能叫正常退出；本轮 VINS CPU/RSS/PSS 来自原采样器，未采 rosbag 进程时源端资源标不可用，不当合计 CPU。当前接口已固定，ros1-baseline01 已交后台首次传 bag 并执行唯一配置一轮，完整回放尚未验收
 
 ## 串行实验和证据
 
