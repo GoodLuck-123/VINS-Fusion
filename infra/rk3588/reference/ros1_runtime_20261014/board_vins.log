@@ -1,0 +1,22 @@
+[0m[INFO] [1772744910.644071182]: init begins[0m
+config_file: /home/firefly/vins-workspace/jobs/1791970072506-133971/logs/config.yaml
+USE_IMU: 1
+IMU_TOPIC: /imu0
+result path /home/firefly/vins-workspace/jobs/1791970072506-133971/logs/vio.csv
+[33m[WARN] [1772744910.670641434]:  fix extrinsic param [0m
+camera number 2
+[0m[INFO] [1772744910.691440478]: Synchronized sensors, fix time offset: 0[0m
+[0m[INFO] [1772744910.691577853]: ROW: 480 COL: 752 [0m
+ exitrinsic cam 0
+ 0.0148655  -0.999881  0.0041403
+  0.999557  0.0149672  0.0257155
+-0.0257744 0.00375619   0.999661
+-0.0216401  -0.064677 0.00981073
+ exitrinsic cam 1
+ 0.0125553  -0.999755  0.0182238
+  0.999599  0.0130119  0.0251588
+-0.0253898  0.0179006   0.999517
+-0.0198436  0.0453689 0.00786212
+set g       0       0 9.81007
+[33m[WARN] [1772744910.693916728]: waiting for image and imu...[0m
+terminate called without an active exception

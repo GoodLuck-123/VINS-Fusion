@@ -54,3 +54,9 @@ ros1-build02 五包构建、六个可执行文件和 70 个 ARM ELF 依赖闭包
 ros1-legacy-smoke01 在实际 RK3588 Ubuntu 22.04 上通过原版本 OpenCV 4.2.0/Ceres 1.14.0。25 个非 glibc ARM 库文件 SHA256 和 ldd 无缺库，保留板端 glibc/loader；64×64 mono8 / stride 80 的 GFTT 八角点与 LK 位移误差小于 0.1 像素，输入未写；SuiteSparse/CXSparse 两后端均求得 x=10。ROS 2 共享回放结束并完成无残留审计后串行执行，无并行板端 VIO
 
 这是独立 Focal/Noetic 视觉库的 ABI/计算探针，没有 ROS 1 节点或完整 VIO/性能结论；[实际板端原日志、动态库与 SHA256](../infra/rk3588/reference/ros1_legacy_board_20261014/)
+
+## RK3588 Noetic 私有运行环境（2026-10-14）
+
+ros1-runtime02 板端 4210 文件 SHA256、Python 3.8.10/NumPy 1.17.4/rosbag 导入、rosversion/roslaunch 1.17.4、VINS 动态库与双目/IMU 订阅就绪通过。实际 maps 为私有 OpenCV 4.2/Ceres/Python 和系统 libc，保留 Ubuntu 22.04 glibc/loader/系统 Python 3.10。结束审计无旧作业活进程
+
+ROS master 退出 0，原 ROS 1 未 join 同步线程的清理 abort 为 −6，与桌面原版一致，如实记录，不称正常 VINS 退出。本阶段无 bag 输入或完整 VIO/轨迹/性能结论；首次包遗漏 SDK usr/bin/rosversion 的启动失败已归档，新独立候选补齐原脚本，依赖/算法/标定不变。[板端原日志、实际 maps、事件和逐文件 SHA256](../infra/rk3588/reference/ros1_runtime_20261014/)
