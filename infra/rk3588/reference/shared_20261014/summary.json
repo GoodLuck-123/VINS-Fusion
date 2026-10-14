@@ -1,0 +1,260 @@
+{
+  "trials": [
+    {
+      "name": "rk_shared01_stereo_imu_split_share_ros_1",
+      "mode": "stereo_imu",
+      "transport": "ros",
+      "ate_rmse_m": 0.2664976034945788,
+      "rpe_rmse_m": 0.0031976937036495025,
+      "combined_cpu_s": 724.47,
+      "playback_s": 188.50111893999565,
+      "drain_s": 6.159535660000984,
+      "poses": 1831,
+      "matches": 1819,
+      "sensor_counts": {
+        "img0": 3682,
+        "img1": 3682,
+        "imu": 36820,
+        "processed": 3682
+      },
+      "pixel_timestamp_sha256": {
+        "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+        "img1": "1e60c909475c5e83dfc530e47aade8cd3ea33a748395d2bc2f1075dbf66497a1",
+        "source_matches_consumer": true
+      },
+      "final_timestamp_error_ns": -44,
+      "resources": {
+        "cpu_s": 688.87,
+        "rss_mib": 76.15625,
+        "pss_mib": 68.9013671875
+      },
+      "source_resources": {
+        "cpu_s": 35.6,
+        "rss_mib": 32.75390625,
+        "pss_mib": 25.2119140625
+      }
+    },
+    {
+      "name": "rk_shared01_stereo_imu_split_share_memfd_2",
+      "mode": "stereo_imu",
+      "transport": "memfd",
+      "ate_rmse_m": 0.26652559489651834,
+      "rpe_rmse_m": 0.003115730008720633,
+      "combined_cpu_s": 701.69,
+      "playback_s": 188.3441549240015,
+      "drain_s": 6.169297494001512,
+      "poses": 1831,
+      "matches": 1819,
+      "sensor_counts": {
+        "img0": 3682,
+        "img1": 3682,
+        "imu": 36820,
+        "processed": 3682
+      },
+      "pixel_timestamp_sha256": {
+        "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+        "img1": "1e60c909475c5e83dfc530e47aade8cd3ea33a748395d2bc2f1075dbf66497a1",
+        "source_matches_consumer": true
+      },
+      "final_timestamp_error_ns": -44,
+      "resources": {
+        "cpu_s": 672.0,
+        "rss_mib": 67.94140625,
+        "pss_mib": 58.5205078125
+      },
+      "source_resources": {
+        "cpu_s": 29.69,
+        "rss_mib": 27.5703125,
+        "pss_mib": 17.2373046875
+      },
+      "shared_writer": {
+        "backend": "memfd",
+        "frames": 7364,
+        "source_materializations": 7364,
+        "source_bytes": 2658109440,
+        "waits": 0,
+        "reuses": 7347,
+        "outstanding": 0,
+        "failed": 0
+      },
+      "shared_reader": {
+        "backend": 1,
+        "frames": 7364,
+        "verified": 7364,
+        "failed": 0
+      }
+    },
+    {
+      "name": "rk_shared01_mono_imu_split_share_ros_3",
+      "mode": "mono_imu",
+      "transport": "ros",
+      "ate_rmse_m": 0.15976011270263588,
+      "rpe_rmse_m": 0.003030734451050551,
+      "combined_cpu_s": 555.86,
+      "playback_s": 188.61353924300056,
+      "drain_s": 6.15837895200093,
+      "poses": 1831,
+      "matches": 1819,
+      "sensor_counts": {
+        "img0": 3682,
+        "img1": 0,
+        "imu": 36820,
+        "processed": 3682
+      },
+      "pixel_timestamp_sha256": {
+        "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+        "img1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_matches_consumer": true
+      },
+      "final_timestamp_error_ns": -44,
+      "resources": {
+        "cpu_s": 528.09,
+        "rss_mib": 66.58984375,
+        "pss_mib": 58.6513671875
+      },
+      "source_resources": {
+        "cpu_s": 27.77,
+        "rss_mib": 26.140625,
+        "pss_mib": 18.5712890625
+      }
+    },
+    {
+      "name": "rk_shared01_mono_imu_split_share_memfd_4",
+      "mode": "mono_imu",
+      "transport": "memfd",
+      "ate_rmse_m": 0.16181212506260984,
+      "rpe_rmse_m": 0.0030066938460173117,
+      "combined_cpu_s": 573.2,
+      "playback_s": 188.57145040499745,
+      "drain_s": 6.1727963279990945,
+      "poses": 1831,
+      "matches": 1819,
+      "sensor_counts": {
+        "img0": 3682,
+        "img1": 0,
+        "imu": 36820,
+        "processed": 3682
+      },
+      "pixel_timestamp_sha256": {
+        "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+        "img1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_matches_consumer": true
+      },
+      "final_timestamp_error_ns": -44,
+      "resources": {
+        "cpu_s": 549.86,
+        "rss_mib": 58.87109375,
+        "pss_mib": 51.1962890625
+      },
+      "source_resources": {
+        "cpu_s": 23.34,
+        "rss_mib": 23.328125,
+        "pss_mib": 15.0654296875
+      },
+      "shared_writer": {
+        "backend": "memfd",
+        "frames": 3682,
+        "source_materializations": 3682,
+        "source_bytes": 1329054720,
+        "waits": 0,
+        "reuses": 3677,
+        "outstanding": 0,
+        "failed": 0
+      },
+      "shared_reader": {
+        "backend": 1,
+        "frames": 3682,
+        "verified": 3682,
+        "failed": 0
+      }
+    }
+  ],
+  "original_file_sha256": {
+    "event.json": "48f086d6a77ed296d2c2e8b7582fd13967e91045f8b35e5007ea0a3c358c40bc",
+    "console.log": "091759f99792c361491fc4b576fc04edb8712ed8f1047fb9a9cc6a8829979192",
+    "remote_jobs.json": "8ab639becb2178446269cecef231e3da23acb512d11e1867a667a5fabc6658fc",
+    "board/console.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "board/end_utc": "adbadc0adbec6f7cc5836f13689fd79dd46393ebe3326f78d152b4bc379222e4",
+    "board/exit_code": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "board/launcher.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "board/pid": "32692be7fd1058223e1c61e0c9e9cd00b786068515e8c677b65d102ad20d15af",
+    "board/plan.json": "19a8619fc7dd2bc82f07a3842863b43f824ece0a7ac887b2560c9a28e10d9cfa",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/cam0_mei.yaml": "cf80ecac499664460eb52159de38786058c7cfb5eee81ab6489dea37a5d64059",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/cam1_mei.yaml": "2a435db6a6fbd286c0fe0706792af4b08efd4ffdc6b7a22b8b261256d6e49963",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/cyclonedds.xml": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/euroc_mono_imu_config.yaml": "15acddd97d12657b6c2152029f899b949805558a6c74d43e2226d02ad8951616",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/evaluation.json": "54f3b2e20086859e89108da2b76833ede7a5c0afc0f3cbfdd12d72e80792892a",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/groundtruth.tum": "765862519ddf09b306fd4afec57ac3129a9b46d1b59e0bad8bf93e954c33078c",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/playback.log": "4c029474d89a2a0f143e80afe3c782470ef00bf46fbb79d55996a82664a5ccab",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/playback_qos.yaml": "41e107f05d8c2d97b37d632778a9fa426599b0bfb5df738bdf85dbd984d3c0d2",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/resource_samples.csv": "44b552b924c09d7ccc1518c7cc0496ae04f7a419176a6b0039334424264c7b32",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/run.json": "57a62a0108920ff0f7ac2fef48613dfda8878f92f5f96083878e4cfc9ab29aa5",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/source_resource_samples.csv": "c15ae021f9c7be51c3f5c23583ae6b6cc4fdfb94b000b61f6aac191b94895fb2",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/trajectory.png": "9d0449119291c75ce3b3fb94109d5d001e2030ae2c7931fa9db229a44f584390",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/trajectory.tum": "630596d342db6ee6ec345a679239bcfa555697dda7f4aafcbaf1a1584b72ac86",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/trajectory_aligned_se3.tum": "bbe223d8e779386d69391b3024e8e2e6f84ca5212acab523d9a0f491fc45e572",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/vins.log": "cca77feb8b65826fae3922df64bef748606974b94686fa9a4d491673b894c724",
+    "board/rk_shared01_mono_imu_split_share_memfd_4/vio.csv": "881fbb3907b4f86c7897e3b4995f0a1da1e47d7a4fe4a80e297bd38e874fcc3b",
+    "board/rk_shared01_mono_imu_split_share_memfd_4.log": "977c6ccb00ee87a1eea5a9c1c41067f47e4a68d412fef74c1ad5bb3c5442387b",
+    "board/rk_shared01_mono_imu_split_share_ros_3/cam0_mei.yaml": "cf80ecac499664460eb52159de38786058c7cfb5eee81ab6489dea37a5d64059",
+    "board/rk_shared01_mono_imu_split_share_ros_3/cam1_mei.yaml": "2a435db6a6fbd286c0fe0706792af4b08efd4ffdc6b7a22b8b261256d6e49963",
+    "board/rk_shared01_mono_imu_split_share_ros_3/cyclonedds.xml": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+    "board/rk_shared01_mono_imu_split_share_ros_3/euroc_mono_imu_config.yaml": "a7ebcdbf4dce27084851de5bfd20176b267c6d825353428ce9047119e288f53a",
+    "board/rk_shared01_mono_imu_split_share_ros_3/evaluation.json": "b2d16af8eba59aa890bab66e863bf4e5a8f2299cfc78487fdbbe7f96498818fa",
+    "board/rk_shared01_mono_imu_split_share_ros_3/groundtruth.tum": "765862519ddf09b306fd4afec57ac3129a9b46d1b59e0bad8bf93e954c33078c",
+    "board/rk_shared01_mono_imu_split_share_ros_3/playback.log": "5ce0a8f74cdd1475e136f76abff004618b0080bf2431cf463d1796dca2860039",
+    "board/rk_shared01_mono_imu_split_share_ros_3/playback_qos.yaml": "41e107f05d8c2d97b37d632778a9fa426599b0bfb5df738bdf85dbd984d3c0d2",
+    "board/rk_shared01_mono_imu_split_share_ros_3/resource_samples.csv": "70873af1d8394442ecbb7168e0fe785d33e7a8f15e4779fc1fb5d1c4ddeb620d",
+    "board/rk_shared01_mono_imu_split_share_ros_3/run.json": "d5027da0cb8e96ee146f95df398cc1329e2bbea6c4025db9aec8bbe721d146d2",
+    "board/rk_shared01_mono_imu_split_share_ros_3/source_resource_samples.csv": "150b83368b5f8cc2c05cb23d2d828b1d7281198dbcdaedb7d7b95b311d3c320e",
+    "board/rk_shared01_mono_imu_split_share_ros_3/trajectory.png": "b3ff1ceeae2779e5a1265ec4feb86d6f45389fa25e08e1f8e99ee8a58a8b06cd",
+    "board/rk_shared01_mono_imu_split_share_ros_3/trajectory.tum": "1e9c3250b78a52a87862beebec91b4a481b0e6bca0b711534fb61f4ec1ee9242",
+    "board/rk_shared01_mono_imu_split_share_ros_3/trajectory_aligned_se3.tum": "ae89f9b84ca416ae6082677e6a675a5e2727a4d52a34473462e6feeaa84bd329",
+    "board/rk_shared01_mono_imu_split_share_ros_3/vins.log": "f32491e615fed758c963b73798c1144046cc3f6cb336a13e8c6898be0828eb1c",
+    "board/rk_shared01_mono_imu_split_share_ros_3/vio.csv": "8f80166e9b08e9b04dc30284f4663c03c8c5cfbeb6ff41b26ee758066a29d0b0",
+    "board/rk_shared01_mono_imu_split_share_ros_3.log": "b7300633c13f87a8a0e47dc0931c010fb1a7605727a130425e3327d15ff03df2",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/cam0_mei.yaml": "cf80ecac499664460eb52159de38786058c7cfb5eee81ab6489dea37a5d64059",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/cam1_mei.yaml": "2a435db6a6fbd286c0fe0706792af4b08efd4ffdc6b7a22b8b261256d6e49963",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/cyclonedds.xml": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/euroc_stereo_imu_config.yaml": "71ffa856fd02d8df5e919e27ade6637997464f6a8d3838531697637fd3c9bfbe",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/evaluation.json": "53b54b9749ba83bf0f844b96f37325cd375274db5077bcbb1f75b0b1c93503d5",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/groundtruth.tum": "765862519ddf09b306fd4afec57ac3129a9b46d1b59e0bad8bf93e954c33078c",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/playback.log": "1298da5427088888e3e11e8d16181ef1af76c73572a362140ec799a627d624d1",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/playback_qos.yaml": "41e107f05d8c2d97b37d632778a9fa426599b0bfb5df738bdf85dbd984d3c0d2",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/resource_samples.csv": "f08a30fe665834984c5a53c4af7f55789d610d94c0b6b8e4e0b81e29af780016",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/run.json": "1d606c6f2b22e60714ffa4c29a09ca4385dc6c383ab78b35042ac120c61473c6",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/source_resource_samples.csv": "f6e62e55d52ea4b81b6505212527ac17bde9798ae066f2c2042f8a578ccd0ff5",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/trajectory.png": "9ceca38b21e3220a33b37fec76ec5e0467729b388dfc7a6115ab5db2b5f7a33c",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/trajectory.tum": "8f3a9db6d96d39269e785a250ea863993a504d43c04bddd977eb99fbf51be50e",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/trajectory_aligned_se3.tum": "c58d30acabc93906b961837a044e848e452fbed3fb0aab5b419517cb01eb1515",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/vins.log": "3d3537a83dbfe525f7538f94bfa0996b9356689f4811da3f34b0e15c814bf2f6",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2/vio.csv": "309bf9633a1fa52a1abb9cffbaeab65884d049499fd5bb7823d4f162fb12d1ab",
+    "board/rk_shared01_stereo_imu_split_share_memfd_2.log": "53f3946e2a606cfb98eba68e7ded5c8e504df74ec2f4aa965a39e32e6e1980aa",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/cam0_mei.yaml": "cf80ecac499664460eb52159de38786058c7cfb5eee81ab6489dea37a5d64059",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/cam1_mei.yaml": "2a435db6a6fbd286c0fe0706792af4b08efd4ffdc6b7a22b8b261256d6e49963",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/cyclonedds.xml": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/euroc_stereo_imu_config.yaml": "9d7cbf17f6332fc706515b854a0045911a2676941ad956736b20cab693e8e0a4",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/evaluation.json": "e2837b09d882f04821c9928a559fa6d1610f57478f7bbf22745667e464f8eda4",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/groundtruth.tum": "765862519ddf09b306fd4afec57ac3129a9b46d1b59e0bad8bf93e954c33078c",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/playback.log": "79c582622a290cca54e0d0e4860f52e732b660ee2ac99746321f1349926e285f",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/playback_qos.yaml": "41e107f05d8c2d97b37d632778a9fa426599b0bfb5df738bdf85dbd984d3c0d2",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/resource_samples.csv": "8a595e81395c363e693220e94d484febdd2a1f2fa6d11bb9d83934aaffc24348",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/run.json": "2704afe479c9cf1d19d025fb8cfd7bbe0168f59cb7c1176523ca480ddf408c3a",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/source_resource_samples.csv": "84399d1cc4c8baeffb282375e44455468f809a63325d8912edaf99177d1c0408",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/trajectory.png": "4c097336f814066345abbe60081a92519a9bad6640e3b49eb2a8fad706801618",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/trajectory.tum": "254936471ebec237af0d908a6795d2ddc31b86468224f95e7cbc45372e373b57",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/trajectory_aligned_se3.tum": "905ecec93840673173e2001ad769cdd4514d99b9cb85c80eadae21965b000e83",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/vins.log": "d44edc4c2fd79a000022084485c95373b39b05f5228c2049f534b0532417cd70",
+    "board/rk_shared01_stereo_imu_split_share_ros_1/vio.csv": "668cb024aff29406e00bd3cfad808d017ecd9b99c91be9cfbd896cdf477fc5c8",
+    "board/rk_shared01_stereo_imu_split_share_ros_1.log": "6cef91b1502bf23f605a01ec60dfc8554664e5e4e2645a79b56529f32840a713",
+    "board/start_utc": "28894e91d33b8668dead0d85a52ef25bfcf7c05da147ed96425025c5060992eb",
+    "board/state.json": "a48e2c00291243753f5085cc58dfe47baaab39db950054c055a3644254d3ec15",
+    "board/telemetry.jsonl": "5eb4fef3bea71d36e852a0077dcd00406d6ed7b5947b33e878044306a8e16956",
+    "drivers/bag_conversion.json": "034e52e959ec15f0300f38ffb7e3823828e22300d4ecd3c7a1ac810dc6c6c2cb",
+    "drivers/plan.json": "19a8619fc7dd2bc82f07a3842863b43f824ece0a7ac887b2560c9a28e10d9cfa",
+    "drivers/run_board_trials.py": "e619e85e9fa40d3450af276378fbb81c6039ac9721909d0803e46c9d92c04c10"
+  },
+  "ddr": "Unavailable",
+  "power": "Unavailable",
+  "scope": "VINS and source CPU separately and combined; per-process RSS/PSS; subscription-ready-to-drain"
+}

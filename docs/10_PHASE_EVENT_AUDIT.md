@@ -69,3 +69,5 @@ ros1-sdk-discovery01 迟到事件与 ROS 1 分支已接受归档逐字节一致�
 board-components01、board-pmu01 两条迟到事件再次与已验收归档逐字节核对一致，只去重，分别对应 a545a95 / af6c635，不重复提交里程碑或重跑。ros1-build01 在独立分支保留失败证据；Noetic 原生库/头文件导出路径重定位后启动 ros1-build02，已进入原 VINS 编译，仍需完成闭包、板端 ABI 和回放验收
 
 shared-probe-build01 与 shared_probe_20261014/build_event.json 逐字节一致，已包含在共享计算探针里程碑 8f04c3f，只去重。ROS 1 ros1-build02 已在所属分支验收并打 tag，主机退出 0 加 ELF/编译路径完整性核验通过；原 VINS/core/config 不变。ros1-package01 只负责新运行包准备，未部署、未进行板端 ROS 1 回放
+
+board-shared01 四轮完整回放/主机评估、逐帧摘要与槽位归还已接受，事件/SHA256 见 [归档](../infra/rk3588/reference/shared_20261014/)，结束审计无活作业。ros1-fetch01 迟到事件与 ROS 1 分支冻结归档逐字节一致，只去重；ros1-package01 主机完成，板端运行环境仍待验收。ROS 1 视觉库的实际板端计算探针 ros1-legacy-smoke01 已通过，提交在其所属分支

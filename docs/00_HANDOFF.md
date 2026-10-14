@@ -37,7 +37,7 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 初始 PMU 权限值为 4，用户临时调为 2、加载 VGEM 后本机探针通过；实验结束已恢复原 PMU 值 4、卸载临时 VGEM。DDR 控制器事件未发现，CPU 能量节点普通用户不可读，二者记不可用，不用 cache misses、复制量或 GPU 功率替代
 
-实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。EuRoC 源端仍向池中复制像素，VGEM 仅为软件 DMA-BUF/CPU 映射验证。RK3588 双目基线、单目和组件/owner 已通过，共享传输仍待验收；真实相机、RGA/自研 NEON/NPU、回环/GNSS/KITTI/RViz 未完成数据验收；设计范围见 [第 01 份任务书](01_RK3588_DEPLOYMENT_PLAN.md)
+实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。EuRoC 源端仍向池中复制像素，VGEM 仅为软件 DMA-BUF/CPU 映射验证。RK3588 双目基线、单目和组件/owner 已通过，ROS Image/memfd 共享完整对照已通过，完整 DMA heap 待验收；真实相机、RGA/自研 NEON/NPU、回环/GNSS/KITTI/RViz 未完成数据验收；设计范围见 [第 01 份任务书](01_RK3588_DEPLOYMENT_PLAN.md)
 
 ## RK3588 当前状态
 
@@ -45,7 +45,7 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 目标 firefly@10.106.0.220，RK3588S / Ubuntu 22.04.5 / 厂商内核 5.10.110。免密 SSH、C++ 远端工具、交叉 GCC/ARM SDK、统一依赖下载、perf 及视觉库板端计算探针均已验收；OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保持不变，传递依赖差异见第 05 份报告
 
-最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。ROS 2 PMU 已通过，完整共享对照与 ROS 1 ARM 仍待验收
+最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。ROS 2 PMU 已通过，完整 ROS Image/memfd 对照已通过，DMA heap 与 ROS 1 板端仍待验收
 
 运行包生成与部署检查已固定为 prepare_ros2_runtime.py / deploy_ros2_runtime.sh，runtime01 板端文件哈希、导入、独立节点与组件加载/卸载及退出全部通过，OpenCV maps 为运行包 4.2；结果目录 ../results/rk3588/runtime01/，证据见第 08 份文档。该探针没有 VIO 输入，完整回放另行验收
 
@@ -59,11 +59,11 @@ board-components01 五轮去重对照已通过完整输入/末帧、初始化/�
 
 board-pmu01 两轮已通过完整输入/末帧、评估与退出，四类用户态 CPU 事件无错误、无复用，权限保持 2；证据和计数范围见第 05 份报告。shared-probe01 实际板端 memfd 与 /dev/dma_heap/system 各通过 1000 帧逐像素/owner/归还校验，结束 outstanding=0；完整共享 VIO 对照另行验收，不将计算探针当作真实相机或端到端零拷贝
 
-共享计算探针里程碑 commit 8f04c3f / tag milestone-rk3588-shared-probe-v1；board-shared01 已交给后台 runner，双目/单目 × ROS Image/memfd 四轮串行回放、回收与主机评估。DMA heap 两轮入口已固定，待前一批验收后执行，当前尚无完整 DMA heap VIO 结果
+共享计算探针里程碑 commit 8f04c3f / tag milestone-rk3588-shared-probe-v1；board-shared01 四轮完整输入/末帧/摘要/退出、槽位归还与主机评估已通过，结束审计无残留。DMA heap 两轮入口已固定，待前一批验收后执行，当前尚无完整 DMA heap VIO 结果
 
 ROS 1 板端目标 codex/rk3588-ros1 已从 master 最新 8c7c8d2 建立独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1，依赖锁 commit 6578b00。主机只读 APT 解析已验签，807 个 Focal/Noetic SDK 包和 36 个 GCC 9.4 工具链包固定 SHA256；ros1-fetch01 下载及离线复核已通过，依赖里程碑 commit 30b9d96；ros1-legacy01 因旧主机 libstdc++ 抢占 CMake 失败，已隔离编译器/汇编器支持库并通过系统 CMake 与 ARM 编译探针，ros1-legacy02 已退出 0，消费端链接及 25 个 ARM 运行库闭包通过；计算探针待当前共享批次结束后在板端验证，ROS 1 完整回放仍未验收
 
-ROS 1 工程首次构建 ros1-build01 的 SDK 绝对 log4cxx/Boost 库路径问题已修正并保留失败证据，fetch.py 对目标库/头文件导出做可重复的 sysroot 重定位。ros1-build02 已完成并通过五包/六程序/70 个 ARM ELF 闭包核验，ROS 1 交叉构建里程碑 commit 30790b0 / tag milestone-rk3588-ros1-cross-build-v1；ros1-package01 在主机后台准备独立 Noetic/Python 3.8 运行包，仅重建 C++ cv_bridge，不生成目标 Python 扩展。当前 ROS 2 工作区与已部署运行包保持固定
+ROS 1 工程首次构建 ros1-build01 的 SDK 绝对 log4cxx/Boost 库路径问题已修正并保留失败证据，fetch.py 对目标库/头文件导出做可重复的 sysroot 重定位。ros1-build02 已完成并通过五包/六程序/70 个 ARM ELF 闭包核验，ROS 1 交叉构建里程碑 commit 30790b0 / tag milestone-rk3588-ros1-cross-build-v1；ros1-package01 已完成独立 Noetic/Python 3.8 运行包准备，4209 文件/105 个运行库，板端仍待验证，仅重建 C++ cv_bridge，不生成目标 Python 扩展。当前 ROS 2 工作区与已部署运行包保持固定
 
 2026-10-14 全局核对时已统一读取 52 个 event/state、核对 29 个阶段和全部归档；当时主机无活构建/实验，板端七个旧作业均已结束。后续新阶段续写账本，积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
 

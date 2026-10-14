@@ -95,6 +95,7 @@ def main():
                 command.append('--perf-counters')
             if trial['transport'] == 'dma_heap':
                 command.extend(['--shared-device', trial['shared_device']])
+            (logs / (trial['name'] + '-driver-command.json')).write_text(json.dumps(command, indent=2) + '\n')
             try:
                 with (logs / (trial['name'] + '.log')).open('w') as log:
                     code = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, env=env).returncode

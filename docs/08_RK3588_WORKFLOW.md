@@ -2,7 +2,7 @@
 
 更新日期：2026-10-14
 
-本轮在联网 Ubuntu 主机下载、交叉编译和打包，离线板端执行，再自动回收日志。依赖、构建、节点生命周期、完整双目基线、单目与组件/owner 已验收；PMU 完整对照与 memfd/DMA heap 计算探针已通过，完整共享 VIO 与 ROS 1 仍待验收。各配置只执行一轮，不运行历史重复批次或新的算法优化
+本轮在联网 Ubuntu 主机下载、交叉编译和打包，离线板端执行，再自动回收日志。依赖、构建、节点生命周期、完整双目基线、单目与组件/owner 已验收；PMU 完整对照与 memfd/DMA heap 计算探针已通过，ROS Image/memfd 完整共享 VIO 已通过，DMA heap 完整 VIO 与 ROS 1 仍待验收。各配置只执行一轮，不运行历史重复批次或新的算法优化
 
 ## 当前环境与有效产物
 
@@ -20,7 +20,7 @@ ROS 2 分支 codex/rk3588-ros2 从桌面交接 7d42fac 建立，ROS 1 板端代�
 | profile | perf 计数/采样/函数符号解析通过，尚无 VINS 热点结果 |
 | 单目与组件/owner | board-components01 五轮去重配置通过完整回放与评估 |
 | PMU | board-pmu01 两轮完整回放/评估与四类无复用计数通过 |
-| 共享缓冲 | shared-probe01 两后端各 1000 帧通过；完整共享 VIO 待验收 |
+| 共享缓冲 | shared-probe01 两后端各 1000 帧通过；board-shared01 四轮完整共享 VIO 已通过 |
 | ROS 1 ARM | 独立 Focal/Noetic 依赖下载通过，构建/运行待验收 |
 | 完整双目基线 | board-baseline02 通过输入/末帧/退出及主机 ATE/RPE，资源范围见第 05 份报告 |
 
@@ -154,7 +154,7 @@ VGEM 仅是桌面夹具。板端 DMA heap 若使用，需先实际验证分配�
 
 ## 实际 DMA heap 后续入口
 
-shared-probe01 已验收 memfd 与 /dev/dma_heap/system 各 1000 帧，完整 ROS Image/memfd 对照由 board-shared01 串行执行。结束验收后再运行 phase=dma_heap，两模式各一次，复用同一运行包、数据、Cyclone 配置和参数，不同时启动板端实验
+shared-probe01 已验收 memfd 与 /dev/dma_heap/system 各 1000 帧，完整 ROS Image/memfd 对照 board-shared01 四轮已通过验收。结束验收后再运行 phase=dma_heap，两模式各一次，复用同一运行包、数据、Cyclone 配置和参数，不同时启动板端实验
 
 ```bash
 python3 infra/rk3588/scripts/run_ros2_board_phase.py \

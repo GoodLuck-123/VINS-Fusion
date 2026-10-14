@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "completed": [
+    "rk_shared01_stereo_imu_split_share_ros_1",
+    "rk_shared01_stereo_imu_split_share_memfd_2",
+    "rk_shared01_mono_imu_split_share_ros_3",
+    "rk_shared01_mono_imu_split_share_memfd_4"
+  ],
+  "bag_hashes_verified": true,
+  "current": {
+    "name": "rk_shared01_mono_imu_split_share_memfd_4",
+    "mode": "mono_imu",
+    "deployment": "split",
+    "image": "share",
+    "transport": "memfd",
+    "pmu": false,
+    "rmw": "rmw_cyclonedds_cpp"
+  }
+}
