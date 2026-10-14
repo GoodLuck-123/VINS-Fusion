@@ -1,0 +1,3 @@
+sparse_backend=SUITE_SPARSE x=10
+sparse_backend=CX_SPARSE x=10
+ARM_LEGACY_OK opencv=4.2.0 ceres=1.14.0 corners=8 input_step=80

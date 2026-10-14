@@ -48,3 +48,9 @@ ROS 1 输入为 3682 对图像、36820 条 IMU；计数由 bag 核验，未向�
 独立 codex/rk3588-ros1 从 master 8c7c8d2 继续，核心/config 不变。锁定 Focal/Noetic SDK、GCC 9.4，保持 OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9；视觉库构建和消费端链接通过，Ceres SuiteSparse/CXSparse/LAPACK/OpenMP 保留。SDK 绝对符号链接、Python 及原生库/头文件 CMake 导出重定位分别记录，失败保留
 
 ros1-build02 五包构建、六个可执行文件和 70 个 ARM ELF 依赖闭包通过，未混用 SDK cv_bridge/OpenCV；cv_bridge 1.16.2 仅构建 VIO 所需 C++ 库，下载 C++ 源码不变，不提供 Python cv_bridge 扩展。编译路径和 core/config 核验通过，原 GeographicLib 嵌套输出已纳入闭包。此处尚无板端 ABI/节点或 VIO、CPU/ATE/RPE 结果，不能将主机退出 0 当作板端成功；[构建证据及 SHA256](../infra/rk3588/reference/ros1_cross_build_20261014/)
+
+## RK3588 ROS 1 视觉库实际计算（2026-10-14）
+
+ros1-legacy-smoke01 在实际 RK3588 Ubuntu 22.04 上通过原版本 OpenCV 4.2.0/Ceres 1.14.0。25 个非 glibc ARM 库文件 SHA256 和 ldd 无缺库，保留板端 glibc/loader；64×64 mono8 / stride 80 的 GFTT 八角点与 LK 位移误差小于 0.1 像素，输入未写；SuiteSparse/CXSparse 两后端均求得 x=10。ROS 2 共享回放结束并完成无残留审计后串行执行，无并行板端 VIO
+
+这是独立 Focal/Noetic 视觉库的 ABI/计算探针，没有 ROS 1 节点或完整 VIO/性能结论；[实际板端原日志、动态库与 SHA256](../infra/rk3588/reference/ros1_legacy_board_20261014/)

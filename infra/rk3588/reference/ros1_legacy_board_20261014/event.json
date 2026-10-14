@@ -1,0 +1,18 @@
+{
+  "command": [
+    "../.infra/bin/vins-remote",
+    "firefly@10.106.0.220",
+    "../.infra/rk3588/ros1-legacy-probe-payload",
+    "--run",
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/rk3588/scripts/legacy_probe.sh",
+    "--output",
+    "../results/rk3588/ros1-legacy-smoke01/board",
+    "--timeout",
+    "60"
+  ],
+  "pid": 129306,
+  "status": "complete",
+  "start_utc": "2026-10-14T08:53:50Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-14T08:53:54Z"
+}
