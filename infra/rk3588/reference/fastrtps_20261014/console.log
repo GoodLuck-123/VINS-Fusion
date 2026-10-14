@@ -1,0 +1,23 @@
+toolchain: 25 pinned package hashes verified
+ros2-sdk: 807 pinned package hashes verified
+Download: ros-humble-fastrtps_2.6.12-1jammy.20260725.060440_arm64.deb
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0 2675k    0 22544    0     0  19508      0  0:02:20  0:00:01  0:02:19 19501 14 2675k   14  376k    0     0   175k      0  0:00:15  0:00:02  0:00:13  175k100 2675k  100 2675k    0     0   921k      0  0:00:02  0:00:02 --:--:--  921k
+Download: ros-humble-foonathan-memory-vendor_1.2.0-3jammy.20260307.140928_arm64.deb
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 75  747k   75  566k    0     0   455k      0  0:00:01  0:00:01 --:--:--  455k100  747k  100  747k    0     0   563k      0  0:00:01  0:00:01 --:--:--  563k
+Download: ros-humble-rmw-fastrtps-cpp_6.2.10-1jammy.20260907.212405_arm64.deb
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  8 91756    8  7947    0     0   8671      0  0:00:10 --:--:--  0:00:10  8666100 91756  100 91756    0     0  87406      0  0:00:01  0:00:01 --:--:-- 87469
+Download: ros-humble-rmw-fastrtps-shared-cpp_6.2.10-1jammy.20260907.211742_arm64.deb
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 19  154k   19 30738    0     0  32605      0  0:00:04 --:--:--  0:00:04 32595100  154k  100  154k    0     0   103k      0  0:00:01  0:00:01 --:--:--  103k
+ros2-fastrtps: 4 pinned package hashes verified
+Dependencies ready; downloaded trees and caches are ignored by Git
+Fast DDS addon: 50 files, dependency closure available in addon + accepted runtime
+Remote job: firefly@10.106.0.220:vins-workspace/jobs/1791961492786-103062
+Logs: "/home/eric/projects/results/rk3588/fastrtps02/board"; remote exit: 0

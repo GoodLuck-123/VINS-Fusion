@@ -315,3 +315,5 @@ ros2-build04 在独立 ros2_ws_overlay 完成 cv_bridge 与四个项目 package 
 runtime01 通过固定 scp/远端工具部署运行包，板端校验 6991 个文件 SHA256；rclpy、sensor_msgs、composition_interfaces、rosbag2_py 在板端 Python 3.10.12 导入成功。Cyclone DDS 下，独立 VINS 节点及组件均创建完整双目/IMU 订阅，组件加载/卸载成功，独立节点与容器退出均为 0。ldd 无缺库，实际进程 maps 仅出现运行包 OpenCV 4.2；主机外层事件也退出 0
 
 运行包未包含静态库、KITTI 程序或 SDK cv_bridge/OpenCV 4.5，保留板端 glibc/loader。核心和 config 与干净交叉构建 c0ae27d 一致，逐文件清单、动态库 maps、节点日志与事件见 [运行环境证据](../infra/rk3588/reference/runtime_20261014/)。没有 bag 输入，计数为零，本阶段没有轨迹、ATE/RPE 或 VINS 性能结论
+
+Fast DDS 后端补充验收 fastrtps02：四个已验签索引锁定 ARM 包、50 个 addon 文件及 6991 个原运行文件哈希通过。Fast DDS 2.6.12 / rmw_fastrtps 6.2.10 下独立节点和组件订阅就绪、组件卸载成功、两进程退出 0，实际 maps 显示 addon RMW 及原 OpenCV 4.2。原 SDK/运行包保持不变，[证据及 SHA256](../infra/rk3588/reference/fastrtps_20261014/)。此前基线启动缺该后端、HTTPS 下载证书失败均保留，尚未启动 VINS，不计为成功回放

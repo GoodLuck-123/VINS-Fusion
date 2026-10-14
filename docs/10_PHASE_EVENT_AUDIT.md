@@ -50,3 +50,5 @@ runtime01 已接受为板端 ROS 2 运行环境验收，事件及逐文件 SHA25
 board-baseline01 为补充依赖前的失败，数据已到板端并通过哈希；rclpy 找不到 Fast DDS 后端，尚未启动 VINS/播放器。事件和日志见 [失败归档](../infra/rk3588/reference/baseline01_failure/)，不得计入成功统计；先验收独立 Fast DDS addon，原已接受运行包不撤回
 
 fastrtps01 为主机下载失败，HTTPS 仓库证书域名不匹配，没有解包/部署 addon。后续采用原 SDK 的 HTTP 仓库地址，版本和已验签索引的逐包 SHA256 不变，见 [失败证据](../infra/rk3588/reference/fastrtps01_failure/)
+
+fastrtps02 已接受为 Fast DDS 板端生命周期验收，addon 与原运行包哈希、实际 maps 和退出均通过，事件/SHA256 见 [归档](../infra/rk3588/reference/fastrtps_20261014/)，无 bag 输入。旧 fastrtps01 通知只去重，不改回 URL 或重新下载

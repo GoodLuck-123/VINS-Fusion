@@ -136,6 +136,8 @@ python3 infra/rk3588/scripts/run_ros2_board_phase.py \
 
 board-baseline01 发现原 SDK 缺 rmw_fastrtps_cpp，rclpy 初始化失败，VINS 尚未启动；数据与哈希已通过，失败见 [归档](../infra/rk3588/reference/baseline01_failure/)。四个补充 ARM 包单独锁定在 dependencies/locks/ros2-fastrtps.json，由同一 fetch.py 下载到独立 sysroot，不改变原 SDK。Fast DDS addon 先用 deploy_fastrtps_runtime.py 验收，再通过 --ros-addon 指定远端路径，继续完整回放时省略 --upload-data，--prefix 使用新名称
 
+fastrtps02 已验收 Fast DDS 2.6.12 / rmw_fastrtps 6.2.10，独立节点和组件订阅/加载/卸载/退出通过，maps 中使用 addon 的 RMW 和原运行包的 OpenCV 4.2；50 个 addon 文件及 6991 个原运行文件哈希均通过，见 [证据](../infra/rk3588/reference/fastrtps_20261014/)。本机当前 --ros-addon 路径为 /home/firefly/vins-workspace/jobs/1791961492786-103062/fastrtps-payload；其他主机部署后使用自己工具输出的作业路径
+
 保留 MH_01_easy、标定和算法参数，核验输入计数、初始化/重置、末帧、ATE/RPE、退出与共享槽位归还；报告全线程 CPU、每进程 RSS/PSS、回放/排空时间、频率/温度。排空后完成不能称实时通过，评估在主机同一 uv.lock 环境执行，结果续写第 05 份报告
 
 VGEM 仅是桌面夹具。板端 DMA heap 若使用，需先实际验证分配、stride、缓存同步、owner 和归还，不能冒充 VGEM、真实相机或端到端零拷贝验收
