@@ -1,0 +1,110 @@
+CMake Deprecation Warning at CMakeLists.txt:32 (cmake_minimum_required):
+  Compatibility with CMake < 2.8.12 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+CMake Deprecation Warning at CMakeLists.txt:33 (cmake_policy):
+  Compatibility with CMake < 2.8.12 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /home/eric/projects/VINS-Fusion/dependencies/toolchain/root/usr/bin/aarch64-linux-gnu-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /home/eric/projects/VINS-Fusion/dependencies/toolchain/root/usr/bin/aarch64-linux-gnu-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detected Ceres version: 1.14.0 from /home/eric/projects/VINS-Fusion/dependencies/sources/ceres/1.14.0/include/ceres/version.h
+-- No preference for use of exported Eigen CMake configuration set, and no hints for include directory provided. Defaulting to preferring an installed/exported Eigen CMake configuration if available.
+-- Found installed version of Eigen: /home/eric/projects/.infra/rk3588/legacy/share/eigen3/cmake
+-- Found Eigen: /home/eric/projects/.infra/rk3588/legacy/include/eigen3 (found version "3.3.9") 
+-- Found Eigen version 3.3.9: /home/eric/projects/.infra/rk3588/legacy/include/eigen3
+-- Enabling use of Eigen as a sparse linear algebra library.
+-- Found LAPACK library: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/lapack/liblapack.so;/home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/blas/libblas.so
+-- Found AMD headers in: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include/suitesparse
+-- Found AMD library: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/libamd.so
+-- Found CAMD headers in: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include/suitesparse
+-- Found CAMD library: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/libcamd.so
+-- Found COLAMD headers in: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include/suitesparse
+-- Found COLAMD library: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/libcolamd.so
+-- Found CCOLAMD headers in: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include/suitesparse
+-- Found CCOLAMD library: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/libccolamd.so
+-- Found CHOLMOD headers in: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include/suitesparse
+-- Found CHOLMOD library: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/libcholmod.so
+-- Found SUITESPARSEQR headers in: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include/suitesparse
+-- Found SUITESPARSEQR library: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/libspqr.so
+-- Did not find Intel TBB library, assuming SuiteSparseQR was not compiled with TBB.
+-- Found SUITESPARSE_CONFIG headers in: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include/suitesparse
+-- Found SUITESPARSE_CONFIG library: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/libsuitesparseconfig.so
+-- Found LIBRT library: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/librt.a
+-- Adding librt: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/librt.a to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).
+-- Did not find METIS library (optional SuiteSparse dependency)
+-- Found SuiteSparse: TRUE (found version "5.10.1") 
+-- Found SuiteSparse 5.10.1, building with SuiteSparse.
+-- Found CXSparse: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include/suitesparse (found version "3.2.0") 
+-- Found CXSparse version: 3.2.0, building with CXSparse.
+-- No preference for use of exported gflags CMake configuration set, and no hints for include/library directories provided. Defaulting to preferring an installed/exported gflags CMake configuration if available.
+-- Found installed version of gflags: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/cmake/gflags
+-- Detected gflags version: 2.2.2
+-- Found Gflags: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include  
+-- Found Google Flags header in: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include, in namespace: google
+-- No preference for use of exported glog CMake configuration set, and no hints for include/library directories provided. Defaulting to preferring an installed/exported glog CMake configuration if available.
+-- Found installed version of glog: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/cmake/glog
+-- Detected glog version: 0.4.0
+-- Found Glog: glog::glog  
+-- Found Google Log (glog). Assuming glog was built with gflags support as gflags was found. This will make gflags a public dependency of Ceres.
+-- Building with OpenMP.
+-- Performing Test COMPILER_HAS_CXX11_FLAG
+-- Performing Test COMPILER_HAS_CXX11_FLAG - Success
+-- Looking for C++ include unordered_map
+-- Looking for C++ include unordered_map - found
+-- Performing Test HAVE_UNORDERED_MAP_IN_STD_NAMESPACE
+-- Performing Test HAVE_UNORDERED_MAP_IN_STD_NAMESPACE - Success
+-- Found unordered_map/set in std namespace.
+-- Looking for C++ include memory
+-- Looking for C++ include memory - found
+-- Performing Test HAVE_SHARED_PTR_IN_STD_NAMESPACE
+-- Performing Test HAVE_SHARED_PTR_IN_STD_NAMESPACE - Success
+-- Found shared_ptr in std namespace using <memory> header.
+-- Performing Test CXX11_MATH_FUNCTIONS_FOUND
+-- Performing Test CXX11_MATH_FUNCTIONS_FOUND - Success
+   ==============================================================
+   Compiling Ceres using C++11.  This will result in a version 
+   of Ceres that will require the use of C++11 in client code.
+   ==============================================================
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Building Ceres as a shared library.
+-- Creating configured Ceres config.h output directory: /home/eric/projects/VINS-Fusion/.local-tests/ceres-arm-config04/config/ceres/internal
+-- Enabling CERES_USE_EIGEN_SPARSE in Ceres config.h
+-- Enabling CERES_USE_CXX11 in Ceres config.h
+-- Enabling CERES_USE_OPENMP in Ceres config.h
+-- Enabling CERES_HAVE_PTHREAD in Ceres config.h
+-- Enabling CERES_HAVE_RWLOCK in Ceres config.h
+-- Enabling CERES_STD_UNORDERED_MAP in Ceres config.h
+-- Enabling CERES_USING_SHARED_LIBRARY in Ceres config.h
+-- Do not build any example.
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_INSTALL_LIBDIR
+
+
+-- Build files have been written to: /home/eric/projects/VINS-Fusion/.local-tests/ceres-arm-config04

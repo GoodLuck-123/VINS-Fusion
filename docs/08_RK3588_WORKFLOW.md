@@ -135,3 +135,5 @@ legacy02 随后在 Carotene 编译失败：OpenCV 4.2.0 使用旧参数 ipcp-uni
 视觉库验收完成后执行 `bash infra/rk3588/scripts/build_ros2_cross.sh`。脚本按 cv_bridge、camera_models、vins_estimator、loop_fusion、global_fusion 顺序直接调用 CMake，不依赖桌面 colcon 或 source ARM 环境；安装目录为 `../.infra/rk3588/ros2_ws/install/`，构建目录为其同级 build
 
 代码生成使用主机 `/usr/bin/python3` 及 SDK 中可在主机运行的纯 Python ament/catkin 工具；Python/NumPy 头文件与 libpython 显式取 ARM SDK。已独立验证主机 Python 3.10.12、目标开发文件查找，以及编译得到 ELF64 AArch64 Python 模块，见 [Python 交叉探针](../infra/rk3588/reference/python_cross_20261014/)。此探针尚未在板端导入，也不表示 cv_bridge 或完整 ROS 2/VINS 已构建通过
+
+legacy03 已完成 OpenCV 4.2.0，但 Ceres 配置失败，证据见 [Ceres 配置失败](../infra/rk3588/reference/legacy03_failure/)。解包 SDK 不执行 postinst，BLAS/LAPACK 的 alternatives 链接不存在；显式查找实际 blas/lapack 子目录。此 SDK 的 libspqr.so 未依赖 TBB，关闭旧 Ceres 的可选 TBB 探测，保留 OpenMP、SuiteSparse/LAPACK/CXSparse；安装后检查不允许这些参照功能静默关闭。新目录局部配置已通过，下一完整构建为 legacy04

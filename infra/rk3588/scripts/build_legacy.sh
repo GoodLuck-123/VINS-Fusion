@@ -38,11 +38,18 @@ cmake --install "$build/opencv"
 
 cmake -S "$repo/dependencies/sources/ceres/1.14.0" -B "$build/ceres" "${common[@]}" \
   -DCMAKE_PREFIX_PATH="$VINS_ARM_PREFIX;$VINS_ARM_SYSROOT/usr" \
+  -DCMAKE_LIBRARY_PATH="$VINS_ARM_SYSROOT/usr/lib/aarch64-linux-gnu/blas;$VINS_ARM_SYSROOT/usr/lib/aarch64-linux-gnu/lapack" \
+  -DBLA_VENDOR=Generic -DCMAKE_DISABLE_FIND_PACKAGE_TBB=TRUE -DSUITESPARSE=ON -DLAPACK=ON \
   -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=OFF -DBUILD_EXAMPLES=OFF \
   -DBUILD_BENCHMARKS=OFF -DEigen3_DIR="$VINS_ARM_PREFIX/share/eigen3/cmake" \
   -DEIGEN_INCLUDE_DIR="$VINS_ARM_PREFIX/include/eigen3" -DCXX11=ON
 cmake --build "$build/ceres" -j "$jobs"
 cmake --install "$build/ceres"
+if grep -Eq '^#define CERES_NO_(LAPACK|SUITESPARSE|CXSPARSE)' \
+  "$VINS_ARM_PREFIX/include/ceres/internal/config.h"; then
+  echo 'Reference Ceres sparse/LAPACK features were disabled' >&2
+  exit 1
+fi
 "$VINS_CROSS_ROOT/usr/bin/aarch64-linux-gnu-readelf" -h -d \
   "$VINS_ARM_PREFIX/lib/libopencv_core.so.4.2.0" "$VINS_ARM_PREFIX/lib/libceres.so.1.14.0"
 printf 'ARM reference libraries installed: %s\n' "$VINS_ARM_PREFIX"

@@ -33,7 +33,9 @@ def main():
     output.mkdir(parents=True, exist_ok=False)
     (output / 'lib').mkdir()
     directories = [*args.library_dir, args.sysroot / 'usr/lib/aarch64-linux-gnu',
-                   args.sysroot / 'lib/aarch64-linux-gnu', args.sysroot / 'usr/lib']
+                   args.sysroot / 'lib/aarch64-linux-gnu',
+                   args.sysroot / 'usr/lib/aarch64-linux-gnu/blas',
+                   args.sysroot / 'usr/lib/aarch64-linux-gnu/lapack', args.sysroot / 'usr/lib']
     binary = output / args.executable.name
     shutil.copy2(args.executable, binary)
     pending = needed(binary)
