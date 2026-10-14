@@ -1,6 +1,6 @@
 # VINS-Fusion
 
-本分支为 RK3588 ROS 1 目标 codex/rk3588-ros1，从 master 最新 8c7c8d2 建立。先读 [00 接手入口](docs/00_HANDOFF.md)；clone 后用一条命令补齐锁定依赖，见 [09 依赖下载](docs/09_DEPENDENCIES.md)。锁定依赖下载、固定视觉库主机构建和消费端链接已通过；ROS 1 工程交叉构建继续，板端 ABI/运行待验收
+本分支为 RK3588 ROS 1 目标 codex/rk3588-ros1，从 master 最新 8c7c8d2 建立。先读 [00 接手入口](docs/00_HANDOFF.md)；clone 后用一条命令补齐锁定依赖，见 [09 依赖下载](docs/09_DEPENDENCIES.md)。锁定依赖下载、固定视觉库主机构建和消费端链接已通过；ROS 1 工程交叉构建与固定视觉库实际板端计算已通过，Noetic 节点/回放待验收；固定调用入口见 [08 板端工作流](docs/08_RK3588_WORKFLOW.md)
 
 ## An optimization-based multi-sensor state estimator
 

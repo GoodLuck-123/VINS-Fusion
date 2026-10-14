@@ -31,3 +31,5 @@ ROS 1 工程入口 build_ros1_cross.sh 已固定，主机 Python 3.10 仅执行�
 ros1-build01 链接遇到 Noetic 导出的绝对 log4cxx/Boost 路径，失败已归档；fetch.py 统一重定位 20 个目标库/头文件 CMake 导出，并验证幂等性。ros1-build02 已退出 0，五包/六程序/70 个 ARM ELF 闭包及目标编译路径通过，板端仍只有 ROS 2 board-shared01 一批活动实验。构建通过后还需板端 ABI/节点及完整回放验收
 
 ROS 1 主机交叉构建里程碑 commit 30790b0 / tag milestone-rk3588-ros1-cross-build-v1；运行包入口 prepare_ros1_runtime.py 和 ros1_runtime_env.sh 已固定，ros1-package01 在主机后台打包。运行包携带私有 Python 3.8，沿用板端 glibc/loader 和系统 Python 3.10；ROS 启动器通过 PATH 选择私有解释器，不在板端下载依赖。配置/源码来源用 build_source.json，原 VINS 不变，当前尚未部署或回放 ROS 1
+
+构建、打包与单调用部署入口见 [第 08 份板端工作流](08_RK3588_WORKFLOW.md)，本分支现包含与已验证工具字节一致的 infra/remote/，无需依赖另一个源码分支才能重建远端工具。ROS 1 视觉库实际板端里程碑 commit 6c4703a / tag milestone-rk3588-ros1-legacy-libs-v1；当前 ROS 2 DMA heap 批次串行进行，ROS 1 只在主机准备，不并发部署探针

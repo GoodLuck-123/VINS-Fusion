@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(vins_remote LANGUAGES CXX)
+add_executable(vins-remote main.cpp)
+target_compile_features(vins-remote PRIVATE cxx_std_17)
+target_compile_options(vins-remote PRIVATE -Wall -Wextra -Wpedantic)
+install(TARGETS vins-remote RUNTIME DESTINATION bin)
