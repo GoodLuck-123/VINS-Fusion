@@ -1,0 +1,394 @@
+{
+  "timestamp_utc": "2026-03-05T15:30:28Z",
+  "machine": "aarch64",
+  "kernel": "5.10.110",
+  "os_release": "PRETTY_NAME=\"Ubuntu 22.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.5 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy",
+  "model": "Rockchip RK3588S LP4X LIXU Board\u0000",
+  "cpu": {
+    "exit_code": 0,
+    "stdout": "Architecture:                    aarch64\nCPU op-mode(s):                  32-bit, 64-bit\nByte Order:                      Little Endian\nCPU(s):                          8\nOn-line CPU(s) list:             0-7\nVendor ID:                       ARM\nModel name:                      Cortex-A55\nModel:                           0\nThread(s) per core:              1\nCore(s) per socket:              4\nSocket(s):                       1\nStepping:                        r2p0\nCPU max MHz:                     1800.0000\nCPU min MHz:                     408.0000\nBogoMIPS:                        48.00\nFlags:                           fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp\nModel name:                      Cortex-A76\nModel:                           0\nThread(s) per core:              1\nCore(s) per socket:              2\nSocket(s):                       2\nStepping:                        r4p0\nCPU max MHz:                     2352.0000\nCPU min MHz:                     408.0000\nBogoMIPS:                        48.00\nFlags:                           fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp\nL1d cache:                       384 KiB (8 instances)\nL1i cache:                       384 KiB (8 instances)\nL2 cache:                        2.5 MiB (8 instances)\nL3 cache:                        3 MiB (1 instance)\nVulnerability Itlb multihit:     Not affected\nVulnerability L1tf:              Not affected\nVulnerability Mds:               Not affected\nVulnerability Meltdown:          Not affected\nVulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:        Mitigation; __user pointer sanitization\nVulnerability Spectre v2:        Vulnerable: Unprivileged eBPF enabled\nVulnerability Srbds:             Not affected\nVulnerability Tsx async abort:   Not affected",
+    "stderr": ""
+  },
+  "memory": "MemTotal:       16323272 kB\nMemFree:        15413628 kB\nMemAvailable:   15667704 kB\nBuffers:           31680 kB\nCached:           335952 kB\nSwapCached:            0 kB\nActive:           139800 kB\nInactive:         591748 kB\nActive(anon):       1160 kB\nInactive(anon):   377000 kB\nActive(file):     138640 kB\nInactive(file):   214748 kB\nUnevictable:       11188 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               860 kB\nWriteback:             0 kB\nAnonPages:        375320 kB\nMapped:           144032 kB\nShmem:             14224 kB\nKReclaimable:      61508 kB\nSlab:             116200 kB\nSReclaimable:      61508 kB\nSUnreclaim:        54692 kB\nKernelStack:        5712 kB\nPageTables:         8768 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     8161636 kB\nCommitted_AS:    1929456 kB\nVmallocTotal:   262930368 kB\nVmallocUsed:       10676 kB\nVmallocChunk:          0 kB\nPercpu:             4096 kB\nCmaTotal:           8192 kB\nCmaAllocated:       1024 kB\nCmaReleased:        7168 kB\nCmaFree:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB",
+  "mounts": "sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0\nproc /proc proc rw,nosuid,nodev,noexec,relatime 0 0\nudev /dev devtmpfs rw,nosuid,relatime,size=8153320k,nr_inodes=2038330,mode=755 0 0\ndevpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0\ntmpfs /run tmpfs rw,nosuid,noexec,relatime,size=1632328k,mode=755 0 0\n/dev/mmcblk0p6 /root-ro ext4 ro,relatime 0 0\n/dev/mmcblk0p7 /userdata ext4 rw,relatime 0 0\noverlayroot / overlay rw,relatime,lowerdir=/root-ro,upperdir=/userdata/rootfs_overlay,workdir=/userdata/rootfs_overlay-workdir/_ 0 0\n/root/dev/mmcblk0p3 /boot ext4 rw,relatime 0 0\nsecurityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0\ntmpfs /dev/shm tmpfs rw,nosuid,nodev 0 0\ntmpfs /run/lock tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0\ncgroup2 /sys/fs/cgroup cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot 0 0\npstore /sys/fs/pstore pstore rw,nosuid,nodev,noexec,relatime 0 0\nnone /sys/fs/bpf bpf rw,nosuid,nodev,noexec,relatime,mode=700 0 0\nmqueue /dev/mqueue mqueue rw,nosuid,nodev,noexec,relatime 0 0\nhugetlbfs /dev/hugepages hugetlbfs rw,relatime,pagesize=2M 0 0\ndebugfs /sys/kernel/debug debugfs rw,nosuid,nodev,noexec,relatime 0 0\ntracefs /sys/kernel/tracing tracefs rw,nosuid,nodev,noexec,relatime 0 0\nconfigfs /sys/kernel/config configfs rw,nosuid,nodev,noexec,relatime 0 0\nfusectl /sys/fs/fuse/connections fusectl rw,nosuid,nodev,noexec,relatime 0 0\nnone /run/credentials/systemd-sysusers.service ramfs ro,nosuid,nodev,noexec,relatime,mode=700 0 0\nadb /dev/usb-ffs/adb functionfs rw,relatime 0 0\ntmpfs /run/user/0 tmpfs rw,nosuid,nodev,relatime,size=1632324k,nr_inodes=408081,mode=700 0 0\ntmpfs /run/user/1000 tmpfs rw,nosuid,nodev,relatime,size=1632324k,nr_inodes=408081,mode=700,uid=1000,gid=1000 0 0",
+  "disk": {
+    "exit_code": 0,
+    "stdout": "Filesystem      Size  Used Avail Use% Mounted on\noverlayroot     102G  7.1G   95G   7% /\noverlayroot     102G  7.1G   95G   7% /",
+    "stderr": ""
+  },
+  "tools": {
+    "gcc": "/usr/bin/gcc",
+    "g++": "/usr/bin/g++",
+    "cmake": "/usr/bin/cmake",
+    "python3": "/usr/bin/python3",
+    "perf": null,
+    "trace-cmd": null,
+    "gatord": null,
+    "systemd-run": "/usr/bin/systemd-run"
+  },
+  "hardware": {
+    "timestamp_utc": "2026-03-05T15:30:28Z",
+    "kernel": "5.10.110",
+    "architecture": "aarch64",
+    "wsl": false,
+    "scope": "Read-only capability probe; no EuRoC playback or host-wide energy attribution",
+    "perf_event_paranoid": "2",
+    "perf_counter_access": {
+      "task_clock": {
+        "available": true,
+        "probe_count": 70569167,
+        "time_enabled_ns": 70568584,
+        "time_running_ns": 70568584,
+        "scope": "Counter access test only, not a VINS measurement",
+        "checksum": 333328333350000
+      },
+      "cpu_cycles": {
+        "available": true,
+        "probe_count": 21815489,
+        "time_enabled_ns": 38932833,
+        "time_running_ns": 38932833,
+        "scope": "Counter access test only, not a VINS measurement",
+        "checksum": 333328333350000
+      },
+      "cache_misses": {
+        "available": true,
+        "probe_count": 387,
+        "time_enabled_ns": 23143833,
+        "time_running_ns": 23143833,
+        "scope": "Counter access test only, not a VINS measurement",
+        "checksum": 333328333350000
+      }
+    },
+    "pmus": {
+      "armv8_pmuv3": {
+        "type": "7",
+        "events": {
+          "br_mis_pred": "event=0x0010",
+          "br_mis_pred_retired": "event=0x0022",
+          "br_pred": "event=0x0012",
+          "br_retired": "event=0x0021",
+          "bus_access": "event=0x0019",
+          "bus_cycles": "event=0x001d",
+          "cid_write_retired": "event=0x000b",
+          "cpu_cycles": "event=0x0011",
+          "dtlb_walk": "event=0x0034",
+          "exc_return": "event=0x000a",
+          "exc_taken": "event=0x0009",
+          "inst_retired": "event=0x0008",
+          "inst_spec": "event=0x001b",
+          "itlb_walk": "event=0x0035",
+          "l1d_cache": "event=0x0004",
+          "l1d_cache_refill": "event=0x0003",
+          "l1d_cache_wb": "event=0x0015",
+          "l1d_tlb": "event=0x0025",
+          "l1d_tlb_refill": "event=0x0005",
+          "l1i_cache": "event=0x0014",
+          "l1i_cache_refill": "event=0x0001",
+          "l1i_tlb": "event=0x0026",
+          "l1i_tlb_refill": "event=0x0002",
+          "l2d_cache": "event=0x0016",
+          "l2d_cache_allocate": "event=0x0020",
+          "l2d_cache_refill": "event=0x0017",
+          "l2d_cache_wb": "event=0x0018",
+          "l2d_tlb": "event=0x002f",
+          "l2d_tlb_refill": "event=0x002d",
+          "l3d_cache": "event=0x002b",
+          "l3d_cache_allocate": "event=0x0029",
+          "l3d_cache_refill": "event=0x002a",
+          "ll_cache_miss_rd": "event=0x0037",
+          "ll_cache_rd": "event=0x0036",
+          "mem_access": "event=0x0013",
+          "memory_error": "event=0x001a",
+          "remote_access": "event=0x0031",
+          "stall_backend": "event=0x0024",
+          "stall_frontend": "event=0x0023",
+          "sw_incr": "event=0x0000",
+          "ttbr_write_retired": "event=0x001c"
+        }
+      },
+      "breakpoint": {
+        "type": "5",
+        "events": {}
+      },
+      "software": {
+        "type": "1",
+        "events": {}
+      },
+      "tracepoint": {
+        "type": "2",
+        "events": {}
+      },
+      "uprobe": {
+        "type": "6",
+        "events": {}
+      }
+    },
+    "memory_controller_candidates": [],
+    "rapl_energy_zones": {},
+    "hwmon": {
+      "hwmon0": {
+        "name": "tcpm_source_psy_6_0022",
+        "power_inputs": {}
+      },
+      "hwmon1": {
+        "name": "soc_thermal",
+        "power_inputs": {}
+      },
+      "hwmon2": {
+        "name": "bigcore0_thermal",
+        "power_inputs": {}
+      },
+      "hwmon3": {
+        "name": "bigcore1_thermal",
+        "power_inputs": {}
+      },
+      "hwmon4": {
+        "name": "littlecore_thermal",
+        "power_inputs": {}
+      },
+      "hwmon5": {
+        "name": "center_thermal",
+        "power_inputs": {}
+      },
+      "hwmon6": {
+        "name": "gpu_thermal",
+        "power_inputs": {}
+      },
+      "hwmon7": {
+        "name": "npu_thermal",
+        "power_inputs": {}
+      }
+    },
+    "power_supplies": {
+      "tcpm-source-psy-6-0022": "POWER_SUPPLY_NAME=tcpm-source-psy-6-0022\nPOWER_SUPPLY_TYPE=USB\nPOWER_SUPPLY_USB_TYPE=[C] PD PD_PPS\nPOWER_SUPPLY_ONLINE=0\nPOWER_SUPPLY_VOLTAGE_MIN=0\nPOWER_SUPPLY_VOLTAGE_MAX=0\nPOWER_SUPPLY_VOLTAGE_NOW=0\nPOWER_SUPPLY_CURRENT_MAX=0\nPOWER_SUPPLY_CURRENT_NOW=0"
+    },
+    "measurement": {
+      "ddr_read_bytes": null,
+      "ddr_write_bytes": null,
+      "energy_j": null,
+      "average_power_w": null
+    },
+    "limitations": [
+      "PMU names alone do not establish usable counters or byte/event scaling.",
+      "RAPL/package or rail counters are host/device-wide, not process-only.",
+      "Virtual battery readings are not physical power measurements.",
+      "Logical copy bytes and cache misses must not substitute for DDR traffic."
+    ]
+  },
+  "thermal": {
+    "/sys/class/thermal/thermal_zone2": {
+      "type": "bigcore1-thermal",
+      "temp": "37923"
+    },
+    "/sys/class/thermal/thermal_zone0": {
+      "type": "soc-thermal",
+      "temp": "37000"
+    },
+    "/sys/class/thermal/thermal_zone5": {
+      "type": "gpu-thermal",
+      "temp": "37000"
+    },
+    "/sys/class/thermal/thermal_zone3": {
+      "type": "littlecore-thermal",
+      "temp": "37923"
+    },
+    "/sys/class/thermal/thermal_zone1": {
+      "type": "bigcore0-thermal",
+      "temp": "37000"
+    },
+    "/sys/class/thermal/thermal_zone6": {
+      "type": "npu-thermal",
+      "temp": "37000"
+    },
+    "/sys/class/thermal/thermal_zone4": {
+      "type": "center-thermal",
+      "temp": "37000"
+    }
+  },
+  "cpufreq": {
+    "/sys/devices/system/cpu/cpufreq/policy6": {
+      "affected_cpus": "6 7",
+      "scaling_governor": "interactive",
+      "scaling_cur_freq": "1200000",
+      "scaling_max_freq": "2352000"
+    },
+    "/sys/devices/system/cpu/cpufreq/policy4": {
+      "affected_cpus": "4 5",
+      "scaling_governor": "interactive",
+      "scaling_cur_freq": "408000",
+      "scaling_max_freq": "2352000"
+    },
+    "/sys/devices/system/cpu/cpufreq/policy0": {
+      "affected_cpus": "0 1 2 3",
+      "scaling_governor": "interactive",
+      "scaling_cur_freq": "1008000",
+      "scaling_max_freq": "1800000"
+    }
+  },
+  "devfreq": {
+    "/sys/class/devfreq/fdab0000.npu": {
+      "name": "fdab0000.npu",
+      "governor": "rknpu_ondemand",
+      "cur_freq": "1000000000",
+      "available_frequencies": "300000000 400000000 500000000 600000000 700000000 800000000 900000000 1000000000"
+    },
+    "/sys/class/devfreq/fb000000.gpu": {
+      "name": "fb000000.gpu",
+      "governor": "simple_ondemand",
+      "cur_freq": "300000000",
+      "available_frequencies": "1000000000 900000000 800000000 700000000 600000000 500000000 400000000 300000000"
+    },
+    "/sys/class/devfreq/dmc": {
+      "name": "dmc",
+      "governor": "dmc_ondemand",
+      "cur_freq": "528000000",
+      "available_frequencies": "528000000 1068000000 1560000000"
+    }
+  },
+  "dma_heaps": [
+    "/dev/dma_heap/cma-uncached",
+    "/dev/dma_heap/cma",
+    "/dev/dma_heap/system-uncached-dma32",
+    "/dev/dma_heap/system-uncached",
+    "/dev/dma_heap/system-dma32",
+    "/dev/dma_heap/system"
+  ],
+  "debugfs": {
+    "exit_code": 0,
+    "stdout": "/sys/kernel/debug\n/sys/kernel/debug/rknpu\n/sys/kernel/debug/mali0\n/sys/kernel/debug/mali0/address_spaces\n/sys/kernel/debug/mali0/instrumentation\n/sys/kernel/debug/mali0/ctx\n/sys/kernel/debug/ubi\n/sys/kernel/debug/sync\n/sys/kernel/debug/pm_genpd\n/sys/kernel/debug/pm_genpd/npu\n/sys/kernel/debug/pm_genpd/nputop\n/sys/kernel/debug/pm_genpd/npu1\n/sys/kernel/debug/pm_genpd/npu2\n/sys/kernel/debug/pm_genpd/gpu\n/sys/kernel/debug/pm_genpd/vcodec\n/sys/kernel/debug/pm_genpd/rkvdec0\n/sys/kernel/debug/pm_genpd/rkvdec1\n/sys/kernel/debug/pm_genpd/venc0\n/sys/kernel/debug/pm_genpd/venc1\n/sys/kernel/debug/pm_genpd/vdpu\n/sys/kernel/debug/pm_genpd/av1\n/sys/kernel/debug/pm_genpd/rga30\n/sys/kernel/debug/pm_genpd/vop\n/sys/kernel/debug/pm_genpd/vo0\n/sys/kernel/debug/pm_genpd/vo1\n/sys/kernel/debug/pm_genpd/vi\n/sys/kernel/debug/pm_genpd/isp1\n/sys/kernel/debug/pm_genpd/fec\n/sys/kernel/debug/pm_genpd/rga31\n/sys/kernel/debug/pm_genpd/usb\n/sys/kernel/debug/pm_genpd/gmac\n/sys/kernel/debug/pm_genpd/pcie\n/sys/kernel/debug/pm_genpd/sdio\n/sys/kernel/debug/pm_genpd/audio\n/sys/kernel/debug/pm_genpd/sdmmc\n/sys/kernel/debug/clk\n/sys/kernel/debug/clk/spll\n/sys/kernel/debug/clk/xin32k\n/sys/kernel/debug/clk/xin24m\n/sys/kernel/debug/clk/b0pll\n/sys/kernel/debug/clk/pll_b0pll\n/sys/kernel/debug/clk/b1pll\n/sys/kernel/debug/clk/pll_b1pll\n/sys/kernel/debug/clk/lpll\n/sys/kernel/debug/clk/pll_lpll\n/sys/kernel/debug/clk/v0pll\n/sys/kernel/debug/clk/pll_v0pll\n/sys/kernel/debug/clk/aupll\n/sys/kernel/debug/clk/pll_aupll\n/sys/kernel/debug/clk/cpll\n/sys/kernel/debug/clk/pll_cpll\n/sys/kernel/debug/clk/gpll\n/sys/kernel/debug/clk/pll_gpll\n/sys/kernel/debug/clk/npll\n/sys/kernel/debug/clk/pll_npll\n/sys/kernel/debug/clk/ppll\n/sys/kernel/debug/clk/pll_ppll\n/sys/kernel/debug/clk/armclk_l\n/sys/kernel/debug/clk/armclk_b01\n/sys/kernel/debug/clk/armclk_b23\n/sys/kernel/debug/clk/xin12m\n/sys/kernel/debug/clk/clk_50m_src\n/sys/kernel/debug/clk/clk_100m_src\n/sys/kernel/debug/clk/clk_150m_src\n/sys/kernel/debug/clk/clk_200m_src\n/sys/kernel/debug/clk/clk_250m_src\n/sys/kernel/debug/clk/clk_300m_src\n/sys/kernel/debug/clk/clk_350m_src\n/sys/kernel/debug/clk/clk_400m_src\n/sys/kernel/debug/clk/clk_450m_src\n/sys/kernel/debug/clk/clk_500m_src\n/sys/kernel/debug/clk/clk_600m_src\n/sys/kernel/debug/clk/clk_650m_src\n/sys/kernel/debug/clk/clk_700m_src\n/sys/kernel/debug/clk/clk_800m_src\n/sys/kernel/debug/clk/clk_1000m_src\n/sys/kernel/debug/clk/clk_1200m_src\n/sys/kernel/debug/clk/aclk_top_m300_root\n/sys/kernel/debug/clk/aclk_top_m500_root\n/sys/kernel/debug/clk/aclk_top_m400_root\n/sys/kernel/debug/clk/aclk_top_s200_root\n/sys/kernel/debug/clk/aclk_top_s400_root\n/sys/kernel/debug/clk/aclk_top_root\n/sys/kernel/debug/clk/pclk_top_root\n/sys/kernel/debug/clk/aclk_low_top_root\n/sys/kernel/debug/clk/clk_mipi_camaraout_m0\n/sys/kernel/debug/clk/clk_mipi_camaraout_m1\n/sys/kernel/debug/clk/clk_mipi_camaraout_m2\n/sys/kernel/debug/clk/clk_mipi_camaraout_m3\n/sys/kernel/debug/clk/clk_mipi_camaraout_m4\n/sys/kernel/debug/clk/mclk_gmac0_out\n/sys/kernel/debug/clk/refclko25m_eth0_out\n/sys/kernel/debug/clk/refclko25m_eth1_out\n/sys/kernel/debug/clk/clk_cifout_out\n/sys/kernel/debug/clk/pclk_mipi_dcphy0\n/sys/kernel/debug/clk/pclk_mipi_dcphy1\n/sys/kernel/debug/clk/pclk_csiphy0\n/sys/kernel/debug/clk/pclk_csiphy1\n/sys/kernel/debug/clk/pclk_cru\n/sys/kernel/debug/clk/pclk_bigcore0_root\n/sys/kernel/debug/clk/pclk_bigcore0_pvtm\n/sys/kernel/debug/clk/clk_bigcore0_pvtm\n/sys/kernel/debug/clk/clk_core_bigcore0_pvtm\n/sys/kernel/debug/clk/pclk_bigcore1_root\n/sys/kernel/debug/clk/pclk_bigcore1_pvtm\n/sys/kernel/debug/clk/clk_bigcore1_pvtm\n/sys/kernel/debug/clk/clk_core_bigcore1_pvtm\n/sys/kernel/debug/clk/sclk_dsu\n/sys/kernel/debug/clk/atclk_dsu\n/sys/kernel/debug/clk/gicclk_dsu\n/sys/kernel/debug/clk/aclkmp_dsu\n/sys/kernel/debug/clk/aclkm_dsu\n/sys/kernel/debug/clk/aclks_dsu\n/sys/kernel/debug/clk/periph_dsu\n/sys/kernel/debug/clk/cntclk_dsu\n/sys/kernel/debug/clk/tsclk_dsu\n/sys/kernel/debug/clk/pclk_dsu_s_root\n/sys/kernel/debug/clk/pclk_dsu_root\n/sys/kernel/debug/clk/pclk_dsu_ns_root\n/sys/kernel/debug/clk/pclk_litcore_pvtm\n/sys/kernel/debug/clk/pclk_dbg\n/sys/kernel/debug/clk/pclk_dsu\n/sys/kernel/debug/clk/pclk_s_daplite\n/sys/kernel/debug/clk/pclk_m_daplite\n/sys/kernel/debug/clk/clk_litcore_pvtm\n/sys/kernel/debug/clk/clk_core_litcore_pvtm\n/sys/kernel/debug/clk/hclk_audio_root\n/sys/kernel/debug/clk/pclk_audio_root\n/sys/kernel/debug/clk/hclk_i2s2_2ch\n/sys/kernel/debug/clk/hclk_i2s3_2ch\n/sys/kernel/debug/clk/clk_i2s2_2ch_src\n/sys/kernel/debug/clk/clk_i2s2_2ch_frac\n/sys/kernel/debug/clk/clk_i2s2_2ch\n/sys/kernel/debug/clk/mclk_i2s2_2ch\n/sys/kernel/debug/clk/i2s2_2ch_mclkout\n/sys/kernel/debug/clk/clk_i2s3_2ch_src\n/sys/kernel/debug/clk/clk_i2s3_2ch_frac\n/sys/kernel/debug/clk/clk_i2s3_2ch\n/sys/kernel/debug/clk/mclk_i2s3_2ch\n/sys/kernel/debug/clk/clk_dac_acdcdig\n/sys/kernel/debug/clk/i2s3_2ch_mclkout\n/sys/kernel/debug/clk/pclk_acdcdig\n/sys/kernel/debug/clk/hclk_i2s0_8ch\n/sys/kernel/debug/clk/clk_i2s0_8ch_tx_src\n/sys/kernel/debug/clk/clk_i2s0_8ch_tx_frac\n/sys/kernel/debug/clk/clk_i2s0_8ch_tx\n/sys/kernel/debug/clk/mclk_i2s0_8ch_tx\n/sys/kernel/debug/clk/clk_i2s0_8ch_rx_src\n/sys/kernel/debug/clk/clk_i2s0_8ch_rx_frac\n/sys/kernel/debug/clk/clk_i2s0_8ch_rx\n/sys/kernel/debug/clk/mclk_i2s0_8ch_rx\n/sys/kernel/debug/clk/i2s0_8ch_mclkout\n/sys/kernel/debug/clk/hclk_pdm1\n/sys/kernel/debug/clk/mclk_pdm1\n/sys/kernel/debug/clk/hclk_spdif0\n/sys/kernel/debug/clk/clk_spdif0_src\n/sys/kernel/debug/clk/clk_spdif0_frac\n/sys/kernel/debug/clk/clk_spdif0\n/sys/kernel/debug/clk/mclk_spdif0\n/sys/kernel/debug/clk/hclk_spdif1\n/sys/kernel/debug/clk/clk_spdif1_src\n/sys/kernel/debug/clk/clk_spdif1_frac\n/sys/kernel/debug/clk/clk_spdif1\n/sys/kernel/debug/clk/mclk_spdif1\n/sys/kernel/debug/clk/aclk_av1_root\n/sys/kernel/debug/clk/pclk_av1_root\n/sys/kernel/debug/clk/aclk_bus_root\n/sys/kernel/debug/clk/pclk_mailbox0\n/sys/kernel/debug/clk/pclk_mailbox1\n/sys/kernel/debug/clk/pclk_mailbox2\n/sys/kernel/debug/clk/pclk_pmu2\n/sys/kernel/debug/clk/pclk_pmucm0_intmux\n/sys/kernel/debug/clk/pclk_ddrcm0_intmux\n/sys/kernel/debug/clk/pclk_pwm1\n/sys/kernel/debug/clk/clk_pwm1\n/sys/kernel/debug/clk/clk_pwm1_capture\n/sys/kernel/debug/clk/pclk_pwm2\n/sys/kernel/debug/clk/clk_pwm2\n/sys/kernel/debug/clk/clk_pwm2_capture\n/sys/kernel/debug/clk/pclk_pwm3\n/sys/kernel/debug/clk/clk_pwm3\n/sys/kernel/debug/clk/clk_pwm3_capture\n/sys/kernel/debug/clk/pclk_bustimer0\n/sys/kernel/debug/clk/pclk_bustimer1\n/sys/kernel/debug/clk/clk_bus_timer_root\n/sys/kernel/debug/clk/clk_bustimer0\n/sys/kernel/debug/clk/clk_bustimer1\n/sys/kernel/debug/clk/clk_bustimer2\n/sys/kernel/debug/clk/clk_bustimer3\n/sys/kernel/debug/clk/clk_bustimer4\n/sys/kernel/debug/clk/clk_bustimer5\n/sys/kernel/debug/clk/clk_bustimer6\n/sys/kernel/debug/clk/clk_bustimer7\n/sys/kernel/debug/clk/clk_bustimer8\n/sys/kernel/debug/clk/clk_bustimer9\n/sys/kernel/debug/clk/clk_bustimer10\n/sys/kernel/debug/clk/clk_bustimer11\n/sys/kernel/debug/clk/pclk_wdt0\n/sys/kernel/debug/clk/tclk_wdt0\n/sys/kernel/debug/clk/pclk_can0\n/sys/kernel/debug/clk/clk_can0\n/sys/kernel/debug/clk/pclk_can1\n/sys/kernel/debug/clk/clk_can1\n/sys/kernel/debug/clk/pclk_can2\n/sys/kernel/debug/clk/clk_can2\n/sys/kernel/debug/clk/aclk_decom\n/sys/kernel/debug/clk/pclk_decom\n/sys/kernel/debug/clk/dclk_decom\n/sys/kernel/debug/clk/aclk_dmac0\n/sys/kernel/debug/clk/aclk_dmac1\n/sys/kernel/debug/clk/aclk_dmac2\n/sys/kernel/debug/clk/aclk_gic\n/sys/kernel/debug/clk/pclk_gpio1\n/sys/kernel/debug/clk/dbclk_gpio1\n/sys/kernel/debug/clk/pclk_gpio2\n/sys/kernel/debug/clk/dbclk_gpio2\n/sys/kernel/debug/clk/pclk_gpio3\n/sys/kernel/debug/clk/dbclk_gpio3\n/sys/kernel/debug/clk/pclk_gpio4\n/sys/kernel/debug/clk/dbclk_gpio4\n/sys/kernel/debug/clk/pclk_i2c1\n/sys/kernel/debug/clk/pclk_i2c2\n/sys/kernel/debug/clk/pclk_i2c3\n/sys/kernel/debug/clk/pclk_i2c4\n/sys/kernel/debug/clk/pclk_i2c5\n/sys/kernel/debug/clk/pclk_i2c6\n/sys/kernel/debug/clk/pclk_i2c7\n/sys/kernel/debug/clk/pclk_i2c8\n/sys/kernel/debug/clk/clk_i2c1\n/sys/kernel/debug/clk/clk_i2c2\n/sys/kernel/debug/clk/clk_i2c3\n/sys/kernel/debug/clk/clk_i2c4\n/sys/kernel/debug/clk/clk_i2c5\n/sys/kernel/debug/clk/clk_i2c6\n/sys/kernel/debug/clk/clk_i2c7\n/sys/kernel/debug/clk/clk_i2c8\n/sys/kernel/debug/clk/pclk_otpc_ns\n/sys/kernel/debug/clk/clk_otpc_ns\n/sys/kernel/debug/clk/clk_otpc_arb\n/sys/kernel/debug/clk/clk_otp_phy_g\n/sys/kernel/debug/clk/clk_otpc_auto_rd_g\n/sys/kernel/debug/clk/pclk_saradc\n/sys/kernel/debug/clk/clk_saradc\n/sys/kernel/debug/clk/pclk_spi0\n/sys/kernel/debug/clk/pclk_spi1\n/sys/kernel/debug/clk/pclk_spi2\n/sys/kernel/debug/clk/pclk_spi3\n/sys/kernel/debug/clk/pclk_spi4\n/sys/kernel/debug/clk/clk_spi0\n/sys/kernel/debug/clk/clk_spi1\n/sys/kernel/debug/clk/clk_spi2\n/sys/kernel/debug/clk/clk_spi3\n/sys/kernel/debug/clk/clk_spi4\n/sys/kernel/debug/clk/aclk_spinlock\n/sys/kernel/debug/clk/pclk_tsadc\n/sys/kernel/debug/clk/clk_tsadc\n/sys/kernel/debug/clk/pclk_uart1\n/sys/kernel/debug/clk/pclk_uart2\n/sys/kernel/debug/clk/pclk_uart3\n/sys/kernel/debug/clk/pclk_uart4\n/sys/kernel/debug/clk/pclk_uart5\n/sys/kernel/debug/clk/pclk_uart6\n/sys/kernel/debug/clk/pclk_uart7\n/sys/kernel/debug/clk/pclk_uart8\n/sys/kernel/debug/clk/pclk_uart9\n/sys/kernel/debug/clk/clk_uart1_src\n/sys/kernel/debug/clk/clk_uart1_frac\n/sys/kernel/debug/clk/clk_uart1\n/sys/kernel/debug/clk/sclk_uart1\n/sys/kernel/debug/clk/clk_uart2_src\n/sys/kernel/debug/clk/clk_uart2_frac\n/sys/kernel/debug/clk/clk_uart2\n/sys/kernel/debug/clk/sclk_uart2\n/sys/kernel/debug/clk/clk_uart3_src\n/sys/kernel/debug/clk/clk_uart3_frac\n/sys/kernel/debug/clk/clk_uart3\n/sys/kernel/debug/clk/sclk_uart3\n/sys/kernel/debug/clk/clk_uart4_src\n/sys/kernel/debug/clk/clk_uart4_frac\n/sys/kernel/debug/clk/clk_uart4\n/sys/kernel/debug/clk/sclk_uart4\n/sys/kernel/debug/clk/clk_uart5_src\n/sys/kernel/debug/clk/clk_uart5_frac\n/sys/kernel/debug/clk/clk_uart5\n/sys/kernel/debug/clk/sclk_uart5\n/sys/kernel/debug/clk/clk_uart6_src\n/sys/kernel/debug/clk/clk_uart6_frac\n/sys/kernel/debug/clk/clk_uart6\n/sys/kernel/debug/clk/sclk_uart6\n/sys/kernel/debug/clk/clk_uart7_src\n/sys/kernel/debug/clk/clk_uart7_frac\n/sys/kernel/debug/clk/clk_uart7\n/sys/kernel/debug/clk/sclk_uart7\n/sys/kernel/debug/clk/clk_uart8_src\n/sys/kernel/debug/clk/clk_uart8_frac\n/sys/kernel/debug/clk/clk_uart8\n/sys/kernel/debug/clk/sclk_uart8\n/sys/kernel/debug/clk/clk_uart9_src\n/sys/kernel/debug/clk/clk_uart9_frac\n/sys/kernel/debug/clk/clk_uart9\n/sys/kernel/debug/clk/sclk_uart9\n/sys/kernel/debug/clk/aclk_center_root\n/sys/kernel/debug/clk/aclk_center_low_root\n/sys/kernel/debug/clk/hclk_center_root\n/sys/kernel/debug/clk/pclk_center_root\n/sys/kernel/debug/clk/aclk_dma2ddr\n/sys/kernel/debug/clk/aclk_ddr_sharemem\n/sys/kernel/debug/clk/aclk_center_s200_root\n/sys/kernel/debug/clk/aclk_center_s400_root\n/sys/kernel/debug/clk/fclk_ddr_cm0_core\n/sys/kernel/debug/clk/clk_ddr_timer_root\n/sys/kernel/debug/clk/clk_ddr_timer0\n/sys/kernel/debug/clk/clk_ddr_timer1\n/sys/kernel/debug/clk/tclk_wdt_ddr\n/sys/kernel/debug/clk/clk_ddr_cm0_rtc\n/sys/kernel/debug/clk/pclk_wdt\n/sys/kernel/debug/clk/pclk_timer\n/sys/kernel/debug/clk/pclk_dma2ddr\n/sys/kernel/debug/clk/pclk_sharemem\n/sys/kernel/debug/clk/clk_gpu_src\n/sys/kernel/debug/clk/clk_gpu\n/sys/kernel/debug/clk/clk_gpu_coregroup\n/sys/kernel/debug/clk/clk_gpu_stacks\n/sys/kernel/debug/clk/clk_gpu_pvtm\n/sys/kernel/debug/clk/clk_core_gpu_pvtm\n/sys/kernel/debug/clk/aclk_isp1_root\n/sys/kernel/debug/clk/hclk_isp1_root\n/sys/kernel/debug/clk/clk_isp1_core\n/sys/kernel/debug/clk/clk_isp1_core_marvin\n/sys/kernel/debug/clk/clk_isp1_core_vicap\n/sys/kernel/debug/clk/hclk_npu_root\n/sys/kernel/debug/clk/clk_npu_dsu0\n/sys/kernel/debug/clk/pclk_npu_root\n/sys/kernel/debug/clk/aclk_npu1\n/sys/kernel/debug/clk/hclk_npu1\n/sys/kernel/debug/clk/aclk_npu2\n/sys/kernel/debug/clk/hclk_npu2\n/sys/kernel/debug/clk/hclk_npu_cm0_root\n/sys/kernel/debug/clk/fclk_npu_cm0_core\n/sys/kernel/debug/clk/clk_npu_cm0_rtc\n/sys/kernel/debug/clk/pclk_npu_pvtm\n/sys/kernel/debug/clk/pclk_npu_grf\n/sys/kernel/debug/clk/clk_npu_pvtm\n/sys/kernel/debug/clk/clk_core_npu_pvtm\n/sys/kernel/debug/clk/aclk_npu0\n/sys/kernel/debug/clk/hclk_npu0\n/sys/kernel/debug/clk/pclk_npu_timer\n/sys/kernel/debug/clk/clk_nputimer_root\n/sys/kernel/debug/clk/clk_nputimer0\n/sys/kernel/debug/clk/clk_nputimer1\n/sys/kernel/debug/clk/pclk_npu_wdt\n/sys/kernel/debug/clk/tclk_npu_wdt\n/sys/kernel/debug/clk/hclk_nvm_root\n/sys/kernel/debug/clk/aclk_nvm_root\n/sys/kernel/debug/clk/aclk_emmc\n/sys/kernel/debug/clk/cclk_emmc\n/sys/kernel/debug/clk/bclk_emmc\n/sys/kernel/debug/clk/tmclk_emmc\n/sys/kernel/debug/clk/sclk_sfc\n/sys/kernel/debug/clk/clk_gmac0_ptp_ref\n/sys/kernel/debug/clk/clk_gmac1_ptp_ref\n/sys/kernel/debug/clk/clk_gmac_125m\n/sys/kernel/debug/clk/clk_gmac_50m\n/sys/kernel/debug/clk/aclk_pcie_root\n/sys/kernel/debug/clk/aclk_php_root\n/sys/kernel/debug/clk/pclk_php_root\n/sys/kernel/debug/clk/aclk_php_gic_its\n/sys/kernel/debug/clk/aclk_pcie_bridge\n/sys/kernel/debug/clk/aclk_mmu_pcie\n/sys/kernel/debug/clk/aclk_mmu_php\n/sys/kernel/debug/clk/aclk_pcie_4l_dbi\n/sys/kernel/debug/clk/aclk_pcie_2l_dbi\n/sys/kernel/debug/clk/aclk_pcie_1l0_dbi\n/sys/kernel/debug/clk/aclk_pcie_1l1_dbi\n/sys/kernel/debug/clk/aclk_pcie_1l2_dbi\n/sys/kernel/debug/clk/aclk_pcie_4l_mstr\n/sys/kernel/debug/clk/aclk_pcie_2l_mstr\n/sys/kernel/debug/clk/aclk_pcie_1l0_mstr\n/sys/kernel/debug/clk/aclk_pcie_1l1_mstr\n/sys/kernel/debug/clk/aclk_pcie_1l2_mstr\n/sys/kernel/debug/clk/aclk_pcie_4l_slv\n/sys/kernel/debug/clk/aclk_pcie_2l_slv\n/sys/kernel/debug/clk/aclk_pcie_1l0_slv\n/sys/kernel/debug/clk/aclk_pcie_1l1_slv\n/sys/kernel/debug/clk/aclk_pcie_1l2_slv\n/sys/kernel/debug/clk/pclk_pcie_4l\n/sys/kernel/debug/clk/pclk_pcie_2l\n/sys/kernel/debug/clk/pclk_pcie_1l0\n/sys/kernel/debug/clk/pclk_pcie_1l1\n/sys/kernel/debug/clk/pclk_pcie_1l2\n/sys/kernel/debug/clk/clk_pcie_aux0\n/sys/kernel/debug/clk/clk_pcie_aux1\n/sys/kernel/debug/clk/clk_pcie_aux2\n/sys/kernel/debug/clk/clk_pcie_aux3\n/sys/kernel/debug/clk/clk_pcie_aux4\n/sys/kernel/debug/clk/clk_pipephy0_ref\n/sys/kernel/debug/clk/clk_pipephy1_ref\n/sys/kernel/debug/clk/clk_pipephy2_ref\n/sys/kernel/debug/clk/pclk_gmac0\n/sys/kernel/debug/clk/pclk_gmac1\n/sys/kernel/debug/clk/aclk_gmac0\n/sys/kernel/debug/clk/aclk_gmac1\n/sys/kernel/debug/clk/clk_pmalive0\n/sys/kernel/debug/clk/clk_pmalive1\n/sys/kernel/debug/clk/clk_pmalive2\n/sys/kernel/debug/clk/aclk_sata0\n/sys/kernel/debug/clk/aclk_sata1\n/sys/kernel/debug/clk/aclk_sata2\n/sys/kernel/debug/clk/clk_rxoob0\n/sys/kernel/debug/clk/clk_rxoob1\n/sys/kernel/debug/clk/clk_rxoob2\n/sys/kernel/debug/clk/aclk_usb3otg2\n/sys/kernel/debug/clk/suspend_clk_usb3otg2\n/sys/kernel/debug/clk/ref_clk_usb3otg2\n/sys/kernel/debug/clk/clk_utmi_otg2\n/sys/kernel/debug/clk/pclk_pcie_combo_pipe_phy0\n/sys/kernel/debug/clk/pclk_pcie_combo_pipe_phy1\n/sys/kernel/debug/clk/pclk_pcie_combo_pipe_phy2\n/sys/kernel/debug/clk/pclk_pcie_combo_pipe_phy\n/sys/kernel/debug/clk/clk_rga3_1_core\n/sys/kernel/debug/clk/aclk_rga3_root\n/sys/kernel/debug/clk/hclk_rga3_root\n/sys/kernel/debug/clk/hclk_rga3_1\n/sys/kernel/debug/clk/aclk_rga3_1\n/sys/kernel/debug/clk/hclk_rkvdec0_root\n/sys/kernel/debug/clk/aclk_rkvdec0_root\n/sys/kernel/debug/clk/aclk_rkvdec_ccu\n/sys/kernel/debug/clk/clk_rkvdec0_ca\n/sys/kernel/debug/clk/clk_rkvdec0_hevc_ca\n/sys/kernel/debug/clk/clk_rkvdec0_core\n/sys/kernel/debug/clk/hclk_rkvdec1_root\n/sys/kernel/debug/clk/aclk_rkvdec1_root\n/sys/kernel/debug/clk/clk_rkvdec1_ca\n/sys/kernel/debug/clk/clk_rkvdec1_hevc_ca\n/sys/kernel/debug/clk/clk_rkvdec1_core\n/sys/kernel/debug/clk/hclk_sdio_root\n/sys/kernel/debug/clk/cclk_src_sdio\n/sys/kernel/debug/clk/sdio_drv\n/sys/kernel/debug/clk/sdio_sample\n/sys/kernel/debug/clk/aclk_usb_root\n/sys/kernel/debug/clk/hclk_usb_root\n/sys/kernel/debug/clk/suspend_clk_usb3otg0\n/sys/kernel/debug/clk/ref_clk_usb3otg0\n/sys/kernel/debug/clk/suspend_clk_usb3otg1\n/sys/kernel/debug/clk/ref_clk_usb3otg1\n/sys/kernel/debug/clk/aclk_vdpu_root\n/sys/kernel/debug/clk/aclk_vdpu_low_root\n/sys/kernel/debug/clk/hclk_vdpu_root\n/sys/kernel/debug/clk/aclk_jpeg_decoder_root\n/sys/kernel/debug/clk/hclk_iep2p0\n/sys/kernel/debug/clk/clk_iep2p0_core\n/sys/kernel/debug/clk/hclk_jpeg_encoder0\n/sys/kernel/debug/clk/hclk_jpeg_encoder1\n/sys/kernel/debug/clk/hclk_jpeg_encoder2\n/sys/kernel/debug/clk/hclk_jpeg_encoder3\n/sys/kernel/debug/clk/hclk_jpeg_decoder\n/sys/kernel/debug/clk/hclk_rga2\n/sys/kernel/debug/clk/aclk_rga2\n/sys/kernel/debug/clk/clk_rga2_core\n/sys/kernel/debug/clk/hclk_rga3_0\n/sys/kernel/debug/clk/aclk_rga3_0\n/sys/kernel/debug/clk/clk_rga3_0_core\n/sys/kernel/debug/clk/hclk_vpu\n/sys/kernel/debug/clk/hclk_rkvenc1_root\n/sys/kernel/debug/clk/aclk_rkvenc1_root\n/sys/kernel/debug/clk/hclk_rkvenc0_root\n/sys/kernel/debug/clk/aclk_rkvenc0_root\n/sys/kernel/debug/clk/hclk_rkvenc0\n/sys/kernel/debug/clk/aclk_rkvenc0\n/sys/kernel/debug/clk/clk_rkvenc0_core\n/sys/kernel/debug/clk/clk_rkvenc1_core\n/sys/kernel/debug/clk/aclk_vi_root\n/sys/kernel/debug/clk/hclk_vi_root\n/sys/kernel/debug/clk/pclk_vi_root\n/sys/kernel/debug/clk/iclk_csihost01\n/sys/kernel/debug/clk/iclk_csihost0\n/sys/kernel/debug/clk/iclk_csihost1\n/sys/kernel/debug/clk/pclk_csi_host_0\n/sys/kernel/debug/clk/pclk_csi_host_1\n/sys/kernel/debug/clk/pclk_csi_host_2\n/sys/kernel/debug/clk/pclk_csi_host_3\n/sys/kernel/debug/clk/pclk_csi_host_4\n/sys/kernel/debug/clk/pclk_csi_host_5\n/sys/kernel/debug/clk/aclk_fisheye0\n/sys/kernel/debug/clk/hclk_fisheye0\n/sys/kernel/debug/clk/clk_fisheye0_core\n/sys/kernel/debug/clk/aclk_fisheye1\n/sys/kernel/debug/clk/hclk_fisheye1\n/sys/kernel/debug/clk/clk_fisheye1_core\n/sys/kernel/debug/clk/clk_isp0_core\n/sys/kernel/debug/clk/clk_isp0_core_marvin\n/sys/kernel/debug/clk/clk_isp0_core_vicap\n/sys/kernel/debug/clk/aclk_isp0\n/sys/kernel/debug/clk/hclk_isp0\n/sys/kernel/debug/clk/dclk_vicap\n/sys/kernel/debug/clk/aclk_vicap\n/sys/kernel/debug/clk/hclk_vicap\n/sys/kernel/debug/clk/aclk_vo0_root\n/sys/kernel/debug/clk/hclk_vo0_root\n/sys/kernel/debug/clk/hclk_vo0_s_root\n/sys/kernel/debug/clk/pclk_vo0_root\n/sys/kernel/debug/clk/pclk_vo0_s_root\n/sys/kernel/debug/clk/pclk_dp0\n/sys/kernel/debug/clk/pclk_dp1\n/sys/kernel/debug/clk/pclk_s_dp0\n/sys/kernel/debug/clk/pclk_s_dp1\n/sys/kernel/debug/clk/clk_dp0\n/sys/kernel/debug/clk/clk_dp1\n/sys/kernel/debug/clk/hclk_hdcp_key0\n/sys/kernel/debug/clk/pclk_hdcp0\n/sys/kernel/debug/clk/aclk_trng0\n/sys/kernel/debug/clk/pclk_trng0\n/sys/kernel/debug/clk/pclk_vo0grf\n/sys/kernel/debug/clk/clk_i2s4_8ch_tx_src\n/sys/kernel/debug/clk/clk_i2s4_8ch_tx_frac\n/sys/kernel/debug/clk/clk_i2s4_8ch_tx\n/sys/kernel/debug/clk/mclk_i2s4_8ch_tx\n/sys/kernel/debug/clk/clk_i2s8_8ch_tx_src\n/sys/kernel/debug/clk/clk_i2s8_8ch_tx_frac\n/sys/kernel/debug/clk/clk_i2s8_8ch_tx\n/sys/kernel/debug/clk/mclk_i2s8_8ch_tx\n/sys/kernel/debug/clk/clk_spdif2_dp0_src\n/sys/kernel/debug/clk/clk_spdif2_dp0_frac\n/sys/kernel/debug/clk/clk_spdif2_dp0\n/sys/kernel/debug/clk/mclk_spdif2_dp0\n/sys/kernel/debug/clk/mclk_spdif2\n/sys/kernel/debug/clk/clk_spdif5_dp1_src\n/sys/kernel/debug/clk/clk_spdif5_dp1_frac\n/sys/kernel/debug/clk/clk_spdif5_dp1\n/sys/kernel/debug/clk/mclk_spdif5_dp1\n/sys/kernel/debug/clk/mclk_spdif5\n/sys/kernel/debug/clk/clk_aux16m_0\n/sys/kernel/debug/clk/clk_aux16m_1\n/sys/kernel/debug/clk/clk_hdmitrx_refsrc\n/sys/kernel/debug/clk/aclk_hdcp1_root\n/sys/kernel/debug/clk/aclk_hdmirx_root\n/sys/kernel/debug/clk/hclk_vo1_root\n/sys/kernel/debug/clk/hclk_vo1_s_root\n/sys/kernel/debug/clk/pclk_vo1_root\n/sys/kernel/debug/clk/pclk_vo1_s_root\n/sys/kernel/debug/clk/aclk_vop_root\n/sys/kernel/debug/clk/aclk_vop_div2_src\n/sys/kernel/debug/clk/aclk_vop_low_root\n/sys/kernel/debug/clk/hclk_vop_root\n/sys/kernel/debug/clk/pclk_vop_root\n/sys/kernel/debug/clk/aclk_vo1usb_top_root\n/sys/kernel/debug/clk/hclk_vo1usb_top_root\n/sys/kernel/debug/clk/aclk_vop\n/sys/kernel/debug/clk/pclk_edp0\n/sys/kernel/debug/clk/clk_edp0_24m\n/sys/kernel/debug/clk/clk_edp0_200m\n/sys/kernel/debug/clk/pclk_edp1\n/sys/kernel/debug/clk/clk_edp1_24m\n/sys/kernel/debug/clk/clk_edp1_200m\n/sys/kernel/debug/clk/hclk_hdcp_key1\n/sys/kernel/debug/clk/pclk_hdcp1\n/sys/kernel/debug/clk/aclk_hdmirx\n/sys/kernel/debug/clk/pclk_hdmirx\n/sys/kernel/debug/clk/clk_hdmirx_ref\n/sys/kernel/debug/clk/clk_hdmirx_aud_src\n/sys/kernel/debug/clk/clk_hdmirx_aud_frac\n/sys/kernel/debug/clk/clk_hdmirx_aud_mux\n/sys/kernel/debug/clk/clk_hdmirx_aud\n/sys/kernel/debug/clk/pclk_hdmitx0\n/sys/kernel/debug/clk/clk_hdmitx0_earc\n/sys/kernel/debug/clk/clk_hdmitx0_ref\n/sys/kernel/debug/clk/pclk_hdmitx1\n/sys/kernel/debug/clk/clk_hdmitx1_earc\n/sys/kernel/debug/clk/clk_hdmitx1_ref\n/sys/kernel/debug/clk/aclk_trng1\n/sys/kernel/debug/clk/pclk_trng1\n/sys/kernel/debug/clk/pclk_vo1grf\n/sys/kernel/debug/clk/pclk_s_edp0\n/sys/kernel/debug/clk/pclk_s_edp1\n/sys/kernel/debug/clk/pclk_s_hdmirx\n/sys/kernel/debug/clk/clk_i2s10_8ch_rx_src\n/sys/kernel/debug/clk/clk_i2s10_8ch_rx_frac\n/sys/kernel/debug/clk/clk_i2s10_8ch_rx\n/sys/kernel/debug/clk/mclk_i2s10_8ch_rx\n/sys/kernel/debug/clk/clk_i2s7_8ch_rx_src\n/sys/kernel/debug/clk/clk_i2s7_8ch_rx_frac\n/sys/kernel/debug/clk/clk_i2s7_8ch_rx\n/sys/kernel/debug/clk/mclk_i2s7_8ch_rx\n/sys/kernel/debug/clk/clk_i2s9_8ch_rx_src\n/sys/kernel/debug/clk/clk_i2s9_8ch_rx_frac\n/sys/kernel/debug/clk/clk_i2s9_8ch_rx\n/sys/kernel/debug/clk/mclk_i2s9_8ch_rx\n/sys/kernel/debug/clk/clk_i2s5_8ch_tx_src\n/sys/kernel/debug/clk/clk_i2s5_8ch_tx_frac\n/sys/kernel/debug/clk/clk_i2s5_8ch_tx\n/sys/kernel/debug/clk/mclk_i2s5_8ch_tx\n/sys/kernel/debug/clk/clk_i2s6_8ch_tx_src\n/sys/kernel/debug/clk/clk_i2s6_8ch_tx_frac\n/sys/kernel/debug/clk/clk_i2s6_8ch_tx\n/sys/kernel/debug/clk/mclk_i2s6_8ch_tx\n/sys/kernel/debug/clk/clk_i2s6_8ch_rx_src\n/sys/kernel/debug/clk/clk_i2s6_8ch_rx_frac\n/sys/kernel/debug/clk/clk_i2s6_8ch_rx\n/sys/kernel/debug/clk/mclk_i2s6_8ch_rx\n/sys/kernel/debug/clk/i2s6_8ch_mclkout\n/sys/kernel/debug/clk/clk_spdif3_src\n/sys/kernel/debug/clk/clk_spdif3_frac\n/sys/kernel/debug/clk/clk_spdif3\n/sys/kernel/debug/clk/mclk_spdif3\n/sys/kernel/debug/clk/clk_spdif4_src\n/sys/kernel/debug/clk/clk_spdif4_frac\n/sys/kernel/debug/clk/clk_spdif4\n/sys/kernel/debug/clk/mclk_spdif4\n/sys/kernel/debug/clk/mclk_spdifrx0\n/sys/kernel/debug/clk/mclk_spdifrx1\n/sys/kernel/debug/clk/mclk_spdifrx2\n/sys/kernel/debug/clk/clk_hdmihdp0\n/sys/kernel/debug/clk/clk_hdmihdp1\n/sys/kernel/debug/clk/pclk_hdptx0\n/sys/kernel/debug/clk/pclk_hdptx1\n/sys/kernel/debug/clk/pclk_usbdpphy0\n/sys/kernel/debug/clk/pclk_usbdpphy1\n/sys/kernel/debug/clk/hclk_vop\n/sys/kernel/debug/clk/dclk_vop0_src\n/sys/kernel/debug/clk/dclk_vop1_src\n/sys/kernel/debug/clk/dclk_vop2_src\n/sys/kernel/debug/clk/dclk_vop0\n/sys/kernel/debug/clk/dclk_vop1\n/sys/kernel/debug/clk/dclk_vop2\n/sys/kernel/debug/clk/dclk_vop3\n/sys/kernel/debug/clk/pclk_dsihost0\n/sys/kernel/debug/clk/pclk_dsihost1\n/sys/kernel/debug/clk/clk_dsihost0\n/sys/kernel/debug/clk/clk_dsihost1\n/sys/kernel/debug/clk/clk_vop_pmu\n/sys/kernel/debug/clk/aclk_vop_doby\n/sys/kernel/debug/clk/clk_usbdp_phy0_immortal\n/sys/kernel/debug/clk/clk_usbdp_phy1_immortal\n/sys/kernel/debug/clk/clk_ref_pipe_phy0_osc_src\n/sys/kernel/debug/clk/clk_ref_pipe_phy1_osc_src\n/sys/kernel/debug/clk/clk_ref_pipe_phy2_osc_src\n/sys/kernel/debug/clk/clk_ref_pipe_phy0_pll_src\n/sys/kernel/debug/clk/clk_ref_pipe_phy1_pll_src\n/sys/kernel/debug/clk/clk_ref_pipe_phy2_pll_src\n/sys/kernel/debug/clk/clk_ref_pipe_phy0\n/sys/kernel/debug/clk/clk_ref_pipe_phy1\n/sys/kernel/debug/clk/clk_ref_pipe_phy2\n/sys/kernel/debug/clk/clk_pmu1_300m_src\n/sys/kernel/debug/clk/clk_pmu1_400m_src\n/sys/kernel/debug/clk/clk_pmu1_50m_src\n/sys/kernel/debug/clk/clk_pmu1_100m_src\n/sys/kernel/debug/clk/clk_pmu1_200m_src\n/sys/kernel/debug/clk/hclk_pmu1_root\n/sys/kernel/debug/clk/pclk_pmu1_root\n/sys/kernel/debug/clk/pclk_pmu0_root\n/sys/kernel/debug/clk/hclk_pmu_cm0_root\n/sys/kernel/debug/clk/clk_pmu0\n/sys/kernel/debug/clk/pclk_pmu0\n/sys/kernel/debug/clk/pclk_pmu0ioc\n/sys/kernel/debug/clk/pclk_gpio0\n/sys/kernel/debug/clk/dbclk_gpio0\n/sys/kernel/debug/clk/pclk_i2c0\n/sys/kernel/debug/clk/clk_i2c0\n/sys/kernel/debug/clk/hclk_i2s1_8ch\n/sys/kernel/debug/clk/clk_i2s1_8ch_tx_src\n/sys/kernel/debug/clk/clk_i2s1_8ch_tx_frac\n/sys/kernel/debug/clk/clk_i2s1_8ch_tx\n/sys/kernel/debug/clk/mclk_i2s1_8ch_tx\n/sys/kernel/debug/clk/clk_i2s1_8ch_rx_src\n/sys/kernel/debug/clk/clk_i2s1_8ch_rx_frac\n/sys/kernel/debug/clk/clk_i2s1_8ch_rx\n/sys/kernel/debug/clk/mclk_i2s1_8ch_rx\n/sys/kernel/debug/clk/i2s1_8ch_mclkout\n/sys/kernel/debug/clk/pclk_pmu1\n/sys/kernel/debug/clk/clk_ddr_fail_safe\n/sys/kernel/debug/clk/clk_pmu1\n/sys/kernel/debug/clk/hclk_pdm0\n/sys/kernel/debug/clk/mclk_pdm0\n/sys/kernel/debug/clk/hclk_vad\n/sys/kernel/debug/clk/fclk_pmu_cm0_core\n/sys/kernel/debug/clk/clk_pmu_cm0_rtc\n/sys/kernel/debug/clk/pclk_pmu1_ioc\n/sys/kernel/debug/clk/pclk_pmu1pwm\n/sys/kernel/debug/clk/clk_pmu1pwm\n/sys/kernel/debug/clk/clk_pmu1pwm_capture\n/sys/kernel/debug/clk/pclk_pmu1timer\n/sys/kernel/debug/clk/clk_pmu1timer_root\n/sys/kernel/debug/clk/clk_pmu1timer0\n/sys/kernel/debug/clk/clk_pmu1timer1\n/sys/kernel/debug/clk/clk_uart0_src\n/sys/kernel/debug/clk/clk_uart0_frac\n/sys/kernel/debug/clk/clk_uart0\n/sys/kernel/debug/clk/sclk_uart0\n/sys/kernel/debug/clk/pclk_uart0\n/sys/kernel/debug/clk/pclk_pmu1wdt\n/sys/kernel/debug/clk/tclk_pmu1wdt\n/sys/kernel/debug/clk/clk_cr_para\n/sys/kernel/debug/clk/clk_usb2phy_hdptxrxphy_ref\n/sys/kernel/debug/clk/clk_usbdpphy_mipidcpphy_ref\n/sys/kernel/debug/clk/clk_phy0_ref_alt_p\n/sys/kernel/debug/clk/clk_phy0_ref_alt_m\n/sys/kernel/debug/clk/clk_phy1_ref_alt_p\n/sys/kernel/debug/clk/clk_phy1_ref_alt_m\n/sys/kernel/debug/clk/hclk_spdifrx0\n/sys/kernel/debug/clk/hclk_spdifrx1\n/sys/kernel/debug/clk/hclk_spdifrx2\n/sys/kernel/debug/clk/hclk_spdif4\n/sys/kernel/debug/clk/hclk_spdif3\n/sys/kernel/debug/clk/hclk_i2s6_8ch\n/sys/kernel/debug/clk/hclk_i2s5_8ch\n/sys/kernel/debug/clk/hclk_i2s9_8ch\n/sys/kernel/debug/clk/hclk_i2s7_8ch\n/sys/kernel/debug/clk/hclk_i2s10_8ch\n/sys/kernel/debug/clk/aclk_hdcp1\n/sys/kernel/debug/clk/hclk_hdcp1\n/sys/kernel/debug/clk/hclk_spdif5_dp1\n/sys/kernel/debug/clk/hclk_spdif2_dp0\n/sys/kernel/debug/clk/hclk_i2s8_8ch\n/sys/kernel/debug/clk/hclk_i2s4_8ch\n/sys/kernel/debug/clk/aclk_hdcp0\n/sys/kernel/debug/clk/hclk_hdcp0\n/sys/kernel/debug/clk/hclk_rkvenc1\n/sys/kernel/debug/clk/aclk_rkvenc1\n/sys/kernel/debug/clk/aclk_vpu\n/sys/kernel/debug/clk/aclk_iep2p0\n/sys/kernel/debug/clk/aclk_jpeg_encoder0\n/sys/kernel/debug/clk/aclk_jpeg_encoder1\n/sys/kernel/debug/clk/aclk_jpeg_encoder2\n/sys/kernel/debug/clk/aclk_jpeg_encoder3\n/sys/kernel/debug/clk/aclk_jpeg_decoder\n/sys/kernel/debug/clk/aclk_usb3otg1\n/sys/kernel/debug/clk/hclk_host0\n/sys/kernel/debug/clk/hclk_host_arb0\n/sys/kernel/debug/clk/hclk_host1\n/sys/kernel/debug/clk/hclk_host_arb1\n/sys/kernel/debug/clk/aclk_usb3otg0\n/sys/kernel/debug/clk/sdmmc_drv\n/sys/kernel/debug/clk/sdmmc_sample\n/sys/kernel/debug/clk/hclk_sdio\n/sys/kernel/debug/clk/hclk_rkvdec1\n/sys/kernel/debug/clk/aclk_rkvdec1\n/sys/kernel/debug/clk/hclk_rkvdec0\n/sys/kernel/debug/clk/aclk_rkvdec0\n/sys/kernel/debug/clk/clk_pcie4l_pipe\n/sys/kernel/debug/clk/clk_pcie2l_pipe\n/sys/kernel/debug/clk/clk_pipephy0_pipe_g\n/sys/kernel/debug/clk/clk_pipephy1_pipe_g\n/sys/kernel/debug/clk/clk_pipephy2_pipe_g\n/sys/kernel/debug/clk/clk_pipephy0_pipe_asic_g\n/sys/kernel/debug/clk/clk_pipephy1_pipe_asic_g\n/sys/kernel/debug/clk/clk_pipephy2_pipe_asic_g\n/sys/kernel/debug/clk/clk_pipephy2_pipe_u3_g\n/sys/kernel/debug/clk/clk_pcie1l2_pipe\n/sys/kernel/debug/clk/clk_pcie1l0_pipe\n/sys/kernel/debug/clk/clk_pcie1l1_pipe\n/sys/kernel/debug/clk/hclk_sfc\n/sys/kernel/debug/clk/hclk_sfc_xip\n/sys/kernel/debug/clk/hclk_emmc\n/sys/kernel/debug/clk/aclk_isp1\n/sys/kernel/debug/clk/hclk_isp1\n/sys/kernel/debug/clk/pclk_av1\n/sys/kernel/debug/clk/aclk_av1\n/sys/kernel/debug/clk/hclk_vo1\n/sys/kernel/debug/clk/aclk_vdpu_low_pre\n/sys/kernel/debug/clk/hclk_vo0\n/sys/kernel/debug/clk/hclk_usb\n/sys/kernel/debug/clk/hclk_nvm\n/sys/kernel/debug/clk/aclk_usb\n/sys/kernel/debug/clk/hclk_isp1_pre\n/sys/kernel/debug/clk/aclk_isp1_pre\n/sys/kernel/debug/clk/aclk_rkvdec0_pre\n/sys/kernel/debug/clk/hclk_rkvdec0_pre\n/sys/kernel/debug/clk/aclk_rkvdec1_pre\n/sys/kernel/debug/clk/hclk_rkvdec1_pre\n/sys/kernel/debug/clk/aclk_jpeg_decoder_pre\n/sys/kernel/debug/clk/aclk_rkvenc1_pre\n/sys/kernel/debug/clk/hclk_rkvenc1_pre\n/sys/kernel/debug/clk/aclk_hdcp0_pre\n/sys/kernel/debug/clk/aclk_hdcp1_pre\n/sys/kernel/debug/clk/pclk_av1_pre\n/sys/kernel/debug/clk/aclk_av1_pre\n/sys/kernel/debug/clk/hclk_sdio_pre\n/sys/kernel/debug/clk/pclk_vo0_grf\n/sys/kernel/debug/clk/pclk_vo1_grf\n/sys/kernel/debug/clk/usb480m_phy0\n/sys/kernel/debug/clk/usb480m_phy2\n/sys/kernel/debug/clk/usb480m_phy3\n/sys/kernel/debug/clk/scmi_clk_cpul\n/sys/kernel/debug/clk/scmi_clk_dsu\n/sys/kernel/debug/clk/scmi_clk_cpub01\n/sys/kernel/debug/clk/scmi_clk_cpub23\n/sys/kernel/debug/clk/scmi_clk_ddr\n/sys/kernel/debug/clk/scmi_clk_gpu\n/sys/kernel/debug/clk/scmi_clk_npu\n/sys/kernel/debug/clk/scmi_cclk_sd\n/sys/kernel/debug/clk/scmi_dclk_sd\n/sys/kernel/debug/clk/scmi_aclk_se_ns\n/sys/kernel/debug/clk/scmi_hclk_se_ns\n/sys/kernel/debug/clk/scmi_tclk_wdt\n/sys/kernel/debug/clk/scmi_crypto_r\n/sys/kernel/debug/clk/scmi_crypto_c\n/sys/kernel/debug/clk/scmi_crypto_p\n/sys/kernel/debug/clk/scmi_spll\n/sys/kernel/debug/clk/scmi_hclk_sd\n/sys/kernel/debug/clk/scmi_otp_phy\n/sys/kernel/debug/clk/scmi_otpc_rd\n/sys/kernel/debug/clk/scmi_otpc_arb\n/sys/kernel/debug/clk/dclk0\n/sys/kernel/debug/clk/dclk1\n/sys/kernel/debug/clk/dclk2\n/sys/kernel/debug/clk/dclk3\n/sys/kernel/debug/clk/port0_dclk_src\n/sys/kernel/debug/clk/dclk_core0\n/sys/kernel/debug/clk/dclk_out0\n/sys/kernel/debug/clk/port1_dclk_src\n/sys/kernel/debug/clk/dclk_core1\n/sys/kernel/debug/clk/dclk_out1\n/sys/kernel/debug/clk/port2_dclk_src\n/sys/kernel/debug/clk/dclk_core2\n/sys/kernel/debug/clk/dclk_out2\n/sys/kernel/debug/clk/port3_dclk_src\n/sys/kernel/debug/clk/dclk_core3\n/sys/kernel/debug/clk/dclk_out3\n/sys/kernel/debug/clk/dp0_pixclk\n/sys/kernel/debug/clk/dp1_pixclk\n/sys/kernel/debug/clk/hdmi_edp0_clk_src\n/sys/kernel/debug/clk/hdmi_edp0_dclk\n/sys/kernel/debug/clk/hdmi_edp0_pixclk\n/sys/kernel/debug/clk/hdmi_edp1_clk_src\n/sys/kernel/debug/clk/hdmi_edp1_dclk\n/sys/kernel/debug/clk/hdmi_edp1_pixclk\n/sys/kernel/debug/clk/mipi0_clk_src\n/sys/kernel/debug/clk/mipi0_pixclk\n/sys/kernel/debug/clk/mipi1_clk_src\n/sys/kernel/debug/clk/mipi1_pixclk\n/sys/kernel/debug/clk/rgb_pixclk\n/sys/kernel/debug/clk/dsc_8k_txp_clk_src\n/sys/kernel/debug/clk/dsc_8k_txp_clk\n/sys/kernel/debug/clk/dsc_8k_pxl_clk\n/sys/kernel/debug/clk/dsc_8k_cds_clk\n/sys/kernel/debug/clk/dsc_4k_txp_clk_src\n/sys/kernel/debug/clk/dsc_4k_txp_clk\n/sys/kernel/debug/clk/dsc_4k_pxl_clk\n/sys/kernel/debug/clk/dsc_4k_cds_clk\n/sys/kernel/debug/rkrga\n/sys/kernel/debug/ubifs\n/sys/kernel/debug/swiotlb\n/sys/kernel/debug/asoc\n/sys/kernel/debug/binder\n/sys/kernel/debug/binder/proc\n/sys/kernel/debug/mmc0\n/sys/kernel/debug/mmc0/mmc0:0001\n/sys/kernel/debug/hid\n/sys/kernel/debug/feaf0000.watchdog\n/sys/kernel/debug/stmmaceth\n/sys/kernel/debug/mtd\n/sys/kernel/debug/provoke-crash\n/sys/kernel/debug/dri\n/sys/kernel/debug/dri/1\n/sys/kernel/debug/dri/129\n/sys/kernel/debug/dri/0\n/sys/kernel/debug/dri/128\n/sys/kernel/debug/virtio-ports\n/sys/kernel/debug/pvtm\n/sys/kernel/debug/pvtm/gpu\n/sys/kernel/debug/pvtm/npu\n/sys/kernel/debug/pvtm/litcore\n/sys/kernel/debug/pvtm/bigcore1\n/sys/kernel/debug/pvtm/bigcore0\n/sys/kernel/debug/slab\n/sys/kernel/debug/memblock\n/sys/kernel/debug/kvm\n/sys/kernel/debug/ieee80211\n/sys/kernel/debug/dynamic_debug\n/sys/kernel/debug/tracing\n/sys/kernel/debug/tracing/instances\n/sys/kernel/debug/tracing/per_cpu\n/sys/kernel/debug/tracing/options\n/sys/kernel/debug/tracing/events\n/sys/kernel/debug/energy_model\n/sys/kernel/debug/energy_model/cpu6\n/sys/kernel/debug/energy_model/cpu4\n/sys/kernel/debug/energy_model/cpu0\n/sys/kernel/debug/bluetooth\n/sys/kernel/debug/iio\n/sys/kernel/debug/devfreq\n/sys/kernel/debug/cec\n/sys/kernel/debug/usb\n/sys/kernel/debug/usb/uvcvideo\n/sys/kernel/debug/usb/xhci\n/sys/kernel/debug/usb/ohci\n/sys/kernel/debug/usb/ehci\n/sys/kernel/debug/usb/usbmon\n/sys/kernel/debug/usb/fcd00000.usb\n/sys/kernel/debug/usb/fc000000.usb\n/sys/kernel/debug/dma_buf\n/sys/kernel/debug/block\n/sys/kernel/debug/block/mmcblk0boot0\n/sys/kernel/debug/block/mmcblk0boot1\n/sys/kernel/debug/block/mmcblk0\n/sys/kernel/debug/block/zram0\n/sys/kernel/debug/block/loop7\n/sys/kernel/debug/block/loop6\n/sys/kernel/debug/block/loop5\n/sys/kernel/debug/block/loop4\n/sys/kernel/debug/block/loop3\n/sys/kernel/debug/block/loop2\n/sys/kernel/debug/block/loop1\n/sys/kernel/debug/block/loop0\n/sys/kernel/debug/block/ram0\n/sys/kernel/debug/dmaengine\n/sys/kernel/debug/dmaengine/fed10000.dma-controller\n/sys/kernel/debug/dmaengine/fea30000.dma-controller\n/sys/kernel/debug/dmaengine/fea10000.dma-controller\n/sys/kernel/debug/regmap\n/sys/kernel/debug/regmap/dummy-syscon@fd5a2000\n/sys/kernel/debug/regmap/dummy-syscon@fd5a0000\n/sys/kernel/debug/regmap/dummy-syscon@fd58a000\n/sys/kernel/debug/regmap/dummy-syscon@fd592000\n/sys/kernel/debug/regmap/dummy-syscon@fd590000\n/sys/kernel/debug/regmap/dummy-syscon@fd598000\n/sys/kernel/debug/regmap/dummy-syscon@fd594000\n/sys/kernel/debug/regmap/dummy-syscon@fd588000\n/sys/kernel/debug/regmap/2-0042\n/sys/kernel/debug/regmap/0-0043\n/sys/kernel/debug/regmap/0-0042\n/sys/kernel/debug/regmap/spi2.0\n/sys/kernel/debug/regmap/dummy-syscon@fd5a8000\n/sys/kernel/debug/regmap/dummy-syscon@fd5a4000\n/sys/kernel/debug/regmap/fde50000.dp\n/sys/kernel/debug/regmap/dummy-syscon@fd5a6000\n/sys/kernel/debug/regmap/dummy-syscon@fd5ac000\n/sys/kernel/debug/regmap/dummy-syscon@fd5c8000\n/sys/kernel/debug/regmap/fed80000.phy\n/sys/kernel/debug/regmap/dummy-syscon@fd5e8000\n/sys/kernel/debug/regmap/feda0000.phy-dcphy\n/sys/kernel/debug/regmap/dummy-syscon@fd5c4000\n/sys/kernel/debug/regmap/dummy-syscon@fd5bc000\n/sys/kernel/debug/regmap/dummy-syscon@fd5dc000\n/sys/kernel/debug/regmap/dummy-syscon@fd5d8000\n/sys/kernel/debug/regmap/dummy-syscon@fd5d0000\n/sys/kernel/debug/regmap/dummy-syscon@fd5f0000\n/sys/kernel/debug/regmap/dummy-qos@fdf3d800\n/sys/kernel/debug/regmap/dummy-qos@fdf39000\n/sys/kernel/debug/regmap/dummy-qos@fdf3e600\n/sys/kernel/debug/regmap/dummy-qos@fdf3e400\n/sys/kernel/debug/regmap/dummy-qos@fdf3e000\n/sys/kernel/debug/regmap/dummy-qos@fdf3e200\n/sys/kernel/debug/regmap/dummy-qos@fdf36000\n/sys/kernel/debug/regmap/dummy-qos@fdf40200\n/sys/kernel/debug/regmap/dummy-qos@fdf40000\n/sys/kernel/debug/regmap/dummy-qos@fdf41100\n/sys/kernel/debug/regmap/dummy-qos@fdf41000\n/sys/kernel/debug/regmap/dummy-qos@fdf40800\n/sys/kernel/debug/regmap/dummy-qos@fdf40600\n/sys/kernel/debug/regmap/dummy-qos@fdf40500\n/sys/kernel/debug/regmap/dummy-qos@fdf40400\n/sys/kernel/debug/regmap/dummy-qos@fdf81200\n/sys/kernel/debug/regmap/dummy-qos@fdf81000\n/sys/kernel/debug/regmap/dummy-qos@fdf80000\n/sys/kernel/debug/regmap/dummy-qos@fdf82200\n/sys/kernel/debug/regmap/dummy-qos@fdf82000\n/sys/kernel/debug/regmap/dummy-qos@fdf67000\n/sys/kernel/debug/regmap/dummy-qos@fdf64000\n/sys/kernel/debug/regmap/dummy-qos@fdf66e00\n/sys/kernel/debug/regmap/dummy-qos@fdf66c00\n/sys/kernel/debug/regmap/dummy-qos@fdf66a00\n/sys/kernel/debug/regmap/dummy-qos@fdf66800\n/sys/kernel/debug/regmap/dummy-qos@fdf66600\n/sys/kernel/debug/regmap/dummy-qos@fdf66400\n/sys/kernel/debug/regmap/dummy-qos@fdf66200\n/sys/kernel/debug/regmap/dummy-qos@fdf66000\n/sys/kernel/debug/regmap/dummy-qos@fdf61400\n/sys/kernel/debug/regmap/dummy-qos@fdf61200\n/sys/kernel/debug/regmap/dummy-qos@fdf61000\n/sys/kernel/debug/regmap/dummy-qos@fdf60400\n/sys/kernel/debug/regmap/dummy-qos@fdf60200\n/sys/kernel/debug/regmap/dummy-qos@fdf60000\n/sys/kernel/debug/regmap/dummy-qos@fdf63000\n/sys/kernel/debug/regmap/dummy-qos@fdf62000\n/sys/kernel/debug/regmap/dummy-qos@fdf35600\n/sys/kernel/debug/regmap/dummy-qos@fdf35400\n/sys/kernel/debug/regmap/dummy-qos@fdf35200\n/sys/kernel/debug/regmap/dummy-qos@fdf35000\n/sys/kernel/debug/regmap/dummy-qos@fdf71000\n/sys/kernel/debug/regmap/dummy-qos@fdf70000\n/sys/kernel/debug/regmap/dummy-qos@fdf72400\n/sys/kernel/debug/regmap/dummy-qos@fdf72200\n/sys/kernel/debug/regmap/dummy-qos@fdf72000\n/sys/kernel/debug/regmap/dummy-power-management@fd8d8000\n/sys/kernel/debug/regmap/dummy-syscon@fd5b0000\n/sys/kernel/debug/regmap/dummy-syscon@fd58c000\n/sys/kernel/debug/bdi\n/sys/kernel/debug/bdi/179:32\n/sys/kernel/debug/bdi/179:64\n/sys/kernel/debug/bdi/179:0\n/sys/kernel/debug/bdi/mtd-0\n/sys/kernel/debug/bdi/253:0\n/sys/kernel/debug/bdi/7:7\n/sys/kernel/debug/bdi/7:6\n/sys/kernel/debug/bdi/7:5\n/sys/kernel/debug/bdi/7:4\n/sys/kernel/debug/bdi/7:3\n/sys/kernel/debug/bdi/7:2\n/sys/kernel/debug/bdi/7:1\n/sys/kernel/debug/bdi/7:0\n/sys/kernel/debug/bdi/1:0\n/sys/kernel/debug/dma_pools\n/sys/kernel/debug/opp\n/sys/kernel/debug/opp/platform-fdab0000.npu\n/sys/kernel/debug/opp/platform-dmc\n/sys/kernel/debug/opp/platform-fb000000.gpu\n/sys/kernel/debug/opp/cpu6\n/sys/kernel/debug/opp/cpu4\n/sys/kernel/debug/opp/cpu0\n/sys/kernel/debug/device_component\n/sys/kernel/debug/regulator\n/sys/kernel/debug/regulator/combophy_avdd1v8\n/sys/kernel/debug/regulator/combophy_avdd0v85\n/sys/kernel/debug/regulator/vdd_npu_s0\n/sys/kernel/debug/regulator/vdd_cpu_big1_s0\n/sys/kernel/debug/regulator/vdd_cpu_big0_s0\n/sys/kernel/debug/regulator/pldo6_s3\n/sys/kernel/debug/regulator/vccio_sd_s0\n/sys/kernel/debug/regulator/vcc_3v3_s0\n/sys/kernel/debug/regulator/avdd_1v2_s0\n/sys/kernel/debug/regulator/vcc_1v8_s0\n/sys/kernel/debug/regulator/avcc_1v8_s0\n/sys/kernel/debug/regulator/nldo5_s0\n/sys/kernel/debug/regulator/vdd_0v85_s0\n/sys/kernel/debug/regulator/avdd_0v75_s0\n/sys/kernel/debug/regulator/vdd_ddr_pll_s0\n/sys/kernel/debug/regulator/vdd_0v75_s3\n/sys/kernel/debug/regulator/vcc_1v8_s3\n/sys/kernel/debug/regulator/vddq_ddr_s0\n/sys/kernel/debug/regulator/vcc_3v3_s3\n/sys/kernel/debug/regulator/vdd_2v0_pldo_s3\n/sys/kernel/debug/regulator/vdd2_ddr_s3\n/sys/kernel/debug/regulator/vdd_ddr_s0\n/sys/kernel/debug/regulator/vdd_vdenc_s0\n/sys/kernel/debug/regulator/vdd_log_s0\n/sys/kernel/debug/regulator/vdd_cpu_lit_s0\n/sys/kernel/debug/regulator/vdd_gpu_s0\n/sys/kernel/debug/regulator/vcc_1v1_nldo_s3\n/sys/kernel/debug/regulator/vcc5v0_host\n/sys/kernel/debug/regulator/vbus5v0_usb3\n/sys/kernel/debug/regulator/vbus5v0_typec\n/sys/kernel/debug/regulator/vcc5v0_usb\n/sys/kernel/debug/regulator/vcc5v0_usbdcin\n/sys/kernel/debug/regulator/vcc5v0_sys\n/sys/kernel/debug/regulator/vcc12v_dcin\n/sys/kernel/debug/regulator/reg-dummy-regulator-dummy\n/sys/kernel/debug/pinctrl\n/sys/kernel/debug/pinctrl/rk806-pinctrl.1.auto-rk806-pinctrl\n/sys/kernel/debug/pinctrl/pinctrl-rockchip-pinctrl",
+    "stderr": ""
+  },
+  "sudo_noninteractive": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "packages": [
+    "cmake 3.22.1-1ubuntu1.22.04.2",
+    "cmake-data 3.22.1-1ubuntu1.22.04.2",
+    "gcc 4:11.2.0-1ubuntu1",
+    "gcc-11 11.4.0-1ubuntu1~22.04.3",
+    "gcc-11-base 11.4.0-1ubuntu1~22.04.3",
+    "gcc-12-base 12.3.0-1ubuntu1~22.04.3",
+    "libc6 2.35-0ubuntu3.13",
+    "libc6-dev 2.35-0ubuntu3.13",
+    "libopencv-calib3d-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-calib3d4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-contrib-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-contrib4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-core-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-core4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-dnn-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-dnn4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-features2d-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-features2d4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-flann-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-flann4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-highgui-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-highgui4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-imgcodecs-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-imgcodecs4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-imgproc-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-imgproc4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-ml-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-ml4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-objdetect-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-objdetect4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-photo-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-photo4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-shape-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-shape4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-stitching-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-stitching4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-superres-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-superres4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-video-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-video4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-videoio-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-videoio4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-videostab-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-videostab4.5d 4.5.4+dfsg-9ubuntu4",
+    "libopencv-viz-dev 4.5.4+dfsg-9ubuntu4",
+    "libopencv-viz4.5d 4.5.4+dfsg-9ubuntu4",
+    "libstdc++-11-dev 11.4.0-1ubuntu1~22.04.3",
+    "libstdc++6 12.3.0-1ubuntu1~22.04.3",
+    "python3 3.10.6-1~22.04.1",
+    "python3-apport 2.20.11-0ubuntu82.10",
+    "python3-apt 2.4.0ubuntu4.1",
+    "python3-aptdaemon 1.1.1+bzr982-0ubuntu39",
+    "python3-aptdaemon.gtk3widgets 1.1.1+bzr982-0ubuntu39",
+    "python3-blinker 1.4+dfsg1-0.4",
+    "python3-cairo 1.20.1-3build1",
+    "python3-certifi 2020.6.20-1",
+    "python3-cffi-backend 1.15.0-1build2",
+    "python3-chardet 4.0.0-1",
+    "python3-click 8.0.3-1",
+    "python3-colorama 0.4.4-1",
+    "python3-commandnotfound 22.04.0",
+    "python3-configobj 5.0.6-5ubuntu0.1",
+    "python3-cryptography 3.4.8-1ubuntu2.2",
+    "python3-dateutil 2.8.1-6",
+    "python3-dbus 1.2.18-3build1",
+    "python3-debconf 1.5.79ubuntu1",
+    "python3-debian 0.1.43ubuntu1.1",
+    "python3-defer 1.0.6-2.1ubuntu1",
+    "python3-distro 1.7.0-1",
+    "python3-distro-info 1.1ubuntu0.2",
+    "python3-distupgrade 1:22.04.20",
+    "python3-gdbm 3.10.8-1~22.04",
+    "python3-gi 3.42.1-0ubuntu1",
+    "python3-gi-cairo 3.42.1-0ubuntu1",
+    "python3-httplib2 0.20.2-2",
+    "python3-idna 3.3-1ubuntu0.1",
+    "python3-importlib-metadata 4.6.4-1",
+    "python3-jeepney 0.7.1-3",
+    "python3-jwt 2.3.0-1ubuntu0.2",
+    "python3-keyring 23.5.0-1",
+    "python3-launchpadlib 1.10.16-1",
+    "python3-lazr.restfulclient 0.14.4-1",
+    "python3-lazr.uri 1.0.6-2",
+    "python3-minimal 3.10.6-1~22.04.1",
+    "python3-more-itertools 8.10.0-2",
+    "python3-netifaces 0.11.0-1build2",
+    "python3-oauthlib 3.2.0-1ubuntu0.1",
+    "python3-pkg-resources 59.6.0-1.2ubuntu0.22.04.3",
+    "python3-problem-report 2.20.11-0ubuntu82.10",
+    "python3-psutil 5.9.0-1build1",
+    "python3-pyparsing 2.4.7-1",
+    "python3-requests 2.25.1+dfsg-2ubuntu0.3",
+    "python3-requests-unixsocket 0.2.0-2",
+    "python3-secretstorage 3.3.1-1",
+    "python3-six 1.16.0-3ubuntu1",
+    "python3-software-properties 0.98.9.5firefly1",
+    "python3-update-manager 1:22.04.22",
+    "python3-urllib3 1.26.5-1~exp1ubuntu0.6",
+    "python3-wadllib 1.3.6-1",
+    "python3-xkit 0.5.0ubuntu5",
+    "python3-yaml 5.4.1-1ubuntu1",
+    "python3-zipp 1.0.0-3ubuntu0.1",
+    "python3.10 3.10.12-1~22.04.14",
+    "python3.10-minimal 3.10.12-1~22.04.14"
+  ],
+  "kernel_profile_config": [
+    "CONFIG_HAVE_PERF_EVENTS=y",
+    "CONFIG_PERF_EVENTS=y",
+    "CONFIG_PROFILING=y",
+    "CONFIG_HW_PERF_EVENTS=y",
+    "# CONFIG_MALI400_PROFILING is not set",
+    "CONFIG_ARM_ROCKCHIP_DMC_DEVFREQ=y",
+    "CONFIG_DEVFREQ_EVENT_ROCKCHIP_DFI=y",
+    "CONFIG_ARM_PMU=y",
+    "# CONFIG_PSTORE_FTRACE is not set",
+    "CONFIG_HAVE_DYNAMIC_FTRACE=y",
+    "CONFIG_HAVE_DYNAMIC_FTRACE_WITH_REGS=y",
+    "CONFIG_HAVE_FTRACE_MCOUNT_RECORD=y",
+    "CONFIG_FTRACE=y",
+    "CONFIG_DYNAMIC_FTRACE=y",
+    "CONFIG_DYNAMIC_FTRACE_WITH_REGS=y",
+    "# CONFIG_FTRACE_SYSCALLS is not set",
+    "CONFIG_FTRACE_MCOUNT_RECORD=y",
+    "CONFIG_FTRACE_MCOUNT_USE_PATCHABLE_FUNCTION_ENTRY=y",
+    "# CONFIG_FTRACE_STARTUP_TEST is not set"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "payload_with_space_and_quote": true,
+  "remote_path_with_spaces": true,
+  "remote_failure_exit": 7,
+  "logs_retrieved_on_failure": true,
+  "recovery_without_rerun": true,
+  "remote_job": "vins-workspace/jobs with spaces/1791949693272-38486"
+}

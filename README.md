@@ -24,6 +24,7 @@
 | [05 ROS 1 / ROS 2 对比实验](docs/05_EUROC_ROS1_ROS2_COMPARISON.md) | 当前物理主机实测，旧报告保存在 tag |
 | [06 CPU 候选优化](docs/06_X86_CPU_EXPERIMENTS.md) | 尚未实施的候选项，供板端热点分析参考 |
 | [07 原生 Ubuntu 复现](docs/07_NATIVE_UBUNTU_REPRODUCTION.md) | 里程碑顺序、状态及失败处理 |
+| [08 RK3588 工作流](docs/08_RK3588_WORKFLOW.md) | 免密 SSH、scp/远端作业、交叉编译及板端验收 |
 
 `vins_estimator/` 是主 VIO 与 ROS 2 数据源/共享缓冲入口，`camera_models/` 是相机模型，`loop_fusion/` 和 `global_fusion/` 保留扩展模块，`config/` 保存传感器配置。构建、实验、评估、依赖锁和已提交证据在 `infra/desktop/`；新 agent 的工作约定见 [AGENTS.md](AGENTS.md)
 
@@ -32,3 +33,5 @@
 ## 上游与许可
 
 源自 HKUST Aerial Robotics 的 [VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion)，作者、论文、引用及原版示例保存在 [上游历史说明](support_files/UPSTREAM_README.md)。源码遵循 [GPLv3](LICENCE)；上游 ROS 1 Docker 和硬件 launch 作为历史文件保留，当前 ROS 2 的可靠运行入口以第 04 份文档为准
+
+RK3588 板端工作位于 codex/rk3588-ros2，免密 SSH 与 C++ scp/运行/日志回收工具已验证，板端 PMU 访问探针通过；ARM 构建、perf 采样和 VIO 仍待验收。下载在联网主机完成，优先本机交叉编译，各配置仅一轮，具体见第 08 份文档

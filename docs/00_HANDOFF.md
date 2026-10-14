@@ -40,3 +40,5 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。EuRoC 源端仍向池中复制像素，VGEM 仅为软件 DMA-BUF/CPU 映射验证。RK3588、真实相机、RGA/NEON/NPU 未验收，回环/GNSS/KITTI/RViz 未完成数据验收；设计范围见 [第 01 份任务书](01_RK3588_DEPLOYMENT_PLAN.md)
 
 下一项为用户已授权的 RK3588 板端工作：配置免密 SSH、固定 scp/部署/运行/日志回收工具、在联网主机下载依赖并优先交叉编译，再按配置各跑一轮。板端 Ubuntu 22.04.5/aarch64 已连通，尚未做板端 VIO 验收；后续从当前 ROS 2 最新提交建立目标分支，保留本轮分支/tag
+
+板端工作入口为 [第 08 份文档](08_RK3588_WORKFLOW.md)，当前分支 codex/rk3588-ros2。免密 SSH、C++ scp/远端脚本/日志回收已验证，板端只读能力快照已保存；下一步本机 ARM 工具链、sysroot 与运行依赖重建，不把连接或 PMU 访问当作 VIO 验收
