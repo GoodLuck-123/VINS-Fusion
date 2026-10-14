@@ -11,6 +11,18 @@ REPO = Path(__file__).resolve().parents[3]
 WORKSPACE = REPO.parent
 
 
+def evaluate(directory, name, recovery=False):
+    env = os.environ.copy()
+    for key in ['PYTHONPATH','PYTHONHOME','LD_LIBRARY_PATH','VIRTUAL_ENV','CONDA_PREFIX']:
+        env.pop(key,None)
+    env['UV_CACHE_DIR'] = str(WORKSPACE / '.infra/uv-cache')
+    logfile = 'evaluation-recovery.log' if recovery else 'evaluation.log'
+    with (directory / logfile).open('x') as log:
+        subprocess.run(['uv','run','--offline','--project',str(REPO/'infra/desktop'),'--locked','python',
+                        str(REPO/'infra/desktop/scripts/evaluate_baseline.py'),str(directory/'board'/name)],
+                       stdout=log,stderr=subprocess.STDOUT,env=env,check=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--target', default='firefly@10.106.0.220')
@@ -22,9 +34,13 @@ def main():
     parser.add_argument('--directory', type=Path, required=True)
     parser.add_argument('--data-parent', default='vins-workspace/datasets/euroc_20261014')
     parser.add_argument('--upload-data', action='store_true')
+    parser.add_argument('--evaluate-only', action='store_true', help='Evaluate collected data without any board command')
     args = parser.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9_-]+', args.name):
         parser.error('Use a unique simple result name without path separators')
+    if args.evaluate_only:
+        evaluate(args.directory.resolve(), args.name, recovery=True)
+        return
     bag = WORKSPACE / 'data/euroc/MH_01_easy.bag'
     digest = hashlib.sha256()
     with bag.open('rb') as stream:
@@ -44,14 +60,7 @@ def main():
         subprocess.run([tool,args.target,str(bag),'--dest',args.data_parent],check=True)
     subprocess.run([tool,args.target,str(drivers),'--run',str(Path(__file__).with_name('ros1_board_phase.sh')),
                     '--output',str(directory/'board'),'--timeout','1800'],check=True)
-    env=os.environ.copy()
-    for key in ['PYTHONPATH','PYTHONHOME','LD_LIBRARY_PATH','VIRTUAL_ENV','CONDA_PREFIX']:
-        env.pop(key,None)
-    env['UV_CACHE_DIR']=str(WORKSPACE/'.infra/uv-cache')
-    with (directory/'evaluation.log').open('w') as log:
-        subprocess.run(['uv','run','--offline','--project',str(REPO/'infra/desktop'),'--locked','python',
-                        str(REPO/'infra/desktop/scripts/evaluate_baseline.py'),str(directory/'board'/args.name),
-                        '--label',args.name],stdout=log,stderr=subprocess.STDOUT,env=env,check=True)
+    evaluate(directory, args.name)
 
 
 if __name__=='__main__':

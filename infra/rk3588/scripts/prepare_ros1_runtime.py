@@ -31,7 +31,7 @@ def main():
     parser.add_argument('--output', type=Path, default=WORKSPACE / '.infra/rk3588/ros1-payload')
     parser.add_argument('--build-commit', required=True)
     args = parser.parse_args()
-    build_commit = subprocess.check_output(['git', '-C', str(REPO), 'rev-parse', args.build_commit], text=True).strip()
+    build_commit = subprocess.check_output(['git', '-C', str(REPO), 'rev-parse', args.build_commit + '^{commit}'], text=True).strip()
     core = ['camera_models', 'vins_estimator', 'loop_fusion', 'global_fusion', 'config']
     if subprocess.check_output(['git', '-C', str(REPO), 'diff', build_commit, '--', *core]):
         raise RuntimeError('Core/config changed since accepted cross build')

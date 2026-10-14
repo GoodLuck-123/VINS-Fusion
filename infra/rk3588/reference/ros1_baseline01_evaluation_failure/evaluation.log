@@ -1,0 +1,7 @@
+Using CPython 3.10.12 interpreter at: /usr/bin/python3
+Creating virtual environment at: infra/desktop/.venv
+Installed 29 packages in 35ms
+usage: evaluate_baseline.py [-h] [--groundtruth GROUNDTRUTH]
+                            [--max-diff MAX_DIFF]
+                            run
+evaluate_baseline.py: error: unrecognized arguments: --label rk_ros1_baseline01

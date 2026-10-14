@@ -1,0 +1,10 @@
+Remote job: firefly@10.106.0.220:vins-workspace/jobs/1791970473138-135634
+Logs: "/home/eric/projects/results/rk3588/ros1-baseline01/trial/board"; remote exit: 0
+Traceback (most recent call last):
+  File "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/rk3588/scripts/run_ros1_board_phase.py", line 58, in <module>
+    main()
+  File "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/rk3588/scripts/run_ros1_board_phase.py", line 52, in main
+    subprocess.run(['uv','run','--offline','--project',str(REPO/'infra/desktop'),'--locked','python',
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['uv', 'run', '--offline', '--project', '/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/desktop', '--locked', 'python', '/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/desktop/scripts/evaluate_baseline.py', '/home/eric/projects/results/rk3588/ros1-baseline01/trial/board/rk_ros1_baseline01', '--label', 'rk_ros1_baseline01']' returned non-zero exit status 2.
