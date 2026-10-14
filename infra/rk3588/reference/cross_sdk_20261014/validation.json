@@ -1,0 +1,14 @@
+{
+  "host_arch": "x86_64",
+  "target_arch": "aarch64",
+  "compiler": "GCC 11.4.0",
+  "compiler_packages": 25,
+  "target_packages": 807,
+  "all_package_sha256_passed": true,
+  "hello_elf_sha256": "6dac6e2d8116c14e49c93003ddd7690bfadbbcb84a7def8d5148c62434e9f140",
+  "hello_machine": 183,
+  "board_pointer_bytes": 8,
+  "board_exit_code": 0,
+  "board_ldd_complete": true,
+  "vins_built": false
+}

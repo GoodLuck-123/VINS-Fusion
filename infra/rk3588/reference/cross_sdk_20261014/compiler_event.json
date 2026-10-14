@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/usr/bin/bash",
+    "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/prepare_cross_toolchain.sh"
+  ],
+  "pid": 42098,
+  "status": "complete",
+  "start_utc": "2026-10-14T04:18:33Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-14T04:19:27Z"
+}
