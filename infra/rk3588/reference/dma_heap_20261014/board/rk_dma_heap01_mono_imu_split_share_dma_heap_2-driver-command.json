@@ -1,0 +1,16 @@
+[
+  "/usr/bin/python3",
+  "/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/VINS-Fusion/infra/desktop/scripts/run_ros2_euroc.py",
+  "--name",
+  "rk_dma_heap01_mono_imu_split_share_dma_heap_2",
+  "--mode",
+  "mono_imu",
+  "--deployment",
+  "split",
+  "--image-mode",
+  "share",
+  "--image-transport",
+  "dma_heap",
+  "--shared-device",
+  "/dev/dma_heap/system"
+]

@@ -2,7 +2,7 @@
 
 更新日期：2026-10-14
 
-本轮在联网 Ubuntu 主机下载、交叉编译和打包，离线板端执行，再自动回收日志。依赖、构建、节点生命周期、完整双目基线、单目与组件/owner 已验收；PMU 完整对照与 memfd/DMA heap 计算探针已通过，ROS Image/memfd 完整共享 VIO 已通过，DMA heap 完整 VIO 与 ROS 1 仍待验收。各配置只执行一轮，不运行历史重复批次或新的算法优化
+本轮在联网 Ubuntu 主机下载、交叉编译和打包，离线板端执行，再自动回收日志。依赖、构建、节点生命周期、完整双目基线、单目与组件/owner 已验收；PMU 完整对照与 memfd/DMA heap 计算探针已通过，ROS Image/memfd 完整共享 VIO 已通过，DMA heap 完整 VIO 已通过，ROS 1 节点/回放仍待验收。各配置只执行一轮，不运行历史重复批次或新的算法优化
 
 ## 当前环境与有效产物
 
@@ -154,7 +154,7 @@ VGEM 仅是桌面夹具。板端 DMA heap 若使用，需先实际验证分配�
 
 ## 实际 DMA heap 后续入口
 
-shared-probe01 已验收 memfd 与 /dev/dma_heap/system 各 1000 帧，完整 ROS Image/memfd 对照 board-shared01 四轮已通过验收。结束验收后再运行 phase=dma_heap，两模式各一次，复用同一运行包、数据、Cyclone 配置和参数，不同时启动板端实验
+shared-probe01 已验收 memfd 与 /dev/dma_heap/system 各 1000 帧，完整 ROS Image/memfd 对照 board-shared01 四轮已通过验收。后续 board-dma-heap01 已运行 phase=dma_heap，两模式各一次并通过验收，复用同一运行包、数据、Cyclone 配置和参数，不同时启动板端实验
 
 ```bash
 python3 infra/rk3588/scripts/run_ros2_board_phase.py \
@@ -164,4 +164,4 @@ python3 infra/rk3588/scripts/run_ros2_board_phase.py \
   --prefix 新前缀 --directory ../results/rk3588/新阶段/trial
 ```
 
-设备明确写入方案并传给已部署 runner，默认板端 system heap，不沿用桌面 /dev/dri/card0，也不在失败时自动换 heap。这里只固定调用入口，完整 DMA heap VIO 尚未验收；仍需消费计数、摘要、owner/归还、末帧、ATE/RPE、进程退出及资源证据
+设备明确写入方案并传给已部署 runner，默认板端 system heap，不沿用桌面 /dev/dri/card0，也不在失败时自动换 heap。这里只固定调用入口，board-dma-heap01 两轮完整 DMA heap VIO 已通过；仍需消费计数、摘要、owner/归还、末帧、ATE/RPE、进程退出及资源证据

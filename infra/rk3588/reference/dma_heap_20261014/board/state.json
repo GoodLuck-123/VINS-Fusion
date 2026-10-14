@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "completed": [
+    "rk_dma_heap01_stereo_imu_split_share_dma_heap_1",
+    "rk_dma_heap01_mono_imu_split_share_dma_heap_2"
+  ],
+  "bag_hashes_verified": true,
+  "current": {
+    "name": "rk_dma_heap01_mono_imu_split_share_dma_heap_2",
+    "mode": "mono_imu",
+    "deployment": "split",
+    "image": "share",
+    "transport": "dma_heap",
+    "pmu": false,
+    "rmw": "rmw_cyclonedds_cpp",
+    "shared_device": "/dev/dma_heap/system"
+  }
+}

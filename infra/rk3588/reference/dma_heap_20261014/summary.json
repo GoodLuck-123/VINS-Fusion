@@ -1,0 +1,160 @@
+{
+  "trials": [
+    {
+      "name": "rk_dma_heap01_stereo_imu_split_share_dma_heap_1",
+      "mode": "stereo_imu",
+      "transport": "dma_heap",
+      "ate_rmse_m": 0.26590977139278577,
+      "rpe_rmse_m": 0.003121088691772317,
+      "combined_cpu_s": 701.18,
+      "playback_s": 188.2071822440048,
+      "drain_s": 6.17147611999826,
+      "poses": 1831,
+      "matches": 1819,
+      "sensor_counts": {
+        "img0": 3682,
+        "img1": 3682,
+        "imu": 36820,
+        "processed": 3682
+      },
+      "pixel_timestamp_sha256": {
+        "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+        "img1": "1e60c909475c5e83dfc530e47aade8cd3ea33a748395d2bc2f1075dbf66497a1",
+        "source_matches_consumer": true
+      },
+      "final_timestamp_error_ns": -44,
+      "resources": {
+        "cpu_s": 671.5,
+        "rss_mib": 62.3046875,
+        "pss_mib": 55.3974609375
+      },
+      "source_resources": {
+        "cpu_s": 29.68,
+        "rss_mib": 21.6640625,
+        "pss_mib": 14.2861328125
+      },
+      "shared_writer": {
+        "backend": "dma_heap",
+        "frames": 7364,
+        "source_materializations": 7364,
+        "source_bytes": 2658109440,
+        "waits": 0,
+        "reuses": 7355,
+        "outstanding": 0,
+        "failed": 0
+      },
+      "shared_reader": {
+        "backend": 2,
+        "frames": 7364,
+        "verified": 7364,
+        "failed": 0
+      }
+    },
+    {
+      "name": "rk_dma_heap01_mono_imu_split_share_dma_heap_2",
+      "mode": "mono_imu",
+      "transport": "dma_heap",
+      "ate_rmse_m": 0.1619314107455571,
+      "rpe_rmse_m": 0.0030312161080855832,
+      "combined_cpu_s": 571.96,
+      "playback_s": 188.55994602900319,
+      "drain_s": 6.165049162002106,
+      "poses": 1831,
+      "matches": 1819,
+      "sensor_counts": {
+        "img0": 3682,
+        "img1": 0,
+        "imu": 36820,
+        "processed": 3682
+      },
+      "pixel_timestamp_sha256": {
+        "img0": "cd7b0ba8f9657d0d511d91fd72bf7e75e4d0eec85cd2d3089ac329ae97db3b7c",
+        "img1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_matches_consumer": true
+      },
+      "final_timestamp_error_ns": -44,
+      "resources": {
+        "cpu_s": 548.51,
+        "rss_mib": 56.18359375,
+        "pss_mib": 49.7373046875
+      },
+      "source_resources": {
+        "cpu_s": 23.45,
+        "rss_mib": 21.58203125,
+        "pss_mib": 14.1962890625
+      },
+      "shared_writer": {
+        "backend": "dma_heap",
+        "frames": 3682,
+        "source_materializations": 3682,
+        "source_bytes": 1329054720,
+        "waits": 0,
+        "reuses": 3678,
+        "outstanding": 0,
+        "failed": 0
+      },
+      "shared_reader": {
+        "backend": 2,
+        "frames": 3682,
+        "verified": 3682,
+        "failed": 0
+      }
+    }
+  ],
+  "original_file_sha256": {
+    "event.json": "72dfa1ca6538a881fffc128ee0e5cf835185290f54ba926856ed8aff69add2f3",
+    "console.log": "eb0af13c8f39c33605a43b39cf0859e8e082c64fe4427826093a9353c6ecbe6d",
+    "remote_jobs.json": "243890171aaec9c961b67efee90ce8556d8fb81345b24d656912deff83825f3e",
+    "board/console.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "board/end_utc": "09773fd174ba0e634c5d91435c78dc90e9c7dae64d45ecaae8c0d82c4b5f7530",
+    "board/exit_code": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "board/launcher.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "board/pid": "3fc5314f0975abfe16d37902082b3815e1156e2de70a31ab4428da821c20b5e5",
+    "board/plan.json": "d497259fea67391696657c87cbed340dc7adaf09a3e2d928bb7dba29a3009b06",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/cam0_mei.yaml": "cf80ecac499664460eb52159de38786058c7cfb5eee81ab6489dea37a5d64059",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/cam1_mei.yaml": "2a435db6a6fbd286c0fe0706792af4b08efd4ffdc6b7a22b8b261256d6e49963",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/cyclonedds.xml": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/euroc_mono_imu_config.yaml": "637cc42e939918e99e4de39551b87b3a62f0f91f0aafa72f603368a3cbf3315a",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/evaluation.json": "a2bcb6c3b492316d30a56ebeefab95007accdc858f50d7298899ff4f7b378a92",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/groundtruth.tum": "765862519ddf09b306fd4afec57ac3129a9b46d1b59e0bad8bf93e954c33078c",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/playback.log": "57ff79e8ed63fb94b9b10c655dcb40c47f970416d04ad3eb7f090d2ebff1d4e8",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/playback_qos.yaml": "41e107f05d8c2d97b37d632778a9fa426599b0bfb5df738bdf85dbd984d3c0d2",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/resource_samples.csv": "137f144c6b4568b7ce6bf1a84d6203c982acc799dc4e460597c091fedefe994c",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/run.json": "d7f215c661a9945b3594e6691ec0658d072999b90073ce7f69b8dc51558b233e",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/source_resource_samples.csv": "a94b5764115a8d769d0cb55d0618aa288a7840249bc79a51350c7c3decb3cf0f",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/trajectory.png": "7b7a171d5c630090624dff568812c644553165ecbbb6ea12f30cadda31efecde",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/trajectory.tum": "386cedf94ef13fa782fc9e7da8ab91a80984a5625abb7921497c434b4842f15e",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/trajectory_aligned_se3.tum": "623b541b64d16d7a80326e4c9843073d96abaa7bb77d6f0e9a45111eef59edb7",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/vins.log": "597155a7d3b81a89ade8b98f0349cd5a54d78ea44f2eaf3d76495c32c1d7f227",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/vio.csv": "bc7fc00591c0749d9f7fdc0568cf88f351658b1a6038838e21f1b5a868a97d11",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2-driver-command.json": "d74c6a273bb600ec8d9e7262153353d46fc6443d7f13631e865cd4d046353893",
+    "board/rk_dma_heap01_mono_imu_split_share_dma_heap_2.log": "b3b8ddbcbb12473f3454b6e208b4afa88d28e084a607ec60877e8b2224c82684",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/cam0_mei.yaml": "cf80ecac499664460eb52159de38786058c7cfb5eee81ab6489dea37a5d64059",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/cam1_mei.yaml": "2a435db6a6fbd286c0fe0706792af4b08efd4ffdc6b7a22b8b261256d6e49963",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/cyclonedds.xml": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/euroc_stereo_imu_config.yaml": "74b838d58998592870e8d9e734bb0ae10317c4340462147d4611b09f83f2b2f9",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/evaluation.json": "1de29e176224c4e1e352c5b4777ba885c4bb2781a845d01cddf7073812d9da4e",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/groundtruth.tum": "765862519ddf09b306fd4afec57ac3129a9b46d1b59e0bad8bf93e954c33078c",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/playback.log": "ad9c626fec7be2ac84709289a213edc61e66e7d5519eb37d87c1476cf1686688",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/playback_qos.yaml": "41e107f05d8c2d97b37d632778a9fa426599b0bfb5df738bdf85dbd984d3c0d2",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/resource_samples.csv": "8321b2bfe5c27f2f11f53bf26fb163bdf2e659f959404f4ad8bdc0108339a301",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/run.json": "7f094cafc97039a867605555a20b0b0e4cb14f443492da47bdf7b1ca6d299ef0",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/source_resource_samples.csv": "c9b8a4343c0444b8a26f63d03f1c961516e90ecc5fab8a0810c0e7dcc7a0716d",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/trajectory.png": "797133f60538b8c7c99c60f3db34c6a47caf8a43120f9f70d3c9268c45c26305",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/trajectory.tum": "731673e8c39f4dc8cfbf39d9d3d334e2b4f9c5f5054c10a87056529c96944afe",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/trajectory_aligned_se3.tum": "af2ce8600c32a9f80392d107596f449472913ff2058a4a7b9abbe3883f344a6f",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/vins.log": "ae93f9daf3acd04a1a17089b9d6b3fcac83448d2a7eaf115cd7396626f03e260",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1/vio.csv": "b0c2ab177f596f6187fdd586e0e9c24b1fc035adff2e3c9e5ab1414a57817370",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1-driver-command.json": "38f91dd36a574cf432b91d8f9d2b2d9cb51f92b70cc0ce2404b01a3ef8857e74",
+    "board/rk_dma_heap01_stereo_imu_split_share_dma_heap_1.log": "2833d45d42eaa658f5379e46d18495257939afe8dd22016c80682ff413f974ec",
+    "board/start_utc": "ad6e1d9586f181aa6c2f0e7e02e3ee19718451a50aaeb842a124f2c5028ea91e",
+    "board/state.json": "de3765c3e92db3283256a203acd6e1ef5784b3050a60a078289b3ff998edbeb8",
+    "board/telemetry.jsonl": "305bbbd5551c29a20edf42f61b55d57b3534c563e1ebda4d68309495f937f458",
+    "drivers/bag_conversion.json": "034e52e959ec15f0300f38ffb7e3823828e22300d4ecd3c7a1ac810dc6c6c2cb",
+    "drivers/plan.json": "d497259fea67391696657c87cbed340dc7adaf09a3e2d928bb7dba29a3009b06",
+    "drivers/run_board_trials.py": "c52ad1db0a1cb8b87d7ce7de723971e29dc23fafc927f888499cdb88fefec618"
+  },
+  "ddr": "Unavailable",
+  "power": "Unavailable",
+  "scope": "VINS and source CPU separately and combined; per-process RSS/PSS; subscription-ready-to-drain"
+}
