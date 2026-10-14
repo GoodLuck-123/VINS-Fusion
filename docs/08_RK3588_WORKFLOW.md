@@ -129,3 +129,9 @@ bash infra/rk3588/scripts/build_legacy.sh
 legacy02 随后在 Carotene 编译失败：OpenCV 4.2.0 使用旧参数 ipcp-unit-growth，GCC 11 已改名为 ipa-cp-unit-growth，见 [GCC 官方记录](https://gcc.gnu.org/legacy-ml/gcc-patches/2020-01/msg00425.html)。失败日志见 [兼容性证据](../infra/rk3588/reference/legacy02_failure/)。仅修正参数名，保留数值和默认 ARM Carotene，不升级 OpenCV；补丁位于 infra/rk3588/patches/，在独立源码副本应用，下载目录保持原样
 
 下一构建阶段为 vins-rk-legacy03.service，事件在 `../results/rk3588/legacy03/`；仍须完成库构建、ARM ELF 与板端运行验收，不能将补丁应用通过称为视觉库或 VIO 通过
+
+## ARM ROS 2 项目构建入口
+
+视觉库验收完成后执行 `bash infra/rk3588/scripts/build_ros2_cross.sh`。脚本按 cv_bridge、camera_models、vins_estimator、loop_fusion、global_fusion 顺序直接调用 CMake，不依赖桌面 colcon 或 source ARM 环境；安装目录为 `../.infra/rk3588/ros2_ws/install/`，构建目录为其同级 build
+
+代码生成使用主机 `/usr/bin/python3` 及 SDK 中可在主机运行的纯 Python ament/catkin 工具；Python/NumPy 头文件与 libpython 显式取 ARM SDK。已独立验证主机 Python 3.10.12、目标开发文件查找，以及编译得到 ELF64 AArch64 Python 模块，见 [Python 交叉探针](../infra/rk3588/reference/python_cross_20261014/)。此探针尚未在板端导入，也不表示 cv_bridge 或完整 ROS 2/VINS 已构建通过

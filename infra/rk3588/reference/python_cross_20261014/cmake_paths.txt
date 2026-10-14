@@ -1,0 +1,14 @@
+CMAKE_TOOLCHAIN_FILE:FILEPATH=/home/eric/projects/VINS-Fusion/infra/rk3588/cmake/aarch64.cmake
+Python3_EXECUTABLE:UNINITIALIZED=/usr/bin/python3
+Python3_INCLUDE_DIR:UNINITIALIZED=/home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include/python3.10
+Python3_LIBRARY:UNINITIALIZED=/home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/libpython3.10.so
+Python3_NumPy_INCLUDE_DIR:UNINITIALIZED=/home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/python3/dist-packages/numpy/core/include
+_Python3_DEVELOPMENT_EMBED_SIGNATURE:INTERNAL=08b6332751a60a05345f03670f46073b
+_Python3_DEVELOPMENT_MODULE_SIGNATURE:INTERNAL=d9048a86e052179114efa76ad470ae4e
+_Python3_EXECUTABLE:INTERNAL=/usr/bin/python3
+_Python3_INCLUDE_DIR:INTERNAL=/home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/include/python3.10
+_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;10;12;64;;;/usr/lib/python3.10;/usr/lib/python3.10;/usr/lib/python3/dist-packages;/usr/lib/python3/dist-packages
+_Python3_INTERPRETER_SIGNATURE:INTERNAL=bb1f7d862e7cc7765c27ce56f43851f0
+_Python3_LIBRARY_RELEASE:INTERNAL=/home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/libpython3.10.so
+_Python3_NUMPY_SIGNATURE:INTERNAL=d55f8352e027b5e248dec940b1629b50
+_Python3_NumPy_INCLUDE_DIR:INTERNAL=/home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/python3/dist-packages/numpy/core/include

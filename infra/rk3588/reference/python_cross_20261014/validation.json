@@ -1,0 +1,12 @@
+{
+  "host_python": "/usr/bin/python3",
+  "host_python_version": "3.10.12",
+  "target_python_headers": "ARM SDK python3.10",
+  "target_python_library": "ARM SDK libpython3.10.so",
+  "target_numpy_headers": true,
+  "pure_python_ament_and_catkin_helpers_imported": true,
+  "module_elf_machine": 183,
+  "module_sha256": "93805758b42baf0e1ca562e3eb5c0ce467c649d1dd6a448fff1255c0e887efe8",
+  "module_executed_on_board": false,
+  "full_ros2_build_completed": false
+}
