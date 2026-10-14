@@ -1,43 +1,44 @@
-# 接手与当前状态
+# ROS 1 接手与完成状态
 
 更新日期：2026-10-14
 
-原生 Ubuntu 桌面复现已结束，本分支从 ROS 1 master 最新 8c7c8d2 建立，当前 checkout 为 codex/rk3588-ros1，继续 RK3588 主机交叉编译与离线板端任务。桌面 ROS 1 结果保留在 master，桌面 ROS 2 结果在 ros2-humble，板端 ROS 2 在 codex/rk3588-ros2；历史复现清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
+本分支 codex/rk3588-ros1 从 ROS 1 master 最新 8c7c8d2 独立建立，已完成 RK3588 主机交叉构建、离线运行环境和唯一双目配置一轮回放/评估。原 master、桌面 ros2-humble、板端 codex/rk3588-ros2 与历史 tag 保留，未合并 ROS 2 核心，未授权 push
 
-ROS 1 锁定依赖已重新安装，OpenCV 4.2.0 / Ceres 1.14.0 / cv_bridge / 四个 package 已完成源码构建。四轮完整 EuRoC 回放、采样和评估已通过；同一二进制、各一次初始化、无重置/配对丢弃、末帧覆盖。新里程碑为 `baseline-ros1-native-ubuntu22-v1`，原版清理 abort 单列记录
+## 桌面与板端里程碑
 
-本分支的详细环境入口是 [ROS 1 搭建说明](UBUNTU22_ROS1_BASELINE_SETUP.md)。本分支环境及实测页已替换为原生 Ubuntu 结果；统一实测在 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
+原生 Ubuntu 桌面 ROS 1 四轮已在 master 验收，tag baseline-ros1-native-ubuntu22-v1，原清理 abort 单列。桌面 ROS 2 全部 52 轮总体记录在所属 ros2-humble；本分支的历史冻结数据保持原样，实测统一写 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
 
-命令从仓库根目录执行。ROS/C++ 前缀与 Python 评估环境分开；安装、数据和完整日志在父目录 `.infra/`、`data/`、`results/`，不要在根目录建软链接。每次切换源码先重建，再在新 shell source 对应环境
+| ROS 1 板端目标 | 验收提交 / annotated tag |
+| --- | --- |
+| 锁定依赖下载与离线复核 | 30b9d96 / milestone-rk3588-ros1-dependencies-v1 |
+| 五包/六程序/70 个 ARM ELF 构建闭包 | 30790b0 / milestone-rk3588-ros1-cross-build-v1 |
+| 固定视觉库实际 RK3588 GFTT/LK/两种稀疏求解 | 6c4703a / milestone-rk3588-ros1-legacy-libs-v1 |
+| 私有 Noetic/Python 3.8、4210 文件/导入/动态库/订阅就绪 | 92b1bbb / milestone-rk3588-ros1-runtime-v1 |
+| 唯一双目配置一轮完整回放和主机评估 | 2d76d3a / baseline-rk3588-ros1-v1 |
 
-历史分支、tag、归档及 SHA256 保留。复现成功前不覆盖冻结数据、不写“完成”，失败现场保留；不重启历史桌面/神经网络批次；当前板端任务按用户授权逐项验收。本轮没有远端 push 授权
+ROS 1 bag 左右图各 3682、IMU 36820，1831 姿态/1819 匹配、末帧覆盖、一次初始化、无重置/配对丢帧。ATE/RPE 为 0.260330 / 0.00312228 m，VINS 全线程 CPU 690.02 s，RSS/PSS 峰值 61.55/55.21 MiB，回放/排空 189.59/6.10 s；源端资源、DDR/功耗不可用，不当作合计 CPU或实时性验收
 
-## RK3588 ROS 1 目标分支
+输入计数是 bag records，未新增原节点实收计数；ROS master/rosbag 退出 0，原未 join 同步线程的 VINS 清理 abort −6 与桌面一致，明确保留，不称正常退出。外层 ros1-baseline01 因日志已收回后的主机评估参数错误失败，ros1-evaluation01 仅补评估并通过，没有第二次回放；失败事件/日志不改写。完整证据见 infra/rk3588/reference/ros1_baseline_20261014/
 
-当前板端工作位于 codex/rk3588-ros1，从 master 最新 8c7c8d2 新建独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1。原 master、ROS 2 分支/tag 保留；ROS 2 组件批次的源码/运行包固定，本分支独立准备 ROS 1 依赖和主机交叉构建，尚未运行板端节点
+## 有效环境与固定入口
 
-Noetic final ARM 索引及 Ubuntu Focal 索引认证通过，807 个目标 SDK 包、36 个 GCC 9.4 工具链包已固定 SHA256；OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保留。一条命令下载和空目录约定见 [第 09 份文档](09_DEPENDENCIES.md)。实际 Ubuntu 22.04 板端 ABI/视觉库/节点和完整回放仍需验收；板端依旧离线，下载仅在本机进行
+目标 firefly@10.106.0.220，RK3588S/Ubuntu 22.04.5/厂商内核 5.10.110；板端离线，下载/编译在联网主机。独立 Focal/Noetic/GCC9.4 保持 OpenCV 4.2.0/Ceres 1.14.0/Eigen 3.3.9 和原算法/标定；不在 ARM 跑 x86 bootstrap，不传 x86 install 代替重建，不替换板端 glibc/loader/系统 Python 3.10
 
-ros1-fetch01 已完成并离线重验四个源码/843 个锁定包，GCC 9.4 主机探针通过，依赖证据见第 09 份文档。已在独立 ../.infra/rk3588/ros1-legacy/ 完成固定版本视觉库主机构建，实际板端库/节点尚未验收；当前主机准备工作不影响 ROS 2 板端批次
+| 有效产物 | 位置 |
+| --- | --- |
+| 交叉依赖空目录与下载入口 | dependencies/，python3 infra/dependencies/fetch.py，见第 09 份文档 |
+| 视觉库 / 项目构建 | ../.infra/rk3588/ros1-legacy/、ros1_ws/devel/ |
+| 主机运行包 | ../.infra/rk3588/ros1-payload02/；首次缺 rosversion 的 ros1-payload 仅追溯 |
+| 已部署运行包 | /home/firefly/vins-workspace/jobs/1791970072506-133971/ros1-payload02 |
+| 本分支 checkout | /home/eric/projects/VINS-Fusion-rk3588-ros1 |
+| 同源码 C++ 远端工具 | infra/remote/，../.infra/bin/vins-remote |
 
-## ROS 1 ARM 构建状态
+编译器/ARM binutils 主机库隔离，SDK 绝对链接与 Python/原生 CMake 导出重定位可重做；失败证据保留。cv_bridge C++ 下载源码不变，构建副本只关闭可选 Python 扩展，不提供目标 Python cv_bridge。CPP算法/core/config 与 master 8c7c8d2 一致；运行包旧来源字段的 tag 对象与剥离提交对应关系在第 05 份报告说明，冻结包/哈希不改
 
-ros1-fetch01 下载与离线哈希复核已通过，依赖里程碑 commit 30b9d96 / tag milestone-rk3588-ros1-dependencies-v1。首次视觉库构建 ros1-legacy01 在主机 CMake 启动时失败，原证据保留 infra/rk3588/reference/ros1_legacy01_failure/
+工作流见 [第 08 份说明](08_RK3588_WORKFLOW.md)，统一下载见 [第 09 份说明](09_DEPENDENCIES.md)。run_ros1_board_phase.py 一次调用完成传 bag/核验/原回放/回收/主机评估，--evaluate-only 只恢复既有轨迹的主机评估；默认核对已接受归档的文件清单。ROS/C++ 与 uv shell 分开，每次源码改变先重建，每次结果用新名称/目录，不覆盖失败或成功
 
-Focal 工具链的旧主机 libstdc++ 抢占 Jammy CMake，现仅将编译器 isl/gmp/mpc/mpfr 与 ARM binutils 主机支持库暴露到 LD_LIBRARY_PATH，保留系统主机 libc/libstdc++。系统 CMake 3.22.1 与 GCC 9 生成 AArch64 对象均通过，ros1-legacy02 已退出 0，消费端探针编译/链接及 25 个非 glibc ARM 库闭包通过。OpenCV 4.2/Ceres 1.14/Eigen 3.3.9、原 Carotene 参数和目标依赖均未改变；视觉库实际板端计算已通过 ros1-legacy-smoke01；ROS 1 节点/完整回放仍待验收
+## 交接与边界
 
-ROS 1 工程入口 build_ros1_cross.sh 已固定，主机 Python 3.10 仅执行纯 Python catkin/empy，cv_bridge 1.16.2 仅重建 VIO 使用的 C++ 库，不生成可混淆 Python ABI 的目标扩展。下载源码保持原样，专用构建副本仅关闭 Python 可选目标，原 VINS/C++ 算法和参数不变
+本轮 ROS 2 14 个配置和本分支一个配置合计 15 次实际完整回放，各配置一次；板端结束审计无旧作业活进程。两个目标分支独立提交，元数据/调用修正不重建或重放已接受数据。迟到通知按事件路径/SHA256 去重，不因旧失败回退有效环境；未删除网络积压消息
 
-ros1-build01 链接遇到 Noetic 导出的绝对 log4cxx/Boost 路径，失败已归档；fetch.py 统一重定位 20 个目标库/头文件 CMake 导出，并验证幂等性。ros1-build02 已退出 0，五包/六程序/70 个 ARM ELF 闭包及目标编译路径通过，板端仍只有 ROS 2 board-shared01 一批活动实验。构建通过后还需板端 ABI/节点及完整回放验收
-
-ROS 1 主机交叉构建里程碑 commit 30790b0 / tag milestone-rk3588-ros1-cross-build-v1；运行包入口 prepare_ros1_runtime.py 和 ros1_runtime_env.sh 已固定，ros1-package01 在主机后台打包。运行包携带私有 Python 3.8，沿用板端 glibc/loader 和系统 Python 3.10；ROS 启动器通过 PATH 选择私有解释器，不在板端下载依赖。配置/源码来源用 build_source.json，原 VINS 不变，当前尚未部署或回放 ROS 1
-
-构建、打包与单调用部署入口见 [第 08 份板端工作流](08_RK3588_WORKFLOW.md)，本分支现包含与已验证工具字节一致的 infra/remote/，无需依赖另一个源码分支才能重建远端工具。ROS 1 视觉库实际板端里程碑 commit 6c4703a / tag milestone-rk3588-ros1-legacy-libs-v1；ROS 2 DMA heap 两轮已完成并通过验收；ros1-runtime01 在 roscore 启动时因遗漏 SDK usr/bin/rosversion 失败，未启动 VINS；已补齐原脚本并生成独立 ros1-payload02，ros1-runtime02 交给后台固定工具重试部署和生命周期检查，不同时启动另一批 VIO
-
-原 ROS 1 唯一双目配置的完整回放入口 run_ros1_board_phase.py 已固定，单调用完成首次 bag 上传、哈希/输入核验、原 runner 回放、日志回收和主机 uv 评估；阶段用新名称，原清理 abort 单列。4209 文件运行包的主机准备证据见 infra/rk3588/reference/ros1_package_host_20261014/，当前只固定入口，板端部署与完整回放未验收
-
-首次运行包/失败归档保持不变，新候选 ros1-payload02 含 4210 文件/105 个运行库。后续完整实验默认从已接受运行环境归档读取文件清单，可通过 --runtime-manifest 指定其他已验收清单，避免沿用旧失败候选；当前尚未接受 Noetic 运行环境或完整 VIO
-
-ros1-runtime02 已通过文件 SHA256、私有 Python 3.8/NumPy/rosbag、版本启动器、实际动态库与订阅就绪；结束无旧作业残留。ROS master 退出 0，原 VINS 清理 abort −6 如实单列，不称正常退出；无 bag 输入，完整回放另行验收。已接受路径 /home/firefly/vins-workspace/jobs/1791970072506-133971/ros1-payload02，清单默认取冻结归档，旧失败包不覆盖
-
-Noetic 环境里程碑 commit 92b1bbb / tag milestone-rk3588-ros1-runtime-v1；ros1-baseline01 已交本地后台单调用入口，首次传输原 ROS 1 bag，哈希/输入核验后执行唯一双目配置一轮回放、回收并在主机同一 uv.lock 下评估。已部署运行包/标定不变，ROS 2 批次均已结束；完整 ROS 1 回放尚未验收，不重复桌面四轮同配置实验
+RK3588S 的 perf 计数/采样与 ROS 2 VINS PMU 已在所属分支验收，板端权限保持原值 2，DDR/功耗没有有效接口。真实相机、RGA/自研 NEON/NPU、回环/GNSS/KITTI/RViz 仍未完成数据验收；不自动重启桌面/神经网络历史批次。板端墙上时钟未同步，按主机阶段 UTC 与单调计时汇总

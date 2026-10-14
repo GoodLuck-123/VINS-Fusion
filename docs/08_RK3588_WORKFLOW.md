@@ -6,7 +6,7 @@
 
 ## 已验收与待验收
 
-五包/六程序/70 个 ARM ELF 主机构建通过，tag milestone-rk3588-ros1-cross-build-v1；固定 OpenCV 4.2.0/Ceres 1.14.0/Eigen 3.3.9 的实际 RK3588 GFTT/LK/两种稀疏求解通过，tag milestone-rk3588-ros1-legacy-libs-v1。Noetic/Python 3.8 运行包主机准备完成，4209 文件/105 个运行库；首次运行包遗漏 rosversion 的失败保留；ros1-runtime02 的 4210 文件/私有 Python/动态库/订阅就绪已通过，ROS master 退出 0、原 VINS 清理 abort −6 单列。完整 VIO 仍待验收
+五包/六程序/70 个 ARM ELF 主机构建通过，tag milestone-rk3588-ros1-cross-build-v1；固定 OpenCV 4.2.0/Ceres 1.14.0/Eigen 3.3.9 的实际 RK3588 GFTT/LK/两种稀疏求解通过，tag milestone-rk3588-ros1-legacy-libs-v1。Noetic/Python 3.8 运行包主机准备完成，4209 文件/105 个运行库；首次运行包遗漏 rosversion 的失败保留；ros1-runtime02 的 4210 文件/私有 Python/动态库/订阅就绪已通过，ROS master 退出 0、原 VINS 清理 abort −6 单列。唯一双目配置一轮完整 VIO/主机评估已通过，原清理 abort 单列
 
 ## 一个命令下载与隔离构建
 
@@ -64,10 +64,10 @@ python3 infra/rk3588/scripts/run_ros1_board_phase.py \
 
 工具统一执行 bag/运行包 SHA256、bag 输入计数、原 runner 双目 rate=1 回放、日志/资源/telemetry 回收及同一 uv.lock 主机评估。每次用新结果目录与前缀，失败保留，不覆盖失败或成功证据；板端只传运行文件，不在板端编译或联网
 
-VINS 输入实收计数未新增，报告 bag 计数并另验收初始化/无重置、末帧、ATE/RPE 和进程退出。原同步线程清理 abort 单列，不能叫正常退出；本轮 VINS CPU/RSS/PSS 来自原采样器，未采 rosbag 进程时源端资源标不可用，不当合计 CPU。当前接口已固定，ros1-baseline01 已交后台首次传 bag 并执行唯一配置一轮，完整回放尚未验收
+VINS 输入实收计数未新增，报告 bag 计数并另验收初始化/无重置、末帧、ATE/RPE 和进程退出。原同步线程清理 abort 单列，不能叫正常退出；本轮 VINS CPU/RSS/PSS 来自原采样器，未采 rosbag 进程时源端资源标不可用，不当合计 CPU。当前接口已固定，唯一配置实际回放一次并在主机恢复评估后通过验收；外层失败事件保留，不因评估参数错误重放。使用 --evaluate-only 对已回收数据恢复主机评估，默认清单来自已接受运行环境归档
 
 ## 串行实验和证据
 
-板端同时只运行一批实验。已有 ROS 2 DMA heap 批次进行时，本分支只在主机准备，不上传或启动另一个板端探针。大批次由本地后台 run_local_phase.py 承接，结束/失败只通知当前聊天一次，不在线轮询；事件按路径/SHA256 去重
+板端同时只运行一批实验。本轮全部 15 次实际回放已结束，板端无旧作业活进程；后续仍一次只运行一批，不在另一批进行时上传或启动板端探针。大批次由本地后台 run_local_phase.py 承接，结束/失败只通知当前聊天一次，不在线轮询；事件按路径/SHA256 去重
 
 资源报告 VINS 全线程 CPU、每进程 RSS/PSS、回放与排空；没有采源端时标明不可用，不冒充合计 CPU。DDR/功耗不可用。保存原日志、源码/运行包来源和 SHA256，排空后通过不称为实时性验收，依赖传递差异不只归因于 ROS 版本
