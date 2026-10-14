@@ -110,6 +110,7 @@ def unpack_packages(lock, archives, destination, sysroot=False):
         if sysroot:
             relocate_sysroot_links(destination)
             relocate_ros_python_exports(destination)
+            relocate_ros_native_exports(destination)
         return
     destination.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='.extract-', dir=destination.parent) as tmp:
@@ -118,6 +119,7 @@ def unpack_packages(lock, archives, destination, sysroot=False):
         if sysroot:
             relocate_sysroot_links(Path(tmp))
             relocate_ros_python_exports(Path(tmp))
+            relocate_ros_native_exports(Path(tmp))
         (Path(tmp) / marker.name).write_text(lock_sha + '\n')
         os.replace(tmp, destination)
 
@@ -136,6 +138,28 @@ def relocate_ros_python_exports(root):
                 original_sha256=hashlib.sha256(content.encode()).hexdigest(),
                 relocated_sha256=hashlib.sha256(updated.encode()).hexdigest())
     audit = root / '.vins-python-cmake-relocations.json'
+    if changed or not audit.exists():
+        previous = json.loads(audit.read_text()) if audit.exists() else {}
+        previous.update(changed)
+        audit.write_text(json.dumps(previous, indent=2) + '\n')
+
+
+def relocate_ros_native_exports(root):
+    # catkin's absolute Boost/log4cxx libraries bypass CMake root lookup.
+    # Its exported /usr/include must also refer to the target headers.
+    import re
+    pattern = re.compile(r'(?<![}\w])(/usr/(?:lib/aarch64-linux-gnu|include))(?=[/";\s])')
+    changed = {}
+    for path in sorted((root / 'opt/ros/noetic/share').rglob('*.cmake')):
+        content = path.read_text()
+        updated = pattern.sub(lambda match: '${CMAKE_SYSROOT}' + match.group(1), content)
+        if updated == content:
+            continue
+        path.write_text(updated)
+        changed[str(path.relative_to(root))] = dict(
+            original_sha256=hashlib.sha256(content.encode()).hexdigest(),
+            relocated_sha256=hashlib.sha256(updated.encode()).hexdigest())
+    audit = root / '.vins-native-cmake-relocations.json'
     if changed or not audit.exists():
         previous = json.loads(audit.read_text()) if audit.exists() else {}
         previous.update(changed)
