@@ -409,3 +409,23 @@ board-dma-heap01 双目/单目各一次，split/share/Cyclone、rate=1，明确 
 每进程 CPU 为全线程累计，RSS/PSS 分别列峰值。与上节 memfd 合计 CPU 相比，双目 −0.073%、单目 −0.216%，没有明确单轮差异；不宣称稳定提速。轨迹存在小幅差异，没有为强制一致更改原算法、参数或标定。运行包、addon、bag、DDS 和核心/config 固定，三种传输同模式的完整像素/时间戳摘要一致
 
 DMA-BUF backend=2，双目/单目发送并验证 7364 / 3682 帧，failed=0、outstanding=0、等待=0，灰度 VINS 入口零物化。源端仍各复制 2,658,109,440 / 1,329,054,720 字节到池；已有 CPU 缓存同步与 owner/归还路径通过，没有真实相机、RGA/GPU fence 或端到端零拷贝证据，不称为实时性通过。DDR/功耗不可用，[运行设备参数、完整原日志、资源/评估及原文件与归档 SHA256](../infra/rk3588/reference/dma_heap_20261014/)
+
+## RK3588 ROS 1 / ROS 2 一轮双目参照汇总（2026-10-14）
+
+板端合计 15 个去重完整配置：ROS 2 14 个、ROS 1 唯一双目配置一个，每个配置实际回放一次，结束无旧任务残留。ROS 1 首次主机评估参数错误后仅恢复评估，未重跑；其原 VINS 清理 abort −6 与桌面原版一致，失败事件和异常退出保留，不能混称全部正常退出
+
+| 同为双目 standalone/copy/普通 ROS 图像 | ROS 1 Noetic | ROS 2 Humble |
+| --- | --- | --- |
+| 姿态 / 真值匹配 | 1831 / 1819 | 1831 / 1819 |
+| ATE / RPE RMSE (m) | 0.260330 / 0.00312228 | 0.269229 / 0.00313946 |
+| VINS 全线程 CPU (s) | 690.02 | 673.68 |
+| VINS RSS / PSS 峰值 (MiB) | 61.55 / 55.21 | 83.72 / 73.05 |
+| 回放 / 排空等待 (s) | 189.59 / 6.10 | 188.43 / 6.12 |
+| VINS / 播放器 / master 退出 | −6 / 0 / 0 | 0 / 0 / 不适用 |
+| 输入计数范围 | bag records，未新增节点实收计数 | 节点完整实收与 processed 计数 |
+| 源端 CPU/RSS/PSS | 未采，不可用 | 原 standalone runner 未采，不可用 |
+| 工具链 / SuiteSparse / Netlib | GCC 9.4 / 5.7.1 / 3.9 | GCC 11.4 / 5.10.1 / 3.10 |
+
+OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9、标定与算法保持参照。源码分别继承 master / ros2-humble 最新桌面结果，各自核心不因部署修改；不同编译器、Boost/ROS/BLAS 等传递依赖、RMW、源端回放和采样口径均需保留。一轮数字不证明由 ROS 版本导致提速/精度变化，不把上述 VINS CPU 当全流程合计，也不称排空后通过为实时性验证；DDR 带宽/功耗不可用
+
+ROS 1 完整证据在所属分支 baseline-rk3588-ros1-v1 / commit 2d76d3a，统一报告的 [跨分支摘要及 SHA256](../infra/rk3588/reference/ros1_comparison_20261014/) 保留原 run/evaluation 与主机恢复事件；ROS 2 各完整配置的原日志、轨迹/摘要、资源和评估见此前各节。桌面 VGEM 是软件 DMA-BUF 分配器，板端对应机制实测使用实际 system DMA heap/backend=2，不当作同一种 VGEM 设备或真实相机路径

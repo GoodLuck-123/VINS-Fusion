@@ -1,0 +1,14 @@
+MainPID=0
+Id=vins-rk-ros1-baseline01.service
+ActiveState=inactive
+SubState=dead
+
+MainPID=0
+Id=vins-rk-ros1-runtime02.service
+ActiveState=inactive
+SubState=dead
+
+MainPID=0
+Id=vins-rk-board-dma-heap01.service
+ActiveState=inactive
+SubState=dead

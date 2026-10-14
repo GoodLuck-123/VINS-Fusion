@@ -2,7 +2,7 @@
 
 更新日期：2026-10-14
 
-本轮在联网 Ubuntu 主机下载、交叉编译和打包，离线板端执行，再自动回收日志。依赖、构建、节点生命周期、完整双目基线、单目与组件/owner 已验收；PMU 完整对照与 memfd/DMA heap 计算探针已通过，ROS Image/memfd 完整共享 VIO 已通过，DMA heap 完整 VIO 已通过，ROS 1 节点/回放仍待验收。各配置只执行一轮，不运行历史重复批次或新的算法优化
+本轮在联网 Ubuntu 主机下载、交叉编译和打包，离线板端执行，再自动回收日志。依赖、构建、节点生命周期、完整双目基线、单目与组件/owner 已验收；PMU 完整对照与 memfd/DMA heap 计算探针已通过，ROS Image/memfd 完整共享 VIO 已通过，DMA heap 完整 VIO 已通过，ROS 1 运行环境/唯一双目配置已在独立分支验收，原清理 abort −6 单列。各配置只执行一轮，不运行历史重复批次或新的算法优化
 
 ## 当前环境与有效产物
 
@@ -165,3 +165,11 @@ python3 infra/rk3588/scripts/run_ros2_board_phase.py \
 ```
 
 设备明确写入方案并传给已部署 runner，默认板端 system heap，不沿用桌面 /dev/dri/card0，也不在失败时自动换 heap。这里只固定调用入口，board-dma-heap01 两轮完整 DMA heap VIO 已通过；仍需消费计数、摘要、owner/归还、末帧、ATE/RPE、进程退出及资源证据
+
+## 本轮完成与 ROS 1 固定入口
+
+ROS 2 14 个去重配置、ROS 1 唯一双目配置各一轮已完成，实际总回放 15 次；原 ROS 1 清理 abort −6 单列，主机评估参数失败仅对已有轨迹恢复评估，不重跑。统一结果见第 05 份报告，结束审计无旧板端作业活进程
+
+ROS 1 的编译/打包/部署/完整实验脚本在所属 codex/rk3588-ros1，checkout /home/eric/projects/VINS-Fusion-rk3588-ros1；该分支第 08 份说明给出完整入口。run_ros1_board_phase.py 自动传 bag、核验、回放、回收并评估；--evaluate-only 仅主机恢复既有轨迹评估。源码/历史 tag 和失败事件不改写，板端只运行一批，下载仅主机
+
+最终证据核验从 ROS 2 checkout 执行 verify_board_archives.py --ros1-repo 指向独立 ROS 1 checkout --output 新报告.json；它校验两分支归档/解压前哈希与各自桌面核心一致性，不启动或轮询 VIO，不移动历史 tag。未授权 push

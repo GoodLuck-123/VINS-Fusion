@@ -41,30 +41,35 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 ## RK3588 当前状态
 
-板端工作位于 codex/rk3588-ros2，从桌面 ROS 2 交接 7d42fac 建立；ROS 1 板端实现另从 master 最新提交继续，保留已有分支/tag。本轮授权范围为免密 SSH、固定 scp/远端运行与日志回收、主机交叉编译、各配置一轮板端实验；不重启历史桌面批次
+本轮板端任务已完成：免密 SSH、固定 scp/远端执行/日志回收、主机交叉编译、统一依赖下载、板端 profile 与每个去重配置一轮实验。合计 15 次实际完整回放，ROS 2 14 个配置、ROS 1 唯一双目配置一个；没有重启桌面重复/神经网络批次，没有远端 push
 
-目标 firefly@10.106.0.220，RK3588S / Ubuntu 22.04.5 / 厂商内核 5.10.110。免密 SSH、C++ 远端工具、交叉 GCC/ARM SDK、统一依赖下载、perf 及视觉库板端计算探针均已验收；OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保持不变，传递依赖差异见第 05 份报告
+| 目标 / 验收 | 所属分支与里程碑 |
+| --- | --- |
+| ROS 2 交叉构建与运行环境 | codex/rk3588-ros2，构建 tag milestone-rk3588-ros2-cross-build-v1，运行环境 55fdcd8 / milestone-rk3588-ros2-runtime-v1 |
+| Fast DDS addon / 完整双目参照 | a29ee44 / milestone-rk3588-fastrtps-runtime-v1；76d40f8 / baseline-rk3588-ros2-v1 |
+| 单目/组件/owner / PMU | a545a95 / milestone-rk3588-components-v1；af6c635 / milestone-rk3588-pmu-v1 |
+| 共享计算探针 / 四轮 ROS-memfd | 8f04c3f / milestone-rk3588-shared-probe-v1；5e685b1 / milestone-rk3588-shared-memory-v1 |
+| 实际 system DMA heap 两轮 | 4213e2a / milestone-rk3588-dmabuf-v1 |
+| ROS 1 依赖 / 构建 / 视觉库计算 | codex/rk3588-ros1，从 master 最新 8c7c8d2 独立建立；30b9d96、30790b0、6c4703a，对应 dependencies / cross-build / legacy-libs tag |
+| ROS 1 运行环境 / 一轮完整参照 | 92b1bbb / milestone-rk3588-ros1-runtime-v1；2d76d3a / baseline-rk3588-ros1-v1 |
 
-最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。ROS 2 PMU 已通过，完整 ROS Image/memfd 对照已通过，DMA heap 完整回放已通过，ROS 1 节点/回放仍待验收
+统一指标在 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)。ROS 1 ATE/RPE 为 0.260330 / 0.00312228 m，VINS CPU 690.02 s；ROS 2 双目 standalone/copy 为 0.269229 / 0.00313946 m、673.68 s。编译器、SuiteSparse/Boost/BLAS、RMW 和回放/采样口径不同，一轮不证明 ROS 版本带来提速/精度变化
 
-运行包生成与部署检查已固定为 prepare_ros2_runtime.py / deploy_ros2_runtime.sh，runtime01 板端文件哈希、导入、独立节点与组件加载/卸载及退出全部通过，OpenCV maps 为运行包 4.2；结果目录 ../results/rk3588/runtime01/，证据见第 08 份文档。该探针没有 VIO 输入，完整回放另行验收
+ROS 2 正式轮次退出均为 0、完整实收/末帧/摘要/归还通过；ROS 1 input counts 是 bag records，未新增节点实收计数，原同步线程清理 abort −6 与桌面原版一致，如实保留，不称正常退出。ROS 1 外层阶段在已回收日志后的主机评估参数错误处失败，后续只恢复评估，没有第二次回放；原失败事件/日志未改写。对应旧通知按路径/SHA256 去重，见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
 
-运行环境里程碑 commit 55fdcd8 / tag milestone-rk3588-ros2-runtime-v1 已提交。board-baseline01 数据传输/哈希通过，但 SDK 缺 Fast DDS 后端，在 rclpy 初始化时失败，尚未启动 VINS；失败归档保留。fastrtps02 已通过四个锁定 ARM 包/50 个 addon 文件及独立节点/组件生命周期校验，原 SDK/运行包不变；下一轮复用数据、使用新结果前缀继续完整基线
+当前目标 firefly@10.106.0.220，RK3588S/Ubuntu 22.04.5/内核 5.10.110；板端保持离线，下载/编译在联网主机。OpenCV 4.2.0/Ceres 1.14.0/Eigen 3.3.9 和原算法/标定保持不变，板端 CPU perf 计数/采样探针及实际 VINS PMU 已通过，权限保持板端原值 2。私有 Noetic/Python 3.8 保留系统 Python 3.10 与 glibc/loader，不复制 x86 install 代替重建
 
-board-baseline02 已通过一轮完整双目 standalone/copy/Fast DDS，输入和末帧完整、无重置/配对丢帧、退出 0；ATE 0.269229 m / RPE 0.00313946 m，VINS 全线程 CPU 673.68 s。资源范围、排空等待和温度/频率见第 05 份报告，不宣称逐帧实时性或合计进程 CPU
+| 当前有效产物 | 位置 |
+| --- | --- |
+| 主机远端工具 | ../.infra/bin/vins-remote，两目标分支均有相同源码可重建 |
+| ROS 2 主机库/项目 | ../.infra/rk3588/legacy/、ros2_ws_overlay/install/ |
+| ROS 1 主机库/项目 | ../.infra/rk3588/ros1-legacy/、ros1_ws/devel/；GeographicLib 在其 build/global_fusion/ThirdParty/GeographicLib/ |
+| ROS 2 板端运行包 | /home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload |
+| ROS 1 板端运行包 | /home/firefly/vins-workspace/jobs/1791970072506-133971/ros1-payload02 |
+| 独立 ROS 1 checkout | /home/eric/projects/VINS-Fusion-rk3588-ros1 |
 
-board-components01 五轮去重对照已通过完整输入/末帧、初始化/无重置、退出及主机评估，share 灰度入口零物化，composed 指针检查通过。单目 copy/share ATE 为 0.162089 / 0.159856 m；三组 copy/share 单轮 CPU 差异不足 0.5%，各轮轨迹有小幅差异，不宣称确定提速或字节一致。完整指标和范围续写第 05 份报告
+旧混链前缀、缺启动器的首次运行包与失败证据保留，只作追溯，不继续作为部署输入。固定工作流见 [第 08 份说明](08_RK3588_WORKFLOW.md)，clone 后一次下载见 [第 09 份说明](09_DEPENDENCIES.md)；数据和完整日志留父工作区，源码仓库/历史 tag 不覆盖
 
-组件里程碑 commit a545a95 / tag milestone-rk3588-components-v1；PMU 里程碑 commit af6c635 / tag milestone-rk3588-pmu-v1。当前已验收运行包保持不变，迟到事件按路径与 SHA256 去重
+结束审计无旧板端作业活进程。桌面 VGEM 是软件 DMA-BUF 机制验证，板端实测是 /dev/dma_heap/system/backend=2；源端仍复制像素到池，没有真实相机/RGA/GPU fence 或端到端零拷贝证据。排空成功不是实时性验收，DDR 带宽/功耗不可用；真实相机、RGA/自研 NEON/NPU、回环/GNSS/KITTI/RViz 仍无完整数据验收
 
-board-pmu01 两轮已通过完整输入/末帧、评估与退出，四类用户态 CPU 事件无错误、无复用，权限保持 2；证据和计数范围见第 05 份报告。shared-probe01 实际板端 memfd 与 /dev/dma_heap/system 各通过 1000 帧逐像素/owner/归还校验，结束 outstanding=0；完整共享 VIO 已在后续阶段验收，不将计算探针当作真实相机或端到端零拷贝
-
-共享计算探针里程碑 commit 8f04c3f / tag milestone-rk3588-shared-probe-v1；board-shared01 四轮完整输入/末帧/摘要/退出、槽位归还与主机评估已通过，结束审计无残留。完整共享里程碑 commit 5e685b1 / tag milestone-rk3588-shared-memory-v1。board-dma-heap01 双目/单目各一轮实际 system DMA heap 已通过完整输入/末帧/摘要/退出、归还和主机评估，结束无残留；合计 CPU 701.18 / 571.96 s，与 memfd 接近，不宣称稳定收益；里程碑 commit 4213e2a / tag milestone-rk3588-dmabuf-v1
-
-ROS 1 板端目标 codex/rk3588-ros1 已从 master 最新 8c7c8d2 建立独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1，依赖锁 commit 6578b00。主机只读 APT 解析已验签，807 个 Focal/Noetic SDK 包和 36 个 GCC 9.4 工具链包固定 SHA256；ros1-fetch01 下载及离线复核已通过，依赖里程碑 commit 30b9d96；ros1-legacy01 因旧主机 libstdc++ 抢占 CMake 失败，已隔离编译器/汇编器支持库并通过系统 CMake 与 ARM 编译探针，ros1-legacy02 已退出 0，消费端链接及 25 个 ARM 运行库闭包通过；视觉库实际板端计算 ros1-legacy-smoke01 已通过，里程碑 commit 6c4703a / tag milestone-rk3588-ros1-legacy-libs-v1，ROS 1 完整回放仍未验收
-
-ROS 1 工程首次构建 ros1-build01 的 SDK 绝对 log4cxx/Boost 库路径问题已修正并保留失败证据，fetch.py 对目标库/头文件导出做可重复的 sysroot 重定位。ros1-build02 已完成并通过五包/六程序/70 个 ARM ELF 闭包核验，ROS 1 交叉构建里程碑 commit 30790b0 / tag milestone-rk3588-ros1-cross-build-v1；ros1-package01 已完成独立 Noetic/Python 3.8 运行包准备，4209 文件/105 个运行库，首次包缺 rosversion 的失败已保留，新 4210 文件包的实际板端环境验收通过；仅重建 C++ cv_bridge，不生成目标 Python 扩展。ROS 2 的 14 个去重完整配置已验收，涵盖参照、入口/组件、PMU、ROS Image/memfd 与实际 DMA heap，各配置一次。ROS 1 runtime01 私有 Python 导入/ldd 已通过，但缺 rosversion 导致 roscore 退出，尚未启动 VINS；原脚本已补齐，runtime02 已通过哈希/私有 Python/动态库/订阅及结束审计，里程碑 commit 92b1bbb / tag milestone-rk3588-ros1-runtime-v1；ROS master 退出 0、原 VINS 清理 abort −6 单列，ROS 1 baseline01 已交后台传 bag 并执行唯一双目配置一轮回放/回收/评估，完整回放仍待验收。当前 ROS 2 工作区与已部署运行包保持固定
-
-2026-10-14 全局核对时已统一读取 52 个 event/state、核对 29 个阶段和全部归档；当时主机无活构建/实验，板端七个旧作业均已结束。后续新阶段续写账本，积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
-
-工作流见 [第 08 份说明](08_RK3588_WORKFLOW.md)，clone 后一条命令补齐依赖见 [第 09 份说明](09_DEPENDENCIES.md)。板端墙上时钟未同步，按主机阶段 UTC 归档、单调时钟计时；profile 探针不代表 VINS 性能验收
+板端墙上时钟未同步，主机事件 UTC 与单调时钟用于阶段/资源时间。历史统一账本不改写，新增阶段续写；两分支的 core/config 保持各自桌面参照，必要失败和恢复均可追溯

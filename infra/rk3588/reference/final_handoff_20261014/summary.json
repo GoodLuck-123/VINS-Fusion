@@ -1,0 +1,25 @@
+{
+  "complete_replays": {
+    "ros2": 14,
+    "ros1": 1,
+    "total": 15
+  },
+  "desktop_complete_replays": 52,
+  "core_config_unchanged": {
+    "ros1": "8c7c8d2",
+    "ros2": "7d42fac"
+  },
+  "main_branches_unchanged": true,
+  "historical_tags_unchanged": 8,
+  "host_active_experiments": 0,
+  "board_active_prior_jobs": 0,
+  "ros1_cleanup": "Original abort -6 retained; master/playback 0; not clean exit",
+  "host_evaluation_recovery": "Only existing ROS 1 trajectory evaluated; no additional replay",
+  "ddr": "Unavailable",
+  "power": "Unavailable",
+  "pushed": false,
+  "source_references_snapshot_before_handoff": {
+    "ros2": "89aa1f5a0efe95cff77b986cac5598b14cbb0975",
+    "ros1": "9f91494ebb7402dba737b215bb0f093c589749d6"
+  }
+}

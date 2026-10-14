@@ -1,0 +1,42 @@
+[
+  {
+    "tag": "baseline-ros1-euroc-v1",
+    "object": "14e1e0179e3a90a53b1cfcf858baf2d0ea81a848",
+    "unchanged": true
+  },
+  {
+    "tag": "baseline-ros2-humble-v1",
+    "object": "4f45532197fd6d6cece544380d90fdac8f9f6ed2",
+    "unchanged": true
+  },
+  {
+    "tag": "milestone-ros2-components-v1",
+    "object": "8168d9c2d86ef9f9a2de045667bf167eda0e2f54",
+    "unchanged": true
+  },
+  {
+    "tag": "milestone-ros2-pmu-v1",
+    "object": "fa2fce3e2297b9af324c8a9fc8c590470f1bda9d",
+    "unchanged": true
+  },
+  {
+    "tag": "milestone-ros2-shared-memory-v1",
+    "object": "444a63db01a5e6e6bf48f07dfcc7dc349d6a64fd",
+    "unchanged": true
+  },
+  {
+    "tag": "milestone-ros2-dmabuf-v1",
+    "object": "1ef5e053154874eeaee13589a1e728e15e144b1a",
+    "unchanged": true
+  },
+  {
+    "tag": "milestone-ros2-shared-repeats-v1",
+    "object": "16a2876e1f2c0bd66c63259f8bb0d1541fb453f1",
+    "unchanged": true
+  },
+  {
+    "tag": "milestone-ros2-desktop-handoff-v1",
+    "object": "fec8c22bfe96348111b2094e6c6cf0d94c157936",
+    "unchanged": true
+  }
+]

@@ -1,0 +1,261 @@
+[
+  {
+    "path": "/home/eric/projects/results/rk3588/board-baseline01/event.json",
+    "sha256": "16c79d38e1264dfd35cfd7e7c42f6565e1415af2d6a727d83cbc820a594cefe0",
+    "status": "failed",
+    "exit_code": 1,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/board-baseline02/event.json",
+    "sha256": "4ce3ce7b15f75364569bf3b14e46075d37130c2d0af9594d910d699e0b2b44fe",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/board-components01/event.json",
+    "sha256": "6705b006207a17c28d09b3f40d68047d6184fc4e1665803935e3e703202f6263",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/board-dma-heap01/event.json",
+    "sha256": "72dfa1ca6538a881fffc128ee0e5cf835185290f54ba926856ed8aff69add2f3",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/board-pmu01/event.json",
+    "sha256": "a5345e7d2e819b35edd3f47d14ee001152b18c6d2b938d1f939b4ea30808ff9e",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/board-shared01/event.json",
+    "sha256": "48f086d6a77ed296d2c2e8b7582fd13967e91045f8b35e5007ea0a3c358c40bc",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/cross-sdk01/event.json",
+    "sha256": "2ccf9e3a85b3a0ffda52fde9bed181bae6214fac3f090bf1ece33c2d65f46346",
+    "status": "failed",
+    "exit_code": 1,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/dependencies01/event.json",
+    "sha256": "eee8e3f0ced5370a252ece3cdd8c27e5886b24f43484e1face3bbf4b0992feff",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/fastrtps01/event.json",
+    "sha256": "4fcb59c22fbef37075918c558aa1c540bcf05bd4805928ef65915f6b1ccd29db",
+    "status": "failed",
+    "exit_code": 1,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/fastrtps02/event.json",
+    "sha256": "49bda245d6c95e02d7cfa40b9071ede148319c5ab3cefaf996089d9b2cb9d1da",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/legacy01/event.json",
+    "sha256": "7bfb19eedbdbfcbe5fa9c3c694f0c47a156955efa37f863a5543a44d6cf65fe9",
+    "status": "failed",
+    "exit_code": 1,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/legacy02/event.json",
+    "sha256": "421bffb33afa1ff15d283c3a9a826ab6a4acb65f8f1eddcbc2d5d6a9333c4c7a",
+    "status": "failed",
+    "exit_code": 2,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/legacy03/event.json",
+    "sha256": "f31069c8631a4148721a40a6b11e88db4c942b25df08a72440748108f7d7ebbc",
+    "status": "failed",
+    "exit_code": 1,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/legacy04/event.json",
+    "sha256": "9935cd644b31e9e5a91ae0efef85611396031fd8be330ac562ad07b5942e60b6",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/legacy05/event.json",
+    "sha256": "30f9f8a71cd08cd7064100dad638ffacc20bd5b279fafc6c934bbfd6f3cd59d2",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-baseline01/event.json",
+    "sha256": "87ed82259998d192925098c6d7b3c5a6a2c95fc55d2ab4bedc3a090699fcf883",
+    "status": "failed",
+    "exit_code": 1,
+    "handling": "board_replay_accepted_after_host_evaluation_recovery"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-build01/event.json",
+    "sha256": "855a045c16eccdb8cd11562bbf51435fe6d6c10ae15adee220292ff76dcec900",
+    "status": "failed",
+    "exit_code": 2,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-build02/event.json",
+    "sha256": "f2244f8ded7cec4a41a2651677316535db093297d4354ed4b68bb1364d064115",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-evaluation01/event.json",
+    "sha256": "e8c4faecbdd63e3216b4c7540e9b443923bd6dd4c1c88ae73c07ee909a01395a",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-fetch01/event.json",
+    "sha256": "ea08891d288657d339b18660d6b6e4c22ca0927cbf8e8cd812632899838cf5fb",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-legacy-smoke01/event.json",
+    "sha256": "a750f5abe739d1aaa49af20d47ebf0e91a0f6039dc8ebc6d8236aebffc3f7f0e",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-legacy01/event.json",
+    "sha256": "c2eb661d5b8a7f728b7d1acaebe783f77a5e6c3230cb79c9b986ba3f1f6758ce",
+    "status": "failed",
+    "exit_code": 1,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-legacy02/event.json",
+    "sha256": "0a34c40ba2ac192b2a602150f5f7070dc33ae0208ed3bf4554b50bf763eb115e",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-package01/event.json",
+    "sha256": "0c78af1e2055c70476745b20a7f19d399973a6f8504a87b0296d60443681c56a",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-package02/event.json",
+    "sha256": "eb691db77697c8807b1f47317c1a7809ea86e8dbb83f35ed8e47b19bf18a96a5",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-runtime01/event.json",
+    "sha256": "deda9878ffbaf1af3ffa59dd1e8fe8ed92cf056a3a4fa2992b89ac34524ce057",
+    "status": "failed",
+    "exit_code": 1,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-runtime02/event.json",
+    "sha256": "49efac9b5e02a9776a5096ce49d2648415673bacfc6ebd4bd8410b16ca9025cd",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros1-sdk-discovery01/event.json",
+    "sha256": "7da9e2531a32808f1908523c79bbcd5e94e2c0b3261c7a261f2cbe876f0b6ce0",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros2-build01/event.json",
+    "sha256": "c0ba5d3dd8b72191e5013aabeab4f332a0725f8c9e8543a63ac4b7ea75b58433",
+    "status": "failed",
+    "exit_code": 1,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros2-build02/event.json",
+    "sha256": "f5043efa288e1830fdd999c8a64f9664c768fc778b7f79cd0b0bafa489d50fe7",
+    "status": "failed",
+    "exit_code": 2,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros2-build03/event.json",
+    "sha256": "3eabcd6007bd9045c9b3ebb2f5aea3affdd895e3fcdeb54c04d36ff374154462",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/ros2-build04/event.json",
+    "sha256": "0a13f9936a767e6beb2ff9fab3306e3ec1d4bcfee5b4f6fd1711fa8681f4d3bb",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/runtime01/event.json",
+    "sha256": "a540d68724998a3bde48ac0df5ba73cc894df826fa1c4a56cc569dd5ad74f64d",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/shared-probe-build01/event.json",
+    "sha256": "546676dedc5af4d7250957bcb4f13a0cdb7c7c93245899a9c0ec0dece2bbae4b",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/shared-probe01/event.json",
+    "sha256": "757f875ddf4c1a7a557a4182a39d399f5058e3d3979216ecb6a47464b9fd4055",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/sysroot03/event.json",
+    "sha256": "b76db5869f7b7921f231c634d8b3483474c265681efe2f1bff11d004d16615f3",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  },
+  {
+    "path": "/home/eric/projects/results/rk3588/toolchain02/event.json",
+    "sha256": "f7ed14318a6f691af9baeb77ed552218669eef0538b561256dc8eb720fa9ae70",
+    "status": "complete",
+    "exit_code": 0,
+    "handling": "preserved_terminal_event"
+  }
+]

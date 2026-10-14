@@ -23,6 +23,10 @@ def verify(repo, reference, ros2=False):
         manifests.append(dict(path=str(manifest.relative_to(repo)), files=len(entries)))
     for summary in sorted(directory.rglob('summary.json')):
         data = json.loads(summary.read_text())
+        # Cross-branch receipt summaries point to the original full archive.
+        # Validate their local subset by SHA256SUMS; originals are checked in ROS 1.
+        if summary.parent.name == 'ros1_comparison_20261014':
+            continue
         for name, sha in data.get('original_file_sha256', {}).items():
             path = summary.parent / name
             payload = path.read_bytes() if path.exists() else gzip.decompress(Path(str(path)+'.gz').read_bytes())
