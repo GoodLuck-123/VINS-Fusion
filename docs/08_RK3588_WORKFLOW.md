@@ -54,6 +54,8 @@ cmake --install ../.infra/remote-build --prefix ../.infra
 
 ## 本机交叉编译路线
 
+普通重建先执行 `python3 infra/dependencies/fetch.py`，统一补齐锁定源码、交叉工具链和 ARM ROS 2 sysroot；目录和缓存规则见 [第 09 份说明](09_DEPENDENCIES.md)。下文两次 apt 准备是建立原始 SDK 的历史步骤，不是新 clone 的下载入口；冻结 SDK 和失败记录保留原位
+
 当前 x86_64 install 不能部署到 ARM。本机用 aarch64 编译器和独立 sysroot 构建；目标头文件/库来自板端系统快照及主机下载的 ARM 包，主机运行的 CMake/Python/代码生成器与 ARM 库分开。保留桌面安装前缀，不在 ARM 调用只支持 x86 的 bootstrap
 
 先用小型 ARM 可执行文件完成编译、ELF 架构/依赖审计、部署和运行，再构建 OpenCV/Ceres/cv_bridge、ROS/VINS。完整 install 与运行依赖打包传输；不假设仅一个可执行文件足够，也不把模拟器内执行称为交叉编译提速

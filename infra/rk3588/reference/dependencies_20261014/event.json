@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/eric/projects/VINS-Fusion/infra/dependencies/fetch.py",
+    "--cache-from",
+    "/home/eric/projects/.infra/downloads",
+    "--cache-from",
+    "/tmp",
+    "--cache-from",
+    "/home/eric/projects/.infra/rk3588/toolchain/debs",
+    "--cache-from",
+    "/home/eric/projects/.infra/rk3588/ros2-sdk/cache/archives"
+  ],
+  "pid": 62363,
+  "status": "complete",
+  "start_utc": "2026-10-14T04:56:29Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-14T04:56:33Z"
+}

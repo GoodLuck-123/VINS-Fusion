@@ -6,6 +6,12 @@ endif()
 set(CMAKE_SYSROOT "$ENV{VINS_ARM_SYSROOT}")
 set(CMAKE_C_COMPILER "$ENV{VINS_CROSS_ROOT}/usr/bin/aarch64-linux-gnu-gcc")
 set(CMAKE_CXX_COMPILER "$ENV{VINS_CROSS_ROOT}/usr/bin/aarch64-linux-gnu-g++")
+# Prefer the target multiarch libraries to the compiler package's cross libc
+# linker script, whose /usr/aarch64-linux-gnu paths do not exist in this sysroot.
+set(_target_library_flags "-L${CMAKE_SYSROOT}/usr/lib/aarch64-linux-gnu -L${CMAKE_SYSROOT}/lib/aarch64-linux-gnu")
+set(CMAKE_EXE_LINKER_FLAGS_INIT "${_target_library_flags}")
+set(CMAKE_SHARED_LINKER_FLAGS_INIT "${_target_library_flags}")
+set(CMAKE_MODULE_LINKER_FLAGS_INIT "${_target_library_flags}")
 set(CMAKE_FIND_ROOT_PATH "${CMAKE_SYSROOT}" "$ENV{VINS_ARM_PREFIX}")
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)

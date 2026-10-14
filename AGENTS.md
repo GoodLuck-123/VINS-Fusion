@@ -12,6 +12,7 @@
 ## 环境与代码
 
 - 命令默认从 Git 仓库根目录执行。运行工作区是父目录，安装前缀、数据与完整日志在 `../.infra/`、`../data/`、`../results/`；根目录不建软链接
+- 按用户后续要求，板端依赖源码/缓存/sysroot 在 `dependencies/` 下保留 Git 占位目录，下载内容忽略；统一 `python3 infra/dependencies/fetch.py` 补齐，锁定 URL/版本/SHA256，见第 09 份说明。旧冻结依赖不迁移或改写
 - Python 评估用 `infra/desktop/uv.lock`；ROS/C++ 依赖独立隔离。ROS shell 与 uv shell 分开，避免系统 OpenCV、预编译 cv_bridge 或另一 ROS 前缀污染
 - 保留 OpenCV 4.2.0 / Ceres 1.14.0 及原有参数建立参照。ARM 无法满足同版本依赖时，先记录兼容性证据，再单独升级与对照
 - 当前 bootstrap 和原生锁只支持 Linux x86_64；不要在 ARM 运行，也不要复制安装前缀替代重建

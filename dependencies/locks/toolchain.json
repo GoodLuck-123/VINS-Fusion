@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "id": "toolchain",
+  "provenance": "Ubuntu/ROS signed APT indexes used for cross_sdk_20261014; exact package payload hashes preserved",
+  "packages": [
+    {
+      "Package": "binutils-aarch64-linux-gnu",
+      "Version": "2.38-4ubuntu2.12",
+      "Architecture": "amd64",
+      "file": "binutils-aarch64-linux-gnu_2.38-4ubuntu2.12_amd64.deb",
+      "sha256": "8b27d0c3811c025f76ee8683eb0c13bc57ec335fdfedc86d256c30c52a8b3982",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/b/binutils/binutils-aarch64-linux-gnu_2.38-4ubuntu2.12_amd64.deb"
+    },
+    {
+      "Package": "cpp-11-aarch64-linux-gnu",
+      "Version": "11.4.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "amd64",
+      "file": "cpp-11-aarch64-linux-gnu_11.4.0-1ubuntu1~22.04.3cross1_amd64.deb",
+      "sha256": "b1ccd3108ea2191519b988826631e148d99fb5c0e9e9264bd8370ceacc51e111",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-11-cross/cpp-11-aarch64-linux-gnu_11.4.0-1ubuntu1~22.04.3cross1_amd64.deb"
+    },
+    {
+      "Package": "cpp-aarch64-linux-gnu",
+      "Version": "4:11.2.0-1ubuntu1",
+      "Architecture": "amd64",
+      "file": "cpp-aarch64-linux-gnu_4%3a11.2.0-1ubuntu1_amd64.deb",
+      "sha256": "3c115a97aaae7d3a922faa63f335ea4c2b9189711c375d467713177531498903",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/main/g/gcc-defaults/cpp-aarch64-linux-gnu_11.2.0-1ubuntu1_amd64.deb"
+    },
+    {
+      "Package": "g++-11-aarch64-linux-gnu",
+      "Version": "11.4.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "amd64",
+      "file": "g++-11-aarch64-linux-gnu_11.4.0-1ubuntu1~22.04.3cross1_amd64.deb",
+      "sha256": "4a7489dacce17d7b23b8675a96a777073d459b17c2a0063d6e906d16468c0a83",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-11-cross/g++-11-aarch64-linux-gnu_11.4.0-1ubuntu1~22.04.3cross1_amd64.deb"
+    },
+    {
+      "Package": "g++-aarch64-linux-gnu",
+      "Version": "4:11.2.0-1ubuntu1",
+      "Architecture": "amd64",
+      "file": "g++-aarch64-linux-gnu_4%3a11.2.0-1ubuntu1_amd64.deb",
+      "sha256": "f82f571156a3550f4076713d972d9e409f047169867abd1043e3d50eadc2a45c",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/main/g/gcc-defaults/g++-aarch64-linux-gnu_11.2.0-1ubuntu1_amd64.deb"
+    },
+    {
+      "Package": "gcc-11-aarch64-linux-gnu-base",
+      "Version": "11.4.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "amd64",
+      "file": "gcc-11-aarch64-linux-gnu-base_11.4.0-1ubuntu1~22.04.3cross1_amd64.deb",
+      "sha256": "5e2180045a16c4730f977265e44c46f2afcf847f3fa991e799f84217132eab99",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-11-cross/gcc-11-aarch64-linux-gnu-base_11.4.0-1ubuntu1~22.04.3cross1_amd64.deb"
+    },
+    {
+      "Package": "gcc-11-aarch64-linux-gnu",
+      "Version": "11.4.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "amd64",
+      "file": "gcc-11-aarch64-linux-gnu_11.4.0-1ubuntu1~22.04.3cross1_amd64.deb",
+      "sha256": "aa7ad168a8404a22f7bc31d137be2336644b3cbc99174518da443dfe88d51411",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-11-cross/gcc-11-aarch64-linux-gnu_11.4.0-1ubuntu1~22.04.3cross1_amd64.deb"
+    },
+    {
+      "Package": "gcc-11-cross-base",
+      "Version": "11.4.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "gcc-11-cross-base_11.4.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "321ae70ee97069b4aa5441a6a019b773eb611ba704d5eb3e41c4fdba22854195",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-11-cross/gcc-11-cross-base_11.4.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "gcc-12-cross-base",
+      "Version": "12.3.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "gcc-12-cross-base_12.3.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "252d820ac4edf046549eab87e165a2a62d72ab27ff467229537f986b3a0dcfa9",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-12-cross/gcc-12-cross-base_12.3.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "gcc-aarch64-linux-gnu",
+      "Version": "4:11.2.0-1ubuntu1",
+      "Architecture": "amd64",
+      "file": "gcc-aarch64-linux-gnu_4%3a11.2.0-1ubuntu1_amd64.deb",
+      "sha256": "46a02bbd4c7a2dceb6fdb0d67f01333bddd7a3139ab7466e932e0a6ffd647ade",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/main/g/gcc-defaults/gcc-aarch64-linux-gnu_11.2.0-1ubuntu1_amd64.deb"
+    },
+    {
+      "Package": "libasan6-arm64-cross",
+      "Version": "11.4.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libasan6-arm64-cross_11.4.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "13a28e20a6d96f6af8935265bf9c269244d9a9b7d2799e5a78f52bb74f7b0fdd",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-11-cross/libasan6-arm64-cross_11.4.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "libatomic1-arm64-cross",
+      "Version": "12.3.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libatomic1-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "02d80d6a1dbf3737492406a634fec5216696279f74f3fafa1e9d8988705c612b",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-12-cross/libatomic1-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "libc6-arm64-cross",
+      "Version": "2.35-0ubuntu1cross3",
+      "Architecture": "all",
+      "file": "libc6-arm64-cross_2.35-0ubuntu1cross3_all.deb",
+      "sha256": "32b6264502998dd170d21eff60b6686be8c682012df18e6cc9fdffcf42c5faae",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/main/c/cross-toolchain-base/libc6-arm64-cross_2.35-0ubuntu1cross3_all.deb"
+    },
+    {
+      "Package": "libc6-dev-arm64-cross",
+      "Version": "2.35-0ubuntu1cross3",
+      "Architecture": "all",
+      "file": "libc6-dev-arm64-cross_2.35-0ubuntu1cross3_all.deb",
+      "sha256": "1c552b83243bc5ac6b1ac01078f2396d0f483e849ec0b577bce28e067f6bd65d",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/main/c/cross-toolchain-base/libc6-dev-arm64-cross_2.35-0ubuntu1cross3_all.deb"
+    },
+    {
+      "Package": "libgcc-11-dev-arm64-cross",
+      "Version": "11.4.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libgcc-11-dev-arm64-cross_11.4.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "bc16d649bfdfdb7fe505ec9ef9853463f4f379dad5459cffa3ff5cdf477c817e",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-11-cross/libgcc-11-dev-arm64-cross_11.4.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "libgcc-s1-arm64-cross",
+      "Version": "12.3.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libgcc-s1-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "2a62fd8d05a8e1a934f781d4d608a41e6bc12673723c9c2f0e546f30313077c8",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-12-cross/libgcc-s1-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "libgomp1-arm64-cross",
+      "Version": "12.3.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libgomp1-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "252232e11b6d4d5fe9e9bd9de4f097969480ada0bb27cebcc774d6b41bfb9353",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-12-cross/libgomp1-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "libhwasan0-arm64-cross",
+      "Version": "12.3.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libhwasan0-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "0f36663a54e7cf26bb07d2e017186e4a74abcc1048aab258f523f6abb79cf331",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-12-cross/libhwasan0-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "libitm1-arm64-cross",
+      "Version": "12.3.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libitm1-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "ccdcac886dcec1e4305775990bf202765bc62aac8d1ba945f8cc27e29e7231d8",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-12-cross/libitm1-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "liblsan0-arm64-cross",
+      "Version": "12.3.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "liblsan0-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "7e5c4b3f5f7d32d5467cba521b60f575112e20825233f61cf39c444abe2fb531",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-12-cross/liblsan0-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "libstdc++-11-dev-arm64-cross",
+      "Version": "11.4.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libstdc++-11-dev-arm64-cross_11.4.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "ad4547e19f4c5c0a8d1a483db63346a7079ce261371b8ff8c8a896665d1b8ff8",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-11-cross/libstdc++-11-dev-arm64-cross_11.4.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "libstdc++6-arm64-cross",
+      "Version": "12.3.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libstdc++6-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "68ba44786377589553b380edd0fc39be07e437f1fad28bb4a4643354fa449c17",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-12-cross/libstdc++6-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "libtsan0-arm64-cross",
+      "Version": "11.4.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libtsan0-arm64-cross_11.4.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "6a20310ddc5d2f020b23cf01713c1adf3a7b1d0c7a1fc51a4bbd9af2dd10f7b9",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-11-cross/libtsan0-arm64-cross_11.4.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "libubsan1-arm64-cross",
+      "Version": "12.3.0-1ubuntu1~22.04.3cross1",
+      "Architecture": "all",
+      "file": "libubsan1-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb",
+      "sha256": "27f52c09fcc3cc3e34195dafb4d7a8c35cbfc108f83feb304c8aac7226270497",
+      "url": "https://security.ubuntu.com/ubuntu/pool/main/g/gcc-12-cross/libubsan1-arm64-cross_12.3.0-1ubuntu1~22.04.3cross1_all.deb"
+    },
+    {
+      "Package": "linux-libc-dev-arm64-cross",
+      "Version": "5.15.0-22.22cross3",
+      "Architecture": "all",
+      "file": "linux-libc-dev-arm64-cross_5.15.0-22.22cross3_all.deb",
+      "sha256": "5f62ce5bee284a4c02ecb68bddcd96334ed71eda7e87c1638fac47e4f58f098d",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/main/c/cross-toolchain-base/linux-libc-dev-arm64-cross_5.15.0-22.22cross3_all.deb"
+    }
+  ]
+}

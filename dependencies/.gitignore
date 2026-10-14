@@ -1,0 +1,9 @@
+.fetch.lock
+cache/*
+!cache/.gitkeep
+sources/*/*
+!sources/*/.gitkeep
+toolchain/*
+!toolchain/.gitkeep
+sysroots/*/*
+!sysroots/*/.gitkeep
