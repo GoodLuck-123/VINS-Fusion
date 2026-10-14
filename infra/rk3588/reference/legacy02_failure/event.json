@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/usr/bin/bash",
+    "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_legacy.sh"
+  ],
+  "pid": 71155,
+  "status": "failed",
+  "start_utc": "2026-10-14T05:15:51Z",
+  "exit_code": 2,
+  "end_utc": "2026-10-14T05:15:55Z"
+}

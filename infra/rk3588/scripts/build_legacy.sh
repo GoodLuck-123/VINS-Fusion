@@ -2,10 +2,22 @@
 set -euo pipefail
 repo=$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)
 source "$repo/infra/rk3588/scripts/cross_env.sh"
-build="${VINS_ARM_BUILD:-$(dirname "$repo")/.infra/rk3588/build-legacy}"
+build="${VINS_ARM_BUILD:-$(dirname "$repo")/.infra/rk3588/build-legacy-gcc11}"
 jobs="${VINS_BUILD_JOBS:-4}"
 toolchain="$repo/infra/rk3588/cmake/aarch64.cmake"
 mkdir -p "$build" "$VINS_ARM_PREFIX"
+opencv_source="$build/opencv-source"
+opencv_patch="$repo/infra/rk3588/patches/opencv-4.2.0-gcc11.patch"
+patch_sha=$(sha256sum "$opencv_patch" | cut -d' ' -f1)
+if [[ ! -d "$opencv_source" ]]; then
+  cp -a "$repo/dependencies/sources/opencv/4.2.0" "$opencv_source"
+  patch --batch -d "$opencv_source" -p1 < "$opencv_patch"
+  printf '%s\n' "$patch_sha" > "$opencv_source/.vins-build-patch-sha256"
+fi
+test "$(cat "$opencv_source/.vins-build-patch-sha256")" = "$patch_sha" || {
+  echo 'Incomplete or changed OpenCV patch; preserve this build and select a new VINS_ARM_BUILD' >&2
+  exit 1
+}
 common=(-G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="$toolchain" -DCMAKE_BUILD_TYPE=Release
   -DCMAKE_INSTALL_PREFIX="$VINS_ARM_PREFIX" -DCMAKE_INSTALL_LIBDIR=lib)
 
@@ -13,7 +25,7 @@ cmake -S "$repo/dependencies/sources/eigen/3.3.9" -B "$build/eigen" "${common[@]
   -DBUILD_TESTING=OFF -DEIGEN_BUILD_DOC=OFF
 cmake --install "$build/eigen"
 
-cmake -S "$repo/dependencies/sources/opencv/4.2.0" -B "$build/opencv" "${common[@]}" \
+cmake -S "$opencv_source" -B "$build/opencv" "${common[@]}" \
   -DBUILD_LIST=core,imgproc,imgcodecs,calib3d,features2d,flann,video,highgui \
   -DWITH_ADE=OFF -DBUILD_opencv_gapi=OFF -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF \
   -DBUILD_EXAMPLES=OFF -DBUILD_opencv_python2=OFF -DBUILD_opencv_python3=OFF \

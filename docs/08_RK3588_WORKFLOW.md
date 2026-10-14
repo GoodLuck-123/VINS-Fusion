@@ -122,6 +122,10 @@ perf 候选工具从同一已认证的 Ubuntu ARM 仓库下载。厂商内核为
 bash infra/rk3588/scripts/build_legacy.sh
 ```
 
-使用统一下载目录及 cross_env.sh，为 ARM 安装 Eigen 3.3.9、OpenCV 4.2.0、Ceres 1.14.0，默认安装前缀 `../.infra/rk3588/legacy/`、构建目录 `../.infra/rk3588/build-legacy/`。OpenCV 模块和关闭的第三方特性沿用原生参照，不开启新的板端算法优化；使用主机 GNU Make，默认四个编译任务，可通过 VINS_BUILD_JOBS 调整
+使用统一下载目录及 cross_env.sh，为 ARM 安装 Eigen 3.3.9、OpenCV 4.2.0、Ceres 1.14.0，默认安装前缀 `../.infra/rk3588/legacy/`、构建目录 `../.infra/rk3588/build-legacy-gcc11/`。OpenCV 模块和关闭的第三方特性沿用原生参照，不开启新的板端算法优化；使用主机 GNU Make，默认四个编译任务，可通过 VINS_BUILD_JOBS 调整
 
 首次配置因主机 fresh shell 没有 Ninja 而失败，未生成视觉库，证据见 [配置失败记录](../infra/rk3588/reference/legacy01_failure/)。已改用现有 Make、新建构建目录，依赖版本和原失败记录不变。后续重建由临时服务 vins-rk-legacy02.service 承接，唯一阶段目录 `../results/rk3588/legacy02/`，完成或失败才通知一次；截至提交入口时尚未验收库或 VINS
+
+legacy02 随后在 Carotene 编译失败：OpenCV 4.2.0 使用旧参数 ipcp-unit-growth，GCC 11 已改名为 ipa-cp-unit-growth，见 [GCC 官方记录](https://gcc.gnu.org/legacy-ml/gcc-patches/2020-01/msg00425.html)。失败日志见 [兼容性证据](../infra/rk3588/reference/legacy02_failure/)。仅修正参数名，保留数值和默认 ARM Carotene，不升级 OpenCV；补丁位于 infra/rk3588/patches/，在独立源码副本应用，下载目录保持原样
+
+下一构建阶段为 vins-rk-legacy03.service，事件在 `../results/rk3588/legacy03/`；仍须完成库构建、ARM ELF 与板端运行验收，不能将补丁应用通过称为视觉库或 VIO 通过
