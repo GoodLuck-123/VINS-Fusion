@@ -32,6 +32,8 @@ ros1-build01 链接遇到 Noetic 导出的绝对 log4cxx/Boost 路径，失败�
 
 ROS 1 主机交叉构建里程碑 commit 30790b0 / tag milestone-rk3588-ros1-cross-build-v1；运行包入口 prepare_ros1_runtime.py 和 ros1_runtime_env.sh 已固定，ros1-package01 在主机后台打包。运行包携带私有 Python 3.8，沿用板端 glibc/loader 和系统 Python 3.10；ROS 启动器通过 PATH 选择私有解释器，不在板端下载依赖。配置/源码来源用 build_source.json，原 VINS 不变，当前尚未部署或回放 ROS 1
 
-构建、打包与单调用部署入口见 [第 08 份板端工作流](08_RK3588_WORKFLOW.md)，本分支现包含与已验证工具字节一致的 infra/remote/，无需依赖另一个源码分支才能重建远端工具。ROS 1 视觉库实际板端里程碑 commit 6c4703a / tag milestone-rk3588-ros1-legacy-libs-v1；ROS 2 DMA heap 两轮已完成并通过验收；ros1-runtime01 现交给后台固定工具部署和生命周期检查，不同时启动另一批 VIO
+构建、打包与单调用部署入口见 [第 08 份板端工作流](08_RK3588_WORKFLOW.md)，本分支现包含与已验证工具字节一致的 infra/remote/，无需依赖另一个源码分支才能重建远端工具。ROS 1 视觉库实际板端里程碑 commit 6c4703a / tag milestone-rk3588-ros1-legacy-libs-v1；ROS 2 DMA heap 两轮已完成并通过验收；ros1-runtime01 在 roscore 启动时因遗漏 SDK usr/bin/rosversion 失败，未启动 VINS；已补齐原脚本并生成独立 ros1-payload02，ros1-runtime02 交给后台固定工具重试部署和生命周期检查，不同时启动另一批 VIO
 
 原 ROS 1 唯一双目配置的完整回放入口 run_ros1_board_phase.py 已固定，单调用完成首次 bag 上传、哈希/输入核验、原 runner 回放、日志回收和主机 uv 评估；阶段用新名称，原清理 abort 单列。4209 文件运行包的主机准备证据见 infra/rk3588/reference/ros1_package_host_20261014/，当前只固定入口，板端部署与完整回放未验收
+
+首次运行包/失败归档保持不变，新候选 ros1-payload02 含 4210 文件/105 个运行库。后续完整实验默认从已接受运行环境归档读取文件清单，可通过 --runtime-manifest 指定其他已验收清单，避免沿用旧失败候选；当前尚未接受 Noetic 运行环境或完整 VIO
