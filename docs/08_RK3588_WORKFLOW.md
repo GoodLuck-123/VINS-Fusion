@@ -75,15 +75,3 @@ ARM 构建通过后锁定一次性实验矩阵：ROS 1 参照、ROS 2 单目/双
 固定 MH_01_easy、标定和算法参数；实验串行，明确回放与排空时间、全线程 CPU、每进程 RSS/PSS、频率/温度及输入/初始化/重置/末帧/退出。共享路径核验全像素/时间戳摘要与槽位归还，结果回主机用同一 uv.lock 离线评估 ATE/RPE，统一续写第 05 份报告
 
 目前只完成连接、工作流与只读能力探测，尚未完成 ARM 构建或板端 VIO。大批次交给本地执行器，仅阶段完成、失败或需要处理时通知当前聊天，不由模型在线轮询；手动 ssh 留给初期核实和必要调试
-
-## 当前交叉 SDK 准备阶段
-
-`prepare_cross_ros2.sh` 在本机 amd64 Docker builder 中安装 aarch64 编译器与主机 ROS 2 代码生成工具，下载 ARM Humble 的完整依赖闭包并解包至独立 sysroot，不在板端联网安装。每个 ARM deb 保存版本/架构/SHA256，builder image 信息一并保存；已有 sdk-ready 的前缀拒绝重新在线求解覆盖
-
-本阶段仅准备编译器/SDK，编译一个 ARM 小程序并通过 vins-remote 在板上验证。随后才构建旧版本 OpenCV/Ceres/cv_bridge/VINS 和运行时包；SDK 准备或小程序通过不当作完整 VIO 验收
-
-```bash
-bash infra/rk3588/scripts/prepare_cross_ros2.sh
-```
-
-默认 SDK 位于 `../.infra/rk3588/ros2/`，小程序结果在 `../results/rk3588/cross-smoke01/`。本地临时服务 `vins-rk-cross-sdk01.service` 承接准备阶段，事件在 `../results/rk3588/cross-sdk01/`；完成或失败由本机当前聊天 hook 通知一次，正常下载/编译期间不在线模型轮询
