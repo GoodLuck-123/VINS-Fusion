@@ -60,3 +60,5 @@ board-components01 已接受为五轮单目/双目入口与 composed 对照，�
 board-pmu01 已接受为两轮完整 PMU 对照，四类事件无错误/复用，输入、末帧、评估、退出及结束审计通过，事件/SHA256 见 [归档](../infra/rk3588/reference/pmu_20261014/)。shared-probe-build01 只完成主机 ARM 构建，尚无板端缓冲/heap 验收，不将构建成功混入 VIO 成功统计
 
 shared-probe01 已接受为 memfd/实际 DMA heap 计算探针，两后端各 1000 帧、失败和 outstanding 均为 0，结束审计无残留；事件与 SHA256 见 [归档](../infra/rk3588/reference/shared_probe_20261014/)。不是完整 VIO。重新读取全部当前 RK3588 event 后，fastrtps02、board-baseline02 与已接受事件逐字节一致，只去重；新 ROS 1 视觉库首次构建失败在独立 ROS 1 分支处理，不回退 ROS 2 运行包
+
+ros1-sdk-discovery01 迟到事件与 ROS 1 分支已接受归档逐字节一致，只去重。ros1-legacy02 主机视觉库构建及独立消费端链接通过，证据位于 ROS 1 分支 infra/rk3588/reference/ros1_legacy_build_20261014/；板端计算和完整 ROS 1 回放待验收，ROS 2 当前仅 board-shared01 活动
