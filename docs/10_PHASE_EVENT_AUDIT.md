@@ -83,3 +83,7 @@ DMA heap 里程碑 commit 4213e2a / tag milestone-rk3588-dmabuf-v1；按本机 p
 ros1-runtime01 因运行包未包含 SDK usr/bin/rosversion，在 roscore 启动时退出 1；私有 Python/NumPy/rosbag 导入与 ldd 通过，但未启动 VINS，不计为节点/VIO 成功。ROS 1 分支归档失败并最小补齐原脚本，新 ros1-payload02/4210 文件已生成，ros1-runtime02 已交后台重试，旧运行包/清单不覆盖
 
 ros1-legacy02 与 ROS 1 分支主机构建归档逐字节一致，只去重；后续实际计算里程碑 6c4703a 不重跑。ros1-runtime02 已在其所属分支提交 92b1bbb / tag milestone-rk3588-ros1-runtime-v1：4210 文件/私有 Python/实际库/订阅就绪、结束审计通过，ROS master 0、原 VINS 清理 abort −6 明确单列，无 bag 输入。ros1-baseline01 交给后台单调用入口传原 bag、完整回放/回收/主机评估，每唯一配置一次；尚未验收，不混入 ROS 2 全部退出 0 的统计
+
+ros1-build01 迟到失败与 ROS 1 分支归档逐字节一致，SHA256 为 855a045c16eccdb8cd11562bbf51435fe6d6c10ae15adee220292ff76dcec900，仅去重；绝对库/头文件导出重定位已在后续构建和实际运行验收中通过，不回退修复。完整 ROS 1 回放仍由后台执行
+
+最终汇总前的只读预核验：ROS 2 25 份板端归档/446 条文件哈希、134 个解压前原文件哈希，以及 ROS 1 11 份归档/91 条哈希均通过；两分支 core/config 分别与 7d42fac / 8c7c8d2 一致。重核入口 verify_board_archives.py，ROS 1 完整回放归档尚未产生，不将预核验当作任务全部完成
