@@ -317,3 +317,23 @@ runtime01 通过固定 scp/远端工具部署运行包，板端校验 6991 个�
 运行包未包含静态库、KITTI 程序或 SDK cv_bridge/OpenCV 4.5，保留板端 glibc/loader。核心和 config 与干净交叉构建 c0ae27d 一致，逐文件清单、动态库 maps、节点日志与事件见 [运行环境证据](../infra/rk3588/reference/runtime_20261014/)。没有 bag 输入，计数为零，本阶段没有轨迹、ATE/RPE 或 VINS 性能结论
 
 Fast DDS 后端补充验收 fastrtps02：四个已验签索引锁定 ARM 包、50 个 addon 文件及 6991 个原运行文件哈希通过。Fast DDS 2.6.12 / rmw_fastrtps 6.2.10 下独立节点和组件订阅就绪、组件卸载成功、两进程退出 0，实际 maps 显示 addon RMW 及原 OpenCV 4.2。原 SDK/运行包保持不变，[证据及 SHA256](../infra/rk3588/reference/fastrtps_20261014/)。此前基线启动缺该后端、HTTPS 下载证书失败均保留，尚未启动 VINS，不计为成功回放
+
+## RK3588 ROS 2 完整双目基线（2026-10-14）
+
+board-baseline02 完整回放通过，standalone/copy/ROS Image/Fast DDS、rate=1，OpenCV 4.2.0 / Ceres 1.14.0，保留原标定与算法参数。两路图像各 3682、IMU 36820、processed 3682，一次初始化，无重置或配对丢帧；末帧覆盖，VINS/回放均退出 0，板端结束审计无旧作业活进程。原运行包、addon 和输入 bag 哈希均通过
+
+| 指标 | 板端一轮实测 |
+| --- | --- |
+| 姿态 / 真值匹配 | 1831 / 1819 |
+| ATE RMSE，SE(3) 无尺度校正 | 0.269229 m |
+| RPE RMSE，一姿态步长 | 0.00313946 m |
+| VINS 全线程 CPU | 673.68 s，订阅就绪至排空 |
+| VINS RSS / PSS 采样峰值 | 83.72 / 73.05 MiB |
+| 回放 / 排空等待 | 188.43 / 6.12 s |
+| 温度观测 | 各 thermal_zone 整轮最高 60.08 °C |
+| CPU 频率观测 | A55 408–1800 MHz，两个 A76 policy 均 408–2352 MHz |
+| DDR 带宽 / CPU 功耗 | 不可用 |
+
+原 standalone runner 只采 VINS，未采 ros2 bag play 的 CPU/RSS/PSS；673.68 s 不能当作合计 CPU。composed 统计容器内 VINS+源端，split 分别记录两进程，比较时保留不同范围。温度/频率覆盖启动、回放及排空，不据频率变化单独判定降频原因；dmc 528–1560 MHz 是频率，不是带宽
+
+评估在主机同一 uv.lock/evo 环境执行。板端轨迹与 x86 双目参照不同，未宣称跨架构字节一致或将差异归因于单一因素；传递依赖差异见前表。排空包含稳定采样等待，完整消费与末帧成功不是逐帧实时延迟验收。本轮只有一次实际完整回放，旧启动失败不计入成功实验；[完整证据、轨迹图与 SHA256](../infra/rk3588/reference/baseline_20261014/)

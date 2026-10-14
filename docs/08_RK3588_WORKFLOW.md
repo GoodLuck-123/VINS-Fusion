@@ -2,7 +2,7 @@
 
 更新日期：2026-10-14
 
-本轮在联网 Ubuntu 主机下载、交叉编译和打包，离线板端执行，再自动回收日志。当前依赖、构建和板端 VINS 节点生命周期已验收，完整 VIO 尚待验收；各配置只执行一轮，不运行历史重复批次或新的算法优化
+本轮在联网 Ubuntu 主机下载、交叉编译和打包，离线板端执行，再自动回收日志。当前依赖、构建、板端 VINS 节点生命周期及首轮完整双目基线已验收；单目/组件/共享与 ROS 1 仍待验收。各配置只执行一轮，不运行历史重复批次或新的算法优化
 
 ## 当前环境与有效产物
 
@@ -18,7 +18,8 @@ ROS 2 分支 codex/rk3588-ros2 从桌面交接 7d42fac 建立，ROS 1 板端代�
 | ROS 2 项目 | ../.infra/rk3588/ros2_ws_overlay/install/，五个包构建完成，76 个 ARM ELF 闭包无缺库或混链 |
 | ROS 2 板端运行环境 | runtime01 通过文件哈希、导入、独立节点/组件生命周期，tag milestone-rk3588-ros2-runtime-v1 |
 | profile | perf 计数/采样/函数符号解析通过，尚无 VINS 热点结果 |
-| 板端 VIO / ROS 1 ARM | 待部署、运行与轨迹验收 |
+| 单目/组件/共享与 ROS 1 ARM | 待完整运行与轨迹验收 |
+| 完整双目基线 | board-baseline02 通过输入/末帧/退出及主机 ATE/RPE，资源范围见第 05 份报告 |
 
 旧 ros2_ws/、legacy_before_sysroot_links/ 只保留失败追溯，不再作为有效部署输入。积压事件的统一结论和去重规则见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)，不要按通知到达顺序改代码
 
@@ -131,6 +132,8 @@ python3 infra/rk3588/scripts/run_ros2_board_phase.py \
 ```
 
 后续阶段为 components、pmu、shared，按桌面配置去掉重复轮次，完整输入和标定保持不变。baseline 为双目 standalone/copy/Fast DDS；components 复用该参照，增加双目 share、单目 copy/share 和双目 composed copy/share。pmu 为双目 copy/share 加计数，shared 为单目/双目 split ROS/memfd。composed/split 使用 Cyclone DDS，standalone 使用 Fast DDS，与原生阶段对应
+
+完整阶段收回日志后在主机自动用 uv.lock/evo 评估每轮轨迹，结束通知同时包含回放与评估是否成功；资源范围以 run.json 为准，原 standalone 只统计 VINS，composed 为容器，split 分进程，不混为合计 CPU
 
 板端数据只放置在 home 的 vins-workspace/datasets 下，运行包工作区增加数据指向和结果目录，已验收文件保持不变。每轮保存 telemetry.jsonl 中实际可读温度/CPU 与 dmc 频率，CPU/RSS/PSS、回放/排空及计数仍由原 runner 记录；DDR 带宽和功耗不可用
 

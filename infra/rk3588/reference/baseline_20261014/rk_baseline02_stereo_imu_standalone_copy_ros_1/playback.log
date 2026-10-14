@@ -1,0 +1,19 @@
+[ERROR] [1772736517.550609875] [pluginlib.ClassLoader]: Skipped loading plugin with error: XML Document '/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/.infra/ros2/share/rosbag2_storage/test/rosbag2_storage/test_plugin.xml' has no Root Element. This likely means the XML is malformed or missing..
+[ERROR] [1772736517.551024041] [pluginlib.ClassLoader]: Skipped loading plugin with error: XML Document '/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/.infra/ros2/share/rosbag2_storage/test/rosbag2_storage/test_plugin.xml' has no Root Element. This likely means the XML is malformed or missing..
+[ERROR] [1772736517.569607001] [pluginlib.ClassLoader]: Skipped loading plugin with error: XML Document '/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/.infra/ros2/share/rosbag2_storage/test/rosbag2_storage/test_plugin.xml' has no Root Element. This likely means the XML is malformed or missing..
+[ERROR] [1772736517.569990251] [pluginlib.ClassLoader]: Skipped loading plugin with error: XML Document '/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/.infra/ros2/share/rosbag2_storage/test/rosbag2_storage/test_plugin.xml' has no Root Element. This likely means the XML is malformed or missing..
+[ERROR] [1772736517.570339376] [pluginlib.ClassLoader]: Skipped loading plugin with error: XML Document '/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/.infra/ros2/share/rosbag2_cpp/test/rosbag2_cpp/converter_test_plugin.xml' has no Root Element. This likely means the XML is malformed or missing..
+[ERROR] [1772736517.570494252] [pluginlib.ClassLoader]: Skipped loading plugin with error: XML Document '/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/.infra/ros2/share/rosbag2_cpp/test/rosbag2_cpp/converter_test_plugin.xml' has no Root Element. This likely means the XML is malformed or missing..
+[ERROR] [1772736517.570640085] [pluginlib.ClassLoader]: Skipped loading plugin with error: XML Document '/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/.infra/ros2/share/rosbag2_cpp/test/rosbag2_cpp/converter_test_plugin.xml' has no Root Element. This likely means the XML is malformed or missing..
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1772736517.589338545] [rosbag2_storage]: Opened database '/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/data/euroc/MH_01_easy_ros2/MH_01_easy_ros2.db3' for READ_ONLY.
+[INFO] [1772736517.589442087] [rosbag2_player]: Set rate to 1
+[INFO] [1772736517.590364920] [rosbag2_player]: Overriding QoS profile for topic /imu0
+[INFO] [1772736517.592364879] [rosbag2_player]: Overriding QoS profile for topic /cam1/image_raw
+[INFO] [1772736517.593073045] [rosbag2_player]: Overriding QoS profile for topic /cam0/image_raw
+[INFO] [1772736517.597574921] [rosbag2_player]: Adding keyboard callbacks.
+[INFO] [1772736517.597673213] [rosbag2_player]: Press SPACE for Pause/Resume
+[INFO] [1772736517.597691004] [rosbag2_player]: Press CURSOR_RIGHT for Play Next Message
+[INFO] [1772736517.597712879] [rosbag2_player]: Press CURSOR_UP for Increase Rate 10%
+[INFO] [1772736517.597734171] [rosbag2_player]: Press CURSOR_DOWN for Decrease Rate 10%
+[INFO] [1772736517.597924629] [rosbag2_player]: Sleep 3000000000 ns
+[INFO] [1772736520.600396223] [rosbag2_storage]: Opened database '/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/data/euroc/MH_01_easy_ros2/MH_01_easy_ros2.db3' for READ_ONLY.

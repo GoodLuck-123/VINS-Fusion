@@ -52,3 +52,5 @@ board-baseline01 为补充依赖前的失败，数据已到板端并通过哈希
 fastrtps01 为主机下载失败，HTTPS 仓库证书域名不匹配，没有解包/部署 addon。后续采用原 SDK 的 HTTP 仓库地址，版本和已验签索引的逐包 SHA256 不变，见 [失败证据](../infra/rk3588/reference/fastrtps01_failure/)
 
 fastrtps02 已接受为 Fast DDS 板端生命周期验收，addon 与原运行包哈希、实际 maps 和退出均通过，事件/SHA256 见 [归档](../infra/rk3588/reference/fastrtps_20261014/)，无 bag 输入。旧 fastrtps01 通知只去重，不改回 URL 或重新下载
+
+board-baseline02 已接受为首轮完整双目基线，输入计数、初始化/无重置、末帧、ATE/RPE、退出和结束进程审计通过。事件和 SHA256 见 [归档](../infra/rk3588/reference/baseline_20261014/)，旧 board-baseline01 启动失败不重新运行

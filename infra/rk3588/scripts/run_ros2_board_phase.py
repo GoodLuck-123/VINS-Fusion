@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import shutil
@@ -69,6 +70,17 @@ def main():
     subprocess.run([tool, args.target, str(payload), '--run',
                     str(Path(__file__).parent / 'ros2_board_phase.sh'),
                     '--output', str(directory / 'board'), '--timeout', '7200'], check=True)
+    # Evaluation stays on the host in the same locked environment as desktop runs.
+    evaluation_env = os.environ.copy()
+    for key in ['PYTHONPATH', 'LD_LIBRARY_PATH', 'VIRTUAL_ENV', 'CONDA_PREFIX']:
+        evaluation_env.pop(key, None)
+    evaluation_env['UV_CACHE_DIR'] = str(WORKSPACE / '.infra/uv-cache')
+    for trial in trials:
+        with (directory / (trial['name'] + '-evaluation.log')).open('w') as log:
+            subprocess.run(['uv', 'run', '--offline', '--project', str(REPO / 'infra/desktop'), '--locked',
+                            'python', str(REPO / 'infra/desktop/scripts/evaluate_baseline.py'),
+                            str(directory / 'board' / trial['name']), '--label', trial['name']],
+                           stdout=log, stderr=subprocess.STDOUT, env=evaluation_env, check=True)
 
 
 if __name__ == '__main__':

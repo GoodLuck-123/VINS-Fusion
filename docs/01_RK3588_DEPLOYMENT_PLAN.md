@@ -1,8 +1,8 @@
 # VINS-Fusion / ROS 2 / RK3588 顶层任务书
 
-更新日期：2026-10-13
+更新日期：2026-10-14
 
-物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机已完成全部 52 轮桌面里程碑与局部探针验收，正在进入 RK3588 板端准备，详见 [复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)。当前实测结论只取 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，旧 WSL 结论保存在历史 tag，不作为当前主机结果
+物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机已完成全部 52 轮桌面里程碑与局部探针验收，详见 [复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)；RK3588 已完成交叉构建、依赖运行探针和首轮完整双目基线，其他板端配置继续验收。当前实测结论只取 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，旧 WSL 结论保存在历史 tag，不作为当前主机结果
 
 ## 一、目标与总体结论
 
@@ -127,7 +127,7 @@ ROS 1 四轮与 ROS 2 双目 copy 两轮完整 MH_01_easy 输入、末帧、初�
 
 本机图像适配器、只读 owner/stride/转换、两种 RMW 的组件加载卸载，以及 memfd/VGEM 各 1000 帧局部 ASan 压力已通过。Fast DDS 组件服务未复现旧 WSL 故障；组件/owner 的八轮完整对照已通过；共享像素四轮与 PMU 两轮完整回放已通过；真实 VGEM 两轮及 30 次重复统计也已完成，合计 52 轮。memfd 未显示明确合计 CPU 收益，VGEM 消费端 CPU 明显增加，共享路径源端 PSS 较低，暂不沿用旧性能结论
 
-实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。RK3588、真实相机、RGA/NEON/NPU 尚未验收；本轮不同时开发这些功能。源端 EuRoC 仍复制像素到池，VGEM 是软件分配/CPU 映射路径，不代表相机 DMA 或板端缓存/fence 验证
+实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。RK3588 首轮完整双目基线已通过，单目/组件/共享及 ROS 1 对照继续；真实相机、RGA/自研 NEON/NPU 尚未验收，本轮不同时开发这些功能。源端 EuRoC 仍复制像素到池，VGEM 是软件分配/CPU 映射路径，不代表相机 DMA 或板端缓存/fence 验证
 
 ### 共享缓冲与板端边界
 

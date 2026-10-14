@@ -37,7 +37,7 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 初始 PMU 权限值为 4，用户临时调为 2、加载 VGEM 后本机探针通过；实验结束已恢复原 PMU 值 4、卸载临时 VGEM。DDR 控制器事件未发现，CPU 能量节点普通用户不可读，二者记不可用，不用 cache misses、复制量或 GPU 功率替代
 
-实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。EuRoC 源端仍向池中复制像素，VGEM 仅为软件 DMA-BUF/CPU 映射验证。RK3588、真实相机、RGA/NEON/NPU 未验收，回环/GNSS/KITTI/RViz 未完成数据验收；设计范围见 [第 01 份任务书](01_RK3588_DEPLOYMENT_PLAN.md)
+实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。EuRoC 源端仍向池中复制像素，VGEM 仅为软件 DMA-BUF/CPU 映射验证。RK3588 首轮双目基线已通过，单目和传输对照仍待验收；真实相机、RGA/NPU、回环/GNSS/KITTI/RViz 未完成数据验收；设计范围见 [第 01 份任务书](01_RK3588_DEPLOYMENT_PLAN.md)
 
 ## RK3588 当前状态
 
@@ -45,12 +45,14 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 目标 firefly@10.106.0.220，RK3588S / Ubuntu 22.04.5 / 厂商内核 5.10.110。免密 SSH、C++ 远端工具、交叉 GCC/ARM SDK、统一依赖下载、perf 及视觉库板端计算探针均已验收；OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保持不变，传递依赖差异见第 05 份报告
 
-最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。完整 VIO 与 ROS 1 ARM 实验尚待验收
+最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。ROS 1 ARM、ROS 2 单目/组件/共享对照仍待验收
 
-运行包生成与部署检查已固定为 prepare_ros2_runtime.py / deploy_ros2_runtime.sh，runtime01 板端文件哈希、导入、独立节点与组件加载/卸载及退出全部通过，OpenCV maps 为运行包 4.2；结果目录 ../results/rk3588/runtime01/，证据见第 08 份文档。该探针没有 VIO 输入，完整回放仍待验收
+运行包生成与部署检查已固定为 prepare_ros2_runtime.py / deploy_ros2_runtime.sh，runtime01 板端文件哈希、导入、独立节点与组件加载/卸载及退出全部通过，OpenCV maps 为运行包 4.2；结果目录 ../results/rk3588/runtime01/，证据见第 08 份文档。该探针没有 VIO 输入，完整回放另行验收
 
 运行环境里程碑 commit 55fdcd8 / tag milestone-rk3588-ros2-runtime-v1 已提交。board-baseline01 数据传输/哈希通过，但 SDK 缺 Fast DDS 后端，在 rclpy 初始化时失败，尚未启动 VINS；失败归档保留。fastrtps02 已通过四个锁定 ARM 包/50 个 addon 文件及独立节点/组件生命周期校验，原 SDK/运行包不变；下一轮复用数据、使用新结果前缀继续完整基线
 
-2026-10-14 已统一读取全部 52 个 event/state、核对 29 个阶段和全部归档；主机无活构建/实验，板端七个旧作业均已结束。积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
+board-baseline02 已通过一轮完整双目 standalone/copy/Fast DDS，输入和末帧完整、无重置/配对丢帧、退出 0；ATE 0.269229 m / RPE 0.00313946 m，VINS 全线程 CPU 673.68 s。资源范围、排空等待和温度/频率见第 05 份报告，不宣称逐帧实时性或合计进程 CPU
+
+2026-10-14 全局核对时已统一读取 52 个 event/state、核对 29 个阶段和全部归档；当时主机无活构建/实验，板端七个旧作业均已结束。后续新阶段续写账本，积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
 
 工作流见 [第 08 份说明](08_RK3588_WORKFLOW.md)，clone 后一条命令补齐依赖见 [第 09 份说明](09_DEPENDENCIES.md)。板端墙上时钟未同步，按主机阶段 UTC 归档、单调时钟计时；profile 探针不代表 VINS 性能验收

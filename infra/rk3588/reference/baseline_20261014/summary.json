@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "initializations": 1,
+  "resets": 0,
+  "pairing_drops": 0,
+  "last_frame_covered": true,
+  "sensor_counts": {
+    "img0": 3682,
+    "img1": 3682,
+    "imu": 36820,
+    "processed": 3682
+  },
+  "estimated_poses": 1831,
+  "matched_poses": 1819,
+  "ate_rmse_m": 0.26922899034024556,
+  "rpe_one_pose_rmse_m": 0.0031394605586367984,
+  "vins_cpu_all_threads_s": 673.6800000000001,
+  "vins_rss_peak_mib": 83.71875,
+  "vins_pss_peak_mib": 73.0517578125,
+  "playback_wall_s": 188.42749080700014,
+  "drain_wait_s": 6.1197928649999085,
+  "source_resources": "Not sampled by the inherited standalone baseline runner; VINS CPU is not combined CPU",
+  "telemetry_ranges": {
+    "/sys/class/devfreq/dmc/cur_freq": {
+      "min": 528000000,
+      "max": 1560000000
+    },
+    "/sys/class/thermal/thermal_zone0/temp": {
+      "min": 38846,
+      "max": 59153
+    },
+    "/sys/class/thermal/thermal_zone1/temp": {
+      "min": 38846,
+      "max": 60076
+    },
+    "/sys/class/thermal/thermal_zone2/temp": {
+      "min": 38846,
+      "max": 60076
+    },
+    "/sys/class/thermal/thermal_zone3/temp": {
+      "min": 39769,
+      "max": 60076
+    },
+    "/sys/class/thermal/thermal_zone4/temp": {
+      "min": 38846,
+      "max": 57307
+    },
+    "/sys/class/thermal/thermal_zone5/temp": {
+      "min": 38846,
+      "max": 56384
+    },
+    "/sys/class/thermal/thermal_zone6/temp": {
+      "min": 38846,
+      "max": 57307
+    },
+    "/sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq": {
+      "min": 408000,
+      "max": 1800000
+    },
+    "/sys/devices/system/cpu/cpufreq/policy4/scaling_cur_freq": {
+      "min": 408000,
+      "max": 2352000
+    },
+    "/sys/devices/system/cpu/cpufreq/policy6/scaling_cur_freq": {
+      "min": 408000,
+      "max": 2352000
+    }
+  },
+  "ddr_bandwidth": "Unavailable",
+  "power": "Unavailable",
+  "runtime_unchanged": true,
+  "active_prior_task_processes": []
+}
