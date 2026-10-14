@@ -21,6 +21,8 @@ PRESETS = {
     'pmu': [('stereo_imu', 'standalone', image, 'ros', True) for image in ['copy', 'share']],
     'shared': [(mode, 'split', 'share', transport, False)
                for mode in ['stereo_imu', 'mono_imu'] for transport in ['ros', 'memfd']],
+    'dma_heap': [(mode, 'split', 'share', 'dma_heap', False)
+                 for mode in ['stereo_imu', 'mono_imu']],
 }
 
 
@@ -33,10 +35,15 @@ def main():
     parser.add_argument('--data-parent', default='vins-workspace/datasets/euroc_20261014')
     parser.add_argument('--upload-data', action='store_true')
     parser.add_argument('--phase', choices=PRESETS, required=True)
+    parser.add_argument('--shared-device', default='/dev/dma_heap/system',
+                        help='Board DMA heap device, used only by the dma_heap phase')
     parser.add_argument('--directory', type=Path, required=True)
     args = parser.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9_-]+', args.prefix):
         parser.error('Use a simple unique prefix without path separators')
+    if args.phase == 'dma_heap' and (not args.shared_device.startswith('/dev/dma_heap/')
+                                   or '..' in Path(args.shared_device).parts):
+        parser.error('Specify an absolute board /dev/dma_heap/ device')
     directory = args.directory.resolve()
     directory.mkdir(parents=True, exist_ok=False)
     payload = directory / 'drivers'
@@ -54,6 +61,9 @@ def main():
                    mode=mode, deployment=deployment, image=image, transport=transport, pmu=pmu,
                    rmw='rmw_cyclonedds_cpp' if deployment in ['composed', 'split'] else 'rmw_fastrtps_cpp')
               for index, (mode, deployment, image, transport, pmu) in enumerate(PRESETS[args.phase], 1)]
+    for trial in trials:
+        if trial['transport'] == 'dma_heap':
+            trial['shared_device'] = args.shared_device
     plan = dict(runtime=args.runtime, bag=f'{args.data_parent}/{bag.name}',
                 bag_hashes=data_hashes, trials=trials,
                 runtime_manifest_sha256=hashlib.sha256((REPO / 'infra/rk3588/reference/runtime_20261014/payload_files.json').read_bytes()).hexdigest(),

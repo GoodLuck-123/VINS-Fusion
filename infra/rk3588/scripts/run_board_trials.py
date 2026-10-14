@@ -93,6 +93,8 @@ def main():
                        '--image-mode', trial['image'], '--image-transport', trial['transport']]
             if trial['pmu']:
                 command.append('--perf-counters')
+            if trial['transport'] == 'dma_heap':
+                command.extend(['--shared-device', trial['shared_device']])
             try:
                 with (logs / (trial['name'] + '.log')).open('w') as log:
                     code = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, env=env).returncode

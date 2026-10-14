@@ -151,3 +151,17 @@ fastrtps02 已验收 Fast DDS 2.6.12 / rmw_fastrtps 6.2.10，独立节点和组�
 VGEM 仅是桌面夹具。板端 DMA heap 若使用，需先实际验证分配、stride、缓存同步、owner 和归还，不能冒充 VGEM、真实相机或端到端零拷贝验收
 
 大阶段由主机后台 runner 执行，结束/失败才通知一次，不在线模型轮询。积压通知按 [第 10 份账本](10_PHASE_EVENT_AUDIT.md) 去重，先统一核对当前事件、源代码和有效产物，再决定唯一下一阶段；源码与正在运行的实验产物固定，避免按旧通知反复修改
+
+## 实际 DMA heap 后续入口
+
+shared-probe01 已验收 memfd 与 /dev/dma_heap/system 各 1000 帧，完整 ROS Image/memfd 对照由 board-shared01 串行执行。结束验收后再运行 phase=dma_heap，两模式各一次，复用同一运行包、数据、Cyclone 配置和参数，不同时启动板端实验
+
+```bash
+python3 infra/rk3588/scripts/run_ros2_board_phase.py \
+  --runtime 已验收的板端运行包绝对路径 \
+  --ros-addon 已验收的板端FastDDS补充包绝对路径 \
+  --phase dma_heap --shared-device /dev/dma_heap/system \
+  --prefix 新前缀 --directory ../results/rk3588/新阶段/trial
+```
+
+设备明确写入方案并传给已部署 runner，默认板端 system heap，不沿用桌面 /dev/dri/card0，也不在失败时自动换 heap。这里只固定调用入口，完整 DMA heap VIO 尚未验收；仍需消费计数、摘要、owner/归还、末帧、ATE/RPE、进程退出及资源证据

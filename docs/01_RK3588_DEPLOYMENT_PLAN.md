@@ -2,7 +2,7 @@
 
 更新日期：2026-10-14
 
-物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机已完成全部 52 轮桌面里程碑与局部探针验收，详见 [复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)；RK3588 已完成交叉构建、依赖运行探针和首轮完整双目基线，其他板端配置继续验收。当前实测结论只取 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，旧 WSL 结论保存在历史 tag，不作为当前主机结果
+物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机已完成全部 52 轮桌面里程碑与局部探针验收，详见 [复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)；RK3588 已完成交叉构建、依赖运行探针、双目/单目/组件完整对照、PMU 与实际 DMA heap 计算探针；完整共享传输和 ROS 1 继续验收。当前实测结论只取 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，旧 WSL 结论保存在历史 tag，不作为当前主机结果
 
 ## 一、目标与总体结论
 
