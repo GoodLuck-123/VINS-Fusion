@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/usr/bin/bash",
+    "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/prepare_shared_probe.sh"
+  ],
+  "pid": 114666,
+  "status": "complete",
+  "start_utc": "2026-10-14T08:05:16Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-14T08:05:17Z"
+}

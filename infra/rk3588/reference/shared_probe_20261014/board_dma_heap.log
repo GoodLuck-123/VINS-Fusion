@@ -1,0 +1,8 @@
+shared_peer local_pid=57878 peer_pid=57876 uid=1000
+shared_buffer slot=0 backend=2 device=9 inode=54262 stride=32 bytes=4096
+shared_buffer slot=1 backend=2 device=9 inode=54263 stride=32 bytes=4096
+mapping_layout width=32 height=16 stride=32 format=mono8 source_stride=64
+shared_reader backend=2 frames=1000 verified=1000 failed=0 sha0=8cc4feedf064fe1d8142326860f53fdfd937ca59a1682794d78b2c66235eb44b sha1=6da0862eae83143fe6fbc4502787e09b9ec9bd38fc3a3aa0e1ddc609b78cf903
+shared_peer local_pid=57876 peer_pid=57878 uid=1000
+shared_writer backend=dma_heap frames=1000 source_materializations=1000 source_bytes=512000 waits=996 reuses=996 outstanding=0 failed=0 sha0=8cc4feedf064fe1d8142326860f53fdfd937ca59a1682794d78b2c66235eb44b sha1=6da0862eae83143fe6fbc4502787e09b9ec9bd38fc3a3aa0e1ddc609b78cf903
+PASS dma_heap: independent processes, 1000 frames, padded input, retained previous frame, 4-slot backpressure

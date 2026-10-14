@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/home/eric/projects/.infra/bin/vins-remote",
+    "firefly@10.106.0.220",
+    "/home/eric/projects/.infra/rk3588/shared-probe-payload",
+    "--run",
+    "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/shared_probe.sh",
+    "--output",
+    "/home/eric/projects/results/rk3588/shared-probe01/board",
+    "--timeout",
+    "120"
+  ],
+  "pid": 117169,
+  "status": "complete",
+  "start_utc": "2026-10-14T08:22:33Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-14T08:22:38Z"
+}

@@ -45,7 +45,7 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 目标 firefly@10.106.0.220，RK3588S / Ubuntu 22.04.5 / 厂商内核 5.10.110。免密 SSH、C++ 远端工具、交叉 GCC/ARM SDK、统一依赖下载、perf 及视觉库板端计算探针均已验收；OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保持不变，传递依赖差异见第 05 份报告
 
-最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。ROS 1 ARM、ROS 2 PMU/共享对照仍待验收
+最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。ROS 2 PMU 已通过，完整共享对照与 ROS 1 ARM 仍待验收
 
 运行包生成与部署检查已固定为 prepare_ros2_runtime.py / deploy_ros2_runtime.sh，runtime01 板端文件哈希、导入、独立节点与组件加载/卸载及退出全部通过，OpenCV maps 为运行包 4.2；结果目录 ../results/rk3588/runtime01/，证据见第 08 份文档。该探针没有 VIO 输入，完整回放另行验收
 
@@ -55,11 +55,11 @@ board-baseline02 已通过一轮完整双目 standalone/copy/Fast DDS，输入�
 
 board-components01 五轮去重对照已通过完整输入/末帧、初始化/无重置、退出及主机评估，share 灰度入口零物化，composed 指针检查通过。单目 copy/share ATE 为 0.162089 / 0.159856 m；三组 copy/share 单轮 CPU 差异不足 0.5%，各轮轨迹有小幅差异，不宣称确定提速或字节一致。完整指标和范围续写第 05 份报告
 
-组件里程碑 commit a545a95 / tag milestone-rk3588-components-v1；board-pmu01 已交给后台 runner 串行执行两轮双目 copy/share 加 PMU 计数，结束自动回收并在主机评估。当前已验收运行包保持不变，迟到的 baseline01 失败仅去重
+组件里程碑 commit a545a95 / tag milestone-rk3588-components-v1；PMU 里程碑 commit af6c635 / tag milestone-rk3588-pmu-v1。当前已验收运行包保持不变，迟到事件按路径与 SHA256 去重
 
-board-pmu01 两轮已通过完整输入/末帧、评估与退出，四类用户态 CPU 事件无错误、无复用，权限保持 2；证据和计数范围见第 05 份报告。共享缓冲探针已在主机交叉构建完成，实际板端 memfd/DMA heap 校验仍待执行；不因构建退出 0 提前接受硬件路径
+board-pmu01 两轮已通过完整输入/末帧、评估与退出，四类用户态 CPU 事件无错误、无复用，权限保持 2；证据和计数范围见第 05 份报告。shared-probe01 实际板端 memfd 与 /dev/dma_heap/system 各通过 1000 帧逐像素/owner/归还校验，结束 outstanding=0；完整共享 VIO 对照另行验收，不将计算探针当作真实相机或端到端零拷贝
 
-ROS 1 板端目标 codex/rk3588-ros1 已从 master 最新 8c7c8d2 建立独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1，依赖锁 commit 6578b00。主机只读 APT 解析已验签，807 个 Focal/Noetic SDK 包和 36 个 GCC 9.4 工具链包固定 SHA256；ros1-fetch01 在主机下载，板端 ROS 1 构建/运行尚未验收。当前 ROS 2 工作区与已部署运行包保持固定
+ROS 1 板端目标 codex/rk3588-ros1 已从 master 最新 8c7c8d2 建立独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1，依赖锁 commit 6578b00。主机只读 APT 解析已验签，807 个 Focal/Noetic SDK 包和 36 个 GCC 9.4 工具链包固定 SHA256；ros1-fetch01 下载及离线复核已通过，依赖里程碑 commit 30b9d96；ros1-legacy01 因旧主机 libstdc++ 抢占 CMake 失败，缩小主机库搜索范围后继续，板端 ROS 1 构建/运行尚未验收。当前 ROS 2 工作区与已部署运行包保持固定
 
 2026-10-14 全局核对时已统一读取 52 个 event/state、核对 29 个阶段和全部归档；当时主机无活构建/实验，板端七个旧作业均已结束。后续新阶段续写账本，积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
 

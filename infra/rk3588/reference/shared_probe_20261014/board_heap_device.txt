@@ -1,0 +1,8 @@
+  File: /dev/dma_heap/system
+  Size: 0         	Blocks: 0          IO Block: 4096   character special file
+Device: 5h/5d	Inode: 113         Links: 1     Device type: fb,0
+Access: (0660/crw-rw----)  Uid: (    0/    root)   Gid: (   44/   video)
+Access: 2026-03-05 03:09:26.865340021 +0000
+Modify: 2026-03-05 03:09:26.865340021 +0000
+Change: 2026-03-05 03:09:26.865340021 +0000
+ Birth: -

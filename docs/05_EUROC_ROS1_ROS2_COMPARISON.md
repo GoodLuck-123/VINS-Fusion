@@ -373,3 +373,11 @@ board-pmu01 双目 standalone/copy、share 各一轮，输入计数/末帧、初
 | cache_misses | 4,810,830,339 | 4,775,486,012 |
 
 PMU 范围含原生进程及继承线程、exec/启动/清理与短 Python gate；CPU/RSS/PSS 是 VINS 订阅就绪至排空，未采源端，二者时间范围不同。计数只作 CPU 诊断，不能替代 DDR 带宽或 CPU 功耗；两项仍不可用。不将单轮差异当作确定收益，也不将排空后完成称为逐帧实时性。输入/运行包/算法/标定固定，[完整证据及原文件/gzip SHA256](../infra/rk3588/reference/pmu_20261014/)
+
+## RK3588 memfd / 实际 DMA heap 计算探针（2026-10-14）
+
+shared-probe01 两个后端各通过 1000 帧逐像素/时间戳/相机号校验，失败 0、结束 outstanding 0，两个相机的 SHA256 在生产/消费端及两个后端之间相同。独立进程，四槽位，慢消费者、跨帧 owner 和 socket 清理均通过；结束审计无旧作业活进程
+
+输入 mono8、32×16，源 stride 64、共享池 stride 32；每后端源端物化 1000 次 / 512000 字节，槽位等待/复用各 996 次。实际使用 /dev/dma_heap/system，原权限 0660 root:video，无权限修改或 heap 回退。现有生产实现的 CPU DMA_BUF_IOCTL_SYNC START/END 与归还路径通过，此次没有真实相机、外部 GPU/RGA fence 或完整 VIO，不称为端到端零拷贝或实时性验证
+
+探针以 Release/-UNDEBUG 交叉构建，源端仍复制像素。主机事件与板端原日志、动态库、摘要、运行包文件哈希和结束审计见 [计算探针证据](../infra/rk3588/reference/shared_probe_20261014/)，完整共享回放另行验收
