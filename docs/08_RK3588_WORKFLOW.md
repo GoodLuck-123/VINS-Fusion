@@ -87,3 +87,17 @@ bash infra/rk3588/scripts/prepare_cross_toolchain.sh
 ```
 
 默认前缀 `../.infra/rk3588/toolchain/`，板端小程序结果 `../results/rk3588/cross-smoke02/`。本机临时服务 `vins-rk-toolchain02.service` 承接阶段，事件在 `../results/rk3588/toolchain02/`，只在完成或失败通知一次。已有 ready 的工具链拒绝重新下载覆盖；后续 OpenCV/Ceres/ROS/VINS 尚未构建或验收
+
+## ARM ROS 2 sysroot 下载
+
+独立 `prepare_ros2_sysroot.py` 使用 Ubuntu/ROS 签名验证，下载 ARM Jammy/Humble 的运行与开发依赖闭包，不执行板端 apt、不安装本机系统包。独立 apt 索引/状态/cache 不与交叉 GCC 下载互相覆盖；同时下载 Ubuntu 的 ARM linux-tools/perf 作为待实测候选，只接受 arm64/all 包，保存版本及 SHA256，完成后 ready 前缀拒绝在线覆盖
+
+```bash
+python3 infra/rk3588/scripts/prepare_ros2_sysroot.py
+```
+
+默认前缀 `../.infra/rk3588/ros2-sdk/`，sysroot 子目录只供交叉编译。其中 apt cv_bridge/OpenCV 4.5.4 依赖不是最终 VINS 参照；后续仍重建 OpenCV 4.2.0 / Ceres 1.14.0 / cv_bridge 3.2.1 并审计链接。CMake 工具链位于 `infra/rk3588/cmake/aarch64.cmake`，主机程序和目标库查找分开
+
+本阶段由 `vins-rk-sysroot03.service` 承接，事件在 `../results/rk3588/sysroot03/`。SDK 下载可与编译器下载独立进行，VIO 和性能实验仍严格串行；完成或失败才通知一次，不能将下载成功当作 ARM 构建或 VIO 验收
+
+perf 候选工具从同一已认证的 Ubuntu ARM 仓库下载。厂商内核为 5.10，Ubuntu 工具版本可能为 5.15；跳过按 uname 选路径的 wrapper，只有实际计数、采样及符号解析检查通过才采用该用户态二进制，不更换板端内核
