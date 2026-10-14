@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/usr/bin/bash",
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/rk3588/scripts/build_legacy.sh"
+  ],
+  "pid": 117808,
+  "status": "complete",
+  "start_utc": "2026-10-14T08:31:42Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-14T08:33:37Z"
+}

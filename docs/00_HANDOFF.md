@@ -24,4 +24,4 @@ ros1-fetch01 已完成并离线重验四个源码/843 个锁定包，GCC 9.4 主
 
 ros1-fetch01 下载与离线哈希复核已通过，依赖里程碑 commit 30b9d96 / tag milestone-rk3588-ros1-dependencies-v1。首次视觉库构建 ros1-legacy01 在主机 CMake 启动时失败，原证据保留 infra/rk3588/reference/ros1_legacy01_failure/
 
-Focal 工具链的旧主机 libstdc++ 抢占 Jammy CMake，现仅将编译器 isl/gmp/mpc/mpfr 与 ARM binutils 主机支持库暴露到 LD_LIBRARY_PATH，保留系统主机 libc/libstdc++。系统 CMake 3.22.1 与 GCC 9 生成 AArch64 对象均通过，ros1-legacy02 在主机后台重建。OpenCV 4.2/Ceres 1.14/Eigen 3.3.9、原 Carotene 参数和目标依赖均未改变；板端 ABI/ROS 1 回放仍待验收
+Focal 工具链的旧主机 libstdc++ 抢占 Jammy CMake，现仅将编译器 isl/gmp/mpc/mpfr 与 ARM binutils 主机支持库暴露到 LD_LIBRARY_PATH，保留系统主机 libc/libstdc++。系统 CMake 3.22.1 与 GCC 9 生成 AArch64 对象均通过，ros1-legacy02 已退出 0，消费端探针编译/链接及 25 个非 glibc ARM 库闭包通过。OpenCV 4.2/Ceres 1.14/Eigen 3.3.9、原 Carotene 参数和目标依赖均未改变；板端 ABI/ROS 1 回放仍待验收
