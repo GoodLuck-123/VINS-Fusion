@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+project(arm_legacy_smoke LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+find_package(OpenCV 4.2.0 EXACT REQUIRED)
+find_package(Ceres 1.14.0 EXACT REQUIRED)
+add_executable(legacy_smoke main.cpp)
+target_include_directories(legacy_smoke PRIVATE ${OpenCV_INCLUDE_DIRS} ${CERES_INCLUDE_DIRS})
+target_link_libraries(legacy_smoke PRIVATE ${OpenCV_LIBS} ${CERES_LIBRARIES})

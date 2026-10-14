@@ -28,6 +28,8 @@ python3 infra/dependencies/fetch.py
 
 只取通用源码时使用 `--sources-only`；这不建立桌面 ROS 环境，也不代替第 02/04 份文档的原生锁。当前包锁是 ARM ROS 2 SDK，ROS 1 板端 SDK 后续需单独锁定，不能拿 Humble 的库运行 ROS 1
 
+ARM sysroot 解包后，将包内绝对符号链接改为目标根目录内的相对链接，避免从 x86 主机查找目标 libm 等库；转换记录保存在 sysroot 根目录的 `.vins-sysroot-links.json`。包版本与归档 SHA256 不变，不执行 postinst 或修改主机系统；改正之前创建的统一 SDK 后必须完整重建库，不能复用旧链接产物
+
 ## 复用缓存与离线重建
 
 已有下载可按哈希复用，路径参数可重复；不会移动或修改旧缓存：

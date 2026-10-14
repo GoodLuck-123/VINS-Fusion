@@ -1,0 +1,16 @@
+-- Found installed version of Eigen: /home/eric/projects/.infra/rk3588/legacy/share/eigen3/cmake
+-- Found required Ceres dependency: Eigen version 3.3.9 in /home/eric/projects/.infra/rk3588/legacy/include/eigen3
+-- Found installed version of glog: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/cmake/glog
+-- Detected glog version: 0.4.0
+-- Found required Ceres dependency: glog
+-- Found installed version of gflags: /home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/usr/lib/aarch64-linux-gnu/cmake/gflags
+-- Detected gflags version: 2.2.2
+-- Found required Ceres dependency: gflags
+-- Ceres version 1.14.0 detected here: /home/eric/projects/.infra/rk3588/legacy was built with C++11. Ceres target will add C++11 flags to compile options for targets using it.
+-- Found Ceres version: 1.14.0 installed in: /home/eric/projects/.infra/rk3588/legacy with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, CXSparse, SchurSpecializations, C++11, OpenMP, Multithreading]
+-- Configuring done
+CMake Error: Cannot open file for write: /home/eric/projects/.infra/rk3588/legacy-smoke-build/CMakeCache.txt.tmp7a7c8
+CMake Error: : System Error: Read-only file system
+CMake Error: Unable to open cache file for save. /home/eric/projects/.infra/rk3588/legacy-smoke-build/CMakeCache.txt
+CMake Error: : System Error: Read-only file system
+gmake: *** [Makefile:179: cmake_check_build_system] Error 1

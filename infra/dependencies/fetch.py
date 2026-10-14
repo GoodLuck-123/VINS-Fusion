@@ -81,17 +81,41 @@ def unpack_source(archive, destination, sha):
         os.replace(root, destination)
 
 
-def unpack_packages(lock, archives, destination):
+def relocate_sysroot_links(root):
+    """Absolute target links must resolve inside a sysroot, never on the host."""
+    changes = {}
+    for path in sorted(root.rglob('*')):
+        if not path.is_symlink():
+            continue
+        target = os.readlink(path)
+        if target.startswith('/'):
+            relative = os.path.relpath(root / os.path.normpath(target).lstrip('/'), path.parent)
+            replacement = path.with_name(path.name + '.vins-link-tmp')
+            replacement.symlink_to(relative)
+            os.replace(replacement, path)
+            changes[str(path.relative_to(root))] = dict(original=target, relocated=relative)
+    audit = root / '.vins-sysroot-links.json'
+    if changes or not audit.exists():
+        previous = json.loads(audit.read_text()) if audit.exists() else {}
+        previous.update(changes)
+        audit.write_text(json.dumps(previous, indent=2) + '\n')
+
+
+def unpack_packages(lock, archives, destination, sysroot=False):
     lock_sha = digest(lock)
     marker = destination / '.vins-lock-sha256'
     if destination.exists():
         if not marker.is_file() or marker.read_text().strip() != lock_sha:
             raise RuntimeError(f'Existing SDK has a different lock: {destination}')
+        if sysroot:
+            relocate_sysroot_links(destination)
         return
     destination.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='.extract-', dir=destination.parent) as tmp:
         for archive in archives:
             subprocess.run(['dpkg-deb', '--extract', str(archive), tmp], check=True)
+        if sysroot:
+            relocate_sysroot_links(Path(tmp))
         (Path(tmp) / marker.name).write_text(lock_sha + '\n')
         os.replace(tmp, destination)
 
@@ -119,7 +143,7 @@ def main():
                 lock = DEPS / 'locks' / (name + '.json')
                 packages = json.loads(lock.read_text())['packages']
                 archives = [fetch(p, cache, args.cache_from, args.offline) for p in packages]
-                unpack_packages(lock, archives, destination)
+                unpack_packages(lock, archives, destination, sysroot=name == 'ros2-sdk')
                 print(f'{name}: {len(packages)} pinned package hashes verified', flush=True)
         print('Dependencies ready; downloaded trees and caches are ignored by Git', flush=True)
 

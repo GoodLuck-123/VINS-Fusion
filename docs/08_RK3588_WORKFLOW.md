@@ -122,7 +122,7 @@ perf 候选工具从同一已认证的 Ubuntu ARM 仓库下载。厂商内核为
 bash infra/rk3588/scripts/build_legacy.sh
 ```
 
-使用统一下载目录及 cross_env.sh，为 ARM 安装 Eigen 3.3.9、OpenCV 4.2.0、Ceres 1.14.0，默认安装前缀 `../.infra/rk3588/legacy/`、构建目录 `../.infra/rk3588/build-legacy-gcc11/`。OpenCV 模块和关闭的第三方特性沿用原生参照，不开启新的板端算法优化；使用主机 GNU Make，默认四个编译任务，可通过 VINS_BUILD_JOBS 调整
+使用统一下载目录及 cross_env.sh，为 ARM 安装 Eigen 3.3.9、OpenCV 4.2.0、Ceres 1.14.0，默认安装前缀 `../.infra/rk3588/legacy/`、构建目录 `../.infra/rk3588/build-legacy-sysroot/`。OpenCV 模块和关闭的第三方特性沿用原生参照，不开启新的板端算法优化；使用主机 GNU Make，默认四个编译任务，可通过 VINS_BUILD_JOBS 调整
 
 首次配置因主机 fresh shell 没有 Ninja 而失败，未生成视觉库，证据见 [配置失败记录](../infra/rk3588/reference/legacy01_failure/)。已改用现有 Make、新建构建目录，依赖版本和原失败记录不变。后续重建由临时服务 vins-rk-legacy02.service 承接，唯一阶段目录 `../results/rk3588/legacy02/`，完成或失败才通知一次；截至提交入口时尚未验收库或 VINS
 
@@ -137,3 +137,7 @@ legacy02 随后在 Carotene 编译失败：OpenCV 4.2.0 使用旧参数 ipcp-uni
 代码生成使用主机 `/usr/bin/python3` 及 SDK 中可在主机运行的纯 Python ament/catkin 工具；Python/NumPy 头文件与 libpython 显式取 ARM SDK。已独立验证主机 Python 3.10.12、目标开发文件查找，以及编译得到 ELF64 AArch64 Python 模块，见 [Python 交叉探针](../infra/rk3588/reference/python_cross_20261014/)。此探针尚未在板端导入，也不表示 cv_bridge 或完整 ROS 2/VINS 已构建通过
 
 legacy03 已完成 OpenCV 4.2.0，但 Ceres 配置失败，证据见 [Ceres 配置失败](../infra/rk3588/reference/legacy03_failure/)。解包 SDK 不执行 postinst，BLAS/LAPACK 的 alternatives 链接不存在；显式查找实际 blas/lapack 子目录。此 SDK 的 libspqr.so 未依赖 TBB，关闭旧 Ceres 的可选 TBB 探测，保留 OpenMP、SuiteSparse/LAPACK/CXSparse；安装后检查不允许这些参照功能静默关闭。新目录局部配置已通过，下一完整构建为 legacy04
+
+legacy04 的库构建退出 0，但消费端链接探针失败，未接受为里程碑，见 [共享库链接失败](../infra/rk3588/reference/legacy04_link_failure/)。SDK 绝对符号链接使 libm.so 无法在主机解析，构建退回静态数学库；统一下载入口已将 36 个绝对链接改为目标 SDK 内的相对链接。另补齐目标库 rpath-link，解析间接 BLAS/LAPACK 依赖。包锁和归档哈希不变，旧视觉库前缀及失败构建保留，完整重建使用新目录，下一阶段为 legacy05
+
+视觉库必须同时通过消费端链接和板端运行：`bash infra/rk3588/scripts/prepare_legacy_smoke.sh` 构建/打包探针，再用 C++ 工具传输并运行 `infra/rk3588/scripts/legacy_smoke.sh`。探针检查带 padding 的灰度输入、GFTT/LK 位移与输入不变，以及 SuiteSparse/CXSparse 两种实际稀疏求解；源码在 infra/rk3588/probes/legacy/，不能将 ldd 或 ELF 检查替代这些运行验收

@@ -1,0 +1,10 @@
+{
+  "library_build_exit": 0,
+  "library_milestone_accepted": false,
+  "old_opencv_calib3d_sha256": "263685070d4a632e1beb034ee9a31699642697bd8f953f469c5f6bb2ad4a915a",
+  "old_undefined___frexp": true,
+  "target_libm_absolute_link_caused_static_fallback": true,
+  "sdk_absolute_links_relocated": 36,
+  "package_locks_unchanged": true,
+  "full_rebuild_required": true
+}

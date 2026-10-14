@@ -2,7 +2,7 @@
 set -euo pipefail
 repo=$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)
 source "$repo/infra/rk3588/scripts/cross_env.sh"
-build="${VINS_ARM_BUILD:-$(dirname "$repo")/.infra/rk3588/build-legacy-gcc11}"
+build="${VINS_ARM_BUILD:-$(dirname "$repo")/.infra/rk3588/build-legacy-sysroot}"
 jobs="${VINS_BUILD_JOBS:-4}"
 toolchain="$repo/infra/rk3588/cmake/aarch64.cmake"
 mkdir -p "$build" "$VINS_ARM_PREFIX"

@@ -1,0 +1,146 @@
+{
+  "bin/systemd": {
+    "original": "/lib/systemd/systemd",
+    "relocated": "../lib/systemd/systemd"
+  },
+  "etc/rmt": {
+    "original": "/usr/sbin/rmt",
+    "relocated": "../usr/sbin/rmt"
+  },
+  "lib/systemd/system/cryptdisks-early.service": {
+    "original": "/dev/null",
+    "relocated": "../../../dev/null"
+  },
+  "lib/systemd/system/cryptdisks.service": {
+    "original": "/dev/null",
+    "relocated": "../../../dev/null"
+  },
+  "lib/systemd/system/hwclock.service": {
+    "original": "/dev/null",
+    "relocated": "../../../dev/null"
+  },
+  "lib/systemd/system/rc.service": {
+    "original": "/dev/null",
+    "relocated": "../../../dev/null"
+  },
+  "lib/systemd/system/rcS.service": {
+    "original": "/dev/null",
+    "relocated": "../../../dev/null"
+  },
+  "lib/systemd/system/x11-common.service": {
+    "original": "/dev/null",
+    "relocated": "../../../dev/null"
+  },
+  "sbin/halt": {
+    "original": "/bin/systemctl",
+    "relocated": "../bin/systemctl"
+  },
+  "sbin/init": {
+    "original": "/lib/systemd/systemd",
+    "relocated": "../lib/systemd/systemd"
+  },
+  "sbin/poweroff": {
+    "original": "/bin/systemctl",
+    "relocated": "../bin/systemctl"
+  },
+  "sbin/reboot": {
+    "original": "/bin/systemctl",
+    "relocated": "../bin/systemctl"
+  },
+  "sbin/runlevel": {
+    "original": "/bin/systemctl",
+    "relocated": "../bin/systemctl"
+  },
+  "sbin/shutdown": {
+    "original": "/bin/systemctl",
+    "relocated": "../bin/systemctl"
+  },
+  "sbin/telinit": {
+    "original": "/bin/systemctl",
+    "relocated": "../bin/systemctl"
+  },
+  "usr/lib/aarch64-linux-gnu/libBrokenLocale.so": {
+    "original": "/lib/aarch64-linux-gnu/libBrokenLocale.so.1",
+    "relocated": "../../../lib/aarch64-linux-gnu/libBrokenLocale.so.1"
+  },
+  "usr/lib/aarch64-linux-gnu/libanl.so": {
+    "original": "/lib/aarch64-linux-gnu/libanl.so.1",
+    "relocated": "../../../lib/aarch64-linux-gnu/libanl.so.1"
+  },
+  "usr/lib/aarch64-linux-gnu/libc_malloc_debug.so": {
+    "original": "/lib/aarch64-linux-gnu/libc_malloc_debug.so.0",
+    "relocated": "../../../lib/aarch64-linux-gnu/libc_malloc_debug.so.0"
+  },
+  "usr/lib/aarch64-linux-gnu/libcrypt.so": {
+    "original": "/lib/aarch64-linux-gnu/libcrypt.so.1",
+    "relocated": "../../../lib/aarch64-linux-gnu/libcrypt.so.1"
+  },
+  "usr/lib/aarch64-linux-gnu/libexpat.so": {
+    "original": "/lib/aarch64-linux-gnu/libexpat.so.1.8.7",
+    "relocated": "../../../lib/aarch64-linux-gnu/libexpat.so.1.8.7"
+  },
+  "usr/lib/aarch64-linux-gnu/liblzma.so": {
+    "original": "/lib/aarch64-linux-gnu/liblzma.so.5.2.5",
+    "relocated": "../../../lib/aarch64-linux-gnu/liblzma.so.5.2.5"
+  },
+  "usr/lib/aarch64-linux-gnu/libm.so": {
+    "original": "/lib/aarch64-linux-gnu/libm.so.6",
+    "relocated": "../../../lib/aarch64-linux-gnu/libm.so.6"
+  },
+  "usr/lib/aarch64-linux-gnu/libnss_compat.so": {
+    "original": "/lib/aarch64-linux-gnu/libnss_compat.so.2",
+    "relocated": "../../../lib/aarch64-linux-gnu/libnss_compat.so.2"
+  },
+  "usr/lib/aarch64-linux-gnu/libnss_hesiod.so": {
+    "original": "/lib/aarch64-linux-gnu/libnss_hesiod.so.2",
+    "relocated": "../../../lib/aarch64-linux-gnu/libnss_hesiod.so.2"
+  },
+  "usr/lib/aarch64-linux-gnu/libresolv.so": {
+    "original": "/lib/aarch64-linux-gnu/libresolv.so.2",
+    "relocated": "../../../lib/aarch64-linux-gnu/libresolv.so.2"
+  },
+  "usr/lib/aarch64-linux-gnu/libthread_db.so": {
+    "original": "/lib/aarch64-linux-gnu/libthread_db.so.1",
+    "relocated": "../../../lib/aarch64-linux-gnu/libthread_db.so.1"
+  },
+  "usr/lib/aarch64-linux-gnu/libtirpc.so": {
+    "original": "/lib/aarch64-linux-gnu/libtirpc.so.3.0.0",
+    "relocated": "../../../lib/aarch64-linux-gnu/libtirpc.so.3.0.0"
+  },
+  "usr/lib/aarch64-linux-gnu/libz.so": {
+    "original": "/lib/aarch64-linux-gnu/libz.so.1.2.11",
+    "relocated": "../../../lib/aarch64-linux-gnu/libz.so.1.2.11"
+  },
+  "usr/lib/environment.d/99-environment.conf": {
+    "original": "/etc/environment",
+    "relocated": "../../../etc/environment"
+  },
+  "usr/lib/python3.10/sitecustomize.py": {
+    "original": "/etc/python3.10/sitecustomize.py",
+    "relocated": "../../../etc/python3.10/sitecustomize.py"
+  },
+  "usr/lib/ssl/certs": {
+    "original": "/etc/ssl/certs",
+    "relocated": "../../../etc/ssl/certs"
+  },
+  "usr/lib/ssl/openssl.cnf": {
+    "original": "/etc/ssl/openssl.cnf",
+    "relocated": "../../../etc/ssl/openssl.cnf"
+  },
+  "usr/lib/ssl/private": {
+    "original": "/etc/ssl/private",
+    "relocated": "../../../etc/ssl/private"
+  },
+  "usr/share/X11/rgb.txt": {
+    "original": "/etc/X11/rgb.txt",
+    "relocated": "../../../etc/X11/rgb.txt"
+  },
+  "usr/share/misc/usb.ids": {
+    "original": "/var/lib/usbutils/usb.ids",
+    "relocated": "../../../var/lib/usbutils/usb.ids"
+  },
+  "usr/share/zoneinfo/localtime": {
+    "original": "/etc/localtime",
+    "relocated": "../../../etc/localtime"
+  }
+}
