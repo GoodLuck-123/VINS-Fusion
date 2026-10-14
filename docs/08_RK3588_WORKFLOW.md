@@ -77,6 +77,20 @@ ROS 2 直接 CMake 顺序构建 cv_bridge 3.2.1、camera_models、vins_estimator
 
 ROS 官方旧 cross_compile 工具已经停止支持，本工程使用明确 CMake 工具链/sysroot，[官方说明](https://github.com/ros2/ros2_documentation/blob/humble/source/How-To-Guides/Cross-compilation.rst)
 
+## ROS 2 运行包与部署入口
+
+从已验收构建提交打包，再用一次调用完成 scp、板端检查和日志回收：
+
+```bash
+python3 infra/rk3588/scripts/prepare_ros2_runtime.py --build-commit c0ae27d
+bash infra/rk3588/scripts/deploy_ros2_runtime.sh firefly@10.106.0.220 \
+  ../.infra/rk3588/ros2-payload ../results/rk3588/新的运行环境检查
+```
+
+打包拒绝覆盖目录，核对核心/config 与构建提交一致；运行包包含 VIO 节点、插件、必要 ROS/Python 资源及动态依赖，排除静态库、KITTI 程序和 SDK cv_bridge/OpenCV 4.5，保留板端 glibc/loader。全部 ELF 校验 AArch64，生成逐文件 SHA256 和构建来源记录；部署环境从自身路径定位，不依赖主机绝对路径或 Conda
+
+运行检查先验证全部文件哈希及目标 Python/消息/rosbag2 导入，再检查独立节点订阅就绪与正常退出、组件加载/卸载与容器正常退出，保存 ldd、进程 maps 和日志。该检查没有 bag 输入，不计入完整 VIO 实验。当前 runtime01 已交由主机后台 runner 执行，终止后读取事件与日志再验收，不提前标记运行成功
+
 ## 板端依赖运行探针
 
 ```bash
