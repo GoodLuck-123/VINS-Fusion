@@ -15,6 +15,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--target', default='firefly@10.106.0.220')
     parser.add_argument('--runtime', required=True)
+    parser.add_argument('--runtime-manifest', type=Path,
+                        default=REPO / 'infra/rk3588/reference/ros1_runtime_20261014/payload_files.json',
+                        help='Host files.json for the accepted deployment; defaults to its frozen archive')
     parser.add_argument('--name', required=True)
     parser.add_argument('--directory', type=Path, required=True)
     parser.add_argument('--data-parent', default='vins-workspace/datasets/euroc_20261014')
@@ -33,7 +36,7 @@ def main():
     drivers.mkdir()
     plan = dict(runtime=args.runtime, name=args.name, bag=args.data_parent+'/'+bag.name,
                 bag_sha256=digest.hexdigest(),
-                runtime_manifest_sha256=hashlib.sha256((WORKSPACE / '.infra/rk3588/ros1-payload/files.json').read_bytes()).hexdigest(),
+                runtime_manifest_sha256=hashlib.sha256(args.runtime_manifest.read_bytes()).hexdigest(),
                 driver_commit=subprocess.check_output(['git','-C',str(REPO),'rev-parse','HEAD'],text=True).strip())
     (drivers/'plan.json').write_text(json.dumps(plan,indent=2)+'\n')
     tool = str(WORKSPACE / '.infra/bin/vins-remote')

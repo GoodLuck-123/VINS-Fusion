@@ -1,0 +1,9 @@
+[31mRLException: Invalid <param> tag: Cannot load command parameter [rosversion]: no such command [['rosversion', 'roslaunch']]. 
+
+Param xml is <param name="rosversion" command="rosversion roslaunch"/>[0m
+[31mThe traceback for the exception was written to the log file[0m
+... logging to /home/firefly/.ros/log/832a3320-18d5-11f1-b738-6c1ff7295dee/roslaunch-firefly-96471.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;roscore

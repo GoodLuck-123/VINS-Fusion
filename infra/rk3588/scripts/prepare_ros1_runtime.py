@@ -46,6 +46,11 @@ def main():
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     copy_runtime(ros, output / '.infra/ros1', sdk=True)
+    # roscore.xml invokes rosversion, installed by rospkg under usr/bin.
+    launcher = output / '.infra/ros1/bin/rosversion'
+    source_launcher = sdk / 'usr/bin/rosversion'
+    shutil.copy2(source_launcher, launcher)
+    launcher.write_bytes(launcher.read_bytes().replace(b'#!/usr/bin/python3\n', b'#!/usr/bin/env python3\n', 1))
     copy_runtime(sdk / 'usr/lib/python3/dist-packages', output / '.infra/runtime/python', sdk=True)
     copy_runtime(sdk / 'usr/lib/python3.8', output / '.infra/python38/lib/python3.8')
     pybin = output / '.infra/python38/bin'

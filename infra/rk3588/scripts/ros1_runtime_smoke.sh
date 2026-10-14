@@ -16,6 +16,7 @@ from sensor_msgs.msg import Image,Imu
 result=dict(verified_files=len(manifest),python=sys.version,python_executable=sys.executable,
             numpy=numpy.__version__,source=json.loads((root/'build_source.json').read_text()),bag_input=False)
 (logs/'python_maps.txt').write_text(pathlib.Path('/proc/self/maps').read_text())
+result['roslaunch_version']=subprocess.check_output(['rosversion','roslaunch'],text=True).strip()
 binary=root/'.infra/vins_ws/devel/lib/vins/vins_node'
 ldd=subprocess.check_output(['ldd',str(binary)],text=True)
 (logs/'vins_ldd.txt').write_text(ldd)

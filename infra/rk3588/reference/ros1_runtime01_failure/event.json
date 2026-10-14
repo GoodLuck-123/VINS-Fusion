@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/usr/bin/bash",
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/rk3588/scripts/deploy_ros1_runtime.sh"
+  ],
+  "pid": 132248,
+  "status": "failed",
+  "start_utc": "2026-10-14T09:13:57Z",
+  "exit_code": 1,
+  "end_utc": "2026-10-14T09:14:22Z"
+}
