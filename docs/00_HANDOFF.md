@@ -1,8 +1,8 @@
 # 原生 Ubuntu 接手入口
 
-更新日期：2026-10-13
+更新日期：2026-10-14
 
-当前在物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机复现已完成的 WSL 桌面实验，累计验收全部 52 轮完整回放；最终交接核验继续。实测统一见 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，清单、失败记录和批次方案见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)，重建/运行入口见 [第 04 份说明](04_UBUNTU22_ROS2_SETUP.md)
+当前在物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机复现已完成的 WSL 桌面实验，累计验收全部 52 轮完整回放；最终交接核验已完成。实测统一见 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，清单、失败记录和批次方案见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)，重建/运行入口见 [第 04 份说明](04_UBUNTU22_ROS2_SETUP.md)
 
 ## 分支与里程碑
 
@@ -16,8 +16,8 @@
 | ros2-humble / PMU | 两轮，commit `24fd362`；四类用户态事件可用、无复用 | `milestone-ros2-pmu-native-ubuntu22-v1` |
 | ros2-humble / 共享内存 | 四轮，commit `dd68d8d`；ROS Image/memfd 摘要与轨迹一致、槽位全部归还 | `milestone-ros2-shared-memory-native-ubuntu22-v1` |
 | ros2-humble / VGEM | 两轮，commit `511f08f`；完整输入、DMA-BUF 注册、摘要/轨迹及退出/槽位归还通过 | `milestone-ros2-dmabuf-native-ubuntu22-v1` |
-| ros2-humble / 30 次重复 | 已完成，三路径 × 两模式 × 各五次，完整输入、轨迹和槽位归还通过 | `milestone-ros2-shared-repeats-native-ubuntu22-v1` |
-| ros2-humble / 最终交接 | 归档、文档与环境核验继续 | 验收后新增 |
+| ros2-humble / 30 次重复 | commit `13cfa87`，已完成，三路径 × 两模式 × 各五次，完整输入、轨迹和槽位归还通过 | `milestone-ros2-shared-repeats-native-ubuntu22-v1` |
+| ros2-humble / 最终交接 | 历史/本机归档、隔离环境和文档入口核验完成 | `milestone-ros2-desktop-handoff-native-ubuntu22-v1` |
 
 ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改；ROS 1 输入计数由 bag 核验，不是节点实收计数。ROS 2 正式轮次均要求正常退出、完整消费和末帧覆盖。局部 ASan、owner/stride/回退、前端十帧一致性与两种 RMW 生命周期探针已通过，证据和覆盖边界见第 05/07 份文档
 
@@ -27,7 +27,7 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 `native_shared_repeats_20261013` 已完成，统一原生默认 DDS XML 与 VGEM 节点，353 个冻结文件未变。临时服务 `vins-native-repeats01.service` 已结束且没有 VINS/播放器残留；外层事件在 `../results/ubuntu22-reproduction/repeats01/`，状态/日志在 `../results/ros2/native_shared_repeats_20261013/`
 
-继续核验历史/本机归档 SHA256、分支/tag、文档入口和隔离环境，并恢复临时 PMU/VGEM 设置。完成通知只在阶段终止时触发一次，hook 与聊天 ID 不迁移，不安装持久服务或 timer
+实验归档 18 份/1308 条 SHA256 已通过，另有交接快照 8 条，609 个旧快照 blob 未变、八个原 tag 与远端一致；隔离环境、文档入口及脚本检查通过，PMU 已恢复 4、临时 VGEM 已卸载。完成通知只在阶段终止时触发一次，hook 与聊天 ID 不迁移，不安装持久服务或 timer
 
 每阶段验收后独立提交并新增 annotated tag，失败结果保留且不混入成功统计。切换分支前确认服务结束且无 VINS/播放器残留；源码切换后重建，再在新 shell source 对应环境，已有 install 不代表当前源码
 
@@ -35,6 +35,8 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 命令从仓库根执行，运行工作区是父目录；依赖、数据、完整日志分别在 `../.infra/`、`../data/`、`../results/`，根目录不建软链接。保留 OpenCV 4.2.0 / Ceres 1.14.0、原标定及算法参数，ROS shell 与 uv 评估 shell 分开
 
-初始 PMU 权限值为 4，用户临时调为 2、加载 VGEM 后本机探针通过；实验结束恢复原 PMU 值。DDR 控制器事件未发现，CPU 能量节点普通用户不可读，二者记不可用，不用 cache misses、复制量或 GPU 功率替代
+初始 PMU 权限值为 4，用户临时调为 2、加载 VGEM 后本机探针通过；实验结束已恢复原 PMU 值 4、卸载临时 VGEM。DDR 控制器事件未发现，CPU 能量节点普通用户不可读，二者记不可用，不用 cache misses、复制量或 GPU 功率替代
 
 实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。EuRoC 源端仍向池中复制像素，VGEM 仅为软件 DMA-BUF/CPU 映射验证。RK3588、真实相机、RGA/NEON/NPU 未验收，回环/GNSS/KITTI/RViz 未完成数据验收；设计范围见 [第 01 份任务书](01_RK3588_DEPLOYMENT_PLAN.md)
+
+下一项为用户已授权的 RK3588 板端工作：配置免密 SSH、固定 scp/部署/运行/日志回收工具、在联网主机下载依赖并优先交叉编译，再按配置各跑一轮。板端 Ubuntu 22.04.5/aarch64 已连通，尚未做板端 VIO 验收；后续从当前 ROS 2 最新提交建立目标分支，保留本轮分支/tag

@@ -2,7 +2,7 @@
 
 更新日期：2026-10-13
 
-先读 [交接入口](00_HANDOFF.md)和[复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)。本页命令针对当前物理 Ubuntu 22.04.5 x86_64 主机；锁定依赖、四个 package 和数据转换已从零重建，实际动态库隔离核验通过。本机各里程碑累计 52 轮完整 VIO 已验收，最终交接核验继续，结果统一写 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
+先读 [交接入口](00_HANDOFF.md)和[复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)。本页命令针对当前物理 Ubuntu 22.04.5 x86_64 主机；锁定依赖、四个 package 和数据转换已从零重建，实际动态库隔离核验通过。本机各里程碑累计 52 轮完整 VIO 已验收，最终交接核验已完成，结果统一写 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)
 
 ## 分支与固定依赖
 

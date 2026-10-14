@@ -8,7 +8,7 @@
 
 DDR 流量不可用；CPU 能量节点默认不可读。GPU hwmon 功率不代表 CPU VIO 功耗
 
-ROS 1 四轮、ROS 2 两轮参照、八轮组件/owner、两轮 PMU、四轮共享传输及两轮 VGEM 已完成，累计 52 轮；完整回放复现已结束，最终交接核验继续。完整清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
+ROS 1 四轮、ROS 2 两轮参照、八轮组件/owner、两轮 PMU、四轮共享传输及两轮 VGEM 已完成，累计 52 轮；完整回放复现及最终交接核验已结束。完整清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
 
 <!-- native-phase:ros1 -->
 ## ROS 1 原版参照与资源对照（2026-10-13）
@@ -261,3 +261,12 @@ CPU 秒是数据源与 VINS 所有线程累计 CPU 时间之和；负的对照�
 源端 PSS 峰值中位数在 ROS/memfd/VGEM 下为双目 86.27 / 17.04 / 16.50 MiB、单目 51.43 / 16.75 / 16.38 MiB；本机共享路径的源端内存观测较低，VINS PSS 差异见表。源端仍有一次像素复制，包含全像素 SHA256 校验成本，不能据此称全链路零拷贝或外推板端缓存、DDR、功耗结果
 
 三路径全部使用同一原生默认 DDS XML（SHA256 `85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1`）、source commit `511f08f`、同一 VINS/数据源二进制。新 annotated tag 为 `milestone-ros2-shared-repeats-native-ubuntu22-v1`，直接提交到 ros2-humble
+
+<!-- native-phase:handoff -->
+## 原生桌面交接核验
+
+全部 52 轮回放验收完成。18 份实验 SHA256 清单共 1308 条通过，另冻结交接证据 8 条，历史 609 个快照 blob 与原 b250dc0 一致，八个原 annotated tag 与远端一致。源码/参数未改，隔离动态库、脚本与文档入口复核通过；PMU 恢复 4、VGEM 已卸载、无残留 VINS/播放器
+
+新增只读归档核验脚本处理历史两种路径约定，不改写原清单。失败摘录的来源和覆盖边界仍保留，文档整理未重跑 VIO。新 annotated tag 为 `milestone-ros2-desktop-handoff-native-ubuntu22-v1`，直接提交于 ros2-humble
+
+[交接核验证据](../infra/desktop/comparison_reference/native_ubuntu22_20261013/handoff/)，板端、真实相机和硬件加速仍需分别验收

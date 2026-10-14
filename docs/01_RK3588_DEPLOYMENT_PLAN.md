@@ -2,7 +2,7 @@
 
 更新日期：2026-10-13
 
-当前在物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机复现已完成的桌面实验。ROS 1 四轮和 ROS 2 双目 copy 两轮已验收，八轮组件/owner 完整对照和共享缓冲局部探针通过；其余里程碑逐项继续，详见 [复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)。当前实测结论只取 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，旧 WSL 结论保存在历史 tag，不作为当前主机结果
+物理 Ubuntu 22.04.5 / Ryzen 7 9800X3D 主机已完成全部 52 轮桌面里程碑与局部探针验收，正在进入 RK3588 板端准备，详见 [复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)。当前实测结论只取 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，旧 WSL 结论保存在历史 tag，不作为当前主机结果
 
 ## 一、目标与总体结论
 

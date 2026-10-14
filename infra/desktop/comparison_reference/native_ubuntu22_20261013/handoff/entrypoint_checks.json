@@ -1,0 +1,18 @@
+{
+  "python_syntax_files": 22,
+  "shell_syntax_files": 10,
+  "arm_bootstrap_rejections": [
+    {
+      "script": "infra/desktop/scripts/bootstrap_baseline.sh",
+      "simulated_arch": "aarch64",
+      "exit_code": 1,
+      "stderr": "This bootstrap uses Linux x86_64 locks; create a separate ARM environment for RK3588. See docs/00_HANDOFF.md."
+    },
+    {
+      "script": "infra/desktop/scripts/bootstrap_ros2.sh",
+      "simulated_arch": "aarch64",
+      "exit_code": 1,
+      "stderr": "This bootstrap uses Linux x86_64 locks; create a separate ARM environment for RK3588. See docs/00_HANDOFF.md."
+    }
+  ]
+}

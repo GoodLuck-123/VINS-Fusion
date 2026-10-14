@@ -1,6 +1,6 @@
 # 原生 Ubuntu 复现清单
 
-更新日期：2026-10-13
+更新日期：2026-10-14
 
 本轮在物理 Ubuntu 22.04 主机复现已完成的 WSL 实验，以本机结果替换当前文档中的实测结论。历史 tag、原始归档和 SHA256 清单保持原样，便于追溯；不复制旧安装前缀、通知 hook 或聊天 ID
 
@@ -23,7 +23,7 @@ Ubuntu 22.04.5、Linux 6.8.0-138-generic、AMD Ryzen 7 9800X3D，8 核 16 线程
 | `milestone-ros2-shared-memory-v1` | 单目/双目 split，ROS Image/memfd，各一轮；像素签名与槽位归还 | 4 | 已完成，`milestone-ros2-shared-memory-native-ubuntu22-v1` |
 | `milestone-ros2-dmabuf-v1` | 单目/双目 split VGEM，与前一阶段同条件 ROS/memfd 对照 | 2 | 已完成，`milestone-ros2-dmabuf-native-ubuntu22-v1` |
 | `milestone-ros2-shared-repeats-v1` | 三传输 × 两模式 × 各五次，顺序轮换、冻结二进制与参数 | 30 | 已完成，`milestone-ros2-shared-repeats-native-ubuntu22-v1` |
-| `milestone-ros2-desktop-handoff-v1` | 文档、入口、归档校验、分支重建及新主机交接 | 0 | 待执行 |
+| `milestone-ros2-desktop-handoff-v1` | 文档、入口、归档校验、分支重建及新主机交接 | 0 | 已完成，`milestone-ros2-desktop-handoff-native-ubuntu22-v1` |
 
 合计 52 轮完整回放。除原版 ROS 1 已知清理 abort 外，正式 ROS 2 结果要求正常退出。失败立即停止当前批次，保存日志与已完成结果；修复后用新名称补跑，失败不混入成功统计
 
@@ -35,7 +35,7 @@ CPU 报告全部线程累计秒，RSS/PSS 按进程分别记录。单进程 VINS
 
 ## 本机权限与测量范围
 
-初始 `kernel.perf_event_paranoid=4`，普通用户的 PMU 访问返回 EACCES。用户临时设为 2 后，task clock、cycles、cache misses 的访问探针通过；实验结束恢复 4，不写 sysctl 持久配置
+初始 `kernel.perf_event_paranoid=4`，普通用户的 PMU 访问返回 EACCES。用户临时设为 2 后，task clock、cycles、cache misses 的访问探针通过；实验结束已核实恢复 4、临时 VGEM 已卸载，不写 sysctl 持久配置
 
 用户加载 `vgem` 后，DRM 查询确认 `/dev/dri/card0` 的驱动为 `vgem`、版本 1.0.0，当前用户可读写。它是软件 DMA-BUF 机制验证，CPU 访问映射；没有使用 NVIDIA/AMD GPU 算法加速，也没有相机 DMA/RGA
 
@@ -43,68 +43,70 @@ CPU 报告全部线程累计秒，RSS/PSS 按进程分别记录。单进程 VINS
 
 WSL 的 Cyclone DDS 小分片 XML 不直接视为本机必需配置。先核验本机默认配置，三路径对照采用统一、明确记录的配置；若参数不同，需要另列控制条件，不能混算收益
 
-## 结果与通知
+## 结果、版本与后台
 
-统一结果页为 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)，新增证据放在 `infra/desktop/comparison_reference/native_ubuntu22_20261013/`，30 次重复快照为 `infra/desktop/comparison_reference/native_shared_repeats_20261013/`，不覆盖旧目录
+统一结果为 [第 05 份报告](05_EUROC_ROS1_ROS2_COMPARISON.md)。本机阶段证据在 `infra/desktop/comparison_reference/native_ubuntu22_20261013/`，30 次重复在 `infra/desktop/comparison_reference/native_shared_repeats_20261013/`；完整日志位于父目录 results，不覆盖历史目录
 
-正式 ROS 1 入口为 `infra/desktop/scripts/run_native_ros1_reproduction.sh`。它依次完成四轮回放、独立 uv 评估和验收；每轮结果名不同，拒绝覆盖已有结果
+| 阶段 | 所属分支 commit | 本机事件目录（相对 `../results/ubuntu22-reproduction/`） |
+| --- | --- | --- |
+| ROS 1 四轮 | master `2731068`，日志审计修正 `8c7c8d2` | ros1-phase02、ros1-phase03 |
+| ROS 2 重建及两轮参照 | ros2-humble `d198095` | ros2-bootstrap01、ros2-baseline01 |
+| 八轮组件/owner | ros2-humble `d03feaf` | components01 |
+| 两轮 PMU | ros2-humble `24fd362` | pmu01 |
+| 四轮 ROS/memfd | ros2-humble `dd68d8d` | shared01 |
+| 两轮 VGEM | ros2-humble `511f08f` | vgem01 |
+| 30 次重复 | ros2-humble `13cfa87` | repeats01 |
 
-批次在本地后台执行，完成或失败时向本机当前聊天排入一次处理请求；正常轮次不调用模型。hook 仅存在本机忽略的 `.local-tests/`，其失败单独记录，不能更改实验成功状态
+各阶段由本机用户级临时 systemd unit 承接，不依赖工具 shell 存活，不安装持久服务或 timer。阶段终止时才向当前聊天排入一次通知，正常轮次不调用模型；hook 与聊天 ID 仅在忽略的 `.local-tests/`，不随 clone 迁移。正式执行器、采样和评估脚本均纳入 Git
 
-本次后台由用户级临时 systemd unit `vins-native-ros1-phase02.service` 承接，不依赖工具 shell 持续存在，也不安装持久服务或定时任务。可通过 `systemctl --user status vins-native-ros1-phase02.service` 检查；各轮 VINS/rosbag PID 会变化，间隔和评估阶段可能暂时没有 VINS
+ROS 1 执行器位于 master 的 `infra/desktop/scripts/run_native_ros1_reproduction.sh`；ROS 2 为 `run_native_ros2_phase.py`。控制台日志按唯一阶段目录隔离，结果名拒绝复用，补跑必须另立名称
 
-首次使用 nohup 启动的子进程在工具 shell 结束后消失，停在环境核验，未开始 VIO；中断证据保留在 `../results/ubuntu22-reproduction/ros1-phase01/`，不计入成功实验。改用临时 systemd 服务后，已核验独立服务仍在运行、首轮 vins_node/rosbag 进程存在且轨迹日志持续产生
+## 局部检查与覆盖边界
 
-phase02 首轮回放与评估通过，第二轮在启动前的端口预检查返回 EADDRINUSE，无残留 ROS 进程。预检查补充 SO_REUSEADDR，与 ROS master 的地址复用行为一致；另核验仍拒绝活跃监听者，不改算法或回放条件。失败日志保留，不覆盖已成功的 `native_MH01_baseline_r01`
+图像适配器 ASan 三次通过，覆盖灰度 copy/share、owner、padded stride、颜色转换回退与非法布局拒绝。memfd/VGEM 各 1000 帧、4 槽位背压、上一帧 owner 保活、全像素校验和零未归还槽位通过；源码及重建步骤见 [局部探针归档](../infra/desktop/comparison_reference/native_ubuntu22_20261013/local_probes/)
 
-余下三轮由 `vins-native-ros1-phase03.service` 串行补跑，`run_native_ros1_reproduction.sh` 可接收显式补跑名称。当前服务检查命令为 `systemctl --user status vins-native-ros1-phase03.service`，阶段事件在 `../results/ubuntu22-reproduction/ros1-phase03/`
+Fast DDS/Cyclone DDS 两种 RMW 各六次单目/双目组件加载卸载通过，正确拒绝重复实例和非法配置，容器退出 0。本机未复现旧 WSL Fast DDS 组件服务故障；composed/split 仍使用统一 Cyclone DDS 控制条件
 
-phase03 已完成并正常通知，四轮成功结果全部核验；VINS 二进制哈希一致，各有一次初始化、1831 个位姿、1819 个真值匹配，无重置/配对丢弃，末帧覆盖完整。回放正常结束，ROS 1 清理 abort 如实记录；主机无残留 ROS/VINS 进程及 master 监听。旧实验分支仅是本轮最初的误建入口，没有复现 commit，已将未提交改动转回 master
+真实 EuRoC 单目/双目前十帧 copy/share 的特征 ID、相机编号、七维观测在 1e-12 容差内一致，见 [前端一致性归档](../infra/desktop/comparison_reference/native_ubuntu22_20261013/feature_consistency/)。没有 IMU 预测或全工程长期泄漏验收；ASan 只覆盖探针与共享协议源码，依赖未全插桩、泄漏检测关闭，子进程析构后 _exit
 
-补跑日志审计：phase03 复用了原控制台日志路径，使 phase02 的第二轮启动 stderr 被覆盖；旧归档中的该日志为空，保留原冻结清单，不伪装成完整 stderr。失败事件仍在，当时读取到的 traceback 按聊天工具输出补充为[注明来源的摘录](../infra/desktop/comparison_reference/native_ubuntu22_20261013/ros1_startup_failure_audit/)。四个成功轮次的轨迹、采样、验收和哈希不受影响
+loop_fusion/global_fusion 仅验证启动及 SIGINT 退出 0，KITTI 两入口仅验证缺参退出 1，不当作回环、GNSS、KITTI 或 RViz 的数据验收。四个 package 的完整构建和依赖隔离核验通过，范围与完整 VIO 分开记录
 
-正式阶段执行器现将控制台日志放入每个唯一阶段目录的 trials 子目录，补跑不再复用前次日志。该修正只改变日志路径，不改回放、算法或二进制
+## 30 次重复的固定条件与结论
 
-ROS 1 里程碑 commit 为 master `2731068`，日志隔离与失败摘录审计修正为 `8c7c8d2`。后续 ROS 2 从现有 ros2-humble `b250dc0` 继续，当前 `vins-native-ros2-bootstrap01.service` 正在重新创建锁定依赖、构建并转换/校验 bag；没有并发 VIO 回放
-
-ROS 2 从零重建、动态库隔离和全消息转换校验已通过。当前完整双目 copy 两轮由 `vins-native-ros2-baseline01.service` 执行，事件在 `../results/ubuntu22-reproduction/ros2-baseline01/`，逐轮状态在 `../results/ubuntu22-reproduction/native_ros2_baseline/`
-
-本机局部探针已通过：图像适配器 ASan 连续三次；memfd/VGEM 各 1000 帧、4 槽位背压、上一帧 owner 保活、全像素摘要和零未归还槽位；两种 RMW 各六次单目/双目加载卸载，并正确拒绝重复实例与无效配置，容器正常退出。Fast DDS 在本机组件服务可用，未复现旧 WSL 的该服务故障；composed/split 仍按独立控制条件使用 Cyclone DDS。源代码、重建命令与证据见 [局部探针归档](../infra/desktop/comparison_reference/native_ubuntu22_20261013/local_probes/)
-
-ASan 只覆盖测试可执行文件与共享协议源码，依赖未全插桩、泄漏检测关闭，子进程析构后 _exit；不代表全工程或长期泄漏验收
-
-ROS 2 双目 copy 两轮验收完成，完整传感器计数、末帧、初始化和退出通过，精度与本机 ROS 1 参照一致。新 tag 为 baseline-ros2-native-ubuntu22-v1，直接提交于 ros2-humble；后续将运行真实 EuRoC 前端 copy/share 一致性探针及八轮组件/图像入口对照
-
-ROS 2 参照里程碑已直接提交到 ros2-humble `d198095`，tag 为 baseline-ros2-native-ubuntu22-v1。单目/双目真实 EuRoC 前十帧 copy/share 特征 ID、相机编号和七维观测在 1e-12 容差内一致，证据见 [前端一致性归档](../infra/desktop/comparison_reference/native_ubuntu22_20261013/feature_consistency/)；局部探针首次编译缺 Ceres 头路径的错误已保留，只补齐探针依赖声明，未改 VINS 源码
-
-八轮完整组件/owner 对照由 `vins-native-components01.service` 执行，阶段事件在 `../results/ubuntu22-reproduction/components01/`，逐轮冻结状态与日志在 `../results/ubuntu22-reproduction/native_components/`；预计约 27 分钟，成功或失败才通知一次，不在线模型轮询
-
-八轮组件/owner 对照已完成，同模式轨迹逐字节一致，全部输入/末帧/退出通过；share 灰度入口物化为零，但少量重复没有稳定整机 CPU 提速结论。下一阶段为两轮双目 copy/share 用户态 PMU 对照
-
-组件/owner 里程碑 commit 为 ros2-humble `d03feaf`。PMU 阶段由 `vins-native-pmu01.service` 串行运行两轮 copy/share，事件在 `../results/ubuntu22-reproduction/pmu01/`、逐轮状态在 `../results/ubuntu22-reproduction/native_pmu/`。能力复核仍为物理主机、权限值 2、CPU PMU 可用；DDR 及 CPU 功耗不可用。仅将报告中的 Virtualized CPU PMU 描述改为通用 CPU PMU diagnostics，未改计数逻辑
-
-PMU 两轮已验收，四类用户态 CPU 事件均可用且无复用，完整输入、初始化、末帧和退出通过，同模式轨迹字节一致。资源采样 CPU 为 copy 162.16 秒、share 162.93 秒，不将单轮差异写成稳定收益；本阶段累计完成 16 轮正式回放，证据与测量范围见第 05 份报告
-
-PMU 里程碑 commit 为 ros2-humble `24fd362`，tag 为 `milestone-ros2-pmu-native-ubuntu22-v1`。共享像素四轮计划由 `vins-native-shared01.service` 执行，事件在 `../results/ubuntu22-reproduction/shared01/`，逐轮状态在 `../results/ubuntu22-reproduction/native_shared/`；原生默认 Cyclone DDS XML 在本阶段及后续 VGEM/重复实验统一使用、冻结并归档。执行器只补充实际 XML 冻结与配置/设备参数，记录重复阶段排空时间，不改算法
-
-共享传输四轮已验收：原生 DDS 默认配置通过；同模式输入摘要与轨迹字节一致，全部计数/末帧/初始化/退出通过，memfd 零错误、零未归还、零池满等待。源端仍向池中复制一次，不声明全链路零拷贝；本轮累计完成 20 轮，后续保持相同二进制、配置和校验条件运行 VGEM 两轮
-
-共享内存里程碑 commit 为 ros2-humble `dd68d8d`，tag 为 `milestone-ros2-shared-memory-native-ubuntu22-v1`。VGEM 两轮计划由 `vins-native-vgem01.service` 执行，事件在 `../results/ubuntu22-reproduction/vgem01/`、逐轮状态在 `../results/ubuntu22-reproduction/native_vgem/`。不改 VINS C++，仅将传输改为 vgem；沿用前阶段原生默认 DDS XML 和 SHA256 校验
-
-VGEM 两轮已验收，三路径同模式输入摘要与轨迹完全一致，DMA-BUF 注册、完整计数/末帧/初始化/退出及零未归还槽位通过。CPU 合计双目 440.87 秒、单目 244.58 秒，明显高于此前 ROS/memfd，主要增加在 VINS 消费进程；原始采样增量核验一致，具体原因未定位。本阶段累计完成 22 轮，不改实现或关闭校验来追求收益
-
-## 30 次重复的冻结方案
-
-三路径单轮均已验收。批次名为 `native_shared_repeats_20261013`，单目/双目各 ROS Image、memfd、VGEM 五次，共 30 次；各轮串行，模式及传输顺序轮换，间隔 10 秒。沿用同一二进制、标定/算法参数、share 入口、1 倍目标供给和全帧 SHA256 校验，显式指定原生默认 XML 与已核验的 VGEM 节点
+批次 `native_shared_repeats_20261013` 完成于 2026-10-13 10:01:04–11:43:59 UTC，约 102.9 分钟。三路径 × 两模式 × 各五次，串行、模式/传输顺序轮换、间隔 10 秒，share 入口、1 倍目标供给、全帧 SHA256 校验，无回环/RViz
 
 ```bash
 python3 infra/desktop/scripts/run_shared_repeats.py \
-  --batch native_shared_repeats_20261013 --repetitions 5 --cooldown 10 \
+  --batch 新批次名 --repetitions 5 --cooldown 10 \
   --dds-profile infra/desktop/cyclonedds_native.xml --shared-device /dev/dri/card0
 ```
 
-启动前工作树须干净、无活动 VINS/播放器，复核原生环境，冻结源码、实际 DDS XML、VINS/数据源二进制和已加载 SDK 动态库。失败立即停止并保留已完成结果，失败不混入统计；期间不编译、改脚本或切换分支。统计包括中位数/四分位/范围、同轮 ROS 对照 CPU 变化、各进程 RSS/PSS、回放/排空、等待计数及 ATE/RPE，不把独立峰值相加当作同时峰值
+实验前工作树干净、无残留 VINS/播放器，复核原生环境；源码、实际 DDS XML、二进制及已加载 SDK 动态库共 353 个冻结文件未变。两端全输入、一次初始化、末帧、摘要/轨迹和退出通过，共享路径零错误、零池满等待、零未归还槽位；无失败轮次，CPU 采样增量与分布经独立复核
 
-本机用户级临时服务名为 `vins-native-repeats01.service`，外层事件在 `../results/ubuntu22-reproduction/repeats01/`，批次状态/日志/统计在 `../results/ros2/native_shared_repeats_20261013/`。预计约 104 分钟，只在完成或失败时由外层 hook 通知当前聊天一次，批次内部不另发通知，不在线模型轮询
+同轮对 ROS 的合计 CPU 变化中位数：memfd 双目 −0.05%、单目 +0.41%，没有明确省 CPU 收益；VGEM 双目 +163.33%、单目 +120.26%，增加主要在消费进程、具体操作归因未定位。共享源端 PSS 较低，完整 Q25/Q75/范围、每进程 RSS/PSS、回放/排空、ATE/RPE 见第 05 份报告
 
-30 次重复已完成，source commit 为 ros2-humble `511f08f`，353 个冻结文件未变。完整输入、一次初始化、末帧、摘要/同模式轨迹字节、退出及共享槽位归还全部通过，无失败轮次或池满等待；原始 CPU 增量和重复分布已独立核验。memfd 没有明确合计 CPU 收益，VGEM 高 CPU 代价持续出现，共享源端 PSS 较低；完整统计见第 05 份报告。累计 52 轮完整回放全部完成，随后做最终交接核验与临时权限恢复
+源端仍有一次像素复制，包含全帧校验成本；回放含启动/完成观察，排空含约 6 秒固定等待。完整处理和无池满等待不等于逐帧实时通过，不外推 RK3588 的缓存、DDR、功耗结果
+
+## 失败与修正记录
+
+最初 nohup 子进程在工具 shell 结束后消失，停于环境检查、未开始 VIO；中断证据在 `../results/ubuntu22-reproduction/ros1-phase01/`，不混入成功实验。改用用户级临时 systemd 服务后持续执行与通知均已验证
+
+ROS 1 phase02 首轮成功，第二轮启动端口预检查出现 EADDRINUSE、无残留 ROS。补充 SO_REUSEADDR 并验证仍拒绝活跃监听者，余下三轮用 phase03 补跑；不改算法/回放条件，已成功结果不覆盖
+
+phase03 曾复用控制台日志路径，导致 phase02 第二轮启动 stderr 被覆盖，旧冻结快照中的该日志为空。保留原清单，追加[注明聊天工具输出来源的 traceback 摘录](../infra/desktop/comparison_reference/native_ubuntu22_20261013/ros1_startup_failure_audit/)，不伪装成完整原始 stderr；四轮成功结果与哈希不受影响。正式执行器现按唯一阶段目录写日志，修正 commit 为 master `8c7c8d2`
+
+前端局部探针首次编译缺 Ceres 头路径，失败日志保留；只补齐探针 CMake 依赖声明，未改 VINS。当前未使用的 codex/ubuntu22-ros1-reproduction 分支是最初误建入口，仍指向原 f85e0f1、无复现 commit；所有复现提交已回到所属原分支
+
+## 最终交接核验
+
+52 轮回放及局部探针全部验收，VINS C++、标定及算法参数未改。历史七份清单共 602 条、本机十一份清单共 706 条，合计实验归档 18 份/1308 条 SHA256 核验通过，另冻结交接证据 8 条；609 个历史快照 Git blob 与原 b250dc0 一致，八个历史 annotated tag 对象与远端一致，新 tag 不覆盖旧 tag
+
+复核 ROS 2 实际动态库和构建路径隔离、Python/shell 语法、两份 bootstrap 的 ARM 拒绝路径及本地文档链接/锚点。文档整理没有重跑 VIO，已有完整重建和回放作为源码未变的验收依据
+
+主机 PMU 已恢复为 4，临时 VGEM 已卸载，后台批次已结束；没有 VINS/播放器残留，不安装持久服务或 timer。核验证据见 [交接快照](../infra/desktop/comparison_reference/native_ubuntu22_20261013/handoff/)
+
+```bash
+python3 infra/desktop/scripts/verify_reproduction_archive.py
+```
+
+该脚本识别历史两种 SHA256 路径约定，校验所有新旧清单并比较原始 Git blob；默认只读，不依赖 `.local-tests/`。原生结果已替换当前文档中的 WSL 实测，历史证据及失败保持可追溯。后续板端工作需在 ROS 2 新目标分支建立 ARM 工具链、单独的工作区和一轮配置验收，不复制 x86 安装前缀；真实相机、RGA/NEON/NPU 不在本轮验收范围
