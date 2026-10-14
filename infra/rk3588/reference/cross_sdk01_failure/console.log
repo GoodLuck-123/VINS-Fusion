@@ -1,0 +1,18 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.10kB done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 ERROR: failed to do request: Head "https://docker.m.daocloud.io/v2/library/ubuntu/manifests/22.04?ns=docker.io": proxyconnect tcp: dial tcp 127.0.0.1:7890: connect: connection refused
+------
+ > [internal] load metadata for docker.io/library/ubuntu:22.04:
+------
+Dockerfile:1
+--------------------
+   1 | >>> FROM ubuntu:22.04
+   2 |     ENV DEBIAN_FRONTEND=noninteractive
+   3 |     RUN apt-get update && apt-get install -y --no-install-recommends \
+--------------------
+ERROR: failed to build: failed to solve: ubuntu:22.04: failed to resolve source metadata for docker.io/library/ubuntu:22.04: failed to do request: Head "https://docker.m.daocloud.io/v2/library/ubuntu/manifests/22.04?ns=docker.io": proxyconnect tcp: dial tcp 127.0.0.1:7890: connect: connection refused

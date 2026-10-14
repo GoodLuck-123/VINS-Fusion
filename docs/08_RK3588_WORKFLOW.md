@@ -75,3 +75,15 @@ ARM 构建通过后锁定一次性实验矩阵：ROS 1 参照、ROS 2 单目/双
 固定 MH_01_easy、标定和算法参数；实验串行，明确回放与排空时间、全线程 CPU、每进程 RSS/PSS、频率/温度及输入/初始化/重置/末帧/退出。共享路径核验全像素/时间戳摘要与槽位归还，结果回主机用同一 uv.lock 离线评估 ATE/RPE，统一续写第 05 份报告
 
 目前只完成连接、工作流与只读能力探测，尚未完成 ARM 构建或板端 VIO。大批次交给本地执行器，仅阶段完成、失败或需要处理时通知当前聊天，不由模型在线轮询；手动 ssh 留给初期核实和必要调试
+
+## 交叉工具链准备与失败回退
+
+首次 Docker 准备阶段在拉取基础镜像前失败，daemon 的代理端口 7890 没有服务。本机实际代理为 7897，直连 Ubuntu 仓库也已验证；失败事件与原始日志见 [准备失败快照](../infra/rk3588/reference/cross_sdk01_failure/)。未编译 ARM 程序，相关准备 commit 8406859 已撤回，不混入成功实验
+
+现改用主机私有目录下载/解包 Ubuntu aarch64 GCC 包与基础运行库，读取已认证的 apt 索引但不安装或修改系统包。包版本/架构/SHA256 保存，本机 x86_64 编译出 ARM ELF 后，仍通过 C++ 工具在板端验证运行和依赖；先验收编译器，再建立完整 ARM ROS sysroot
+
+```bash
+bash infra/rk3588/scripts/prepare_cross_toolchain.sh
+```
+
+默认前缀 `../.infra/rk3588/toolchain/`，板端小程序结果 `../results/rk3588/cross-smoke02/`。本机临时服务 `vins-rk-toolchain02.service` 承接阶段，事件在 `../results/rk3588/toolchain02/`，只在完成或失败通知一次。已有 ready 的工具链拒绝重新下载覆盖；后续 OpenCV/Ceres/ROS/VINS 尚未构建或验收
