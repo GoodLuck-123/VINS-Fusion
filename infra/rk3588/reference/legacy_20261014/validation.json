@@ -1,0 +1,23 @@
+{
+  "opencv": "4.2.0",
+  "ceres": "1.14.0",
+  "eigen": "3.3.9",
+  "suitesparse": "5.10.1",
+  "cxsparse": "3.2.0",
+  "runtime_libraries": 25,
+  "all_bundled_libraries_aarch64": true,
+  "ceres_enabled_features_equal_native": true,
+  "padding_stride_bytes": 80,
+  "corners_and_lk_verified": 8,
+  "input_unchanged": true,
+  "suitesparse_solve_x": 10,
+  "cxsparse_solve_x": 10,
+  "board_exit_code": 0,
+  "board_ldd_complete": true,
+  "old___frexp_reference_removed": true,
+  "native_glog": "0.6.0",
+  "arm_glog": "0.4.0",
+  "native_blas": "OpenBLAS 0.3.34",
+  "arm_blas": "Netlib 3.10.0",
+  "vins_built": false
+}

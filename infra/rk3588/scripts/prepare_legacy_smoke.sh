@@ -2,7 +2,7 @@
 set -euo pipefail
 repo=$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)
 source "$repo/infra/rk3588/scripts/cross_env.sh"
-build="$(dirname "$repo")/.infra/rk3588/legacy-smoke-build"
+build="$(dirname "$repo")/.infra/rk3588/legacy-smoke-build-sysroot"
 payload="${VINS_LEGACY_PAYLOAD:-$(dirname "$repo")/.infra/rk3588/legacy-smoke-payload}"
 cmake -S "$repo/infra/rk3588/probes/legacy" -B "$build" \
   -DCMAKE_TOOLCHAIN_FILE="$repo/infra/rk3588/cmake/aarch64.cmake" \

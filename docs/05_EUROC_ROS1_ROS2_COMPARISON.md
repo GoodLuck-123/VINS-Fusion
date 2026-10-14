@@ -285,3 +285,19 @@ CPU 秒是数据源与 VINS 所有线程累计 CPU 时间之和；负的对照�
 [本阶段证据及 SHA256](../infra/rk3588/reference/perf_20261014/)，重建与运行入口见第 08 份文档。这里只证明 CPU profile 工具可用，不代表 VINS 热点或性能结论；DDR 字节/秒与 CPU 功耗仍不可用，不用 cache misses 代替
 
 板端墙上时钟尚未同步，perf 文件头与远端 start_utc 的日期不作为主机 UTC。回放/采样耗时按单调时钟统计，外层阶段事件按主机 UTC 归档，本轮未修改板端系统时间
+
+## RK3588 固定版本视觉库验收（2026-10-14）
+
+主机 GCC 11.4.0 交叉编译 OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 后，通过固定 C++ 远端工具部署 ARM 探针及 25 个动态库；板端正常退出 0、ldd 无缺库，仍使用板端 glibc/loader
+
+OpenCV 在步长 80 字节的 64×64 灰度图上检测八个角点，LK 位移误差均小于 0.1 像素，输入图像未修改。Ceres 分别使用 SuiteSparse/CXSparse 执行 SPARSE_NORMAL_CHOLESKY，两次均求得 x=10；启用宏集合与桌面 Ceres 一致，包含 LAPACK、SuiteSparse、CXSparse 和 OpenMP。这是依赖运行验收，尚无板端 VINS 轨迹或性能结果
+
+| 传递依赖 | 原生 x86 | ARM SDK |
+| --- | --- | --- |
+| SuiteSparse / CXSparse | 5.10.1 / 3.2.0 | 5.10.1 / 3.2.0 |
+| glog / gflags | 0.6.0 / 2.2.2 | 0.4.0 / 2.2.2 |
+| BLAS | OpenBLAS 0.3.34 | Netlib 3.10.0 |
+
+保留指定 OpenCV/Ceres/Eigen 版本和求解器功能，传递依赖使用 ARM Ubuntu 包；后续跨主机性能差异不能仅归因于架构。更正旧失败归档关于 SuiteSparse 版本不同的错误描述，两端实际均 5.10.1；原冻结文件与哈希保留，更正说明及实测见 [视觉库证据](../infra/rk3588/reference/legacy_20261014/)
+
+前期 GCC 参数、SDK alternatives 与绝对符号链接问题的失败证据单独保存，均未运行 VINS、不计入成功实验统计。最终 sysroot 内链接已修正并完整重建，消费者链接和板端实际计算均已通过

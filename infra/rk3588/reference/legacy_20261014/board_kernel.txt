@@ -1,0 +1,1 @@
+Linux firefly 5.10.110 #5 SMP Wed Sep 4 20:04:48 CST 2024 aarch64 aarch64 aarch64 GNU/Linux

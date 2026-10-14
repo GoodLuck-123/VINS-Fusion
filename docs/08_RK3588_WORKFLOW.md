@@ -141,3 +141,5 @@ legacy03 已完成 OpenCV 4.2.0，但 Ceres 配置失败，证据见 [Ceres 配�
 legacy04 的库构建退出 0，但消费端链接探针失败，未接受为里程碑，见 [共享库链接失败](../infra/rk3588/reference/legacy04_link_failure/)。SDK 绝对符号链接使 libm.so 无法在主机解析，构建退回静态数学库；统一下载入口已将 36 个绝对链接改为目标 SDK 内的相对链接。另补齐目标库 rpath-link，解析间接 BLAS/LAPACK 依赖。包锁和归档哈希不变，旧视觉库前缀及失败构建保留，完整重建使用新目录，下一阶段为 legacy05
 
 视觉库必须同时通过消费端链接和板端运行：`bash infra/rk3588/scripts/prepare_legacy_smoke.sh` 构建/打包探针，再用 C++ 工具传输并运行 `infra/rk3588/scripts/legacy_smoke.sh`。探针检查带 padding 的灰度输入、GFTT/LK 位移与输入不变，以及 SuiteSparse/CXSparse 两种实际稀疏求解；源码在 infra/rk3588/probes/legacy/，不能将 ldd 或 ELF 检查替代这些运行验收
+
+legacy05 与 legacy-smoke01 已通过完整库构建、消费端链接及板端实际计算验收，见 [视觉库快照](../infra/rk3588/reference/legacy_20261014/)。OpenCV/Ceres/Eigen 版本固定，Ceres 启用宏与原生一致；传递依赖的版本/BLAS 实现差异及旧 SuiteSparse 说明更正在第 05 份报告明确列出。下一步执行 ARM ROS 2 项目构建，仍未运行板端 VIO
