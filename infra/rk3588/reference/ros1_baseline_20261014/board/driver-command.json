@@ -1,0 +1,12 @@
+[
+  "python3",
+  "/home/firefly/vins-workspace/jobs/1791970072506-133971/ros1-payload02/VINS-Fusion/infra/desktop/scripts/run_euroc_baseline.py",
+  "--bag",
+  "/home/firefly/vins-workspace/datasets/euroc_20261014/MH_01_easy.bag",
+  "--name",
+  "rk_ros1_baseline01",
+  "--port",
+  "11321",
+  "--rate",
+  "1"
+]

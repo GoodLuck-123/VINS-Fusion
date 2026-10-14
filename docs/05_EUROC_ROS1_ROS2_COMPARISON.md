@@ -60,3 +60,19 @@ ros1-legacy-smoke01 在实际 RK3588 Ubuntu 22.04 上通过原版本 OpenCV 4.2.
 ros1-runtime02 板端 4210 文件 SHA256、Python 3.8.10/NumPy 1.17.4/rosbag 导入、rosversion/roslaunch 1.17.4、VINS 动态库与双目/IMU 订阅就绪通过。实际 maps 为私有 OpenCV 4.2/Ceres/Python 和系统 libc，保留 Ubuntu 22.04 glibc/loader/系统 Python 3.10。结束审计无旧作业活进程
 
 ROS master 退出 0，原 ROS 1 未 join 同步线程的清理 abort 为 −6，与桌面原版一致，如实记录，不称正常 VINS 退出。本阶段无 bag 输入或完整 VIO/轨迹/性能结论；首次包遗漏 SDK usr/bin/rosversion 的启动失败已归档，新独立候选补齐原脚本，依赖/算法/标定不变。[板端原日志、实际 maps、事件和逐文件 SHA256](../infra/rk3588/reference/ros1_runtime_20261014/)
+
+## RK3588 ROS 1 完整双目参照（2026-10-14）
+
+ros1-baseline01 实际完整回放一次，原 bag/已接受运行包哈希通过，bag 左右图各 3682、IMU 36820；1831 姿态/1819 匹配，一次初始化、无重置/配对丢帧、末帧覆盖。bag 计数不是原节点实收计数，未新增 ROS 1 callback 计数；rosbag 与 ROS master 退出 0，原 VINS 未 join 同步线程的清理 abort −6 与桌面原版一致，单列保留，不能称正常退出
+
+| 指标 | 实际 RK3588 一轮 |
+| --- | --- |
+| ATE / RPE RMSE，SE(3) 无尺度校正 | 0.260330 / 0.00312228 m |
+| VINS 全线程 CPU | 690.02 s |
+| VINS RSS / PSS 采样峰值 | 61.55 / 55.21 MiB |
+| 回放 / 排空等待 | 189.59 / 6.10 s |
+| 源端 CPU/RSS/PSS、DDR 带宽、功耗 | 不可用 |
+
+CPU/RSS/PSS 为 VINS 订阅就绪至排空，未采 rosbag，不当作合计 CPU。外层阶段失败在日志已回收后的主机评估器不支持 --label；参数修正后仅评估既有轨迹，ros1-evaluation01 通过，没有第二次回放。原失败事件/日志不改写，结果接受明确依赖完成的板端回放与独立主机恢复评估，[完整轨迹、日志、资源、评估和 SHA256](../infra/rk3588/reference/ros1_baseline_20261014/)
+
+运行包旧来源字段是 annotated tag 对象 3293397，剥离到主机构建 commit 30790b0；冻结包/metadata 不改，证据明确对应关系，未来打包已修正。OpenCV 4.2.0/Ceres 1.14.0/Eigen 3.3.9、原算法/标定保持不变，Focal/GCC9/SuiteSparse/Netlib 与 ROS 2 Jammy 传递依赖不同；一轮不能把轨迹或 CPU 差异只归因 ROS 版本。排空含稳定等待，不称为实时性通过

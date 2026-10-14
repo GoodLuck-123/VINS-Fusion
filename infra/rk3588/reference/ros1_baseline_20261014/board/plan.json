@@ -1,0 +1,8 @@
+{
+  "runtime": "/home/firefly/vins-workspace/jobs/1791970072506-133971/ros1-payload02",
+  "name": "rk_ros1_baseline01",
+  "bag": "vins-workspace/datasets/euroc_20261014/MH_01_easy.bag",
+  "bag_sha256": "57f440ccd68ec8dc8f9461269f5909656b86198bac3adfd677b1fcc7a1428fa9",
+  "runtime_manifest_sha256": "8f8ec3462eac2f906a0197032e8e473d8cee356c3c8803a491b2f833b29995be",
+  "driver_commit": "92b1bbbb1325f355c4150ae16db2dacd793f1c4f"
+}

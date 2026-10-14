@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "bag_hash_verified": true,
+  "bag_input_counts": {
+    "/cam0/image_raw": 3682,
+    "/cam1/image_raw": 3682,
+    "/imu0": 36820
+  },
+  "count_scope": "Bag records only, not node receive counters",
+  "runtime_files_verified": 4210,
+  "cleanup_note": "Original ROS 1 unjoined sync thread abort retained; not a clean VINS exit",
+  "vins_exit_code": -6,
+  "trajectory_poses": 1831
+}

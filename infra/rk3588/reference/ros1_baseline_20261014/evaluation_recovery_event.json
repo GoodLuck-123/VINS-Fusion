@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "infra/rk3588/scripts/run_ros1_board_phase.py",
+    "--runtime",
+    "/home/firefly/vins-workspace/jobs/1791970072506-133971/ros1-payload02",
+    "--name",
+    "rk_ros1_baseline01",
+    "--directory",
+    "../results/rk3588/ros1-baseline01/trial",
+    "--evaluate-only"
+  ],
+  "pid": 138577,
+  "status": "complete",
+  "start_utc": "2026-10-14T09:47:11Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-14T09:47:12Z"
+}
