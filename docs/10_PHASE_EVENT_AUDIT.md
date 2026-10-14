@@ -15,7 +15,7 @@
 | ROS 2 完整 VIO | baseline02、components01、pmu01 | 八轮去重配置完整输入/末帧/评估/退出通过，PMU 无错误或复用 |
 | 共享计算探针 / 完整 memfd | shared-probe01、board-shared01 | 两后端计算探针与四轮完整共享 VIO 通过，槽位全部归还 |
 | ROS 1 ARM | ros1-fetch01、ros1-legacy02、ros1-build02 | 依赖、视觉库与五包/六程序/70 个 ELF 闭包通过，视觉库实际板端计算通过，Noetic 节点/回放仍待验收 |
-| 当前后台任务 | ros1-runtime02 | 首次运行包缺 rosversion 的失败保留，独立新包串行部署/检查生命周期 |
+| 当前后台任务 | ros1-baseline01 | 运行环境已验收，原 bag 首次传输及唯一双目配置的一轮回放/回收/主机评估 |
 
 初次统一审计时主机只剩 Docker 准备服务的 failed 状态，没有活进程；后续任务见上表。失败日志保留，终止状态不当作仍在运行。Git 核心实现和 config 与桌面交接 7d42fac 一致，没有并发修改或合并冲突；本轮改变的是依赖准备、构建兼容和部署工具
 
@@ -81,3 +81,5 @@ board-dma-heap01 已接受为实际 system DMA heap 双目/单目完整回放，
 DMA heap 里程碑 commit 4213e2a / tag milestone-rk3588-dmabuf-v1；按本机 presets 去重核对，14 个 ROS 2 完整配置已覆盖。桌面 VGEM 软件分配机制在板端用既有实际 DMA heap 后端验收，分别记录 allocator/backend，不当作相同 VGEM 设备。ros1-runtime01 已启动后台单调用部署/生命周期检查，未同时运行另一批 VIO
 
 ros1-runtime01 因运行包未包含 SDK usr/bin/rosversion，在 roscore 启动时退出 1；私有 Python/NumPy/rosbag 导入与 ldd 通过，但未启动 VINS，不计为节点/VIO 成功。ROS 1 分支归档失败并最小补齐原脚本，新 ros1-payload02/4210 文件已生成，ros1-runtime02 已交后台重试，旧运行包/清单不覆盖
+
+ros1-legacy02 与 ROS 1 分支主机构建归档逐字节一致，只去重；后续实际计算里程碑 6c4703a 不重跑。ros1-runtime02 已在其所属分支提交 92b1bbb / tag milestone-rk3588-ros1-runtime-v1：4210 文件/私有 Python/实际库/订阅就绪、结束审计通过，ROS master 0、原 VINS 清理 abort −6 明确单列，无 bag 输入。ros1-baseline01 交给后台单调用入口传原 bag、完整回放/回收/主机评估，每唯一配置一次；尚未验收，不混入 ROS 2 全部退出 0 的统计
