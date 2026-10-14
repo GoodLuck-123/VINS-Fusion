@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/usr/bin/bash",
+    "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/build_ros2_cross.sh"
+  ],
+  "pid": 90673,
+  "status": "failed",
+  "start_utc": "2026-10-14T05:58:12Z",
+  "exit_code": 2,
+  "end_utc": "2026-10-14T05:58:16Z"
+}

@@ -109,6 +109,7 @@ def unpack_packages(lock, archives, destination, sysroot=False):
             raise RuntimeError(f'Existing SDK has a different lock: {destination}')
         if sysroot:
             relocate_sysroot_links(destination)
+            relocate_ros_python_exports(destination)
         return
     destination.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='.extract-', dir=destination.parent) as tmp:
@@ -116,8 +117,29 @@ def unpack_packages(lock, archives, destination, sysroot=False):
             subprocess.run(['dpkg-deb', '--extract', str(archive), tmp], check=True)
         if sysroot:
             relocate_sysroot_links(Path(tmp))
+            relocate_ros_python_exports(Path(tmp))
         (Path(tmp) / marker.name).write_text(lock_sha + '\n')
         os.replace(tmp, destination)
+
+
+def relocate_ros_python_exports(root):
+    # Humble message exports contain a literal target libpython link path.
+    # CMake does not automatically reroot INTERFACE_LINK_LIBRARIES entries.
+    original = '/usr/lib/aarch64-linux-gnu/libpython3.10.so'
+    changed = {}
+    for path in sorted((root / 'opt/ros/humble/share').rglob('*.cmake')):
+        content = path.read_text()
+        if original in content and '${CMAKE_SYSROOT}' + original not in content:
+            updated = content.replace(original, '${CMAKE_SYSROOT}' + original)
+            path.write_text(updated)
+            changed[str(path.relative_to(root))] = dict(
+                original_sha256=hashlib.sha256(content.encode()).hexdigest(),
+                relocated_sha256=hashlib.sha256(updated.encode()).hexdigest())
+    audit = root / '.vins-python-cmake-relocations.json'
+    if changed or not audit.exists():
+        previous = json.loads(audit.read_text()) if audit.exists() else {}
+        previous.update(changed)
+        audit.write_text(json.dumps(previous, indent=2) + '\n')
 
 
 def main():

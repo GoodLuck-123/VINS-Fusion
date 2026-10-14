@@ -145,3 +145,5 @@ legacy04 的库构建退出 0，但消费端链接探针失败，未接受为里
 legacy05 与 legacy-smoke01 已通过完整库构建、消费端链接及板端实际计算验收，见 [视觉库快照](../infra/rk3588/reference/legacy_20261014/)。OpenCV/Ceres/Eigen 版本固定，Ceres 启用宏与原生一致；传递依赖的版本/BLAS 实现差异及旧 SuiteSparse 说明更正在第 05 份报告明确列出。下一步执行 ARM ROS 2 项目构建，仍未运行板端 VIO
 
 ARM ROS 2 首次配置在 typesupport 资源索引查询前停止，包实际已存在，见 [配置失败](../infra/rk3588/reference/ros2_build01_failure/)。构建脚本补上目标 AMENT_PREFIX_PATH，与 CMake 包路径一致；主机/目标 Python 和 Boost 查找已通过，不修改 VINS 核心。后续阶段为 ros2-build02，仍需完整构建及板端运行验收
+
+ros2-build02 配置已通过，但 Humble 预编译消息导出的 INTERFACE_LINK_LIBRARIES 硬编码 libpython 绝对路径，构建误查主机根目录，见 [SDK 导出路径失败](../infra/rk3588/reference/ros2_build02_failure/)。统一解包规则在 ROS CMake 导出中仅为该路径添加 CMAKE_SYSROOT，记录前后哈希，原包/二进制不变。下一阶段为 ros2-build03，不修改 VINS 核心或伪装其他平台

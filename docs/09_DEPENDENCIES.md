@@ -48,3 +48,5 @@ python3 infra/dependencies/fetch.py --offline --cache-from /完整缓存目录
 需要升级依赖时显式更新锁并重新验收，保留旧锁和历史证据。上游若删除固定版本，下载应明确失败；不回退到 latest 或未经校验的镜像
 
 本机已验证五个源码包、832 个包锁与原签名 SDK 哈希一致；完整下载/解包、离线重跑、新缓存实际下载 Eigen、损坏缓存拒绝均通过。新路径 CMake 交叉编译的 ARM 小程序在板上正常退出，运行时库齐全。首次链接及缺失 payload 的启动失败单独保留，见 [本阶段证据](../infra/rk3588/reference/dependencies_20261014/)；没有将此验证称为 VINS 验收
+
+Humble 预编译消息的 CMake 导出另有字面 libpython 绝对路径；下载入口为它加 CMAKE_SYSROOT，避免消费者在主机根目录找 ARM 库。变更文件的前后 SHA256 保存为 `.vins-python-cmake-relocations.json`，原包锁和二进制不变，既有统一 SDK 可离线重跑入口应用修正
