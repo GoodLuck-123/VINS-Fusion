@@ -1,0 +1,82 @@
+{
+  "opt/ros/noetic/share/actionlib/cmake/actionlibConfig.cmake": {
+    "original_sha256": "321cf9f8c1cc0674c6f15f6951f385a68775cf800b54698afb65b0e475acef1e",
+    "relocated_sha256": "21143b2c97be79c33cc7c1fa13e85c7273467552dfb308f037746c5f54b92284"
+  },
+  "opt/ros/noetic/share/bondcpp/cmake/bondcppConfig.cmake": {
+    "original_sha256": "f60c523aafa2fa125c78556d5a92fbd61fafbb6c0f36c9e00239fc31ad9d5c8f",
+    "relocated_sha256": "3ea77186d1b6b5d7c037bc26dea7b3d48bf706ccd078b9c00cc448a8680649b3"
+  },
+  "opt/ros/noetic/share/class_loader/cmake/class_loaderConfig.cmake": {
+    "original_sha256": "69b0758c9e703179ed123318ccb32f5518c402c44de1f39c8547265e505dc01b",
+    "relocated_sha256": "5e22c598523fcd2cf248c0dcb9ff2ffadd4ed8dd216e4af00229b43284fbb700"
+  },
+  "opt/ros/noetic/share/cmake_modules/cmake/Modules/FindTBB.cmake": {
+    "original_sha256": "24b8ef16cf717cee29d2b3c646fb56bb57e109e02cc20cbc6d5d50718a05b701",
+    "relocated_sha256": "6afc4977a854a00021def9672d9a9cdfa1b307180decee9a0c079cffdf7a9c48"
+  },
+  "opt/ros/noetic/share/cmake_modules/cmake/Modules/FindXenomai.cmake": {
+    "original_sha256": "ac3654b3c45ce73d63416667ccd3c14ba15ba0eaf4f33ecb3dc1d1b3e5c6045d",
+    "relocated_sha256": "6c656b22f795532f8a6df3c664c57ed9a28821c61bdf4b925a8239b71a1155e6"
+  },
+  "opt/ros/noetic/share/cpp_common/cmake/cpp_commonConfig.cmake": {
+    "original_sha256": "c91fdcee5b00c3a746a7518945ec54a105645ebd992c90a9434a5ef97af710ba",
+    "relocated_sha256": "875953e20ba98b809c52f7bc515cddb98fbf189df1a44f9f10352ddee68237fd"
+  },
+  "opt/ros/noetic/share/cv_bridge/cmake/cv_bridge-extras.cmake": {
+    "original_sha256": "1a3bd727c7fb80eed9eca19bbd31eff122612465136b2d6743fbf034e775073f",
+    "relocated_sha256": "abb141fc462a02f2f24eb19aacac2267bb00de1bef4d8414ff1f45a146ce6765"
+  },
+  "opt/ros/noetic/share/cv_bridge/cmake/cv_bridgeConfig.cmake": {
+    "original_sha256": "d851b4dd5b84c7d53f358683ee83aab6ad7375358adafb0c7f06e03109ca93e0",
+    "relocated_sha256": "2672632f36df19e8149fcdc4b05cece72e71569b7340a77e1dda7567ea07a3a6"
+  },
+  "opt/ros/noetic/share/nodelet/cmake/nodeletConfig.cmake": {
+    "original_sha256": "ae1f21d36504a61d43b485136219efcb60fe1146571d461620e8d10cb76ce4f7",
+    "relocated_sha256": "a3b73fadef4413a284fc92aa03fa2051ef82bcb43c61305b2cd746c4568a76b9"
+  },
+  "opt/ros/noetic/share/nodelet_topic_tools/cmake/nodelet_topic_toolsConfig.cmake": {
+    "original_sha256": "d6f392304867f7f034a36ec6c60020e1bbecb0141dc1c20bd02d878e64ea989f",
+    "relocated_sha256": "9e489b75e99918d6e2976939a31f6d8b51f960933d7293fe9873764a273fd078"
+  },
+  "opt/ros/noetic/share/pluginlib/cmake/pluginlibConfig.cmake": {
+    "original_sha256": "8619b8dc3958e6ff167f5dce84b111d5ea260868c1fd4176d893638f3999a23b",
+    "relocated_sha256": "c673663fb541ce97827331362591d4264ffe4fed02c4f403d158a93248c5831c"
+  },
+  "opt/ros/noetic/share/rosbag_storage/cmake/rosbag_storageConfig.cmake": {
+    "original_sha256": "32663d770a8c7253e7e80b4c20e30c1a7b6a22025e6c0404138d90d48d4f472b",
+    "relocated_sha256": "afa7887d33a0083118658da5d7757d4c1ac08f9edc56cf5fb61bf1bd9c6943b0"
+  },
+  "opt/ros/noetic/share/rosconsole/cmake/rosconsoleConfig.cmake": {
+    "original_sha256": "c12c296e2cf937b4e8879c0db5beca978574ecf3df550b17cc2d4d42600482ed",
+    "relocated_sha256": "ad41c6970d93ffe1502b4b86b83f80c64626a5275ec1cdb7833f0108ea75e2a3"
+  },
+  "opt/ros/noetic/share/rosconsole_bridge/cmake/rosconsole_bridgeConfig.cmake": {
+    "original_sha256": "02192ff5ef29b0011cf7808d093f3ba7002b0b4b0bf4fbee9591612388fdeccf",
+    "relocated_sha256": "fb7d7a11cb01986b8654e6cf34b8b5c578e32c6e03667cdf23e01be8f2868f67"
+  },
+  "opt/ros/noetic/share/roscpp/cmake/roscppConfig.cmake": {
+    "original_sha256": "474e34a49480d74adb054c77aeab0d6e9015bc948e4e022152425d5ffd4678db",
+    "relocated_sha256": "4c9522f8753a507d7ef0a64c939841006a6d82c5038bec8d2f1d99b5915492b6"
+  },
+  "opt/ros/noetic/share/roslz4/cmake/roslz4Config.cmake": {
+    "original_sha256": "35b9b505a4b8e2513cad8e79088b105a7e11c43e89d5ccc61751f917e800f278",
+    "relocated_sha256": "d8a499e1fbf46dc80f7b9c3ba2975f35e8244a27ef2efd1fa465e7271af5419f"
+  },
+  "opt/ros/noetic/share/rospack/cmake/rospackConfig.cmake": {
+    "original_sha256": "d1bc78e0a3ac9e152c501f55536dc58d8ddb6fa03b4ad57747de163b24e62d0b",
+    "relocated_sha256": "a66d1c4d11b4854dec4900a15e41869066d102e50edc5f9f894c3e7577b4aef3"
+  },
+  "opt/ros/noetic/share/rostest/cmake/rostestConfig.cmake": {
+    "original_sha256": "12616ddd6075763f6ab1cd08515816dc8be4163a0bae68ee6a9c10130ee9232c",
+    "relocated_sha256": "e68746274b3fd3de19bbccb3ea3c2ce86928d605dd146ca2527730a7cd995b36"
+  },
+  "opt/ros/noetic/share/rostime/cmake/rostimeConfig.cmake": {
+    "original_sha256": "e46b742c11c8934fd27c31c0cfa4302f2463e6af861109139c589420d0f09114",
+    "relocated_sha256": "3630afde8a34a162fae11c0effe924f6f92d54359f7f4e5ec9d52026d9c051ea"
+  },
+  "opt/ros/noetic/share/tf2/cmake/tf2Config.cmake": {
+    "original_sha256": "7dedfd3f8cd616de5bde626c81a8825f602bc38abf51aacee62974ec9a3265c3",
+    "relocated_sha256": "6c62af92a13ae8105ae92ac6cb9fb048c3640d08664cb050cea49aab0046e519"
+  }
+}

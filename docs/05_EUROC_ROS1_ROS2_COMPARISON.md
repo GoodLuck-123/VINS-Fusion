@@ -42,3 +42,9 @@ ROS 1 输入为 3682 对图像、36820 条 IMU；计数由 bag 核验，未向�
 补跑日志审计：phase03 复用了原控制台日志路径，使 phase02 的第二轮启动 stderr 被覆盖；旧归档中的该日志为空，保留原冻结清单，不伪装成完整 stderr。失败事件仍在，当时读取到的 traceback 按聊天工具输出补充为[注明来源的摘录](../infra/desktop/comparison_reference/native_ubuntu22_20261013/ros1_startup_failure_audit/)。四个成功轮次的轨迹、采样、验收和哈希不受影响
 
 正式阶段执行器现将控制台日志放入每个唯一阶段目录的 trials 子目录，补跑不再复用前次日志。该修正只改变日志路径，不改回放、算法或二进制
+
+## RK3588 ROS 1 主机交叉构建（2026-10-14）
+
+独立 codex/rk3588-ros1 从 master 8c7c8d2 继续，核心/config 不变。锁定 Focal/Noetic SDK、GCC 9.4，保持 OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9；视觉库构建和消费端链接通过，Ceres SuiteSparse/CXSparse/LAPACK/OpenMP 保留。SDK 绝对符号链接、Python 及原生库/头文件 CMake 导出重定位分别记录，失败保留
+
+ros1-build02 五包构建、六个可执行文件和 70 个 ARM ELF 依赖闭包通过，未混用 SDK cv_bridge/OpenCV；cv_bridge 1.16.2 仅构建 VIO 所需 C++ 库，下载 C++ 源码不变，不提供 Python cv_bridge 扩展。编译路径和 core/config 核验通过，原 GeographicLib 嵌套输出已纳入闭包。此处尚无板端 ABI/节点或 VIO、CPU/ATE/RPE 结果，不能将主机退出 0 当作板端成功；[构建证据及 SHA256](../infra/rk3588/reference/ros1_cross_build_20261014/)

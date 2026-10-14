@@ -28,4 +28,4 @@ Focal 工具链的旧主机 libstdc++ 抢占 Jammy CMake，现仅将编译器 is
 
 ROS 1 工程入口 build_ros1_cross.sh 已固定，主机 Python 3.10 仅执行纯 Python catkin/empy，cv_bridge 1.16.2 仅重建 VIO 使用的 C++ 库，不生成可混淆 Python ABI 的目标扩展。下载源码保持原样，专用构建副本仅关闭 Python 可选目标，原 VINS/C++ 算法和参数不变
 
-ros1-build01 链接遇到 Noetic 导出的绝对 log4cxx/Boost 路径，失败已归档；fetch.py 统一重定位 20 个目标库/头文件 CMake 导出，并验证幂等性。ros1-build02 交给主机后台 runner 重试，板端仍只有 ROS 2 board-shared01 一批活动实验。构建通过后还需板端 ABI/节点及完整回放验收
+ros1-build01 链接遇到 Noetic 导出的绝对 log4cxx/Boost 路径，失败已归档；fetch.py 统一重定位 20 个目标库/头文件 CMake 导出，并验证幂等性。ros1-build02 已退出 0，五包/六程序/70 个 ARM ELF 闭包及目标编译路径通过，板端仍只有 ROS 2 board-shared01 一批活动实验。构建通过后还需板端 ABI/节点及完整回放验收

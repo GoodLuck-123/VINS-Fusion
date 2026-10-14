@@ -1,0 +1,850 @@
+{
+  "status": "pass",
+  "binaries": [
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/camera_models/Calibrations",
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/vins/vins_node",
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/vins/kitti_odom_test",
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/vins/kitti_gps_test",
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/loop_fusion/loop_fusion_node",
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/global_fusion/global_fusion_node"
+  ],
+  "elf_files": {
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/global_fusion/global_fusion_node": {
+      "sha256": "ec4b55f18486664174494b799846ac2ceac49ac45fe9757c3431254acc4e9615",
+      "needed": [
+        "libroscpp.so",
+        "libpthread.so.0",
+        "librosconsole.so",
+        "libroscpp_serialization.so",
+        "librostime.so",
+        "libceres.so.1",
+        "liblibGeographiccc.so",
+        "libglog.so.0",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/lib/aarch64-linux-gnu/libgcc_s.so.1": {
+      "sha256": "42e40b1edf78999d41d763cb169c70b563e8b5dbc665e072380f96832ad4a407",
+      "needed": [
+        "libc.so.6"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28": {
+      "sha256": "d5106b70d2682294dee634486749ee06cf24ac830190996dcab95a246ebc152b",
+      "needed": [
+        "libm.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1",
+        "libgcc_s.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libglog.so.0.0.0": {
+      "sha256": "0acc7e3c3bdf6eeaac1529d6b7525e5a5aac02bfbd384468016c0f89f3dbb614",
+      "needed": [
+        "libgflags.so.2.2",
+        "libpthread.so.0",
+        "libstdc++.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1",
+        "libgcc_s.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libgflags.so.2.2.2": {
+      "sha256": "ec1c11753f3dc0ad2398c8fe57f2f6d47fafd53f4d9df6633b90177f1eee24f8",
+      "needed": [
+        "libpthread.so.0",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1_ws/build/global_fusion/ThirdParty/GeographicLib/liblibGeographiccc.so": {
+      "sha256": "645eaca5053c9c6ccdf4a842d2a10751bf59a3d9df09b25473455f6a87a1817c",
+      "needed": [
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1-legacy/lib/libceres.so.1.14.0": {
+      "sha256": "884b86bf071d36f6c34c985cd9dc1e945aedd1d3b21154c197be27f69ea76250",
+      "needed": [
+        "libglog.so.0",
+        "libspqr.so.2",
+        "libcholmod.so.3",
+        "liblapack.so.3",
+        "libblas.so.3",
+        "libcxsparse.so.3",
+        "libgomp.so.1",
+        "libpthread.so.0",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0": {
+      "sha256": "77ecc1d6ec640f5c148cc18cdc2dd399346dff100e6f0b3bb7673176e60e7771",
+      "needed": [
+        "libdl.so.2",
+        "libpthread.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libcxsparse.so.3.2.0": {
+      "sha256": "d5770f5f00114d4a2aed88c8210a2c654b6eccb9cabbcdeb0398d913dfbd2a8d",
+      "needed": [
+        "libm.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/blas/libblas.so.3.9.0": {
+      "sha256": "59dc480cd7fbebc70f870806ee348d7efbba2074caf3aa31caf7ecac3313b407",
+      "needed": [
+        "libm.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.9.0": {
+      "sha256": "54c81275b5ea7e8895e1088ecc9bbf28d96bd82b5cd881aa10561933716da02a",
+      "needed": [
+        "libblas.so.3",
+        "libgfortran.so.5",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libgfortran.so.5.0.0": {
+      "sha256": "19e2165a4b1a784903bacfb64e87fb3763b424976d8f85981833eff03b7d6e2d",
+      "needed": [
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libcholmod.so.3.0.14": {
+      "sha256": "f15e2d7587c7ae1ed3eb08501a281512850273c912908718ed7970ef378c64f1",
+      "needed": [
+        "libamd.so.2",
+        "libcolamd.so.2",
+        "libsuitesparseconfig.so.5",
+        "libccolamd.so.2",
+        "libcamd.so.2",
+        "libmetis.so.5",
+        "liblapack.so.3",
+        "libblas.so.3",
+        "libm.so.6",
+        "libgomp.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libmetis.so.5.1.0": {
+      "sha256": "5b8bd32f8daf7b3abb5201b7df80dc77889fa858d05f9ab83da68887e1c6665a",
+      "needed": [
+        "libm.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libcamd.so.2.4.6": {
+      "sha256": "c24db6788b9298c7aa391e56c012ac73481bd991a896712d302a8f7c24db0f31",
+      "needed": [
+        "libm.so.6",
+        "libsuitesparseconfig.so.5",
+        "libc.so.6"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libsuitesparseconfig.so.5.7.1": {
+      "sha256": "0f8e0bbebc977636e94c3c539dcec996c666fffc09523f8a1385c294a669a88f",
+      "needed": [
+        "libm.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libccolamd.so.2.9.6": {
+      "sha256": "40433a43ae5df3d562842f4a42cec6348838897baada4596eb02df3e0765eaf1",
+      "needed": [
+        "libm.so.6",
+        "libsuitesparseconfig.so.5",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libcolamd.so.2.9.6": {
+      "sha256": "34a9b89991f311d27f052810881eed8e73bf3930b52b179b74ee2decaf512514",
+      "needed": [
+        "libm.so.6",
+        "libsuitesparseconfig.so.5",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libamd.so.2.4.6": {
+      "sha256": "80bb65a56f1d4e0963df52ce4bda5e74491e1b65d08b2edb873f1234238726ea",
+      "needed": [
+        "libm.so.6",
+        "libsuitesparseconfig.so.5"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libspqr.so.2.0.9": {
+      "sha256": "10b34275c8afb8f8a6b688ed2e61f1228b066818a63a2a803eff1957ed5f2547",
+      "needed": [
+        "libcholmod.so.3",
+        "libsuitesparseconfig.so.5",
+        "liblapack.so.3",
+        "libblas.so.3",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/librostime.so": {
+      "sha256": "828210a3ce83c9285b0c3d9bc0c9d460cef2b24402ed8e47dfe817c194f1169e",
+      "needed": [
+        "libpthread.so.0",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/libroscpp_serialization.so": {
+      "sha256": "cf9f855aeacfc14bf4d769ed4429993f7b642d35fc56533db9b9d3b32bb5c7ad",
+      "needed": [
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/librosconsole.so": {
+      "sha256": "198f3531030734fbb87ea11e20d8a356ac8f75bf01b769b2dc910ee3db593860",
+      "needed": [
+        "librosconsole_log4cxx.so",
+        "librosconsole_backend_interface.so",
+        "liblog4cxx.so.10",
+        "librostime.so",
+        "libboost_regex.so.1.71.0",
+        "libpthread.so.0",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libboost_regex.so.1.71.0": {
+      "sha256": "a809072735467083e6ab178d6f5c162ce6366aa0e25b1679118e88c22e77ce0a",
+      "needed": [
+        "libicui18n.so.66",
+        "libicuuc.so.66",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libicuuc.so.66.1": {
+      "sha256": "712d28f7e05d429b1163f951a73ee8b4dc316ce2e1a77c1d9701dae015d166eb",
+      "needed": [
+        "libicudata.so.66",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libicudata.so.66.1": {
+      "sha256": "2678dca08d30cabfb532ca45be6dcda1be6ceacceea2e3ad2e26dcb02108ff88",
+      "needed": []
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libicui18n.so.66.1": {
+      "sha256": "24d75bbe59d4c8f00dac4829e87907a7893ffd6b427c9576fbbd72a0b0e8f30a",
+      "needed": [
+        "libicuuc.so.66",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/liblog4cxx.so.10.0.0": {
+      "sha256": "1fa1d10d4da1ae8f745d9c120f6e84d3bec54b6c67a661d7702e5c55ec55d04f",
+      "needed": [
+        "libapr-1.so.0",
+        "libaprutil-1.so.0",
+        "libstdc++.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1",
+        "libgcc_s.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libaprutil-1.so.0.6.1": {
+      "sha256": "f19def64a5e91ee97a54d152a42a0366202b11fce289f00428768923d449b597",
+      "needed": [
+        "libcrypt.so.1",
+        "libpthread.so.0",
+        "libexpat.so.1",
+        "libapr-1.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libapr-1.so.0.6.5": {
+      "sha256": "72df9fa237e59f8615e2f6b9decd6d25a7e3367a8b8939a4e33c1da5b0f7fddd",
+      "needed": [
+        "libuuid.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/lib/aarch64-linux-gnu/libuuid.so.1.3.0": {
+      "sha256": "491b2465f412a139512f4583900ee818f5de0708c20e389a859f048af28e7487",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/lib/aarch64-linux-gnu/libexpat.so.1.6.11": {
+      "sha256": "aa40c8e031a751b71ab72f4e5b307282f37d850df946fd0bc58f709caa49141b",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/lib/aarch64-linux-gnu/libcrypt.so.1.1.0": {
+      "sha256": "be793443aec05058cddc3f4ec09de4ab81e96f368926e77c1ad54354306d51c5",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/librosconsole_backend_interface.so": {
+      "sha256": "831fc0861838f05158c2d895255e476d9c41170dbe789164867e1b1e92a19c7c",
+      "needed": []
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/librosconsole_log4cxx.so": {
+      "sha256": "ede58eaab24a9f0d7756e6983eb87e7a12d1e0c5fd90d1473612feeb8ee8f428",
+      "needed": [
+        "librosconsole_backend_interface.so",
+        "liblog4cxx.so.10",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/libroscpp.so": {
+      "sha256": "cc62e2c995a8c4da663a804d6f4f498777b8e6c0d463dd96a0d2de1631ab2ae7",
+      "needed": [
+        "librosconsole.so",
+        "libroscpp_serialization.so",
+        "libxmlrpcpp.so",
+        "librostime.so",
+        "libcpp_common.so",
+        "libboost_thread.so.1.71.0",
+        "libboost_chrono.so.1.71.0",
+        "libboost_filesystem.so.1.71.0",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libboost_filesystem.so.1.71.0": {
+      "sha256": "7009501be2148ef0edb8955c31848082cb3605a232d9bd9678db62d4c5148f79",
+      "needed": [
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libboost_chrono.so.1.71.0": {
+      "sha256": "72d6e8fcc2a1eb2b3d86e4f45bd18b3030e6515609340d9b2d7a1aac483dd22e",
+      "needed": [
+        "libpthread.so.0",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libboost_thread.so.1.71.0": {
+      "sha256": "71f3c5d5d6efc594245714d5a31f5b176a021664bad9a30a5d36afa418c9b69b",
+      "needed": [
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/libcpp_common.so": {
+      "sha256": "7f2c68175668b1990fcc18c9bc4e8ad64e1bffe0483fa28409fce968e550e933",
+      "needed": [
+        "libconsole_bridge.so.0.4",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4": {
+      "sha256": "82f54817ec90c8e3da6d49a95f9a70e8689a99f56a6c9e06be74a5874f67d8bd",
+      "needed": [
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/libxmlrpcpp.so": {
+      "sha256": "ae7b795bb05f4b7ec1f4634bf1b3e9ee218767879a27cf20a0e3852d1543f78a",
+      "needed": [
+        "librostime.so",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/loop_fusion/loop_fusion_node": {
+      "sha256": "35a8ea6c8e813ef3f95eff3d1cf5864a0279263f4adb7c62c627c059bfe4e023",
+      "needed": [
+        "libcamera_models.so",
+        "libroscpp.so",
+        "libpthread.so.0",
+        "libcv_bridge.so",
+        "libopencv_calib3d.so.4.2",
+        "libopencv_features2d.so.4.2",
+        "libopencv_core.so.4.2",
+        "libopencv_imgproc.so.4.2",
+        "libopencv_imgcodecs.so.4.2",
+        "librosconsole.so",
+        "libroscpp_serialization.so",
+        "librostime.so",
+        "libroslib.so",
+        "libceres.so.1",
+        "libglog.so.0",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/libroslib.so": {
+      "sha256": "5f1f1d1991480a23586fbcfb47d99ba3156c49ad8343b6a892ce792ddc4ad36e",
+      "needed": [
+        "librospack.so",
+        "libpthread.so.0",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/librospack.so": {
+      "sha256": "4c2fb3c08f06455e2aece168a3e466fc37671298fe2a5798cd4dffc152cfa67d",
+      "needed": [
+        "libtinyxml2.so.6",
+        "libboost_filesystem.so.1.71.0",
+        "libboost_program_options.so.1.71.0",
+        "libpython3.8.so.1.0",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libpython3.8.so.1.0": {
+      "sha256": "b4682b38019ecc34fb72a0547d2c7eeb40a0dbbf2b0079313cdc08aee210d7df",
+      "needed": [
+        "libexpat.so.1",
+        "libz.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libutil.so.1",
+        "libm.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/lib/aarch64-linux-gnu/libz.so.1.2.11": {
+      "sha256": "f7421fde8036391750dc2b1dd7299a0a3305a93cb95846fcc381590f565215c1",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libboost_program_options.so.1.71.0": {
+      "sha256": "876dd9dca3ef0332bdd92d8d40b1e67118f355ed762c75bef2a5771e8e0ef3bb",
+      "needed": [
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libtinyxml2.so.6.2.0": {
+      "sha256": "c644374f3fdb81aec3148655db735f49707296bcf78a56b4e031a8a6b19ef1cf",
+      "needed": [
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1-legacy/lib/libopencv_imgcodecs.so.4.2.0": {
+      "sha256": "90c75aa80b5597fd588b93f1e584f85ff6d7fa9c90859fbb3946b4da81d1b17a",
+      "needed": [
+        "libopencv_imgproc.so.4.2",
+        "libjpeg.so.8",
+        "libpng16.so.16",
+        "libopencv_core.so.4.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1-legacy/lib/libopencv_core.so.4.2.0": {
+      "sha256": "69c007ad5ad0913c15db0784eb73144ddb53904df3ad3a3ff4bd71f73e77e8dc",
+      "needed": [
+        "libdl.so.2",
+        "libpthread.so.0",
+        "libz.so.1",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libpng16.so.16.37.0": {
+      "sha256": "14ba485f3a55c36893f372831d0445f78fc64f26073a8d7374dc89ac50b95edc",
+      "needed": [
+        "libz.so.1",
+        "libm.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/usr/lib/aarch64-linux-gnu/libjpeg.so.8.2.2": {
+      "sha256": "5e14f0912289555d274dc4d38a86ad6aead67a39ee2a89df3c7c8685309af899",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1-legacy/lib/libopencv_imgproc.so.4.2.0": {
+      "sha256": "240dde6ce716bc1e6f18b275af3db6d403db4216ab7096412d2cf04524dcbadf",
+      "needed": [
+        "libopencv_core.so.4.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1-legacy/lib/libopencv_features2d.so.4.2.0": {
+      "sha256": "fdbfa3119db49d1b049612ab76b8e9ab38fc4f671e2506022e1481f5cb714369",
+      "needed": [
+        "libopencv_flann.so.4.2",
+        "libopencv_imgproc.so.4.2",
+        "libopencv_core.so.4.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1-legacy/lib/libopencv_flann.so.4.2.0": {
+      "sha256": "20cf34f1bd5eaa825d76c5b99a9ae3880d9fc36ac0a42241090cd6881c859ec6",
+      "needed": [
+        "libopencv_core.so.4.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1-legacy/lib/libopencv_calib3d.so.4.2.0": {
+      "sha256": "2c480545be24e320bca17cd452845f578ff5f38ffafbd1320fed16a33394f558",
+      "needed": [
+        "libopencv_features2d.so.4.2",
+        "libopencv_flann.so.4.2",
+        "libopencv_imgproc.so.4.2",
+        "libopencv_core.so.4.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/libcv_bridge.so": {
+      "sha256": "b30f61d8e4d10a28e15d1942b4556c90429c3f0a67af4fac78cb605ed21cda06",
+      "needed": [
+        "libopencv_imgcodecs.so.4.2",
+        "libboost_regex.so.1.71.0",
+        "libopencv_imgproc.so.4.2",
+        "libopencv_core.so.4.2",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/libcamera_models.so": {
+      "sha256": "05ed17a4d38e7b44605a25b45c81fa41fa05fda14e88be6d90b08ddd40687859",
+      "needed": [
+        "libceres.so.1",
+        "libopencv_calib3d.so.4.2",
+        "libopencv_imgproc.so.4.2",
+        "libopencv_core.so.4.2",
+        "libglog.so.0",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/vins/kitti_gps_test": {
+      "sha256": "ac54e14e2e330a6a1afad02432e2e53518a82350157e1e934cc75f6f44540464",
+      "needed": [
+        "libvins_lib.so",
+        "libopencv_core.so.4.2",
+        "libopencv_imgcodecs.so.4.2",
+        "libroscpp.so",
+        "librosconsole.so",
+        "libroscpp_serialization.so",
+        "librostime.so",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/libvins_lib.so": {
+      "sha256": "74025cee75c35aa2afa77a6ea2612172a49d74aa91a79c365979137f23fc31fd",
+      "needed": [
+        "libtf.so",
+        "libcv_bridge.so",
+        "libopencv_calib3d.so.4.2",
+        "libopencv_video.so.4.2",
+        "libopencv_core.so.4.2",
+        "libopencv_imgproc.so.4.2",
+        "libcamera_models.so",
+        "libroscpp.so",
+        "libpthread.so.0",
+        "librosconsole.so",
+        "libroscpp_serialization.so",
+        "librostime.so",
+        "libceres.so.1",
+        "libglog.so.0",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1-legacy/lib/libopencv_video.so.4.2.0": {
+      "sha256": "0c7d0132e7d1526564f3c374c0ca0c3cb9ec8023fe527c5096a7d5442cf74d62",
+      "needed": [
+        "libopencv_calib3d.so.4.2",
+        "libopencv_imgproc.so.4.2",
+        "libopencv_core.so.4.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/libtf.so": {
+      "sha256": "314407fe3a0a5028e1452bfe9ae98c66112084f7f33ac72951563a0a66bc4fff",
+      "needed": [
+        "libtf2_ros.so",
+        "libroscpp.so",
+        "libpthread.so.0",
+        "librosconsole.so",
+        "libtf2.so",
+        "librostime.so",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/libtf2.so": {
+      "sha256": "53b379fb8341623c668367b5e94100cd909c895ae8fd51d4abf6ec90c87e5421",
+      "needed": [
+        "librostime.so",
+        "libconsole_bridge.so.0.4",
+        "libpthread.so.0",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/libtf2_ros.so": {
+      "sha256": "dc5ba4c8a1d765c3600ee3607703d63b8acd109efa49ed73e7a46785b3dd1e9d",
+      "needed": [
+        "libactionlib.so",
+        "libroscpp.so",
+        "libpthread.so.0",
+        "librosconsole.so",
+        "libtf2.so",
+        "libroscpp_serialization.so",
+        "librostime.so",
+        "libboost_thread.so.1.71.0",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/dependencies/sysroots/ros1-noetic/root/opt/ros/noetic/lib/libactionlib.so": {
+      "sha256": "706ff624e2ffb388fa21ed831735640376493b9003d1190e4faaf63dc461991d",
+      "needed": [
+        "libroscpp.so",
+        "libpthread.so.0",
+        "librosconsole.so",
+        "librostime.so",
+        "libboost_thread.so.1.71.0",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/vins/kitti_odom_test": {
+      "sha256": "8452a0c7ff49667e9f5c9bd58d499a0cdbeff293eb758521ee13000829991c94",
+      "needed": [
+        "libvins_lib.so",
+        "libcv_bridge.so",
+        "libopencv_core.so.4.2",
+        "libopencv_imgcodecs.so.4.2",
+        "libroscpp.so",
+        "librosconsole.so",
+        "libroscpp_serialization.so",
+        "librostime.so",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/vins/vins_node": {
+      "sha256": "6159527ab0e401a5a69eabe5aaf2a48a73fe09f21c176d37022a6cd99922508d",
+      "needed": [
+        "libvins_lib.so",
+        "libcv_bridge.so",
+        "libopencv_core.so.4.2",
+        "libroscpp.so",
+        "libpthread.so.0",
+        "librosconsole.so",
+        "libroscpp_serialization.so",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1_ws/devel/lib/camera_models/Calibrations": {
+      "sha256": "a9cdda3af8854158b1abb55dc4d241a087f30f4e4bca5e2a8f65354ff7d75760",
+      "needed": [
+        "libboost_filesystem.so.1.71.0",
+        "libboost_program_options.so.1.71.0",
+        "libopencv_highgui.so.4.2",
+        "libopencv_imgcodecs.so.4.2",
+        "libceres.so.1",
+        "libopencv_calib3d.so.4.2",
+        "libopencv_imgproc.so.4.2",
+        "libopencv_core.so.4.2",
+        "libglog.so.0",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "/home/eric/projects/.infra/rk3588/ros1-legacy/lib/libopencv_highgui.so.4.2.0": {
+      "sha256": "7911bf165611ab19aa776daf696075dd27044b73a21c3aa1eca43fd180814e88",
+      "needed": [
+        "libopencv_imgproc.so.4.2",
+        "libopencv_core.so.4.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    }
+  },
+  "compile_commands": {
+    "cv_bridge": {
+      "units": 2,
+      "sha256": "a3b4b3101caf775eb3efb57f5cc65b9e4bd0f6d173e3894614f6a45d131f1db2"
+    },
+    "camera_models": {
+      "units": 27,
+      "sha256": "2df13b4c38cfd6d7c1b4fc6ee090514421840906e3f767e95efc9b926e646089"
+    },
+    "vins_estimator": {
+      "units": 19,
+      "sha256": "a6ac04e38fa4205f32e855075c015b7ca56e9e1d53eb19cec7a93328cf8a8ed6"
+    },
+    "loop_fusion": {
+      "units": 13,
+      "sha256": "e087623bffdaa7377794d29a9603774efec983567b11c1741db63685809c1abf"
+    },
+    "global_fusion": {
+      "units": 5,
+      "sha256": "9c3447b058b1309de2e624e1d935facac82716d71cabb47ccf4c5eb1451b1f43"
+    }
+  },
+  "core_reference": "8c7c8d2",
+  "sdk_lock_sha256": "27bbd60eead5849ac1f14653def824a4b8259dc8cf9495dd47793fb748ebdbac",
+  "builder_sha256": "206979a7f2339fde3e7b8f404846dd6cd6cb73e2da15f9698f8c0e32a80700e2",
+  "cv_bridge_python_extension": false,
+  "board_validation": "pending"
+}
