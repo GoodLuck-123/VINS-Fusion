@@ -15,7 +15,7 @@ import xmlrpc.client
 import rosbag
 
 
-from workspace_paths import WORKSPACE_ROOT as ROOT
+from workspace_paths import WORKSPACE_ROOT as ROOT, REPO_ROOT
 from process_metrics import ProcessMetrics
 
 
@@ -36,7 +36,7 @@ def main():
         check.bind(("127.0.0.1", args.port))
     output.mkdir(parents=True, exist_ok=False)
     os.environ.update(ROS_MASTER_URI=f"http://127.0.0.1:{args.port}", ROS_IP="127.0.0.1")
-    original = ROOT / "VINS-Fusion/config/euroc"
+    original = REPO_ROOT / "config/euroc"
     config = (original / "euroc_stereo_imu_config.yaml").read_text()
     config = re.sub(r'^output_path:.*$', f'output_path: "{output}"', config, flags=re.M)
     config = re.sub(r'^pose_graph_save_path:.*$', f'pose_graph_save_path: "{output}/pose_graph/"', config, flags=re.M)
@@ -48,11 +48,13 @@ def main():
     monitor = None
     processes = []
     logs = []
+    source_record = os.environ.get("VINS_BUILD_SOURCE_JSON")
+    build = json.loads(Path(source_record).read_text()) if source_record else {}
+    source_commit = build.get("source_commit") or subprocess.check_output(
+        ["git", "-C", str(REPO_ROOT), "rev-parse", "HEAD"], text=True).strip()
     metadata = {"bag": str(args.bag.resolve()), "rate": args.rate,
-                "source_commit": subprocess.check_output(
-                    ["git", "-C", str(ROOT / "VINS-Fusion"), "rev-parse", "HEAD"], text=True).strip(),
-                "runner_commit": subprocess.check_output(
-                    ["git", "-C", str(ROOT / "VINS-Fusion"), "rev-parse", "HEAD"], text=True).strip(),
+                "source_commit": source_commit,
+                "runner_commit": build.get("packaging_commit", source_commit),
                 "config": str(config_path), "start_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "success": False}
     metadata["binary_sha256"] = hashlib.sha256((ROOT / ".infra/vins_ws/devel/lib/vins/vins_node").read_bytes()).hexdigest()
