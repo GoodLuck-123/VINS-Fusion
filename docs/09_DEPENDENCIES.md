@@ -36,3 +36,5 @@ SDK 下载结束并核验后，在新的主机 bash 中运行 bash infra/rk3588/
 私有 GCC 9.4 的原 ipcp-unit-growth 参数已通过空翻译单元 ARM 编译，GCC 11 的参数改名在此编译器被拒绝；因此使用原 OpenCV 源码，证据见 [编译器参数核验](../infra/rk3588/reference/ros1_compiler_parameters_20261014/)。当前 ROS 1 与 ROS 2 使用独立 ABI 前缀和编译器，不混用已有 install
 
 下载验收 ros1-fetch01 退出 0，843 个包与四个源码均通过离线重验，私有 GCC 9.4 实际运行成功，转换审计与 SHA256 见 [依赖证据](../infra/rk3588/reference/ros1_dependencies_20261014/)。该里程碑仅验收下载/校验，不将 SDK 自带库或构建前缀当作板端 VINS 已运行
+
+主机动态库只暴露 toolchain/host-libs 内的编译器和 ARM binutils 支持库，不能将 Focal usr/lib/x86_64-linux-gnu 整目录放到 LD_LIBRARY_PATH；否则旧 libstdc++ 会抢占 Jammy CMake。cross_env.sh 自动创建这些指向已校验依赖的链接，下载目录仍忽略；在新的 bash 中 source，不继承其他 ROS/工具链环境
