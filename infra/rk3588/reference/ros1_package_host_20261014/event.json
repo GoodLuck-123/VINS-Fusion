@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/rk3588/scripts/prepare_ros1_runtime.py",
+    "--build-commit",
+    "milestone-rk3588-ros1-cross-build-v1"
+  ],
+  "pid": 127887,
+  "status": "complete",
+  "start_utc": "2026-10-14T08:51:30Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-14T08:51:31Z"
+}
