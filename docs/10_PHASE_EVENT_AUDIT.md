@@ -56,3 +56,5 @@ fastrtps02 已接受为 Fast DDS 板端生命周期验收，addon 与原运行�
 board-baseline02 已接受为首轮完整双目基线，输入计数、初始化/无重置、末帧、ATE/RPE、退出和结束进程审计通过。事件和 SHA256 见 [归档](../infra/rk3588/reference/baseline_20261014/)，旧 board-baseline01 启动失败不重新运行
 
 board-components01 已接受为五轮单目/双目入口与 composed 对照，完整输入/末帧/退出、主机评估、入口及指针证据和结束审计通过，事件/SHA256 见 [归档](../infra/rk3588/reference/components_20261014/)。双目 standalone/copy 已在 baseline02 验收，不重复回放；后续旧通知只去重
+
+board-pmu01 已接受为两轮完整 PMU 对照，四类事件无错误/复用，输入、末帧、评估、退出及结束审计通过，事件/SHA256 见 [归档](../infra/rk3588/reference/pmu_20261014/)。shared-probe-build01 只完成主机 ARM 构建，尚无板端缓冲/heap 验收，不将构建成功混入 VIO 成功统计

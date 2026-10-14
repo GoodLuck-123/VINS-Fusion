@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/run_ros2_board_phase.py",
+    "--runtime",
+    "/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload",
+    "--ros-addon",
+    "/home/firefly/vins-workspace/jobs/1791961492786-103062/fastrtps-payload",
+    "--phase",
+    "pmu",
+    "--prefix",
+    "rk_pmu01",
+    "--directory",
+    "/home/eric/projects/results/rk3588/board-pmu01/trial"
+  ],
+  "pid": 111889,
+  "status": "complete",
+  "start_utc": "2026-10-14T07:56:47Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-14T08:03:52Z"
+}

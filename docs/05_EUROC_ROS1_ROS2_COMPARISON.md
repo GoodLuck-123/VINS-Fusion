@@ -355,3 +355,21 @@ standalone CPU/RSS/PSS 只含 VINS，composed 是容器内 VINS+typed player；�
 share 灰度入口物化次数/字节均为 0，双目共享入口 7364、单目 3682；copy 分别物化 14728 / 7364 次、5,316,218,880 / 2,658,109,440 字节。composed 前六条消息样本源端/消费端 message 和 pixel 指针一致，copy 的 Mat 另有像素存储，share 的 Mat 借用原像素。这是已有 owner/入口的板端证据，不代表真实相机、DMA heap 或端到端零拷贝
 
 运行包、addon、bag 与核心/config 固定，完整日志及资源、telemetry、逐轮评估与解压前日志 SHA256 见 [归档](../infra/rk3588/reference/components_20261014/)。大日志 gzip 保存，原日志仍在工作区；排空含稳定等待，DDR 带宽/功耗仍不可用
+
+## RK3588 完整 PMU 对照（2026-10-14）
+
+board-pmu01 双目 standalone/copy、share 各一轮，输入计数/末帧、初始化/无重置、1831 个姿态/1819 个匹配、主机评估及退出均通过。四类用户态事件无错误，全部 time_running=time_enabled、running_fraction=1，不做复用缩放；板端 PMU 权限保持原值 2，结束审计无旧任务活进程
+
+| 入口 | ATE / RPE RMSE (m) | VINS CPU (s) | RSS / PSS 峰值 (MiB) | 回放 / 排空 (s) |
+| --- | --- | ---: | --- | --- |
+| copy | 0.267002 / 0.003117 | 675.22 | 81.55 / 71.59 | 188.59 / 6.11 |
+| share | 0.267300 / 0.003130 | 673.62 | 82.23 / 71.83 | 188.56 / 6.12 |
+
+| 用户态 CPU 事件 | copy | share |
+| --- | ---: | ---: |
+| cpu_cycles | 714,045,357,456 | 710,058,976,439 |
+| instructions | 938,069,290,073 | 934,965,784,234 |
+| cache_references | 298,652,245,827 | 297,173,846,837 |
+| cache_misses | 4,810,830,339 | 4,775,486,012 |
+
+PMU 范围含原生进程及继承线程、exec/启动/清理与短 Python gate；CPU/RSS/PSS 是 VINS 订阅就绪至排空，未采源端，二者时间范围不同。计数只作 CPU 诊断，不能替代 DDR 带宽或 CPU 功耗；两项仍不可用。不将单轮差异当作确定收益，也不将排空后完成称为逐帧实时性。输入/运行包/算法/标定固定，[完整证据及原文件/gzip SHA256](../infra/rk3588/reference/pmu_20261014/)

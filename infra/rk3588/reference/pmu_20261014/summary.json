@@ -1,0 +1,132 @@
+{
+  "trials": [
+    {
+      "name": "rk_pmu01_stereo_imu_standalone_copy_ros_1",
+      "image_mode": "copy",
+      "cpu_all_threads_s": 675.22,
+      "rss_mib": 81.5546875,
+      "pss_mib": 71.5888671875,
+      "ate_rmse_m": 0.26700181268276735,
+      "rpe_rmse_m": 0.0031173172821438166,
+      "playback_s": 188.59375382400322,
+      "drain_s": 6.111011155000597,
+      "cpu_perf_counters": {
+        "scope": "Native process and inherited threads, userspace only; includes exec/startup/teardown and a short Python gate",
+        "errors": {},
+        "events": {
+          "cpu_cycles": {
+            "count": 714045357456,
+            "time_enabled_ns": 678965875414,
+            "time_running_ns": 678965875414,
+            "running_fraction": 1.0
+          },
+          "instructions": {
+            "count": 938069290073,
+            "time_enabled_ns": 678965709455,
+            "time_running_ns": 678965709455,
+            "running_fraction": 1.0
+          },
+          "cache_references": {
+            "count": 298652245827,
+            "time_enabled_ns": 678965657538,
+            "time_running_ns": 678965657538,
+            "running_fraction": 1.0
+          },
+          "cache_misses": {
+            "count": 4810830339,
+            "time_enabled_ns": 678965611454,
+            "time_running_ns": 678965611454,
+            "running_fraction": 1.0
+          }
+        },
+        "limitations": "CPU PMU diagnostics; cache misses are not DDR bytes; not an energy measurement. No multiplex scaling is applied."
+      },
+      "poses": 1831,
+      "matches": 1819,
+      "initializations": 1,
+      "resets": 0,
+      "pairing_drops": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "rk_pmu01_stereo_imu_standalone_share_ros_2",
+      "image_mode": "share",
+      "cpu_all_threads_s": 673.62,
+      "rss_mib": 82.234375,
+      "pss_mib": 71.8310546875,
+      "ate_rmse_m": 0.26730045205468983,
+      "rpe_rmse_m": 0.003129618573498428,
+      "playback_s": 188.5555186950005,
+      "drain_s": 6.119181574002141,
+      "cpu_perf_counters": {
+        "scope": "Native process and inherited threads, userspace only; includes exec/startup/teardown and a short Python gate",
+        "errors": {},
+        "events": {
+          "cpu_cycles": {
+            "count": 710058976439,
+            "time_enabled_ns": 677228079123,
+            "time_running_ns": 677228079123,
+            "running_fraction": 1.0
+          },
+          "instructions": {
+            "count": 934965784234,
+            "time_enabled_ns": 677227673414,
+            "time_running_ns": 677227673414,
+            "running_fraction": 1.0
+          },
+          "cache_references": {
+            "count": 297173846837,
+            "time_enabled_ns": 677227454664,
+            "time_running_ns": 677227454664,
+            "running_fraction": 1.0
+          },
+          "cache_misses": {
+            "count": 4775486012,
+            "time_enabled_ns": 677227277039,
+            "time_running_ns": 677227277039,
+            "running_fraction": 1.0
+          }
+        },
+        "limitations": "CPU PMU diagnostics; cache misses are not DDR bytes; not an energy measurement. No multiplex scaling is applied."
+      },
+      "poses": 1831,
+      "matches": 1819,
+      "initializations": 1,
+      "resets": 0,
+      "pairing_drops": 0,
+      "exit_code": 0
+    }
+  ],
+  "raw_file_sha256": {
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/groundtruth.tum": "765862519ddf09b306fd4afec57ac3129a9b46d1b59e0bad8bf93e954c33078c",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/run.json": "a11c8b9329a31b5b3bf1dcbda6b4334a3dc1a9b6ac3eadc3511772a5617286f8",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/euroc_stereo_imu_config.yaml": "6efe1773aead6f86e0c4110ee7bd4c4ddbc1da2ef4e3f136f4fc4dc12a011711",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/vio.csv": "35f3b5a590f99f7420af2acaf96e299c727726f60771b87f5d5fec83aa1242ad",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/playback.log": "e0d9ef01546346c06f95f1fb7fb94c5a9c70e1d2ac2035465f3318098c8a6a98",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/trajectory_aligned_se3.tum": "f7ec1be9517d20a33e272cac3cfb60a752bbad787adbc9354d7376b212f48629",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/evaluation.json": "3c8b45571a4d36a41415bbc26d121e3c1bbfae2914d13e797d769e750eaf2c20",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/trajectory.tum": "87ad7343abf580a80ef4e3c820befde85b69d3f8a5bc576515d9830922e909b3",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/playback_qos.yaml": "41e107f05d8c2d97b37d632778a9fa426599b0bfb5df738bdf85dbd984d3c0d2",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/resource_samples.csv": "750bfc5d94aff2af83844458130729309dcc328299919adc74b9ce9f2d16beb5",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/cam1_mei.yaml": "2a435db6a6fbd286c0fe0706792af4b08efd4ffdc6b7a22b8b261256d6e49963",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/vins.log": "39897900107b8c8bb79d339e4303bec5f10bd5b7d10cbbeb9801849ea511138f",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/trajectory.png": "6c7a8495bcd89de4a89910b192e1a5d67867e33697c7f2a05c93dbccc6b52ea1",
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1/cam0_mei.yaml": "cf80ecac499664460eb52159de38786058c7cfb5eee81ab6489dea37a5d64059",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/groundtruth.tum": "765862519ddf09b306fd4afec57ac3129a9b46d1b59e0bad8bf93e954c33078c",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/run.json": "f58d51a0fe49d56caa05c8c98d5e15e60d5ea7ec290ece5d29a0f42813f80d50",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/euroc_stereo_imu_config.yaml": "9d9bf4987cf8e9aa60e07fe62dd2ec7c608739d423c89728e3cdd1eb195c17ad",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/vio.csv": "129875dbb1c2e0a11c455b7b387985c819d8b6bc7cae02d469d5c7976720579e",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/playback.log": "1d2a023200a7a707bd837cdb2cecfa1c4a425209e8be528fa34008ff75932516",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/trajectory_aligned_se3.tum": "6306b780863ed46f1c24ad0cc72cde07838c78e06ba5dd8a6e94c50c9b2d7241",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/evaluation.json": "ed49b654471ac31be9778d57926ae259725b9a1ba8bfca7475629bfa2372885d",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/trajectory.tum": "f685603c07be19bd0394a004a82dc75d76182df9204f60f8aee374cbba73a8e0",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/playback_qos.yaml": "41e107f05d8c2d97b37d632778a9fa426599b0bfb5df738bdf85dbd984d3c0d2",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/resource_samples.csv": "2d70046ecc387cd2976bbadb6762d43967b49f5ffff4a3790c710ade2e57453a",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/cam1_mei.yaml": "2a435db6a6fbd286c0fe0706792af4b08efd4ffdc6b7a22b8b261256d6e49963",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/vins.log": "b4d775eae5c5182c23412cd9a2ddb9886d23793d5c2de2ac2d4649a1f9283c1e",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/trajectory.png": "53a624f88609f10fbdd308f1d62ff914ed340638e689060b2a306f8fe6e60635",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2/cam0_mei.yaml": "cf80ecac499664460eb52159de38786058c7cfb5eee81ab6489dea37a5d64059"
+  },
+  "ddr": "Unavailable",
+  "power": "Unavailable"
+}

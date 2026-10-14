@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "completed": [
+    "rk_pmu01_stereo_imu_standalone_copy_ros_1",
+    "rk_pmu01_stereo_imu_standalone_share_ros_2"
+  ],
+  "bag_hashes_verified": true,
+  "current": {
+    "name": "rk_pmu01_stereo_imu_standalone_share_ros_2",
+    "mode": "stereo_imu",
+    "deployment": "standalone",
+    "image": "share",
+    "transport": "ros",
+    "pmu": true,
+    "rmw": "rmw_fastrtps_cpp"
+  }
+}

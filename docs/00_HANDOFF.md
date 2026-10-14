@@ -57,6 +57,8 @@ board-components01 五轮去重对照已通过完整输入/末帧、初始化/�
 
 组件里程碑 commit a545a95 / tag milestone-rk3588-components-v1；board-pmu01 已交给后台 runner 串行执行两轮双目 copy/share 加 PMU 计数，结束自动回收并在主机评估。当前已验收运行包保持不变，迟到的 baseline01 失败仅去重
 
+board-pmu01 两轮已通过完整输入/末帧、评估与退出，四类用户态 CPU 事件无错误、无复用，权限保持 2；证据和计数范围见第 05 份报告。共享缓冲探针已在主机交叉构建完成，实际板端 memfd/DMA heap 校验仍待执行；不因构建退出 0 提前接受硬件路径
+
 ROS 1 板端目标 codex/rk3588-ros1 已从 master 最新 8c7c8d2 建立独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1，依赖锁 commit 6578b00。主机只读 APT 解析已验签，807 个 Focal/Noetic SDK 包和 36 个 GCC 9.4 工具链包固定 SHA256；ros1-fetch01 在主机下载，板端 ROS 1 构建/运行尚未验收。当前 ROS 2 工作区与已部署运行包保持固定
 
 2026-10-14 全局核对时已统一读取 52 个 event/state、核对 29 个阶段和全部归档；当时主机无活构建/实验，板端七个旧作业均已结束。后续新阶段续写账本，积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
