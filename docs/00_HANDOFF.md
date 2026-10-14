@@ -14,14 +14,18 @@ ROS 1 锁定依赖已重新安装，OpenCV 4.2.0 / Ceres 1.14.0 / cv_bridge / �
 
 ## RK3588 ROS 1 目标分支
 
-当前板端工作位于 codex/rk3588-ros1，从 master 最新 8c7c8d2 新建独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1。原 master、ROS 2 分支/tag 保留；ROS 2 组件批次的源码/运行包固定，本分支只准备主机侧 ROS 1 依赖，尚未构建或运行板端节点
+当前板端工作位于 codex/rk3588-ros1，从 master 最新 8c7c8d2 新建独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1。原 master、ROS 2 分支/tag 保留；ROS 2 组件批次的源码/运行包固定，本分支独立准备 ROS 1 依赖和主机交叉构建，尚未运行板端节点
 
 Noetic final ARM 索引及 Ubuntu Focal 索引认证通过，807 个目标 SDK 包、36 个 GCC 9.4 工具链包已固定 SHA256；OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保留。一条命令下载和空目录约定见 [第 09 份文档](09_DEPENDENCIES.md)。实际 Ubuntu 22.04 板端 ABI/视觉库/节点和完整回放仍需验收；板端依旧离线，下载仅在本机进行
 
-ros1-fetch01 已完成并离线重验四个源码/843 个锁定包，GCC 9.4 主机探针通过，依赖证据见第 09 份文档。下一阶段在独立 ../.infra/rk3588/ros1-legacy/ 构建固定版本视觉库，实际板端库/节点尚未验收；当前主机准备工作不影响 ROS 2 板端批次
+ros1-fetch01 已完成并离线重验四个源码/843 个锁定包，GCC 9.4 主机探针通过，依赖证据见第 09 份文档。已在独立 ../.infra/rk3588/ros1-legacy/ 完成固定版本视觉库主机构建，实际板端库/节点尚未验收；当前主机准备工作不影响 ROS 2 板端批次
 
 ## ROS 1 ARM 构建状态
 
 ros1-fetch01 下载与离线哈希复核已通过，依赖里程碑 commit 30b9d96 / tag milestone-rk3588-ros1-dependencies-v1。首次视觉库构建 ros1-legacy01 在主机 CMake 启动时失败，原证据保留 infra/rk3588/reference/ros1_legacy01_failure/
 
 Focal 工具链的旧主机 libstdc++ 抢占 Jammy CMake，现仅将编译器 isl/gmp/mpc/mpfr 与 ARM binutils 主机支持库暴露到 LD_LIBRARY_PATH，保留系统主机 libc/libstdc++。系统 CMake 3.22.1 与 GCC 9 生成 AArch64 对象均通过，ros1-legacy02 已退出 0，消费端探针编译/链接及 25 个非 glibc ARM 库闭包通过。OpenCV 4.2/Ceres 1.14/Eigen 3.3.9、原 Carotene 参数和目标依赖均未改变；板端 ABI/ROS 1 回放仍待验收
+
+ROS 1 工程入口 build_ros1_cross.sh 已固定，主机 Python 3.10 仅执行纯 Python catkin/empy，cv_bridge 1.16.2 仅重建 VIO 使用的 C++ 库，不生成可混淆 Python ABI 的目标扩展。下载源码保持原样，专用构建副本仅关闭 Python 可选目标，原 VINS/C++ 算法和参数不变
+
+ros1-build01 链接遇到 Noetic 导出的绝对 log4cxx/Boost 路径，失败已归档；fetch.py 统一重定位 20 个目标库/头文件 CMake 导出，并验证幂等性。ros1-build02 交给主机后台 runner 重试，板端仍只有 ROS 2 board-shared01 一批活动实验。构建通过后还需板端 ABI/节点及完整回放验收

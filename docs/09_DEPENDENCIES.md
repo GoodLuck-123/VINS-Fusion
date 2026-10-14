@@ -38,3 +38,5 @@ SDK 下载结束并核验后，在新的主机 bash 中运行 bash infra/rk3588/
 下载验收 ros1-fetch01 退出 0，843 个包与四个源码均通过离线重验，私有 GCC 9.4 实际运行成功，转换审计与 SHA256 见 [依赖证据](../infra/rk3588/reference/ros1_dependencies_20261014/)。该里程碑仅验收下载/校验，不将 SDK 自带库或构建前缀当作板端 VINS 已运行
 
 主机动态库只暴露 toolchain/host-libs 内的编译器和 ARM binutils 支持库，不能将 Focal usr/lib/x86_64-linux-gnu 整目录放到 LD_LIBRARY_PATH；否则旧 libstdc++ 会抢占 Jammy CMake。cross_env.sh 自动创建这些指向已校验依赖的链接，下载目录仍忽略；在新的 bash 中 source，不继承其他 ROS/工具链环境
+
+Noetic catkin 包还导出绝对 log4cxx/Boost 库和 /usr/include，CMake 不会自动重定位这些变量。fetch.py 对 Noetic CMake 原生库/头文件路径加 CMAKE_SYSROOT，20 个变更的前后 SHA256 单独记录在 .vins-native-cmake-relocations.json，重复执行不重复加前缀；原 .deb 与既有冻结归档不改写。Python 导出重定位账本仍独立保留
