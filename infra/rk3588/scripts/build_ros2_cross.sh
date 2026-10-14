@@ -2,8 +2,8 @@
 set -euo pipefail
 repo=$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)
 source "$repo/infra/rk3588/scripts/cross_env.sh"
-export VINS_ARM_ROS_PREFIX="${VINS_ARM_ROS_PREFIX:-$(dirname "$repo")/.infra/rk3588/ros2_ws/install}"
-build="$(dirname "$repo")/.infra/rk3588/ros2_ws/build"
+export VINS_ARM_ROS_PREFIX="${VINS_ARM_ROS_PREFIX:-$(dirname "$repo")/.infra/rk3588/ros2_ws_overlay/install}"
+build="$(dirname "$repo")/.infra/rk3588/ros2_ws_overlay/build"
 ros="$VINS_ARM_SYSROOT/opt/ros/humble"
 export AMENT_PREFIX_PATH="$VINS_ARM_ROS_PREFIX:$ros"
 # Only pure Python build helpers are executed on the host. Target Python/NumPy
@@ -18,6 +18,8 @@ common=(-G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="$repo/infra/rk3588/cmake/aar
   -DCMAKE_PREFIX_PATH="$VINS_ARM_ROS_PREFIX;$VINS_ARM_PREFIX;$ros;$VINS_ARM_SYSROOT/usr"
   -DOpenCV_DIR="$VINS_ARM_PREFIX/lib/cmake/opencv4"
   -DCeres_DIR="$VINS_ARM_PREFIX/lib/cmake/Ceres"
+  -Dcv_bridge_DIR="$VINS_ARM_ROS_PREFIX/share/cv_bridge/cmake"
+  -Dcamera_models_DIR="$VINS_ARM_ROS_PREFIX/share/camera_models/cmake"
   -DEigen3_DIR="$VINS_ARM_PREFIX/share/eigen3/cmake"
   -DPython3_EXECUTABLE=/usr/bin/python3
   -DPython3_INCLUDE_DIR="$VINS_ARM_SYSROOT/usr/include/python3.10"

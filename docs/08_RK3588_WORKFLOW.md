@@ -147,3 +147,5 @@ legacy05 与 legacy-smoke01 已通过完整库构建、消费端链接及板端�
 ARM ROS 2 首次配置在 typesupport 资源索引查询前停止，包实际已存在，见 [配置失败](../infra/rk3588/reference/ros2_build01_failure/)。构建脚本补上目标 AMENT_PREFIX_PATH，与 CMake 包路径一致；主机/目标 Python 和 Boost 查找已通过，不修改 VINS 核心。后续阶段为 ros2-build02，仍需完整构建及板端运行验收
 
 ros2-build02 配置已通过，但 Humble 预编译消息导出的 INTERFACE_LINK_LIBRARIES 硬编码 libpython 绝对路径，构建误查主机根目录，见 [SDK 导出路径失败](../infra/rk3588/reference/ros2_build02_failure/)。统一解包规则在 ROS CMake 导出中仅为该路径添加 CMAKE_SYSROOT，记录前后哈希，原包/二进制不变。下一阶段为 ros2-build03，不修改 VINS 核心或伪装其他平台
+
+ros2-build03 编译退出 0，但链接警告暴露 SDK cv_bridge 引入 OpenCV 4.5，混链验收不通过，未部署，见 [混链证据](../infra/rk3588/reference/ros2_build03_mixed_libraries/)。固定 cv_bridge_DIR、camera_models_DIR 为重建安装目录，并将其间接库搜索路径放在 SDK 前；新 workspace 为 `../.infra/rk3588/ros2_ws_overlay/`，旧 workspace 保留。下一阶段 ros2-build04，全量重建后还需验证动态库来源和板端运行

@@ -1,0 +1,1 @@
+cv_bridge_DIR:PATH=/home/eric/projects/VINS-Fusion/dependencies/sysroots/ros2-humble/root/opt/ros/humble/share/cv_bridge/cmake

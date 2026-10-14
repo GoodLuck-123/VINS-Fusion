@@ -1,0 +1,9 @@
+{
+  "build_exit": 0,
+  "accepted": false,
+  "reason": "SDK cv_bridge selected; OpenCV 4.5/4.2 mixed-link warnings",
+  "full_console_sha256": "73d78a9da065ed9de5513b940c1134ae62339622fb9f7e9adcb2f95ac6489ea5",
+  "deployed_to_board": false,
+  "new_workspace": "ros2_ws_overlay",
+  "fix": "pin cv_bridge_DIR/camera_models_DIR and prioritize rebuilt library rpath-link"
+}
