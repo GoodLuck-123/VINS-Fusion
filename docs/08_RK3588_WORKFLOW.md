@@ -6,7 +6,7 @@
 
 ## 已验收与待验收
 
-五包/六程序/70 个 ARM ELF 主机构建通过，tag milestone-rk3588-ros1-cross-build-v1；固定 OpenCV 4.2.0/Ceres 1.14.0/Eigen 3.3.9 的实际 RK3588 GFTT/LK/两种稀疏求解通过，tag milestone-rk3588-ros1-legacy-libs-v1。Noetic/Python 3.8 运行包主机准备完成，4209 文件/105 个运行库；节点生命周期和完整 VIO 仍待板端验收
+五包/六程序/70 个 ARM ELF 主机构建通过，tag milestone-rk3588-ros1-cross-build-v1；固定 OpenCV 4.2.0/Ceres 1.14.0/Eigen 3.3.9 的实际 RK3588 GFTT/LK/两种稀疏求解通过，tag milestone-rk3588-ros1-legacy-libs-v1。Noetic/Python 3.8 运行包主机准备完成，4209 文件/105 个运行库；ros1-runtime01 已串行部署并开始生命周期检查，节点/完整 VIO 尚未验收
 
 ## 一个命令下载与隔离构建
 
