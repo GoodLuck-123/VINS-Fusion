@@ -1,0 +1,22 @@
+{
+  "kernel": "vendor 5.10.110",
+  "perf_version": "perf version 5.15.216",
+  "runtime_libraries_bundled": 11,
+  "board_glibc_retained": true,
+  "paranoid": 2,
+  "stat_events": [
+    "task-clock:u",
+    "cycles:u",
+    "instructions:u",
+    "cache-references:u",
+    "cache-misses:u"
+  ],
+  "stat_counter_running_percent": 100.0,
+  "samples": 298,
+  "lost_samples": 0,
+  "profile_work_symbol_found": true,
+  "exit_code": 0,
+  "board_wall_clock_synchronized": false,
+  "vins_profiled": false,
+  "smoke_elf_sha256": "9220b83a6b6536a68b929a248aa2ebd3763bb9a6e4d2a1d0dae5049fc10a6df2"
+}

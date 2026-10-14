@@ -1,0 +1,2 @@
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.026 MB /home/firefly/vins-workspace/jobs/1791954867794-70909/logs/perf.data (298 samples) ]

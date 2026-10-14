@@ -35,6 +35,6 @@
 
 源自 HKUST Aerial Robotics 的 [VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion)，作者、论文、引用及原版示例保存在 [上游历史说明](support_files/UPSTREAM_README.md)。源码遵循 [GPLv3](LICENCE)；上游 ROS 1 Docker 和硬件 launch 作为历史文件保留，当前 ROS 2 的可靠运行入口以第 04 份文档为准
 
-RK3588 板端工作位于 codex/rk3588-ros2，免密 SSH 与 C++ scp/运行/日志回收工具已验证，板端 PMU 访问探针通过；ARM 构建、perf 采样和 VIO 仍待验收。下载在联网主机完成，优先本机交叉编译，各配置仅一轮，具体见第 08 份文档
+RK3588 板端工作位于 codex/rk3588-ros2，免密 SSH 与 C++ scp/运行/日志回收工具已验证；ARM 小程序交叉构建/运行、统一依赖下载与 perf 计数/采样/符号解析通过，VINS ARM 构建和 VIO 尚待验收。下载在联网主机完成，优先本机交叉编译，各配置仅一轮，具体见第 08 份文档
 
 板端依赖统一执行 `python3 infra/dependencies/fetch.py` 下载，Git 只保留锁和空目录占位；OpenCV/Ceres/Eigen/cv_bridge、交叉工具链及 ARM Humble 包按 SHA256 校验，详见第 09 份说明

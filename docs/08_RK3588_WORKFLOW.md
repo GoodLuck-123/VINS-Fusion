@@ -64,7 +64,17 @@ cmake --install ../.infra/remote-build --prefix ../.infra
 
 ## Profile 能力
 
-本机板端探针确认 CONFIG_PERF_EVENTS、CONFIG_HW_PERF_EVENTS、CONFIG_ARM_PMU 可用，armv8_pmuv3 注册；普通用户 task_clock、cycles、cache_misses 访问成功，当前 PMU 权限值为 2。本板尚未安装 perf、trace-cmd 或 gatord，因此第一条路线是在主机准备 ARM perf、传到板上做实际采样和符号解析核验
+本机板端探针确认 CONFIG_PERF_EVENTS、CONFIG_HW_PERF_EVENTS、CONFIG_ARM_PMU 可用，armv8_pmuv3 注册；普通用户 task_clock、cycles、cache_misses 访问成功，当前 PMU 权限值为 2。系统原先未安装 perf、trace-cmd 或 gatord；现已通过主机下载的 ARM perf 验证实际计数、采样和函数符号解析，不安装或替换板端内核
+
+```bash
+bash infra/rk3588/scripts/prepare_perf.sh
+../.infra/bin/vins-remote firefly@10.106.0.220 ../.infra/rk3588/perf-payload \
+  --run infra/rk3588/scripts/profile_smoke.sh --output ../results/rk3588/新的采样探针 --timeout 90
+```
+
+准备脚本从统一包锁中取得实际 perf 二进制及 11 个 ARM 动态库，保留板端 glibc/loader，拒绝覆盖现有 payload。工具实测版本 5.15.216，在厂商 5.10.110 上完成五类用户态事件计数、99 Hz cycles 采样与 frame-pointer 调用栈；298 个样本、丢样为 0，热点函数 profile_work 可解析。证据见 [perf 快照](../infra/rk3588/reference/perf_20261014/) 和第 05 份报告，覆盖的是测试程序，不是 VINS 热点结论
+
+板端墙上时钟未同步，perf 文件头/远端 start_utc 的日期偏离主机；本轮不修改板端时钟。阶段事件使用主机 UTC，程序耗时用单调时钟，避免跨机器相减绝对时间
 
 可选 Arm Streamline 需要目标 gatord，主要使用 Linux Perf API；先验证 CPU perf，再决定是否值得引入更重的工具，不自动改内核或安装 GPU/NPU profiler，[Arm gator 官方说明](https://github.com/ARM-software/gator)
 
@@ -76,7 +86,7 @@ ARM 构建通过后锁定一次性实验矩阵：ROS 1 参照、ROS 2 单目/双
 
 固定 MH_01_easy、标定和算法参数；实验串行，明确回放与排空时间、全线程 CPU、每进程 RSS/PSS、频率/温度及输入/初始化/重置/末帧/退出。共享路径核验全像素/时间戳摘要与槽位归还，结果回主机用同一 uv.lock 离线评估 ATE/RPE，统一续写第 05 份报告
 
-目前连接、工作流、交叉 GCC 与 ARM ROS 2 sysroot 已验收，ARM 小程序运行通过；VINS 与板端 VIO 尚未完成。大批次交给本地执行器，仅阶段完成、失败或需要处理时通知当前聊天，不由模型在线轮询；手动 ssh 留给初期核实和必要调试
+目前连接、工作流、统一依赖下载、交叉 GCC、ARM ROS 2 sysroot 与 perf 已验收，ARM 小程序运行通过；VINS 与板端 VIO 尚未完成。大批次交给本地执行器，仅阶段完成、失败或需要处理时通知当前聊天，不由模型在线轮询；手动 ssh 留给初期核实和必要调试
 
 ## 交叉工具链准备与失败回退
 

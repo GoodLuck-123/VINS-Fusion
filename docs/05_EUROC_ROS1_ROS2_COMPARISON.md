@@ -270,3 +270,18 @@ CPU 秒是数据源与 VINS 所有线程累计 CPU 时间之和；负的对照�
 新增只读归档核验脚本处理历史两种路径约定，不改写原清单。失败摘录的来源和覆盖边界仍保留，文档整理未重跑 VIO。新 annotated tag 为 `milestone-ros2-desktop-handoff-native-ubuntu22-v1`，直接提交于 ros2-humble
 
 [交接核验证据](../infra/desktop/comparison_reference/native_ubuntu22_20261013/handoff/)，板端、真实相机和硬件加速仍需分别验收
+
+## RK3588 profile 工具验收（2026-10-14）
+
+目标为 RK3588S / Ubuntu 22.04.5 / 厂商内核 5.10.110。系统原先无 perf；联网主机从锁定 ARM Ubuntu 包提取 perf，打包 11 个非 glibc 动态库，经 C++ 远端工具部署、采样并回收。工具版本实测为 5.15.216，不替换内核或板端 glibc，PMU 权限保持原值 2
+
+| 验证项 | 结果 |
+| --- | --- |
+| task-clock / cycles / instructions / cache-references / cache-misses | 五类用户态事件成功，计数运行比例 100%，无不支持/未计数 |
+| cycles:u / 99 Hz / frame-pointer 栈 | 298 个样本，丢样为 0 |
+| 函数符号 | profile_work 解析成功，测试热点占 99.96% |
+| 依赖与退出 | ldd 无缺库，远端退出 0 |
+
+[本阶段证据及 SHA256](../infra/rk3588/reference/perf_20261014/)，重建与运行入口见第 08 份文档。这里只证明 CPU profile 工具可用，不代表 VINS 热点或性能结论；DDR 字节/秒与 CPU 功耗仍不可用，不用 cache misses 代替
+
+板端墙上时钟尚未同步，perf 文件头与远端 start_utc 的日期不作为主机 UTC。回放/采样耗时按单调时钟统计，外层阶段事件按主机 UTC 归档，本轮未修改板端系统时间

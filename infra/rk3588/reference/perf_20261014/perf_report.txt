@@ -1,0 +1,29 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 298  of event 'cycles:u'
+# Event count (approx.): 6584865655
+#
+# Overhead  Command        Shared Object          Symbol                
+# ........  .............  .....................  ......................
+#
+    99.96%  profile_smoke  profile_smoke          [.] profile_work
+            |
+            ---profile_work
+               0x7f80587400
+               __libc_start_main
+               _start
+
+     0.04%  profile_smoke  ld-linux-aarch64.so.1  [.] 0x000000000000a36c
+     0.00%  profile_smoke  ld-linux-aarch64.so.1  [.] 0x0000000000013a40
+     0.00%  profile_smoke  ld-linux-aarch64.so.1  [.] 0x0000000000018648
+     0.00%  profile_smoke  ld-linux-aarch64.so.1  [.] 0x0000000000018610
+     0.00%  profile_smoke  [unknown]              [k] 0xffffffc0115b00c4
+     0.00%  profile_smoke  [unknown]              [k] 0xffffffc0115b0190
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

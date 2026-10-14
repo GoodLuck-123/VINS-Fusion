@@ -1,0 +1,4 @@
+00690fcb494b3806d731b576561af41cf04b95da [kernel.kallsyms]
+94d5e230622f8f7c279e40cb7ee0ff0d64d00637 /home/firefly/vins-workspace/jobs/1791954867794-70909/perf-payload/profile_smoke
+99b08204b963492011ae38b7440cb05e11c2c61f /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+00dca87ff949783435090a5235cb8405345ee3ad [vdso]
