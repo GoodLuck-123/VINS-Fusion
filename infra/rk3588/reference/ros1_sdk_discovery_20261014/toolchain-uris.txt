@@ -1,0 +1,69 @@
+Reading package lists...
+Building dependency tree...
+The following additional packages will be installed:
+  binutils-aarch64-linux-gnu binutils-common cpp-9-aarch64-linux-gnu
+  cpp-aarch64-linux-gnu g++-9-aarch64-linux-gnu gcc-10-base gcc-10-cross-base
+  gcc-9-aarch64-linux-gnu gcc-9-aarch64-linux-gnu-base gcc-9-cross-base
+  gcc-aarch64-linux-gnu libasan5-arm64-cross libatomic1-arm64-cross libc6
+  libc6-arm64-cross libc6-dev-arm64-cross libcc1-0 libcrypt1
+  libgcc-9-dev-arm64-cross libgcc-s1 libgcc-s1-arm64-cross libgmp10
+  libgomp1-arm64-cross libisl22 libitm1-arm64-cross liblsan0-arm64-cross
+  libmpc3 libmpfr6 libstdc++-9-dev-arm64-cross libstdc++6
+  libstdc++6-arm64-cross libtsan0-arm64-cross libubsan1-arm64-cross
+  linux-libc-dev-arm64-cross zlib1g
+Suggested packages:
+  binutils-doc gcc-9-locales cpp-doc gcc-9-doc make manpages-dev autoconf
+  automake libtool flex bison gdb-aarch64-linux-gnu gcc-doc glibc-doc debconf
+  | debconf-2.0 locales
+Recommended packages:
+  libidn2-0
+The following NEW packages will be installed
+  binutils-aarch64-linux-gnu binutils-common cpp-9-aarch64-linux-gnu
+  cpp-aarch64-linux-gnu g++-9-aarch64-linux-gnu g++-aarch64-linux-gnu
+  gcc-10-base gcc-10-cross-base gcc-9-aarch64-linux-gnu
+  gcc-9-aarch64-linux-gnu-base gcc-9-cross-base gcc-aarch64-linux-gnu
+  libasan5-arm64-cross libatomic1-arm64-cross libc6 libc6-arm64-cross
+  libc6-dev-arm64-cross libcc1-0 libcrypt1 libgcc-9-dev-arm64-cross libgcc-s1
+  libgcc-s1-arm64-cross libgmp10 libgomp1-arm64-cross libisl22
+  libitm1-arm64-cross liblsan0-arm64-cross libmpc3 libmpfr6
+  libstdc++-9-dev-arm64-cross libstdc++6 libstdc++6-arm64-cross
+  libtsan0-arm64-cross libubsan1-arm64-cross linux-libc-dev-arm64-cross zlib1g
+0 to upgrade, 36 to newly install, 0 to remove and 0 not to upgrade.
+Need to get 42.8 MB of archives.
+After this operation, 176 MB of additional disk space will be used.
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/gcc-10-base_10.5.0-1ubuntu1%7e20.04_amd64.deb' gcc-10-base_10.5.0-1ubuntu1~20.04_amd64.deb 20776 MD5Sum:479a01366c42a6bafadcbb0c6da26000
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libgcc-s1_10.5.0-1ubuntu1%7e20.04_amd64.deb' libgcc-s1_10.5.0-1ubuntu1~20.04_amd64.deb 41824 MD5Sum:848f026db8d881fe36e7e4a200b0bc56
+'http://archive.ubuntu.com/ubuntu/pool/main/libx/libxcrypt/libcrypt1_4.4.10-10ubuntu4_amd64.deb' libcrypt1_1%3a4.4.10-10ubuntu4_amd64.deb 78204 MD5Sum:7c69e5240c0782a3025f5b821b6b833b
+'http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6_2.31-0ubuntu9.18_amd64.deb' libc6_2.31-0ubuntu9.18_amd64.deb 2720364 MD5Sum:65b052a4ffa8e84d6e6e979413e92d0c
+'http://archive.ubuntu.com/ubuntu/pool/main/z/zlib/zlib1g_1.2.11.dfsg-2ubuntu1.5_amd64.deb' zlib1g_1%3a1.2.11.dfsg-2ubuntu1.5_amd64.deb 54164 MD5Sum:acff3384fca38ac1bcb19df64ded4f73
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gmp/libgmp10_6.2.0%2bdfsg-4ubuntu0.1_amd64.deb' libgmp10_2%3a6.2.0+dfsg-4ubuntu0.1_amd64.deb 240684 MD5Sum:0bfb1331a8defa1ea15d8e2d99995499
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libstdc%2b%2b6_10.5.0-1ubuntu1%7e20.04_amd64.deb' libstdc++6_10.5.0-1ubuntu1~20.04_amd64.deb 501136 MD5Sum:cf59e2b854c08ef9fbf3d25f47912dcf
+'http://archive.ubuntu.com/ubuntu/pool/main/b/binutils/binutils-common_2.34-6ubuntu1.11_amd64.deb' binutils-common_2.34-6ubuntu1.11_amd64.deb 207852 MD5Sum:71ec0c6803423beb161d4871df580b1e
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-9-cross/gcc-9-aarch64-linux-gnu-base_9.4.0-1ubuntu1%7e20.04.2cross2_amd64.deb' gcc-9-aarch64-linux-gnu-base_9.4.0-1ubuntu1~20.04.2cross2_amd64.deb 19148 MD5Sum:9a509c818e2b379cdf6c6f993f746b82
+'http://archive.ubuntu.com/ubuntu/pool/main/i/isl/libisl22_0.22.1-1_amd64.deb' libisl22_0.22.1-1_amd64.deb 591960 MD5Sum:1a23835677b853421e306d5d5ee4a09a
+'http://archive.ubuntu.com/ubuntu/pool/main/m/mpfr4/libmpfr6_4.0.2-1_amd64.deb' libmpfr6_4.0.2-1_amd64.deb 240292 MD5Sum:9e91ab64ac113ea6c06d45d5ffe09fc6
+'http://archive.ubuntu.com/ubuntu/pool/main/m/mpclib3/libmpc3_1.1.0-1_amd64.deb' libmpc3_1.1.0-1_amd64.deb 40784 MD5Sum:904f40b9d70151d42df9b826986a24d8
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-9-cross/cpp-9-aarch64-linux-gnu_9.4.0-1ubuntu1%7e20.04.2cross2_amd64.deb' cpp-9-aarch64-linux-gnu_9.4.0-1ubuntu1~20.04.2cross2_amd64.deb 6677332 MD5Sum:39030187103d7f5476d5692be73fb690
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-defaults/cpp-aarch64-linux-gnu_9.3.0-1ubuntu2_amd64.deb' cpp-aarch64-linux-gnu_4%3a9.3.0-1ubuntu2_amd64.deb 3432 MD5Sum:ea253ff68be75c41f5079ef36092c8fb
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libcc1-0_10.5.0-1ubuntu1%7e20.04_amd64.deb' libcc1-0_10.5.0-1ubuntu1~20.04_amd64.deb 48832 MD5Sum:470f48325c68b6e1c2e93c3f067c0d94
+'http://archive.ubuntu.com/ubuntu/pool/main/b/binutils/binutils-aarch64-linux-gnu_2.34-6ubuntu1.11_amd64.deb' binutils-aarch64-linux-gnu_2.34-6ubuntu1.11_amd64.deb 2773492 MD5Sum:fe39593ee41f07a9cf23e5feed3610eb
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-9-cross/gcc-9-cross-base_9.4.0-1ubuntu1%7e20.04.2cross2_all.deb' gcc-9-cross-base_9.4.0-1ubuntu1~20.04.2cross2_all.deb 14416 MD5Sum:dcc958a13e27b5cbd96e7b7d6e9d26a3
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10-cross/gcc-10-cross-base_10.5.0-1ubuntu1%7e20.04cross1_all.deb' gcc-10-cross-base_10.5.0-1ubuntu1~20.04cross1_all.deb 15456 MD5Sum:c4a0d2851205834820ef4dca1b6b064f
+'http://archive.ubuntu.com/ubuntu/pool/main/c/cross-toolchain-base/libc6-arm64-cross_2.31-0ubuntu9.9cross1_all.deb' libc6-arm64-cross_2.31-0ubuntu9.9cross1_all.deb 1049660 MD5Sum:7e0063f742b32d77edb58d7ecee06be6
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10-cross/libgcc-s1-arm64-cross_10.5.0-1ubuntu1%7e20.04cross1_all.deb' libgcc-s1-arm64-cross_10.5.0-1ubuntu1~20.04cross1_all.deb 34596 MD5Sum:2fce0eb3b56e8036b8df34ed303355c7
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10-cross/libgomp1-arm64-cross_10.5.0-1ubuntu1%7e20.04cross1_all.deb' libgomp1-arm64-cross_10.5.0-1ubuntu1~20.04cross1_all.deb 91420 MD5Sum:c101061b33447e757f53c6d62f6fbffe
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10-cross/libitm1-arm64-cross_10.5.0-1ubuntu1%7e20.04cross1_all.deb' libitm1-arm64-cross_10.5.0-1ubuntu1~20.04cross1_all.deb 23636 MD5Sum:321341e4ee398a9ae10864b0e35186e4
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10-cross/libatomic1-arm64-cross_10.5.0-1ubuntu1%7e20.04cross1_all.deb' libatomic1-arm64-cross_10.5.0-1ubuntu1~20.04cross1_all.deb 9520 MD5Sum:d2591ed91fb07c5e5eacbfbedc1c0c7c
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-9-cross/libasan5-arm64-cross_9.4.0-1ubuntu1%7e20.04.2cross2_all.deb' libasan5-arm64-cross_9.4.0-1ubuntu1~20.04.2cross2_all.deb 2678036 MD5Sum:2e2f8b10a320bda19416831439a04ee0
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10-cross/liblsan0-arm64-cross_10.5.0-1ubuntu1%7e20.04cross1_all.deb' liblsan0-arm64-cross_10.5.0-1ubuntu1~20.04cross1_all.deb 800532 MD5Sum:bdd6bbe033a562e66eb73511f4615cbe
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10-cross/libtsan0-arm64-cross_10.5.0-1ubuntu1%7e20.04cross1_all.deb' libtsan0-arm64-cross_10.5.0-1ubuntu1~20.04cross1_all.deb 1963616 MD5Sum:45c1faadc5646083e3b06d132da464a6
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10-cross/libstdc%2b%2b6-arm64-cross_10.5.0-1ubuntu1%7e20.04cross1_all.deb' libstdc++6-arm64-cross_10.5.0-1ubuntu1~20.04cross1_all.deb 420320 MD5Sum:a2ea55fa1ae6ce018b9375b6b70f8c70
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10-cross/libubsan1-arm64-cross_10.5.0-1ubuntu1%7e20.04cross1_all.deb' libubsan1-arm64-cross_10.5.0-1ubuntu1~20.04cross1_all.deb 764604 MD5Sum:df062ac5e9ca67a171a7c961c995f47f
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-9-cross/libgcc-9-dev-arm64-cross_9.4.0-1ubuntu1%7e20.04.2cross2_all.deb' libgcc-9-dev-arm64-cross_9.4.0-1ubuntu1~20.04.2cross2_all.deb 918924 MD5Sum:d566a9b228f8fc29109384d9182ce7fb
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-9-cross/gcc-9-aarch64-linux-gnu_9.4.0-1ubuntu1%7e20.04.2cross2_amd64.deb' gcc-9-aarch64-linux-gnu_9.4.0-1ubuntu1~20.04.2cross2_amd64.deb 7427524 MD5Sum:6a6fd6f336cde768fd7b049031814887
+'http://archive.ubuntu.com/ubuntu/pool/main/c/cross-toolchain-base/linux-libc-dev-arm64-cross_5.4.0-110.124cross1_all.deb' linux-libc-dev-arm64-cross_5.4.0-110.124cross1_all.deb 1052168 MD5Sum:c7df7c11acbe4e363e443999102435a6
+'http://archive.ubuntu.com/ubuntu/pool/main/c/cross-toolchain-base/libc6-dev-arm64-cross_2.31-0ubuntu9.9cross1_all.deb' libc6-dev-arm64-cross_2.31-0ubuntu9.9cross1_all.deb 2053216 MD5Sum:b5aa67e2256604341c26ef27a78131fa
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-9-cross/libstdc%2b%2b-9-dev-arm64-cross_9.4.0-1ubuntu1%7e20.04.2cross2_all.deb' libstdc++-9-dev-arm64-cross_9.4.0-1ubuntu1~20.04.2cross2_all.deb 1667040 MD5Sum:11131a52f998b0320bd58e5ae97b6db4
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-9-cross/g%2b%2b-9-aarch64-linux-gnu_9.4.0-1ubuntu1%7e20.04.2cross2_amd64.deb' g++-9-aarch64-linux-gnu_9.4.0-1ubuntu1~20.04.2cross2_amd64.deb 7593944 MD5Sum:35131bb7f9617e78c0a96c8ce8595486
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-defaults/gcc-aarch64-linux-gnu_9.3.0-1ubuntu2_amd64.deb' gcc-aarch64-linux-gnu_4%3a9.3.0-1ubuntu2_amd64.deb 1420 MD5Sum:73d8756bb50f915099c9d4abbf50ea6e
+'http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-defaults/g%2b%2b-aarch64-linux-gnu_9.3.0-1ubuntu2_amd64.deb' g++-aarch64-linux-gnu_4%3a9.3.0-1ubuntu2_amd64.deb 1128 MD5Sum:e890bd80ab8f8586456ead322599c084

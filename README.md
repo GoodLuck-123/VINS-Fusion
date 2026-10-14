@@ -1,4 +1,7 @@
 # VINS-Fusion
+
+本分支为 RK3588 ROS 1 目标 codex/rk3588-ros1，从 master 最新 8c7c8d2 建立。先读 [00 接手入口](docs/00_HANDOFF.md)；clone 后用一条命令补齐锁定依赖，见 [09 依赖下载](docs/09_DEPENDENCIES.md)。当前只验签并锁定 ARM SDK，板端构建/运行待验收
+
 ## An optimization-based multi-sensor state estimator
 
 <img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/vins_logo.png" width = 55% height = 55% div align=left />

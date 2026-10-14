@@ -1,6 +1,6 @@
 # 接手与当前状态
 
-更新日期：2026-10-13
+更新日期：2026-10-14
 
 当前任务是在物理 Ubuntu 22.04 主机复现 WSL 已完成的全部桌面实验，按里程碑更新文档并分别提交。先读 [复现清单](07_NATIVE_UBUNTU_REPRODUCTION.md)；当前 checkout 为 `master`，ROS 1 结果直接提交在此；后续 ROS 2 直接使用 `ros2-humble` 最新提交，不另建复现分支
 
@@ -11,3 +11,9 @@ ROS 1 锁定依赖已重新安装，OpenCV 4.2.0 / Ceres 1.14.0 / cv_bridge / �
 命令从仓库根目录执行。ROS/C++ 前缀与 Python 评估环境分开；安装、数据和完整日志在父目录 `.infra/`、`data/`、`results/`，不要在根目录建软链接。每次切换源码先重建，再在新 shell source 对应环境
 
 历史分支、tag、归档及 SHA256 保留。复现成功前不覆盖冻结数据、不写“完成”，失败现场保留；无需重启神经网络或板端实验。本轮没有远端 push 授权
+
+## RK3588 ROS 1 目标分支
+
+当前板端工作位于 codex/rk3588-ros1，从 master 最新 8c7c8d2 新建独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1。原 master、ROS 2 分支/tag 保留；ROS 2 组件批次的源码/运行包固定，本分支只准备主机侧 ROS 1 依赖，尚未构建或运行板端节点
+
+Noetic final ARM 索引及 Ubuntu Focal 索引认证通过，807 个目标 SDK 包、36 个 GCC 9.4 工具链包已固定 SHA256；OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9 保留。一条命令下载和空目录约定见 [第 09 份文档](09_DEPENDENCIES.md)。实际 Ubuntu 22.04 板端 ABI/视觉库/节点和完整回放仍需验收；板端依旧离线，下载仅在本机进行

@@ -1,0 +1,1216 @@
+Reading package lists...
+Building dependency tree...
+The following additional packages will be installed:
+  adduser adwaita-icon-theme autoconf automake autotools-dev ca-certificates
+  cmake cmake-data coreutils dbus dbus-user-session dconf-gsettings-backend
+  dconf-service debconf debianutils default-libmysqlclient-dev dirmngr
+  distro-info-data docutils-common dpkg flang-18 fontconfig fontconfig-config
+  fonts-dejavu-core gcc-10-base gcc-7-base gdal-data glib-networking
+  glib-networking-common glib-networking-services gnupg gnupg-l10n gnupg-utils
+  google-mock googletest gpg gpg-agent gpg-wks-client gpg-wks-server gpgconf
+  gpgsm gpgv graphviz gsettings-desktop-schemas gtk-update-icon-cache
+  hicolor-icon-theme humanity-icon-theme ibverbs-providers icu-devtools
+  init-system-helpers iso-codes libacl1 libaec0 libamd2 libann0 libaom0
+  libapparmor1 libapr1 libapr1-dev libaprutil1 libaprutil1-dev libarchive13
+  libargon2-1 libarmadillo9 libarpack2 libasan4 libasan6 libasn1-8-heimdal
+  libassuan-dev libassuan0 libatk-bridge2.0-0 libatk1.0-0 libatk1.0-data
+  libatomic1 libatspi2.0-0 libattr1 libaudit-common libaudit1 libavahi-client3
+  libavahi-common-data libavahi-common3 libavcodec-dev libavcodec58
+  libavformat-dev libavformat58 libavresample-dev libavresample4 libavutil-dev
+  libavutil56 libblas3 libblkid1 libbluray2 libboost-all-dev
+  libboost-atomic-dev libboost-atomic1.71-dev libboost-atomic1.71.0
+  libboost-chrono-dev libboost-chrono1.71-dev libboost-chrono1.71.0
+  libboost-container-dev libboost-container1.71-dev libboost-container1.71.0
+  libboost-context-dev libboost-context1.71-dev libboost-context1.71.0
+  libboost-coroutine-dev libboost-coroutine1.71-dev libboost-coroutine1.71.0
+  libboost-date-time-dev libboost-date-time1.71-dev libboost-date-time1.71.0
+  libboost-dev libboost-exception-dev libboost-exception1.71-dev
+  libboost-fiber-dev libboost-fiber1.71-dev libboost-fiber1.71.0
+  libboost-filesystem-dev libboost-filesystem1.71-dev
+  libboost-filesystem1.71.0 libboost-graph-dev libboost-graph-parallel-dev
+  libboost-graph-parallel1.71-dev libboost-graph-parallel1.71.0
+  libboost-graph1.71-dev libboost-graph1.71.0 libboost-iostreams-dev
+  libboost-iostreams1.71-dev libboost-iostreams1.71.0 libboost-locale-dev
+  libboost-locale1.71-dev libboost-locale1.71.0 libboost-log-dev
+  libboost-log1.71-dev libboost-log1.71.0 libboost-math-dev
+  libboost-math1.71-dev libboost-math1.71.0 libboost-mpi-dev
+  libboost-mpi-python-dev libboost-mpi-python1.71-dev
+  libboost-mpi-python1.71.0 libboost-mpi1.71-dev libboost-mpi1.71.0
+  libboost-numpy-dev libboost-numpy1.71-dev libboost-numpy1.71.0
+  libboost-program-options-dev libboost-program-options1.71-dev
+  libboost-program-options1.71.0 libboost-python-dev libboost-python1.71-dev
+  libboost-python1.71.0 libboost-random-dev libboost-random1.71-dev
+  libboost-random1.71.0 libboost-regex-dev libboost-regex1.71-dev
+  libboost-regex1.71.0 libboost-serialization-dev
+  libboost-serialization1.71-dev libboost-serialization1.71.0
+  libboost-stacktrace-dev libboost-stacktrace1.71-dev
+  libboost-stacktrace1.71.0 libboost-system-dev libboost-system1.71-dev
+  libboost-system1.71.0 libboost-test-dev libboost-test1.71-dev
+  libboost-test1.71.0 libboost-thread-dev libboost-thread1.71-dev
+  libboost-thread1.71.0 libboost-timer-dev libboost-timer1.71-dev
+  libboost-timer1.71.0 libboost-tools-dev libboost-type-erasure-dev
+  libboost-type-erasure1.71-dev libboost-type-erasure1.71.0 libboost-wave-dev
+  libboost-wave1.71-dev libboost-wave1.71.0 libboost1.71-dev
+  libboost1.71-tools-dev libbrotli1 libbsd0 libbtf1 libbz2-1.0 libbz2-dev
+  libc-dev-bin libc6 libcairo-gobject2 libcairo2 libcamd2 libcap-ng0 libcap2
+  libcap2-bin libcbor0.6 libccolamd2 libcdt5 libcfitsio8 libcgraph6 libcharls2
+  libcholmod3 libchromaprint1 libclang-cpp18 libcodec2-0.9 libcolamd2
+  libcolord2 libcom-err2 libconsole-bridge-dev libconsole-bridge0.4
+  libcrypt-dev libcrypt1 libcryptsetup12 libcups2 libcurl3-gnutls libcurl4
+  libcxsparse3 libdap25 libdapclient6v5 libdatrie1 libdb5.3 libdbus-1-3
+  libdc1394-22 libdc1394-22-dev libdconf1 libdevmapper1.02.1 libdpkg-perl
+  libdrm-amdgpu1 libdrm-common libdrm-nouveau2 libdrm-radeon1 libdrm2 libedit2
+  libelf1 libepoxy0 libepsilon1 libevent-2.1-7 libevent-core-2.1-7
+  libevent-dev libevent-extra-2.1-7 libevent-openssl-2.1-7
+  libevent-pthreads-2.1-7 libexif-dev libexif12 libexpat1 libexpat1-dev
+  libffi7 libfido2-1 libflang-18-dev libfontconfig1 libfreetype6 libfreexl1
+  libfribidi0 libfyba0 libgcc-10-dev libgcc-7-dev libgcc-s1 libgcrypt20 libgd3
+  libgdal26 libgdbm-compat4 libgdbm6 libgdcm-dev libgdcm3.0 libgdk-pixbuf2.0-0
+  libgdk-pixbuf2.0-common libgeos-3.8.0 libgeos-c1v5 libgeotiff5 libgflags-dev
+  libgflags2.2 libgfortran5 libgif7 libgl1 libgl1-mesa-dri libgl2ps1.4
+  libglapi-mesa libglib2.0-0 libglvnd0 libglx-mesa0 libglx0 libgme0 libgmp10
+  libgnutls30 libgomp1 libgoogle-glog0v5 libgpg-error-dev libgpg-error0
+  libgpgme-dev libgpgme11 libgphoto2-6 libgphoto2-dev libgphoto2-port12
+  libgraphblas3 libgraphite2-3 libgsm1 libgssapi-krb5-2 libgssapi3-heimdal
+  libgstreamer-plugins-base1.0-0 libgstreamer1.0-0 libgtest-dev libgtk-3-0
+  libgtk-3-common libgts-0.7-5 libgvc6 libgvpr2 libharfbuzz0b
+  libhcrypto4-heimdal libhdf4-0-alt libhdf5-103 libhdf5-openmpi-103
+  libheimbase1-heimdal libheimntlm0-heimdal libhogweed5 libhwloc-dev
+  libhwloc-plugins libhwloc15 libhx509-5-heimdal libibverbs-dev libibverbs1
+  libice6 libicu-dev libicu66 libidn2-0 libilmbase-dev libilmbase24 libip4tc2
+  libitm1 libjbig-dev libjbig0 libjpeg-turbo8 libjpeg-turbo8-dev libjpeg8
+  libjpeg8-dev libjson-c4 libjson-glib-1.0-0 libjson-glib-1.0-common
+  libjsoncpp1 libk5crypto3 libkeyutils1 libklu1 libkmlbase1 libkmldom1
+  libkmlengine1 libkmod2 libkrb5-26-heimdal libkrb5-3 libkrb5support0 libksba8
+  liblab-gamut1 liblapack3 liblcms2-2 libldap-2.4-2 libldap-common
+  libldap2-dev libldl2 liblept5 libllvm12 libllvm18 liblog4cxx-dev
+  liblog4cxx10v5 liblsan0 libltdl-dev libltdl7 liblz4-1 liblz4-dev liblzma-dev
+  liblzma5 libmetis5 libminizip1 libmongoose2 libmount1 libmp3lame0 libmpdec2
+  libmpg123-0 libmysqlclient-dev libmysqlclient21 libncurses6 libncursesw6
+  libnetcdf-c++4 libnetcdf15 libnettle7 libnghttp2-14 libnl-3-200 libnl-3-dev
+  libnl-route-3-200 libnl-route-3-dev libnpth0 libnspr4 libnss3 libnuma-dev
+  libnuma1 libodbc1 libogdi4.1 libogg0 libopencv-calib3d-dev
+  libopencv-calib3d4.2 libopencv-contrib-dev libopencv-contrib4.2
+  libopencv-core-dev libopencv-core4.2 libopencv-dev libopencv-dnn-dev
+  libopencv-dnn4.2 libopencv-features2d-dev libopencv-features2d4.2
+  libopencv-flann-dev libopencv-flann4.2 libopencv-highgui-dev
+  libopencv-highgui4.2 libopencv-imgcodecs-dev libopencv-imgcodecs4.2
+  libopencv-imgproc-dev libopencv-imgproc4.2 libopencv-ml-dev libopencv-ml4.2
+  libopencv-objdetect-dev libopencv-objdetect4.2 libopencv-photo-dev
+  libopencv-photo4.2 libopencv-shape-dev libopencv-shape4.2
+  libopencv-stitching-dev libopencv-stitching4.2 libopencv-superres-dev
+  libopencv-superres4.2 libopencv-ts-dev libopencv-video-dev
+  libopencv-video4.2 libopencv-videoio-dev libopencv-videoio4.2
+  libopencv-videostab-dev libopencv-videostab4.2 libopencv-viz-dev
+  libopencv-viz4.2 libopencv4.2-java libopencv4.2-jni libopenexr-dev
+  libopenexr24 libopenjp2-7 libopenmpi-dev libopenmpi3 libopenmpt0 libopus0
+  liborc-0.4-0 libp11-kit0 libpam-modules libpam-modules-bin libpam-runtime
+  libpam-systemd libpam0g libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+  libpathplan4 libpciaccess0 libpcre16-3 libpcre2-8-0 libpcre3 libpcre3-dev
+  libpcre32-3 libpcrecpp0v5 libperl5.30 libpixman-1-0 libpmix2 libpng16-16
+  libpoco-dev libpococrypto62 libpocodata62 libpocodatamysql62
+  libpocodataodbc62 libpocodatasqlite62 libpocoencodings62 libpocofoundation62
+  libpocojson62 libpocomongodb62 libpoconet62 libpoconetssl62 libpocoredis62
+  libpocoutil62 libpocoxml62 libpocozip62 libpoppler97 libpq5 libprocps8
+  libproj15 libprotobuf17 libproxy1v5 libpsl5 libpython3-dev libpython3-stdlib
+  libpython3.8 libpython3.8-dev libpython3.8-minimal libpython3.8-stdlib
+  libqhull7 libraw1394-11 libraw1394-dev librbio2 libreadline8 librest-0.7-0
+  librhash0 libroken18-heimdal librsvg2-2 librsvg2-common librtmp1 libsasl2-2
+  libsasl2-modules-db libsctp-dev libsctp1 libseccomp2 libselinux1
+  libsemanage-common libsemanage1 libsensors-config libsensors5 libsepol1
+  libshine3 libsigsegv2 libsm6 libsmartcols1 libsnappy1v5 libsocket++1
+  libsodium23 libsoup-gnome2.4-1 libsoup2.4-1 libsoxr0 libspatialite7
+  libspeex1 libspqr2 libsqlite3-0 libsqlite3-dev libssh-4 libssh-gcrypt-4
+  libssl1.1 libstdc++-10-dev libstdc++-7-dev libstdc++6 libsuitesparseconfig5
+  libsuperlu5 libswresample-dev libswresample3 libswscale-dev libswscale5
+  libsystemd0 libsz2 libtasn1-6 libtbb-dev libtbb2 libtesseract4 libthai-data
+  libthai0 libtheora0 libtiff-dev libtiff5 libtiffxx5 libtinfo6 libtinyxml2-6a
+  libtinyxml2-dev libtsan0 libtwolame0 libubsan0 libubsan1 libudev1
+  libumfpack5 libunistring2 liburiparser1 libusb-1.0-0 libuuid1 libuv1
+  libva-drm2 libva-x11-2 libva2 libvdpau1 libvorbis0a libvorbisenc2
+  libvorbisfile3 libvpx6 libvtk6.3 libvulkan1 libwavpack1 libwayland-client0
+  libwayland-cursor0 libwayland-egl1 libwebp6 libwebpmux3 libwind0-heimdal
+  libx11-6 libx11-data libx11-xcb1 libx264-155 libx265-179 libxau6 libxaw7
+  libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-render0
+  libxcb-shm0 libxcb-sync1 libxcb-xfixes0 libxcb1 libxcomposite1 libxcursor1
+  libxdamage1 libxdmcp6 libxerces-c3.2 libxext6 libxfixes3 libxi6 libxinerama1
+  libxkbcommon0 libxml2 libxmu6 libxnvctrl0 libxpm4 libxrandr2 libxrender1
+  libxshmfence1 libxt6 libxvidcore4 libxxf86vm1 libyaml-0-2 libzstd1
+  libzvbi-common libzvbi0 linux-libc-dev login lsb-base lsb-release m4
+  mime-support mount mpi-default-bin mpi-default-dev mysql-common
+  ocl-icd-libopencl1 odbcinst odbcinst1debian2 openmpi-bin openmpi-common
+  openssh-client openssl passwd perl perl-base perl-modules-5.30
+  pinentry-curses pkg-config procps proj-data python3 python3-bcrypt
+  python3-catkin-pkg python3-catkin-pkg-modules python3-cffi-backend
+  python3-cryptography python3-dateutil python3-defusedxml python3-distro
+  python3-distutils python3-docutils python3-empy python3-gnupg
+  python3-lib2to3 python3-minimal python3-nacl python3-netifaces python3-nose
+  python3-numpy python3-opencv python3-paramiko python3-pkg-resources
+  python3-pycryptodome python3-pyparsing python3-roman python3-rosdep-modules
+  python3-rosdistro-modules python3-rospkg python3-rospkg-modules
+  python3-setuptools python3-six python3-yaml python3.8 python3.8-dev
+  python3.8-minimal readline-common ros-noetic-actionlib
+  ros-noetic-actionlib-msgs ros-noetic-bond ros-noetic-bond-core
+  ros-noetic-bondcpp ros-noetic-bondpy ros-noetic-catkin
+  ros-noetic-class-loader ros-noetic-cmake-modules ros-noetic-common-msgs
+  ros-noetic-cpp-common ros-noetic-diagnostic-msgs
+  ros-noetic-dynamic-reconfigure ros-noetic-gencpp ros-noetic-geneus
+  ros-noetic-genlisp ros-noetic-genmsg ros-noetic-gennodejs ros-noetic-genpy
+  ros-noetic-geometry-msgs ros-noetic-message-filters
+  ros-noetic-message-generation ros-noetic-message-runtime ros-noetic-mk
+  ros-noetic-nav-msgs ros-noetic-nodelet ros-noetic-nodelet-core
+  ros-noetic-nodelet-topic-tools ros-noetic-pluginlib ros-noetic-ros
+  ros-noetic-ros-comm ros-noetic-ros-core ros-noetic-ros-environment
+  ros-noetic-rosbag ros-noetic-rosbag-migration-rule ros-noetic-rosbag-storage
+  ros-noetic-rosbash ros-noetic-rosboost-cfg ros-noetic-rosbuild
+  ros-noetic-rosclean ros-noetic-rosconsole ros-noetic-rosconsole-bridge
+  ros-noetic-roscpp ros-noetic-roscpp-core ros-noetic-roscpp-serialization
+  ros-noetic-roscpp-traits ros-noetic-roscreate ros-noetic-rosgraph
+  ros-noetic-rosgraph-msgs ros-noetic-roslang ros-noetic-roslaunch
+  ros-noetic-roslib ros-noetic-roslisp ros-noetic-roslz4 ros-noetic-rosmake
+  ros-noetic-rosmaster ros-noetic-rosmsg ros-noetic-rosnode ros-noetic-rosout
+  ros-noetic-rospack ros-noetic-rosparam ros-noetic-rospy
+  ros-noetic-rosservice ros-noetic-rostest ros-noetic-rostime
+  ros-noetic-rostopic ros-noetic-rosunit ros-noetic-roswtf
+  ros-noetic-sensor-msgs ros-noetic-shape-msgs ros-noetic-smclib
+  ros-noetic-std-msgs ros-noetic-std-srvs ros-noetic-stereo-msgs
+  ros-noetic-tf2 ros-noetic-tf2-msgs ros-noetic-tf2-py ros-noetic-tf2-ros
+  ros-noetic-topic-tools ros-noetic-trajectory-msgs
+  ros-noetic-visualization-msgs ros-noetic-xmlrpcpp sbcl sed sensible-utils
+  sgml-base shared-mime-info sudo systemd systemd-sysv systemd-timesyncd tar
+  tzdata ubuntu-mono ucf util-linux uuid-dev x11-common xkb-data xml-core
+  zlib1g
+Suggested packages:
+  liblocale-gettext-perl ecryptfs-utils autoconf-archive gnu-standards
+  autoconf-doc libtool gettext cmake-doc ninja-build debconf-doc debconf-utils
+  whiptail | dialog libterm-readline-gnu-perl libgtk3-perl libnet-ldap-perl
+  debconf-kde-helper pinentry-gnome3 tor apt debsig-verify parcimonie
+  xloadimage scdaemon gsfonts graphviz-doc isoquery python lrzip liblapack-doc
+  libbluray-bdj libboost-doc libboost1.71-doc gccxml libboost-contract1.71-dev
+  libmpfrc++-dev libntl-dev xsltproc doxygen docbook-xml docbook-xsl
+  default-jdk fop glibc-doc locales manpages-dev colord cups-common
+  debian-keyring gcc | c-compiler binutils patch git bzr rng-tools libgd-tools
+  gdbm-l10n geotiff-bin gdal-bin libgeotiff-epsg gnutls-bin gphoto2 krb5-doc
+  krb5-user libvisual-0.4-plugins gstreamer1.0-tools gvfs libhdf4-doc
+  libhdf4-alt-dev hdf4-tools icu-doc liblcms2-utils liblog4cxx-doc zip
+  libtool-doc liblzma-doc libmyodbc odbc-postgresql tdsodbc unixodbc-bin
+  ogdi-bin opencv-doc openmpi-doc opus-tools libpam-doc pciutils proj-bin
+  libraw1394-doc librsvg2-bin lksctp-tools lm-sensors speex sqlite3-doc
+  libssl-doc libstdc++-10-doc libstdc++-7-doc libtbb-doc m4-doc nfs-common
+  opencl-icd keychain libpam-ssh monkeysphere ssh-askpass perl-doc
+  libterm-readline-gnu-perl | libterm-readline-perl-perl make libb-debug-perl
+  liblocale-codes-perl pinentry-doc dpkg-dev python3-doc python3-tk
+  python3-venv python-cryptography-doc python3-cryptography-vectors
+  docutils-doc fonts-linuxlibertine | ttf-linux-libertine texlive-lang-french
+  texlive-latex-base texlive-latex-recommended python-nacl-doc python-nose-doc
+  gcc gfortran python-numpy-doc python3-pytest python3-numpy-dbg
+  python3-gssapi python-pyparsing-doc python-setuptools-doc python3.8-venv
+  python3.8-doc binfmt-support readline-doc sbcl-doc sbcl-source slime
+  sgml-base-doc systemd-container policykit-1 bzip2 ncompress xz-utils
+  tar-scripts tar-doc dosfstools kbd | console-tools util-linux-locales
+  debhelper
+Recommended packages:
+  gcc make apt-utils debconf-i18n fonts-liberation at-spi2-core libaacs0
+  bzip2-doc manpages manpages-dev libpam-cap dmsetup libfile-fcntllock-perl
+  liblocale-gettext-perl bzip2 xz-utils libexif-doc proj-bin
+  libgdk-pixbuf2.0-bin libglib2.0-data xdg-user-dirs libgpg-error-l10n
+  libgphoto2-l10n gstreamer1.0-plugins-base libgtk-3-bin libgts-bin
+  krb5-locales libtool libgpm2 opencv-data libcoarrays-openmpi-dev update-motd
+  libpng-tools poppler-data publicsuffix libraw1394-tools libsasl2-modules
+  uuid-runtime va-driver-all | va-driver vdpau-driver-all | vdpau-driver
+  mesa-vulkan-drivers | vulkan-icd apt file xauth netbase psmisc
+  libpaper-utils python3-pil python3-pygments binfmt-support
+  networkd-dispatcher libnss-systemd
+The following NEW packages will be installed
+  adduser adwaita-icon-theme autoconf automake autotools-dev ca-certificates
+  cmake cmake-data coreutils dbus dbus-user-session dconf-gsettings-backend
+  dconf-service debconf debianutils default-libmysqlclient-dev dirmngr
+  distro-info-data docutils-common dpkg flang-18 fontconfig fontconfig-config
+  fonts-dejavu-core gcc-10-base gcc-7-base gdal-data glib-networking
+  glib-networking-common glib-networking-services gnupg gnupg-l10n gnupg-utils
+  google-mock googletest gpg gpg-agent gpg-wks-client gpg-wks-server gpgconf
+  gpgsm gpgv graphviz gsettings-desktop-schemas gtk-update-icon-cache
+  hicolor-icon-theme humanity-icon-theme ibverbs-providers icu-devtools
+  init-system-helpers iso-codes libacl1 libaec0 libamd2 libann0 libaom0
+  libapparmor1 libapr1 libapr1-dev libaprutil1 libaprutil1-dev libarchive13
+  libargon2-1 libarmadillo9 libarpack2 libasan4 libasan6 libasn1-8-heimdal
+  libassuan-dev libassuan0 libatk-bridge2.0-0 libatk1.0-0 libatk1.0-data
+  libatomic1 libatspi2.0-0 libattr1 libaudit-common libaudit1 libavahi-client3
+  libavahi-common-data libavahi-common3 libavcodec-dev libavcodec58
+  libavformat-dev libavformat58 libavresample-dev libavresample4 libavutil-dev
+  libavutil56 libblas-dev libblas3 libblkid1 libbluray2 libboost-all-dev
+  libboost-atomic-dev libboost-atomic1.71-dev libboost-atomic1.71.0
+  libboost-chrono-dev libboost-chrono1.71-dev libboost-chrono1.71.0
+  libboost-container-dev libboost-container1.71-dev libboost-container1.71.0
+  libboost-context-dev libboost-context1.71-dev libboost-context1.71.0
+  libboost-coroutine-dev libboost-coroutine1.71-dev libboost-coroutine1.71.0
+  libboost-date-time-dev libboost-date-time1.71-dev libboost-date-time1.71.0
+  libboost-dev libboost-exception-dev libboost-exception1.71-dev
+  libboost-fiber-dev libboost-fiber1.71-dev libboost-fiber1.71.0
+  libboost-filesystem-dev libboost-filesystem1.71-dev
+  libboost-filesystem1.71.0 libboost-graph-dev libboost-graph-parallel-dev
+  libboost-graph-parallel1.71-dev libboost-graph-parallel1.71.0
+  libboost-graph1.71-dev libboost-graph1.71.0 libboost-iostreams-dev
+  libboost-iostreams1.71-dev libboost-iostreams1.71.0 libboost-locale-dev
+  libboost-locale1.71-dev libboost-locale1.71.0 libboost-log-dev
+  libboost-log1.71-dev libboost-log1.71.0 libboost-math-dev
+  libboost-math1.71-dev libboost-math1.71.0 libboost-mpi-dev
+  libboost-mpi-python-dev libboost-mpi-python1.71-dev
+  libboost-mpi-python1.71.0 libboost-mpi1.71-dev libboost-mpi1.71.0
+  libboost-numpy-dev libboost-numpy1.71-dev libboost-numpy1.71.0
+  libboost-program-options-dev libboost-program-options1.71-dev
+  libboost-program-options1.71.0 libboost-python-dev libboost-python1.71-dev
+  libboost-python1.71.0 libboost-random-dev libboost-random1.71-dev
+  libboost-random1.71.0 libboost-regex-dev libboost-regex1.71-dev
+  libboost-regex1.71.0 libboost-serialization-dev
+  libboost-serialization1.71-dev libboost-serialization1.71.0
+  libboost-stacktrace-dev libboost-stacktrace1.71-dev
+  libboost-stacktrace1.71.0 libboost-system-dev libboost-system1.71-dev
+  libboost-system1.71.0 libboost-test-dev libboost-test1.71-dev
+  libboost-test1.71.0 libboost-thread-dev libboost-thread1.71-dev
+  libboost-thread1.71.0 libboost-timer-dev libboost-timer1.71-dev
+  libboost-timer1.71.0 libboost-tools-dev libboost-type-erasure-dev
+  libboost-type-erasure1.71-dev libboost-type-erasure1.71.0 libboost-wave-dev
+  libboost-wave1.71-dev libboost-wave1.71.0 libboost1.71-dev
+  libboost1.71-tools-dev libbrotli1 libbsd0 libbtf1 libbz2-1.0 libbz2-dev
+  libc-dev-bin libc6 libc6-dev libcairo-gobject2 libcairo2 libcamd2 libcap-ng0
+  libcap2 libcap2-bin libcbor0.6 libccolamd2 libcdt5 libcfitsio8 libcgraph6
+  libcharls2 libcholmod3 libchromaprint1 libclang-cpp18 libcodec2-0.9
+  libcolamd2 libcolord2 libcom-err2 libconsole-bridge-dev libconsole-bridge0.4
+  libcrypt-dev libcrypt1 libcryptsetup12 libcups2 libcurl3-gnutls libcurl4
+  libcxsparse3 libdap25 libdapclient6v5 libdatrie1 libdb5.3 libdbus-1-3
+  libdc1394-22 libdc1394-22-dev libdconf1 libdevmapper1.02.1 libdpkg-perl
+  libdrm-amdgpu1 libdrm-common libdrm-nouveau2 libdrm-radeon1 libdrm2 libedit2
+  libelf1 libepoxy0 libepsilon1 libevent-2.1-7 libevent-core-2.1-7
+  libevent-dev libevent-extra-2.1-7 libevent-openssl-2.1-7
+  libevent-pthreads-2.1-7 libexif-dev libexif12 libexpat1 libexpat1-dev
+  libffi7 libfido2-1 libflang-18-dev libfontconfig1 libfreetype6 libfreexl1
+  libfribidi0 libfyba0 libgcc-10-dev libgcc-7-dev libgcc-s1 libgcrypt20 libgd3
+  libgdal26 libgdbm-compat4 libgdbm6 libgdcm-dev libgdcm3.0 libgdk-pixbuf2.0-0
+  libgdk-pixbuf2.0-common libgeos-3.8.0 libgeos-c1v5 libgeotiff5 libgflags-dev
+  libgflags2.2 libgfortran5 libgif7 libgl1 libgl1-mesa-dri libgl2ps1.4
+  libglapi-mesa libglib2.0-0 libglvnd0 libglx-mesa0 libglx0 libgme0 libgmp10
+  libgnutls30 libgomp1 libgoogle-glog-dev libgoogle-glog0v5 libgpg-error-dev
+  libgpg-error0 libgpgme-dev libgpgme11 libgphoto2-6 libgphoto2-dev
+  libgphoto2-port12 libgraphblas3 libgraphite2-3 libgsm1 libgssapi-krb5-2
+  libgssapi3-heimdal libgstreamer-plugins-base1.0-0 libgstreamer1.0-0
+  libgtest-dev libgtk-3-0 libgtk-3-common libgts-0.7-5 libgvc6 libgvpr2
+  libharfbuzz0b libhcrypto4-heimdal libhdf4-0-alt libhdf5-103
+  libhdf5-openmpi-103 libheimbase1-heimdal libheimntlm0-heimdal libhogweed5
+  libhwloc-dev libhwloc-plugins libhwloc15 libhx509-5-heimdal libibverbs-dev
+  libibverbs1 libice6 libicu-dev libicu66 libidn2-0 libilmbase-dev
+  libilmbase24 libip4tc2 libitm1 libjbig-dev libjbig0 libjpeg-dev
+  libjpeg-turbo8 libjpeg-turbo8-dev libjpeg8 libjpeg8-dev libjson-c4
+  libjson-glib-1.0-0 libjson-glib-1.0-common libjsoncpp1 libk5crypto3
+  libkeyutils1 libklu1 libkmlbase1 libkmldom1 libkmlengine1 libkmod2
+  libkrb5-26-heimdal libkrb5-3 libkrb5support0 libksba8 liblab-gamut1
+  liblapack-dev liblapack3 liblcms2-2 libldap-2.4-2 libldap-common
+  libldap2-dev libldl2 liblept5 libllvm12 libllvm18 liblog4cxx-dev
+  liblog4cxx10v5 liblsan0 libltdl-dev libltdl7 liblz4-1 liblz4-dev liblzma-dev
+  liblzma5 libmetis5 libminizip1 libmongoose2 libmount1 libmp3lame0 libmpdec2
+  libmpg123-0 libmysqlclient-dev libmysqlclient21 libncurses6 libncursesw6
+  libnetcdf-c++4 libnetcdf15 libnettle7 libnghttp2-14 libnl-3-200 libnl-3-dev
+  libnl-route-3-200 libnl-route-3-dev libnpth0 libnspr4 libnss3 libnuma-dev
+  libnuma1 libodbc1 libogdi4.1 libogg0 libopencv-calib3d-dev
+  libopencv-calib3d4.2 libopencv-contrib-dev libopencv-contrib4.2
+  libopencv-core-dev libopencv-core4.2 libopencv-dev libopencv-dnn-dev
+  libopencv-dnn4.2 libopencv-features2d-dev libopencv-features2d4.2
+  libopencv-flann-dev libopencv-flann4.2 libopencv-highgui-dev
+  libopencv-highgui4.2 libopencv-imgcodecs-dev libopencv-imgcodecs4.2
+  libopencv-imgproc-dev libopencv-imgproc4.2 libopencv-ml-dev libopencv-ml4.2
+  libopencv-objdetect-dev libopencv-objdetect4.2 libopencv-photo-dev
+  libopencv-photo4.2 libopencv-shape-dev libopencv-shape4.2
+  libopencv-stitching-dev libopencv-stitching4.2 libopencv-superres-dev
+  libopencv-superres4.2 libopencv-ts-dev libopencv-video-dev
+  libopencv-video4.2 libopencv-videoio-dev libopencv-videoio4.2
+  libopencv-videostab-dev libopencv-videostab4.2 libopencv-viz-dev
+  libopencv-viz4.2 libopencv4.2-java libopencv4.2-jni libopenexr-dev
+  libopenexr24 libopenjp2-7 libopenmpi-dev libopenmpi3 libopenmpt0 libopus0
+  liborc-0.4-0 libp11-kit0 libpam-modules libpam-modules-bin libpam-runtime
+  libpam-systemd libpam0g libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+  libpathplan4 libpciaccess0 libpcre16-3 libpcre2-8-0 libpcre3 libpcre3-dev
+  libpcre32-3 libpcrecpp0v5 libperl5.30 libpixman-1-0 libpmix2 libpng-dev
+  libpng16-16 libpoco-dev libpococrypto62 libpocodata62 libpocodatamysql62
+  libpocodataodbc62 libpocodatasqlite62 libpocoencodings62 libpocofoundation62
+  libpocojson62 libpocomongodb62 libpoconet62 libpoconetssl62 libpocoredis62
+  libpocoutil62 libpocoxml62 libpocozip62 libpoppler97 libpq5 libprocps8
+  libproj15 libprotobuf17 libproxy1v5 libpsl5 libpython3-dev libpython3-stdlib
+  libpython3.8 libpython3.8-dev libpython3.8-minimal libpython3.8-stdlib
+  libqhull7 libraw1394-11 libraw1394-dev librbio2 libreadline8 librest-0.7-0
+  librhash0 libroken18-heimdal librsvg2-2 librsvg2-common librtmp1 libsasl2-2
+  libsasl2-modules-db libsctp-dev libsctp1 libseccomp2 libselinux1
+  libsemanage-common libsemanage1 libsensors-config libsensors5 libsepol1
+  libshine3 libsigsegv2 libsm6 libsmartcols1 libsnappy1v5 libsocket++1
+  libsodium23 libsoup-gnome2.4-1 libsoup2.4-1 libsoxr0 libspatialite7
+  libspeex1 libspqr2 libsqlite3-0 libsqlite3-dev libssh-4 libssh-gcrypt-4
+  libssl-dev libssl1.1 libstdc++-10-dev libstdc++-7-dev libstdc++6
+  libsuitesparse-dev libsuitesparseconfig5 libsuperlu5 libswresample-dev
+  libswresample3 libswscale-dev libswscale5 libsystemd0 libsz2 libtasn1-6
+  libtbb-dev libtbb2 libtesseract4 libthai-data libthai0 libtheora0
+  libtiff-dev libtiff5 libtiffxx5 libtinfo6 libtinyxml2-6a libtinyxml2-dev
+  libtsan0 libtwolame0 libubsan0 libubsan1 libudev1 libumfpack5 libunistring2
+  liburiparser1 libusb-1.0-0 libuuid1 libuv1 libva-drm2 libva-x11-2 libva2
+  libvdpau1 libvorbis0a libvorbisenc2 libvorbisfile3 libvpx6 libvtk6.3
+  libvulkan1 libwavpack1 libwayland-client0 libwayland-cursor0 libwayland-egl1
+  libwebp6 libwebpmux3 libwind0-heimdal libx11-6 libx11-data libx11-xcb1
+  libx264-155 libx265-179 libxau6 libxaw7 libxcb-dri2-0 libxcb-dri3-0
+  libxcb-glx0 libxcb-present0 libxcb-render0 libxcb-shm0 libxcb-sync1
+  libxcb-xfixes0 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxdmcp6
+  libxerces-c3.2 libxext6 libxfixes3 libxi6 libxinerama1 libxkbcommon0 libxml2
+  libxmu6 libxnvctrl0 libxpm4 libxrandr2 libxrender1 libxshmfence1 libxt6
+  libxvidcore4 libxxf86vm1 libyaml-0-2 libzstd1 libzvbi-common libzvbi0
+  linux-libc-dev login lsb-base lsb-release m4 mime-support mount
+  mpi-default-bin mpi-default-dev mysql-common ocl-icd-libopencl1 odbcinst
+  odbcinst1debian2 openmpi-bin openmpi-common openssh-client openssl passwd
+  perl perl-base perl-modules-5.30 pinentry-curses pkg-config procps proj-data
+  python3 python3-bcrypt python3-catkin-pkg python3-catkin-pkg-modules
+  python3-cffi-backend python3-cryptography python3-dateutil
+  python3-defusedxml python3-dev python3-distro python3-distutils
+  python3-docutils python3-empy python3-gnupg python3-lib2to3 python3-minimal
+  python3-nacl python3-netifaces python3-nose python3-numpy python3-opencv
+  python3-paramiko python3-pkg-resources python3-pycryptodome
+  python3-pyparsing python3-roman python3-rosdep-modules
+  python3-rosdistro-modules python3-rospkg python3-rospkg-modules
+  python3-setuptools python3-six python3-yaml python3.8 python3.8-dev
+  python3.8-minimal readline-common ros-noetic-actionlib
+  ros-noetic-actionlib-msgs ros-noetic-bond ros-noetic-bond-core
+  ros-noetic-bondcpp ros-noetic-bondpy ros-noetic-catkin
+  ros-noetic-class-loader ros-noetic-cmake-modules ros-noetic-common-msgs
+  ros-noetic-cpp-common ros-noetic-cv-bridge ros-noetic-diagnostic-msgs
+  ros-noetic-dynamic-reconfigure ros-noetic-gencpp ros-noetic-geneus
+  ros-noetic-genlisp ros-noetic-genmsg ros-noetic-gennodejs ros-noetic-genpy
+  ros-noetic-geometry-msgs ros-noetic-image-transport
+  ros-noetic-message-filters ros-noetic-message-generation
+  ros-noetic-message-runtime ros-noetic-mk ros-noetic-nav-msgs
+  ros-noetic-nodelet ros-noetic-nodelet-core ros-noetic-nodelet-topic-tools
+  ros-noetic-pluginlib ros-noetic-ros ros-noetic-ros-base ros-noetic-ros-comm
+  ros-noetic-ros-core ros-noetic-ros-environment ros-noetic-rosbag
+  ros-noetic-rosbag-migration-rule ros-noetic-rosbag-storage
+  ros-noetic-rosbash ros-noetic-rosboost-cfg ros-noetic-rosbuild
+  ros-noetic-rosclean ros-noetic-rosconsole ros-noetic-rosconsole-bridge
+  ros-noetic-roscpp ros-noetic-roscpp-core ros-noetic-roscpp-serialization
+  ros-noetic-roscpp-traits ros-noetic-roscreate ros-noetic-rosgraph
+  ros-noetic-rosgraph-msgs ros-noetic-roslang ros-noetic-roslaunch
+  ros-noetic-roslib ros-noetic-roslisp ros-noetic-roslz4 ros-noetic-rosmake
+  ros-noetic-rosmaster ros-noetic-rosmsg ros-noetic-rosnode ros-noetic-rosout
+  ros-noetic-rospack ros-noetic-rosparam ros-noetic-rospy
+  ros-noetic-rosservice ros-noetic-rostest ros-noetic-rostime
+  ros-noetic-rostopic ros-noetic-rosunit ros-noetic-roswtf
+  ros-noetic-sensor-msgs ros-noetic-shape-msgs ros-noetic-smclib
+  ros-noetic-std-msgs ros-noetic-std-srvs ros-noetic-stereo-msgs ros-noetic-tf
+  ros-noetic-tf2 ros-noetic-tf2-msgs ros-noetic-tf2-py ros-noetic-tf2-ros
+  ros-noetic-topic-tools ros-noetic-trajectory-msgs
+  ros-noetic-visualization-msgs ros-noetic-xmlrpcpp sbcl sed sensible-utils
+  sgml-base shared-mime-info sudo systemd systemd-sysv systemd-timesyncd tar
+  tzdata ubuntu-mono ucf util-linux uuid-dev x11-common xkb-data xml-core
+  zlib1g zlib1g-dev
+0 to upgrade, 807 to newly install, 0 to remove and 0 not to upgrade.
+Need to get 387 MB of archives.
+After this operation, 3,816 MB of additional disk space will be used.
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/p/python3-catkin-pkg-modules/python3-catkin-pkg-modules_1.0.0-1_all.deb' python3-catkin-pkg-modules_1.0.0-1_all.deb 43200 MD5Sum:641e147ddf41a4f138e57f526a63709f
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/p/python3-catkin-pkg/python3-catkin-pkg_1.0.0-100_all.deb' python3-catkin-pkg_1.0.0-100_all.deb 3920 MD5Sum:c6ee57fde962060de41361f69f0a394c
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/p/python3-rospkg-modules/python3-rospkg-modules_1.6.0-1_all.deb' python3-rospkg-modules_1.6.0-1_all.deb 24244 MD5Sum:fe9f7e65b641334e5800ac719ce5b730
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/p/python3-rosdistro-modules/python3-rosdistro-modules_1.0.1-1_all.deb' python3-rosdistro-modules_1.0.1-1_all.deb 36220 MD5Sum:742e288c6a0e9b9e1d2bb77ebe441040
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/p/python3-rosdep-modules/python3-rosdep-modules_0.25.1-1_all.deb' python3-rosdep-modules_0.25.1-1_all.deb 54014 MD5Sum:b8f6d5e34c406c32fe910d9eb98b55a5
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/p/python3-rospkg/python3-rospkg_1.6.0-100_all.deb' python3-rospkg_1.6.0-100_all.deb 2528 MD5Sum:b2ff0179249a84f833bfd69b8f613c6e
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-catkin/ros-noetic-catkin_0.8.12-1focal.20250426.001916_arm64.deb' ros-noetic-catkin_0.8.12-1focal.20250426.001916_arm64.deb 130840 MD5Sum:3b6089e0ff4ec7277391ea7fb06d474e
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-genmsg/ros-noetic-genmsg_0.6.1-1focal.20250426.012048_arm64.deb' ros-noetic-genmsg_0.6.1-1focal.20250426.012048_arm64.deb 36400 MD5Sum:608c6bca3c3ccc5276fefabd3e073512
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-gencpp/ros-noetic-gencpp_0.7.2-1focal.20250426.012236_arm64.deb' ros-noetic-gencpp_0.7.2-1focal.20250426.012236_arm64.deb 15652 MD5Sum:9cc5803455d4489b268805b5d5ffc2c0
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-geneus/ros-noetic-geneus_3.0.0-1focal.20250426.012304_arm64.deb' ros-noetic-geneus_3.0.0-1focal.20250426.012304_arm64.deb 26884 MD5Sum:c643ef82dc6eefd8fe3c3107c976923a
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-genlisp/ros-noetic-genlisp_0.4.18-1focal.20250426.012332_arm64.deb' ros-noetic-genlisp_0.4.18-1focal.20250426.012332_arm64.deb 22332 MD5Sum:d5df98c10ee18dda6f3be24adbfcc85c
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-gennodejs/ros-noetic-gennodejs_2.0.2-1focal.20250426.012410_arm64.deb' ros-noetic-gennodejs_2.0.2-1focal.20250426.012410_arm64.deb 22436 MD5Sum:8fe632df1098e284319ff18a091221cf
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-genpy/ros-noetic-genpy_0.6.18-1focal.20250426.012447_arm64.deb' ros-noetic-genpy_0.6.18-1focal.20250426.012447_arm64.deb 53344 MD5Sum:0e4917f86ba51d47dc99dcbfb77dacf6
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-message-generation/ros-noetic-message-generation_0.4.1-1focal.20250426.012726_arm64.deb' ros-noetic-message-generation_0.4.1-1focal.20250426.012726_arm64.deb 4784 MD5Sum:77d1003ec7eee06e717df5f323c84c30
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-cpp-common/ros-noetic-cpp-common_0.7.3-1focal.20250426.011703_arm64.deb' ros-noetic-cpp-common_0.7.3-1focal.20250426.011703_arm64.deb 22768 MD5Sum:de8ca5c9bbda4430f7d85df53c9e07a9
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rostime/ros-noetic-rostime_0.7.3-1focal.20250426.020533_arm64.deb' ros-noetic-rostime_0.7.3-1focal.20250426.020533_arm64.deb 42680 MD5Sum:4bd8ecc9fe320fb681f0f5fa1c452cc3
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roscpp-traits/ros-noetic-roscpp-traits_0.7.3-1focal.20250426.020920_arm64.deb' ros-noetic-roscpp-traits_0.7.3-1focal.20250426.020920_arm64.deb 10616 MD5Sum:4133c687cbfb0b0a05514ae6073b08a5
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roscpp-serialization/ros-noetic-roscpp-serialization_0.7.3-1focal.20250426.021309_arm64.deb' ros-noetic-roscpp-serialization_0.7.3-1focal.20250426.021309_arm64.deb 13716 MD5Sum:555becd53f77cc6f56bae6f9159cfb52
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-message-runtime/ros-noetic-message-runtime_0.4.13-1focal.20250426.021703_arm64.deb' ros-noetic-message-runtime_0.4.13-1focal.20250426.021703_arm64.deb 4812 MD5Sum:cbd9a3cadb1eb432723ea6c7c69aaca1
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-std-msgs/ros-noetic-std-msgs_0.5.14-1focal.20250426.023608_arm64.deb' ros-noetic-std-msgs_0.5.14-1focal.20250426.023608_arm64.deb 56924 MD5Sum:739805a6390bfea306f02857c9c4c4a7
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-actionlib-msgs/ros-noetic-actionlib-msgs_1.13.2-1focal.20250426.031057_arm64.deb' ros-noetic-actionlib-msgs_1.13.2-1focal.20250426.031057_arm64.deb 27140 MD5Sum:2fc3cf580b51ede2bc7e4e8a031ce278
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosbuild/ros-noetic-rosbuild_1.15.10-1focal.20250426.201053_arm64.deb' ros-noetic-rosbuild_1.15.10-1focal.20250426.201053_arm64.deb 28348 MD5Sum:dff376ba8b728c1d67b90c89d20c1f19
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosconsole/ros-noetic-rosconsole_1.14.4-1focal.20250426.231222_arm64.deb' ros-noetic-rosconsole_1.14.4-1focal.20250426.231222_arm64.deb 118516 MD5Sum:c3a14f32b22c21d8ce233602cbdbacec
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosgraph-msgs/ros-noetic-rosgraph-msgs_1.11.4-1focal.20250426.030646_arm64.deb' ros-noetic-rosgraph-msgs_1.11.4-1focal.20250426.030646_arm64.deb 25936 MD5Sum:e4573162c79d7e46e83e008227093442
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-xmlrpcpp/ros-noetic-xmlrpcpp_1.17.4-1focal.20250519.224705_arm64.deb' ros-noetic-xmlrpcpp_1.17.4-1focal.20250519.224705_arm64.deb 57648 MD5Sum:dc058ac14b5e32a3cd6019edc3954e04
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roscpp/ros-noetic-roscpp_1.17.4-1focal.20250519.224856_arm64.deb' ros-noetic-roscpp_1.17.4-1focal.20250519.224856_arm64.deb 455916 MD5Sum:2c2e7ed09c5614e17dde3b456820a300
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosgraph/ros-noetic-rosgraph_1.17.4-1focal.20250519.224751_arm64.deb' ros-noetic-rosgraph_1.17.4-1focal.20250519.224751_arm64.deb 50104 MD5Sum:dd4ca4bbf62df9ca88fb5270fafe4741
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-ros-environment/ros-noetic-ros-environment_1.3.2-1focal.20250426.014427_arm64.deb' ros-noetic-ros-environment_1.3.2-1focal.20250426.014427_arm64.deb 5684 MD5Sum:a941be26d5af7a4d6158f4361bbdbb4f
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rospack/ros-noetic-rospack_2.6.4-1focal.20250426.225953_arm64.deb' ros-noetic-rospack_2.6.4-1focal.20250426.225953_arm64.deb 94776 MD5Sum:566eeb2990c4b8031fb8391f19723a9c
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roslib/ros-noetic-roslib_1.15.10-1focal.20250426.230301_arm64.deb' ros-noetic-roslib_1.15.10-1focal.20250426.230301_arm64.deb 97704 MD5Sum:21c9fa64413450be339941fc83bf682f
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rospy/ros-noetic-rospy_1.17.4-1focal.20250519.230130_arm64.deb' ros-noetic-rospy_1.17.4-1focal.20250519.230130_arm64.deb 137696 MD5Sum:a1884ddd72a03474af5f96bb88b58cdb
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosclean/ros-noetic-rosclean_1.15.10-1focal.20250426.201157_arm64.deb' ros-noetic-rosclean_1.15.10-1focal.20250426.201157_arm64.deb 12396 MD5Sum:b492e87a2e2f26516f9f3629db6dc07c
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosmaster/ros-noetic-rosmaster_1.17.4-1focal.20250519.224911_arm64.deb' ros-noetic-rosmaster_1.17.4-1focal.20250519.224911_arm64.deb 42748 MD5Sum:940f19b790270fd0830a67427baf3cfe
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosout/ros-noetic-rosout_1.17.4-1focal.20250519.230956_arm64.deb' ros-noetic-rosout_1.17.4-1focal.20250519.230956_arm64.deb 35632 MD5Sum:e8786c22a11c68e9bbc0ccb7f57c4b76
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosparam/ros-noetic-rosparam_1.17.4-1focal.20250519.224940_arm64.deb' ros-noetic-rosparam_1.17.4-1focal.20250519.224940_arm64.deb 18272 MD5Sum:9b0ce4051cb8bd62500436d46dc8afbb
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosunit/ros-noetic-rosunit_1.15.10-1focal.20250426.230808_arm64.deb' ros-noetic-rosunit_1.15.10-1focal.20250426.230808_arm64.deb 48128 MD5Sum:998616a54d2f147d717cd3cbf5ae6909
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roslaunch/ros-noetic-roslaunch_1.17.4-1focal.20250519.231210_arm64.deb' ros-noetic-roslaunch_1.17.4-1focal.20250519.231210_arm64.deb 139732 MD5Sum:21569773c498bb13a6b52a7ca71ae254
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rostest/ros-noetic-rostest_1.17.4-1focal.20250519.234838_arm64.deb' ros-noetic-rostest_1.17.4-1focal.20250519.234838_arm64.deb 32208 MD5Sum:10c19525b445a9baa7d393d09a8db1e8
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-actionlib/ros-noetic-actionlib_1.14.3-1focal.20250520.003459_arm64.deb' ros-noetic-actionlib_1.14.3-1focal.20250520.003459_arm64.deb 133956 MD5Sum:16bb37e7b5278e17300aba62da643ae9
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-bond/ros-noetic-bond_1.8.7-1focal.20250426.025026_arm64.deb' ros-noetic-bond_1.8.7-1focal.20250426.025026_arm64.deb 18804 MD5Sum:70d631d02256ca006c2086b0fb04e539
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-smclib/ros-noetic-smclib_1.8.7-1focal.20250426.015931_arm64.deb' ros-noetic-smclib_1.8.7-1focal.20250426.015931_arm64.deb 13912 MD5Sum:be2b42fc7610a8da87c50d60bb0a20ff
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-bondcpp/ros-noetic-bondcpp_1.8.7-1focal.20250519.225836_arm64.deb' ros-noetic-bondcpp_1.8.7-1focal.20250519.225836_arm64.deb 55876 MD5Sum:1698ea2d245a64ad307a8ff34a39aaf1
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-bondpy/ros-noetic-bondpy_1.8.7-1focal.20250519.233557_arm64.deb' ros-noetic-bondpy_1.8.7-1focal.20250519.233557_arm64.deb 16116 MD5Sum:b629ddabf8e71cad1b8e770ef515b8e5
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-bond-core/ros-noetic-bond-core_1.8.7-1focal.20250519.233928_arm64.deb' ros-noetic-bond-core_1.8.7-1focal.20250519.233928_arm64.deb 2848 MD5Sum:dc9b2c15b3e3af24c38e34d708773953
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-class-loader/ros-noetic-class-loader_0.5.2-1focal.20250426.011250_arm64.deb' ros-noetic-class-loader_0.5.2-1focal.20250426.011250_arm64.deb 63392 MD5Sum:7be21eec876a642ae4a4e6eab896e932
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-cmake-modules/ros-noetic-cmake-modules_0.5.2-1focal.20250426.011156_arm64.deb' ros-noetic-cmake-modules_0.5.2-1focal.20250426.011156_arm64.deb 18296 MD5Sum:96f99ec17a95bc806385cdea3253add7
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-diagnostic-msgs/ros-noetic-diagnostic-msgs_1.13.2-1focal.20250426.025216_arm64.deb' ros-noetic-diagnostic-msgs_1.13.2-1focal.20250426.025216_arm64.deb 32660 MD5Sum:1f2b9f8873ef656db2ab86cdd9b93955
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-geometry-msgs/ros-noetic-geometry-msgs_1.13.2-1focal.20250426.025510_arm64.deb' ros-noetic-geometry-msgs_1.13.2-1focal.20250426.025510_arm64.deb 66596 MD5Sum:aa7e7351f5ec0d5aee422840c234059a
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-nav-msgs/ros-noetic-nav-msgs_1.13.2-1focal.20250426.031808_arm64.deb' ros-noetic-nav-msgs_1.13.2-1focal.20250426.031808_arm64.deb 67008 MD5Sum:2163d6e79b4e33808e604ec405bf880c
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-sensor-msgs/ros-noetic-sensor-msgs_1.13.2-1focal.20250520.003738_arm64.deb' ros-noetic-sensor-msgs_1.13.2-1focal.20250520.003738_arm64.deb 134984 MD5Sum:71e5ad3c1b7d4b5c1e35b1ecbbd82254
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-shape-msgs/ros-noetic-shape-msgs_1.13.2-1focal.20250426.030214_arm64.deb' ros-noetic-shape-msgs_1.13.2-1focal.20250426.030214_arm64.deb 23336 MD5Sum:33f4e525e661276b398cd9108b697e8e
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-stereo-msgs/ros-noetic-stereo-msgs_1.13.2-1focal.20250520.060629_arm64.deb' ros-noetic-stereo-msgs_1.13.2-1focal.20250520.060629_arm64.deb 19264 MD5Sum:87ac2f5a051065df563f526ef3c27152
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosbag-migration-rule/ros-noetic-rosbag-migration-rule_1.0.2-1focal.20250426.014513_arm64.deb' ros-noetic-rosbag-migration-rule_1.0.2-1focal.20250426.014513_arm64.deb 4888 MD5Sum:ed49b8e73326a028d6fca9dbe9337770
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-trajectory-msgs/ros-noetic-trajectory-msgs_1.13.2-1focal.20250426.030243_arm64.deb' ros-noetic-trajectory-msgs_1.13.2-1focal.20250426.030243_arm64.deb 28452 MD5Sum:5e2d0041370f9a28ca468c1cf4d477ec
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-visualization-msgs/ros-noetic-visualization-msgs_1.13.2-1focal.20250426.030306_arm64.deb' ros-noetic-visualization-msgs_1.13.2-1focal.20250426.030306_arm64.deb 70308 MD5Sum:e6667bf0ee04fc043bff3bc2bf64a465
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-common-msgs/ros-noetic-common-msgs_1.13.2-1focal.20250520.064010_arm64.deb' ros-noetic-common-msgs_1.13.2-1focal.20250520.064010_arm64.deb 3092 MD5Sum:c3543e20497795032327070d29311c42
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-cv-bridge/ros-noetic-cv-bridge_1.16.2-1focal.20250520.014329_arm64.deb' ros-noetic-cv-bridge_1.16.2-1focal.20250520.014329_arm64.deb 84484 MD5Sum:37f58573f22e13520f17c76f8262ec65
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-pluginlib/ros-noetic-pluginlib_1.13.2-1focal.20250426.231509_arm64.deb' ros-noetic-pluginlib_1.13.2-1focal.20250426.231509_arm64.deb 21876 MD5Sum:f61ba7d39d2d0297fcba05c4aa60672d
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roslz4/ros-noetic-roslz4_1.17.4-1focal.20250519.224905_arm64.deb' ros-noetic-roslz4_1.17.4-1focal.20250519.224905_arm64.deb 17068 MD5Sum:f365dcd9364d532de9b638779e3590e1
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosbag-storage/ros-noetic-rosbag-storage_1.17.4-1focal.20250519.235900_arm64.deb' ros-noetic-rosbag-storage_1.17.4-1focal.20250519.235900_arm64.deb 179336 MD5Sum:fbe341b9d73a8ebf6912ee682d90a533
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-std-srvs/ros-noetic-std-srvs_1.11.4-1focal.20250426.023612_arm64.deb' ros-noetic-std-srvs_1.11.4-1focal.20250426.023612_arm64.deb 19236 MD5Sum:d968fce5fc06cfaabda69c4f0b8963ee
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-topic-tools/ros-noetic-topic-tools_1.17.4-1focal.20250519.235919_arm64.deb' ros-noetic-topic-tools_1.17.4-1focal.20250519.235919_arm64.deb 157204 MD5Sum:092c785d37079984fd942adb19788865
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosbag/ros-noetic-rosbag_1.17.4-1focal.20250520.001739_arm64.deb' ros-noetic-rosbag_1.17.4-1focal.20250520.001739_arm64.deb 362272 MD5Sum:f12ec54fef70f733e04e8a9676660a33
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosmsg/ros-noetic-rosmsg_1.17.4-1focal.20250520.003122_arm64.deb' ros-noetic-rosmsg_1.17.4-1focal.20250520.003122_arm64.deb 23292 MD5Sum:823c46baa1b29386408231ac9c3cf7c4
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosservice/ros-noetic-rosservice_1.17.4-1focal.20250520.003846_arm64.deb' ros-noetic-rosservice_1.17.4-1focal.20250520.003846_arm64.deb 19820 MD5Sum:852a59f3b99318a72b9f27dc410c1338
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-dynamic-reconfigure/ros-noetic-dynamic-reconfigure_1.7.6-1focal.20250521.000426_arm64.deb' ros-noetic-dynamic-reconfigure_1.7.6-1focal.20250521.000426_arm64.deb 99280 MD5Sum:4abc0f4e328c351836676f403599a026
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-message-filters/ros-noetic-message-filters_1.17.4-1focal.20250520.000102_arm64.deb' ros-noetic-message-filters_1.17.4-1focal.20250520.000102_arm64.deb 36208 MD5Sum:445f75ade4f8c51c2cab46cfe3bea126
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-image-transport/ros-noetic-image-transport_1.12.1-1focal.20250520.005306_arm64.deb' ros-noetic-image-transport_1.12.1-1focal.20250520.005306_arm64.deb 226080 MD5Sum:0cf6253e799d46b38944e8a544f538ae
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-mk/ros-noetic-mk_1.15.10-1focal.20250426.230254_arm64.deb' ros-noetic-mk_1.15.10-1focal.20250426.230254_arm64.deb 10496 MD5Sum:76ccb87cc6054e355ae606619b863c8d
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-nodelet/ros-noetic-nodelet_1.11.2-1focal.20250519.230308_arm64.deb' ros-noetic-nodelet_1.11.2-1focal.20250519.230308_arm64.deb 155084 MD5Sum:bfd111808723d3e6939eccd6e909f75f
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-nodelet-topic-tools/ros-noetic-nodelet-topic-tools_1.11.2-1focal.20250521.005506_arm64.deb' ros-noetic-nodelet-topic-tools_1.11.2-1focal.20250521.005506_arm64.deb 16508 MD5Sum:d426699eaf041aeb0c121950ada32862
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-nodelet-core/ros-noetic-nodelet-core_1.11.2-1focal.20250521.024532_arm64.deb' ros-noetic-nodelet-core_1.11.2-1focal.20250521.024532_arm64.deb 2828 MD5Sum:11d6f0829e777bcc8bf2e309716bd5e4
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosbash/ros-noetic-rosbash_1.15.10-1focal.20250426.230300_arm64.deb' ros-noetic-rosbash_1.15.10-1focal.20250426.230300_arm64.deb 22044 MD5Sum:8008548854d6fff66206c294ecb020a2
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosboost-cfg/ros-noetic-rosboost-cfg_1.15.10-1focal.20250426.201030_arm64.deb' ros-noetic-rosboost-cfg_1.15.10-1focal.20250426.201030_arm64.deb 14224 MD5Sum:2d5bf0f80e075896c83c40348e29a770
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roscreate/ros-noetic-roscreate_1.15.10-1focal.20250426.230804_arm64.deb' ros-noetic-roscreate_1.15.10-1focal.20250426.230804_arm64.deb 12564 MD5Sum:719523c1cbc68a0a15e71d2eda3fce91
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roslang/ros-noetic-roslang_1.15.10-1focal.20250426.201304_arm64.deb' ros-noetic-roslang_1.15.10-1focal.20250426.201304_arm64.deb 6272 MD5Sum:f6a929d955ff78eab3f4919fdee671ad
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosmake/ros-noetic-rosmake_1.15.10-1focal.20250426.201404_arm64.deb' ros-noetic-rosmake_1.15.10-1focal.20250426.201404_arm64.deb 33224 MD5Sum:f353e8a978bb8eaf46c37da728214f5e
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-ros/ros-noetic-ros_1.15.10-1focal.20250426.230938_arm64.deb' ros-noetic-ros_1.15.10-1focal.20250426.230938_arm64.deb 2100 MD5Sum:d05edb0e98bf124d62108b91ae65944f
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roslisp/ros-noetic-roslisp_1.9.25-1focal.20250426.230324_arm64.deb' ros-noetic-roslisp_1.9.25-1focal.20250426.230324_arm64.deb 98128 MD5Sum:caa9756128b56743db1fe29daa63420d
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rostopic/ros-noetic-rostopic_1.17.4-1focal.20250520.003147_arm64.deb' ros-noetic-rostopic_1.17.4-1focal.20250520.003147_arm64.deb 46092 MD5Sum:2755184d5768ec5969b01041a79fe39a
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosnode/ros-noetic-rosnode_1.17.4-1focal.20250520.003236_arm64.deb' ros-noetic-rosnode_1.17.4-1focal.20250520.003236_arm64.deb 21732 MD5Sum:0137291dafb33b845848c3c0e551dc72
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roswtf/ros-noetic-roswtf_1.17.4-1focal.20250520.014325_arm64.deb' ros-noetic-roswtf_1.17.4-1focal.20250520.014325_arm64.deb 42204 MD5Sum:7d81e0e41fc958efaac0a56186c20344
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-ros-comm/ros-noetic-ros-comm_1.17.4-1focal.20250520.032104_arm64.deb' ros-noetic-ros-comm_1.17.4-1focal.20250520.032104_arm64.deb 3548 MD5Sum:43112c0c1eb921893ec89784bafd5955
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-rosconsole-bridge/ros-noetic-rosconsole-bridge_0.5.5-1focal.20250426.231538_arm64.deb' ros-noetic-rosconsole-bridge_0.5.5-1focal.20250426.231538_arm64.deb 11984 MD5Sum:b6249be31461d30481cc70cb4a823730
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-roscpp-core/ros-noetic-roscpp-core_0.7.3-1focal.20250426.021522_arm64.deb' ros-noetic-roscpp-core_0.7.3-1focal.20250426.021522_arm64.deb 1952 MD5Sum:49d5921af37e8435a824e203ae11fada
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-ros-core/ros-noetic-ros-core_1.5.0-1focal.20250520.081845_arm64.deb' ros-noetic-ros-core_1.5.0-1focal.20250520.081845_arm64.deb 2176 MD5Sum:6353549da86efad2d5a64e88620e925a
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-ros-base/ros-noetic-ros-base_1.5.0-1focal.20250521.024603_arm64.deb' ros-noetic-ros-base_1.5.0-1focal.20250521.024603_arm64.deb 1924 MD5Sum:9846298ba742c647599caaba1da1f9e9
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-tf2-msgs/ros-noetic-tf2-msgs_0.7.10-1focal.20250502.231512_arm64.deb' ros-noetic-tf2-msgs_0.7.10-1focal.20250502.231512_arm64.deb 44508 MD5Sum:dd7846ff79515c505bb75a4ef0410b5c
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-tf2/ros-noetic-tf2_0.7.10-1focal.20250502.231752_arm64.deb' ros-noetic-tf2_0.7.10-1focal.20250502.231752_arm64.deb 100288 MD5Sum:f3319bad5f59349f23a01943b6c37300
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-tf2-py/ros-noetic-tf2-py_0.7.10-1focal.20250519.233511_arm64.deb' ros-noetic-tf2-py_0.7.10-1focal.20250519.233511_arm64.deb 28092 MD5Sum:89bf0ef18fcf5428577464397f7cedf4
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-tf2-ros/ros-noetic-tf2-ros_0.7.10-1focal.20250520.004039_arm64.deb' ros-noetic-tf2-ros_0.7.10-1focal.20250520.004039_arm64.deb 218564 MD5Sum:75913c17f884a47b80aa7115c44744cd
+'http://snapshots.ros.org/noetic/final/ubuntu/pool/main/r/ros-noetic-tf/ros-noetic-tf_1.13.4-1focal.20250520.015357_arm64.deb' ros-noetic-tf_1.13.4-1focal.20250520.015357_arm64.deb 219156 MD5Sum:adcb974774d8562f90120ecdebcb3214
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/gcc-10-base_10.5.0-1ubuntu1%7e20.04_arm64.deb' gcc-10-base_10.5.0-1ubuntu1~20.04_arm64.deb 20780 MD5Sum:81f27b403a6571911d848f861e4552dd
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcrypt/libcrypt1_4.4.10-10ubuntu4_arm64.deb' libcrypt1_1%3a4.4.10-10ubuntu4_arm64.deb 82520 MD5Sum:41ffe3deba96b6a616667ecf455b42ec
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/glibc/libc6_2.31-0ubuntu9.18_arm64.deb' libc6_2.31-0ubuntu9.18_arm64.deb 2277572 MD5Sum:6b1cf9363397351db6c43ff729a7db6c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/libgcc-s1_10.5.0-1ubuntu1%7e20.04_arm64.deb' libgcc-s1_10.5.0-1ubuntu1~20.04_arm64.deb 34596 MD5Sum:e9c46ddc48798633884aa71463c73e6e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/acl/libacl1_2.2.53-6_arm64.deb' libacl1_2.2.53-6_arm64.deb 17784 MD5Sum:2746d505ac8d56e71dbd311c6b4b2e36
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/attr/libattr1_2.4.48-5_arm64.deb' libattr1_1%3a2.4.48-5_arm64.deb 12488 MD5Sum:ce7f0ad477b87d6ab80d71053876acee
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pcre2/libpcre2-8-0_10.34-7ubuntu0.1_arm64.deb' libpcre2-8-0_10.34-7ubuntu0.1_arm64.deb 170340 MD5Sum:3cdc5ef75f13c205db3302e92f6757f4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libselinux/libselinux1_3.0-1build2_arm64.deb' libselinux1_3.0-1build2_arm64.deb 64952 MD5Sum:27f6b805e67028b00a012663edfa198f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/coreutils/coreutils_8.30-3ubuntu2_arm64.deb' coreutils_8.30-3ubuntu2_arm64.deb 1174072 MD5Sum:3ba707c48cdbc1d8467d845f579f6679
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/debianutils/debianutils_4.9.1_arm64.deb' debianutils_4.9.1_arm64.deb 85600 MD5Sum:ecf781e1812a61ac7b31afdf03967163
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/bzip2/libbz2-1.0_1.0.8-2_arm64.deb' libbz2-1.0_1.0.8-2_arm64.deb 32944 MD5Sum:b264cacc4783b91a49c929abf9a997e6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/x/xz-utils/liblzma5_5.2.4-1ubuntu1.1_arm64.deb' liblzma5_5.2.4-1ubuntu1.1_arm64.deb 88072 MD5Sum:a762fd8fb83f796cb2a05a824e66cc0e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libz/libzstd/libzstd1_1.4.4%2bdfsg-3ubuntu0.1_arm64.deb' libzstd1_1.4.4+dfsg-3ubuntu0.1_arm64.deb 216196 MD5Sum:bbe1986f8ded24b8def83c2242cee8d2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/z/zlib/zlib1g_1.2.11.dfsg-2ubuntu1.5_arm64.deb' zlib1g_1%3a1.2.11.dfsg-2ubuntu1.5_arm64.deb 51564 MD5Sum:400aa6d207b86f1ff6199795a9ace5b6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/t/tar/tar_1.30%2bdfsg-7ubuntu0.20.04.4_arm64.deb' tar_1.30+dfsg-7ubuntu0.20.04.4_arm64.deb 227780 MD5Sum:225892686121b1549e0d3aae46cdb75b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/dpkg/dpkg_1.19.7ubuntu3.2_arm64.deb' dpkg_1.19.7ubuntu3.2_arm64.deb 1112356 MD5Sum:3bfd99a7ca7c783381aa768640895c85
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/audit/libaudit-common_2.8.5-2ubuntu6_all.deb' libaudit-common_1%3a2.8.5-2ubuntu6_all.deb 3936 MD5Sum:8c86856e5422a99454b6bddf1f0fbc67
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libc/libcap-ng/libcap-ng0_0.7.9-2.1build1_arm64.deb' libcap-ng0_0.7.9-2.1build1_arm64.deb 10488 MD5Sum:faeb3e0ffdd91f467951824e743096ae
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/audit/libaudit1_2.8.5-2ubuntu6_arm64.deb' libaudit1_1%3a2.8.5-2ubuntu6_arm64.deb 38248 MD5Sum:7f0b1c0a50ab32de808d7bacec0fb12d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/perl/perl-base_5.30.0-9ubuntu0.5_arm64.deb' perl-base_5.30.0-9ubuntu0.5_arm64.deb 1392072 MD5Sum:92cf91524ecda8455e3c9441e13f2e31
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/debconf/debconf_1.5.73_all.deb' debconf_1.5.73_all.deb 121524 MD5Sum:7679138bdfa4b38eaf8489a18010e81f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pam/libpam0g_1.3.1-5ubuntu4.7_arm64.deb' libpam0g_1.3.1-5ubuntu4.7_arm64.deb 53828 MD5Sum:8c1cf4b1cd637ba4082eac80b677b61f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/db5.3/libdb5.3_5.3.28%2bdfsg1-0.6ubuntu2_arm64.deb' libdb5.3_5.3.28+dfsg1-0.6ubuntu2_arm64.deb 619612 MD5Sum:40f6c5480ee1cadd2939bab443b782a6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pam/libpam-modules-bin_1.3.1-5ubuntu4.7_arm64.deb' libpam-modules-bin_1.3.1-5ubuntu4.7_arm64.deb 39712 MD5Sum:b1bcc8307c3bdefe88b8357089d2fde5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pam/libpam-modules_1.3.1-5ubuntu4.7_arm64.deb' libpam-modules_1.3.1-5ubuntu4.7_arm64.deb 251840 MD5Sum:65d60c926e7ccb2956f0c3ec90bebd91
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pam/libpam-runtime_1.3.1-5ubuntu4.7_all.deb' libpam-runtime_1.3.1-5ubuntu4.7_all.deb 37288 MD5Sum:f6e96384d3cf0495d9926539894813bc
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/shadow/login_4.8.1-1ubuntu5.20.04.5_arm64.deb' login_1%3a4.8.1-1ubuntu5.20.04.5_arm64.deb 217712 MD5Sum:f6659e30ad1b0d35d6da867d4fadfb3e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/sed/sed_4.7-1_arm64.deb' sed_4.7-1_arm64.deb 185588 MD5Sum:0a904e50ec6dad9e83f17b7ee596b1a2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/util-linux/libblkid1_2.34-0.1ubuntu9.6_arm64.deb' libblkid1_2.34-0.1ubuntu9.6_arm64.deb 128748 MD5Sum:d407731ede814a4aa69dc2505af431e7
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/util-linux/libmount1_2.34-0.1ubuntu9.6_arm64.deb' libmount1_2.34-0.1ubuntu9.6_arm64.deb 139600 MD5Sum:c228f90b382573f05f646cbb0c0d2c0b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/util-linux/libsmartcols1_2.34-0.1ubuntu9.6_arm64.deb' libsmartcols1_2.34-0.1ubuntu9.6_arm64.deb 93100 MD5Sum:ff927964495ffb869396c57c04e5f191
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libg/libgpg-error/libgpg-error0_1.37-1_arm64.deb' libgpg-error0_1.37-1_arm64.deb 55060 MD5Sum:5bcfb76578115c3ca120ae4286533900
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libg/libgcrypt20/libgcrypt20_1.8.5-5ubuntu1.1_arm64.deb' libgcrypt20_1.8.5-5ubuntu1.1_arm64.deb 349392 MD5Sum:44a4e62eb2200826848a330564e9ae41
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lz4/liblz4-1_1.9.2-2ubuntu0.20.04.1_arm64.deb' liblz4-1_1.9.2-2ubuntu0.20.04.1_arm64.deb 52968 MD5Sum:e002ddbfa4bb887061a1214d6cb0ddc0
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/systemd/libsystemd0_245.4-4ubuntu3.24_arm64.deb' libsystemd0_245.4-4ubuntu3.24_arm64.deb 246048 MD5Sum:38c1828ff845eebb4241c5649f289ffb
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/ncurses/libtinfo6_6.2-0ubuntu2.1_arm64.deb' libtinfo6_6.2-0ubuntu2.1_arm64.deb 82064 MD5Sum:2bb810f677aeb9365ca7aac52ecb034a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/systemd/libudev1_245.4-4ubuntu3.24_arm64.deb' libudev1_245.4-4ubuntu3.24_arm64.deb 68848 MD5Sum:ebe4883cd93d116b6121cde964285743
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/util-linux/libuuid1_2.34-0.1ubuntu9.6_arm64.deb' libuuid1_2.34-0.1ubuntu9.6_arm64.deb 19400 MD5Sum:a64daf6840ead13775baee7d2735d2d3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/util-linux/util-linux_2.34-0.1ubuntu9.6_arm64.deb' util-linux_2.34-0.1ubuntu9.6_arm64.deb 983424 MD5Sum:e24e3a18bc02fed366e5ef38edf35a31
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/i/init-system-helpers/init-system-helpers_1.57_all.deb' init-system-helpers_1.57_all.deb 38260 MD5Sum:6bb7bbd31d00dfab8eeee9d4dc021514
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/util-linux/mount_2.34-0.1ubuntu9.6_arm64.deb' mount_2.34-0.1ubuntu9.6_arm64.deb 111760 MD5Sum:bade96a7a40ac9d39d6463af5756ad11
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb' libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb 1159156 MD5Sum:a804de65a8988dc9a156fe8f60729c42
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3.8/libpython3.8-minimal_3.8.10-0ubuntu1%7e20.04.18_arm64.deb' libpython3.8-minimal_3.8.10-0ubuntu1~20.04.18_arm64.deb 717424 MD5Sum:71c1615e7a94faa21c041d42bba6c9a3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/e/expat/libexpat1_2.2.9-1ubuntu0.8_arm64.deb' libexpat1_2.2.9-1ubuntu0.8_arm64.deb 63000 MD5Sum:b74008cc3ebccef43b7175c5e10edc3e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3.8/python3.8-minimal_3.8.10-0ubuntu1%7e20.04.18_arm64.deb' python3.8-minimal_3.8.10-0ubuntu1~20.04.18_arm64.deb 1828904 MD5Sum:68f39b422020d849f900403557da7a49
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3-defaults/python3-minimal_3.8.2-0ubuntu2_arm64.deb' python3-minimal_3.8.2-0ubuntu2_arm64.deb 23560 MD5Sum:0478297efb6cfa63984502a8bfdf3444
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/mime-support/mime-support_3.64ubuntu1_all.deb' mime-support_3.64ubuntu1_all.deb 30596 MD5Sum:2462b3c6b0c8148bd9d5ed229f6d2c64
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libf/libffi/libffi7_3.3-4_arm64.deb' libffi7_3.3-4_arm64.deb 17136 MD5Sum:eae849d100aadd84a3ebee069b63acda
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/mpdecimal/libmpdec2_2.4.2-3_arm64.deb' libmpdec2_2.4.2-3_arm64.deb 79600 MD5Sum:feb2e6d9ce62fc934916f18b28412ce5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/ncurses/libncursesw6_6.2-0ubuntu2.1_arm64.deb' libncursesw6_6.2-0ubuntu2.1_arm64.deb 120268 MD5Sum:4d00bd890b8a5529e31b41a9f281f50b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/r/readline/readline-common_8.0-4_all.deb' readline-common_8.0-4_all.deb 53492 MD5Sum:df3bdd61df336b466f7e32c7404b7e9a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/r/readline/libreadline8_8.0-4_arm64.deb' libreadline8_8.0-4_arm64.deb 123152 MD5Sum:1fefd2f574dcdebe8006094e704bcc95
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/sqlite3/libsqlite3-0_3.31.1-4ubuntu0.7_arm64.deb' libsqlite3-0_3.31.1-4ubuntu0.7_arm64.deb 506464 MD5Sum:8a449289f43f99dd06262267b06032a7
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3.8/libpython3.8-stdlib_3.8.10-0ubuntu1%7e20.04.18_arm64.deb' libpython3.8-stdlib_3.8.10-0ubuntu1~20.04.18_arm64.deb 1649648 MD5Sum:6ce1724460e216ed041352936cf29215
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3.8/python3.8_3.8.10-0ubuntu1%7e20.04.18_arm64.deb' python3.8_3.8.10-0ubuntu1~20.04.18_arm64.deb 386744 MD5Sum:b735d60a7446e4a48c8c18cb52563127
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3-defaults/libpython3-stdlib_3.8.2-0ubuntu2_arm64.deb' libpython3-stdlib_3.8.2-0ubuntu2_arm64.deb 7068 MD5Sum:18fe4dbe2eb9528c8ddc2263f092563a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3-defaults/python3_3.8.2-0ubuntu2_arm64.deb' python3_3.8.2-0ubuntu2_arm64.deb 47616 MD5Sum:543403eafe94bfc6b749c0eebe78f97c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/apparmor/libapparmor1_2.13.3-7ubuntu5.4_arm64.deb' libapparmor1_2.13.3-7ubuntu5.4_arm64.deb 34904 MD5Sum:b909510d76467f161d24ccb11abf3fc5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libc/libcap2/libcap2_2.32-1ubuntu0.2_arm64.deb' libcap2_1%3a2.32-1ubuntu0.2_arm64.deb 15392 MD5Sum:0580af76be51eaef6d534df8df6e941f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/argon2/libargon2-1_0%7e20171227-0.2_arm64.deb' libargon2-1_0~20171227-0.2_arm64.deb 18424 MD5Sum:d13edf6b9defada92a06b503551fd674
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lvm2/libdevmapper1.02.1_1.02.167-1ubuntu1_arm64.deb' libdevmapper1.02.1_2%3a1.02.167-1ubuntu1_arm64.deb 110124 MD5Sum:8d4cf8c591946faab0c6b30578105ba0
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/j/json-c/libjson-c4_0.13.1%2bdfsg-7ubuntu0.3_arm64.deb' libjson-c4_0.13.1+dfsg-7ubuntu0.3_arm64.deb 28300 MD5Sum:b5f48f4a629507f10da814404f3d905f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/cryptsetup/libcryptsetup12_2.2.2-3ubuntu2.5_arm64.deb' libcryptsetup12_2%3a2.2.2-3ubuntu2.5_arm64.deb 152208 MD5Sum:636ce116218685e45e744b498b3b833d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gmp/libgmp10_6.2.0%2bdfsg-4ubuntu0.1_arm64.deb' libgmp10_2%3a6.2.0+dfsg-4ubuntu0.1_arm64.deb 217624 MD5Sum:88525965de854a46a5acaf862496a959
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/nettle/libnettle7_3.5.1%2breally3.5.1-2ubuntu0.2_arm64.deb' libnettle7_3.5.1+really3.5.1-2ubuntu0.2_arm64.deb 124352 MD5Sum:0e69a607b56a41e89e92568327884e2c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/nettle/libhogweed5_3.5.1%2breally3.5.1-2ubuntu0.2_arm64.deb' libhogweed5_3.5.1+really3.5.1-2ubuntu0.2_arm64.deb 134516 MD5Sum:b8a1ea4a5e695ff2c5a0304c878e9753
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libu/libunistring/libunistring2_0.9.10-2_arm64.deb' libunistring2_0.9.10-2_arm64.deb 357648 MD5Sum:418c1646f62589ef1e0755f1e1653d93
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libi/libidn2/libidn2-0_2.2.0-2_arm64.deb' libidn2-0_2.2.0-2_arm64.deb 49376 MD5Sum:e90f3f389370955d9d380b140b271092
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/p11-kit/libp11-kit0_0.23.20-1ubuntu0.1_arm64.deb' libp11-kit0_0.23.20-1ubuntu0.1_arm64.deb 176892 MD5Sum:a3714f89d303f1f3128ad3b3258f547b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libt/libtasn1-6/libtasn1-6_4.16.0-2ubuntu0.1_arm64.deb' libtasn1-6_4.16.0-2ubuntu0.1_arm64.deb 36968 MD5Sum:de67cfdcd2dbcfd16b55b4b684de7a66
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnutls28/libgnutls30_3.6.13-2ubuntu1.12_arm64.deb' libgnutls30_3.6.13-2ubuntu1.12_arm64.deb 753496 MD5Sum:db3d123162b27d0d795d2451da06f057
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/i/iptables/libip4tc2_1.8.4-3ubuntu2.1_arm64.deb' libip4tc2_1.8.4-3ubuntu2.1_arm64.deb 18664 MD5Sum:d20a1c4f70747cc6454811de426c0795
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/k/kmod/libkmod2_27-1ubuntu2.1_arm64.deb' libkmod2_27-1ubuntu2.1_arm64.deb 41880 MD5Sum:862c1c3163230832b7f636a9b0dd446b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libseccomp/libseccomp2_2.5.1-1ubuntu1%7e20.04.2_arm64.deb' libseccomp2_2.5.1-1ubuntu1~20.04.2_arm64.deb 41400 MD5Sum:937520736e21ae48052325e23a7718b3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libsemanage/libsemanage-common_3.0-1build2_all.deb' libsemanage-common_3.0-1build2_all.deb 9792 MD5Sum:8b9a1ba88e281f13cc270e0954163661
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libsepol/libsepol1_3.0-1ubuntu0.1_arm64.deb' libsepol1_3.0-1ubuntu0.1_arm64.deb 230672 MD5Sum:a95baa351914265221bc939c9fb05e2d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libsemanage/libsemanage1_3.0-1build2_arm64.deb' libsemanage1_3.0-1build2_arm64.deb 79440 MD5Sum:e2142913e83b80befc0ef284969e5dff
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/shadow/passwd_4.8.1-1ubuntu5.20.04.5_arm64.deb' passwd_1%3a4.8.1-1ubuntu5.20.04.5_arm64.deb 771416 MD5Sum:db151ae1f71e7838c6c4f6501320c18b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/adduser/adduser_3.118ubuntu2_all.deb' adduser_3.118ubuntu2_all.deb 162792 MD5Sum:56dad661bb4f005db0c2ac8e3d9b1600
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/systemd/systemd-timesyncd_245.4-4ubuntu3.24_arm64.deb' systemd-timesyncd_245.4-4ubuntu3.24_arm64.deb 26308 MD5Sum:e8a4b6c93f9726f02af4a9310787d77b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/systemd/systemd_245.4-4ubuntu3.24_arm64.deb' systemd_245.4-4ubuntu3.24_arm64.deb 3499152 MD5Sum:832fc08a2641a57223a4096162962edd
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/systemd/systemd-sysv_245.4-4ubuntu3.24_arm64.deb' systemd-sysv_245.4-4ubuntu3.24_arm64.deb 10284 MD5Sum:ded9786d5533a09f4425e37cc9dca734
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/perl/perl-modules-5.30_5.30.0-9ubuntu0.5_all.deb' perl-modules-5.30_5.30.0-9ubuntu0.5_all.deb 2738632 MD5Sum:efddaa7eaff10ca8c21609a5dfd657c8
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gdbm/libgdbm6_1.18.1-5_arm64.deb' libgdbm6_1.18.1-5_arm64.deb 26396 MD5Sum:db36ba24af8f44842ddfe30793b7faaa
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gdbm/libgdbm-compat4_1.18.1-5_arm64.deb' libgdbm-compat4_1.18.1-5_arm64.deb 6040 MD5Sum:c46e06e4116889da106317c91e9e9b20
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/perl/libperl5.30_5.30.0-9ubuntu0.5_arm64.deb' libperl5.30_5.30.0-9ubuntu0.5_arm64.deb 3763296 MD5Sum:b11f5d405ecfb994c91c0a66e8d132de
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/perl/perl_5.30.0-9ubuntu0.5_arm64.deb' perl_5.30.0-9ubuntu0.5_arm64.deb 224128 MD5Sum:cae205e054456a334c7603d591a502ef
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/sgml-base/sgml-base_1.29.1_all.deb' sgml-base_1.29.1_all.deb 12432 MD5Sum:de7e58d37bf552fded2199361934d7f8
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/e/e2fsprogs/libcom-err2_1.45.5-2ubuntu1.2_arm64.deb' libcom-err2_1.45.5-2ubuntu1.2_arm64.deb 9272 MD5Sum:3c530aee329dc9438296bb4f6782fc94
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/ncurses/libncurses6_6.2-0ubuntu2.1_arm64.deb' libncurses6_6.2-0ubuntu2.1_arm64.deb 91848 MD5Sum:7115d7dbfb167792f2af254ab3d9e4ce
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pcre3/libpcre3_8.39-12ubuntu0.1_arm64.deb' libpcre3_2%3a8.39-12ubuntu0.1_arm64.deb 209060 MD5Sum:f137c392716045022d8d31b161cb9b8d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/procps/libprocps8_3.3.16-1ubuntu2.4_arm64.deb' libprocps8_2%3a3.3.16-1ubuntu2.4_arm64.deb 31636 MD5Sum:1ac19b74ae4d6596cccf970e86e4f5a4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lsb/lsb-base_11.1.0ubuntu2_all.deb' lsb-base_11.1.0ubuntu2_all.deb 12076 MD5Sum:a3160e6270cfa4ed80d848d70d58ce09
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/procps/procps_3.3.16-1ubuntu2.4_arm64.deb' procps_2%3a3.3.16-1ubuntu2.4_arm64.deb 229128 MD5Sum:9cc73e7974963a8c9aca61d5a092bfa0
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/sensible-utils/sensible-utils_0.0.12%2bnmu1_all.deb' sensible-utils_0.0.12+nmu1_all.deb 15016 MD5Sum:d28053d4b8fe2c4ca83cc87fad5af690
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/openssl/openssl_1.1.1f-1ubuntu2.24_arm64.deb' openssl_1.1.1f-1ubuntu2.24_arm64.deb 600244 MD5Sum:d539399bb71948a9a1b95c0fb831e39a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/ca-certificates/ca-certificates_20240203%7e20.04.1_all.deb' ca-certificates_20240203~20.04.1_all.deb 158936 MD5Sum:1c491e2ab3beec293813c0b3f478d24a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/dbus/libdbus-1-3_1.12.16-2ubuntu2.3_arm64.deb' libdbus-1-3_1.12.16-2ubuntu2.3_arm64.deb 169260 MD5Sum:53653e9d975839bcef4f691928d9a12c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/dbus/dbus_1.12.16-2ubuntu2.3_arm64.deb' dbus_1.12.16-2ubuntu2.3_arm64.deb 141600 MD5Sum:67007d2a02f467a7823117939cca7ff2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/distro-info-data/distro-info-data_0.43ubuntu1.20_all.deb' distro-info-data_0.43ubuntu1.20_all.deb 5040 MD5Sum:ea5eea8871b058a35160b59f6e1b459f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/gpgv_2.2.19-3ubuntu2.5_arm64.deb' gpgv_2.2.19-3ubuntu2.5_arm64.deb 183980 MD5Sum:7239764fef968ee8ea79ecf98a056a15
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libb/libbsd/libbsd0_0.10.0-1_arm64.deb' libbsd0_0.10.0-1_arm64.deb 43736 MD5Sum:3603623835c0493328a1e5efaaa8dfbc
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libc/libcap2/libcap2-bin_2.32-1ubuntu0.2_arm64.deb' libcap2-bin_1%3a2.32-1ubuntu0.2_arm64.deb 25656 MD5Sum:e34e0e81afc8f3fda57c8d2ee814231b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/e/elfutils/libelf1_0.176-1.1ubuntu0.1_arm64.deb' libelf1_0.176-1.1ubuntu0.1_arm64.deb 44396 MD5Sum:20fc5a1d494b9743474d86f76bae8542
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/f/fribidi/libfribidi0_1.0.8-2ubuntu0.1_arm64.deb' libfribidi0_1.0.8-2ubuntu0.1_arm64.deb 24068 MD5Sum:7d210a4256d7d0a503993cf52fbac549
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/glib2.0/libglib2.0-0_2.64.6-1%7eubuntu20.04.9_arm64.deb' libglib2.0-0_2.64.6-1~ubuntu20.04.9_arm64.deb 1201064 MD5Sum:379ce6a22327c7ed56e0814f158fd61a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/libstdc%2b%2b6_10.5.0-1ubuntu1%7e20.04_arm64.deb' libstdc++6_10.5.0-1ubuntu1~20.04_arm64.deb 461192 MD5Sum:0a77803504181fc77a54c6a992cbff58
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/t/tzdata/tzdata_2025b-0ubuntu0.20.04.1_all.deb' tzdata_2025b-0ubuntu0.20.04.1_all.deb 300012 MD5Sum:2a4c9d4a5846163370f4fd6287d85470
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/i/icu/libicu66_66.1-2ubuntu2.1_arm64.deb' libicu66_66.1-2ubuntu2.1_arm64.deb 8359564 MD5Sum:8df73eb6c4ee11c5e45d1dae405e7773
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/systemd/libpam-systemd_245.4-4ubuntu3.24_arm64.deb' libpam-systemd_245.4-4ubuntu3.24_arm64.deb 175392 MD5Sum:edb724cad4c8c1b15d609024fe7bab26
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libsodium/libsodium23_1.0.18-1_arm64.deb' libsodium23_1.0.18-1_arm64.deb 107832 MD5Sum:c0910eb8bc03a41a5cbd8b1d7fb0b5bf
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxml2/libxml2_2.9.10%2bdfsg-5ubuntu0.20.04.10_arm64.deb' libxml2_2.9.10+dfsg-5ubuntu0.20.04.10_arm64.deb 571820 MD5Sum:40e95c5f7d779652fa4e4fd891c8ed6e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/liby/libyaml/libyaml-0-2_0.2.2-1_arm64.deb' libyaml-0-2_0.2.2-1_arm64.deb 44420 MD5Sum:92d97ed04d2cdc9ea3e2d34da966bfb2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lsb/lsb-release_11.1.0ubuntu2_all.deb' lsb-release_11.1.0ubuntu2_all.deb 10568 MD5Sum:1150ded71500f4765a72add53e586636
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python-cffi/python3-cffi-backend_1.14.0-1build1_arm64.deb' python3-cffi-backend_1.14.0-1build1_arm64.deb 69004 MD5Sum:9e4a7538d9712f78d58b21c9c407fa0d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/six/python3-six_1.14.0-2_all.deb' python3-six_1.14.0-2_all.deb 12088 MD5Sum:8ee0a191e55fab94f431f79d531143b1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python-nacl/python3-nacl_1.3.0-5_arm64.deb' python3-nacl_1.3.0-5_arm64.deb 45972 MD5Sum:f2cbc19cb50eeb02a00eee8ad2a4c9e5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/netifaces/python3-netifaces_0.10.4-1ubuntu4_arm64.deb' python3-netifaces_0.10.4-1ubuntu4_arm64.deb 15664 MD5Sum:e9169673996e5b8320dd18871e459dcf
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/setuptools/python3-pkg-resources_45.2.0-1ubuntu0.3_all.deb' python3-pkg-resources_45.2.0-1ubuntu0.3_all.deb 130364 MD5Sum:a99a74554ca179cf27de1c350b57f8c4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pyyaml/python3-yaml_5.3.1-1ubuntu0.1_arm64.deb' python3-yaml_5.3.1-1ubuntu0.1_arm64.deb 111936 MD5Sum:7998c5c275b9fed798653c9857cc1ca5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/shared-mime-info/shared-mime-info_1.15-1_arm64.deb' shared-mime-info_1.15-1_arm64.deb 428728 MD5Sum:b1b3d745c195cb4dd3f9ccc27a8c56fe
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/sudo/sudo_1.8.31-1ubuntu1.5_arm64.deb' sudo_1.8.31-1ubuntu1.5_arm64.deb 474128 MD5Sum:5a8e71bfeb80243213ef0dea849aae74
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/ucf/ucf_3.0038%2bnmu1_all.deb' ucf_3.0038+nmu1_all.deb 51620 MD5Sum:4f9b6de36dce0fc25483ab8d098dd5a9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/x/xkeyboard-config/xkb-data_2.29-2_all.deb' xkb-data_2.29-2_all.deb 348648 MD5Sum:4ec5c51b100981403888c7c3c08bfd5f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/i/iso-codes/iso-codes_4.4-1_all.deb' iso-codes_4.4-1_all.deb 2694644 MD5Sum:61b89768a199c297cd8f34da8415f7a5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libc/libcbor/libcbor0.6_0.6.0-0ubuntu1_arm64.deb' libcbor0.6_0.6.0-0ubuntu1_arm64.deb 20544 MD5Sum:42d36874f7a051ec700f5db3704f2084
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libd/libdrm/libdrm-common_2.4.107-8ubuntu1%7e20.04.2_all.deb' libdrm-common_2.4.107-8ubuntu1~20.04.2_all.deb 5396 MD5Sum:0411887d9fa6b22457891fd478a6dc8c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libd/libdrm/libdrm2_2.4.107-8ubuntu1%7e20.04.2_arm64.deb' libdrm2_2.4.107-8ubuntu1~20.04.2_arm64.deb 33940 MD5Sum:55b274e4d71e3898b161ea86f789f29a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libe/libedit/libedit2_3.1-20191231-1_arm64.deb' libedit2_3.1-20191231-1_arm64.deb 82724 MD5Sum:10fab915c9e3c5bd5ac2a2cb80da7fb9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libf/libfido2/libfido2-1_1.3.1-1ubuntu2_arm64.deb' libfido2-1_1.3.1-1ubuntu2_arm64.deb 45060 MD5Sum:c3b1df237880a7f30cd1c46b2fc60e3a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/k/krb5/libkrb5support0_1.17-6ubuntu4.11_arm64.deb' libkrb5support0_1.17-6ubuntu4.11_arm64.deb 30984 MD5Sum:36de97cea030704dc1d80e22fd3477d1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/k/krb5/libk5crypto3_1.17-6ubuntu4.11_arm64.deb' libk5crypto3_1.17-6ubuntu4.11_arm64.deb 80428 MD5Sum:a630e06fd86c972ff63254e94f46f6d2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/k/keyutils/libkeyutils1_1.6-6ubuntu1.1_arm64.deb' libkeyutils1_1.6-6ubuntu1.1_arm64.deb 10112 MD5Sum:ee7d8dabcd8a52e4cacf7c273d8dae22
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/k/krb5/libkrb5-3_1.17-6ubuntu4.11_arm64.deb' libkrb5-3_1.17-6ubuntu4.11_arm64.deb 311860 MD5Sum:0be7d5bd6991c6eca1c93e3414385059
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/k/krb5/libgssapi-krb5-2_1.17-6ubuntu4.11_arm64.deb' libgssapi-krb5-2_1.17-6ubuntu4.11_arm64.deb 113180 MD5Sum:065220fd3ca7d2b5dcd5cf8c1e44c01a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/numactl/libnuma1_2.0.12-1_arm64.deb' libnuma1_2.0.12-1_arm64.deb 20480 MD5Sum:6a456339a1c30971afaeb65e78ac4d38
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libp/libpng1.6/libpng16-16_1.6.37-2_arm64.deb' libpng16-16_1.6.37-2_arm64.deb 173524 MD5Sum:b3e8d85f27cec8f023a7e291b31d5fab
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libp/libpsl/libpsl5_0.21.0-1ubuntu1_arm64.deb' libpsl5_0.21.0-1ubuntu1_arm64.deb 51252 MD5Sum:4071d38db6a0cfe3465522cb95473e1c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libu/libusb-1.0/libusb-1.0-0_1.0.23-2build1_arm64.deb' libusb-1.0-0_2%3a1.0.23-2build1_arm64.deb 44480 MD5Sum:7f047adc572c9ec6cb835b8ddd40ff27
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libu/libuv1/libuv1_1.34.2-1ubuntu1.5_arm64.deb' libuv1_1.34.2-1ubuntu1.5_arm64.deb 74968 MD5Sum:2523e5f247f5572ef685a2c59e11d3ce
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxau/libxau6_1.0.9-0ubuntu1_arm64.deb' libxau6_1%3a1.0.9-0ubuntu1_arm64.deb 7356 MD5Sum:778330b2b0b397dd782751e54288304a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxdmcp/libxdmcp6_1.1.3-0ubuntu1_arm64.deb' libxdmcp6_1%3a1.1.3-0ubuntu1_arm64.deb 10272 MD5Sum:1a87759bc2d4199db6514afbe46057ba
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcb/libxcb1_1.14-2_arm64.deb' libxcb1_1.14-2_arm64.deb 42988 MD5Sum:16b9dc33cdb8d34cc3de05579f500f64
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libx11/libx11-data_1.6.9-2ubuntu1.6_all.deb' libx11-data_2%3a1.6.9-2ubuntu1.6_all.deb 113552 MD5Sum:08354bdaf6afb83fe9893339b0ad8224
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libx11/libx11-6_1.6.9-2ubuntu1.6_arm64.deb' libx11-6_2%3a1.6.9-2ubuntu1.6_arm64.deb 553708 MD5Sum:baa4177a524e2b703c65446da24e8d5e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxext/libxext6_1.3.4-0ubuntu1_arm64.deb' libxext6_2%3a1.3.4-0ubuntu1_arm64.deb 27656 MD5Sum:300f94cc48e2bef0c26682031a354e97
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/openssh/openssh-client_8.2p1-4ubuntu0.13_arm64.deb' openssh-client_1%3a8.2p1-4ubuntu0.13_arm64.deb 634856 MD5Sum:d52050291277b40b1a6b71880c2384b2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/hicolor-icon-theme/hicolor-icon-theme_0.17-2_all.deb' hicolor-icon-theme_0.17-2_all.deb 9976 MD5Sum:bce9c3148337fb38d245922e12007e44
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libj/libjpeg-turbo/libjpeg-turbo8_2.0.3-0ubuntu1.20.04.3_arm64.deb' libjpeg-turbo8_2.0.3-0ubuntu1.20.04.3_arm64.deb 100920 MD5Sum:e000f6879186b2b43a4a51791b1ab3da
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libj/libjpeg8-empty/libjpeg8_8c-2ubuntu8_arm64.deb' libjpeg8_8c-2ubuntu8_arm64.deb 2198 MD5Sum:358a37a2cf30c072440cd86a3fdcbae5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/j/jbigkit/libjbig0_2.1-3.1ubuntu0.20.04.1_arm64.deb' libjbig0_2.1-3.1ubuntu0.20.04.1_arm64.deb 25848 MD5Sum:8509b060bec60085da81189fb9628bce
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libw/libwebp/libwebp6_0.6.1-2ubuntu0.20.04.3_arm64.deb' libwebp6_0.6.1-2ubuntu0.20.04.3_arm64.deb 167292 MD5Sum:bde538930d6b01266b039807823138f3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/t/tiff/libtiff5_4.1.0%2bgit191117-2ubuntu0.20.04.14_arm64.deb' libtiff5_4.1.0+git191117-2ubuntu0.20.04.14_arm64.deb 152608 MD5Sum:af86ddaf86ef671b8d15dbd7db783288
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gdk-pixbuf/libgdk-pixbuf2.0-common_2.40.0%2bdfsg-3ubuntu0.5_all.deb' libgdk-pixbuf2.0-common_2.40.0+dfsg-3ubuntu0.5_all.deb 4628 MD5Sum:8d6bab843b52eb7ad3155f56c4455765
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gdk-pixbuf/libgdk-pixbuf2.0-0_2.40.0%2bdfsg-3ubuntu0.5_arm64.deb' libgdk-pixbuf2.0-0_2.40.0+dfsg-3ubuntu0.5_arm64.deb 156212 MD5Sum:426c73fb8d0d44ce7392ffeaebfae1a9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gtk%2b3.0/gtk-update-icon-cache_3.24.20-0ubuntu1.2_arm64.deb' gtk-update-icon-cache_3.24.20-0ubuntu1.2_arm64.deb 27520 MD5Sum:f1f7b1187075cd20d7f8e4d2f0cafced
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/f/freetype/libfreetype6_2.10.1-2ubuntu0.4_arm64.deb' libfreetype6_2.10.1-2ubuntu0.4_arm64.deb 315716 MD5Sum:1d852f47bb19c4442037340ff0c70473
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/f/fonts-dejavu/fonts-dejavu-core_2.37-1_all.deb' fonts-dejavu-core_2.37-1_all.deb 1040712 MD5Sum:be036b423d84ce26700dacdbdcddf7b5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/f/fontconfig/fontconfig-config_2.13.1-2ubuntu3_all.deb' fontconfig-config_2.13.1-2ubuntu3_all.deb 28780 MD5Sum:962b743a3bbf95b70d8e439c97445c1b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/f/fontconfig/libfontconfig1_2.13.1-2ubuntu3_arm64.deb' libfontconfig1_2.13.1-2ubuntu3_arm64.deb 110740 MD5Sum:b782135df14e8c925787a2c8fae1d90f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pixman/libpixman-1-0_0.38.4-0ubuntu2.1_arm64.deb' libpixman-1-0_0.38.4-0ubuntu2.1_arm64.deb 129724 MD5Sum:3b02cdbf5f4bd003f7e71b2fc8810212
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcb/libxcb-render0_1.14-2_arm64.deb' libxcb-render0_1.14-2_arm64.deb 14656 MD5Sum:2c11fd67ca15a5f1870fb6b4a7e0b00a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcb/libxcb-shm0_1.14-2_arm64.deb' libxcb-shm0_1.14-2_arm64.deb 5560 MD5Sum:b1c6e2819a29ba642d11215877db1ae6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxrender/libxrender1_0.9.10-1_arm64.deb' libxrender1_1%3a0.9.10-1_arm64.deb 16088 MD5Sum:bc735af99800cf2014aa58b2ec4c1c44
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/cairo/libcairo2_1.16.0-4ubuntu1_arm64.deb' libcairo2_1.16.0-4ubuntu1_arm64.deb 537620 MD5Sum:f415889730a7d6aaf78becd611279321
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/cairo/libcairo-gobject2_1.16.0-4ubuntu1_arm64.deb' libcairo-gobject2_1.16.0-4ubuntu1_arm64.deb 16988 MD5Sum:0eb99b72fe0ce03f944025e90dc78720
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/f/fontconfig/fontconfig_2.13.1-2ubuntu3_arm64.deb' fontconfig_2.13.1-2ubuntu3_arm64.deb 170252 MD5Sum:47bb050b869e6c7cdf51fb7b205d65ec
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/graphite2/libgraphite2-3_1.3.13-11build1_arm64.deb' libgraphite2-3_1.3.13-11build1_arm64.deb 67696 MD5Sum:3bb6331fdcffdd560d8e9940705aef68
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/harfbuzz/libharfbuzz0b_2.6.4-1ubuntu4.3_arm64.deb' libharfbuzz0b_2.6.4-1ubuntu4.3_arm64.deb 352820 MD5Sum:daf03e0a3faff81788965179858f7b65
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libt/libthai/libthai-data_0.1.28-3_all.deb' libthai-data_0.1.28-3_all.deb 134404 MD5Sum:65f8cceb067b2aba19cfc6a3221644a0
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libd/libdatrie/libdatrie1_0.2.12-3_arm64.deb' libdatrie1_0.2.12-3_arm64.deb 17876 MD5Sum:ab23afe35672c5296fda6a5f3c844c7d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libt/libthai/libthai0_0.1.28-3_arm64.deb' libthai0_0.1.28-3_arm64.deb 16808 MD5Sum:86dc6c3d1601f1c42ad4f79d026300a8
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pango1.0/libpango-1.0-0_1.44.7-2ubuntu4_arm64.deb' libpango-1.0-0_1.44.7-2ubuntu4_arm64.deb 153408 MD5Sum:02196c3ff090cb5c2df93e35e82f6a10
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pango1.0/libpangoft2-1.0-0_1.44.7-2ubuntu4_arm64.deb' libpangoft2-1.0-0_1.44.7-2ubuntu4_arm64.deb 32032 MD5Sum:0430dd6ba2143c99760d80966720119f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pango1.0/libpangocairo-1.0-0_1.44.7-2ubuntu4_arm64.deb' libpangocairo-1.0-0_1.44.7-2ubuntu4_arm64.deb 22488 MD5Sum:01b15a11930a464d7b62ec349533af0d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libr/librsvg/librsvg2-2_2.48.9-1ubuntu0.20.04.4_arm64.deb' librsvg2-2_2.48.9-1ubuntu0.20.04.4_arm64.deb 2038756 MD5Sum:a5cfa2ffbc49758fe689f3865f0684b5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libr/librsvg/librsvg2-common_2.48.9-1ubuntu0.20.04.4_arm64.deb' librsvg2-common_2.48.9-1ubuntu0.20.04.4_arm64.deb 9060 MD5Sum:4e520ca91e2fa1e74bdf80de0bac33e8
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/humanity-icon-theme/humanity-icon-theme_0.6.15_all.deb' humanity-icon-theme_0.6.15_all.deb 1250380 MD5Sum:21ae88ef79bde1fa1fb67b34e7a93c1a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/ubuntu-themes/ubuntu-mono_19.04-0ubuntu3_all.deb' ubuntu-mono_19.04-0ubuntu3_all.deb 147204 MD5Sum:16f5bc6339d50e7ae27642370450d036
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/adwaita-icon-theme/adwaita-icon-theme_3.36.1-2ubuntu0.20.04.2_all.deb' adwaita-icon-theme_3.36.1-2ubuntu0.20.04.2_all.deb 3441200 MD5Sum:67757b4560d9e635a50b082781f4c399
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libsigsegv/libsigsegv2_2.12-2_arm64.deb' libsigsegv2_2.12-2_arm64.deb 13336 MD5Sum:af0e1277786a05d5f6214644b77e5a1d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/m4/m4_1.4.18-4_arm64.deb' m4_1.4.18-4_arm64.deb 194068 MD5Sum:0337acae66e300aaeb1a52bba337372b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/autoconf/autoconf_2.69-11.1_all.deb' autoconf_2.69-11.1_all.deb 321476 MD5Sum:b640aefbcb36e686887517e0a1f0f5b6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/autotools-dev/autotools-dev_20180224.1_all.deb' autotools-dev_20180224.1_all.deb 39640 MD5Sum:e1f07cbfa9b7eecce6eab5c4ee372cce
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/automake-1.16/automake_1.16.1-4ubuntu6_all.deb' automake_1%3a1.16.1-4ubuntu6_all.deb 521748 MD5Sum:828b5190257fa4109890a9ab75e5dd8d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/cmake/cmake-data_3.16.3-1ubuntu1.20.04.1_all.deb' cmake-data_3.16.3-1ubuntu1.20.04.1_all.deb 1612760 MD5Sum:7f6bd063b30e0c69ce643d7a5d98e599
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/liba/libarchive/libarchive13_3.4.0-2ubuntu1.5_arm64.deb' libarchive13_3.4.0-2ubuntu1.5_arm64.deb 304692 MD5Sum:0f62b914e144b9d29b11e48c0ea2fea6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/brotli/libbrotli1_1.0.7-6ubuntu0.1_arm64.deb' libbrotli1_1.0.7-6ubuntu0.1_arm64.deb 257492 MD5Sum:c21c3905ce4c3c9f28e835127847e03d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/heimdal/libroken18-heimdal_7.7.0%2bdfsg-1ubuntu1.4_arm64.deb' libroken18-heimdal_7.7.0+dfsg-1ubuntu1.4_arm64.deb 40068 MD5Sum:28d3c37e4a11c1684713b1b4ac9537a3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/heimdal/libasn1-8-heimdal_7.7.0%2bdfsg-1ubuntu1.4_arm64.deb' libasn1-8-heimdal_7.7.0+dfsg-1ubuntu1.4_arm64.deb 150344 MD5Sum:3f6804806d7c07975cc9e8ebcd81e2f6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/heimdal/libheimbase1-heimdal_7.7.0%2bdfsg-1ubuntu1.4_arm64.deb' libheimbase1-heimdal_7.7.0+dfsg-1ubuntu1.4_arm64.deb 28660 MD5Sum:85595828628fd1a9e3191befffb80696
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/heimdal/libhcrypto4-heimdal_7.7.0%2bdfsg-1ubuntu1.4_arm64.deb' libhcrypto4-heimdal_7.7.0+dfsg-1ubuntu1.4_arm64.deb 84720 MD5Sum:6578ed4da3b6035e3e101e2b068deb26
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/heimdal/libwind0-heimdal_7.7.0%2bdfsg-1ubuntu1.4_arm64.deb' libwind0-heimdal_7.7.0+dfsg-1ubuntu1.4_arm64.deb 47512 MD5Sum:3dcad88b2449f3a959f2b13bf6467a55
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/heimdal/libhx509-5-heimdal_7.7.0%2bdfsg-1ubuntu1.4_arm64.deb' libhx509-5-heimdal_7.7.0+dfsg-1ubuntu1.4_arm64.deb 98928 MD5Sum:6f9b71b265d2e66019d5c8db4f617497
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/heimdal/libkrb5-26-heimdal_7.7.0%2bdfsg-1ubuntu1.4_arm64.deb' libkrb5-26-heimdal_7.7.0+dfsg-1ubuntu1.4_arm64.deb 191708 MD5Sum:2d94880da5cae03ffba378a360d7ad16
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/heimdal/libheimntlm0-heimdal_7.7.0%2bdfsg-1ubuntu1.4_arm64.deb' libheimntlm0-heimdal_7.7.0+dfsg-1ubuntu1.4_arm64.deb 14692 MD5Sum:874abb03f23757bb071a1c98bb09999a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/h/heimdal/libgssapi3-heimdal_7.7.0%2bdfsg-1ubuntu1.4_arm64.deb' libgssapi3-heimdal_7.7.0+dfsg-1ubuntu1.4_arm64.deb 88400 MD5Sum:a28762e0721a149ab3926694b3da2415
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/cyrus-sasl2/libsasl2-modules-db_2.1.27%2bdfsg-2ubuntu0.1_arm64.deb' libsasl2-modules-db_2.1.27+dfsg-2ubuntu0.1_arm64.deb 14884 MD5Sum:17dee9431e0871e925ca5407a40230d1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/cyrus-sasl2/libsasl2-2_2.1.27%2bdfsg-2ubuntu0.1_arm64.deb' libsasl2-2_2.1.27+dfsg-2ubuntu0.1_arm64.deb 48424 MD5Sum:f70db541cbca792f5397b6c43761eb03
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/openldap/libldap-common_2.4.49%2bdfsg-2ubuntu1.10_all.deb' libldap-common_2.4.49+dfsg-2ubuntu1.10_all.deb 16456 MD5Sum:756a6ac2375bac715dc6f7e2b4eeab6d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/openldap/libldap-2.4-2_2.4.49%2bdfsg-2ubuntu1.10_arm64.deb' libldap-2.4-2_2.4.49+dfsg-2ubuntu1.10_arm64.deb 145184 MD5Sum:4e846b7153363245116b6a3d8b9e37ee
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/nghttp2/libnghttp2-14_1.40.0-1ubuntu0.3_arm64.deb' libnghttp2-14_1.40.0-1ubuntu0.3_arm64.deb 75524 MD5Sum:e70330348856d6ecc2ee84f4102dce67
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/r/rtmpdump/librtmp1_2.4%2b20151223.gitfa8646d.1-2build1_arm64.deb' librtmp1_2.4+20151223.gitfa8646d.1-2build1_arm64.deb 53300 MD5Sum:1ae2894844d248d2b808b4e7c9489c7c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libssh/libssh-4_0.9.3-2ubuntu2.5_arm64.deb' libssh-4_0.9.3-2ubuntu2.5_arm64.deb 160144 MD5Sum:aaf869ef952c256a0c4147fb925001b7
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/curl/libcurl4_7.68.0-1ubuntu2.25_arm64.deb' libcurl4_7.68.0-1ubuntu2.25_arm64.deb 215744 MD5Sum:1c7332fc0d860a71e470c8d3401d1cc3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libj/libjsoncpp/libjsoncpp1_1.7.4-3.1ubuntu2_arm64.deb' libjsoncpp1_1.7.4-3.1ubuntu2_arm64.deb 69768 MD5Sum:3c3dd0461f04d1fd57927c5949a6992e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/r/rhash/librhash0_1.3.9-1_arm64.deb' librhash0_1.3.9-1_arm64.deb 111404 MD5Sum:f85700c85ac927ea36e70f36839677f4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/cmake/cmake_3.16.3-1ubuntu1.20.04.1_arm64.deb' cmake_3.16.3-1ubuntu1.20.04.1_arm64.deb 3111924 MD5Sum:407c0077c52849b2edeeeb72554d7c21
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/dbus/dbus-user-session_1.12.16-2ubuntu2.3_arm64.deb' dbus-user-session_1.12.16-2ubuntu2.3_arm64.deb 9424 MD5Sum:dcf2db76823b9c61dc4b9611509006cb
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/dconf/libdconf1_0.36.0-1_arm64.deb' libdconf1_0.36.0-1_arm64.deb 35892 MD5Sum:e159bab0066a94f45f6ec5f2fa55535a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/dconf/dconf-service_0.36.0-1_arm64.deb' dconf-service_0.36.0-1_arm64.deb 27768 MD5Sum:eef430b8cf98d578be6e720b987d1e89
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/dconf/dconf-gsettings-backend_0.36.0-1_arm64.deb' dconf-gsettings-backend_0.36.0-1_arm64.deb 20944 MD5Sum:ac68e22899c5f5bc39f9337bc38915b5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/mysql-defaults/mysql-common_5.8%2b1.0.5ubuntu2_all.deb' mysql-common_5.8+1.0.5ubuntu2_all.deb 7496 MD5Sum:cc1f61149a84c2ddd804787e2b224b2a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/mysql-8.0/libmysqlclient21_8.0.42-0ubuntu0.20.04.1_arm64.deb' libmysqlclient21_8.0.42-0ubuntu0.20.04.1_arm64.deb 1253916 MD5Sum:7099fdf49381050aaa938a3a2de188f0
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/openssl/libssl-dev_1.1.1f-1ubuntu2.24_arm64.deb' libssl-dev_1.1.1f-1ubuntu2.24_arm64.deb 1462112 MD5Sum:c40fee07a17914b5d16eb38ba0b837da
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/glibc/libc-dev-bin_2.31-0ubuntu9.18_arm64.deb' libc-dev-bin_2.31-0ubuntu9.18_arm64.deb 64132 MD5Sum:6d8cfd6f887124f93e6d9b3e66cb6e8f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/linux/linux-libc-dev_5.4.0-216.236_arm64.deb' linux-libc-dev_5.4.0-216.236_arm64.deb 1090820 MD5Sum:7153509e0cb5a71d833ba1810a3753bd
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcrypt/libcrypt-dev_4.4.10-10ubuntu4_arm64.deb' libcrypt-dev_1%3a4.4.10-10ubuntu4_arm64.deb 110804 MD5Sum:e7b9c19b2315949aa7898e2cab9fd063
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/glibc/libc6-dev_2.31-0ubuntu9.18_arm64.deb' libc6-dev_2.31-0ubuntu9.18_arm64.deb 2068712 MD5Sum:88f16a53da2415ee57c41dd4cc108e60
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/z/zlib/zlib1g-dev_1.2.11.dfsg-2ubuntu1.5_arm64.deb' zlib1g-dev_1%3a1.2.11.dfsg-2ubuntu1.5_arm64.deb 153592 MD5Sum:1cd2cdd08df5482ba7e443002b59ee0c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/mysql-8.0/libmysqlclient-dev_8.0.42-0ubuntu0.20.04.1_arm64.deb' libmysqlclient-dev_8.0.42-0ubuntu0.20.04.1_arm64.deb 1633964 MD5Sum:890780db9e4f3497bad951413cc57a04
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/mysql-defaults/default-libmysqlclient-dev_1.0.5ubuntu2_arm64.deb' default-libmysqlclient-dev_1.0.5ubuntu2_arm64.deb 3932 MD5Sum:c66abbc00c8364b9ea2a39394615ad2b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/liba/libassuan/libassuan0_2.5.3-7ubuntu2_arm64.deb' libassuan0_2.5.3-7ubuntu2_arm64.deb 33064 MD5Sum:2355fdb72546ae35b5d97d018bce8f31
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/gpgconf_2.2.19-3ubuntu2.5_arm64.deb' gpgconf_2.2.19-3ubuntu2.5_arm64.deb 116952 MD5Sum:2db8fa179509b1a40f27b6235f7692a5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libk/libksba/libksba8_1.3.5-2ubuntu0.20.04.2_arm64.deb' libksba8_1.3.5-2ubuntu0.20.04.2_arm64.deb 89052 MD5Sum:8910993bf954a68e7d09f34b0ee54cce
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/npth/libnpth0_1.6-1_arm64.deb' libnpth0_1.6-1_arm64.deb 7440 MD5Sum:5ee01d929fb4babb17baf4ad2c751557
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/dirmngr_2.2.19-3ubuntu2.5_arm64.deb' dirmngr_2.2.19-3ubuntu2.5_arm64.deb 310664 MD5Sum:00fbb1630865ebf10e9cb5c1d42bb7fe
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/x/xml-core/xml-core_0.18%2bnmu1_all.deb' xml-core_0.18+nmu1_all.deb 21592 MD5Sum:002ff381979994c4405c8c90f46f3876
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python-docutils/docutils-common_0.16%2bdfsg-2_all.deb' docutils-common_0.16+dfsg-2_all.deb 116056 MD5Sum:7eff453b3a0ca204117d663494d93113
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/llvm-toolchain-18/libllvm18_18.1.8-11%7e20.04.2_arm64.deb' libllvm18_1%3a18.1.8-11~20.04.2_arm64.deb 22201416 MD5Sum:1fd8d91ad707b4dd73bec39af87fb097
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/llvm-toolchain-18/libclang-cpp18_18.1.8-11%7e20.04.2_arm64.deb' libclang-cpp18_1%3a18.1.8-11~20.04.2_arm64.deb 11167744 MD5Sum:5cf0a95688cc38be9ae09d582e922f21
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/libgomp1_10.5.0-1ubuntu1%7e20.04_arm64.deb' libgomp1_10.5.0-1ubuntu1~20.04_arm64.deb 93512 MD5Sum:9db952046ae325cababd4e5d642cab7d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/libitm1_10.5.0-1ubuntu1%7e20.04_arm64.deb' libitm1_10.5.0-1ubuntu1~20.04_arm64.deb 24068 MD5Sum:7ebd8917d8dd1593fbba511729753459
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/libatomic1_10.5.0-1ubuntu1%7e20.04_arm64.deb' libatomic1_10.5.0-1ubuntu1~20.04_arm64.deb 9808 MD5Sum:49886fd5e2d7fd098ff04de26b006821
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/libasan6_10.5.0-1ubuntu1%7e20.04_arm64.deb' libasan6_10.5.0-1ubuntu1~20.04_arm64.deb 2026672 MD5Sum:fad7b13f24a509d0052ada3af0e72820
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/liblsan0_10.5.0-1ubuntu1%7e20.04_arm64.deb' liblsan0_10.5.0-1ubuntu1~20.04_arm64.deb 800424 MD5Sum:017418d68cb00930c3095bb33d17d2c4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/libtsan0_10.5.0-1ubuntu1%7e20.04_arm64.deb' libtsan0_10.5.0-1ubuntu1~20.04_arm64.deb 1972040 MD5Sum:089caac6494cd0a3b31779a6f99dc99f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/libubsan1_10.5.0-1ubuntu1%7e20.04_arm64.deb' libubsan1_10.5.0-1ubuntu1~20.04_arm64.deb 765316 MD5Sum:ebf7a56047d98fdb4e03518e550425bc
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/libgcc-10-dev_10.5.0-1ubuntu1%7e20.04_arm64.deb' libgcc-10-dev_10.5.0-1ubuntu1~20.04_arm64.deb 907092 MD5Sum:cb629f8f1b7855594ef4adece625f4e7
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gcc-10/libstdc%2b%2b-10-dev_10.5.0-1ubuntu1%7e20.04_arm64.deb' libstdc++-10-dev_10.5.0-1ubuntu1~20.04_arm64.deb 1745748 MD5Sum:40c9b5b3c56e8c26a1600e4bd2e4721a
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/llvm-toolchain-18/libflang-18-dev_18.1.8-11%7e20.04.2_arm64.deb' libflang-18-dev_1%3a18.1.8-11~20.04.2_arm64.deb 21226984 MD5Sum:f03bea60ddf79ffe5b550de8e0fde305
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/llvm-toolchain-18/flang-18_18.1.8-11%7e20.04.2_arm64.deb' flang-18_1%3a18.1.8-11~20.04.2_arm64.deb 21556372 MD5Sum:3c4003b76c6348378c0dd59d158bf316
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gcc-7/gcc-7-base_7.5.0-6ubuntu2_arm64.deb' gcc-7-base_7.5.0-6ubuntu2_arm64.deb 18544 MD5Sum:364244e3e9325785e0c980919f8b94e9
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gdal/gdal-data_3.0.4%2bdfsg-1build3_all.deb' gdal-data_3.0.4+dfsg-1build3_all.deb 186260 MD5Sum:a3ed64cf6232eb5376e45a6d7656a03c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libp/libproxy/libproxy1v5_0.4.15-10ubuntu1.2_arm64.deb' libproxy1v5_0.4.15-10ubuntu1.2_arm64.deb 44836 MD5Sum:8bda48f095290ef0a31e889e8b6226e4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/glib-networking/glib-networking-common_2.64.2-1ubuntu0.1_all.deb' glib-networking-common_2.64.2-1ubuntu0.1_all.deb 5040 MD5Sum:abab953dc544ea877e8ed7314e0edb5b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/glib-networking/glib-networking-services_2.64.2-1ubuntu0.1_arm64.deb' glib-networking-services_2.64.2-1ubuntu0.1_arm64.deb 10392 MD5Sum:ddfc6e180186052d97c9e90831279e2e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gsettings-desktop-schemas/gsettings-desktop-schemas_3.36.0-1ubuntu1_all.deb' gsettings-desktop-schemas_3.36.0-1ubuntu1_all.deb 28976 MD5Sum:86ef0e293e01236de63e7facac76bfa1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/glib-networking/glib-networking_2.64.2-1ubuntu0.1_arm64.deb' glib-networking_2.64.2-1ubuntu0.1_arm64.deb 55136 MD5Sum:089c913c09d861b6c74d0712dd4b916e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/gnupg-l10n_2.2.19-3ubuntu2.5_all.deb' gnupg-l10n_2.2.19-3ubuntu2.5_all.deb 51896 MD5Sum:0430c16be8a767ecdd54a94276e5bfb5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/gnupg-utils_2.2.19-3ubuntu2.5_arm64.deb' gnupg-utils_2.2.19-3ubuntu2.5_arm64.deb 441772 MD5Sum:10caae328058d9b66ea3302e2863a193
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/gpg_2.2.19-3ubuntu2.5_arm64.deb' gpg_2.2.19-3ubuntu2.5_arm64.deb 442400 MD5Sum:72ff92d6f6daa03c07fe9719a565966a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pinentry/pinentry-curses_1.1.0-3build1_arm64.deb' pinentry-curses_1.1.0-3build1_arm64.deb 34260 MD5Sum:887dca76bcf5e73b57132030eab38552
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/gpg-agent_2.2.19-3ubuntu2.5_arm64.deb' gpg-agent_2.2.19-3ubuntu2.5_arm64.deb 216024 MD5Sum:7da12e372a6c41b29e39189aa9bafd0c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/gpg-wks-client_2.2.19-3ubuntu2.5_arm64.deb' gpg-wks-client_2.2.19-3ubuntu2.5_arm64.deb 89328 MD5Sum:472dea2cb7648adce1da7e8c3d6b7517
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/gpg-wks-server_2.2.19-3ubuntu2.5_arm64.deb' gpg-wks-server_2.2.19-3ubuntu2.5_arm64.deb 82984 MD5Sum:4f7bf6bb99b8a3415031ea1ac756df03
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/gpgsm_2.2.19-3ubuntu2.5_arm64.deb' gpgsm_2.2.19-3ubuntu2.5_arm64.deb 198028 MD5Sum:33f731ac089b410a1a7905bde91bb1b2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gnupg2/gnupg_2.2.19-3ubuntu2.5_all.deb' gnupg_2.2.19-3ubuntu2.5_all.deb 258944 MD5Sum:3c8fe4c05b1e6234f1514a9d010081ee
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/googletest/googletest_1.10.0-2_all.deb' googletest_1.10.0-2_all.deb 623408 MD5Sum:5899b798882bb92e948e5204e628646f
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/googletest/google-mock_1.10.0-2_arm64.deb' google-mock_1.10.0-2_arm64.deb 4076 MD5Sum:93e03c1a4cc759cf39a71bbd338a7523
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/a/ann/libann0_1.1.2%2bdoc-7build1_arm64.deb' libann0_1.1.2+doc-7build1_arm64.deb 24172 MD5Sum:cac745fe7ff0833763ea107cde204b60
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/graphviz/libcdt5_2.42.2-3build2_arm64.deb' libcdt5_2.42.2-3build2_arm64.deb 17608 MD5Sum:7378d4c41ddfeae22466c035953315e4
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/graphviz/libcgraph6_2.42.2-3build2_arm64.deb' libcgraph6_2.42.2-3build2_arm64.deb 38752 MD5Sum:a50bf8b1b680fa29866a9550bab600e9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxpm/libxpm4_3.5.12-1ubuntu0.20.04.2_arm64.deb' libxpm4_1%3a3.5.12-1ubuntu0.20.04.2_arm64.deb 32212 MD5Sum:8d736b42d601b8c48da80aeab30e0282
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libg/libgd2/libgd3_2.2.5-5.2ubuntu2.4_arm64.deb' libgd3_2.2.5-5.2ubuntu2.4_arm64.deb 107288 MD5Sum:30e3a41e8103750579827e27c7b7a7d8
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gts/libgts-0.7-5_0.7.6%2bdarcs121130-4_arm64.deb' libgts-0.7-5_0.7.6+darcs121130-4_arm64.deb 117170 MD5Sum:ec0b2351e37032dba06d59f23e24c453
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libt/libtool/libltdl7_2.4.6-14_arm64.deb' libltdl7_2.4.6-14_arm64.deb 37528 MD5Sum:13e8e3afac4e54656026df8c879901b8
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/graphviz/libpathplan4_2.42.2-3build2_arm64.deb' libpathplan4_2.42.2-3build2_arm64.deb 20052 MD5Sum:0f46844912bbcb2258410bf5bc58ffec
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/graphviz/libgvc6_2.42.2-3build2_arm64.deb' libgvc6_2.42.2-3build2_arm64.deb 587776 MD5Sum:9bf691c23a7ed1491839798d7cbef463
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/graphviz/libgvpr2_2.42.2-3build2_arm64.deb' libgvpr2_2.42.2-3build2_arm64.deb 156396 MD5Sum:f82aa04b81078298f54eaa64adb9eef8
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/graphviz/liblab-gamut1_2.42.2-3build2_arm64.deb' liblab-gamut1_2.42.2-3build2_arm64.deb 177420 MD5Sum:35fdd34e98578c6aad6e9805b8233fac
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/x/xorg/x11-common_7.7%2b19ubuntu14_all.deb' x11-common_1%3a7.7+19ubuntu14_all.deb 22344 MD5Sum:9b47d8aaf67ba581cafbb984eb68c467
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libi/libice/libice6_1.0.10-0ubuntu1_arm64.deb' libice6_2%3a1.0.10-0ubuntu1_arm64.deb 37652 MD5Sum:de91af3bee8dfb671c83128d1239338e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libsm/libsm6_1.2.3-1_arm64.deb' libsm6_2%3a1.2.3-1_arm64.deb 15056 MD5Sum:5e3860c5742068b9f1679ce1ad38f7f1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxt/libxt6_1.1.5-1_arm64.deb' libxt6_1%3a1.1.5-1_arm64.deb 127754 MD5Sum:ccdea2dec0ac737dfdfed1828941c4b1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxmu/libxmu6_1.1.3-0ubuntu1_arm64.deb' libxmu6_2%3a1.1.3-0ubuntu1_arm64.deb 42948 MD5Sum:db76de9ce81ffba0a82478a1a9e265eb
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxaw/libxaw7_1.0.13-1_arm64.deb' libxaw7_2%3a1.0.13-1_arm64.deb 137196 MD5Sum:14a37dbae10e81491fbddbeae191531c
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/graphviz/graphviz_2.42.2-3build2_arm64.deb' graphviz_2.42.2-3build2_arm64.deb 545256 MD5Sum:8a704cbd5ebfd641e2545401bf31dbf2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libn/libnl3/libnl-3-200_3.4.0-1ubuntu0.1_arm64.deb' libnl-3-200_3.4.0-1ubuntu0.1_arm64.deb 51156 MD5Sum:3f848f3b1d1f27c1e9728ad1b2f21a55
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libn/libnl3/libnl-route-3-200_3.4.0-1ubuntu0.1_arm64.deb' libnl-route-3-200_3.4.0-1ubuntu0.1_arm64.deb 136572 MD5Sum:230edefb5778e532126f1cc629dd4008
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/r/rdma-core/libibverbs1_28.0-1ubuntu1_arm64.deb' libibverbs1_28.0-1ubuntu1_arm64.deb 50676 MD5Sum:21557cfa501f1a9d3046ff093d8c0b12
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/r/rdma-core/ibverbs-providers_28.0-1ubuntu1_arm64.deb' ibverbs-providers_28.0-1ubuntu1_arm64.deb 216664 MD5Sum:3ae5a25e4b4fe74dbfb7a597aa54e60a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/i/icu/icu-devtools_66.1-2ubuntu2.1_arm64.deb' icu-devtools_66.1-2ubuntu2.1_arm64.deb 175516 MD5Sum:8f9ca3322ec343e0b38a2546efd5b41d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/liba/libaec/libaec0_1.0.4-1_arm64.deb' libaec0_1.0.4-1_arm64.deb 18708 MD5Sum:3d0f9ec9e52ffd9ab4629809434fc321
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libsuitesparseconfig5_5.7.1%2bdfsg-2_arm64.deb' libsuitesparseconfig5_1%3a5.7.1+dfsg-2_arm64.deb 9444 MD5Sum:894709408d8492b253c3644e666a563f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libamd2_5.7.1%2bdfsg-2_arm64.deb' libamd2_1%3a5.7.1+dfsg-2_arm64.deb 17280 MD5Sum:d5eb9131ffea654259c5d61d4e537183
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/a/aom/libaom0_1.0.0.errata1-3%2bdeb11u1ubuntu0.1_arm64.deb' libaom0_1.0.0.errata1-3+deb11u1ubuntu0.1_arm64.deb 824996 MD5Sum:a2b52521949a361e178cca2352f61e02
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/apr/libapr1_1.6.5-1ubuntu1.1_arm64.deb' libapr1_1.6.5-1ubuntu1.1_arm64.deb 85440 MD5Sum:f1ed69db063ced0146eff54403e4da65
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/util-linux/uuid-dev_2.34-0.1ubuntu9.6_arm64.deb' uuid-dev_2.34-0.1ubuntu9.6_arm64.deb 33872 MD5Sum:19aa086a1b3fd6611358f88f5a8cc978
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lksctp-tools/libsctp1_1.0.18%2bdfsg-1_arm64.deb' libsctp1_1.0.18+dfsg-1_arm64.deb 7908 MD5Sum:ded039b1c8b047cbb2ff889ef7cfb91e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lksctp-tools/libsctp-dev_1.0.18%2bdfsg-1_arm64.deb' libsctp-dev_1.0.18+dfsg-1_arm64.deb 60044 MD5Sum:a963db964b6b38ff154dcb3b116d05dc
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/apr/libapr1-dev_1.6.5-1ubuntu1.1_arm64.deb' libapr1-dev_1.6.5-1ubuntu1.1_arm64.deb 698972 MD5Sum:7f389c241db08f457e6472d627b676ef
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/apr-util/libaprutil1_1.6.1-4ubuntu2.2_arm64.deb' libaprutil1_1.6.1-4ubuntu2.2_arm64.deb 82616 MD5Sum:b860566c4eb2f2ae6877e529384860eb
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/openldap/libldap2-dev_2.4.49%2bdfsg-2ubuntu1.10_arm64.deb' libldap2-dev_2.4.49+dfsg-2ubuntu1.10_arm64.deb 261388 MD5Sum:3d7031e2aac9d98c3c11b112c3e17495
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/e/expat/libexpat1-dev_2.2.9-1ubuntu0.8_arm64.deb' libexpat1-dev_2.2.9-1ubuntu0.8_arm64.deb 104064 MD5Sum:af3b54dd643298d1e89309bd8a6aece1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/apr-util/libaprutil1-dev_1.6.1-4ubuntu2.2_arm64.deb' libaprutil1-dev_1.6.1-4ubuntu2.2_arm64.deb 396156 MD5Sum:812a919724af9237742808d42084b56a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lapack/libblas3_3.9.0-1build1_arm64.deb' libblas3_3.9.0-1build1_arm64.deb 89088 MD5Sum:c2cb5b0278f519100b864a2936448de2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gcc-10/libgfortran5_10.5.0-1ubuntu1%7e20.04_arm64.deb' libgfortran5_10.5.0-1ubuntu1~20.04_arm64.deb 345696 MD5Sum:14d0a08305307be891fe056123fbcae0
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lapack/liblapack3_3.9.0-1build1_arm64.deb' liblapack3_3.9.0-1build1_arm64.deb 1529024 MD5Sum:0bcd62dafece215164b3e1cb2a108929
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/a/arpack/libarpack2_3.7.0-3_arm64.deb' libarpack2_3.7.0-3_arm64.deb 72468 MD5Sum:a2c6c2df59d1da56623034b7a82e28ec
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/s/superlu/libsuperlu5_5.2.1%2bdfsg1-4_arm64.deb' libsuperlu5_5.2.1+dfsg1-4_arm64.deb 125136 MD5Sum:5ca7ab740ef4bdea2e81675fb2ef6b8c
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/a/armadillo/libarmadillo9_9.800.4%2bdfsg-1build1_arm64.deb' libarmadillo9_1%3a9.800.4+dfsg-1build1_arm64.deb 92492 MD5Sum:3cb7fb627bfe595ec8cb37a1225e4ab9
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gcc-7/libasan4_7.5.0-6ubuntu2_arm64.deb' libasan4_7.5.0-6ubuntu2_arm64.deb 335704 MD5Sum:e7c0571613798e0a843a81650c3bab57
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libg/libgpg-error/libgpg-error-dev_1.37-1_arm64.deb' libgpg-error-dev_1.37-1_arm64.deb 107564 MD5Sum:91793d0150ad80c1d9c7dd431a1d847e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/liba/libassuan/libassuan-dev_2.5.3-7ubuntu2_arm64.deb' libassuan-dev_2.5.3-7ubuntu2_arm64.deb 91952 MD5Sum:c77afcad787b0b4bb5459c209738b972
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/atk1.0/libatk1.0-data_2.35.1-1ubuntu2_all.deb' libatk1.0-data_2.35.1-1ubuntu2_all.deb 2964 MD5Sum:7d9ff258e9a5251f19056525168a5acb
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/atk1.0/libatk1.0-0_2.35.1-1ubuntu2_arm64.deb' libatk1.0-0_2.35.1-1ubuntu2_arm64.deb 42912 MD5Sum:e9e0a20d14b405876ac5244478fca123
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/at-spi2-core/libatspi2.0-0_2.36.0-2_arm64.deb' libatspi2.0-0_2.36.0-2_arm64.deb 60524 MD5Sum:5d8fc137479f1478cc8f9f38b921d58a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/at-spi2-atk/libatk-bridge2.0-0_2.34.2-0ubuntu2%7e20.04.1_arm64.deb' libatk-bridge2.0-0_2.34.2-0ubuntu2~20.04.1_arm64.deb 54764 MD5Sum:73d31844ecb11d447a45f684c0c239b7
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/avahi/libavahi-common-data_0.7-4ubuntu7.3_arm64.deb' libavahi-common-data_0.7-4ubuntu7.3_arm64.deb 21448 MD5Sum:cef1d1ac80c7b67cdbd7fa9745019d02
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/avahi/libavahi-common3_0.7-4ubuntu7.3_arm64.deb' libavahi-common3_0.7-4ubuntu7.3_arm64.deb 20588 MD5Sum:e235c01894b856cb2b83bd79cfb57b2e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/a/avahi/libavahi-client3_0.7-4ubuntu7.3_arm64.deb' libavahi-client3_0.7-4ubuntu7.3_arm64.deb 24116 MD5Sum:c357b7d5b109479cf22c630898ace139
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libv/libva/libva2_2.7.0-2_arm64.deb' libva2_2.7.0-2_arm64.deb 49964 MD5Sum:8f67065d2f5a7aa3d01d2c9bea8d888a
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libv/libva/libva-drm2_2.7.0-2_arm64.deb' libva-drm2_2.7.0-2_arm64.deb 6856 MD5Sum:b7fb0f729d3f49d67691d149907a3ccd
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxfixes/libxfixes3_5.0.3-2_arm64.deb' libxfixes3_1%3a5.0.3-2_arm64.deb 10764 MD5Sum:3ce2c8c27a7a38572e334bdbee00cb19
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libv/libva/libva-x11-2_2.7.0-2_arm64.deb' libva-x11-2_2.7.0-2_arm64.deb 11192 MD5Sum:9c133898fb4aade79681fff4b5265d7c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libv/libvdpau/libvdpau1_1.3-1ubuntu2_arm64.deb' libvdpau1_1.3-1ubuntu2_arm64.deb 23348 MD5Sum:ceb1cec75dd3c29aa58aeb8e0b5ab334
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/ocl-icd/ocl-icd-libopencl1_2.2.11-1ubuntu1_arm64.deb' ocl-icd-libopencl1_2.2.11-1ubuntu1_arm64.deb 29152 MD5Sum:fd23270957fcac00404729ca5e5b6b2d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libavutil56_4.2.7-0ubuntu0.1_arm64.deb' libavutil56_7%3a4.2.7-0ubuntu0.1_arm64.deb 237576 MD5Sum:7d449322ae3b7c397c12263bbea59e3a
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/c/codec2/libcodec2-0.9_0.9.2-2_arm64.deb' libcodec2-0.9_0.9.2-2_arm64.deb 7877684 MD5Sum:a44c4b12fe96c06f5a7c209dffe3aa99
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libg/libgsm/libgsm1_1.0.18-2_arm64.deb' libgsm1_1.0.18-2_arm64.deb 24400 MD5Sum:d2381be333206ae251af8c3a6219794f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lame/libmp3lame0_3.100-3_arm64.deb' libmp3lame0_3.100-3_arm64.deb 125468 MD5Sum:df083a5b8ccde7f7883db7bc79773f80
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/openjpeg2/libopenjp2-7_2.3.1-1ubuntu4.20.04.4_arm64.deb' libopenjp2-7_2.3.1-1ubuntu4.20.04.4_arm64.deb 131368 MD5Sum:9e0a88f7bf8366f283d978d2cec1c866
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/opus/libopus0_1.3.1-0ubuntu1_arm64.deb' libopus0_1.3.1-0ubuntu1_arm64.deb 172360 MD5Sum:e6eaaf9c7954d45ef775cc7d607387c7
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/s/shine/libshine3_3.1.1-2_arm64.deb' libshine3_3.1.1-2_arm64.deb 22524 MD5Sum:997e09567ab09500d5fc9fac9b342cfc
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/snappy/libsnappy1v5_1.1.8-1build1_arm64.deb' libsnappy1v5_1.1.8-1build1_arm64.deb 15988 MD5Sum:75cb2ab51cb1fe943c75916e40adc753
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/speex/libspeex1_1.2%7erc1.2-1.1ubuntu1.20.04.1_arm64.deb' libspeex1_1.2~rc1.2-1.1ubuntu1.20.04.1_arm64.deb 45832 MD5Sum:32b4e15aa5a9bacb9b57f3071ead517f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libsoxr/libsoxr0_0.1.3-2build1_arm64.deb' libsoxr0_0.1.3-2build1_arm64.deb 54328 MD5Sum:5c2a82497367a4735e851b31e176d520
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libswresample3_4.2.7-0ubuntu0.1_arm64.deb' libswresample3_7%3a4.2.7-0ubuntu0.1_arm64.deb 49864 MD5Sum:1b99aa8b28c63e2e6c7736912790f3cd
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libo/libogg/libogg0_1.3.4-0ubuntu1_arm64.deb' libogg0_1.3.4-0ubuntu1_arm64.deb 22852 MD5Sum:ac559450229ee7b2fde042b63a2b8dc7
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libt/libtheora/libtheora0_1.1.1%2bdfsg.1-15ubuntu2_arm64.deb' libtheora0_1.1.1+dfsg.1-15ubuntu2_arm64.deb 154500 MD5Sum:dc1243674d0610c1744b8ee2c908c3ce
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/t/twolame/libtwolame0_0.4.0-2_arm64.deb' libtwolame0_0.4.0-2_arm64.deb 45136 MD5Sum:8aa6d15999582c32af8ad6684afbd8a3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libv/libvorbis/libvorbis0a_1.3.6-2ubuntu1_arm64.deb' libvorbis0a_1.3.6-2ubuntu1_arm64.deb 79536 MD5Sum:a238e44dc233734cc707d08110b927d0
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libv/libvorbis/libvorbisenc2_1.3.6-2ubuntu1_arm64.deb' libvorbisenc2_1.3.6-2ubuntu1_arm64.deb 70476 MD5Sum:796269c96505922d859df3841172e3e2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libv/libvpx/libvpx6_1.8.2-1ubuntu0.4_arm64.deb' libvpx6_1.8.2-1ubuntu0.4_arm64.deb 753056 MD5Sum:534b10e8b8a8d9c15673488166830253
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/w/wavpack/libwavpack1_5.2.0-1ubuntu0.1_arm64.deb' libwavpack1_5.2.0-1ubuntu0.1_arm64.deb 68436 MD5Sum:f3ea72af69320300dd32e9f38f6d7dc3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libw/libwebp/libwebpmux3_0.6.1-2ubuntu0.20.04.3_arm64.deb' libwebpmux3_0.6.1-2ubuntu0.20.04.3_arm64.deb 18632 MD5Sum:32a68fd652094dbcaeedc812934989fd
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/x/x264/libx264-155_0.155.2917%2bgit0a84d98-2_arm64.deb' libx264-155_2%3a0.155.2917+git0a84d98-2_arm64.deb 427444 MD5Sum:91f3cdd1736a85e07b1e70971b3d2a4d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/x/x265/libx265-179_3.2.1-1build1_arm64.deb' libx265-179_3.2.1-1build1_arm64.deb 552740 MD5Sum:b88a5d4068161cff5db62d3a41fb1c49
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/x/xvidcore/libxvidcore4_1.3.7-1_arm64.deb' libxvidcore4_2%3a1.3.7-1_arm64.deb 161100 MD5Sum:b83a64d0bd1270d3a6bd1b9c3092efd5
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/z/zvbi/libzvbi-common_0.2.35-17_all.deb' libzvbi-common_0.2.35-17_all.deb 32480 MD5Sum:23e0d4309da8d83ca0ec2df0f9d62cbb
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/z/zvbi/libzvbi0_0.2.35-17_arm64.deb' libzvbi0_0.2.35-17_arm64.deb 223208 MD5Sum:65e41c652d60f18e18bc1d576325b3bb
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libavcodec58_4.2.7-0ubuntu0.1_arm64.deb' libavcodec58_7%3a4.2.7-0ubuntu0.1_arm64.deb 4512236 MD5Sum:3bef7618af7155f316c930e7cfe0fb6e
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libavutil-dev_4.2.7-0ubuntu0.1_arm64.deb' libavutil-dev_7%3a4.2.7-0ubuntu0.1_arm64.deb 360600 MD5Sum:bb605c5fdd5f0254ecab5328133641a2
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libswresample-dev_4.2.7-0ubuntu0.1_arm64.deb' libswresample-dev_7%3a4.2.7-0ubuntu0.1_arm64.deb 60224 MD5Sum:0a9db5dfcd5cf9c38f90d88ad080c0ba
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libavcodec-dev_4.2.7-0ubuntu0.1_arm64.deb' libavcodec-dev_7%3a4.2.7-0ubuntu0.1_arm64.deb 5056332 MD5Sum:e3faa25f42696ffc9065ae6f1c619ee3
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libb/libbluray/libbluray2_1.2.0-1_arm64.deb' libbluray2_1%3a1.2.0-1_arm64.deb 122904 MD5Sum:dedd27d18cb7f2c56f507b4022bbf238
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/c/chromaprint/libchromaprint1_1.4.3-3build1_arm64.deb' libchromaprint1_1.4.3-3build1_arm64.deb 33552 MD5Sum:ab3721a64a060945b71e33982a3ae285
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/game-music-emu/libgme0_0.6.2-1build1_arm64.deb' libgme0_0.6.2-1build1_arm64.deb 113800 MD5Sum:bd7334d3398b1cb032655a4ca5a43dc4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/mpg123/libmpg123-0_1.25.13-1ubuntu0.2_arm64.deb' libmpg123-0_1.25.13-1ubuntu0.2_arm64.deb 115620 MD5Sum:ba1b5da545b7139c5f4f0c8e47407341
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libv/libvorbis/libvorbisfile3_1.3.6-2ubuntu1_arm64.deb' libvorbisfile3_1.3.6-2ubuntu1_arm64.deb 15300 MD5Sum:9c1382f25b33719247d47a090636d128
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libo/libopenmpt/libopenmpt0_0.4.11-1build1_arm64.deb' libopenmpt0_0.4.11-1build1_arm64.deb 537640 MD5Sum:02da7ef27a76eb4b68f5ef62cd9d90d9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libssh/libssh-gcrypt-4_0.9.3-2ubuntu2.5_arm64.deb' libssh-gcrypt-4_0.9.3-2ubuntu2.5_arm64.deb 191064 MD5Sum:eff1c330d9874e88ae04d6f5764a0814
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libavformat58_4.2.7-0ubuntu0.1_arm64.deb' libavformat58_7%3a4.2.7-0ubuntu0.1_arm64.deb 927756 MD5Sum:d14b75d453ba7f13dc6bd6bda5a0e5b7
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libavformat-dev_4.2.7-0ubuntu0.1_arm64.deb' libavformat-dev_7%3a4.2.7-0ubuntu0.1_arm64.deb 1164784 MD5Sum:e459864e5556e910c85258bf60debd52
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libavresample4_4.2.7-0ubuntu0.1_arm64.deb' libavresample4_7%3a4.2.7-0ubuntu0.1_arm64.deb 42852 MD5Sum:2b5ebd352117ba1b6f1a14f8bb40b1bc
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libavresample-dev_4.2.7-0ubuntu0.1_arm64.deb' libavresample-dev_7%3a4.2.7-0ubuntu0.1_arm64.deb 51916 MD5Sum:002b733c9285ebe64a1cc23c33919623
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lapack/libblas-dev_3.9.0-1build1_arm64.deb' libblas-dev_3.9.0-1build1_arm64.deb 92680 MD5Sum:7750557bbb8756decd56411c43ebb6d6
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gcc-7/libubsan0_7.5.0-6ubuntu2_arm64.deb' libubsan0_7.5.0-6ubuntu2_arm64.deb 117092 MD5Sum:1d2c848309d621a821ee62e411a7a66a
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gcc-7/libgcc-7-dev_7.5.0-6ubuntu2_arm64.deb' libgcc-7-dev_7.5.0-6ubuntu2_arm64.deb 834212 MD5Sum:677012f71041e9f3a6819346d997a8e5
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gcc-7/libstdc%2b%2b-7-dev_7.5.0-6ubuntu2_arm64.deb' libstdc++-7-dev_7.5.0-6ubuntu2_arm64.deb 1470876 MD5Sum:81a1292c1a7783c0276a7057a302f3ce
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost1.71-dev_1.71.0-6ubuntu6_arm64.deb 9068120 MD5Sum:df68da3a735a45eae0017a2532d9eb91
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost-defaults/libboost-dev_1.71.0.0ubuntu2_arm64.deb' libboost-dev_1.71.0.0ubuntu2_arm64.deb 3596 MD5Sum:6a3c9c223ffe8f35c7b1125409600d2c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost1.71-tools-dev_1.71.0-6ubuntu6_arm64.deb' libboost1.71-tools-dev_1.71.0-6ubuntu6_arm64.deb 1305232 MD5Sum:81c39078b48e34d5e56282eb542b6870
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-tools-dev_1.71.0.0ubuntu2_arm64.deb' libboost-tools-dev_1.71.0.0ubuntu2_arm64.deb 3560 MD5Sum:a2301ca5a713b71aae9f6b05b340b378
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-atomic1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-atomic1.71.0_1.71.0-6ubuntu6_arm64.deb 205520 MD5Sum:0af40c578eae17e785bce6f10b8edf8d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-atomic1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-atomic1.71-dev_1.71.0-6ubuntu6_arm64.deb 205184 MD5Sum:5a39405312aaf1ead203ee1aa4e64a1d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-atomic-dev_1.71.0.0ubuntu2_arm64.deb' libboost-atomic-dev_1.71.0.0ubuntu2_arm64.deb 3704 MD5Sum:3561979292149a3cceb1c6cd6c06ee2f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-chrono1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-chrono1.71.0_1.71.0-6ubuntu6_arm64.deb 216384 MD5Sum:1e77a673fbced175b885206a94ddba92
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-chrono1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-chrono1.71-dev_1.71.0-6ubuntu6_arm64.deb 224828 MD5Sum:954d145b0fa65332f590b149708a7215
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-chrono-dev_1.71.0.0ubuntu2_arm64.deb' libboost-chrono-dev_1.71.0.0ubuntu2_arm64.deb 4016 MD5Sum:cfe4bc1c49e8c0e9bea92f17197b25bd
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-container1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-container1.71.0_1.71.0-6ubuntu6_arm64.deb 233012 MD5Sum:c030b8d0572cfd770a1afe563ea6a7fa
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-container1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-container1.71-dev_1.71.0-6ubuntu6_arm64.deb 236912 MD5Sum:7f3ae83b28755be459e4a50c25395bb1
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-container-dev_1.71.0.0ubuntu2_arm64.deb' libboost-container-dev_1.71.0.0ubuntu2_arm64.deb 3868 MD5Sum:d711356bd626b51cab29b18feb6e5a08
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-date-time1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-date-time1.71.0_1.71.0-6ubuntu6_arm64.deb 218036 MD5Sum:f591e776e2512c8287a67be4ce7cce3c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-serialization1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-serialization1.71.0_1.71.0-6ubuntu6_arm64.deb 291700 MD5Sum:c3cfe9c32b1982bd24a93adc9a537d46
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-serialization1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-serialization1.71-dev_1.71.0-6ubuntu6_arm64.deb 341360 MD5Sum:4e519b771356a91720a7b406f2f4f928
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-date-time1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-date-time1.71-dev_1.71.0-6ubuntu6_arm64.deb 228692 MD5Sum:cfd22e081be9c3fbe15619626972a6a1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-system1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-system1.71.0_1.71.0-6ubuntu6_arm64.deb 205184 MD5Sum:c7c3c6a045f8316c59e6ba1e72b654b5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-system1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-system1.71-dev_1.71.0-6ubuntu6_arm64.deb 204700 MD5Sum:143ea5e72f7d964b9ab021e412e9489c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-thread1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-thread1.71.0_1.71.0-6ubuntu6_arm64.deb 245280 MD5Sum:e0dc6a1edbfa2a8ad54fbb79165b5216
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-thread1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-thread1.71-dev_1.71.0-6ubuntu6_arm64.deb 258196 MD5Sum:0343099dac1197c6bb6c9cf16a1ca67a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-context1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-context1.71.0_1.71.0-6ubuntu6_arm64.deb 207360 MD5Sum:69259ef2a08577e80e31ccfa1f2f3bec
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-context1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-context1.71-dev_1.71.0-6ubuntu6_arm64.deb 207864 MD5Sum:9660d529a8a90066f552a36916ef5d0d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-context-dev_1.71.0.0ubuntu2_arm64.deb' libboost-context-dev_1.71.0.0ubuntu2_arm64.deb 3584 MD5Sum:a5a5ef7294eec03b84147ff6b9035bf1
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-coroutine1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-coroutine1.71.0_1.71.0-6ubuntu6_arm64.deb 218492 MD5Sum:c06e8849faec7263005c36682beb585b
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-coroutine1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-coroutine1.71-dev_1.71.0-6ubuntu6_arm64.deb 227992 MD5Sum:c5649474a85b57e3cce07cebbd2f11ab
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-coroutine-dev_1.71.0.0ubuntu2_arm64.deb' libboost-coroutine-dev_1.71.0.0ubuntu2_arm64.deb 3660 MD5Sum:7f87266176bc5858307f6020ee7a0b54
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-date-time-dev_1.71.0.0ubuntu2_arm64.deb' libboost-date-time-dev_1.71.0.0ubuntu2_arm64.deb 3396 MD5Sum:4f5d6a40c24f385e0fd9eaed2090b0ff
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-exception1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-exception1.71-dev_1.71.0-6ubuntu6_arm64.deb 203232 MD5Sum:96aefb08da30cfa4f834dd747ee616ae
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-exception-dev_1.71.0.0ubuntu2_arm64.deb' libboost-exception-dev_1.71.0.0ubuntu2_arm64.deb 3384 MD5Sum:9c5212aa732943450a2cad210d42f1b4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-filesystem1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-filesystem1.71.0_1.71.0-6ubuntu6_arm64.deb 237608 MD5Sum:1cae00079dbcacc082dfcd21ef6e24ee
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-filesystem1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-filesystem1.71-dev_1.71.0-6ubuntu6_arm64.deb 256536 MD5Sum:ee79f20a7174177c585043f383139ca4
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-fiber1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-fiber1.71.0_1.71.0-6ubuntu6_arm64.deb 224652 MD5Sum:639cc9078b8e19a71900f3e23a940e0c
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-fiber1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-fiber1.71-dev_1.71.0-6ubuntu6_arm64.deb 237452 MD5Sum:a09ac34a851995727567600256a39f00
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-fiber-dev_1.71.0.0ubuntu2_arm64.deb' libboost-fiber-dev_1.71.0.0ubuntu2_arm64.deb 3824 MD5Sum:b802a46644b42a7e1834eb1db9f004db
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost-defaults/libboost-filesystem-dev_1.71.0.0ubuntu2_arm64.deb' libboost-filesystem-dev_1.71.0.0ubuntu2_arm64.deb 3420 MD5Sum:44176d9d3bccce73f6df39182914bb94
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-regex1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-regex1.71.0_1.71.0-6ubuntu6_arm64.deb 437180 MD5Sum:5795693795c7b993efcee1baea0521fa
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-graph1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-graph1.71.0_1.71.0-6ubuntu6_arm64.deb 288196 MD5Sum:054b63ff90b80363119b495fb3c74c7e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/i/icu/libicu-dev_66.1-2ubuntu2.1_arm64.deb' libicu-dev_66.1-2ubuntu2.1_arm64.deb 9320488 MD5Sum:7221e8aaa9a44c0956b391ad4607bc50
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-regex1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-regex1.71-dev_1.71.0-6ubuntu6_arm64.deb 532640 MD5Sum:65a69accf24416f57b306ce1eb41c4b6
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-test1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-test1.71.0_1.71.0-6ubuntu6_arm64.deb 406952 MD5Sum:384c7f048f1eaed9952599291723d3b4
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-test1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-test1.71-dev_1.71.0-6ubuntu6_arm64.deb 501880 MD5Sum:cc5f6ed7b21705b91f52462676e5d944
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-graph1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-graph1.71-dev_1.71.0-6ubuntu6_arm64.deb 314928 MD5Sum:f0c29430bd0e9932fc8ec710b11d796c
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-graph-dev_1.71.0.0ubuntu2_arm64.deb' libboost-graph-dev_1.71.0.0ubuntu2_arm64.deb 3500 MD5Sum:cc4b7a24c929ff4d092ce2e08ec8ca08
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libe/libevent/libevent-2.1-7_2.1.11-stable-1_arm64.deb' libevent-2.1-7_2.1.11-stable-1_arm64.deb 125236 MD5Sum:357491b57d8a5cee659084a6a568e18e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libe/libevent/libevent-core-2.1-7_2.1.11-stable-1_arm64.deb' libevent-core-2.1-7_2.1.11-stable-1_arm64.deb 82152 MD5Sum:02bfdad493e8c4cad971b20bfce477e6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libe/libevent/libevent-pthreads-2.1-7_2.1.11-stable-1_arm64.deb' libevent-pthreads-2.1-7_2.1.11-stable-1_arm64.deb 7292 MD5Sum:43e629c8316f693b0c4d42cb09e67931
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/h/hwloc/libhwloc15_2.1.0%2bdfsg-4_arm64.deb' libhwloc15_2.1.0+dfsg-4_arm64.deb 115848 MD5Sum:d44dc9e07cc385b00418a56d9c6f4931
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libp/libpciaccess/libpciaccess0_0.16-0ubuntu1_arm64.deb' libpciaccess0_0.16-0ubuntu1_arm64.deb 17116 MD5Sum:04829f610086417a8f80c664d36254db
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/nvidia-settings/libxnvctrl0_470.57.01-0ubuntu0.20.04.3_arm64.deb' libxnvctrl0_470.57.01-0ubuntu0.20.04.3_arm64.deb 10616 MD5Sum:882aa6678be39086b8b25feffd6872ba
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/h/hwloc/libhwloc-plugins_2.1.0%2bdfsg-4_arm64.deb' libhwloc-plugins_2.1.0+dfsg-4_arm64.deb 13836 MD5Sum:340deb36458fa0c89e7f2be47cebdb1f
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/pmix/libpmix2_3.1.5-1_arm64.deb' libpmix2_3.1.5-1_arm64.deb 404188 MD5Sum:aec187592d53d8b8fbefafa4b3cdb1af
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/openmpi/libopenmpi3_4.0.3-0ubuntu1_arm64.deb' libopenmpi3_4.0.3-0ubuntu1_arm64.deb 1810636 MD5Sum:a011930af381d66f9931bc4f3dcf65cf
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-mpi1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-mpi1.71.0_1.71.0-6ubuntu6_arm64.deb 252600 MD5Sum:d220dd2ff5620da0d0d98e6518b859a7
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-graph-parallel1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-graph-parallel1.71.0_1.71.0-6ubuntu6_arm64.deb 261892 MD5Sum:2b4e358d1be9ebd82bb8ced26a3d385a
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-graph-parallel1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-graph-parallel1.71-dev_1.71.0-6ubuntu6_arm64.deb 271396 MD5Sum:9497feab397547a001a9dd2253b441f6
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-graph-parallel-dev_1.71.0.0ubuntu2_arm64.deb' libboost-graph-parallel-dev_1.71.0.0ubuntu2_arm64.deb 3520 MD5Sum:ab155eda2d748812e75b51c794ec0fcc
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-iostreams1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-iostreams1.71.0_1.71.0-6ubuntu6_arm64.deb 233616 MD5Sum:f0b266ac8bd88d700b7d59f221820009
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-iostreams1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-iostreams1.71-dev_1.71.0-6ubuntu6_arm64.deb 246764 MD5Sum:7418ec4528c50862a632e1fe6009f088
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-iostreams-dev_1.71.0.0ubuntu2_arm64.deb' libboost-iostreams-dev_1.71.0.0ubuntu2_arm64.deb 3380 MD5Sum:491722f7affe7a623498fdfea3c95226
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-locale1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-locale1.71.0_1.71.0-6ubuntu6_arm64.deb 399556 MD5Sum:fda6992cbcf2bbd2a805d997c9b923fc
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-locale1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-locale1.71-dev_1.71.0-6ubuntu6_arm64.deb 536024 MD5Sum:a1c6a5a806378a1cc26f798942299cf9
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-locale-dev_1.71.0.0ubuntu2_arm64.deb' libboost-locale-dev_1.71.0.0ubuntu2_arm64.deb 3708 MD5Sum:2f1a0e797a6cbb5adf01a111b480acd5
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-log1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-log1.71.0_1.71.0-6ubuntu6_arm64.deb 566296 MD5Sum:812304383ca76db3ac5800672490ce19
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-log1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-log1.71-dev_1.71.0-6ubuntu6_arm64.deb 824232 MD5Sum:25c6f39174cb6d15b37a1beab2429704
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-log-dev_1.71.0.0ubuntu2_arm64.deb' libboost-log-dev_1.71.0.0ubuntu2_arm64.deb 3592 MD5Sum:2af0d86e69d879845f2a14d228f059cc
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-math1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-math1.71.0_1.71.0-6ubuntu6_arm64.deb 443832 MD5Sum:36aebdb3eb434a72b2a0a3923edb7064
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-math1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-math1.71-dev_1.71.0-6ubuntu6_arm64.deb 676140 MD5Sum:add62ffe6207837b8d1d00c9118bf598
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-math-dev_1.71.0.0ubuntu2_arm64.deb' libboost-math-dev_1.71.0.0ubuntu2_arm64.deb 3580 MD5Sum:8bc2e1abf79f9d32d491ee62180819e3
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/openmpi/openmpi-common_4.0.3-0ubuntu1_all.deb' openmpi-common_4.0.3-0ubuntu1_all.deb 150596 MD5Sum:e9eb80adbe72e8dae4aebdda35eed6c3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libn/libnl3/libnl-3-dev_3.4.0-1ubuntu0.1_arm64.deb' libnl-3-dev_3.4.0-1ubuntu0.1_arm64.deb 93248 MD5Sum:a78cd2cacf2b709e0288f8218829ea55
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libn/libnl3/libnl-route-3-dev_3.4.0-1ubuntu0.1_arm64.deb' libnl-route-3-dev_3.4.0-1ubuntu0.1_arm64.deb 164228 MD5Sum:970677deb5d0ba39db08b683dc903560
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/r/rdma-core/libibverbs-dev_28.0-1ubuntu1_arm64.deb' libibverbs-dev_28.0-1ubuntu1_arm64.deb 438872 MD5Sum:30e2589cb4250ece25fc2233b7a93c57
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/numactl/libnuma-dev_2.0.12-1_arm64.deb' libnuma-dev_2.0.12-1_arm64.deb 33336 MD5Sum:24200ba68e23cf886c6fb73d64f88d81
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libt/libtool/libltdl-dev_2.4.6-14_arm64.deb' libltdl-dev_2.4.6-14_arm64.deb 162148 MD5Sum:946f5a7c5687559a073548960105dedd
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/h/hwloc/libhwloc-dev_2.1.0%2bdfsg-4_arm64.deb' libhwloc-dev_2.1.0+dfsg-4_arm64.deb 190536 MD5Sum:e38ee30ad52185b5136a24ff21a8b0d3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libe/libevent/libevent-extra-2.1-7_2.1.11-stable-1_arm64.deb' libevent-extra-2.1-7_2.1.11-stable-1_arm64.deb 54172 MD5Sum:7b461dd0e3f86dc0e82c796ef2745220
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libe/libevent/libevent-openssl-2.1-7_2.1.11-stable-1_arm64.deb' libevent-openssl-2.1-7_2.1.11-stable-1_arm64.deb 13196 MD5Sum:3d604886d95cbd97ee5e8d0353b2c3d9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libe/libevent/libevent-dev_2.1.11-stable-1_arm64.deb' libevent-dev_2.1.11-stable-1_arm64.deb 258464 MD5Sum:db0870bd50b66ed25add2a4374e5d036
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/openmpi/openmpi-bin_4.0.3-0ubuntu1_arm64.deb' openmpi-bin_4.0.3-0ubuntu1_arm64.deb 66624 MD5Sum:6b6ee71ee2b2ef87be8de2c1c6b3d072
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/openmpi/libopenmpi-dev_4.0.3-0ubuntu1_arm64.deb' libopenmpi-dev_4.0.3-0ubuntu1_arm64.deb 798216 MD5Sum:45b35826e3a7438a58137b1061ebfa4b
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/m/mpi-defaults/mpi-default-dev_1.13_arm64.deb' mpi-default-dev_1.13_arm64.deb 3748 MD5Sum:c135bd4213acddab038d386799c2fd9d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-mpi1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-mpi1.71-dev_1.71.0-6ubuntu6_arm64.deb 387060 MD5Sum:d09779159da37c50b271e7d5fba162a4
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-mpi-dev_1.71.0.0ubuntu2_arm64.deb' libboost-mpi-dev_1.71.0.0ubuntu2_arm64.deb 3480 MD5Sum:0228b6681b84da3447c4fb05de18db79
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-python1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-python1.71.0_1.71.0-6ubuntu6_arm64.deb 269164 MD5Sum:61dec176d4bc39653baafe6812583703
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/m/mpi-defaults/mpi-default-bin_1.13_arm64.deb' mpi-default-bin_1.13_arm64.deb 2968 MD5Sum:651a70a54eaa43bb348102d375aafa2e
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-mpi-python1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-mpi-python1.71.0_1.71.0-6ubuntu6_arm64.deb 335136 MD5Sum:431b2c3aeb31884828a92fb60182e6ae
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-mpi-python1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-mpi-python1.71-dev_1.71.0-6ubuntu6_arm64.deb 224100 MD5Sum:2c63ad38fa1e9ac4d20cd1336bcb1d46
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-mpi-python-dev_1.71.0.0ubuntu2_arm64.deb' libboost-mpi-python-dev_1.71.0.0ubuntu2_arm64.deb 3512 MD5Sum:b9ead185b5a16c10901dd98e8200e4aa
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-numpy1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-numpy1.71.0_1.71.0-6ubuntu6_arm64.deb 213340 MD5Sum:d00fb7a9b614d6ac1524cd536992dea8
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-numpy1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-numpy1.71-dev_1.71.0-6ubuntu6_arm64.deb 218032 MD5Sum:082fa1d0d38a9e83fb009541c6dfeb45
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-numpy-dev_1.71.0.0ubuntu2_arm64.deb' libboost-numpy-dev_1.71.0.0ubuntu2_arm64.deb 3424 MD5Sum:cdaa939a59b8509159db802cb7ed44b9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-program-options1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-program-options1.71.0_1.71.0-6ubuntu6_arm64.deb 325812 MD5Sum:97ccf02b8e6967d90f8353365c0f5a78
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost1.71/libboost-program-options1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-program-options1.71-dev_1.71.0-6ubuntu6_arm64.deb 372132 MD5Sum:b35f28e72a8f58f44f6d9a06270ff65b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost-defaults/libboost-program-options-dev_1.71.0.0ubuntu2_arm64.deb' libboost-program-options-dev_1.71.0.0ubuntu2_arm64.deb 3408 MD5Sum:6e5850597eb129fc05039307e6d27e67
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3.8/libpython3.8_3.8.10-0ubuntu1%7e20.04.18_arm64.deb' libpython3.8_3.8.10-0ubuntu1~20.04.18_arm64.deb 1491504 MD5Sum:f6e6dd8753b656ee1ee28b944a2af2b4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3.8/libpython3.8-dev_3.8.10-0ubuntu1%7e20.04.18_arm64.deb' libpython3.8-dev_3.8.10-0ubuntu1~20.04.18_arm64.deb 3763536 MD5Sum:1a64b582bb9aa8fe1d0604f52bc1b8c1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3-defaults/libpython3-dev_3.8.2-0ubuntu2_arm64.deb' libpython3-dev_3.8.2-0ubuntu2_arm64.deb 7236 MD5Sum:e32ab36064dbfad185a0601ff3d37c72
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3.8/python3.8-dev_3.8.10-0ubuntu1%7e20.04.18_arm64.deb' python3.8-dev_3.8.10-0ubuntu1~20.04.18_arm64.deb 514160 MD5Sum:43d480c163d2a842134086cd8628621c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3-stdlib-extensions/python3-lib2to3_3.8.10-0ubuntu1%7e20.04_all.deb' python3-lib2to3_3.8.10-0ubuntu1~20.04_all.deb 76320 MD5Sum:9d732452c091dfdaa3e10397b1815cf9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3-stdlib-extensions/python3-distutils_3.8.10-0ubuntu1%7e20.04_all.deb' python3-distutils_3.8.10-0ubuntu1~20.04_all.deb 141344 MD5Sum:61b20199934101c296848f5056fb1861
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python3-defaults/python3-dev_3.8.2-0ubuntu2_arm64.deb' python3-dev_3.8.2-0ubuntu2_arm64.deb 1212 MD5Sum:8ee3756727546f8accd57cf5c119a9e5
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-python1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-python1.71-dev_1.71.0-6ubuntu6_arm64.deb 294164 MD5Sum:04fdd70afe7a286d7881dc3a3074c7f5
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-python-dev_1.71.0.0ubuntu2_arm64.deb' libboost-python-dev_1.71.0.0ubuntu2_arm64.deb 3688 MD5Sum:aabab7d27215a750af6bdfdb853e0883
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-random1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-random1.71.0_1.71.0-6ubuntu6_arm64.deb 215408 MD5Sum:016c46eec9e003929d8abe2cfd632b0a
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-random1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-random1.71-dev_1.71.0-6ubuntu6_arm64.deb 217616 MD5Sum:eb70ca63f95fb1c524332b23b045ab90
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-random-dev_1.71.0.0ubuntu2_arm64.deb' libboost-random-dev_1.71.0.0ubuntu2_arm64.deb 3388 MD5Sum:64cecf62220d18546832dd8ae27fd228
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-regex-dev_1.71.0.0ubuntu2_arm64.deb' libboost-regex-dev_1.71.0.0ubuntu2_arm64.deb 3656 MD5Sum:0645af29b377a4856b4cf78d6f7eec44
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-serialization-dev_1.71.0.0ubuntu2_arm64.deb' libboost-serialization-dev_1.71.0.0ubuntu2_arm64.deb 3612 MD5Sum:2b9ff45545c8fb1b2c3270d6fb84668e
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-stacktrace1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-stacktrace1.71.0_1.71.0-6ubuntu6_arm64.deb 235780 MD5Sum:52f3eae0db5a0f580d48f3cf3b20dd86
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-stacktrace1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-stacktrace1.71-dev_1.71.0-6ubuntu6_arm64.deb 217272 MD5Sum:1c5242a071b3a742120615b67dc266aa
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-stacktrace-dev_1.71.0.0ubuntu2_arm64.deb' libboost-stacktrace-dev_1.71.0.0ubuntu2_arm64.deb 3392 MD5Sum:b0f580f2d250e98321c8043b7789bddb
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost-defaults/libboost-system-dev_1.71.0.0ubuntu2_arm64.deb' libboost-system-dev_1.71.0.0ubuntu2_arm64.deb 3536 MD5Sum:61195a673faafca8d10ab61e3e84ef02
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-test-dev_1.71.0.0ubuntu2_arm64.deb' libboost-test-dev_1.71.0.0ubuntu2_arm64.deb 3428 MD5Sum:c62484249b1918a353c7d10c267f9e1a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/boost-defaults/libboost-thread-dev_1.71.0.0ubuntu2_arm64.deb' libboost-thread-dev_1.71.0.0ubuntu2_arm64.deb 3416 MD5Sum:b77309760aa23e8d945ac86a2e3a4af3
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-timer1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-timer1.71.0_1.71.0-6ubuntu6_arm64.deb 212256 MD5Sum:8d9f18315b6b5b1d21c2dde37c4e7c87
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-timer1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-timer1.71-dev_1.71.0-6ubuntu6_arm64.deb 215676 MD5Sum:2f9410626b6446daf54b853bcb8f7861
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-timer-dev_1.71.0.0ubuntu2_arm64.deb' libboost-timer-dev_1.71.0.0ubuntu2_arm64.deb 3516 MD5Sum:a7f60105a894600263502a6e0babc5ea
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-type-erasure1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-type-erasure1.71.0_1.71.0-6ubuntu6_arm64.deb 220852 MD5Sum:aecb2fc4f0ccc3a906bf5e9176cff490
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-type-erasure1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-type-erasure1.71-dev_1.71.0-6ubuntu6_arm64.deb 226236 MD5Sum:39f1e70dd0542e3361947eee6b41c9b4
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-type-erasure-dev_1.71.0.0ubuntu2_arm64.deb' libboost-type-erasure-dev_1.71.0.0ubuntu2_arm64.deb 3488 MD5Sum:ae05b72501bc2b4422a0049312cfc0a5
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-wave1.71.0_1.71.0-6ubuntu6_arm64.deb' libboost-wave1.71.0_1.71.0-6ubuntu6_arm64.deb 370172 MD5Sum:3fd17195cfff21fdab4ac0661982d717
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost1.71/libboost-wave1.71-dev_1.71.0-6ubuntu6_arm64.deb' libboost-wave1.71-dev_1.71.0-6ubuntu6_arm64.deb 449896 MD5Sum:c7120a23930e7e3f8308429865a5169e
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-wave-dev_1.71.0.0ubuntu2_arm64.deb' libboost-wave-dev_1.71.0.0ubuntu2_arm64.deb 3420 MD5Sum:1e6a1c9bf68acb96d5572b68f0155893
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/b/boost-defaults/libboost-all-dev_1.71.0.0ubuntu2_arm64.deb' libboost-all-dev_1.71.0.0ubuntu2_arm64.deb 2468 MD5Sum:b04b8453c29c89da094c0eebd0d6c695
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libbtf1_5.7.1%2bdfsg-2_arm64.deb' libbtf1_1%3a5.7.1+dfsg-2_arm64.deb 10864 MD5Sum:5722d42deaad156a33842934580e24c5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/b/bzip2/libbz2-dev_1.0.8-2_arm64.deb' libbz2-dev_1.0.8-2_arm64.deb 31556 MD5Sum:239228b4f3ce6b3f6d929445df491380
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libcamd2_5.7.1%2bdfsg-2_arm64.deb' libcamd2_1%3a5.7.1+dfsg-2_arm64.deb 18216 MD5Sum:a498e7a564fcd029ae410e6452624f8c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libccolamd2_5.7.1%2bdfsg-2_arm64.deb' libccolamd2_1%3a5.7.1+dfsg-2_arm64.deb 20828 MD5Sum:843b3365011873f3db3a972682ff8ca8
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/curl/libcurl3-gnutls_7.68.0-1ubuntu2.25_arm64.deb' libcurl3-gnutls_7.68.0-1ubuntu2.25_arm64.deb 213732 MD5Sum:9c509b058876b72ca3e007e773073e06
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/c/cfitsio/libcfitsio8_3.470-3_arm64.deb' libcfitsio8_3.470-3_arm64.deb 416436 MD5Sum:789e2114f158fc63bca40a5ca286319c
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/c/charls/libcharls2_2.0.0%2bdfsg-1build1_arm64.deb' libcharls2_2.0.0+dfsg-1build1_arm64.deb 64516 MD5Sum:057bf8991e14d220264c3d138ec068a5
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libcolamd2_5.7.1%2bdfsg-2_arm64.deb' libcolamd2_1%3a5.7.1+dfsg-2_arm64.deb 15872 MD5Sum:a76dd60e50833e115e9d14910b094567
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/metis/libmetis5_5.1.0.dfsg-5_arm64.deb' libmetis5_5.1.0.dfsg-5_arm64.deb 139684 MD5Sum:084ded7ee20c6a2203117ef60b8f2bc7
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libcholmod3_5.7.1%2bdfsg-2_arm64.deb' libcholmod3_1%3a5.7.1+dfsg-2_arm64.deb 261828 MD5Sum:f02e3dfd1235ccff635c0bae21e00990
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lcms2/liblcms2-2_2.9-4_arm64.deb' liblcms2-2_2.9-4_arm64.deb 130932 MD5Sum:5b766b58b7c4b71f224c4390bd0dd44b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/colord/libcolord2_1.4.4-2_arm64.deb' libcolord2_1.4.4-2_arm64.deb 123824 MD5Sum:6cf8600df60994fa78d0681c36be7183
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/c/console-bridge/libconsole-bridge0.4_0.4.4%2bdfsg-1build1_arm64.deb' libconsole-bridge0.4_0.4.4+dfsg-1build1_arm64.deb 8036 MD5Sum:1536fd5e0cbcbe916b48290a9b7506a0
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/c/cups/libcups2_2.3.1-9ubuntu1.9_arm64.deb' libcups2_2.3.1-9ubuntu1.9_arm64.deb 218060 MD5Sum:26a6f5c641d3dcd989ca2d48ac1cefc6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libcxsparse3_5.7.1%2bdfsg-2_arm64.deb' libcxsparse3_1%3a5.7.1+dfsg-2_arm64.deb 57400 MD5Sum:0831a65e57be560a226b2e889ce0ce5f
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libd/libdap/libdap25_3.20.5-1_arm64.deb' libdap25_3.20.5-1_arm64.deb 379256 MD5Sum:616f5d61c8ddeee542f82c0d6f359b78
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libd/libdap/libdapclient6v5_3.20.5-1_arm64.deb' libdapclient6v5_3.20.5-1_arm64.deb 79544 MD5Sum:a0d172dcb63fe53b720eda148987c9af
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/dpkg/libdpkg-perl_1.19.7ubuntu3.2_all.deb' libdpkg-perl_1.19.7ubuntu3.2_all.deb 230764 MD5Sum:ce98a0ad3b3a4e9159c3ce579ca2aede
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libd/libdrm/libdrm-amdgpu1_2.4.107-8ubuntu1%7e20.04.2_arm64.deb' libdrm-amdgpu1_2.4.107-8ubuntu1~20.04.2_arm64.deb 17928 MD5Sum:e14348d81bb14a6c421f5825ec11756e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libd/libdrm/libdrm-nouveau2_2.4.107-8ubuntu1%7e20.04.2_arm64.deb' libdrm-nouveau2_2.4.107-8ubuntu1~20.04.2_arm64.deb 15900 MD5Sum:7bb10177a34f3af6656317db0a26eb4b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libd/libdrm/libdrm-radeon1_2.4.107-8ubuntu1%7e20.04.2_arm64.deb' libdrm-radeon1_2.4.107-8ubuntu1~20.04.2_arm64.deb 18724 MD5Sum:7368fe4e2b792a514e7b2b35f38d3e9c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libe/libepoxy/libepoxy0_1.5.4-1_arm64.deb' libepoxy0_1.5.4-1_arm64.deb 200500 MD5Sum:bc317203cfed915d1c204a9a731db5f8
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libe/libepsilon/libepsilon1_0.9.2%2bdfsg-4_arm64.deb' libepsilon1_0.9.2+dfsg-4_arm64.deb 38176 MD5Sum:1f8888a5242856564c660e3478402e6a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libe/libexif/libexif12_0.6.21-6ubuntu0.4_arm64.deb' libexif12_0.6.21-6ubuntu0.4_arm64.deb 74036 MD5Sum:70ed82d6c130c6019b08f143b2dd34f0
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libe/libexif/libexif-dev_0.6.21-6ubuntu0.4_arm64.deb' libexif-dev_0.6.21-6ubuntu0.4_arm64.deb 81624 MD5Sum:5874d310f176f8c17264bbb9e055a6ef
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/fyba/libfyba0_4.1.1-6build1_arm64.deb' libfyba0_4.1.1-6build1_arm64.deb 105620 MD5Sum:b4e773c5c9a2649677d543abf9689991
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/freexl/libfreexl1_1.0.5-3_arm64.deb' libfreexl1_1.0.5-3_arm64.deb 32832 MD5Sum:bfee0d3f6808b95b1b30d2cb45262f28
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/geos/libgeos-3.8.0_3.8.0-1build1_arm64.deb' libgeos-3.8.0_3.8.0-1build1_arm64.deb 486880 MD5Sum:e3d8c7c652f51aa393d94b365812c135
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/geos/libgeos-c1v5_3.8.0-1build1_arm64.deb' libgeos-c1v5_3.8.0-1build1_arm64.deb 65160 MD5Sum:514800a602d7222ec96135666396bbff
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/proj/proj-data_6.3.1-1_all.deb' proj-data_6.3.1-1_all.deb 7646692 MD5Sum:d70afc73a06dc2b4a154dc10e48143b5
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/proj/libproj15_6.3.1-1_arm64.deb' libproj15_6.3.1-1_arm64.deb 798164 MD5Sum:d6cdaf625395fc4695ffd91e33aadb3f
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libg/libgeotiff/libgeotiff5_1.5.1-2_arm64.deb' libgeotiff5_1.5.1-2_arm64.deb 49680 MD5Sum:433adc38eefa81558f6990a8f08f1afa
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/giflib/libgif7_5.1.9-1ubuntu0.1_arm64.deb' libgif7_5.1.9-1ubuntu0.1_arm64.deb 32132 MD5Sum:fec6dfc8574526fd2284b825467d112d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libh/libhdf4/libhdf4-0-alt_4.2.14-1ubuntu1_arm64.deb' libhdf4-0-alt_4.2.14-1ubuntu1_arm64.deb 239472 MD5Sum:023428c89cff133dd0110ee7b03b0cbf
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/liba/libaec/libsz2_1.0.4-1_arm64.deb' libsz2_1.0.4-1_arm64.deb 5100 MD5Sum:e0150491dc7fe498a6d32f8cb6c19d39
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/h/hdf5/libhdf5-103_1.10.4%2brepack-11ubuntu1_arm64.deb' libhdf5-103_1.10.4+repack-11ubuntu1_arm64.deb 1142644 MD5Sum:680d91468d16585071b0ec868247af93
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/m/minizip/libminizip1_1.1-8build1_arm64.deb' libminizip1_1.1-8build1_arm64.deb 17528 MD5Sum:631fd211eadb28034790750b7a4f1b5c
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/u/uriparser/liburiparser1_0.9.3-2_arm64.deb' liburiparser1_0.9.3-2_arm64.deb 34780 MD5Sum:dbe4024e827fa75f751105dcd73b5a90
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libk/libkml/libkmlbase1_1.3.0-8build1_arm64.deb' libkmlbase1_1.3.0-8build1_arm64.deb 42724 MD5Sum:be050c6a427e739e2e218371bba24443
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libk/libkml/libkmldom1_1.3.0-8build1_arm64.deb' libkmldom1_1.3.0-8build1_arm64.deb 137052 MD5Sum:a08614cac2f27563a5288e5c7ba36307
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libk/libkml/libkmlengine1_1.3.0-8build1_arm64.deb' libkmlengine1_1.3.0-8build1_arm64.deb 65664 MD5Sum:e09251bfc0eb7c9286ef07a95f254afa
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/n/netcdf/libnetcdf15_4.7.3-1_arm64.deb' libnetcdf15_1%3a4.7.3-1_arm64.deb 320396 MD5Sum:58860d0034d95960c7e4121c484c9917
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/unixodbc/libodbc1_2.3.6-0.1ubuntu0.1_arm64.deb' libodbc1_2.3.6-0.1ubuntu0.1_arm64.deb 166656 MD5Sum:dd7c592fdf6b4d94b845973cd37138fc
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/ogdi-dfsg/libogdi4.1_4.1.0%2bds-1build1_arm64.deb' libogdi4.1_4.1.0+ds-1build1_arm64.deb 174436 MD5Sum:55605e719ae6ebd4af6d04b3fc66a491
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/nspr/libnspr4_4.35-0ubuntu0.20.04.1_arm64.deb' libnspr4_2%3a4.35-0ubuntu0.20.04.1_arm64.deb 99780 MD5Sum:74b2e7edea0747d6c039544b6ce1d936
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/nss/libnss3_3.98-0ubuntu0.20.04.2_arm64.deb' libnss3_2%3a3.98-0ubuntu0.20.04.2_arm64.deb 1291416 MD5Sum:0c1ab98f675782fc3bc6ad3adf299baf
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/poppler/libpoppler97_0.86.1-0ubuntu1.7_arm64.deb' libpoppler97_0.86.1-0ubuntu1.7_arm64.deb 834372 MD5Sum:f099957c080f9aa5804fb86736d46206
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/postgresql-12/libpq5_12.22-0ubuntu0.20.04.4_arm64.deb' libpq5_12.22-0ubuntu0.20.04.4_arm64.deb 110980 MD5Sum:6a50871a3452f40ea5277368a39f75fa
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/q/qhull/libqhull7_2015.2-4_arm64.deb' libqhull7_2015.2-4_arm64.deb 131404 MD5Sum:16c6edd259c3785c1765c763a99e9b68
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/s/spatialite/libspatialite7_4.3.0a-6build1_arm64.deb' libspatialite7_4.3.0a-6build1_arm64.deb 1175924 MD5Sum:d7d7fee79d1f112161fcbf3c67280cd2
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/x/xerces-c/libxerces-c3.2_3.2.2%2bdebian-1ubuntu0.2_arm64.deb' libxerces-c3.2_3.2.2+debian-1ubuntu0.2_arm64.deb 773224 MD5Sum:c93fbeb7f22a320355e5d19285c08571
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/unixodbc/odbcinst_2.3.6-0.1ubuntu0.1_arm64.deb' odbcinst_2.3.6-0.1ubuntu0.1_arm64.deb 14240 MD5Sum:d814494df492882388e4cedaf1143d5e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/u/unixodbc/odbcinst1debian2_2.3.6-0.1ubuntu0.1_arm64.deb' odbcinst1debian2_2.3.6-0.1ubuntu0.1_arm64.deb 42204 MD5Sum:ada4e6a309f293677403252ab1fae880
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gdal/libgdal26_3.0.4%2bdfsg-1build3_arm64.deb' libgdal26_3.0.4+dfsg-1build3_arm64.deb 5372580 MD5Sum:bf94d9e3f784b816ddb72e80189fbd68
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/s/socket%2b%2b/libsocket%2b%2b1_1.12.13-10build1_arm64.deb' libsocket++1_1.12.13-10build1_arm64.deb 36908 MD5Sum:93bc72b153cc7845bffe69b741db077f
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gdcm/libgdcm3.0_3.0.5-1.1ubuntu2_arm64.deb' libgdcm3.0_3.0.5-1.1ubuntu2_arm64.deb 1668012 MD5Sum:5adde12013f128ed5b709e2f3cec6a33
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gdcm/libgdcm-dev_3.0.5-1.1ubuntu2_arm64.deb' libgdcm-dev_3.0.5-1.1ubuntu2_arm64.deb 258164 MD5Sum:121ff3785d8ce707d19b54b77ad022f5
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gflags/libgflags2.2_2.2.2-1build1_arm64.deb' libgflags2.2_2.2.2-1build1_arm64.deb 67880 MD5Sum:2978296fd0923f1f5031f00a565632e7
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gflags/libgflags-dev_2.2.2-1build1_arm64.deb' libgflags-dev_2.2.2-1build1_arm64.deb 88680 MD5Sum:9aa0f2f0886636bc3afa4ebc22cacfc6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/mesa/libglapi-mesa_21.2.6-0ubuntu0.1%7e20.04.2_arm64.deb' libglapi-mesa_21.2.6-0ubuntu0.1~20.04.2_arm64.deb 52160 MD5Sum:fe84daad15d956b405279cdba516efa9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/llvm-toolchain-12/libllvm12_12.0.0-3ubuntu1%7e20.04.5_arm64.deb' libllvm12_1%3a12.0.0-3ubuntu1~20.04.5_arm64.deb 16084768 MD5Sum:f0024d91beb0b207c34e0788102ec35f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lm-sensors/libsensors-config_3.6.0-2ubuntu1.1_all.deb' libsensors-config_1%3a3.6.0-2ubuntu1.1_all.deb 6052 MD5Sum:19c315207caada108980db07e3257063
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lm-sensors/libsensors5_3.6.0-2ubuntu1.1_arm64.deb' libsensors5_1%3a3.6.0-2ubuntu1.1_arm64.deb 26040 MD5Sum:37c58a23a7957894fcf6132c38ccceef
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/v/vulkan-loader/libvulkan1_1.2.131.2-1_arm64.deb' libvulkan1_1.2.131.2-1_arm64.deb 89844 MD5Sum:eaeb27d83471707018d0c3cc071eeafe
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/mesa/libgl1-mesa-dri_21.2.6-0ubuntu0.1%7e20.04.2_arm64.deb' libgl1-mesa-dri_21.2.6-0ubuntu0.1~20.04.2_arm64.deb 7595120 MD5Sum:0845962f077a62d516459f8e7ca27eaf
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libg/libglvnd/libglvnd0_1.3.2-1%7eubuntu0.20.04.2_arm64.deb' libglvnd0_1.3.2-1~ubuntu0.20.04.2_arm64.deb 42576 MD5Sum:15fbc38a626ebf9fc284e864f5d6f8e9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libx11/libx11-xcb1_1.6.9-2ubuntu1.6_arm64.deb' libx11-xcb1_2%3a1.6.9-2ubuntu1.6_arm64.deb 9468 MD5Sum:4927abd5cc6ee32265b7731eeed09ae4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcb/libxcb-dri2-0_1.14-2_arm64.deb' libxcb-dri2-0_1.14-2_arm64.deb 6872 MD5Sum:f8207f2e94315ffbe36dfe451bc7f275
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcb/libxcb-dri3-0_1.14-2_arm64.deb' libxcb-dri3-0_1.14-2_arm64.deb 6556 MD5Sum:f442a5c83be8a2cee0a1ef9257056d40
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcb/libxcb-glx0_1.14-2_arm64.deb' libxcb-glx0_1.14-2_arm64.deb 22144 MD5Sum:b34418d1d6f466272e686ccd94be0264
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcb/libxcb-present0_1.14-2_arm64.deb' libxcb-present0_1.14-2_arm64.deb 5484 MD5Sum:9c8e38a5a4951567ba93350aefbec34a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcb/libxcb-sync1_1.14-2_arm64.deb' libxcb-sync1_1.14-2_arm64.deb 8824 MD5Sum:d21893a54f86729aa8cf978ecf3740aa
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcb/libxcb-xfixes0_1.14-2_arm64.deb' libxcb-xfixes0_1.14-2_arm64.deb 9268 MD5Sum:afde8b5942277f163c775d1c56e260c1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxshmfence/libxshmfence1_1.3-1_arm64.deb' libxshmfence1_1.3-1_arm64.deb 4868 MD5Sum:4bdad15e463a4c3b7732f960c3ad0f73
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxxf86vm/libxxf86vm1_1.1.4-1build1_arm64.deb' libxxf86vm1_1%3a1.1.4-1build1_arm64.deb 9908 MD5Sum:ee6db00f381f28d6694f467dac07ba4e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/m/mesa/libglx-mesa0_21.2.6-0ubuntu0.1%7e20.04.2_arm64.deb' libglx-mesa0_21.2.6-0ubuntu0.1~20.04.2_arm64.deb 137680 MD5Sum:d755705e11b9cbc2790ddf4068a1a2c4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libg/libglvnd/libglx0_1.3.2-1%7eubuntu0.20.04.2_arm64.deb' libglx0_1.3.2-1~ubuntu0.20.04.2_arm64.deb 29012 MD5Sum:7d006de49847e6bd449d42f614624d00
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libg/libglvnd/libgl1_1.3.2-1%7eubuntu0.20.04.2_arm64.deb' libgl1_1.3.2-1~ubuntu0.20.04.2_arm64.deb 88648 MD5Sum:9e1fb35f052bbe57e41501c972490c9d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/gl2ps/libgl2ps1.4_1.4.0%2bdfsg1-2_arm64.deb' libgl2ps1.4_1.4.0+dfsg1-2_arm64.deb 32704 MD5Sum:3117bdd78c6131146b591bb94224c2e2
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/google-glog/libgoogle-glog0v5_0.4.0-1build1_arm64.deb' libgoogle-glog0v5_0.4.0-1build1_arm64.deb 47192 MD5Sum:17a3de22e6923171194a1c1b3b768b30
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/google-glog/libgoogle-glog-dev_0.4.0-1build1_arm64.deb' libgoogle-glog-dev_0.4.0-1build1_arm64.deb 74260 MD5Sum:a5dc647df275b719d29832981e9cc178
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gpgme1.0/libgpgme11_1.13.1-7ubuntu2.2_arm64.deb' libgpgme11_1.13.1-7ubuntu2.2_arm64.deb 107572 MD5Sum:38a0f624d9085517a847c38bbf0ddeb3
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libg/libgphoto2/libgphoto2-port12_2.5.25-0ubuntu0.1_arm64.deb' libgphoto2-port12_2.5.25-0ubuntu0.1_arm64.deb 50000 MD5Sum:fcef890f4b175c5dc7d405f5ba0eea5f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libg/libgphoto2/libgphoto2-6_2.5.25-0ubuntu0.1_arm64.deb' libgphoto2-6_2.5.25-0ubuntu0.1_arm64.deb 617248 MD5Sum:5dde549a6b38ac3e07fb61ec1870c81c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pkg-config/pkg-config_0.29.1-0ubuntu4_arm64.deb' pkg-config_0.29.1-0ubuntu4_arm64.deb 43832 MD5Sum:fd74e9ad3365935fa06c19d0a3e8bb5a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libg/libgphoto2/libgphoto2-dev_2.5.25-0ubuntu0.1_arm64.deb' libgphoto2-dev_2.5.25-0ubuntu0.1_arm64.deb 625372 MD5Sum:ed47b76a31a6d6665d5aa6301861eafc
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libgraphblas3_5.7.1%2bdfsg-2_arm64.deb' libgraphblas3_1%3a5.7.1+dfsg-2_arm64.deb 2650356 MD5Sum:0ed7a8d13877580611e65bcc8b25067a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gstreamer1.0/libgstreamer1.0-0_1.16.3-0ubuntu1.2_arm64.deb' libgstreamer1.0-0_1.16.3-0ubuntu1.2_arm64.deb 802904 MD5Sum:6823585382e235a5d1ea67db63bc4ca9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/o/orc/liborc-0.4-0_0.4.31-1ubuntu0.1_arm64.deb' liborc-0.4-0_1%3a0.4.31-1ubuntu0.1_arm64.deb 171704 MD5Sum:eceeb5ff21620855a543d72497160f76
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gst-plugins-base1.0/libgstreamer-plugins-base1.0-0_1.16.3-0ubuntu1.4_arm64.deb' libgstreamer-plugins-base1.0-0_1.16.3-0ubuntu1.4_arm64.deb 664888 MD5Sum:bde73adabb90bb500936273c8df44db1
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/g/googletest/libgtest-dev_1.10.0-2_arm64.deb' libgtest-dev_1.10.0-2_arm64.deb 216012 MD5Sum:c8760722f50cd4ff377086c44a968464
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/j/json-glib/libjson-glib-1.0-common_1.4.4-2ubuntu2_all.deb' libjson-glib-1.0-common_1.4.4-2ubuntu2_all.deb 3468 MD5Sum:273a4a713fdf3aa14c7618e679c1bbd4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/j/json-glib/libjson-glib-1.0-0_1.4.4-2ubuntu2_arm64.deb' libjson-glib-1.0-0_1.4.4-2ubuntu2_arm64.deb 53964 MD5Sum:4966bce93fb949f72c1be7950e179e20
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libsoup2.4/libsoup2.4-1_2.70.0-1ubuntu0.5_arm64.deb' libsoup2.4-1_2.70.0-1ubuntu0.5_arm64.deb 245868 MD5Sum:d954bd0356940c1ea89e6f2f80dfe68e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libs/libsoup2.4/libsoup-gnome2.4-1_2.70.0-1ubuntu0.5_arm64.deb' libsoup-gnome2.4-1_2.70.0-1ubuntu0.5_arm64.deb 5940 MD5Sum:a67baa1c525b081cab8bbc95add40f19
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libr/librest/librest-0.7-0_0.8.1-1_arm64.deb' librest-0.7-0_0.8.1-1_arm64.deb 30216 MD5Sum:44be0524a59e9c81ed6ac30bdf0b6e2a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/w/wayland/libwayland-client0_1.18.0-1ubuntu0.1_arm64.deb' libwayland-client0_1.18.0-1ubuntu0.1_arm64.deb 23128 MD5Sum:8ac38f74e1c77cbbc2010d7a603c4cec
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/w/wayland/libwayland-cursor0_1.18.0-1ubuntu0.1_arm64.deb' libwayland-cursor0_1.18.0-1ubuntu0.1_arm64.deb 10020 MD5Sum:9e8bbb823f86ab3fe54625f6709cb213
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/w/wayland/libwayland-egl1_1.18.0-1ubuntu0.1_arm64.deb' libwayland-egl1_1.18.0-1ubuntu0.1_arm64.deb 5516 MD5Sum:28c7792d75745be6fd37463f2335c435
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcomposite/libxcomposite1_0.4.5-1_arm64.deb' libxcomposite1_1%3a0.4.5-1_arm64.deb 6864 MD5Sum:070d44b640cf1416d70a41bc8dd7a4d1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxcursor/libxcursor1_1.2.0-2_arm64.deb' libxcursor1_1%3a1.2.0-2_arm64.deb 19232 MD5Sum:1f2f1833507208e41856bcce3de7d51d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxdamage/libxdamage1_1.1.5-2_arm64.deb' libxdamage1_1%3a1.1.5-2_arm64.deb 6820 MD5Sum:c9ed394b463f348cff10cd1a5713b338
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxi/libxi6_1.7.10-0ubuntu1_arm64.deb' libxi6_2%3a1.7.10-0ubuntu1_arm64.deb 28160 MD5Sum:b3ee9b268731a8794c1d40bc7a026a89
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxinerama/libxinerama1_1.1.4-2_arm64.deb' libxinerama1_2%3a1.1.4-2_arm64.deb 6872 MD5Sum:273067ca95988989635d3fbb1d4f0e96
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxkbcommon/libxkbcommon0_0.10.0-1_arm64.deb' libxkbcommon0_0.10.0-1_arm64.deb 93008 MD5Sum:ee3fb47cda03ac28702d90cdaf78d84d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libx/libxrandr/libxrandr2_1.5.2-0ubuntu1_arm64.deb' libxrandr2_2%3a1.5.2-0ubuntu1_arm64.deb 17696 MD5Sum:1854cb48de76e2f3d82c7e0a5c9c012b
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gtk%2b3.0/libgtk-3-common_3.24.20-0ubuntu1.2_all.deb' libgtk-3-common_3.24.20-0ubuntu1.2_all.deb 233916 MD5Sum:ee8d26f6b452ef1c3eb3f48e23d47e91
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gtk%2b3.0/libgtk-3-0_3.24.20-0ubuntu1.2_arm64.deb' libgtk-3-0_3.24.20-0ubuntu1.2_arm64.deb 2424876 MD5Sum:a1c9e2f271f528ca5f1cbc6169dbae71
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/h/hdf5/libhdf5-openmpi-103_1.10.4%2brepack-11ubuntu1_arm64.deb' libhdf5-openmpi-103_1.10.4+repack-11ubuntu1_arm64.deb 1177752 MD5Sum:74dc965024c52e5316892a5f06bda439
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/i/ilmbase/libilmbase24_2.3.0-6build1_arm64.deb' libilmbase24_2.3.0-6build1_arm64.deb 74740 MD5Sum:ac3000bf641b2d4d88462b09f4fce47e
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/i/ilmbase/libilmbase-dev_2.3.0-6build1_arm64.deb' libilmbase-dev_2.3.0-6build1_arm64.deb 71316 MD5Sum:11d8c5f0794b71d3556a3be742b4d655
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libj/libjpeg-turbo/libjpeg-turbo8-dev_2.0.3-0ubuntu1.20.04.3_arm64.deb' libjpeg-turbo8-dev_2.0.3-0ubuntu1.20.04.3_arm64.deb 214896 MD5Sum:bb5dde2a9fad4f6883bea030c8d7565e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libj/libjpeg8-empty/libjpeg8-dev_8c-2ubuntu8_arm64.deb' libjpeg8-dev_8c-2ubuntu8_arm64.deb 1550 MD5Sum:df7604911ff5d2a3171ad464c13e7057
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libj/libjpeg8-empty/libjpeg-dev_8c-2ubuntu8_arm64.deb' libjpeg-dev_8c-2ubuntu8_arm64.deb 1546 MD5Sum:90c71b4ee10b266f0eb706f7922055df
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libklu1_5.7.1%2bdfsg-2_arm64.deb' libklu1_1%3a5.7.1+dfsg-2_arm64.deb 58884 MD5Sum:13031ad5d269f2f3bb7af46473832c6e
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lapack/liblapack-dev_3.9.0-1build1_arm64.deb' liblapack-dev_3.9.0-1build1_arm64.deb 2763004 MD5Sum:bd5497488e601c44c2aaa19aa81a0991
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libldl2_5.7.1%2bdfsg-2_arm64.deb' libldl2_1%3a5.7.1+dfsg-2_arm64.deb 10460 MD5Sum:50aa68e9dfecd7429d63328a1e4f09b6
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/leptonlib/liblept5_1.79.0-1_arm64.deb' liblept5_1.79.0-1_arm64.deb 921224 MD5Sum:3a6a6ceca53cf82742e813580685388f
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/log4cxx/liblog4cxx10v5_0.10.0-15ubuntu2_arm64.deb' liblog4cxx10v5_0.10.0-15ubuntu2_arm64.deb 381284 MD5Sum:7b9c6bb762a4b3e81e7081b8169b4ff7
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libmongoose2_5.7.1%2bdfsg-2_arm64.deb' libmongoose2_1%3a5.7.1+dfsg-2_arm64.deb 27920 MD5Sum:eee7b1e3f982812c1398bde2130e1369
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/n/netcdf-cxx-legacy/libnetcdf-c%2b%2b4_4.2-11build2_arm64.deb' libnetcdf-c++4_4.2-11build2_arm64.deb 31132 MD5Sum:81eeb23748022caf805f18c70a1be80f
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/t/tbb/libtbb2_2020.1-2_arm64.deb' libtbb2_2020.1-2_arm64.deb 92336 MD5Sum:93d611bf9d86c9338277316a25ec02f3
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-core4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-core4.2_4.2.0+dfsg-5_arm64.deb 790044 MD5Sum:0c5f7abbd61c8101042b733c75e06055
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-flann4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-flann4.2_4.2.0+dfsg-5_arm64.deb 93192 MD5Sum:e40b2823ac2b9f86e420101fd3d42c24
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-imgproc4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-imgproc4.2_4.2.0+dfsg-5_arm64.deb 862412 MD5Sum:a03f9457c6fc6e80e8e1e524662ac687
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/openexr/libopenexr24_2.3.0-6ubuntu0.5_arm64.deb' libopenexr24_2.3.0-6ubuntu0.5_arm64.deb 526272 MD5Sum:1b33939fbb807b35e56c24589875b1be
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-imgcodecs4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-imgcodecs4.2_4.2.0+dfsg-5_arm64.deb 94868 MD5Sum:0507f7c71562cbf6b96a413260462dd8
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libr/libraw1394/libraw1394-11_2.1.2-1_arm64.deb' libraw1394-11_2.1.2-1_arm64.deb 26716 MD5Sum:d96d862fc5e36676ae3553de3bc37ec9
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libd/libdc1394-22/libdc1394-22_2.2.5-2.1_arm64.deb' libdc1394-22_2.2.5-2.1_arm64.deb 75892 MD5Sum:f2bd14f1d94bf5c418f7a8f71b8c39f8
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libswscale5_4.2.7-0ubuntu0.1_arm64.deb' libswscale5_7%3a4.2.7-0ubuntu0.1_arm64.deb 132092 MD5Sum:80f13397731b1a805930b5e008e6cbda
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-videoio4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-videoio4.2_4.2.0+dfsg-5_arm64.deb 132916 MD5Sum:329b9843d2b955ae80084b29a54b420d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-highgui4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-highgui4.2_4.2.0+dfsg-5_arm64.deb 28908 MD5Sum:f5694fc63f528ed12604ea754a6102c4
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-ml4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-ml4.2_4.2.0+dfsg-5_arm64.deb 199192 MD5Sum:3a8ed9bc60ace2b8bff5a3b2b5d8529d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-features2d4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-features2d4.2_4.2.0+dfsg-5_arm64.deb 207656 MD5Sum:0430a0f0a4004ec75302dff9b7b68b3d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-calib3d4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-calib3d4.2_4.2.0+dfsg-5_arm64.deb 460280 MD5Sum:f36351bc983e38182293785d775ac500
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/t/tbb/libtbb-dev_2020.1-2_arm64.deb' libtbb-dev_2020.1-2_arm64.deb 272600 MD5Sum:a0711f2acf4dfd7b34c8a1171bbb2319
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-core-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-core-dev_4.2.0+dfsg-5_arm64.deb 1433288 MD5Sum:d52050959225609ed94792751fb715e3
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-flann-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-flann-dev_4.2.0+dfsg-5_arm64.deb 170040 MD5Sum:58c24f3b9878255744b1c329c98450ae
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libr/libraw1394/libraw1394-dev_2.1.2-1_arm64.deb' libraw1394-dev_2.1.2-1_arm64.deb 32752 MD5Sum:1bb163f44faf53d02e61c7e43f5d8d95
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/libd/libdc1394-22/libdc1394-22-dev_2.2.5-2.1_arm64.deb' libdc1394-22-dev_2.2.5-2.1_arm64.deb 113448 MD5Sum:e0bf4a4027c29c3520fd7c74ab621110
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-imgproc-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-imgproc-dev_4.2.0+dfsg-5_arm64.deb 1137728 MD5Sum:8aac357dec9bbaa693dda49159377d5d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-imgcodecs-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-imgcodecs-dev_4.2.0+dfsg-5_arm64.deb 154256 MD5Sum:be54a16a64b39f31a759d9c15b20c8f5
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-videoio-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-videoio-dev_4.2.0+dfsg-5_arm64.deb 201620 MD5Sum:fc096f2f149b196526768152d166c2fa
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/openexr/libopenexr-dev_2.3.0-6ubuntu0.5_arm64.deb' libopenexr-dev_2.3.0-6ubuntu0.5_arm64.deb 676488 MD5Sum:3d49ef6101f66c796dc0201cc1567c76
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/libp/libpng1.6/libpng-dev_1.6.37-2_arm64.deb' libpng-dev_1.6.37-2_arm64.deb 171772 MD5Sum:05d3dc4ceeee1a4893a5afb268cff79e
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/f/ffmpeg/libswscale-dev_4.2.7-0ubuntu0.1_arm64.deb' libswscale-dev_7%3a4.2.7-0ubuntu0.1_arm64.deb 150104 MD5Sum:cdec6c9ce49617d01653f00f52959e15
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/j/jbigkit/libjbig-dev_2.1-3.1ubuntu0.20.04.1_arm64.deb' libjbig-dev_2.1-3.1ubuntu0.20.04.1_arm64.deb 24560 MD5Sum:eb612169d2bc1d0af74057f6cc172220
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/x/xz-utils/liblzma-dev_5.2.4-1ubuntu1.1_arm64.deb' liblzma-dev_5.2.4-1ubuntu1.1_arm64.deb 143936 MD5Sum:818d43333a4bc6fc3ea3fc4e1b44b9b9
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/t/tiff/libtiffxx5_4.1.0%2bgit191117-2ubuntu0.20.04.14_arm64.deb' libtiffxx5_4.1.0+git191117-2ubuntu0.20.04.14_arm64.deb 5788 MD5Sum:1ea04777120959054cddb7487fa1d41f
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/t/tiff/libtiff-dev_4.1.0%2bgit191117-2ubuntu0.20.04.14_arm64.deb' libtiff-dev_4.1.0+git191117-2ubuntu0.20.04.14_arm64.deb 275900 MD5Sum:2938718d094b7714ae2ba87d084fab62
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-highgui-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-highgui-dev_4.2.0+dfsg-5_arm64.deb 47020 MD5Sum:dc0208c06ea34bfec68ec2e0740505b5
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-ml-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-ml-dev_4.2.0+dfsg-5_arm64.deb 281432 MD5Sum:f470030c6a6a60a0c0f345557d28e5ef
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-features2d-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-features2d-dev_4.2.0+dfsg-5_arm64.deb 276120 MD5Sum:e25aa7aecf6a80a6e8c960f0c99dd506
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-calib3d-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-calib3d-dev_4.2.0+dfsg-5_arm64.deb 649964 MD5Sum:7e3c260379e69e3c1012b95661525408
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/protobuf/libprotobuf17_3.6.1.3-2ubuntu5.2_arm64.deb' libprotobuf17_3.6.1.3-2ubuntu5.2_arm64.deb 690560 MD5Sum:f407dfa3b12aae5130e8055819139f12
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-dnn4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-dnn4.2_4.2.0+dfsg-5_arm64.deb 740848 MD5Sum:08d6f81ac585d28e82a8e154760e925d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-objdetect4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-objdetect4.2_4.2.0+dfsg-5_arm64.deb 132072 MD5Sum:570e52d64e02662f44d95f9ee968650a
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-photo4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-photo4.2_4.2.0+dfsg-5_arm64.deb 166964 MD5Sum:244f1bbef43c52b35db659ec998b9b28
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-video4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-video4.2_4.2.0+dfsg-5_arm64.deb 122344 MD5Sum:587a01a8a279ef119b0457d429ce8b94
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-shape4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-shape4.2_4.2.0+dfsg-5_arm64.deb 49180 MD5Sum:499152058404519e9f0574e9951d9d5c
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-stitching4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-stitching4.2_4.2.0+dfsg-5_arm64.deb 184900 MD5Sum:84062931a24e9ac9f8acde2641f0c848
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-superres4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-superres4.2_4.2.0+dfsg-5_arm64.deb 42056 MD5Sum:e42a85ba7840d340a82e9d9180c6d35e
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-videostab4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-videostab4.2_4.2.0+dfsg-5_arm64.deb 85560 MD5Sum:ff2ac4e5a0eb7b8c5cb0c18923eda680
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/v/vtk6/libvtk6.3_6.3.0%2bdfsg2-5build2_arm64.deb' libvtk6.3_6.3.0+dfsg2-5build2_arm64.deb 13865276 MD5Sum:770504028397fa366799eb33dff3851f
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-viz4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-viz4.2_4.2.0+dfsg-5_arm64.deb 107116 MD5Sum:5433e133121a834fb0423d3185ba313b
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/t/tesseract/libtesseract4_4.1.1-2build2_arm64.deb' libtesseract4_4.1.1-2build2_arm64.deb 1105756 MD5Sum:ea3b03d9ab2ad6f874a555049a7b8546
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-contrib4.2_4.2.0%2bdfsg-5_arm64.deb' libopencv-contrib4.2_4.2.0+dfsg-5_arm64.deb 2967640 MD5Sum:1e43699678527e7aa0a489053d1a5b3a
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-dnn-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-dnn-dev_4.2.0+dfsg-5_arm64.deb 1186528 MD5Sum:c5cf62b4bc5e5c7cde7537e62eb75b94
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-objdetect-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-objdetect-dev_4.2.0+dfsg-5_arm64.deb 169156 MD5Sum:340c1212b6ddc692b861a76d844fc2b3
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-photo-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-photo-dev_4.2.0+dfsg-5_arm64.deb 211112 MD5Sum:04ee61dda092634dc8b8a8a597583eaf
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-video-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-video-dev_4.2.0+dfsg-5_arm64.deb 161968 MD5Sum:084436c90495cad8608df6eb2f3ae38d
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-shape-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-shape-dev_4.2.0+dfsg-5_arm64.deb 67252 MD5Sum:a704c36e2e30ffdc7979b236b1810040
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-stitching-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-stitching-dev_4.2.0+dfsg-5_arm64.deb 240256 MD5Sum:8bdb94ac811cd68279f8e6ea930ad4af
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-superres-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-superres-dev_4.2.0+dfsg-5_arm64.deb 55408 MD5Sum:764a204b89b5f49bdcac7f2b3274aeda
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-videostab-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-videostab-dev_4.2.0+dfsg-5_arm64.deb 114612 MD5Sum:1962def494a36bbcb743e6c3805ee10a
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-viz-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-viz-dev_4.2.0+dfsg-5_arm64.deb 159648 MD5Sum:1c5fc1fad5256342b633962b005d1a72
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-contrib-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-contrib-dev_4.2.0+dfsg-5_arm64.deb 3927012 MD5Sum:c43ba48b910020530a7a8cc918228981
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-ts-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-ts-dev_4.2.0+dfsg-5_arm64.deb 305564 MD5Sum:47bd1d1b5cbaebcb190b13ad213477c6
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv4.2-jni_4.2.0%2bdfsg-5_arm64.deb' libopencv4.2-jni_4.2.0+dfsg-5_arm64.deb 306292 MD5Sum:49786774d444636019c70dd6a9a964a8
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv4.2-java_4.2.0%2bdfsg-5_all.deb' libopencv4.2-java_4.2.0+dfsg-5_all.deb 891796 MD5Sum:f3072fb2d324957295d264c3aec0de8f
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/libopencv-dev_4.2.0%2bdfsg-5_arm64.deb' libopencv-dev_4.2.0+dfsg-5_arm64.deb 84460 MD5Sum:4be05ba57a96c607ce87229fefc2c73c
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pcre3/libpcre16-3_8.39-12ubuntu0.1_arm64.deb' libpcre16-3_2%3a8.39-12ubuntu0.1_arm64.deb 125968 MD5Sum:ed9eb8a8ff7b3c10adf58f34a76059bb
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pcre3/libpcre32-3_8.39-12ubuntu0.1_arm64.deb' libpcre32-3_2%3a8.39-12ubuntu0.1_arm64.deb 118664 MD5Sum:8dc877e6803834df0764245553c6232d
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pcre3/libpcrecpp0v5_8.39-12ubuntu0.1_arm64.deb' libpcrecpp0v5_2%3a8.39-12ubuntu0.1_arm64.deb 14732 MD5Sum:34d284d178e5f6a2e7c14cf5f88ffd2a
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pcre3/libpcre3-dev_8.39-12ubuntu0.1_arm64.deb' libpcre3-dev_2%3a8.39-12ubuntu0.1_arm64.deb 467236 MD5Sum:a5308e93bcd806af81be2fa8a8266a3e
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocofoundation62_1.9.2-3ubuntu3_arm64.deb' libpocofoundation62_1.9.2-3ubuntu3_arm64.deb 401728 MD5Sum:5edbb68b4e5673333d6d05dc43851588
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpococrypto62_1.9.2-3ubuntu3_arm64.deb' libpococrypto62_1.9.2-3ubuntu3_arm64.deb 60628 MD5Sum:c4b3a123951463b23243b64f45f9c0c1
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocodata62_1.9.2-3ubuntu3_arm64.deb' libpocodata62_1.9.2-3ubuntu3_arm64.deb 342988 MD5Sum:e6e1610931569f87cb0cbf36ea7272a9
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocoencodings62_1.9.2-3ubuntu3_arm64.deb' libpocoencodings62_1.9.2-3ubuntu3_arm64.deb 318344 MD5Sum:397e4caac984fd95c9c67999f6827a0a
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocojson62_1.9.2-3ubuntu3_arm64.deb' libpocojson62_1.9.2-3ubuntu3_arm64.deb 83648 MD5Sum:d1a1fff546a5a46e2a1ee1121711ef93
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocodatamysql62_1.9.2-3ubuntu3_arm64.deb' libpocodatamysql62_1.9.2-3ubuntu3_arm64.deb 44700 MD5Sum:fa738dffb8d43c010401a63168fa5d9b
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpoconet62_1.9.2-3ubuntu3_arm64.deb' libpoconet62_1.9.2-3ubuntu3_arm64.deb 289248 MD5Sum:72bdca165c0298a693056ab65d186aa9
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocomongodb62_1.9.2-3ubuntu3_arm64.deb' libpocomongodb62_1.9.2-3ubuntu3_arm64.deb 62584 MD5Sum:3578b02ed015aab2b6357642f2326bc2
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocoxml62_1.9.2-3ubuntu3_arm64.deb' libpocoxml62_1.9.2-3ubuntu3_arm64.deb 121204 MD5Sum:aadce096a0a14454579ffcf660d627b4
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocoutil62_1.9.2-3ubuntu3_arm64.deb' libpocoutil62_1.9.2-3ubuntu3_arm64.deb 114536 MD5Sum:43b97abb39900b42cbb67f54a55a9357
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpoconetssl62_1.9.2-3ubuntu3_arm64.deb' libpoconetssl62_1.9.2-3ubuntu3_arm64.deb 68664 MD5Sum:2e865c5ad2574b9c4570d6d876578600
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocodataodbc62_1.9.2-3ubuntu3_arm64.deb' libpocodataodbc62_1.9.2-3ubuntu3_arm64.deb 192388 MD5Sum:6c92c1982965215519cec8bdb5f5a239
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocodatasqlite62_1.9.2-3ubuntu3_arm64.deb' libpocodatasqlite62_1.9.2-3ubuntu3_arm64.deb 84992 MD5Sum:c7cdb3dc9b0daf73c9ed338e5ef7e3ff
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocoredis62_1.9.2-3ubuntu3_arm64.deb' libpocoredis62_1.9.2-3ubuntu3_arm64.deb 44652 MD5Sum:78e21df13ce5c517e4c28a92ce97d0e9
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpocozip62_1.9.2-3ubuntu3_arm64.deb' libpocozip62_1.9.2-3ubuntu3_arm64.deb 76684 MD5Sum:4a7d6d335bcfcb1097ae4731ee395653
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/sqlite3/libsqlite3-dev_3.31.1-4ubuntu0.7_arm64.deb' libsqlite3-dev_3.31.1-4ubuntu0.7_arm64.deb 652104 MD5Sum:dc4f5d24905bbed34f39f7b37aca0fc6
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/poco/libpoco-dev_1.9.2-3ubuntu3_arm64.deb' libpoco-dev_1.9.2-3ubuntu3_arm64.deb 524016 MD5Sum:a29e46c931075812a2d8e5fd78e6b730
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/librbio2_5.7.1%2bdfsg-2_arm64.deb' librbio2_1%3a5.7.1+dfsg-2_arm64.deb 22248 MD5Sum:70f61fefb20e050ba2ac464d046a90f0
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libspqr2_5.7.1%2bdfsg-2_arm64.deb' libspqr2_1%3a5.7.1+dfsg-2_arm64.deb 57884 MD5Sum:415010f7da5f5f919380ec2b46715097
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libumfpack5_5.7.1%2bdfsg-2_arm64.deb' libumfpack5_1%3a5.7.1+dfsg-2_arm64.deb 180872 MD5Sum:ff05356f98e3256283a93b894455bea6
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/suitesparse/libsuitesparse-dev_5.7.1%2bdfsg-2_arm64.deb' libsuitesparse-dev_1%3a5.7.1+dfsg-2_arm64.deb 3083036 MD5Sum:9a4e58aa2a9249d47bcefbf8fe0bcdd3
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/t/tinyxml2/libtinyxml2-6a_7.0.0%2bdfsg-1build1_arm64.deb' libtinyxml2-6a_7.0.0+dfsg-1build1_arm64.deb 26940 MD5Sum:2e94e151977cf13183d734fd3ca454d2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python-dateutil/python3-dateutil_2.7.3-3ubuntu1_all.deb' python3-dateutil_2.7.3-3ubuntu1_all.deb 63272 MD5Sum:6e3e2b8ce7c98ae20d33e0f7b4e2fcd2
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python-roman/python3-roman_2.0.0-3build1_all.deb' python3-roman_2.0.0-3build1_all.deb 8728 MD5Sum:22cf0d3448c158b706a4d22e6cebef17
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python-docutils/python3-docutils_0.16%2bdfsg-2_all.deb' python3-docutils_0.16+dfsg-2_all.deb 368236 MD5Sum:266f58b6140ab56100d104d756477fa4
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pyparsing/python3-pyparsing_2.4.6-1_all.deb' python3-pyparsing_2.4.6-1_all.deb 61300 MD5Sum:d9e0edf7201cff8eaf58aa683f35a797
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python-cryptography/python3-cryptography_2.8-3ubuntu0.3_arm64.deb' python3-cryptography_2.8-3ubuntu0.3_arm64.deb 195176 MD5Sum:36a143207163da7926329f285800ac24
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/d/defusedxml/python3-defusedxml_0.6.0-2_all.deb' python3-defusedxml_0.6.0-2_all.deb 37008 MD5Sum:44980c24df792baaabc592c30370a5c4
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/e/empy/python3-empy_3.3.2-5.1_all.deb' python3-empy_3.3.2-5.1_all.deb 70408 MD5Sum:28923cd7d24440681713a197ad3ca4d6
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/p/python-gnupg/python3-gnupg_0.4.5-2_all.deb' python3-gnupg_0.4.5-2_all.deb 18272 MD5Sum:4550b45a92859f341f1ad2accc950f32
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/n/nose/python3-nose_1.3.7-5_all.deb' python3-nose_1.3.7-5_all.deb 115884 MD5Sum:5088c03a3f046acafc23189077af64ba
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/n/numpy/python3-numpy_1.17.4-5ubuntu3.1_arm64.deb' python3-numpy_1%3a1.17.4-5ubuntu3.1_arm64.deb 3232616 MD5Sum:e23bf3a30c9b6bea6d13e486966620dc
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/o/opencv/python3-opencv_4.2.0%2bdfsg-5_arm64.deb' python3-opencv_4.2.0+dfsg-5_arm64.deb 1031568 MD5Sum:077ce4ba894b1ab0a86dfecebf3b32b8
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python-bcrypt/python3-bcrypt_3.1.7-2ubuntu1_arm64.deb' python3-bcrypt_3.1.7-2ubuntu1_arm64.deb 26892 MD5Sum:61a43ec42e1d0e334140c433316e6949
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/paramiko/python3-paramiko_2.6.0-2ubuntu0.3_all.deb' python3-paramiko_2.6.0-2ubuntu0.3_all.deb 123324 MD5Sum:7497a6de06b7660188361be912bea2de
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/pycryptodome/python3-pycryptodome_3.6.1-2build4_arm64.deb' python3-pycryptodome_3.6.1-2build4_arm64.deb 5129508 MD5Sum:5f055cede4e821f6d480e589361fa456
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/p/python-distro/python3-distro_1.4.0-1_all.deb' python3-distro_1.4.0-1_all.deb 14600 MD5Sum:50982dc72f1e97bc60d57c9d87ac75e1
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/s/setuptools/python3-setuptools_45.2.0-1ubuntu0.3_all.deb' python3-setuptools_45.2.0-1ubuntu0.3_all.deb 330300 MD5Sum:4bf706868348dd8a67502d5f828c3e09
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/c/console-bridge/libconsole-bridge-dev_0.4.4%2bdfsg-1build1_arm64.deb' libconsole-bridge-dev_0.4.4+dfsg-1build1_arm64.deb 6640 MD5Sum:457231419968dde5e43fb65841458588
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/log4cxx/liblog4cxx-dev_0.10.0-15ubuntu2_arm64.deb' liblog4cxx-dev_0.10.0-15ubuntu2_arm64.deb 669032 MD5Sum:ba22eb6d6b5c15a2f8d4524681021275
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/t/tinyxml2/libtinyxml2-dev_7.0.0%2bdfsg-1build1_arm64.deb' libtinyxml2-dev_7.0.0+dfsg-1build1_arm64.deb 17996 MD5Sum:c79d213f414dd22fae513b93c05140af
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/g/gpgme1.0/libgpgme-dev_1.13.1-7ubuntu2.2_arm64.deb' libgpgme-dev_1.13.1-7ubuntu2.2_arm64.deb 320640 MD5Sum:7c24a62c57186085ffd41305d1f2a559
+'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lz4/liblz4-dev_1.9.2-2ubuntu0.20.04.1_arm64.deb' liblz4-dev_1.9.2-2ubuntu0.20.04.1_arm64.deb 72272 MD5Sum:90cab0fc6cc59ce61c6416bac96d1c9f
+'http://ports.ubuntu.com/ubuntu-ports/pool/universe/s/sbcl/sbcl_2.0.1-3_arm64.deb' sbcl_2%3a2.0.1-3_arm64.deb 8116420 MD5Sum:58ea62ce4482944f0a906fda105f8ed9

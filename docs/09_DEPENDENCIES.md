@@ -1,0 +1,30 @@
+# ROS 1 板端依赖下载
+
+更新日期：2026-10-14
+
+本分支从 master 最新 8c7c8d2 建立，原生桌面 ROS 1 记录与历史 tag 保留；ROS 2 板端实现留在 codex/rk3588-ros2。普通 clone 只取得锁和空目录，不自动下载依赖
+
+联网 Linux x86_64 主机在仓库根执行：
+
+```bash
+python3 infra/dependencies/fetch.py
+```
+
+需要系统 Python 3、curl、dpkg-deb，无需安装系统包。脚本核验 SHA256 后解包，下载/源码/工具链/sysroot 忽略；已有内容与锁不符时停止。--offline 只用缓存，--cache-from 可重复指定已校验缓存，--sources-only 只取通用源码
+
+| 内容 | 固定版本 / 范围 | 目录 |
+| --- | --- | --- |
+| OpenCV / Ceres / Eigen | 4.2.0 / 1.14.0 / 3.3.9 | dependencies/sources/ 各自版本目录 |
+| cv_bridge 源码 | 1.16.2 | dependencies/sources/cv_bridge_ros1/1.16.2 |
+| 交叉工具链 | Focal GCC 9.4，36 个 amd64/all 包 | dependencies/toolchain/root |
+| Noetic SDK | Focal/Noetic final，807 个 arm64/all 包 | dependencies/sysroots/ros1-noetic/root |
+
+官方 Noetic 平台为 Focal / Python 3.8 / Boost 1.71，独立前缀保持这组 ABI；板端系统继续 Ubuntu 22.04。当前只完成索引验签与依赖锁，下载、编译及实际板端兼容性待验收，不能当作已运行 ROS 1。与 ROS 2 的编译器/传递依赖差异需单列，性能变化不能仅归因于 ROS 版本
+
+[source lock](../dependencies/sources.lock.json) 与包锁 dependencies/locks/*.json 记录版本、架构、URL 和 SHA256。来自私有 APT 空状态的依赖解析，ROS snapshot 使用官方 Dockerfile 固定的独立公钥指纹；所有包 SHA256 取自已认证 Packages，而非 print-uris 的 MD5。签名索引、请求与解析证据见 [归档](../infra/rk3588/reference/ros1_sdk_discovery_20261014/)
+
+解包后将绝对目标符号链接改为 sysroot 内相对链接；必要的 Noetic CMake libpython 导出加 CMAKE_SYSROOT，变化记入 sysroot 审计 JSON，原包哈希不变。不执行 postinst、不改主机或板端系统；交叉构建与运行包另验收，不能直接部署 SDK 自带 OpenCV/cv_bridge 代替固定源码重建
+
+安装/构建、数据和完整日志仍在父工作区 .infra/、data/、results/，仓库根不建软链接。下载只在主机执行，不在离线板端执行此脚本，不运行桌面 x86 bootstrap 于 ARM
+
+[官方平台要求](https://raw.githubusercontent.com/ros-infrastructure/rep/master/rep-0003.rst)、[官方 Noetic snapshot 配置](https://raw.githubusercontent.com/osrf/docker_images/master/ros/noetic/ubuntu/focal/ros-core/Dockerfile)
