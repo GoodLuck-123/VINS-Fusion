@@ -13,9 +13,9 @@
 | ARM 视觉库 | legacy05 + legacy-smoke01 | 固定 OpenCV/Ceres/Eigen，板端计算和动态库验收通过 |
 | ARM ROS 2 构建 / 运行环境 | ros2-build04、runtime01、fastrtps02 | 五包构建、依赖闭包、节点/组件生命周期与完整部署哈希通过 |
 | ROS 2 完整 VIO | baseline02、components01、pmu01 | 八轮去重配置完整输入/末帧/评估/退出通过，PMU 无错误或复用 |
-| 共享计算探针 | shared-probe01 | memfd/实际 DMA heap 各 1000 帧、失败和 outstanding 均为 0 |
-| ROS 1 ARM | ros1-fetch01、ros1-legacy02、ros1-build02 | 依赖、视觉库与五包/六程序/70 个 ELF 闭包通过，板端仍待验收 |
-| 当前后台任务 | board-shared01、ros1-package01 | 板端四轮共享 VIO 串行；主机打包独立 Noetic/Python 3.8 运行环境 |
+| 共享计算探针 / 完整 memfd | shared-probe01、board-shared01 | 两后端计算探针与四轮完整共享 VIO 通过，槽位全部归还 |
+| ROS 1 ARM | ros1-fetch01、ros1-legacy02、ros1-build02 | 依赖、视觉库与五包/六程序/70 个 ELF 闭包通过，视觉库实际板端计算通过，Noetic 节点/回放仍待验收 |
+| 当前后台任务 | board-dma-heap01 | 板端实际 system DMA heap 双目/单目各一轮，串行运行 |
 
 初次统一审计时主机只剩 Docker 准备服务的 failed 状态，没有活进程；后续任务见上表。失败日志保留，终止状态不当作仍在运行。Git 核心实现和 config 与桌面交接 7d42fac 一致，没有并发修改或合并冲突；本轮改变的是依赖准备、构建兼容和部署工具
 
@@ -71,3 +71,5 @@ board-components01、board-pmu01 两条迟到事件再次与已验收归档逐�
 shared-probe-build01 与 shared_probe_20261014/build_event.json 逐字节一致，已包含在共享计算探针里程碑 8f04c3f，只去重。ROS 1 ros1-build02 已在所属分支验收并打 tag，主机退出 0 加 ELF/编译路径完整性核验通过；原 VINS/core/config 不变。ros1-package01 只负责新运行包准备，未部署、未进行板端 ROS 1 回放
 
 board-shared01 四轮完整回放/主机评估、逐帧摘要与槽位归还已接受，事件/SHA256 见 [归档](../infra/rk3588/reference/shared_20261014/)，结束审计无活作业。ros1-fetch01 迟到事件与 ROS 1 分支冻结归档逐字节一致，只去重；ros1-package01 主机完成，板端运行环境仍待验收。ROS 1 视觉库的实际板端计算探针 ros1-legacy-smoke01 已通过，提交在其所属分支
+
+board-dma-heap01 在完整共享里程碑 5e685b1 与 ROS 1 视觉库实际计算里程碑 6c4703a 均提交后启动，板端只有这一批活动 VIO；每配置一次、明确 system heap，无自动回退。ROS 1 运行包和生命周期脚本已在主机准备，待本批结束后再部署，不并发板端工作
