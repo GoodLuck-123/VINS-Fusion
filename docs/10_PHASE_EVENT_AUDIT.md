@@ -11,10 +11,13 @@
 | 桌面 Ubuntu | 全部 52 轮及交接已完成 | 旧通知不触发重跑或新修补 |
 | 工具链 / SDK 包 | toolchain02、sysroot03、dependencies01 | 包锁有效；后续 sysroot 链接和 CMake 导出重定位仍必须保留 |
 | ARM 视觉库 | legacy05 + legacy-smoke01 | 固定 OpenCV/Ceres/Eigen，板端计算和动态库验收通过 |
-| ARM ROS 2 构建 | ros2-build04 | 五个包构建完成，76 个 ARM ELF 依赖闭包无缺库或 4.5 混链；板端 VIO 待验收 |
-| 当前后台任务 | 无 | 主机无构建/实验残留，板端七个旧作业均已终止 |
+| ARM ROS 2 构建 / 运行环境 | ros2-build04、runtime01、fastrtps02 | 五包构建、依赖闭包、节点/组件生命周期与完整部署哈希通过 |
+| ROS 2 完整 VIO | baseline02、components01、pmu01 | 八轮去重配置完整输入/末帧/评估/退出通过，PMU 无错误或复用 |
+| 共享计算探针 | shared-probe01 | memfd/实际 DMA heap 各 1000 帧、失败和 outstanding 均为 0 |
+| ROS 1 ARM | ros1-fetch01、ros1-legacy02 | 依赖下载、主机视觉库/消费端链接通过，板端仍待验收 |
+| 当前后台任务 | board-shared01、ros1-build02 | 板端四轮共享 VIO 串行；主机独立 ROS 1 工程交叉构建 |
 
-主机只剩最初 Docker 准备服务的 failed 状态，没有活进程。未清除失败日志，也没有把失败状态当作仍在运行。Git 核心实现和 config 与桌面交接 7d42fac 一致，没有并发修改或合并冲突；本轮改变的是依赖准备、构建兼容和部署工具
+初次统一审计时主机只剩 Docker 准备服务的 failed 状态，没有活进程；后续任务见上表。失败日志保留，终止状态不当作仍在运行。Git 核心实现和 config 与桌面交接 7d42fac 一致，没有并发修改或合并冲突；本轮改变的是依赖准备、构建兼容和部署工具
 
 ## 失败与被替代阶段
 
@@ -62,3 +65,5 @@ board-pmu01 已接受为两轮完整 PMU 对照，四类事件无错误/复用�
 shared-probe01 已接受为 memfd/实际 DMA heap 计算探针，两后端各 1000 帧、失败和 outstanding 均为 0，结束审计无残留；事件与 SHA256 见 [归档](../infra/rk3588/reference/shared_probe_20261014/)。不是完整 VIO。重新读取全部当前 RK3588 event 后，fastrtps02、board-baseline02 与已接受事件逐字节一致，只去重；新 ROS 1 视觉库首次构建失败在独立 ROS 1 分支处理，不回退 ROS 2 运行包
 
 ros1-sdk-discovery01 迟到事件与 ROS 1 分支已接受归档逐字节一致，只去重。ros1-legacy02 主机视觉库构建及独立消费端链接通过，证据位于 ROS 1 分支 infra/rk3588/reference/ros1_legacy_build_20261014/；板端计算和完整 ROS 1 回放待验收，ROS 2 当前仅 board-shared01 活动
+
+board-components01、board-pmu01 两条迟到事件再次与已验收归档逐字节核对一致，只去重，分别对应 a545a95 / af6c635，不重复提交里程碑或重跑。ros1-build01 在独立分支保留失败证据；Noetic 原生库/头文件导出路径重定位后启动 ros1-build02，已进入原 VINS 编译，仍需完成闭包、板端 ABI 和回放验收

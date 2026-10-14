@@ -61,7 +61,9 @@ board-pmu01 两轮已通过完整输入/末帧、评估与退出，四类用户�
 
 共享计算探针里程碑 commit 8f04c3f / tag milestone-rk3588-shared-probe-v1；board-shared01 已交给后台 runner，双目/单目 × ROS Image/memfd 四轮串行回放、回收与主机评估。DMA heap 两轮入口已固定，待前一批验收后执行，当前尚无完整 DMA heap VIO 结果
 
-ROS 1 板端目标 codex/rk3588-ros1 已从 master 最新 8c7c8d2 建立独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1，依赖锁 commit 6578b00。主机只读 APT 解析已验签，807 个 Focal/Noetic SDK 包和 36 个 GCC 9.4 工具链包固定 SHA256；ros1-fetch01 下载及离线复核已通过，依赖里程碑 commit 30b9d96；ros1-legacy01 因旧主机 libstdc++ 抢占 CMake 失败，已隔离编译器/汇编器支持库并通过系统 CMake 与 ARM 编译探针，ros1-legacy02 已退出 0，消费端链接及 25 个 ARM 运行库闭包通过；计算探针待当前共享批次结束后在板端验证，ROS 1 完整回放仍未验收。当前 ROS 2 工作区与已部署运行包保持固定
+ROS 1 板端目标 codex/rk3588-ros1 已从 master 最新 8c7c8d2 建立独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1，依赖锁 commit 6578b00。主机只读 APT 解析已验签，807 个 Focal/Noetic SDK 包和 36 个 GCC 9.4 工具链包固定 SHA256；ros1-fetch01 下载及离线复核已通过，依赖里程碑 commit 30b9d96；ros1-legacy01 因旧主机 libstdc++ 抢占 CMake 失败，已隔离编译器/汇编器支持库并通过系统 CMake 与 ARM 编译探针，ros1-legacy02 已退出 0，消费端链接及 25 个 ARM 运行库闭包通过；计算探针待当前共享批次结束后在板端验证，ROS 1 完整回放仍未验收
+
+ROS 1 工程首次构建 ros1-build01 的 SDK 绝对 log4cxx/Boost 库路径问题已修正并保留失败证据，fetch.py 对目标库/头文件导出做可重复的 sysroot 重定位。ros1-build02 在主机后台编译原 VINS，仅重建 C++ cv_bridge，不生成目标 Python 扩展。当前 ROS 2 工作区与已部署运行包保持固定
 
 2026-10-14 全局核对时已统一读取 52 个 event/state、核对 29 个阶段和全部归档；当时主机无活构建/实验，板端七个旧作业均已结束。后续新阶段续写账本，积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
 
