@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/deploy_fastrtps_runtime.py",
+    "--runtime",
+    "/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload"
+  ],
+  "pid": 102801,
+  "status": "failed",
+  "start_utc": "2026-10-14T07:02:30Z",
+  "exit_code": 1,
+  "end_utc": "2026-10-14T07:02:32Z"
+}

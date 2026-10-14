@@ -1,0 +1,32 @@
+toolchain: 25 pinned package hashes verified
+ros2-sdk: 807 pinned package hashes verified
+Download: ros-humble-fastrtps_2.6.12-1jammy.20260725.060440_arm64.deb
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+curl: (60) SSL: no alternative certificate subject name matches target host name 'packages.ros.org'
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+Traceback (most recent call last):
+  File "/home/eric/projects/VINS-Fusion/infra/dependencies/fetch.py", line 175, in <module>
+    main()
+  File "/home/eric/projects/VINS-Fusion/infra/dependencies/fetch.py", line 168, in main
+    archives = [fetch(p, cache, args.cache_from, args.offline) for p in packages]
+  File "/home/eric/projects/VINS-Fusion/infra/dependencies/fetch.py", line 168, in <listcomp>
+    archives = [fetch(p, cache, args.cache_from, args.offline) for p in packages]
+  File "/home/eric/projects/VINS-Fusion/infra/dependencies/fetch.py", line 45, in fetch
+    subprocess.run(['curl', '--fail', '--location', '--retry', '3',
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['curl', '--fail', '--location', '--retry', '3', '--connect-timeout', '20', '--output', '/home/eric/projects/VINS-Fusion/dependencies/cache/ros-humble-fastrtps_2.6.12-1jammy.20260725.060440_arm64.deb.part', 'https://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-fastrtps/ros-humble-fastrtps_2.6.12-1jammy.20260725.060440_arm64.deb']' returned non-zero exit status 60.
+Traceback (most recent call last):
+  File "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/deploy_fastrtps_runtime.py", line 29, in <module>
+    main()
+  File "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/deploy_fastrtps_runtime.py", line 17, in main
+    subprocess.run(['/usr/bin/python3', str(REPO / 'infra/dependencies/fetch.py')], check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/bin/python3', '/home/eric/projects/VINS-Fusion/infra/dependencies/fetch.py']' returned non-zero exit status 1.
