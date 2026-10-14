@@ -6,7 +6,7 @@
 
 ## 分支与里程碑
 
-复现直接提交到所属原分支：ROS 1 为 master，ROS 2 为当前 checkout ros2-humble，从现有最新提交 `b250dc0` 继续。不另建复现分支，不将 ROS 2 合入 master，不移动历史 tag、不改写旧冻结归档；当前未授权远端 push
+复现直接提交到所属原分支：ROS 1 为 master，ROS 2 为当前 checkout ros2-humble，从现有最新提交 `b250dc0` 继续。不另建复现分支，不将 ROS 2 合入 master，不移动历史 tag、不改写旧冻结归档；2026-10-14 用户已授权核验后 push 所属目标分支与新增 tag
 
 | 所属分支 / 阶段 | 本机验收 | 新 tag |
 | --- | --- | --- |
@@ -40,3 +40,9 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 实验室目标仍为灰度单目 + 200 Hz IMU、开环 VIO。EuRoC 源端仍向池中复制像素，VGEM 仅为软件 DMA-BUF/CPU 映射验证。RK3588、真实相机、RGA/NEON/NPU 未验收，回环/GNSS/KITTI/RViz 未完成数据验收；设计范围见 [第 01 份任务书](01_RK3588_DEPLOYMENT_PLAN.md)
 
 下一项为用户已授权的 RK3588 板端工作：配置免密 SSH、固定 scp/部署/运行/日志回收工具、在联网主机下载依赖并优先交叉编译，再按配置各跑一轮。板端 Ubuntu 22.04.5/aarch64 已连通，尚未做板端 VIO 验收；后续从当前 ROS 2 最新提交建立目标分支，保留本轮分支/tag
+
+## 2026-10-14 用户授权推送
+
+原生 Ubuntu 52 轮和后续板端 15 个去重配置已完成，桌面 ROS 1/ROS 2 与板端两个目标分支独立提交。用户现授权核验后推送 master、ros2-humble、codex/rk3588-ros1、codex/rk3588-ros2 及所属新增 tag，仅 fast-forward/新增 refs，旧 tag 不移动，未使用复现支线不推送
+
+代码/文档在主机，板端没有 Git 仓库，有效运行包哈希与主机一致；29 个旧作业 441 份日志均在主机有相同哈希副本，无遗漏待提交源码/文档。待推内容不含下载依赖、构建库、bag、私钥或 GitHub token，发布前证据位于 codex/rk3588-ros2 的 infra/rk3588/reference/publication_check_20261014/；历史冻结“未 push”为当时状态，不改写
