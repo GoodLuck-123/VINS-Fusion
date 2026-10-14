@@ -8,7 +8,7 @@
 
 DDR 流量不可用；CPU 能量节点默认不可读。GPU hwmon 功率不代表 CPU VIO 功耗
 
-ROS 1 四轮复现已完成，ROS 2 与后续里程碑待执行。完整清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
+本分支保留 master 的 ROS 1 四轮原生复现结果；桌面 ROS 2 和板端 ROS 2 结果分别记录在 ros2-humble、codex/rk3588-ros2 的同名报告。本分支后续续写 RK3588 ROS 1 实测，当前 SDK 已锁定、下载待完成，尚无板端 ROS 1 结果。历史桌面清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
 
 <!-- native-phase:ros1 -->
 ## ROS 1 原版参照与资源对照（2026-10-13）
