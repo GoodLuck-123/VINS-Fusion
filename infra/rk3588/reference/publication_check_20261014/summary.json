@@ -1,0 +1,20 @@
+{
+  "user_authorized_push_date": "2026-10-14",
+  "scope": [
+    "master",
+    "ros2-humble",
+    "codex/rk3588-ros1",
+    "codex/rk3588-ros2"
+  ],
+  "board_git_repositories": 0,
+  "board_runtime_files_checked": 11251,
+  "board_runtime_changes": 0,
+  "board_prior_jobs": 29,
+  "board_log_files_matched_on_host": 441,
+  "missing_board_logs_on_host": 0,
+  "board_active_prior_jobs": 0,
+  "tracked_downloaded_dependencies": 0,
+  "tracked_runtime_bags_or_build_libraries": 0,
+  "credential_pattern_matches": 0,
+  "push_policy": "Explicit target branches and missing reachable annotated tags, atomic fast-forward; no force/all/mirror; historical tags unchanged"
+}

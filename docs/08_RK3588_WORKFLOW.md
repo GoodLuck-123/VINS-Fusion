@@ -172,4 +172,4 @@ ROS 2 14 个去重配置、ROS 1 唯一双目配置各一轮已完成，实际�
 
 ROS 1 的编译/打包/部署/完整实验脚本在所属 codex/rk3588-ros1，checkout /home/eric/projects/VINS-Fusion-rk3588-ros1；该分支第 08 份说明给出完整入口。run_ros1_board_phase.py 自动传 bag、核验、回放、回收并评估；--evaluate-only 仅主机恢复既有轨迹评估。源码/历史 tag 和失败事件不改写，板端只运行一批，下载仅主机
 
-最终证据核验从 ROS 2 checkout 执行 verify_board_archives.py --ros1-repo 指向独立 ROS 1 checkout --output 新报告.json；它校验两分支归档/解压前哈希与各自桌面核心一致性，不启动或轮询 VIO，不移动历史 tag。未授权 push
+最终证据核验从 ROS 2 checkout 执行 verify_board_archives.py --ros1-repo 指向独立 ROS 1 checkout --output 新报告.json；它校验两分支归档/解压前哈希与各自桌面核心一致性，不启动或轮询 VIO，不移动历史 tag。2026-10-14 用户新增授权核验后 push 四个所属目标分支和新增 tag，检查见第 00 份入口

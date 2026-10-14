@@ -1,0 +1,39 @@
+{
+  "outgoing_objects": 1846,
+  "largest_blobs": [
+    {
+      "bytes": 3953494,
+      "path": "infra/rk3588/reference/baseline_20261014/rk_baseline02_stereo_imu_standalone_copy_ros_1/groundtruth.tum"
+    },
+    {
+      "bytes": 1250927,
+      "path": "infra/rk3588/reference/dma_heap_20261014/board/rk_dma_heap01_mono_imu_split_share_dma_heap_2/groundtruth.tum.gz"
+    },
+    {
+      "bytes": 1250911,
+      "path": "infra/rk3588/reference/pmu_20261014/rk_pmu01_stereo_imu_standalone_copy_ros_1/groundtruth.tum.gz"
+    },
+    {
+      "bytes": 958872,
+      "path": "infra/rk3588/reference/runtime_20261014/payload_files.json"
+    },
+    {
+      "bytes": 677195,
+      "path": "infra/rk3588/reference/components_20261014/telemetry.jsonl"
+    },
+    {
+      "bytes": 551674,
+      "path": "infra/rk3588/reference/ros1_runtime_20261014/payload_files.json"
+    },
+    {
+      "bytes": 551574,
+      "path": "infra/rk3588/reference/ros1_package_host_20261014/files.json"
+    },
+    {
+      "bytes": 317093,
+      "path": "dependencies/locks/ros2-sdk.json"
+    }
+  ],
+  "credential_pattern_matches": [],
+  "unexpected_local_directories": []
+}

@@ -1,0 +1,83 @@
+{
+  "historical_ref": "b250dc0",
+  "manifests": [
+    {
+      "directory": "infra/desktop/baseline_reference",
+      "files": 18
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/components_images_20261010",
+      "files": 85
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/dmabuf_20261010",
+      "files": 77
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_shared_repeats_20261013",
+      "files": 308
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/components",
+      "files": 102
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/feature_consistency",
+      "files": 35
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/handoff",
+      "files": 8
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/local_probes",
+      "files": 26
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/pmu",
+      "files": 30
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/ros1",
+      "files": 59
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/ros1_startup_failure_audit",
+      "files": 2
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/ros1_startup_failures",
+      "files": 4
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/ros2_baseline",
+      "files": 45
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/shared",
+      "files": 60
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/native_ubuntu22_20261013/vgem",
+      "files": 35
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/pmu_capabilities_20261010",
+      "files": 24
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/shared_memory_20261010",
+      "files": 53
+    },
+    {
+      "directory": "infra/desktop/comparison_reference/shared_repeats_20261010",
+      "files": 306
+    },
+    {
+      "directory": "infra/desktop/ros2_reference",
+      "files": 39
+    }
+  ],
+  "total_manifest_entries": 1316,
+  "original_snapshot_blobs_unchanged": 609
+}
