@@ -47,7 +47,7 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 最新 ros2-build04 已完成五个包的 ARM 构建，76 个 ELF 依赖闭包无缺库、无 OpenCV 4.5 混链。当前有效安装为 ../.infra/rk3588/legacy/ 与 ../.infra/rk3588/ros2_ws_overlay/install/；旧 legacy_before_sysroot_links/ 与 ros2_ws/ 只保留失败追溯。板端 VINS 部署、完整 VIO 与 ROS 1 ARM 实验尚待验收
 
-运行包生成与部署检查已固定为 prepare_ros2_runtime.py / deploy_ros2_runtime.sh，runtime01 正在后台执行 scp 和节点生命周期检查；结果目录 ../results/rk3588/runtime01/。该探针没有 VIO 输入，结束后核验日志再提交验收里程碑
+运行包生成与部署检查已固定为 prepare_ros2_runtime.py / deploy_ros2_runtime.sh，runtime01 板端文件哈希、导入、独立节点与组件加载/卸载及退出全部通过，OpenCV maps 为运行包 4.2；结果目录 ../results/rk3588/runtime01/，证据见第 08 份文档。该探针没有 VIO 输入，完整回放仍待验收
 
 2026-10-14 已统一读取全部 52 个 event/state、核对 29 个阶段和全部归档；主机无活构建/实验，板端七个旧作业均已结束。积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
 

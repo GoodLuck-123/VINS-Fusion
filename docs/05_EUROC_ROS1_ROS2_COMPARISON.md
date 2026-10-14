@@ -309,3 +309,9 @@ ros2-build04 在独立 ros2_ws_overlay 完成 cv_bridge 与四个项目 package 
 同次核对一次性读取全部 52 个 event/state、覆盖 29 个阶段，确认配对记录无不一致；板端 13 个阶段已统一归类，两次退出 0 的不合格构建未接受为成功。主机无活动任务，板端七个先前作业均已结束；桌面 19 份清单/1316 条哈希、板端原有 14 份清单/103 条哈希及 1276 个桌面交接快照文件核验通过，核心/config 与 7d42fac 一致
 
 [全局证据和事件路径/SHA256 账本](../infra/rk3588/reference/global_audit_20261014/)，当前有效产物与迟到通知处理规则见 [第 10 份说明](10_PHASE_EVENT_AUDIT.md)。下一项仅使用已核验的 ros2_ws_overlay/install 与 legacy 部署，不复用旧混链产物
+
+## RK3588 ROS 2 运行环境验收（2026-10-14）
+
+runtime01 通过固定 scp/远端工具部署运行包，板端校验 6991 个文件 SHA256；rclpy、sensor_msgs、composition_interfaces、rosbag2_py 在板端 Python 3.10.12 导入成功。Cyclone DDS 下，独立 VINS 节点及组件均创建完整双目/IMU 订阅，组件加载/卸载成功，独立节点与容器退出均为 0。ldd 无缺库，实际进程 maps 仅出现运行包 OpenCV 4.2；主机外层事件也退出 0
+
+运行包未包含静态库、KITTI 程序或 SDK cv_bridge/OpenCV 4.5，保留板端 glibc/loader。核心和 config 与干净交叉构建 c0ae27d 一致，逐文件清单、动态库 maps、节点日志与事件见 [运行环境证据](../infra/rk3588/reference/runtime_20261014/)。没有 bag 输入，计数为零，本阶段没有轨迹、ATE/RPE 或 VINS 性能结论

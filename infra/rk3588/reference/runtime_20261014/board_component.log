@@ -1,0 +1,31 @@
+1772735287.928518 [121] component_: selected interface "lo" is not multicast-capable: disabling multicast
+[INFO] [1772735288.154045149] [rk_smoke_container]: Load Library: /home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/.infra/ros2_ws/install/lib/libvins_component.so
+[INFO] [1772735288.198045695] [rk_smoke_container]: Found class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1772735288.198230028] [rk_smoke_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<vins_ros::VinsNode>
+[INFO] [1772735288.207613862] [vins_estimator]: init begins
+USE_IMU: 1
+IMU_TOPIC: /imu0
+result path /home/firefly/vins-workspace/jobs/1791960441164-99946/logs/vio.csv
+[WARN] [1772735288.220363197] [vins_estimator]:  fix extrinsic param 
+[INFO] [1772735288.221119780] [vins_estimator]: Synchronized sensors, fix time offset: 0
+[INFO] [1772735288.221292739] [vins_estimator]: ROW: 480 COL: 752 
+camera number 2
+ exitrinsic cam 0
+ 0.0148655  -0.999881  0.0041403
+  0.999557  0.0149672  0.0257155
+-0.0257744 0.00375619   0.999661
+-0.0216401  -0.064677 0.00981073
+ exitrinsic cam 1
+ 0.0125553  -0.999755  0.0182238
+  0.999599  0.0130119  0.0251588
+-0.0253898  0.0179006   0.999517
+-0.0198436  0.0453689 0.00786212
+set g       0       0 9.81007
+[INFO] [1772735288.222077906] [vins_estimator]: reading paramerter of camera /home/firefly/vins-workspace/jobs/1791960441164-99946/logs/cam0_mei.yaml
+[INFO] [1772735288.223105447] [vins_estimator]: reading paramerter of camera /home/firefly/vins-workspace/jobs/1791960441164-99946/logs/cam1_mei.yaml
+[INFO] [1772735288.255648951] [vins_estimator]: VINS component ready (stereo)
+[INFO] [1772735288.324777749] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+MULTIPLE_THREAD is 1
+join thread 
+sensor_counts img0=0 img1=0 imu=0 processed=0
+image_ingress mode=share shared=0 materializations=0 bytes=0
