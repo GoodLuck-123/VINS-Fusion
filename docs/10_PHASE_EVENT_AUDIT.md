@@ -14,8 +14,8 @@
 | ARM ROS 2 构建 / 运行环境 | ros2-build04、runtime01、fastrtps02 | 五包构建、依赖闭包、节点/组件生命周期与完整部署哈希通过 |
 | ROS 2 完整 VIO | baseline02、components01、pmu01 | 八轮去重配置完整输入/末帧/评估/退出通过，PMU 无错误或复用 |
 | 共享计算探针 | shared-probe01 | memfd/实际 DMA heap 各 1000 帧、失败和 outstanding 均为 0 |
-| ROS 1 ARM | ros1-fetch01、ros1-legacy02 | 依赖下载、主机视觉库/消费端链接通过，板端仍待验收 |
-| 当前后台任务 | board-shared01、ros1-build02 | 板端四轮共享 VIO 串行；主机独立 ROS 1 工程交叉构建 |
+| ROS 1 ARM | ros1-fetch01、ros1-legacy02、ros1-build02 | 依赖、视觉库与五包/六程序/70 个 ELF 闭包通过，板端仍待验收 |
+| 当前后台任务 | board-shared01、ros1-package01 | 板端四轮共享 VIO 串行；主机打包独立 Noetic/Python 3.8 运行环境 |
 
 初次统一审计时主机只剩 Docker 准备服务的 failed 状态，没有活进程；后续任务见上表。失败日志保留，终止状态不当作仍在运行。Git 核心实现和 config 与桌面交接 7d42fac 一致，没有并发修改或合并冲突；本轮改变的是依赖准备、构建兼容和部署工具
 
@@ -67,3 +67,5 @@ shared-probe01 已接受为 memfd/实际 DMA heap 计算探针，两后端各 10
 ros1-sdk-discovery01 迟到事件与 ROS 1 分支已接受归档逐字节一致，只去重。ros1-legacy02 主机视觉库构建及独立消费端链接通过，证据位于 ROS 1 分支 infra/rk3588/reference/ros1_legacy_build_20261014/；板端计算和完整 ROS 1 回放待验收，ROS 2 当前仅 board-shared01 活动
 
 board-components01、board-pmu01 两条迟到事件再次与已验收归档逐字节核对一致，只去重，分别对应 a545a95 / af6c635，不重复提交里程碑或重跑。ros1-build01 在独立分支保留失败证据；Noetic 原生库/头文件导出路径重定位后启动 ros1-build02，已进入原 VINS 编译，仍需完成闭包、板端 ABI 和回放验收
+
+shared-probe-build01 与 shared_probe_20261014/build_event.json 逐字节一致，已包含在共享计算探针里程碑 8f04c3f，只去重。ROS 1 ros1-build02 已在所属分支验收并打 tag，主机退出 0 加 ELF/编译路径完整性核验通过；原 VINS/core/config 不变。ros1-package01 只负责新运行包准备，未部署、未进行板端 ROS 1 回放
