@@ -5,6 +5,7 @@ source "$repo/infra/rk3588/scripts/cross_env.sh"
 export VINS_ARM_ROS_PREFIX="${VINS_ARM_ROS_PREFIX:-$(dirname "$repo")/.infra/rk3588/ros2_ws/install}"
 build="$(dirname "$repo")/.infra/rk3588/ros2_ws/build"
 ros="$VINS_ARM_SYSROOT/opt/ros/humble"
+export AMENT_PREFIX_PATH="$VINS_ARM_ROS_PREFIX:$ros"
 # Only pure Python build helpers are executed on the host. Target Python/NumPy
 # headers and libpython are passed explicitly; no ARM Python executable is run.
 export PYTHONPATH="$ros/local/lib/python3.10/dist-packages:$ros/lib/python3.10/site-packages:$VINS_ARM_SYSROOT/usr/lib/python3/dist-packages"

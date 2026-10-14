@@ -143,3 +143,5 @@ legacy04 的库构建退出 0，但消费端链接探针失败，未接受为里
 视觉库必须同时通过消费端链接和板端运行：`bash infra/rk3588/scripts/prepare_legacy_smoke.sh` 构建/打包探针，再用 C++ 工具传输并运行 `infra/rk3588/scripts/legacy_smoke.sh`。探针检查带 padding 的灰度输入、GFTT/LK 位移与输入不变，以及 SuiteSparse/CXSparse 两种实际稀疏求解；源码在 infra/rk3588/probes/legacy/，不能将 ldd 或 ELF 检查替代这些运行验收
 
 legacy05 与 legacy-smoke01 已通过完整库构建、消费端链接及板端实际计算验收，见 [视觉库快照](../infra/rk3588/reference/legacy_20261014/)。OpenCV/Ceres/Eigen 版本固定，Ceres 启用宏与原生一致；传递依赖的版本/BLAS 实现差异及旧 SuiteSparse 说明更正在第 05 份报告明确列出。下一步执行 ARM ROS 2 项目构建，仍未运行板端 VIO
+
+ARM ROS 2 首次配置在 typesupport 资源索引查询前停止，包实际已存在，见 [配置失败](../infra/rk3588/reference/ros2_build01_failure/)。构建脚本补上目标 AMENT_PREFIX_PATH，与 CMake 包路径一致；主机/目标 Python 和 Boost 查找已通过，不修改 VINS 核心。后续阶段为 ros2-build02，仍需完整构建及板端运行验收
