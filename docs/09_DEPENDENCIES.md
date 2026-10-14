@@ -28,3 +28,9 @@ python3 infra/dependencies/fetch.py
 安装/构建、数据和完整日志仍在父工作区 .infra/、data/、results/，仓库根不建软链接。下载只在主机执行，不在离线板端执行此脚本，不运行桌面 x86 bootstrap 于 ARM
 
 [官方平台要求](https://raw.githubusercontent.com/ros-infrastructure/rep/master/rep-0003.rst)、[官方 Noetic snapshot 配置](https://raw.githubusercontent.com/osrf/docker_images/master/ros/noetic/ubuntu/focal/ros-core/Dockerfile)
+
+## 交叉构建入口
+
+SDK 下载结束并核验后，在新的主机 bash 中运行 bash infra/rk3588/scripts/build_legacy.sh，默认独立前缀 ../.infra/rk3588/ros1-legacy/，GNU Make 四任务，保留 Eigen/OpenCV/Ceres 版本及稀疏/LAPACK 功能。尚未执行此构建，板端实际兼容性待验收
+
+私有 GCC 9.4 的原 ipcp-unit-growth 参数已通过空翻译单元 ARM 编译，GCC 11 的参数改名在此编译器被拒绝；因此使用原 OpenCV 源码，证据见 [编译器参数核验](../infra/rk3588/reference/ros1_compiler_parameters_20261014/)。当前 ROS 1 与 ROS 2 使用独立 ABI 前缀和编译器，不混用已有 install
