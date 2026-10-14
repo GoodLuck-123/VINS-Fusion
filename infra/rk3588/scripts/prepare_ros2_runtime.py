@@ -70,7 +70,7 @@ def main():
                 elf = stream.read(4) == b'\x7fELF'
             if elf:
                 pending.extend(needed(path))
-    dirs = [install / 'lib', legacy / 'lib', ros / 'lib',
+    dirs = [install / 'lib', legacy / 'lib', ros / 'lib', ros / 'lib/aarch64-linux-gnu',
             sysroot / 'usr/lib/aarch64-linux-gnu', sysroot / 'lib/aarch64-linux-gnu',
             sysroot / 'usr/lib/aarch64-linux-gnu/blas',
             sysroot / 'usr/lib/aarch64-linux-gnu/lapack', sysroot / 'usr/lib']
