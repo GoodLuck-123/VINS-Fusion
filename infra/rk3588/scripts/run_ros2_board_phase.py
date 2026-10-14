@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 
@@ -26,11 +27,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--target', default='firefly@10.106.0.220')
     parser.add_argument('--runtime', required=True, help='Previously verified remote runtime directory')
+    parser.add_argument('--ros-addon', help='Previously verified remote Fast DDS addon directory')
+    parser.add_argument('--prefix', required=True, help='Unique result prefix; never overwrite a failed trial')
     parser.add_argument('--data-parent', default='vins-workspace/datasets/euroc_20261014')
     parser.add_argument('--upload-data', action='store_true')
     parser.add_argument('--phase', choices=PRESETS, required=True)
     parser.add_argument('--directory', type=Path, required=True)
     args = parser.parse_args()
+    if not re.fullmatch(r'[A-Za-z0-9_-]+', args.prefix):
+        parser.error('Use a simple unique prefix without path separators')
     directory = args.directory.resolve()
     directory.mkdir(parents=True, exist_ok=False)
     payload = directory / 'drivers'
@@ -44,7 +49,7 @@ def main():
                 for chunk in iter(lambda: stream.read(1024 * 1024), b''):
                     digest.update(chunk)
             data_hashes[str(path.relative_to(bag))] = digest.hexdigest()
-    trials = [dict(name=f'rk_{args.phase}_{mode}_{deployment}_{image}_{transport}_{index}',
+    trials = [dict(name=f'{args.prefix}_{mode}_{deployment}_{image}_{transport}_{index}',
                    mode=mode, deployment=deployment, image=image, transport=transport, pmu=pmu,
                    rmw='rmw_cyclonedds_cpp' if deployment in ['composed', 'split'] else 'rmw_fastrtps_cpp')
               for index, (mode, deployment, image, transport, pmu) in enumerate(PRESETS[args.phase], 1)]
@@ -52,6 +57,9 @@ def main():
                 bag_hashes=data_hashes, trials=trials,
                 runtime_manifest_sha256=hashlib.sha256((REPO / 'infra/rk3588/reference/runtime_20261014/payload_files.json').read_bytes()).hexdigest(),
                 driver_commit=subprocess.check_output(['git', '-C', str(REPO), 'rev-parse', 'HEAD'], text=True).strip())
+    if args.ros_addon:
+        plan['ros_addon'] = args.ros_addon
+        plan['addon_manifest_sha256'] = hashlib.sha256((WORKSPACE / '.infra/rk3588/fastrtps-payload/files.json').read_bytes()).hexdigest()
     (payload / 'plan.json').write_text(json.dumps(plan, indent=2) + '\n')
     shutil.copy2(WORKSPACE / 'results/ros2/bag_conversion.json', payload / 'bag_conversion.json')
     shutil.copy2(Path(__file__).parent / 'run_board_trials.py', payload / 'run_board_trials.py')

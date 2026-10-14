@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "id": "ros2-fastrtps",
+  "provenance": "Additional ARM runtime packages from the same signed 2026-10-12 ROS index as ros2-sdk; base SDK unchanged",
+  "index_sha256": "e36607e82783f4afa98c7930f5fb2ad11a7f08418bb2f5a342204e1d4a7376b9",
+  "release_sha256": "36bd2bc2ed916fe3d43238ff2d74559de5bbff82c2a4d9dde22d3daf49bb0082",
+  "packages": [
+    {
+      "Package": "ros-humble-fastrtps",
+      "Version": "2.6.12-1jammy.20260725.060440",
+      "Architecture": "arm64",
+      "file": "ros-humble-fastrtps_2.6.12-1jammy.20260725.060440_arm64.deb",
+      "sha256": "ba7700cd56075202d2e47de68cfe008cbc89b13e9fba56cdf3e12990e742ef89",
+      "url": "https://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-fastrtps/ros-humble-fastrtps_2.6.12-1jammy.20260725.060440_arm64.deb",
+      "Depends": "libc6 (>= 2.34), libgcc-s1 (>= 4.2), libssl3 (>= 3.0.0~~alpha1), libstdc++6 (>= 12), libtinyxml2-9 (>= 8.0.0), ros-humble-fastcdr, libssl-dev, libtinyxml2-dev, python3-dev, ros-humble-foonathan-memory-vendor, ros-humble-ros-workspace"
+    },
+    {
+      "Package": "ros-humble-foonathan-memory-vendor",
+      "Version": "1.2.0-3jammy.20260307.140928",
+      "Architecture": "arm64",
+      "file": "ros-humble-foonathan-memory-vendor_1.2.0-3jammy.20260307.140928_arm64.deb",
+      "sha256": "c605eebbc3d31439fedbbc32005ba3192b85df4a9d0638e6ef78d7afdbe76361",
+      "url": "https://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-foonathan-memory-vendor/ros-humble-foonathan-memory-vendor_1.2.0-3jammy.20260307.140928_arm64.deb",
+      "Depends": "cmake, ros-humble-ros-workspace"
+    },
+    {
+      "Package": "ros-humble-rmw-fastrtps-cpp",
+      "Version": "6.2.10-1jammy.20260907.212405",
+      "Architecture": "arm64",
+      "file": "ros-humble-rmw-fastrtps-cpp_6.2.10-1jammy.20260907.212405_arm64.deb",
+      "sha256": "3f024d5c3e082a6d2a90757402fb56a7f66b89aa9acbfe1c4f100c63e59c768d",
+      "url": "https://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-rmw-fastrtps-cpp/ros-humble-rmw-fastrtps-cpp_6.2.10-1jammy.20260907.212405_arm64.deb",
+      "Depends": "libc6 (>= 2.32), libgcc-s1 (>= 3.3.1), libstdc++6 (>= 11), ros-humble-fastcdr, ros-humble-fastrtps, ros-humble-fastrtps-cmake-module, ros-humble-rcpputils, ros-humble-rcutils, ros-humble-rmw, ros-humble-rmw-dds-common, ros-humble-rmw-fastrtps-shared-cpp, ros-humble-rosidl-cmake, ros-humble-rosidl-runtime-c, ros-humble-rosidl-runtime-cpp, ros-humble-rosidl-typesupport-fastrtps-c, ros-humble-rosidl-typesupport-fastrtps-cpp, ros-humble-tracetools, ros-humble-ros-workspace"
+    },
+    {
+      "Package": "ros-humble-rmw-fastrtps-shared-cpp",
+      "Version": "6.2.10-1jammy.20260907.211742",
+      "Architecture": "arm64",
+      "file": "ros-humble-rmw-fastrtps-shared-cpp_6.2.10-1jammy.20260907.211742_arm64.deb",
+      "sha256": "a9787a62cec9355f6bdf227ef5ef64a78a4242571f807b5b2d6c2355ad8c9129",
+      "url": "https://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-rmw-fastrtps-shared-cpp/ros-humble-rmw-fastrtps-shared-cpp_6.2.10-1jammy.20260907.211742_arm64.deb",
+      "Depends": "libc6 (>= 2.34), libgcc-s1 (>= 3.3.1), libstdc++6 (>= 11), ros-humble-fastcdr, ros-humble-fastrtps, ros-humble-fastrtps-cmake-module, ros-humble-rcpputils, ros-humble-rcutils, ros-humble-rmw, ros-humble-rmw-dds-common, ros-humble-rosidl-typesupport-introspection-c, ros-humble-rosidl-typesupport-introspection-cpp, ros-humble-tracetools, ros-humble-ros-workspace"
+    }
+  ]
+}

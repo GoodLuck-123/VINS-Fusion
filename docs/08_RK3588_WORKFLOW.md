@@ -127,12 +127,14 @@ Arm Streamline 可选路线需要目标 gatord，主要使用 Linux Perf API；�
 ```bash
 python3 infra/rk3588/scripts/run_ros2_board_phase.py \
   --runtime /home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload \
-  --phase baseline --directory ../results/rk3588/新的完整回放 --upload-data
+  --phase baseline --prefix 新的结果前缀 --directory ../results/rk3588/新的完整回放 --upload-data
 ```
 
 后续阶段为 components、pmu、shared，按桌面配置去掉重复轮次，完整输入和标定保持不变。baseline 为双目 standalone/copy/Fast DDS；components 复用该参照，增加双目 share、单目 copy/share 和双目 composed copy/share。pmu 为双目 copy/share 加计数，shared 为单目/双目 split ROS/memfd。composed/split 使用 Cyclone DDS，standalone 使用 Fast DDS，与原生阶段对应
 
 板端数据只放置在 home 的 vins-workspace/datasets 下，运行包工作区增加数据指向和结果目录，已验收文件保持不变。每轮保存 telemetry.jsonl 中实际可读温度/CPU 与 dmc 频率，CPU/RSS/PSS、回放/排空及计数仍由原 runner 记录；DDR 带宽和功耗不可用
+
+board-baseline01 发现原 SDK 缺 rmw_fastrtps_cpp，rclpy 初始化失败，VINS 尚未启动；数据与哈希已通过，失败见 [归档](../infra/rk3588/reference/baseline01_failure/)。四个补充 ARM 包单独锁定在 dependencies/locks/ros2-fastrtps.json，由同一 fetch.py 下载到独立 sysroot，不改变原 SDK。Fast DDS addon 先用 deploy_fastrtps_runtime.py 验收，再通过 --ros-addon 指定远端路径，继续完整回放时省略 --upload-data，--prefix 使用新名称
 
 保留 MH_01_easy、标定和算法参数，核验输入计数、初始化/重置、末帧、ATE/RPE、退出与共享槽位归还；报告全线程 CPU、每进程 RSS/PSS、回放/排空时间、频率/温度。排空后完成不能称实时通过，评估在主机同一 uv.lock 环境执行，结果续写第 05 份报告
 

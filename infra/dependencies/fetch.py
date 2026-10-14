@@ -161,7 +161,8 @@ def main():
             unpack_source(archive, DEPS / 'sources' / source['id'] / source['version'], source['sha256'])
         if not args.sources_only:
             for name, destination in [('toolchain', DEPS / 'toolchain/root'),
-                                      ('ros2-sdk', DEPS / 'sysroots/ros2-humble/root')]:
+                                      ('ros2-sdk', DEPS / 'sysroots/ros2-humble/root'),
+                                      ('ros2-fastrtps', DEPS / 'sysroots/ros2-fastrtps/root')]:
                 lock = DEPS / 'locks' / (name + '.json')
                 packages = json.loads(lock.read_text())['packages']
                 archives = [fetch(p, cache, args.cache_from, args.offline) for p in packages]

@@ -1,0 +1,21 @@
+{
+  "runtime": "/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload",
+  "bag": "vins-workspace/datasets/euroc_20261014/MH_01_easy_ros2",
+  "bag_hashes": {
+    "MH_01_easy_ros2.db3": "28fe794dbce3daf14f532a7a3d8d5a554a18cd3e1f7a653a77167af6f17df171",
+    "metadata.yaml": "b24d612bae080cfa428934d9301e241dd3e5390e980a17038702a8ad03661e29"
+  },
+  "trials": [
+    {
+      "name": "rk_baseline_stereo_imu_standalone_copy_ros_1",
+      "mode": "stereo_imu",
+      "deployment": "standalone",
+      "image": "copy",
+      "transport": "ros",
+      "pmu": false,
+      "rmw": "rmw_fastrtps_cpp"
+    }
+  ],
+  "runtime_manifest_sha256": "1bc3693f80ed1aa1313d88c3da35d1181f4932fd2081295fdbf4713c5fb4b49b",
+  "driver_commit": "82e68e3ddf4c33c93efb22e2c66f02a0c7445bba"
+}

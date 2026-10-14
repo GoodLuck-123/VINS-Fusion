@@ -1,0 +1,10 @@
+Remote job: firefly@10.106.0.220:vins-workspace/jobs/1791960925617-101405
+Logs: "/home/eric/projects/results/rk3588/board-baseline01/trial/board"; remote exit: 1
+Traceback (most recent call last):
+  File "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/run_ros2_board_phase.py", line 67, in <module>
+    main()
+  File "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/run_ros2_board_phase.py", line 61, in main
+    subprocess.run([tool, args.target, str(payload), '--run',
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/eric/projects/.infra/bin/vins-remote', 'firefly@10.106.0.220', '/home/eric/projects/results/rk3588/board-baseline01/trial/drivers', '--run', '/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/ros2_board_phase.sh', '--output', '/home/eric/projects/results/rk3588/board-baseline01/trial/board', '--timeout', '7200']' returned non-zero exit status 1.

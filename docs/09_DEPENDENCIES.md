@@ -21,8 +21,9 @@ python3 infra/dependencies/fetch.py
 | ROS 2 cv_bridge 源码 | vision_opencv 3.2.1 | dependencies/sources/cv_bridge_ros2/3.2.1 |
 | x86_64 → aarch64 工具链 | GCC 11.4.0，25 个包 | dependencies/toolchain/root |
 | ARM ROS 2 sysroot | Ubuntu Jammy / Humble，807 个包 | dependencies/sysroots/ros2-humble/root |
+| ARM Fast DDS addon | 同一签名 ROS 索引的四个补充包 | dependencies/sysroots/ros2-fastrtps/root |
 
-源码锁为 `dependencies/sources.lock.json`；工具链与目标包锁为 `dependencies/locks/*.json`，记录具体版本、架构、URL 和 SHA256。包锁来自已经验证签名的 Ubuntu/ROS apt 索引，与 [交叉 SDK 验收快照](../infra/rk3588/reference/cross_sdk_20261014/) 的全部 832 个包哈希一致；普通重建直接按锁下载，不重新在线解依赖
+源码锁为 `dependencies/sources.lock.json`；工具链与目标包锁为 `dependencies/locks/*.json`，记录具体版本、架构、URL 和 SHA256。原工具链/SDK 包锁来自已验证签名的 Ubuntu/ROS apt 索引，与 [交叉 SDK 验收快照](../infra/rk3588/reference/cross_sdk_20261014/) 的全部 832 个包哈希一致；Fast DDS addon 另固定四个包，取自同一 ROS 签名索引，重新核对 gpgv 及 Packages SHA256，不改原包锁和 SDK。普通重建直接按锁下载，不重新在线解依赖
 
 `dependencies/cache/` 保存压缩包；源码、工具链与 sysroot 目录只跟踪 `.gitkeep`，下载和解包内容由局部 `.gitignore` 排除，不进入 commit。构建目录、安装前缀仍在 `../.infra/`，数据和完整日志仍在 `../data/`、`../results/`；不迁移或覆盖旧桌面环境及冻结 SDK
 

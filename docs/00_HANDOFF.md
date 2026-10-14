@@ -49,7 +49,7 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 运行包生成与部署检查已固定为 prepare_ros2_runtime.py / deploy_ros2_runtime.sh，runtime01 板端文件哈希、导入、独立节点与组件加载/卸载及退出全部通过，OpenCV maps 为运行包 4.2；结果目录 ../results/rk3588/runtime01/，证据见第 08 份文档。该探针没有 VIO 输入，完整回放仍待验收
 
-运行环境里程碑 commit 55fdcd8 / tag milestone-rk3588-ros2-runtime-v1 已提交。board-baseline01 正在后台传输 EuRoC 数据并执行一轮原配置双目 copy 基线，固定 driver commit 82e68e3，结束通知后核验并在主机评估；期间不修改已部署运行包
+运行环境里程碑 commit 55fdcd8 / tag milestone-rk3588-ros2-runtime-v1 已提交。board-baseline01 数据传输/哈希通过，但 SDK 缺 Fast DDS 后端，在 rclpy 初始化时失败，尚未启动 VINS；失败归档保留。当前单独补齐四个锁定 ARM Fast DDS 包，先验收该后端生命周期，再用新结果前缀继续基线，不改原 SDK/运行包、不重传数据
 
 2026-10-14 已统一读取全部 52 个 event/state、核对 29 个阶段和全部归档；主机无活构建/实验，板端七个旧作业均已结束。积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)
 

@@ -19,11 +19,22 @@ def main():
     if hashlib.sha256(manifest_file.read_bytes()).hexdigest() != plan['runtime_manifest_sha256']:
         raise RuntimeError('Runtime manifest differs from accepted deployment')
     manifest = json.loads(manifest_file.read_text())
+    addon = os.environ.get('VINS_BOARD_ROS_ADDON')
+    addon_manifest = {}
+    if addon:
+        addon = Path(addon)
+        addon_file = addon / 'files.json'
+        if hashlib.sha256(addon_file.read_bytes()).hexdigest() != plan['addon_manifest_sha256']:
+            raise RuntimeError('Addon manifest differs from accepted deployment')
+        addon_manifest = json.loads(addon_file.read_text())
 
     def verify_runtime():
         for relative, expected in manifest.items():
             if hashlib.sha256((runtime / relative).read_bytes()).hexdigest() != expected:
                 raise RuntimeError(f'Runtime changed: {relative}')
+        for relative, expected in addon_manifest.items():
+            if hashlib.sha256((addon / relative).read_bytes()).hexdigest() != expected:
+                raise RuntimeError(f'ROS addon changed: {relative}')
 
     verify_runtime()
     for relative, expected in plan['bag_hashes'].items():

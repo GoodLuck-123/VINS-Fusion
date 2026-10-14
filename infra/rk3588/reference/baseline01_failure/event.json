@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/eric/projects/VINS-Fusion/infra/rk3588/scripts/run_ros2_board_phase.py",
+    "--runtime",
+    "/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload",
+    "--phase",
+    "baseline",
+    "--directory",
+    "/home/eric/projects/results/rk3588/board-baseline01/trial",
+    "--upload-data"
+  ],
+  "pid": 101374,
+  "status": "failed",
+  "start_utc": "2026-10-14T06:54:50Z",
+  "exit_code": 1,
+  "end_utc": "2026-10-14T06:55:34Z"
+}

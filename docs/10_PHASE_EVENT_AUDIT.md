@@ -46,3 +46,5 @@ legacy04、ros2-build03 均不计入成功统计，不能因通知写 complete �
 ## 核对后的新增阶段
 
 runtime01 已接受为板端 ROS 2 运行环境验收，事件及逐文件 SHA256 见 [运行环境归档](../infra/rk3588/reference/runtime_20261014/)。远端校验 6991 个文件、独立节点与组件生命周期通过、退出 0，无 bag 输入，不是完整 VIO。对应迟到通知同样按归档事件路径与哈希去重，不重跑
+
+board-baseline01 为补充依赖前的失败，数据已到板端并通过哈希；rclpy 找不到 Fast DDS 后端，尚未启动 VINS/播放器。事件和日志见 [失败归档](../infra/rk3588/reference/baseline01_failure/)，不得计入成功统计；先验收独立 Fast DDS addon，原已接受运行包不撤回

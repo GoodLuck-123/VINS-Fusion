@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "completed": [],
+  "bag_hashes_verified": true,
+  "current": {
+    "name": "rk_baseline_stereo_imu_standalone_copy_ros_1",
+    "mode": "stereo_imu",
+    "deployment": "standalone",
+    "image": "copy",
+    "transport": "ros",
+    "pmu": false,
+    "rmw": "rmw_fastrtps_cpp"
+  },
+  "failure": "RuntimeError: rk_baseline_stereo_imu_standalone_copy_ros_1: runner exit 1"
+}
