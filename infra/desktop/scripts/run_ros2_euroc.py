@@ -50,14 +50,18 @@ def main():
                              for topic, depth in (("/cam0/image_raw", 100), ("/cam1/image_raw", 100), ("/imu0", 2000))) + "\n")
     binary = ROOT / ".infra/ros2_ws/install/lib/vins/vins_node"
     component = ROOT / ".infra/ros2_ws/install/lib/libvins_component.so"
+    source_file = os.environ.get("VINS_BUILD_SOURCE_JSON")
+    source = (json.loads(Path(source_file).read_text()) if source_file else
+              {"source_commit": subprocess.check_output(["git", "-C", str(REPO_ROOT), "rev-parse", "HEAD"], text=True).strip(),
+               "source_modified": bool(subprocess.check_output(["git", "-C", str(REPO_ROOT), "diff", "--", "camera_models", "vins_estimator", "loop_fusion", "global_fusion", "ros2"], text=True).strip())})
     metadata = {"success": False, "rate": args.rate, "mode": f"{args.mode}_vio",
                 "deployment": args.deployment, "image_transport":args.image_transport, "image_mode": args.image_mode,
                 "rmw": os.environ.get("RMW_IMPLEMENTATION"),
                 "resource_scope": "VINS + EuRoC player + container" if args.deployment == "composed" else "VINS (+ container if loaded)",
                 "config_file": config_path.name,
                 "vins_component_sha256": hashlib.sha256(component.read_bytes()).hexdigest(),
-                "source_commit": subprocess.check_output(["git", "-C", str(REPO_ROOT), "rev-parse", "HEAD"], text=True).strip(),
-                "source_modified": bool(subprocess.check_output(["git", "-C", str(REPO_ROOT), "diff", "--", "camera_models", "vins_estimator", "loop_fusion", "global_fusion", "ros2"], text=True).strip()),
+                "source_commit": source["source_commit"],
+                "source_modified": source["source_modified"],
                 "binary_sha256": hashlib.sha256(binary.read_bytes()).hexdigest(),
                 "ros_domain_id": os.environ.get("ROS_DOMAIN_ID"),
                 "start_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
@@ -111,7 +115,7 @@ def main():
                            "-p", f"shared_socket:={socket_path}",
                            "-p", f"verify_pixels:={str(args.deployment=='split' and args.image_transport=='ros').lower()}"], "vins")
         else:
-            container_binary = Path(os.environ["CONDA_PREFIX"]) / "lib/rclcpp_components/component_container"
+            container_binary = Path(os.environ.get("VINS_ROS_PREFIX") or os.environ["CONDA_PREFIX"]) / "lib/rclcpp_components/component_container"
             node = launch([str(container_binary), "--ros-args", "-r", "__node:=vins_container"], "vins")
             load_component(observer, "vins_container", "vins_ros::VinsNode",
                            {"config_file": str(config_path), "use_sim_time": True,
