@@ -337,3 +337,21 @@ board-baseline02 完整回放通过，standalone/copy/ROS Image/Fast DDS、rate=
 原 standalone runner 只采 VINS，未采 ros2 bag play 的 CPU/RSS/PSS；673.68 s 不能当作合计 CPU。composed 统计容器内 VINS+源端，split 分别记录两进程，比较时保留不同范围。温度/频率覆盖启动、回放及排空，不据频率变化单独判定降频原因；dmc 528–1560 MHz 是频率，不是带宽
 
 评估在主机同一 uv.lock/evo 环境执行。板端轨迹与 x86 双目参照不同，未宣称跨架构字节一致或将差异归因于单一因素；传递依赖差异见前表。排空包含稳定采样等待，完整消费与末帧成功不是逐帧实时延迟验收。本轮只有一次实际完整回放，旧启动失败不计入成功实验；[完整证据、轨迹图与 SHA256](../infra/rk3588/reference/baseline_20261014/)
+
+## RK3588 单目与组件/owner 对照（2026-10-14）
+
+board-components01 新增五轮，各配置一次；双目 standalone/copy 复用上节基线，不重复实验。全轮输入计数完整、末帧覆盖，初始化一次、无重置/配对丢帧，1831 个姿态 / 1819 个匹配，VINS/容器及回放均退出 0。主机 uv.lock/evo 自动评估完成，板端结束审计无旧任务活进程
+
+| 模式 / 部署 / 入口 | ATE / RPE RMSE (m) | 全线程 CPU (s) | RSS / PSS 峰值 (MiB) | 回放 / 排空 (s) |
+| --- | --- | ---: | --- | --- |
+| stereo / standalone / share | 0.264430 / 0.003120 | 672.82 | 82.08 / 71.67 | 188.52 / 6.12 |
+| mono / standalone / copy | 0.162089 / 0.003012 | 559.08 | 73.08 / 62.69 | 188.73 / 6.11 |
+| mono / standalone / share | 0.159856 / 0.003038 | 558.32 | 72.03 / 61.97 | 188.72 / 6.12 |
+| stereo / composed / copy | 0.265527 / 0.003124 | 678.97 | 69.99 / 65.60 | 188.49 / 6.10 |
+| stereo / composed / share | 0.266425 / 0.003112 | 675.81 | 71.33 / 66.56 | 188.36 / 6.11 |
+
+standalone CPU/RSS/PSS 只含 VINS，composed 是容器内 VINS+typed player；不跨范围相减推断通信开销。对应 share 相对 copy 单轮 CPU 为双目 standalone −0.128%、单目 standalone −0.136%、双目 composed −0.465%，均不足 0.5%；一次观察没有确定提速结论。各轮轨迹有小幅差异，不能沿用桌面同模式字节一致结论，差异原因尚未定位，未修改算法或参数消除它
+
+share 灰度入口物化次数/字节均为 0，双目共享入口 7364、单目 3682；copy 分别物化 14728 / 7364 次、5,316,218,880 / 2,658,109,440 字节。composed 前六条消息样本源端/消费端 message 和 pixel 指针一致，copy 的 Mat 另有像素存储，share 的 Mat 借用原像素。这是已有 owner/入口的板端证据，不代表真实相机、DMA heap 或端到端零拷贝
+
+运行包、addon、bag 与核心/config 固定，完整日志及资源、telemetry、逐轮评估与解压前日志 SHA256 见 [归档](../infra/rk3588/reference/components_20261014/)。大日志 gzip 保存，原日志仍在工作区；排空含稳定等待，DDR 带宽/功耗仍不可用

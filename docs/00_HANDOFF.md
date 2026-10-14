@@ -53,6 +53,8 @@ ROS 1 原版清理 abort 如实保留，算法、二进制及成功数据未改�
 
 board-baseline02 已通过一轮完整双目 standalone/copy/Fast DDS，输入和末帧完整、无重置/配对丢帧、退出 0；ATE 0.269229 m / RPE 0.00313946 m，VINS 全线程 CPU 673.68 s。资源范围、排空等待和温度/频率见第 05 份报告，不宣称逐帧实时性或合计进程 CPU
 
+board-components01 五轮去重对照已通过完整输入/末帧、初始化/无重置、退出及主机评估，share 灰度入口零物化，composed 指针检查通过。单目 copy/share ATE 为 0.162089 / 0.159856 m；三组 copy/share 单轮 CPU 差异不足 0.5%，各轮轨迹有小幅差异，不宣称确定提速或字节一致。完整指标和范围续写第 05 份报告
+
 ROS 1 板端目标 codex/rk3588-ros1 已从 master 最新 8c7c8d2 建立独立工作区 /home/eric/projects/VINS-Fusion-rk3588-ros1，依赖锁 commit 6578b00。主机只读 APT 解析已验签，807 个 Focal/Noetic SDK 包和 36 个 GCC 9.4 工具链包固定 SHA256；ros1-fetch01 在主机下载，板端 ROS 1 构建/运行尚未验收。当前 ROS 2 工作区与已部署运行包保持固定
 
 2026-10-14 全局核对时已统一读取 52 个 event/state、核对 29 个阶段和全部归档；当时主机无活构建/实验，板端七个旧作业均已结束。后续新阶段续写账本，积压通知按事件路径/SHA256 去重，不按到达顺序重复修补，具体结论见 [第 10 份账本](10_PHASE_EVENT_AUDIT.md)

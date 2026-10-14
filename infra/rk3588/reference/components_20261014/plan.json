@@ -1,0 +1,59 @@
+{
+  "runtime": "/home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload",
+  "bag": "vins-workspace/datasets/euroc_20261014/MH_01_easy_ros2",
+  "bag_hashes": {
+    "MH_01_easy_ros2.db3": "28fe794dbce3daf14f532a7a3d8d5a554a18cd3e1f7a653a77167af6f17df171",
+    "metadata.yaml": "b24d612bae080cfa428934d9301e241dd3e5390e980a17038702a8ad03661e29"
+  },
+  "trials": [
+    {
+      "name": "rk_components01_stereo_imu_standalone_share_ros_1",
+      "mode": "stereo_imu",
+      "deployment": "standalone",
+      "image": "share",
+      "transport": "ros",
+      "pmu": false,
+      "rmw": "rmw_fastrtps_cpp"
+    },
+    {
+      "name": "rk_components01_mono_imu_standalone_copy_ros_2",
+      "mode": "mono_imu",
+      "deployment": "standalone",
+      "image": "copy",
+      "transport": "ros",
+      "pmu": false,
+      "rmw": "rmw_fastrtps_cpp"
+    },
+    {
+      "name": "rk_components01_mono_imu_standalone_share_ros_3",
+      "mode": "mono_imu",
+      "deployment": "standalone",
+      "image": "share",
+      "transport": "ros",
+      "pmu": false,
+      "rmw": "rmw_fastrtps_cpp"
+    },
+    {
+      "name": "rk_components01_stereo_imu_composed_copy_ros_4",
+      "mode": "stereo_imu",
+      "deployment": "composed",
+      "image": "copy",
+      "transport": "ros",
+      "pmu": false,
+      "rmw": "rmw_cyclonedds_cpp"
+    },
+    {
+      "name": "rk_components01_stereo_imu_composed_share_ros_5",
+      "mode": "stereo_imu",
+      "deployment": "composed",
+      "image": "share",
+      "transport": "ros",
+      "pmu": false,
+      "rmw": "rmw_cyclonedds_cpp"
+    }
+  ],
+  "runtime_manifest_sha256": "1bc3693f80ed1aa1313d88c3da35d1181f4932fd2081295fdbf4713c5fb4b49b",
+  "driver_commit": "76d40f87e92f956acf2dfb6a96fb0c7767334692",
+  "ros_addon": "/home/firefly/vins-workspace/jobs/1791961492786-103062/fastrtps-payload",
+  "addon_manifest_sha256": "57a414a3b28c8dccd58ff131016375fff0d69d9384c123280545788607569452"
+}

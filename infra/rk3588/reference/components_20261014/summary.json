@@ -1,0 +1,170 @@
+{
+  "trials": [
+    {
+      "name": "rk_components01_stereo_imu_standalone_share_ros_1",
+      "mode": "stereo_imu",
+      "deployment": "standalone",
+      "image": "share",
+      "cpu_scope": "VINS (+ container if loaded)",
+      "cpu_all_threads_s": 672.82,
+      "rss_mib": 82.08203125,
+      "pss_mib": 71.6748046875,
+      "ate_rmse_m": 0.26443048680046527,
+      "rpe_rmse_m": 0.003120047881674476,
+      "playback_s": 188.51886473200284,
+      "drain_s": 6.118536114001472,
+      "trajectory_sha256": "756b6cb81f47281277cbd65795fe184c642792463c265e9d6da6b7060d551c2f",
+      "image_ingress": {
+        "mode": "share",
+        "shared": 7364,
+        "materializations": 0,
+        "bytes": 0
+      },
+      "initializations": 1,
+      "resets": 0,
+      "pairing_drops": 0,
+      "poses": 1831,
+      "matches": 1819,
+      "exit_code": 0
+    },
+    {
+      "name": "rk_components01_mono_imu_standalone_copy_ros_2",
+      "mode": "mono_imu",
+      "deployment": "standalone",
+      "image": "copy",
+      "cpu_scope": "VINS (+ container if loaded)",
+      "cpu_all_threads_s": 559.08,
+      "rss_mib": 73.078125,
+      "pss_mib": 62.6865234375,
+      "ate_rmse_m": 0.16208875669090053,
+      "rpe_rmse_m": 0.0030123196113487206,
+      "playback_s": 188.72589525399962,
+      "drain_s": 6.1142719900017255,
+      "trajectory_sha256": "9a61294ca7a1afa45b355d5ae086632cdda2a213bdbc1a6be176803743c6265b",
+      "image_ingress": {
+        "mode": "copy",
+        "shared": 0,
+        "materializations": 7364,
+        "bytes": 2658109440
+      },
+      "initializations": 1,
+      "resets": 0,
+      "pairing_drops": 0,
+      "poses": 1831,
+      "matches": 1819,
+      "exit_code": 0
+    },
+    {
+      "name": "rk_components01_mono_imu_standalone_share_ros_3",
+      "mode": "mono_imu",
+      "deployment": "standalone",
+      "image": "share",
+      "cpu_scope": "VINS (+ container if loaded)",
+      "cpu_all_threads_s": 558.32,
+      "rss_mib": 72.02734375,
+      "pss_mib": 61.9716796875,
+      "ate_rmse_m": 0.15985602267830085,
+      "rpe_rmse_m": 0.0030377361990775466,
+      "playback_s": 188.71503579399723,
+      "drain_s": 6.115848572997493,
+      "trajectory_sha256": "443eac00e94a53faaf1aedf0fed047259b1b8c83b344a0b53ba1b3ac9bb6b0a5",
+      "image_ingress": {
+        "mode": "share",
+        "shared": 3682,
+        "materializations": 0,
+        "bytes": 0
+      },
+      "initializations": 1,
+      "resets": 0,
+      "pairing_drops": 0,
+      "poses": 1831,
+      "matches": 1819,
+      "exit_code": 0
+    },
+    {
+      "name": "rk_components01_stereo_imu_composed_copy_ros_4",
+      "mode": "stereo_imu",
+      "deployment": "composed",
+      "image": "copy",
+      "cpu_scope": "VINS + EuRoC player + container",
+      "cpu_all_threads_s": 678.97,
+      "rss_mib": 69.98828125,
+      "pss_mib": 65.603515625,
+      "ate_rmse_m": 0.26552657293276305,
+      "rpe_rmse_m": 0.003123864990012797,
+      "playback_s": 188.48904902199865,
+      "drain_s": 6.10471373800101,
+      "trajectory_sha256": "b64989f9c3de51bee2a0528bf3827d516c3176365fb50cf4aa834f34f357a8ed",
+      "image_ingress": {
+        "mode": "copy",
+        "shared": 0,
+        "materializations": 14728,
+        "bytes": 5316218880
+      },
+      "initializations": 1,
+      "resets": 0,
+      "pairing_drops": 0,
+      "poses": 1831,
+      "matches": 1819,
+      "exit_code": 0
+    },
+    {
+      "name": "rk_components01_stereo_imu_composed_share_ros_5",
+      "mode": "stereo_imu",
+      "deployment": "composed",
+      "image": "share",
+      "cpu_scope": "VINS + EuRoC player + container",
+      "cpu_all_threads_s": 675.8100000000001,
+      "rss_mib": 71.33203125,
+      "pss_mib": 66.564453125,
+      "ate_rmse_m": 0.26642460703836307,
+      "rpe_rmse_m": 0.003111674806610049,
+      "playback_s": 188.36221005100379,
+      "drain_s": 6.1089895719997,
+      "trajectory_sha256": "504d6d54e42c1ab3e48678886b8f820e3b037909a27cd10ddcd19bdb024fe228",
+      "image_ingress": {
+        "mode": "share",
+        "shared": 7364,
+        "materializations": 0,
+        "bytes": 0
+      },
+      "initializations": 1,
+      "resets": 0,
+      "pairing_drops": 0,
+      "poses": 1831,
+      "matches": 1819,
+      "exit_code": 0
+    }
+  ],
+  "cpu_pairs": [
+    {
+      "pair": "stereo standalone",
+      "copy_cpu_s": 673.6800000000001,
+      "share_cpu_s": 672.82,
+      "share_vs_copy_percent": -0.1276570478565553
+    },
+    {
+      "pair": "mono standalone",
+      "copy_cpu_s": 559.08,
+      "share_cpu_s": 558.32,
+      "share_vs_copy_percent": -0.1359376117907929
+    },
+    {
+      "pair": "stereo composed",
+      "copy_cpu_s": 678.97,
+      "share_cpu_s": 675.8100000000001,
+      "share_vs_copy_percent": -0.46541084289437595
+    }
+  ],
+  "scope_notes": "Standalone VINS only, composed VINS+typed player+container; one trial per configuration; not a statistical speedup claim",
+  "raw_log_sha256": {
+    "rk_components01_stereo_imu_standalone_share_ros_1/playback.log": "5320d6d9cb2d2c0f19f189d485e0982054e0104eb5d112a006151330d74b3890",
+    "rk_components01_stereo_imu_standalone_share_ros_1/vins.log": "d9d818d954e4a20b0795e43190d76904423ab4158b99917edd4773e69da692fe",
+    "rk_components01_mono_imu_standalone_copy_ros_2/playback.log": "586093a000484fc471affce2b3d84026d9282b51417c19753cee0369c6567cfa",
+    "rk_components01_mono_imu_standalone_copy_ros_2/vins.log": "d05c4561c18c775158c05d47d7685e2ef90c7a843a1edb3dbe03f493b554181e",
+    "rk_components01_mono_imu_standalone_share_ros_3/playback.log": "fd869b895a314b49e379504471aa790798873b443d04fdba21e09b179bec4675",
+    "rk_components01_mono_imu_standalone_share_ros_3/vins.log": "d21a437ccb66c86b0c035dfd9ecdc56ca9ed417826e85b3b5aabfe782daa4bd1",
+    "rk_components01_stereo_imu_composed_copy_ros_4/vins.log": "a4669655bf4cde914b90713c1b3cb53983e7b997e6f27921f0db42353f30d4e6",
+    "rk_components01_stereo_imu_composed_share_ros_5/vins.log": "a6c73aeb1e7fba36b22410dc648f5f473a403a72dacfbe1a9cafc9cf6784e591"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "completed": [
+    "rk_components01_stereo_imu_standalone_share_ros_1",
+    "rk_components01_mono_imu_standalone_copy_ros_2",
+    "rk_components01_mono_imu_standalone_share_ros_3",
+    "rk_components01_stereo_imu_composed_copy_ros_4",
+    "rk_components01_stereo_imu_composed_share_ros_5"
+  ],
+  "bag_hashes_verified": true,
+  "current": {
+    "name": "rk_components01_stereo_imu_composed_share_ros_5",
+    "mode": "stereo_imu",
+    "deployment": "composed",
+    "image": "share",
+    "transport": "ros",
+    "pmu": false,
+    "rmw": "rmw_cyclonedds_cpp"
+  }
+}

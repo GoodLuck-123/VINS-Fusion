@@ -1,0 +1,68 @@
+{
+  "success": true,
+  "rate": 1.0,
+  "mode": "mono_imu_vio",
+  "deployment": "standalone",
+  "image_transport": "ros",
+  "image_mode": "copy",
+  "rmw": "rmw_fastrtps_cpp",
+  "resource_scope": "VINS (+ container if loaded)",
+  "config_file": "euroc_mono_imu_config.yaml",
+  "vins_component_sha256": "c2fecb3af463a0676a4a119bd00cc77f0c4a8d1f0d87c9f8979c61271135945e",
+  "source_commit": "c0ae27dce1a853f62a1fa4f65de0cbf789c7ddbb",
+  "source_modified": false,
+  "binary_sha256": "76cab066b61ce9819e0cb8b82cbf7d6ae72166cc125aeda0d6b6cf0d73bac220",
+  "ros_domain_id": "121",
+  "start_utc": "2026-03-05T19:07:44Z",
+  "replay_result_code": 0,
+  "playback_exit_code": 0,
+  "playback_wall_s": 188.72589525399962,
+  "settling_wait_s": 6.1142719900017255,
+  "resources": {
+    "measurement_wall_s": 193.84504364200257,
+    "logical_cpus": 8,
+    "cpu_time_s": 559.08,
+    "peak_sampled_rss_kib": 74832,
+    "kernel_peak_rss_kib": 74900,
+    "peak_threads": 26,
+    "mean_cpu_percent_one_core": 288.415937542629,
+    "sampled_cpu_percent_one_core": {
+      "p50": 305.812011388898,
+      "p95": 327.1773835385183,
+      "p99": 335.8552043352699
+    },
+    "minor_faults": 7494422,
+    "major_faults": 0,
+    "main_voluntary_switches": 11500,
+    "main_involuntary_switches": 304,
+    "peak_sampled_pss_kib": 64191,
+    "peak_sampled_private_dirty_kib": 45852,
+    "host_observations": {
+      "loopback_rx_bytes": 267000,
+      "loopback_tx_bytes": 267000,
+      "cpu_some_stall_us": 17052179,
+      "memory_some_stall_us": 0,
+      "memory_full_stall_us": 0,
+      "io_some_stall_us": 22218,
+      "io_full_stall_us": 13924
+    },
+    "scope": "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+  },
+  "peak_sampled_rss_kib": 74832,
+  "trajectory_poses": 1831,
+  "first_timestamp_ns": 1403636580813555456,
+  "last_timestamp_ns": 1403636763813555456,
+  "vins_exit_code": 0,
+  "sensor_counts": {
+    "img0": 3682,
+    "img1": 0,
+    "imu": 36820,
+    "processed": 3682
+  },
+  "image_ingress": {
+    "mode": "copy",
+    "shared": 0,
+    "materializations": 7364,
+    "bytes": 2658109440
+  }
+}

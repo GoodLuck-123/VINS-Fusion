@@ -1,0 +1,109 @@
+{
+  "success": true,
+  "rate": 1.0,
+  "mode": "stereo_imu_vio",
+  "deployment": "composed",
+  "image_transport": "ros",
+  "image_mode": "share",
+  "rmw": "rmw_cyclonedds_cpp",
+  "resource_scope": "VINS + EuRoC player + container",
+  "config_file": "euroc_stereo_imu_config.yaml",
+  "vins_component_sha256": "c2fecb3af463a0676a4a119bd00cc77f0c4a8d1f0d87c9f8979c61271135945e",
+  "source_commit": "c0ae27dce1a853f62a1fa4f65de0cbf789c7ddbb",
+  "source_modified": false,
+  "binary_sha256": "76cab066b61ce9819e0cb8b82cbf7d6ae72166cc125aeda0d6b6cf0d73bac220",
+  "ros_domain_id": "121",
+  "start_utc": "2026-03-05T19:18:06Z",
+  "cyclonedds_uri": "file:///home/firefly/vins-workspace/jobs/1791960441164-99946/ros2-payload/cyclonedds.xml",
+  "dds_profile_sha256": "85e5760fd50150fae47b4d24f0cc48230445eb7507de840e1fac74bfae4be7e1",
+  "player_component_sha256": "2d9365542b5d09b410271aa335207701c0475beb8dd94ba1b7f3002fb291ed76",
+  "replay_result_code": 0,
+  "playback_exit_code": 0,
+  "playback_wall_s": 188.36221005100379,
+  "settling_wait_s": 6.1089895719997,
+  "resources": {
+    "measurement_wall_s": 193.4728052730061,
+    "logical_cpus": 8,
+    "cpu_time_s": 675.8100000000001,
+    "peak_sampled_rss_kib": 73044,
+    "kernel_peak_rss_kib": 73176,
+    "peak_threads": 25,
+    "mean_cpu_percent_one_core": 349.3049056927543,
+    "sampled_cpu_percent_one_core": {
+      "p50": 364.92771939609344,
+      "p95": 394.6868417898647,
+      "p99": 403.7531123462998
+    },
+    "minor_faults": 8341156,
+    "major_faults": 0,
+    "main_voluntary_switches": 20692,
+    "main_involuntary_switches": 123,
+    "peak_sampled_pss_kib": 68162,
+    "peak_sampled_private_dirty_kib": 47236,
+    "host_observations": {
+      "loopback_rx_bytes": 362936,
+      "loopback_tx_bytes": 362936,
+      "cpu_some_stall_us": 16984586,
+      "memory_some_stall_us": 0,
+      "memory_full_stall_us": 0,
+      "io_some_stall_us": 13433,
+      "io_full_stall_us": 10964
+    },
+    "scope": "Node process incl. threads; subscription-ready-to-drain. Context switches: main thread only. Host counters include unrelated activity. I/O counters are not memory bandwidth."
+  },
+  "peak_sampled_rss_kib": 73044,
+  "trajectory_poses": 1831,
+  "first_timestamp_ns": 1403636580813555456,
+  "last_timestamp_ns": 1403636763813555456,
+  "vins_exit_code": 0,
+  "sensor_counts": {
+    "img0": 3682,
+    "img1": 3682,
+    "imu": 36820,
+    "processed": 3682
+  },
+  "image_ingress": {
+    "mode": "share",
+    "shared": 7364,
+    "materializations": 0,
+    "bytes": 0
+  },
+  "image_pointer_checks": [
+    {
+      "camera": "img1",
+      "timestamp_ns": 1403636579763555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": true
+    },
+    {
+      "camera": "img0",
+      "timestamp_ns": 1403636579763555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": true
+    },
+    {
+      "camera": "img0",
+      "timestamp_ns": 1403636579813555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": true
+    },
+    {
+      "camera": "img1",
+      "timestamp_ns": 1403636579813555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": true
+    },
+    {
+      "camera": "img1",
+      "timestamp_ns": 1403636579863555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": true
+    },
+    {
+      "camera": "img0",
+      "timestamp_ns": 1403636579863555500,
+      "ipc_same_message_and_pixels": true,
+      "view_shares_pixels": true
+    }
+  ]
+}

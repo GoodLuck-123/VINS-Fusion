@@ -54,3 +54,5 @@ fastrtps01 为主机下载失败，HTTPS 仓库证书域名不匹配，没有解
 fastrtps02 已接受为 Fast DDS 板端生命周期验收，addon 与原运行包哈希、实际 maps 和退出均通过，事件/SHA256 见 [归档](../infra/rk3588/reference/fastrtps_20261014/)，无 bag 输入。旧 fastrtps01 通知只去重，不改回 URL 或重新下载
 
 board-baseline02 已接受为首轮完整双目基线，输入计数、初始化/无重置、末帧、ATE/RPE、退出和结束进程审计通过。事件和 SHA256 见 [归档](../infra/rk3588/reference/baseline_20261014/)，旧 board-baseline01 启动失败不重新运行
+
+board-components01 已接受为五轮单目/双目入口与 composed 对照，完整输入/末帧/退出、主机评估、入口及指针证据和结束审计通过，事件/SHA256 见 [归档](../infra/rk3588/reference/components_20261014/)。双目 standalone/copy 已在 baseline02 验收，不重复回放；后续旧通知只去重
