@@ -85,3 +85,5 @@ ROS 2 正式轮次退出均为 0、完整实收/末帧/摘要/归还通过；ROS
 ROS 1 v0.1 为默认部署交付，ROS 2 为独立预研包；完整包统一放主机 `/home/eric/projects/releases/`，板端默认 `~/vins-workspace/releases/ros1-v0.1/install/`。普通用户无需理解 `.infra/` 或 jobs 中间产物，直接按 [第 11 份用户指南](11_RK3588_USER_GUIDE.md) 完成部署、环境检查、EuRoC 回放和日志回收；现场项目配置与版本边界也在该指南
 
 旧 `.infra/` 和已验收 jobs 不删除、不迁移，保持历史 SHA256。运行包重排目录但算法/二进制不变；ROS 1 已知清理 abort 和真实相机未验收的边界保留
+
+本分支完整 install 包已在上述固定目录部署验证，包内 SHA256、动态依赖和节点生命周期通过；主机调用/日志回收已通过，ROS 2 addon 已包含在单包内并分别核验两种 DDS。验收见 [v0.1 小型证据](../infra/release/reference/ros2-v0.1/)，未重放原实验或改写原统计

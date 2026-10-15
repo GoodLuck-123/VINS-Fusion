@@ -1,0 +1,49 @@
+{
+  "directory": "/home/eric/projects/releases/ros2-v0.1",
+  "board_install": "/home/firefly/vins-workspace/releases/ros2-v0.1/install",
+  "archive": "install-ros2-v0.1-linux-aarch64.tar.gz",
+  "archive_sha256": "8ca435fc255c1d08bdbc537b0963d1ffe8815e9da12f866cdd2a5ab6d56cd9a4",
+  "archive_bytes": 169200007,
+  "verified_package_files": 7026,
+  "unchanged_original_files": 7017,
+  "elf_count": 624,
+  "all_elf_aarch64": true,
+  "sha256sums_sha256": "b6663ab45ea03cf28018d50434dfd5a71c55f49593c09c19ca05bd7bfbc3e509",
+  "new_full_replays": 0,
+  "workflow_unit_tests": 4,
+  "packaging_commit": "35581f3d523cf8cafb7dfffff28e554042632c8e",
+  "original_build_ref": "c0ae27dce1a853f62a1fa4f65de0cbf789c7ddbb",
+  "original_build_commit": "c0ae27dce1a853f62a1fa4f65de0cbf789c7ddbb",
+  "release_json_sha256": "8c547ee1236fa836bda811e40a19192aeaf67b2a1ae26a8698ad7ed2b9645775",
+  "default_role": "research",
+  "checks": {
+    "deploy": {
+      "verified_files": 7026,
+      "rmw": "rmw_cyclonedds_cpp",
+      "standalone": {
+        "exit_code": 0,
+        "subscriptions_ready": true,
+        "unloaded": false
+      },
+      "component": {
+        "exit_code": 0,
+        "subscriptions_ready": true,
+        "unloaded": true
+      }
+    },
+    "fastdds": {
+      "verified_files": 7026,
+      "rmw": "rmw_fastrtps_cpp",
+      "standalone": {
+        "exit_code": 0,
+        "subscriptions_ready": true,
+        "unloaded": false
+      },
+      "component": {
+        "exit_code": 0,
+        "subscriptions_ready": true,
+        "unloaded": true
+      }
+    }
+  }
+}

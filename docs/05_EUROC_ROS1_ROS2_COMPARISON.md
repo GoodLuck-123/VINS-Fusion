@@ -429,3 +429,11 @@ DMA-BUF backend=2，双目/单目发送并验证 7364 / 3682 帧，failed=0、ou
 OpenCV 4.2.0 / Ceres 1.14.0 / Eigen 3.3.9、标定与算法保持参照。源码分别继承 master / ros2-humble 最新桌面结果，各自核心不因部署修改；不同编译器、Boost/ROS/BLAS 等传递依赖、RMW、源端回放和采样口径均需保留。一轮数字不证明由 ROS 版本导致提速/精度变化，不把上述 VINS CPU 当全流程合计，也不称排空后通过为实时性验证；DDR 带宽/功耗不可用
 
 ROS 1 完整证据在所属分支 baseline-rk3588-ros1-v1 / commit 2d76d3a，统一报告的 [跨分支摘要及 SHA256](../infra/rk3588/reference/ros1_comparison_20261014/) 保留原 run/evaluation 与主机恢复事件；ROS 2 各完整配置的原日志、轨迹/摘要、资源和评估见此前各节。桌面 VGEM 是软件 DMA-BUF 分配器，板端对应机制实测使用实际 system DMA heap/backend=2，不当作同一种 VGEM 设备或真实相机路径
+
+## v0.1 完整 install 交付验证（2026-10-15）
+
+普通用户入口独立为 [第 11 份指南](11_RK3588_USER_GUIDE.md)，ROS 1 默认交付，ROS 2 为独立预研包。本分支主机包为 `/home/eric/projects/releases/ros2-v0.1/`，板端固定目录 `/home/firefly/vins-workspace/releases/ros2-v0.1/install/`；不再要求用户拼接旧 jobs/payload/addon 或理解 .infra 的全部目录
+
+打包复用原已验收运行文件，仅重排目录和增加环境/用户入口；完整包 7026 个文件 SHA256 通过，其中 7017 个原运行文件按哈希直接复用，624 个 ELF 全部 AArch64。上板解压、动态依赖来源、节点订阅及已有生命周期检查通过；ROS 2 两种 DDS 在同一 install 验证，ROS 1 原清理 −6 如实保留。主机四项部署工具检查通过；没有重放 EuRoC，没有新增性能/精度/实时/真实相机验收结论，原成功/失败统计均不变
+
+原核心/config 和历史归档哈希均未变，证据及压缩包 SHA256 见 [v0.1 安装包验收](../infra/release/reference/ros2-v0.1/)。原构建记录与新包装提交分层保留，不把旧二进制重新标为本次重建
