@@ -79,3 +79,9 @@ ROS 2 正式轮次退出均为 0、完整实收/末帧/摘要/归还通过；ROS
 代码、文档、依赖锁、实验脚本和小型结果证据均在主机 Git 仓库。板端没有 Git 仓库，有效部署 11251 文件与主机冻结清单一致，29 个旧作业 441 个 logs 文件均已回收至主机且 SHA256 相同；板端只有运行文件、数据、输出/缓存等，不需要另外提交源码或文档到 GitHub
 
 新授权范围为 master、ros2-humble、codex/rk3588-ros1、codex/rk3588-ros2 与所属新增 annotated tag，既有 refs fast-forward，历史 tag 不移动，未使用的复现支线不推送。检查见 [发布前证据](../infra/rk3588/reference/publication_check_20261014/)；旧冻结归档中的“未 push”保留为当时状态
+
+## 普通用户部署入口（2026-10-15）
+
+ROS 1 v0.1 为默认部署交付，ROS 2 为独立预研包；完整包统一放主机 `/home/eric/projects/releases/`，板端默认 `~/vins-workspace/releases/ros1-v0.1/install/`。普通用户无需理解 `.infra/` 或 jobs 中间产物，直接按 [第 11 份用户指南](11_RK3588_USER_GUIDE.md) 完成部署、环境检查、EuRoC 回放和日志回收；现场项目配置与版本边界也在该指南
+
+旧 `.infra/` 和已验收 jobs 不删除、不迁移，保持历史 SHA256。运行包重排目录但算法/二进制不变；ROS 1 已知清理 abort 和真实相机未验收的边界保留
