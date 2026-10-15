@@ -76,3 +76,11 @@ ros1-baseline01 实际完整回放一次，原 bag/已接受运行包哈希通�
 CPU/RSS/PSS 为 VINS 订阅就绪至排空，未采 rosbag，不当作合计 CPU。外层阶段失败在日志已回收后的主机评估器不支持 --label；参数修正后仅评估既有轨迹，ros1-evaluation01 通过，没有第二次回放。原失败事件/日志不改写，结果接受明确依赖完成的板端回放与独立主机恢复评估，[完整轨迹、日志、资源、评估和 SHA256](../infra/rk3588/reference/ros1_baseline_20261014/)
 
 运行包旧来源字段是 annotated tag 对象 3293397，剥离到主机构建 commit 30790b0；冻结包/metadata 不改，证据明确对应关系，未来打包已修正。OpenCV 4.2.0/Ceres 1.14.0/Eigen 3.3.9、原算法/标定保持不变，Focal/GCC9/SuiteSparse/Netlib 与 ROS 2 Jammy 传递依赖不同；一轮不能把轨迹或 CPU 差异只归因 ROS 版本。排空含稳定等待，不称为实时性通过
+
+## v0.1 完整 install 交付验证（2026-10-15）
+
+普通用户入口独立为 [第 11 份指南](11_RK3588_USER_GUIDE.md)，ROS 1 默认交付，ROS 2 为独立预研包。本分支主机包为 `/home/eric/projects/releases/ros1-v0.1/`，板端固定目录 `/home/firefly/vins-workspace/releases/ros1-v0.1/install/`；不再要求用户拼接旧 jobs/payload/addon 或理解 .infra 的全部目录
+
+打包复用原已验收运行文件，仅重排目录和增加环境/用户入口；完整包 4217 个文件 SHA256 通过，其中 4206 个原运行文件按哈希直接复用，284 个 ELF 全部 AArch64。上板解压、动态依赖来源、节点订阅及已有生命周期检查通过；ROS 2 两种 DDS 在同一 install 验证，ROS 1 原清理 −6 如实保留。主机四项部署工具检查通过；没有重放 EuRoC，没有新增性能/精度/实时/真实相机验收结论，原成功/失败统计均不变
+
+原核心/config 和历史归档哈希均未变，证据及压缩包 SHA256 见 [v0.1 安装包验收](../infra/release/reference/ros1-v0.1/)。原构建记录与新包装提交分层保留，不把旧二进制重新标为本次重建

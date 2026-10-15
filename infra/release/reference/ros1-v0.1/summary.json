@@ -1,0 +1,43 @@
+{
+  "directory": "/home/eric/projects/releases/ros1-v0.1",
+  "board_install": "/home/firefly/vins-workspace/releases/ros1-v0.1/install",
+  "archive": "install-ros1-v0.1-linux-aarch64.tar.gz",
+  "archive_sha256": "87dbf358075e43164bca451c1bd86616fd1aecf58fc2bbfd04cd7515572d814b",
+  "archive_bytes": 99594858,
+  "verified_package_files": 4217,
+  "unchanged_original_files": 4206,
+  "elf_count": 284,
+  "all_elf_aarch64": true,
+  "sha256sums_sha256": "6e45dd5a9c17156a39f3983f3d7cac7d633488d9bd29be229e936f1ed909e836",
+  "new_full_replays": 0,
+  "workflow_unit_tests": 4,
+  "packaging_commit": "e1e9588a0650369b1c0ee46aa6726f3a1df1fc93",
+  "original_build_ref": "329339700de632ce65c928d3dd229f1befa95a19",
+  "original_build_commit": "30790b0650b918045b020be9719a29bf5a334842",
+  "release_json_sha256": "4f3725a52bcee97bf3515cb9b6b741f1a9dc051acf03b69b13318be43eeb68e4",
+  "default_role": "deployment",
+  "checks": {
+    "deploy": {
+      "verified_files": 4217,
+      "python_executable": "/home/firefly/vins-workspace/releases/ros1-v0.1/install/runtime/python38/bin/python3",
+      "numpy": "1.17.4",
+      "bag_input": false,
+      "roslaunch_version": "1.17.4",
+      "subscriptions_ready": true,
+      "vins_exit_code": -6,
+      "roscore_exit_code": 0,
+      "cleanup_note": "Original ROS 1 unjoined sync thread abort retained, as in desktop reference"
+    },
+    "run": {
+      "verified_files": 4217,
+      "python_executable": "/home/firefly/vins-workspace/releases/ros1-v0.1/install/runtime/python38/bin/python3",
+      "numpy": "1.17.4",
+      "bag_input": false,
+      "roslaunch_version": "1.17.4",
+      "subscriptions_ready": true,
+      "vins_exit_code": -6,
+      "roscore_exit_code": 0,
+      "cleanup_note": "Original ROS 1 unjoined sync thread abort retained, as in desktop reference"
+    }
+  }
+}
