@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/env.sh"
+command=${1:---help}
+if test "$#" -gt 0; then shift; fi
+case "$command" in
+    check) exec python3 "$VINS_INSTALL_ROOT/scripts/check.py" "$@" ;;
+    euroc)
+        if test "$ROS_VERSION" != 1 || test "$#" -ne 2; then
+            echo 'Usage (ROS 1): bin/vins euroc BAG NEW_OUTPUT_DIRECTORY' >&2; exit 2
+        fi
+        exec python3 "$VINS_INSTALL_ROOT/scripts/reference/run_euroc_baseline.py" \
+            --bag "$1" --output "$2" --binary "$VINS_INSTALL_ROOT/bin/vins_node" ;;
+    node)
+        if test "$ROS_VERSION" = 1; then exec "$VINS_INSTALL_ROOT/bin/vins_node" "$@"; fi
+        exec "$VINS_INSTALL_ROOT/app/lib/vins/vins_node" "$@" ;;
+    --help|-h)
+        echo 'bin/vins check NEW_LOG_DIRECTORY   Verify package, imports, links, node readiness'
+        echo 'bin/vins euroc BAG NEW_OUTPUT_DIRECTORY   ROS 1 EuRoC stereo + IMU replay'
+        echo 'bin/vins node CONFIG              Start VIO; provide a ROS master / sensor source'
+        echo 'bin/vins COMMAND [ARGUMENTS...]    Run roscore, rosbag, rostopic or ros2 in bundled environment'
+        ;;
+    *) exec "$command" "$@" ;;
+esac

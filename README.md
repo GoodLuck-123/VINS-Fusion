@@ -1,5 +1,7 @@
 # VINS-Fusion
 
+普通用户使用 ROS 1 v0.1 请先读 [11 RK3588 用户指南](docs/11_RK3588_USER_GUIDE.md)：完整 install 包、默认部署路径、运行与日志回收；无需在板端搭建 ROS 或编译依赖。以下上游说明中的源码安装步骤不属于 v0.1 二进制部署流程
+
 本分支为 RK3588 ROS 1 目标 codex/rk3588-ros1，从 master 最新 8c7c8d2 建立。先读 [00 接手入口](docs/00_HANDOFF.md)；clone 后用一条命令补齐锁定依赖，见 [09 依赖下载](docs/09_DEPENDENCIES.md)。锁定依赖下载、固定视觉库主机构建和消费端链接已通过；ROS 1 工程交叉构建与固定视觉库实际板端计算已通过，Noetic 运行环境与唯一双目配置一轮回放/主机评估已通过，原 VINS 清理 abort −6 如实单列；固定调用入口见 [08 板端工作流](docs/08_RK3588_WORKFLOW.md)
 
 ## An optimization-based multi-sensor state estimator

@@ -25,10 +25,12 @@ def main():
     parser.add_argument("--rate", type=float, default=1.0)
     parser.add_argument("--port", type=int, default=11321)
     parser.add_argument("--name", default=time.strftime("MH_01_easy_%Y%m%d_%H%M%S"))
+    parser.add_argument("--output", type=Path, help="New explicit result directory for a deployed release")
+    parser.add_argument("--binary", type=Path, default=ROOT / ".infra/vins_ws/devel/lib/vins/vins_node")
     args = parser.parse_args()
     if args.rate <= 0 or args.rate > 1:
         parser.error("Use a rate in (0, 1] for the original reference")
-    output = ROOT / "results/ros1" / args.name
+    output = args.output.resolve() if args.output else ROOT / "results/ros1" / args.name
     with rosbag.Bag(str(args.bag)) as bag:
         bag_duration = bag.get_end_time() - bag.get_start_time()
     with socket.socket() as check:
@@ -57,7 +59,7 @@ def main():
                 "runner_commit": build.get("packaging_commit", source_commit),
                 "config": str(config_path), "start_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "success": False}
-    metadata["binary_sha256"] = hashlib.sha256((ROOT / ".infra/vins_ws/devel/lib/vins/vins_node").read_bytes()).hexdigest()
+    metadata["binary_sha256"] = hashlib.sha256(args.binary.read_bytes()).hexdigest()
     metadata["runner_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     metadata["metrics_sha256"] = hashlib.sha256(Path(__file__).with_name("process_metrics.py").read_bytes()).hexdigest()
     metadata["bag_duration_s"] = bag_duration
@@ -88,7 +90,7 @@ def main():
                 raise TimeoutError("ROS master did not become ready")
             time.sleep(0.25)
         master.setParam("/baseline_runner", "/use_sim_time", True)
-        node = launch([str(ROOT / ".infra/vins_ws/devel/lib/vins/vins_node"), str(config_path)], "vins")
+        node = launch([str(args.binary), str(config_path)], "vins")
         deadline = time.monotonic() + 30
         required = {"/cam0/image_raw", "/cam1/image_raw", "/imu0"}
         while True:

@@ -48,3 +48,9 @@ RK3588S 的 perf 计数/采样与 ROS 2 VINS PMU 已在所属分支验收，板�
 代码/文档/工具在主机，板端只有主机部署的运行包/脚本与数据/输出，未建立 Git 仓库。有效运行包 11251 文件保持主机清单哈希，29 个旧作业的 441 个 logs 文件全部在主机有相同 SHA256 副本，无遗漏待回收代码/文档/实验日志；本次只读审计结果也已回收
 
 用户现授权核验后推送 master、ros2-humble、codex/rk3588-ros1、codex/rk3588-ros2 及新增所属 annotated tag，fast-forward/新增 refs，历史 tag 不移动、未使用复现支线不推。完整发布前检查归档在 ROS 2 目标分支 infra/rk3588/reference/publication_check_20261014/；历史冻结“未 push”为当时状态，保持原样
+
+## 普通用户部署入口（2026-10-15）
+
+ROS 1 当前版本定为 v0.1，完整交付目录 `/home/eric/projects/releases/ros1-v0.1/`；压缩包解压顶层为 install，板端默认 `~/vins-workspace/releases/ros1-v0.1/install/`。无需在板端搭建 ROS/OpenCV/Ceres 环境；部署、检查、回放、回收日志和自定义项目说明见 [第 11 份用户指南](11_RK3588_USER_GUIDE.md)
+
+该版本保持原二进制/算法；目录重排、环境入口与打包器独立管理，旧冻结包不动。ROS 1 原清理 abort 与真实相机尚未验收的边界仍保留，不称完整生产稳定性通过；普通用户不再从旧 jobs 或 .infra 中挑选产物
