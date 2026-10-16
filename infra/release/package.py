@@ -133,7 +133,16 @@ def main():
         guides = root / 'share/docs'
         guides.mkdir()
         for name in ['08_RK3588_WORKFLOW.md','09_DEPENDENCIES.md','11_RK3588_USER_GUIDE.md','12_VINS_REMOTE.md','13_BOARD_CLI.md']:
-            shutil.copy2(REPO / 'docs' / name, guides / name)
+            original = REPO / 'docs' / name
+            text = original.read_text()
+            def source_link(match):
+                label, target = match.group(1), match.group(2)
+                path = (original.parent / target).resolve()
+                kind = 'tree' if path.is_dir() else 'blob'
+                return '[' + label + '](https://github.com/GoodLuck-123/VINS-Fusion/' + kind + '/' + metadata['packaging_commit'] + '/' + str(path.relative_to(REPO)) + ')'
+            # Maintenance evidence/locks stay in Git, not in a runtime package.
+            text = re.sub(r'\[([^\]]+)\]\((\.\./[^)]+)\)', source_link, text)
+            (guides / name).write_text(text)
         (root / 'README.md').write_text(
             '# RK3588 ROS 1 ' + args.version + '\n\n## Quick Start\n\n'
             '在板端 bash 中执行：\n\n```bash\nsource /实际安装目录/env.sh\n'
