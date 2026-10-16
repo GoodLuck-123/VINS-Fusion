@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "settings": {
+    "target": "firefly@10.106.0.220",
+    "root": "vins-workspace",
+    "cwd": "vins-workspace/projects/vins",
+    "env": "vins-workspace/install/env.sh"
+  },
+  "board": {
+    "root": "/home/firefly/vins-workspace",
+    "cwd": "/home/firefly/vins-workspace/projects/vins",
+    "install": "/home/firefly/vins-workspace/releases/ros1-v0.1/install",
+    "bag": "/home/firefly/vins-workspace/projects/vins/data/euroc/MH_01_easy.bag",
+    "bag_source": "/home/firefly/vins-workspace/datasets/euroc_20261014/MH_01_easy.bag",
+    "no_live_ros": true
+  },
+  "layout": {
+    "install": "/home/firefly/vins-workspace/releases/ros1-v0.1/install",
+    "project": {
+      "config": "directory",
+      "runs": "directory",
+      "data": "directory",
+      "workspace-layout-note.txt": "file"
+    },
+    "runs": [
+      "install-check01",
+      "workspace-layout-check01"
+    ]
+  },
+  "task": {
+    "target": "firefly@10.106.0.220",
+    "job": "/home/firefly/vins-workspace/projects/vins/runs/workspace-layout-check01"
+  },
+  "transfer_sha256": "0a8541ee929c9320f0ea0bf8fc93d18b5e59f4630dbf0bdb2c9219416a318665",
+  "verified_files": 4217,
+  "subscriptions_ready": true,
+  "vins_exit_code": -6,
+  "roscore_exit_code": 0,
+  "no_vio_replay": true
+}

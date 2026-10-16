@@ -1,0 +1,7 @@
+{"job": "install-check01", "code": "JOB_STARTED", "message": "Remote script started", "utc": "2026-03-07T20:28:06Z", "monotonic_ns": 235125422727679, "pid": 125828, "timeout_s": 180}
+{"job": "install-check01", "code": "PROCESS_STARTED", "message": "Script process group", "utc": "2026-03-07T20:28:06Z", "monotonic_ns": 235125425032138, "pid": 125828, "child_pid": 125831}
+{"job": "install-check01", "code": "INSTALL_SELECTED", "message": "/home/firefly/vins-workspace/install", "utc": "2026-03-07T20:28:06Z", "monotonic_ns": 235125538485524, "pid": 125832}
+{"job": "install-check01", "code": "CHECK_STARTED", "message": "Checking deployed runtime without data", "utc": "2026-03-07T20:28:06Z", "monotonic_ns": 235125639993701, "pid": 125859}
+{"job": "install-check01", "code": "RUNNING", "message": "Process is alive; this is not a health verdict", "utc": "2026-03-07T20:28:11Z", "monotonic_ns": 235130442369642, "pid": 125828, "elapsed_s": 5.0, "child_pid": 125831}
+{"job": "install-check01", "code": "CHECK_PASSED", "message": "Runtime lifecycle probe passed; inspect process exits", "utc": "2026-03-07T20:28:11Z", "monotonic_ns": 235130964984278, "pid": 125975}
+{"job": "install-check01", "code": "JOB_FINISHED", "message": "complete", "utc": "2026-03-07T20:28:11Z", "monotonic_ns": 235131045986452, "pid": 125828, "exit_code": 0, "script_exit_code": 0}

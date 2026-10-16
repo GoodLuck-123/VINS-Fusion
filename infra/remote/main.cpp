@@ -135,7 +135,7 @@ void usage() {
                  "vins-remote [USER@HOST] REMOTE_PATH --receive [--dest LOCAL_PARENT]\n"
                  "vins-remote [USER@HOST] --remote [--cwd DIR] [--env FILE]\n"
                  "vins-remote [USER@HOST] --exec [--cwd DIR] [--env FILE|--no-env] -- COMMAND [ARGS...]\n"
-                 "vins-remote [USER@HOST] PAYLOAD --run SCRIPT --output NEW_DIR [--timeout SEC] [--detach]\n"
+                 "vins-remote [USER@HOST] PAYLOAD --run SCRIPT --output NEW_DIR [--timeout SEC] [--detach] [--job-name NAME]\n"
                  "vins-remote [USER@HOST] REMOTE_JOB --follow [--events-only] [--output DIR]\n"
                  "vins-remote [USER@HOST] REMOTE_JOB --stop [--output DIR]\n"
                  "vins-remote [USER@HOST] REMOTE_JOB --collect LOCAL_DIR\n"
@@ -164,7 +164,7 @@ int main(int argc, char** argv) {
             if (fs::exists(nearby)) config = nearby;
         }
         if (!config.empty()) d.load(config);
-        std::string source, mode, destination, script, output, collect;
+        std::string source, mode, destination, script, output, collect, job_name;
         bool no_env = false, detach = false, events_only = false, print_config = false;
         unsigned timeout = 3600;
         Args command;
@@ -184,6 +184,7 @@ int main(int argc, char** argv) {
             else if (option == "--print-config") print_config = true;
             else if (option == "--dest") destination = value();
             else if (option == "--output") output = value();
+            else if (option == "--job-name") { job_name = value(); if (job_name.empty()) throw std::runtime_error("Empty --job-name"); }
             else if (option == "--timeout") {
                 auto v = value(); if (!std::regex_match(v, std::regex("[0-9]+"))) throw std::runtime_error("Invalid timeout");
                 auto n = std::stoul(v); if (n < 1 || n > 604800) throw std::runtime_error("Timeout must be 1..604800");
@@ -210,6 +211,8 @@ int main(int argc, char** argv) {
         if (mode == "exec" && command.empty()) throw std::runtime_error("Provide --exec -- COMMAND [ARGS]");
         if ((mode == "send" || mode == "receive" || mode == "run" || mode == "collect" || mode == "follow" || mode == "stop") && source.empty()) throw std::runtime_error("Missing file/path/job");
         if ((mode == "remote" || mode == "exec") && !source.empty()) throw std::runtime_error("Unexpected file/path");
+        if (!job_name.empty() && (mode != "run" || !std::regex_match(job_name, std::regex("[A-Za-z0-9][A-Za-z0-9_.-]{0,79}"))))
+            throw std::runtime_error("--job-name requires --run and 1..80 letters/digits/._- starting with a letter or digit");
         if (detach && mode != "run") throw std::runtime_error("--detach requires --run");
         if (events_only && mode != "run" && mode != "follow" && mode != "stop") throw std::runtime_error("--events-only requires a managed job");
         if (!destination.empty() && mode != "send" && mode != "receive" && mode != "run") throw std::runtime_error("--dest is only for transfers/job creation");
@@ -241,7 +244,7 @@ int main(int argc, char** argv) {
                 if (local == local.parent_path()) throw std::runtime_error("Cannot send filesystem root");
                 local = local.parent_path();
             }
-            auto parent = resolved(destination.empty() ? d.root + "/incoming" : destination, home);
+            auto parent = resolved(destination.empty() ? d.cwd : destination, home);
             require(execute(ssh(d.target, "mkdir -p -- " + quote(parent))), "Remote directory creation");
             return transfer(local.string(), d.target + ':' + parent + '/');
         }
@@ -270,7 +273,7 @@ int main(int argc, char** argv) {
             if (name == "logs" || name == "run-script.sh" || name == "remote_agent.py") throw std::runtime_error("Reserved payload name");
             auto parent = resolved(destination.empty() ? d.root + "/jobs" : destination, home);
             auto now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-            job = parent + '/' + std::to_string(now) + '-' + std::to_string(getpid());
+            job = parent + '/' + (job_name.empty() ? std::to_string(now) + '-' + std::to_string(getpid()) : job_name);
             std::cerr << "Remote job: " << d.target << ':' << job << '\n';
             receipt(output, d.target, job, true);
             require(execute(ssh(d.target, "mkdir -p -- " + quote(parent) + " && mkdir -- " + quote(job) + " && mkdir -- " + quote(job + "/logs"))), "Job creation");

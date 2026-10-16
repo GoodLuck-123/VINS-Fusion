@@ -1,0 +1,97 @@
+
+             60 100%    0.00kB/s    0:00:00  
+             60 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/1)
+             60 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/1)
+
+            542 100%    0.00kB/s    0:00:00  
+            542 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/1)
+            542 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/1)
+
+          8,915 100%    0.00kB/s    0:00:00  
+          8,915 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/1)
+          8,915 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/1)
+[JOB_STARTED] Remote script started
+[PROCESS_STARTED] Script process group
+[INSTALL_SELECTED] /home/firefly/vins-workspace/install
+[CHECK_STARTED] Checking deployed runtime without data
+[runtime-check/logs/roscore.log] ... logging to /home/firefly/.ros/log/72ef7c28-1a64-11f1-b2fd-6c1ff7295dee/roslaunch-firefly-127765.log
+[runtime-check/logs/roscore.log] Checking log directory for disk usage. This may take a while.
+[runtime-check/logs/roscore.log] Press Ctrl-C to interrupt
+[runtime-check/logs/roscore.log] Done checking log file disk usage. Usage is <1GB.
+[runtime-check/logs/roscore.log] ]2;roscore
+[runtime-check/logs/roscore.log] [1mstarted roslaunch server http://127.0.0.1:45963/[0m
+[runtime-check/logs/roscore.log] ros_comm version 1.17.4
+[runtime-check/logs/roscore.log] 
+[runtime-check/logs/roscore.log] 
+[runtime-check/logs/roscore.log] SUMMARY
+[runtime-check/logs/roscore.log] ========
+[runtime-check/logs/roscore.log] 
+[runtime-check/logs/roscore.log] PARAMETERS
+[runtime-check/logs/roscore.log]  * /rosdistro: noetic
+[runtime-check/logs/roscore.log]  * /rosversion: 1.17.4
+[runtime-check/logs/roscore.log] 
+[runtime-check/logs/roscore.log] NODES
+[runtime-check/logs/roscore.log] 
+[runtime-check/logs/roscore.log] auto-starting new master
+[runtime-check/logs/roscore.log] [1mprocess[master]: started with pid [127773][0m
+[runtime-check/logs/roscore.log] [1mROS_MASTER_URI=http://127.0.0.1:11331/[0m
+[runtime-check/logs/roscore.log] ]2;roscore http://127.0.0.1:11331/
+[runtime-check/logs/roscore.log] [1msetting /run_id to 72ef7c28-1a64-11f1-b2fd-6c1ff7295dee[0m
+[runtime-check/logs/roscore.log] [1mprocess[rosout-1]: started with pid [127784][0m
+[runtime-check/logs/roscore.log] started core service [/rosout]
+[runtime-check/logs/vins.log] [0m[INFO] [1772915416.304720474]: init begins[0m
+[runtime-check/logs/vins.log] config_file: /home/firefly/vins-workspace/projects/vins/runs/workspace-layout-check01/logs/runtime-check/logs/config.yaml
+[runtime-check/logs/vins.log] USE_IMU: 1
+[runtime-check/logs/vins.log] IMU_TOPIC: /imu0
+[runtime-check/logs/vins.log] result path /home/firefly/vins-workspace/projects/vins/runs/workspace-layout-check01/logs/runtime-check/logs/vio.csv
+[runtime-check/logs/vins.log] [33m[WARN] [1772915416.318993767]:  fix extrinsic param [0m
+[runtime-check/logs/vins.log] camera number 2
+[runtime-check/logs/vins.log] [0m[INFO] [1772915416.321100184]: Synchronized sensors, fix time offset: 0[0m
+[runtime-check/logs/vins.log] [0m[INFO] [1772915416.321160850]: ROW: 480 COL: 752 [0m
+[runtime-check/logs/vins.log]  exitrinsic cam 0
+[runtime-check/logs/vins.log]  0.0148655  -0.999881  0.0041403
+[runtime-check/logs/vins.log]   0.999557  0.0149672  0.0257155
+[runtime-check/logs/vins.log] -0.0257744 0.00375619   0.999661
+[runtime-check/logs/vins.log] -0.0216401  -0.064677 0.00981073
+[runtime-check/logs/vins.log]  exitrinsic cam 1
+[runtime-check/logs/vins.log]  0.0125553  -0.999755  0.0182238
+[runtime-check/logs/vins.log]   0.999599  0.0130119  0.0251588
+[runtime-check/logs/vins.log] -0.0253898  0.0179006   0.999517
+[runtime-check/logs/vins.log] -0.0198436  0.0453689 0.00786212
+[runtime-check/logs/vins.log] set g       0       0 9.81007
+[runtime-check/logs/vins.log] [33m[WARN] [1772915416.322448267]: waiting for image and imu...[0m
+[runtime-check/logs/vins.log] terminate called without an active exception
+[runtime-check/logs/roscore.log] [rosout-1] killing on exit
+[runtime-check/logs/roscore.log] [master] killing on exit
+[RUNNING] Process is alive; this is not a health verdict
+[runtime-check/logs/roscore.log] shutting down processing monitor...
+[runtime-check/logs/roscore.log] ... shutting down processing monitor complete
+[runtime-check/logs/roscore.log] [1mdone[0m
+[runtime-check/console.log] ARM_ROS1_RUNTIME_OK hashes + private Python 3.8 imports + sensor subscriptions; cleanup exit recorded; no VIO input
+[CHECK_PASSED] Runtime lifecycle probe passed; inspect process exits
+[console.log] Runtime check exit: 0 ; logs: /home/firefly/vins-workspace/projects/vins/runs/workspace-layout-check01/logs/runtime-check
+[JOB_FINISHED] complete exit=0
+
+              0   0%    0.00kB/s    0:00:00  
+            122   0%  119.14kB/s    0:00:00 (xfr#1, to-chk=18/20)
+          1,541   1%    1.47MB/s    0:00:00 (xfr#2, to-chk=17/20)
+          1,543   1%    1.47MB/s    0:00:00 (xfr#3, to-chk=16/20)
+          1,543   1%    1.47MB/s    0:00:00 (xfr#4, to-chk=15/20)
+          1,614   1%    1.54MB/s    0:00:00 (xfr#5, to-chk=14/20)
+          1,651   1%    1.57MB/s    0:00:00 (xfr#6, to-chk=13/20)
+          1,767   1%    1.69MB/s    0:00:00 (xfr#7, to-chk=11/20)
+          2,196   1%    2.09MB/s    0:00:00 (xfr#8, to-chk=9/20) 
+          2,626   1%    2.50MB/s    0:00:00 (xfr#9, to-chk=8/20)
+          5,851   4%    5.58MB/s    0:00:00 (xfr#10, to-chk=7/20)
+         55,843  40%   53.26MB/s    0:00:00 (xfr#11, to-chk=6/20)
+         56,718  41%   54.09MB/s    0:00:00 (xfr#12, to-chk=5/20)
+         88,021  64%   83.94MB/s    0:00:00 (xfr#13, to-chk=4/20)
+         88,999  65%   84.88MB/s    0:00:00 (xfr#14, to-chk=3/20)
+         95,626  69%   91.20MB/s    0:00:00 (xfr#15, to-chk=2/20)
+        136,640 100%  130.31MB/s    0:00:00 (xfr#16, to-chk=1/20)
+        136,640 100%  130.31MB/s    0:00:00 (xfr#17, to-chk=0/20)
+        136,640 100%   65.16MB/s    0:00:00 (xfr#17, to-chk=0/20)
+        136,640 100%   65.16MB/s    0:00:00 (xfr#17, to-chk=0/20)
+        136,640 100%   65.16MB/s    0:00:00 (xfr#17, to-chk=0/20)
+Remote job: firefly@10.106.0.220:/home/firefly/vins-workspace/projects/vins/runs/workspace-layout-check01
+[COLLECT_OK] "/home/eric/projects/results/workspace-layout-toolbox/install-check01"; remote exit=0

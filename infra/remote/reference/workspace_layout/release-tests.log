@@ -1,0 +1,12 @@
+test_bad_sha_does_not_deploy (test_workflow.WorkflowTest.test_bad_sha_does_not_deploy) ... ok
+test_default_host_and_custom_workspace (test_workflow.WorkflowTest.test_default_host_and_custom_workspace) ... ok
+test_deploy_then_check_and_replay_request (test_workflow.WorkflowTest.test_deploy_then_check_and_replay_request) ... ok
+test_existing_install_is_not_replaced (test_workflow.WorkflowTest.test_existing_install_is_not_replaced) ... ok
+test_named_run_and_duplicate_refusal (test_workflow.WorkflowTest.test_named_run_and_duplicate_refusal) ... ok
+test_real_install_directory_is_preserved (test_workflow.WorkflowTest.test_real_install_directory_is_preserved) ... ok
+test_unsafe_archive_is_rejected (test_workflow.WorkflowTest.test_unsafe_archive_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.742s
+
+OK

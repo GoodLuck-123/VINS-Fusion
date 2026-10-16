@@ -1,0 +1,1 @@
+{"root": "/home/firefly/vins-workspace", "cwd": "/home/firefly/vins-workspace/projects/vins", "install": "/home/firefly/vins-workspace/releases/ros1-v0.1/install", "bag": "/home/firefly/vins-workspace/projects/vins/data/euroc/MH_01_easy.bag", "bag_source": "/home/firefly/vins-workspace/datasets/euroc_20261014/MH_01_easy.bag", "no_live_ros": true}

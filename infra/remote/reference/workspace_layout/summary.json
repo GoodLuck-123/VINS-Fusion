@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "native_integration_tests": 14,
+  "release_workflow_tests": 7,
+  "real_board_checks": [
+    "default upload and cwd match",
+    "send/receive SHA256",
+    "initialized environment",
+    "default and explicit readable task names",
+    "refuse duplicate task",
+    "recollect logs",
+    "4217 package files",
+    "subscriptions ready",
+    "no residual ROS"
+  ],
+  "new_vio_replays": 0,
+  "known_vins_exit": -6,
+  "roscore_exit": 0,
+  "host_logs": [
+    "/home/eric/projects/results/workspace-layout",
+    "/home/eric/projects/results/workspace-layout-toolbox"
+  ],
+  "toolbox": "/home/eric/projects/releases/remote-tools/workspace-layout",
+  "board_project": "/home/firefly/vins-workspace/projects/vins",
+  "no_new_tag": true
+}

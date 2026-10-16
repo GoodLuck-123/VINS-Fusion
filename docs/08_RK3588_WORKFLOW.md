@@ -1,79 +1,60 @@
-# RK3588 ROS 1 交叉编译与远端工作流
+# RK3588 ROS 1 构建与打包维护
 
 更新日期：2026-10-16
 
 ## Quick Start
 
-日常操作统一使用已安装的 vins-remote 2：`vins-remote --remote` 进入默认开发目录和 ROS 1 环境，`vins-remote 文件 --send` 发送，自动实验用更新后工具箱的 run.py。双向进度、实时日志和任务恢复见 [第 12 份指南](12_VINS_REMOTE.md)
-
-下文保留主机交叉构建和早期验收流程；原 --run/--collect 调用仍兼容，当前传输后端为 rsync over SSH，不再用 scp。稳定默认入口为 ~/vins-workspace/install/env.sh，旧 jobs 内包只作历史追溯
-
-本分支 codex/rk3588-ros1 从 ROS 1 master 最新 8c7c8d2 继续。主机联网下载/交叉编译，板端离线运行；原 master 和 ROS 2 分支/tag 保留，不将 ROS 2 核心合入本分支。实测写第 05 份报告，依赖锁见第 09 份文档
-
-## 已验收与待验收
-
-五包/六程序/70 个 ARM ELF 主机构建通过，tag milestone-rk3588-ros1-cross-build-v1；固定 OpenCV 4.2.0/Ceres 1.14.0/Eigen 3.3.9 的实际 RK3588 GFTT/LK/两种稀疏求解通过，tag milestone-rk3588-ros1-legacy-libs-v1。Noetic/Python 3.8 运行包主机准备完成，4209 文件/105 个运行库；首次运行包遗漏 rosversion 的失败保留；ros1-runtime02 的 4210 文件/私有 Python/动态库/订阅就绪已通过，ROS master 退出 0、原 VINS 清理 abort −6 单列。唯一双目配置一轮完整 VIO/主机评估已通过，原清理 abort 单列
-
-## 一个命令下载与隔离构建
-
-从仓库根、全新 bash 执行，不 source 桌面 ROS 或另一交叉工具链环境：
+只运行现有包请读 [11 用户指南](11_RK3588_USER_GUIDE.md)。维护者在联网 Linux x86_64 主机、codex/rk3588-ros1 仓库根、新 bash 中执行：
 
 ```bash
 python3 infra/dependencies/fetch.py
 bash infra/rk3588/scripts/build_legacy.sh
 bash infra/rk3588/scripts/build_ros1_cross.sh
-python3 infra/rk3588/scripts/verify_ros1_cross.py --output 新验证文件.json
+python3 infra/rk3588/scripts/verify_ros1_cross.py --output /tmp/new-cross-check.json
 ```
 
-GCC 9.4/Focal 工具链保留原 Carotene 参数，主机库只暴露编译器/ARM binutils 支持库，系统 CMake 使用主机 libc/libstdc++。SDK 绝对链接与 CMake 目标库/头文件导出可重复重定位，原包 SHA256 不改。cv_bridge 1.16.2 下载 C++ 源码原样，只在构建副本关闭可选 Python 扩展；主机 Python 3.10 仅运行纯 Python catkin/empy
+不要 source 桌面 ROS、另一工具链或 uv 环境。下载、交叉构建都在主机进行，不在 ARM 执行 x86 bootstrap。依赖内容和离线复用见 [09](09_DEPENDENCIES.md)
 
-输出为 ../.infra/rk3588/ros1-legacy/ 与 ros1_ws/devel/。原工程缺少全套 install 规则，打包脚本从核验过的运行文件生成可部署包，保留节点、闭包、资源和标定，避免复制完整 SDK/源码作为部署办法
+## 1. 主机目录与依赖隔离
 
-## C++ 文件传输与运行工具
+| 目录 | 用途 |
+| --- | --- |
+| dependencies/ | 锁定下载、源码、工具链、Noetic sysroot；Git 只保存锁与占位 |
+| ../.infra/rk3588/ros1-legacy/ | ARM OpenCV 4.2.0、Ceres 1.14.0、Eigen 3.3.9 |
+| ../.infra/rk3588/ros1_ws/devel/ | ROS 1 交叉构建输出 |
+| ../.infra/rk3588/ros1-payload02/ | 已验收旧运行包来源，冻结保留 |
+| ../.infra/bin/、build/remote-v2/ | 主机工具及其构建，不当作 ARM 文件上传 |
+| ../releases/ | 面向使用者的完整 install 压缩包与主机工具箱 |
+| ../results/ | 主机完整验证日志与实验结果 |
 
-infra/remote/ 与 ROS 2 分支已验证工具源码字节一致，Linux/POSIX C++17 + OpenSSH 实现，跨 x86/ARM；初次从本分支 clone 时可独立编译：
+使用独立 Focal/Noetic/GCC 9.4 ABI。工具链仅向主机暴露编译器所需库，禁止把整个 Focal amd64 库目录放入 LD_LIBRARY_PATH。SDK 绝对链接与 CMake 导出由脚本重定位并记录审计，不执行 deb postinst，不改主机/板端系统
+
+cv_bridge C++ 从固定源码重建，构建副本关闭可选 Python 扩展；不混入 SDK 或系统 OpenCV/cv_bridge。原工程 install 规则不完整，因此从核验过的运行文件生成部署包，不上传 SDK 和整个构建工作区
+
+## 2. 运行包与完整 install
+
+编译后先生成私有 Noetic/Python 3.8 运行包，使用当前构建的真实提交和新的输出目录：
 
 ```bash
-cmake -S infra/remote -B ../.infra/remote-build -DCMAKE_BUILD_TYPE=Release
-cmake --build ../.infra/remote-build -j4
-cmake --install ../.infra/remote-build --prefix ../.infra
-../.infra/bin/vins-remote firefly@10.106.0.220 文件或目录
+python3 infra/rk3588/scripts/prepare_ros1_runtime.py   --build-commit 当前构建的提交 --output ../.infra/rk3588/ros1-payload-new
 ```
 
-默认已用本机专用密钥完成免密 SSH，新开发机自行生成并授权密钥，不复制私钥/密码或旧聊天 hook。一次调用上传、运行本地脚本并回收 logs；远端失败也先回收，结果目录拒绝覆盖，断线后用 --collect 回收同一作业，不重新执行
-
-## 独立 Python 3.8 运行包与节点检查
+现有 v0.1 从已验收 ros1-payload02 打包而来，以下为打包命令形式；已经存在的交付目录拒绝覆盖，源码变化后需先重新构建/验收，并给新包版本与新目录：
 
 ```bash
-python3 infra/rk3588/scripts/prepare_ros1_runtime.py \
-  --build-commit milestone-rk3588-ros1-cross-build-v1 \
-  --output ../.infra/rk3588/新运行包目录
-bash infra/rk3588/scripts/deploy_ros1_runtime.sh \
-  firefly@10.106.0.220 ../.infra/rk3588/新运行包目录 \
-  ../results/rk3588/新运行环境阶段/board
+python3 infra/release/package.py --ros ros1 --version v0.1   --runtime ../.infra/rk3588/ros1-payload02 --output ../releases/ros1-v0.1
 ```
 
-Python 3.8/Noetic 为私有前缀，沿用 Ubuntu 22.04 板端 glibc/loader，不替换系统 Python 3.10，不在板端下载。ROS Python 启动器通过 PATH 选择私有解释器，文件清单冻结改后的 SHA256。SDK cv_bridge/cv2 排除，VIO C++ cv_bridge/OpenCV 来自本分支重建
+打包器核对运行文件清单，生成单一 install、逐文件来源、SHA256SUMS 和 tar.gz。环境入口自动定位包目录，保留板端系统 glibc/Python，不用原构建机路径替代可迁移性检查。--runtime 的默认验收清单针对已有接受包；新构建必须先独立更新验收依据，不能改版本号冒充新构建
 
-部署探针验证文件哈希、Python 3.8/NumPy/rosbag 导入、实际动态库、ROS master 和图像/IMU 订阅，无传感器输入。原 ROS 1 未 join 的同步线程清理 abort 如实单列；不能称为正常退出，也不能将探针通过当作完整 VIO。后续完整回放每配置一次，原节点实收计数没有新增，bag 计数与末帧证据明确区分
+## 3. 部署与验证
 
-## 一次调用完整 ROS 1 参照
+主机工具构建见 [12 第 6 节](12_VINS_REMOTE.md#6-构建交付与测试)，部署/检查/实验使用 [11](11_RK3588_USER_GUIDE.md) 的同一入口。先检查包 SHA256、动态依赖、私有 Python、节点订阅和停止结果，再做必要完整输入回归；install 只在部署检查通过后选定
 
-运行环境验收后使用工具打印的已部署运行包绝对路径，不重新上传完整运行包。首次使用 --upload-data 传原 ROS 1 bag，后续复用并校验；本机 ROS 1 四轮属于同一双目配置的重复/采样，因此板端只执行该唯一配置一次
+修改算法、依赖或输入链路后，应保留配置/包来源、输入计数、初始化/重置、末帧、轨迹质量和进程退出；资源记录全线程 CPU、各进程 RSS/PSS、回放与排空。缺失数据填不可用，不把排空通过当实时性通过。当前原版 −6 清理缺陷仍是待修项
 
-```bash
-python3 infra/rk3588/scripts/run_ros1_board_phase.py \
-  --runtime 已验收板端运行包绝对路径 \
-  --name 新结果前缀 --directory ../results/rk3588/新阶段/trial \
-  --upload-data
-```
+历史脚本 run_ros1_board_phase.py 用于冻结 EuRoC 参照的回放与主机评估，--evaluate-only 仅评估已有结果，不重复回放；不是现场项目自动适配器。完整历史步骤可从既有 tag 查阅，当前用户入口统一 run.py。板端同一时间只运行一批实验，历史失败和积压事件按路径/哈希去重，不因旧通知回退有效安装
 
-工具统一执行 bag/运行包 SHA256、bag 输入计数、原 runner 双目 rate=1 回放、日志/资源/telemetry 回收及同一 uv.lock 主机评估。每次用新结果目录与前缀，失败保留，不覆盖失败或成功证据；板端只传运行文件，不在板端编译或联网
+## 4. 维护交付
 
-VINS 输入实收计数未新增，报告 bag 计数并另验收初始化/无重置、末帧、ATE/RPE 和进程退出。原同步线程清理 abort 单列，不能叫正常退出；本轮 VINS CPU/RSS/PSS 来自原采样器，未采 rosbag 进程时源端资源标不可用，不当合计 CPU。当前接口已固定，唯一配置实际回放一次并在主机恢复评估后通过验收；外层失败事件保留，不因评估参数错误重放。使用 --evaluate-only 对已回收数据恢复主机评估，默认清单来自已接受运行环境归档
-
-## 串行实验和证据
-
-板端同时只运行一批实验。本轮全部 15 次实际回放已结束，板端无旧作业活进程；后续仍一次只运行一批，不在另一批进行时上传或启动板端探针。大批次由本地后台 run_local_phase.py 承接，结束/失败只通知当前聊天一次，不在线轮询；事件按路径/SHA256 去重
-
-资源报告 VINS 全线程 CPU、每进程 RSS/PSS、回放与排空；没有采源端时标明不可用，不冒充合计 CPU。DDR/功耗不可用。保存原日志、源码/运行包来源和 SHA256，排空后通过不称为实时性验收，依赖传递差异不只归因于 ROS 版本
+源码、脚本、文档、小型验证及 SHA256 纳入本分支，完整包/数据/SDK/日志留主机产物目录；板端不维护待 push 源码。普通小迭代提交并 push，不打 tag；仅大的 vX.0 版本按用户约定打 tag，既有 tag 和已发布包不改写

@@ -67,10 +67,33 @@ except KeyboardInterrupt:sys.exit(130)
         source.mkdir();(source/'data').write_bytes(b'\x00\xffabc')
         result=self.call(str(source)+'/','--send')
         self.assertEqual(result.returncode,0,result.stderr)
-        self.assertEqual((self.root/'incoming'/source.name/'data').read_bytes(),b'\x00\xffabc')
-        result=self.call('incoming/'+source.name+'/','--receive','--dest',self.base/'download')
+        self.assertEqual((self.root/'projects/vins'/source.name/'data').read_bytes(),b'\x00\xffabc')
+        result=self.call('projects/vins/'+source.name+'/','--receive','--dest',self.base/'download')
         self.assertEqual(result.returncode,0,result.stderr)
         self.assertEqual((self.base/'download'/source.name/'data').read_bytes(),b'\x00\xffabc')
+
+    def test_send_uses_selected_working_directory(self):
+        cwd=self.root/"field project ' quoted"
+        result=self.call(self.payload,'--send','--cwd',cwd)
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual((cwd/self.payload.name).read_bytes(),self.payload.read_bytes())
+        self.assertFalse((self.root/'incoming').exists())
+
+    def test_named_job_refuses_reuse_and_path_escape(self):
+        parent=self.root/"projects/vins/runs"
+        result,out,job=self.launch('echo kept > logs/marker\n','named-first','--dest',parent,'--job-name','camera-calibration01')
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(Path(job),parent/'camera-calibration01')
+        again=self.call(self.payload,'--run',self.script('echo overwritten > logs/marker\n'),'--output',self.base/'second','--dest',parent,'--job-name','camera-calibration01')
+        self.assertNotEqual(again.returncode,0)
+        self.assertEqual((Path(job)/'logs/marker').read_text(),'kept\n')
+        for name in ('', '../escape','/absolute','a/b','-option','x'*81):
+            invalid=self.call(self.payload,'--run',self.script('true\n'),'--output',self.base/'invalid','--job-name',name)
+            self.assertEqual(invalid.returncode,2,invalid.stderr)
+            self.assertFalse((self.base/'invalid').exists())
+        pulled=self.call(job,'--collect',self.base/'recovered')
+        self.assertEqual(pulled.returncode,0,pulled.stderr)
+        self.assertEqual((self.base/'recovered/marker').read_text(),'kept\n')
 
     def test_exec_environment_directory_arguments_and_exit(self):
         command="import os,sys;print(os.environ['TEST_REMOTE_ENV']);print(os.getcwd());print(sys.argv[1]);sys.exit(7)"

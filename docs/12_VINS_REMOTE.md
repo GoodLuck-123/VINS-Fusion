@@ -17,8 +17,8 @@ vins-remote --remote
 # 主机发送文件或目录，有整体进度，保留名称
 vins-remote ./my-file --send
 
-# 主机接收板端文件或目录，results/ 相对默认板端工作区
-vins-remote results/test01 --receive --dest ./download
+# 主机接收板端文件或目录，路径相对默认板端工作区
+vins-remote projects/vins/runs/euroc-stereo01 --receive --dest ./download
 
 # 执行一个命令，实时显示输出并返回真实退出码
 vins-remote --exec -- which roscore
@@ -29,7 +29,7 @@ vins-remote --exec -- which roscore
 完整部署和运行使用更新后的主机工具箱，v0.1 原目录的 host/ 保留作冻结交付：
 
 ```bash
-cd /home/eric/projects/releases/remote-tools/v2
+cd /home/eric/projects/releases/remote-tools/current
 
 # 部署一个新版本，检查通过后选为默认 install；已有同版本拒绝覆盖
 python3 deploy.py /home/eric/projects/releases/ros1-v0.1/install-ros1-v0.1-linux-aarch64.tar.gz
@@ -38,7 +38,7 @@ python3 deploy.py /home/eric/projects/releases/ros1-v0.1/install-ros1-v0.1-linux
 python3 run.py --output /home/eric/projects/results/user-remote-check01
 
 # 完整 EuRoC 回放；自行选择新的主机结果目录
-python3 run.py --bag /home/firefly/vins-workspace/datasets/euroc_20261014/MH_01_easy.bag \
+python3 run.py --bag /home/firefly/vins-workspace/projects/vins/data/euroc/MH_01_easy.bag \
   --output /home/eric/projects/results/user-remote-euroc01
 ```
 
@@ -61,12 +61,13 @@ vins-remote /终端输出的作业绝对路径 --collect ./recovered
 | 交互/单条命令工作目录 | ~/vins-workspace/projects/vins |
 | 当前安装入口 | ~/vins-workspace/install → 已验收 releases/ros1-版本/install |
 | 环境初始化 | ~/vins-workspace/install/env.sh |
-| 默认上传目录 | ~/vins-workspace/incoming |
-| 自动任务 | ~/vins-workspace/jobs/唯一编号 |
-| 用户数据 / 现场项目 | 工作区 datasets/、projects/；实验输出放 install 外 |
+| 默认上传目录 | ~/vins-workspace/projects/vins，与 cwd 相同 |
+| run.py 检查/实验 | ~/vins-workspace/projects/vins/runs/实验名 |
+| 部署及通用自动任务 | ~/vins-workspace/jobs/唯一编号，或 --dest/--job-name 显式指定 |
+| 实验输入 / 配置 | 默认项目下 data/、config/；旧 datasets 保留追溯 |
 | 主机工具 / 配置 | /home/eric/projects/.infra/bin/vins-remote、vins-remote.conf |
 | 用户 PATH 命令入口 | ~/.local/bin/vins-remote，指向主机工具 |
-| 可交付主机工具箱 | /home/eric/projects/releases/remote-tools/v2/ |
+| 可交付主机工具箱 | /home/eric/projects/releases/remote-tools/current/ |
 
 默认配置源码是 infra/remote/vins-remote.conf，首次安装时复制到可执行文件旁，升级保留已有配置。优先级为命令行覆盖 > --config 文件 > VINS_REMOTE_CONFIG 环境变量指定的文件 > 可执行文件旁的配置 > 内置默认值。文件只保存 target/root/cwd/env，不保存密码，也不执行配置内容
 
@@ -84,15 +85,15 @@ vins-remote --remote --cwd /other/project --env /other/environment.sh
 ## 2. 文件传输：send / receive
 
 ```bash
-vins-remote user@board ./directory --send --dest vins-workspace/incoming
-vins-remote user@board incoming/directory --receive --dest ./download
+vins-remote user@board ./directory --send --dest vins-workspace/projects/vins/data
+vins-remote user@board projects/vins/data/directory --receive --dest ./download
 ```
 
 省略 --send 与旧版一样表示发送。两端采用 rsync over SSH，需已有免密 SSH、rsync；不启动 rsync daemon，不写密码。显示整体字节进度、速率等，使用 .rsync-partial 保留中断数据，再执行同一传输可利用已有部分
 
-文件/目录都保留源名称，目录有无尾部 / 不改变这一规则；例如发送 directory 到 incoming 后是 incoming/directory，接收到 download 后是 download/directory。不要把它理解成 rsync 原生命令尾斜杠的“只复制内容”语义
+文件/目录都保留源名称，目录有无尾部 / 不改变这一规则；例如发送 directory 到项目 data 后是 data/directory，接收到 download 后是 download/directory。不要把它理解成 rsync 原生命令尾斜杠的“只复制内容”语义
 
-普通传输允许更新目标中的同名文件，不自动删除目标额外文件；不使用 --delete 或 --inplace。传输成功不替代发布校验：deploy.py 仍核对压缩包 SHA256、包内清单、体系结构和运行闭包。SSH 或 rsync 错误会返回非零，部分文件不算部署成功
+省略 --dest 的 send 以 cwd 为目标，与 --remote/--exec 对齐；--cwd 覆盖也同步影响默认发送。默认不会把文件自动分类到 data/config。普通传输允许更新目标中的同名文件，不自动删除目标额外文件；不使用 --delete 或 --inplace。传输成功不替代发布校验：deploy.py 仍核对压缩包 SHA256、包内清单、体系结构和运行闭包。SSH 或 rsync 错误会返回非零，部分文件不算部署成功
 
 ## 3. 初始化终端与单条命令
 
@@ -114,6 +115,15 @@ vins-remote --exec -- bash -c 'printf "%s\n" "$VINS_INSTALL_ROOT"; pwd'
 vins-remote ./payload --run ./local-script.sh --output ./new-result --timeout 300
 vins-remote ./payload --run ./local-script.sh --output ./new-result --detach
 ```
+
+具名任务可指定路径与名称：
+
+```bash
+vins-remote ./payload --run ./local-script.sh --output ./camera-test01 \
+  --dest vins-workspace/projects/vins/runs --job-name camera-test01
+```
+
+--job-name 仅用于 --run，允许 1–80 个字母、数字、点、横线、下划线，首字符为字母或数字；已有同名目录拒绝覆盖，不能用路径穿越或绝对路径作名称。省略时仍使用唯一编号，兼容已有脚本。run.py 自动指定项目 runs/ 与具名任务，默认名称取 --output 目录名，也可 --name 覆盖；deploy.py 仍把实际包放 releases/，自动任务只是上传与验证记录
 
 payload 可为文件或目录。每次创建独立作业，上传脚本和嵌入在工具中的 Python helper，脱离 SSH 会话运行；无需板端常驻服务或安装第三方 Python 包。主机输出目录必须新建，先保存作业回执，再启动；保留旧版 --run/--output/--timeout 调用
 
@@ -190,3 +200,5 @@ python3 -m unittest discover -s infra/release -p test_workflow.py -v
 本地集成测试使用真实 rsync 和受控本地 SSH 替身，不接触真实设备；另做真实板端的交互环境、双向传输哈希、日志提前到达、失败/取消/超时、重新跟随/回收和现有 install 无数据检查。验收证据在 infra/remote/reference/cli_v2_20261016/，不重跑历史 VIO 或将工具探针混入算法性能结果
 
 本次工具版本独立于 VINS v0.2：通用通信和反馈先稳定，驱动/话题监控、健康检查、profile 按第 11 份指南路线图另行开发。今后用户文档均先 Quick Start 常用命令，再给详细配置、行为和恢复说明
+
+本次项目目录对齐与具名任务的补充验收见 infra/remote/reference/workspace_layout/；原 CLI v2 证据与已发布 v0.1 包保持冻结。current 是主机当前工具箱入口，旧 v2 仍可追溯；更新源码默认配置不会覆盖用户已安装配置

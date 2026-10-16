@@ -1,0 +1,3 @@
+Remote job: firefly@10.106.0.220:/home/firefly/vins-workspace/projects/vins/runs/install-check01
+mkdir: cannot create directory ‘/home/firefly/vins-workspace/projects/vins/runs/install-check01’: File exists
+vins-remote: Job creation failed (exit 1)

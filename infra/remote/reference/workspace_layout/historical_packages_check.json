@@ -1,0 +1,12 @@
+{
+  "verified_manifests": [
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/remote/reference/cli_v2_20261016",
+    "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/release/reference/ros1-v0.1",
+    "/home/eric/projects/releases/remote-tools/v2",
+    "/home/eric/projects/releases/remote-tools/workspace-layout"
+  ],
+  "unchanged_archives": {
+    "ros1-v0.1": "87dbf358075e43164bca451c1bd86616fd1aecf58fc2bbfd04cd7515572d814b",
+    "ros2-v0.1": "8ca435fc255c1d08bdbc537b0963d1ffe8815e9da12f866cdd2a5ab6d56cd9a4"
+  }
+}

@@ -14,6 +14,7 @@ def main():
     parser.add_argument('--ros', choices=['ros1', 'ros2'], default='ros1')
     parser.add_argument('--version', help='Explicit version; default uses selected workspace/install')
     parser.add_argument('--bag', help='Existing absolute board path; omit to perform a no-data runtime check')
+    parser.add_argument('--name', help='Readable board run name; default is the host output directory name')
     parser.add_argument('--output', type=Path, required=True, help='New host results directory')
     add_options(parser)
     args = parser.parse_args()
@@ -21,6 +22,9 @@ def main():
         parser.error('Invalid version')
     if args.bag and (args.ros != 'ros1' or not Path(args.bag).is_absolute()):
         parser.error('--bag supports ROS 1 EuRoC stereo input at an absolute board path')
+    name = args.name if args.name is not None else args.output.resolve().name
+    if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,79}', name):
+        parser.error('Run name must be 1..80 letters/digits/._- starting with a letter or digit; use --name')
     tool, common, settings = load(args)
     target = args.target or settings['target']
     script = '#!/usr/bin/env bash\nset -euo pipefail\n' + EVENT_SHELL
@@ -45,7 +49,8 @@ def main():
         path = Path(temp) / 'run.sh'
         path.write_text(script)
         result = subprocess.run([str(tool), target, str(request), '--run', str(path),
-                                 '--output', str(args.output), '--timeout', '3600' if args.bag else '180', *common])
+                                 '--output', str(args.output), '--dest', settings['cwd'].rstrip('/') + '/runs',
+                                 '--job-name', name, '--timeout', '3600' if args.bag else '180', *common])
     raise SystemExit(result.returncode)
 
 
