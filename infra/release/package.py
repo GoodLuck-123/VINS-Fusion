@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import runpy
 import shutil
 import subprocess
 import tarfile
@@ -117,6 +118,8 @@ def main():
         # Only path discovery changes in the packaged reference runner.
         (scripts / 'workspace_paths.py').write_text(
             'from pathlib import Path\nREPO_ROOT = Path(__file__).resolve().parents[2]\nWORKSPACE_ROOT = REPO_ROOT\n')
+    if args.ros == 'ros1':
+        runpy.run_path(str(REPO / 'infra/board/install.py'))['install'](root)
     metadata = dict(version=args.version, ros=args.ros, architecture='aarch64',
                     target='RK3588 Ubuntu 22.04', default_role='deployment' if args.ros == 'ros1' else 'research',
                     packaging_commit=subprocess.check_output(['git', '-C', str(REPO), 'rev-parse', 'HEAD'], text=True).strip(),
@@ -126,7 +129,21 @@ def main():
     (root / 'release.json').write_text(json.dumps(metadata, indent=2) + '\n')
     (root / 'share/provenance/file_lineage.json').write_text(json.dumps(lineage, indent=2) + '\n')
     shutil.copy2(REPO / 'LICENCE', root / 'LICENCE')
-    shutil.copy2(REPO / 'docs/11_RK3588_USER_GUIDE.md', root / 'README.md')
+    if args.ros == 'ros1':
+        guides = root / 'share/docs'
+        guides.mkdir()
+        for name in ['08_RK3588_WORKFLOW.md','09_DEPENDENCIES.md','11_RK3588_USER_GUIDE.md','12_VINS_REMOTE.md','13_BOARD_CLI.md']:
+            shutil.copy2(REPO / 'docs' / name, guides / name)
+        (root / 'README.md').write_text(
+            '# RK3588 ROS 1 ' + args.version + '\n\n## Quick Start\n\n'
+            '在板端 bash 中执行：\n\n```bash\nsource /实际安装目录/env.sh\n'
+            'check --arc --lib --sha --dir\n'
+            'check --config --bag /数据路径/input.bag --output /项目路径/runs/demo01\n'
+            'run --bag /数据路径/input.bag --name demo01\n```\n\n'
+            '独立 CLI，无需安装 ROS 或编译工具。原节点停止 −6 缺陷保留，run 会报告失败，不能称正常退出\n\n'
+            '[板端 CLI 详情](share/docs/13_BOARD_CLI.md) · [用户指南](share/docs/11_RK3588_USER_GUIDE.md)\n')
+    else:
+        shutil.copy2(REPO / 'docs/11_RK3588_USER_GUIDE.md', root / 'README.md')
     files = [p for p in sorted(root.rglob('*')) if p.is_file()]
     (root / 'SHA256SUMS').write_text(''.join(f'{sha(p)}  {p.relative_to(root)}\n' for p in files))
     archive = output / f'install-{args.ros}-{args.version}-linux-aarch64.tar.gz'

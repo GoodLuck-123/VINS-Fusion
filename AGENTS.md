@@ -1,6 +1,6 @@
 # Agent 工作约定
 
-先读 docs/00_HANDOFF.md，按任务查阅第 08、09、11、12 份文档
+先读 docs/00_HANDOFF.md，按任务查阅第 08、09、11、12、13 份文档
 
 - 仅在 codex/rk3588-ros1 开发；保留 master、ros2-humble、codex/rk3588-ros2 与历史 tag，不合并其他核心
 - 主机下载/交叉构建，板端离线运行；源码、用户文档与工具在主机 Git，板端只部署运行材料
@@ -12,4 +12,6 @@
 - 实验验收输入/初始化/重置/末帧/ATE/RPE/退出/共享槽位；CPU 全线程秒、各进程 RSS/PSS、回放/排空分别记录，缺 DDR/功耗写不可用，排空不等于实时
 - 生产文档只维护部署/运行/诊断和当前状态，不续写跨平台 benchmark 对比；新验证的小型证据与 SHA256 放相应 infra/*/reference/ 并纳入 Git，完整日志在父工作区；历史数据/tag/失败证据不改写，积压通知按账本去重
 - 必要工具探针可重建并跟踪；一次性草稿放 .local-tests/，不能作为依赖。大批次后台 runner 只在终止/需处理时通知，不用在线模型轮询
-- 每个目标独立提交，小迭代不打 tag；仅大的 vX.0 版本打 annotated tag，不移动旧 tag；按用户授权 push 生产分支。Markdown 自然段末不加中文句号
+- 每个目标独立提交，版本内部的小迭代不打 tag；每个验收完成的 v0.x 版本打 annotated tag，不移动旧 tag；按用户授权 push 生产分支。Markdown 自然段末不加中文句号
+
+- 后续通用 CLI 优先 Python，提供可执行 PATH 入口；v0.2 为独立板端 check/run，主机 deploy/run 联动后续单独设计，真实传感器模式先保留接口

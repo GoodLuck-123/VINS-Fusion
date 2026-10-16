@@ -15,7 +15,7 @@ vins-remote --remote
 
 ## 当前交付
 
-仅 codex/rk3588-ros1 继续开发，核心与标定保持 ROS 1 参照 8c7c8d2 的行为。主机产物为 ../releases/ros1-v0.1/，板端版本目录为 ~/vins-workspace/releases/ros1-v0.1/install，install 链接选定该版本；完整工具箱为 ../releases/remote-tools/current/。源码、文档和工具只在主机 Git 中维护，板端只放部署文件、数据与输出
+仅 codex/rk3588-ros1 继续开发，核心与标定保持 ROS 1 参照 8c7c8d2 的行为。主机产物为 ../releases/ros1-v0.2/，板端版本目录为 ~/vins-workspace/releases/ros1-v0.2/install，install 链接选定该版本；完整工具箱为 ../releases/remote-tools/current/。源码、文档和工具只在主机 Git 中维护，板端只放部署文件、数据与输出
 
 联网 x86_64 主机下载与交叉构建，板端离线运行，固定 OpenCV 4.2.0、Ceres 1.14.0、Eigen 3.3.9、私有 Noetic/Python 3.8；不替换板端 glibc 或系统 Python。依赖见 [09](09_DEPENDENCIES.md)，构建和重新打包见 [08](08_RK3588_WORKFLOW.md)
 
@@ -23,7 +23,7 @@ vins-remote --remote
 
 普通上传与 SSH/exec 工作目录统一读取 cwd 配置，默认为 projects/vins。data/、config/、runs/ 分别保存数据、配置、具名实验。run.py 默认以主机 --output 目录名作为板端任务名，也可 --name 指定；同名任务拒绝覆盖。部署仍使用 releases/，内部部署和通用任务仍可用 jobs/ 唯一编号，不要求用户逐个查找
 
-历史 jobs、incoming、datasets 保持原位，已建立 data/euroc/MH_01_easy.bag 到原验收数据的链接，不重复复制大 bag。旧数据是链接源，不能按“旧缓存”删除；历史运行包与证据也不迁移。今后 v0.2 check/run 应复用当前配置与目录，完整检查和进程健康判断仍未实现
+历史 jobs、incoming、datasets 保持原位，已建立 data/euroc/MH_01_easy.bag 到原验收数据的链接，不重复复制大 bag。旧数据是链接源，不能按“旧缓存”删除；历史运行包与证据也不迁移。v0.2 已实现独立板端 check/run，见第 13 份指南；主机联动、一键全检与完整在线健康判断仍未实现
 
 ## 验证边界
 
@@ -37,6 +37,10 @@ RUNNING 心跳只表示脚本存活。检查退出码、原始日志和轨迹，
 
 当前分支仅保留部署、实验、工具、依赖、维护与路线图文档。桌面复现、ROS 版本对比及旧迁移/硬件优化计划从当前 docs 移除，可用 `git show milestone-rk3588-remote-cli-v2:docs/05_EUROC_ROS1_ROS2_COMPARISON.md` 查阅当时记录；历史 tag 与冻结证据不改写
 
-当前 v0.1 固定安装包，GitHub Release 只是围绕 tag 的发布说明与附件入口，本项目未宣称已上传二进制附件。按用户最新约定，此次只提交并 push 生产分支，不打 tag；今后仅大的 vX.0 版本打 tag，小迭代靠 commit 追溯。其他分支和既有 tag 保持不变
+当前 v0.1 固定安装包，GitHub Release 只是围绕 tag 的发布说明与附件入口，本项目未宣称已上传二进制附件。按用户修正约定，每个验收完成的 v0.x 版本打 annotated tag，版本内部小迭代靠 commit 追溯。其他分支和既有 tag 保持不变
 
 路线图统一在 [11 第 8 节](11_RK3588_USER_GUIDE.md#8-后续功能与版本计划)，不维护重复任务书
+
+## v0.2 本轮范围
+
+独立 Python check/run 源码在 infra/board/，用户入口见 [13 板端 CLI](13_BOARD_CLI.md)。检查按选项组合，真实传感器仅预留接口，不接入主机 deploy.py/run.py 新联动。沿用原节点二进制，−6 清理退出不掩盖，新 run 将其报告为失败；按本轮收窄后的 CLI 范围验收，不宣称原完整 v0.2 停止修复计划已完成

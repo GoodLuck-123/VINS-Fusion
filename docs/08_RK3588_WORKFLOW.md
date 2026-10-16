@@ -39,10 +39,10 @@ cv_bridge C++ 从固定源码重建，构建副本关闭可选 Python 扩展；�
 python3 infra/rk3588/scripts/prepare_ros1_runtime.py   --build-commit 当前构建的提交 --output ../.infra/rk3588/ros1-payload-new
 ```
 
-现有 v0.1 从已验收 ros1-payload02 打包而来，以下为打包命令形式；已经存在的交付目录拒绝覆盖，源码变化后需先重新构建/验收，并给新包版本与新目录：
+v0.2 沿用已验收 ros1-payload02 的节点/库，并加入独立 Python CLI，以下为打包命令形式；已经存在的交付目录拒绝覆盖，源码变化后需先重新构建/验收，并给新包版本与新目录：
 
 ```bash
-python3 infra/release/package.py --ros ros1 --version v0.1   --runtime ../.infra/rk3588/ros1-payload02 --output ../releases/ros1-v0.1
+python3 infra/release/package.py --ros ros1 --version v0.2   --runtime ../.infra/rk3588/ros1-payload02 --output ../releases/ros1-v0.2
 ```
 
 打包器核对运行文件清单，生成单一 install、逐文件来源、SHA256SUMS 和 tar.gz。环境入口自动定位包目录，保留板端系统 glibc/Python，不用原构建机路径替代可迁移性检查。--runtime 的默认验收清单针对已有接受包；新构建必须先独立更新验收依据，不能改版本号冒充新构建
@@ -57,4 +57,4 @@ python3 infra/release/package.py --ros ros1 --version v0.1   --runtime ../.infra
 
 ## 4. 维护交付
 
-源码、脚本、文档、小型验证及 SHA256 纳入本分支，完整包/数据/SDK/日志留主机产物目录；板端不维护待 push 源码。普通小迭代提交并 push，不打 tag；仅大的 vX.0 版本按用户约定打 tag，既有 tag 和已发布包不改写
+源码、脚本、文档、小型验证及 SHA256 纳入本分支，完整包/数据/SDK/日志留主机产物目录；板端不维护待 push 源码。普通小迭代提交并 push，不打 tag；每个验收完成的 v0.x 版本按用户约定打 tag，既有 tag 和已发布包不改写

@@ -4,25 +4,25 @@
 
 ## Quick Start
 
-当前主机已有免密 SSH、工具和 v0.1 安装包。以下命令在主机执行：
+v0.2 先交付独立板端 Python check/run。主机执行：
 
 ```bash
-vins-remote ./my-data --send          # 上传后在板端默认实验目录看得到
-vins-remote --remote                 # 自动进入同一目录，加载 ROS 1 环境
-# 板端：pwd；rosversion roslaunch；exit 回主机
-
-cd /home/eric/projects/releases/remote-tools/current
-python3 run.py --output /home/eric/projects/results/user-check01
-# 已有板端 EuRoC 数据，无需再次上传
-python3 run.py --bag /home/firefly/vins-workspace/projects/vins/data/euroc/MH_01_easy.bag \
-  --output /home/eric/projects/results/euroc-stereo01
+vins-remote --remote
 ```
 
-run.py 实时显示阶段和日志，自动回收结果；省略 --bag 只检查环境。板端任务分别保存在 runs/user-check01、runs/euroc-stereo01，无时间戳命名。同名任务或主机结果目录拒绝覆盖；第二次请选 check02 等新名称。完整远程功能见 [12](12_VINS_REMOTE.md)
+进入板端项目后执行：
+
+```bash
+check --arc --lib --sha --dir
+check --config --bag data/euroc/MH_01_easy.bag --output runs/euroc01
+run --bag data/euroc/MH_01_easy.bag --name euroc01
+```
+
+组合检查项、JSON、可选时间戳扫描、取消和返回码见 [13 板端 CLI](13_BOARD_CLI.md)。本轮不新增主机 deploy.py/run.py 与板端 CLI 联动；旧主机工具仍保留原行为。原节点停止 −6 的缺陷仍保留，新 run 如实返回失败，不能把轨迹完成当正常退出
 
 ## 1. 交付与环境
 
-主机 `/home/eric/projects/releases/ros1-v0.1/` 包含完整 ARM64 install/、install-ros1-v0.1-linux-aarch64.tar.gz 和对应 .sha256。配套主机工具使用 `/home/eric/projects/releases/remote-tools/current/`，包含 vins-remote、配置、deploy.py、run.py；原 v0.1/host 和 remote-tools/v2 是冻结旧交付，日常使用 current
+主机 `/home/eric/projects/releases/ros1-v0.2/` 包含完整 ARM64 install/、install-ros1-v0.2-linux-aarch64.tar.gz 和对应 .sha256。配套主机工具使用 `/home/eric/projects/releases/remote-tools/current/`，包含 vins-remote、配置、deploy.py、run.py；原 v0.1/host 和 remote-tools/v2 是冻结旧交付，日常使用 current
 
 板端无需联网、安装 ROS/OpenCV/Ceres、pip、源码编译或 Docker。包内已有 VINS、私有 Noetic/Python 3.8、OpenCV 4.2.0、Ceres 1.14.0、Eigen 3.3.9 与示例标定，不替换系统 glibc/Python。仍需兼容 ARM64 Ubuntu/BSP 和 SSH、rsync、bash、tar、sha256sum、ldd、系统 Python 3；当前只验证 RK3588S / Ubuntu 22.04.5 / 厂商内核 5.10.110
 
@@ -32,8 +32,8 @@ run.py 实时显示阶段和日志，自动回收结果；省略 --bag 只检查
 
 ```text
 ~/vins-workspace/
-├── install -> releases/ros1-v0.1/install   当前包，自动加载其 env.sh
-├── releases/ros1-v0.1/install/             完整发布文件，保持只读使用
+├── install -> releases/ros1-v0.2/install   当前包，自动加载其 env.sh
+├── releases/ros1-v0.2/install/             完整发布文件，保持只读使用
 ├── projects/vins/                         默认上传、SSH、exec 与实验目录
 │   ├── data/euroc/MH_01_easy.bag           现有数据的稳定链接
 │   ├── config/                           自己的配置和标定
@@ -48,20 +48,20 @@ run.py 实时显示阶段和日志，自动回收结果；省略 --bag 只检查
 
 普通上传不会自动辨别文件类型并分类；发送 my-data 就落到项目下的 my-data。希望放到 data/ 时显式 --dest vins-workspace/projects/vins/data，或直接发送本地 data 目录。收回实验可用 `vins-remote projects/vins/runs/euroc-stereo01 --receive --dest ./download`；receive 的相对源路径相对工作区根，和 send 的默认目标不同
 
-旧 incoming/、datasets/ 和旧 jobs/ 保留原位，避免破坏已验收路径。当前 data/euroc/MH_01_easy.bag 链接到旧数据，不重复占空间；不能删除链接源。install 下不放实验输入/输出，不直接修改发布文件。当前目录为后续 v0.2 check/run 复用基础，完整配置检查尚未实现
+旧 incoming/、datasets/ 和旧 jobs/ 保留原位，避免破坏已验收路径。当前 data/euroc/MH_01_easy.bag 链接到旧数据，不重复占空间；不能删除链接源。install 下不放实验输入/输出，不直接修改发布文件。v0.2 已复用这些目录并实现独立检查/回放；主机联动与在线健康检查后续实施
 
 ## 3. 部署与无数据检查
 
 新板或新版本在主机执行：
 
 ```bash
-cd /home/eric/projects/releases/ros1-v0.1
-sha256sum -c install-ros1-v0.1-linux-aarch64.tar.gz.sha256
-python3 ../remote-tools/current/deploy.py install-ros1-v0.1-linux-aarch64.tar.gz \
-  --output /home/eric/projects/results/deploy-ros1-v0.1
+cd /home/eric/projects/releases/ros1-v0.2
+sha256sum -c install-ros1-v0.2-linux-aarch64.tar.gz.sha256
+python3 ../remote-tools/current/deploy.py install-ros1-v0.2-linux-aarch64.tar.gz \
+  --output /home/eric/projects/results/deploy-ros1-v0.2
 ```
 
-deploy.py 显示上传进度，校验压缩包、解压至 releases/ros1-版本/install、核对清单并做无数据节点检查，成功后才选择 install。相同版本拒绝覆盖，install 为真实目录也拒绝替换；当前板已部署 v0.1，直接 run.py 检查即可。省略 --output 的部署日志仍有自动唯一编号；需要好记路径时如上明确指定
+deploy.py 显示上传进度，校验压缩包、解压至 releases/ros1-版本/install、核对清单并做无数据节点检查，成功后才选择 install。相同版本拒绝覆盖，install 为真实目录也拒绝替换；当前板选择 v0.2；环境预检直接用板端 check，旧主机 run.py 仍是原冒烟入口。省略 --output 的部署日志仍有自动唯一编号；需要好记路径时如上明确指定
 
 包内 bin/vins 是自动初始化环境的入口，config/ 是示例标定，runtime/ 包含私有 ROS/Python/运行库，scripts/ 是检查与回放脚本，share/provenance/、release.json、SHA256SUMS 记录包来源
 
@@ -111,16 +111,16 @@ rosbag play /绝对路径/recording.bag
 
 重新构建/打包见 [08](08_RK3588_WORKFLOW.md)，依赖补齐见 [09](09_DEPENDENCIES.md)，普通用户不需要接触 .infra 或 SDK。代码/文档只在主机提交；板端数据和日志回收后留在主机结果目录
 
-当前 v0.1 是既有 annotated tag，固定已发布版本；GitHub Release 可给 tag 添加说明与附件。按最新约定，后续小迭代只提交，只有大的 vX.0 版本打 tag，不移动旧 tag 或重写旧包；本次工具与目录更新没有改变 VINS 安装包版本
+v0.1 是既有 annotated tag，固定已发布版本；GitHub Release 可给 tag 添加说明与附件。按最新约定，后续小迭代只提交，每个验收完成的 v0.x 版本打 tag，不移动旧 tag 或重写旧包；v0.2 只增加板端 CLI，算法二进制沿用 v0.1，原包保持冻结
 
 ## 8. 后续功能与版本计划
 
-以下是待实施计划，不是已完成能力或承诺日期。各功能可以逐次提交，沿用当前固定项目目录、环境配置和远程工具；完成版本功能不自动触发小版本 tag
+以下是待实施计划，不是已完成能力或承诺日期。各功能可以逐次提交，沿用当前固定项目目录、环境配置和远程工具；v0.x 功能按本轮约定范围验收后打 tag，开发中间提交不打 tag
 
 | 版本 / 状态 | 目标 | 功能范围 | 验收条件 |
 | --- | --- | --- | --- |
 | **v0.1 / 已发布** | 完整部署参照 | 单一 install 包、私有 ROS/运行库、固定板端路径、环境冒烟检查、EuRoC 双目回放、离线部署与日志回收 | 已在指定 RK3588 镜像验证；ROS 1 原清理 abort −6 单列，未承诺真实相机、长期稳定性或实时性 |
-| **v0.2 / 计划** | 启动前检查与统一运行 | **环境**：ARM64、必要文件/共享库、输出权限与空间。**配置/数据**：兼容现有 OpenCV YAML，核对必填项、参数范围、标定、bag 路径、话题/类型及图像与 IMU 时间交集；完整时间戳扫描可选。**入口/停止**：统一 check/run，自动加载私有环境，管理 master/VINS/回放器，订阅就绪后回放；修复原同步线程清理 abort，支持正常停止和用户取消 | 缺库、缺文件和错误配置在回放前报错，包含原因与路径；正常实验一条命令运行；正常停止无 abort、无残留，取消有独立状态且保留日志 |
+| **v0.2 / 本轮独立 CLI** | 启动前检查与板端运行 | check 组合架构/依赖/清单/目录/配置/bag 检查，可选全量时间戳；独立 run 管理私有 master/VINS/回放器、订阅就绪、超时/取消和日志；sensor 仅预留接口 | 独立检查与故障注入通过；完整回放可记录轨迹与真实退出。主机联动、无参数一键全检和原节点 −6 修复未纳入本轮，不称正常清理已解决 |
 | **v0.3 / 计划** | 输入与进程监控 | **进程**：启动失败、异常退出、超时及联动清理。**输入**：首条/持续无消息、实收计数、频率与间隔分布，图像尺寸/编码、IMU NaN/Inf、重复/倒退时间戳。**时序/状态**：分别记录消息时间与单调时钟，核查图像时刻前后的 IMU 覆盖；区分启动、初始化、运行、暂停、数据结束与排空 | 注入缺话题、暂停、时间戳异常和节点退出，异常分类、发生时间和关联进程正确；暂停/正常结束不误报断流，异常后日志与子进程都可收尾 |
 | **v0.4 / 计划** | VINS 状态与 profile | **算法**：初始化、跟踪特征数、处理队列、重置、轨迹停更/非有限值/位姿速度突变。**耗时**：跟踪、估计、求解、排队及端到端延迟的均值/P95/最大值。**资源**：各进程/线程 CPU、RSS/PSS、温度、CPU 频率；可选 perf/PMU 计数与带符号调用栈。**开销**：关闭/基础/详细三级，阈值按配置设置 | 可依据观测区分输入不足、处理积压与算法重置；频率变化及原因证据可追溯，不能确定时标未知；同配置串行 A/B 量化监控开销，满足实施前约定的 CPU、内存与延迟预算 |
 | **v0.5 / 计划** | 实验结果闭环 | **结束/质量**：数据源结束后等待处理完成，检查队列/末帧/退出；校验轨迹存在、数量、时间单调、有限值和时间覆盖。**精度**：有真值时统一 ATE/RPE、时间关联、坐标系/外参与尺度诊断。**归档**：独立运行目录保存版本/包哈希、数据标识、实际配置、系统信息、轨迹、资源、异常时间段和原始日志，生成 JSON 与简短报告 | 每次运行明确区分成功、执行失败、质量异常或取消；崩溃、未初始化、末帧未覆盖、排空超时不会判为成功；两次实验可直接比较精度、回放/排空耗时与资源，失败也有完整报告 |
@@ -133,7 +133,7 @@ rosbag play /绝对路径/recording.bag
 - **计数与时间**：bag records、旁路观察计数、VINS 实收和已处理数分别标明。消息时间保留原精度，单调时钟计量本机耗时；不同设备时钟未校准前不计算跨设备端到端延迟。输出数量按模式和原后端频率验收，不强求每幅图都有一条姿态
 - **精度与实时性**：VIO 用保持尺度的 SE(3) 对齐，固定真值/body 坐标系、外参、关联容差、RPE 间隔和覆盖要求，尺度误差单列；无真值填不可用。实时性另按目标输入率、处理吞吐、积压和延迟预算验收，回放后排空成功不等于实时通过
 - **profile 与开销**：CPU 用进程全部线程累计秒，RSS/PSS 按进程采样；源端和消费端分别记录，资源峰值不当作同时峰值相加。profile 的采样频率、事件、用户态/内核态范围、PMU 复用比例和符号版本须注明；缺权限时记录不可用，基础实验仍可运行。DDR/功耗缺接口填不可用，不用 CPU、cache misses 或复制字节替代
-- **回归与发布**：先固定数据、模式、配置和监控级别，再比较版本；PC 与 ARM 各用本平台基线，不把跨机器差异归因于软件版本。故障注入和长期测试也验收日志完整、清理/重启、队列与内存。新验证保存小型证据与 SHA256，完整结果留主机；每次交付记录安装目录、提交、包/数据 SHA256 和已知问题，仅大的 vX.0 版本打 tag；后续可用 GitHub Release 提供说明与附件
+- **回归与发布**：先固定数据、模式、配置和监控级别，再比较版本；PC 与 ARM 各用本平台基线，不把跨机器差异归因于软件版本。故障注入和长期测试也验收日志完整、清理/重启、队列与内存。新验证保存小型证据与 SHA256，完整结果留主机；每次交付记录安装目录、提交、包/数据 SHA256 和已知问题，每个验收完成的 v0.x 版本打 tag；后续可用 GitHub Release 提供说明与附件
 
 ### 与预研任务的关系
 
