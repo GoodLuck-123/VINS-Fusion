@@ -1,0 +1,9 @@
+{
+  "changed_files": [
+    "SHA256SUMS",
+    "release.json",
+    "share/docs/09_DEPENDENCIES.md",
+    "share/docs/11_RK3588_USER_GUIDE.md"
+  ],
+  "all_executables_and_libraries_identical": true
+}

@@ -1,0 +1,107 @@
+{
+  "status": "completed",
+  "mode": "bag",
+  "output": "/home/firefly/vins-workspace/jobs/1792144271486-128835/logs/candidate",
+  "stages": [
+    {
+      "code": "MASTER_STARTING",
+      "elapsed_s": 2.4132600749726407,
+      "message": "http://127.0.0.1:44553"
+    },
+    {
+      "code": "VINS_STARTING",
+      "elapsed_s": 3.8451293439720757,
+      "message": "/home/firefly/vins-workspace/jobs/1792144271486-128835/logs/candidate/config/vio.yaml"
+    },
+    {
+      "code": "PLAYBACK_STARTED",
+      "elapsed_s": 4.058879323973088,
+      "message": "Subscriptions ready; /home/firefly/vins-workspace/projects/vins/data/euroc/MH_01_easy.bag"
+    },
+    {
+      "code": "DATA_ENDED",
+      "elapsed_s": 190.75713095799438,
+      "message": "Waiting for trajectory output to settle; this is not a queue-empty proof"
+    },
+    {
+      "code": "STOPPING",
+      "elapsed_s": 196.83856440198724,
+      "message": "Stopping only the processes owned by this run"
+    },
+    {
+      "code": "RUN_COMPLETED",
+      "elapsed_s": 198.22424320798018,
+      "message": "/home/firefly/vins-workspace/jobs/1792144271486-128835/logs/candidate"
+    }
+  ],
+  "process_exits": {
+    "playback": 0,
+    "vins": 0,
+    "roscore": 0
+  },
+  "bag": {
+    "path": "/home/firefly/vins-workspace/datasets/euroc_20261014/MH_01_easy.bag",
+    "duration_s": 186.88638639450073,
+    "topics": {
+      "/cam0/image_raw": {
+        "type": "sensor_msgs/Image",
+        "count": 3682,
+        "first_ns": 1403636579763555500,
+        "last_ns": 1403636763813555500
+      },
+      "/cam1/image_raw": {
+        "type": "sensor_msgs/Image",
+        "count": 3682,
+        "first_ns": 1403636579763555500,
+        "last_ns": 1403636763813555500
+      },
+      "/imu0": {
+        "type": "sensor_msgs/Imu",
+        "count": 36820,
+        "first_ns": 1403636579758555500,
+        "last_ns": 1403636763853555500
+      }
+    },
+    "overlap_ns": [
+      1403636579763555500,
+      1403636763813555500
+    ],
+    "timestamp_scan": "first/last headers only; interior timestamps not scanned"
+  },
+  "source_config": "/home/firefly/vins-workspace/validation/shutdown-fix/install/config/euroc/euroc_stereo_imu_config.yaml",
+  "package": {
+    "version": "v0.2.1-candidate",
+    "ros": "ros1",
+    "architecture": "aarch64",
+    "target": "RK3588 Ubuntu 22.04",
+    "default_role": "deployment",
+    "packaging_commit": "0cd955e0ae6e08bbbca17c2f7ba09ed51b184701",
+    "source": {
+      "source_commit": "a5ab82dcbbf68a07a24a0915b0011ac3b2001dde",
+      "source_modified": true,
+      "changed_files_sha256": {
+        "vins_estimator/src/rosNodeTest.cpp": "3a123ac206155672149e2da763ee9b0387090eeb3ea168db36d9d5717e9fa78c",
+        "vins_estimator/src/estimator/estimator.cpp": "597c9c72cdb2a581e81fa38d4a2504711f712615448bb9aa86ff99b06782a4ba"
+      },
+      "binary_sha256": "2d5b69f1ec19a7cb4e67b2e5e76b18f9120499062748ce7dc811968736cb2e9d",
+      "base_runtime": "v0.2; same shared libraries",
+      "validation_stage": "uncommitted source snapshot before edge validation",
+      "vins_library_sha256": "88ac96d89e00c622a5fe05e3764b3f16f51515af29c15ce53e9ae6918dd4b45a"
+    },
+    "accepted_manifest_sha256": "8f8ec3462eac2f906a0197032e8e473d8cee356c3c8803a491b2f833b29995be",
+    "known_limitations": [
+      "ROS1 original sync-thread shutdown abort retained"
+    ]
+  },
+  "binary_sha256": "2d5b69f1ec19a7cb4e67b2e5e76b18f9120499062748ce7dc811968736cb2e9d",
+  "rate": 1.0,
+  "config": "/home/firefly/vins-workspace/jobs/1792144271486-128835/logs/candidate/config/vio.yaml",
+  "config_sha256": "8247a305fc6398b76eec9ee4d71ac8b6785773495d7f1d9456ae819ede33d6f8",
+  "master_uri": "http://127.0.0.1:44553",
+  "playback_wall_s": 186.6949674669886,
+  "trajectory_poses": 1831,
+  "first_timestamp_ns": 1403636580813555456,
+  "last_timestamp_ns": 1403636763813555456,
+  "drain_s": 6.081179986009374,
+  "elapsed_s": 198.22445058298763
+}

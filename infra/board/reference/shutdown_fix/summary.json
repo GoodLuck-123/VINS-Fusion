@@ -1,0 +1,68 @@
+{
+  "status": "pass",
+  "release_version": "v0.2.1",
+  "source_fix_commit": "fb4ad05",
+  "core_files_changed": [
+    "vins_estimator/src/rosNodeTest.cpp",
+    "vins_estimator/src/estimator/estimator.cpp"
+  ],
+  "edge_cases": 3,
+  "full_replays": 2,
+  "accuracy": {
+    "baseline": {
+      "poses": 1831,
+      "matched": 1819,
+      "ate_rmse_m": 0.2670162671731209,
+      "rpe_rmse_m": 0.0031377200662188656
+    },
+    "candidate": {
+      "poses": 1831,
+      "matched": 1819,
+      "ate_rmse_m": 0.2665317316087265,
+      "rpe_rmse_m": 0.003118832837542441
+    }
+  },
+  "exit_codes": {
+    "baseline": {
+      "playback": 0,
+      "vins": -6,
+      "roscore": 0
+    },
+    "candidate": {
+      "playback": 0,
+      "vins": 0,
+      "roscore": 0
+    }
+  },
+  "resources": {
+    "baseline": {
+      "node": {
+        "command": "/home/firefly/vins-workspace/releases/ros1-v0.2/install/bin/vins_node /home/firefly/vins-workspace/jobs/1792144271486-128835/logs/baseline/config/vio.yaml ",
+        "last_sample_cpu_all_threads_s": 685.25,
+        "peak_rss_kib": 63548,
+        "peak_pss_kib": 57007
+      },
+      "playback_s": 186.88092106799013,
+      "drain_s": 6.068431942985626
+    },
+    "candidate": {
+      "node": {
+        "command": "/home/firefly/vins-workspace/validation/shutdown-fix/install/bin/vins_node /home/firefly/vins-workspace/jobs/1792144271486-128835/logs/candidate/config/vio.yaml ",
+        "last_sample_cpu_all_threads_s": 679.05,
+        "peak_rss_kib": 62508,
+        "peak_pss_kib": 56123
+      },
+      "playback_s": 186.6949674669886,
+      "drain_s": 6.081179986009374
+    }
+  },
+  "resource_scope": "See ab_summary.json; CPU last samples are lower bounds; sampled RSS/PSS by process; DDR/power unavailable; no performance gain claim",
+  "verified_package_files": 4230,
+  "unchanged_base_files": 4203,
+  "archive_sha256": "d8dc64707fe6f2f3886bf9e6d0ae7804ea474b21df04c05ff0e4094f91142660",
+  "archive_bytes": 99589289,
+  "packaging_commit": "461865d2df7e171c815fe926bfff537843d68568",
+  "old_release_and_41_tags_preserved": true,
+  "default_board_install": "/home/firefly/vins-workspace/releases/ros1-v0.2.1/install",
+  "full_logs": "/home/eric/projects/results/v021"
+}

@@ -1,0 +1,5 @@
+{
+  "exit_code": 1,
+  "reason": "Deliberately wrong node/library board hashes rejected before release archive creation",
+  "archive_created": false
+}

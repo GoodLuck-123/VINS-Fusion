@@ -1,0 +1,41 @@
+{
+  "status": "pass",
+  "accuracy_accepted": true,
+  "edge_tests_passed": true,
+  "candidate_binary_sha256": "2d5b69f1ec19a7cb4e67b2e5e76b18f9120499062748ce7dc811968736cb2e9d",
+  "candidate_library_sha256": "88ac96d89e00c622a5fe05e3764b3f16f51515af29c15ce53e9ae6918dd4b45a",
+  "ab_summary_sha256": "e4313ff8a99a67e93c95cd7a22f037857a350c9ac44af7791c2e7926a07743ae",
+  "edge_summary_sha256": "b968b79dd18e4ad9326649a267116990b72c88e61792df81f2e321e3e397f2df",
+  "algorithm_and_calibration_equal": true,
+  "limits": {
+    "ate_rmse_m": 0.28136708053177695,
+    "rpe_rmse_m": 0.003304606069529809
+  },
+  "accuracy": {
+    "baseline": {
+      "poses": 1831,
+      "matched": 1819,
+      "ate_rmse_m": 0.2670162671731209,
+      "rpe_rmse_m": 0.0031377200662188656
+    },
+    "candidate": {
+      "poses": 1831,
+      "matched": 1819,
+      "ate_rmse_m": 0.2665317316087265,
+      "rpe_rmse_m": 0.003118832837542441
+    }
+  },
+  "exit_codes": {
+    "baseline": {
+      "playback": 0,
+      "vins": -6,
+      "roscore": 0
+    },
+    "candidate": {
+      "playback": 0,
+      "vins": 0,
+      "roscore": 0
+    }
+  },
+  "resources_note": "See ab_summary.json; CPU last samples are lower bounds; sampled RSS/PSS by process; DDR/power unavailable; no performance gain claim"
+}

@@ -1,0 +1,7 @@
+{
+  "directory": "/home/eric/projects/releases/ros1-v0.2.1",
+  "archive": "/home/eric/projects/releases/ros1-v0.2.1/install-ros1-v0.2.1-linux-aarch64.tar.gz",
+  "archive_sha256": "d8dc64707fe6f2f3886bf9e6d0ae7804ea474b21df04c05ff0e4094f91142660",
+  "archive_bytes": 99589289,
+  "verified_original_files": 4203
+}

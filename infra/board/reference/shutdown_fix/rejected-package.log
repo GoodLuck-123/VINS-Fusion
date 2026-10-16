@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/release/package.py", line 232, in <module>
+    main()
+    ~~~~^^
+  File "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/release/package.py", line 122, in main
+    apply_ros1_build(root, lineage, args.ros1_build_validation.resolve(), args.ros1_runtime_validation.resolve())
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/eric/projects/VINS-Fusion-rk3588-ros1/infra/release/package.py", line 60, in apply_ros1_build
+    raise RuntimeError('Validated build/board artifact mismatch: '+str(source))
+RuntimeError: Validated build/board artifact mismatch: /home/eric/projects/.infra/rk3588/ros1-shutdown-ws/devel/lib/vins/vins_node

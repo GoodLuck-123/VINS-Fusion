@@ -1,0 +1,13 @@
+{
+  "command": [
+    "env",
+    "VINS_ROS1_WORKSPACE=/home/eric/projects/.infra/rk3588/ros1-shutdown-ws",
+    "bash",
+    "infra/rk3588/scripts/build_ros1_cross.sh"
+  ],
+  "pid": 122557,
+  "status": "complete",
+  "start_utc": "2026-10-16T09:45:14Z",
+  "exit_code": 0,
+  "end_utc": "2026-10-16T09:46:47Z"
+}

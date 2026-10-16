@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "mode": "bag",
+  "install": "/home/firefly/vins-workspace/releases/ros1-v0.2.1/install",
+  "results": [
+    {
+      "check": "package_sha256",
+      "status": "pass",
+      "details": {
+        "manifest": "/home/firefly/vins-workspace/releases/ros1-v0.2.1/install/SHA256SUMS",
+        "verified_files": 4230
+      }
+    }
+  ]
+}

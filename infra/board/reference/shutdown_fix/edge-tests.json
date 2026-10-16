@@ -1,0 +1,29 @@
+[
+  {
+    "case": "no-input",
+    "process_exits": {
+      "vins": 0,
+      "roscore": 0
+    },
+    "imu_wait_observed": false,
+    "shutdown_s": 0.365546077984618
+  },
+  {
+    "case": "single-thread",
+    "process_exits": {
+      "vins": 0,
+      "roscore": 0
+    },
+    "imu_wait_observed": false,
+    "shutdown_s": 0.3149064070021268
+  },
+  {
+    "case": "imu-starved",
+    "process_exits": {
+      "vins": 0,
+      "roscore": 0
+    },
+    "imu_wait_observed": true,
+    "shutdown_s": 0.41514299999107607
+  }
+]

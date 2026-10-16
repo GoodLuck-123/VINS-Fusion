@@ -1,0 +1,1 @@
+/home/firefly/vins-workspace/releases/ros1-v0.2.1/install
