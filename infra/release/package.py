@@ -37,6 +37,45 @@ def copy_verified(source, manifest_path, destination, mappings, lineage):
                 break
 
 
+def apply_ros1_build(root, lineage, build_path, validation_path):
+    """Replace the linked node/library pair only after build and board validation."""
+    build = json.loads(build_path.read_text())
+    validation = json.loads(validation_path.read_text())
+    if build.get('status') != 'pass' or validation.get('status') != 'pass':
+        raise RuntimeError('Both build and board validation must pass')
+    if not validation.get('accuracy_accepted') or not validation.get('edge_tests_passed'):
+        raise RuntimeError('Complete replay/accuracy and shutdown edge validation required')
+    core = ['camera_models', 'vins_estimator', 'loop_fusion', 'global_fusion', 'config']
+    commit = subprocess.check_output(['git', '-C', str(REPO), 'rev-parse', build['core_reference']+'^{commit}'], text=True).strip()
+    if subprocess.check_output(['git', '-C', str(REPO), 'diff', commit, '--', *core]):
+        raise RuntimeError('Current core differs from the verified build source')
+    node = next(Path(name) for name in build['binaries'] if name.endswith('/vins/vins_node'))
+    library = node.parents[1] / 'libvins_lib.so'
+    needed = runpy.run_path(str(REPO / 'infra/rk3588/scripts/bundle_elf.py'))['needed']
+    replacements = [('bin/vins_node', node, 'candidate_binary_sha256'),
+                    ('runtime/lib/libvins_lib.so', library, 'candidate_library_sha256')]
+    for relative, source, key in replacements:
+        digest = sha(source)
+        if build['elf_files'][str(source.resolve())]['sha256'] != digest or validation[key] != digest:
+            raise RuntimeError('Validated build/board artifact mismatch: '+str(source))
+        if sorted(needed(root/relative)) != sorted(needed(source)):
+            raise RuntimeError('Dependency change needs a rebuilt full runtime: '+relative)
+        shutil.copy2(source, root/relative)
+        item = next(item for item in lineage if item['destination']==relative)
+        item.update(base_sha256=item['sha256'], source=str(source), sha256=digest)
+    source_path = root/'share/provenance/build_source.json'
+    source = json.loads(source_path.read_text())
+    source.update(base_source_commit=source['source_commit'], base_build_source_sha256=sha(source_path),
+                  source_commit=commit, source_modified=False, shutdown_clean=True,
+                  core_config_blobs=subprocess.check_output(['git', '-C', str(REPO), 'ls-tree', '-r', commit, '--', *core], text=True).splitlines(),
+                  build_validation_sha256=sha(build_path), board_validation_sha256=sha(validation_path))
+    source_path.write_text(json.dumps(source, indent=2)+'\n')
+    item = next(item for item in lineage if item['destination']=='share/provenance/build_source.json')
+    item.update(base_sha256=item['sha256'], source='generated from verified build and board validation', sha256=sha(source_path))
+    for path, name in [(build_path,'build_validation.json'), (validation_path,'board_validation.json')]:
+        shutil.copy2(path, root/'share/provenance'/name)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--ros', choices=['ros1', 'ros2'], required=True)
@@ -44,7 +83,11 @@ def main():
     parser.add_argument('--runtime', type=Path, required=True)
     parser.add_argument('--addon', type=Path)
     parser.add_argument('--output', type=Path, required=True, help='New release directory, outside the Git checkout')
+    parser.add_argument('--ros1-build-validation', type=Path, help='Verified cross build for the node and libvins_lib pair')
+    parser.add_argument('--ros1-runtime-validation', type=Path, help='Accepted shutdown edges and complete A/B accuracy report')
     args = parser.parse_args()
+    if bool(args.ros1_build_validation) != bool(args.ros1_runtime_validation) or (args.ros1_build_validation and args.ros != 'ros1'):
+        parser.error('ROS1 build/runtime validations must be supplied together for ROS1')
     if not re.fullmatch(r'v[0-9]+\.[0-9]+(?:\.[0-9]+)?', args.version):
         parser.error('Use a version such as v0.1 or v0.1.1')
     output = args.output.resolve()
@@ -71,6 +114,12 @@ def main():
             parser.error('ROS 2 complete package requires --addon (accepted Fast DDS runtime)')
         copy_verified(args.addon.resolve(), reference / 'fastrtps_20261014/addon_files.json', root,
                       [('ros/', 'runtime/fastrtps/')], lineage)
+    if args.ros == 'ros1' and not args.ros1_build_validation:
+        base = json.loads((root/'share/provenance/build_source.json').read_text())
+        if subprocess.check_output(['git', '-C', str(REPO), 'diff', base['source_commit'], '--', 'camera_models','vins_estimator','loop_fusion','global_fusion','config']):
+            raise RuntimeError('Core changed: supply verified rebuilt node/library pair; do not relabel the old runtime')
+    if args.ros1_build_validation:
+        apply_ros1_build(root, lineage, args.ros1_build_validation.resolve(), args.ros1_runtime_validation.resolve())
     for name, target in [('env.sh', 'env.sh'), ('vins', 'bin/vins'), ('check.py', 'scripts/check.py')]:
         dest = root / target
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -125,7 +174,7 @@ def main():
                     packaging_commit=subprocess.check_output(['git', '-C', str(REPO), 'rev-parse', 'HEAD'], text=True).strip(),
                     source=json.loads((root / 'share/provenance/build_source.json').read_text()),
                     accepted_manifest_sha256=sha(manifest),
-                    known_limitations=['ROS1 original sync-thread shutdown abort retained'] if args.ros == 'ros1' else [])
+                    known_limitations=['ROS1 original sync-thread shutdown abort retained'] if args.ros == 'ros1' and not args.ros1_build_validation else [])
     (root / 'release.json').write_text(json.dumps(metadata, indent=2) + '\n')
     (root / 'share/provenance/file_lineage.json').write_text(json.dumps(lineage, indent=2) + '\n')
     shutil.copy2(REPO / 'LICENCE', root / 'LICENCE')
@@ -148,8 +197,9 @@ def main():
             '在板端 bash 中执行：\n\n```bash\nsource /实际安装目录/env.sh\n'
             'check --arc --lib --sha --dir\n'
             'check --config --bag /数据路径/input.bag --output /项目路径/runs/demo01\n'
-            'run --bag /数据路径/input.bag --name demo01\n```\n\n'
-            '独立 CLI，无需安装 ROS 或编译工具。原节点停止 −6 缺陷保留，run 会报告失败，不能称正常退出\n\n'
+            'run --bag /数据路径/input.bag --name demo01\n```\n\n' +
+            ('独立 CLI，无需安装 ROS 或编译工具。线程停止已修复并验证\n\n' if args.ros1_build_validation else
+             '独立 CLI，无需安装 ROS 或编译工具。原节点停止 −6 缺陷保留，run 会报告失败，不能称正常退出\n\n') +
             '[板端 CLI 详情](share/docs/13_BOARD_CLI.md) · [用户指南](share/docs/11_RK3588_USER_GUIDE.md)\n')
     else:
         shutil.copy2(REPO / 'docs/11_RK3588_USER_GUIDE.md', root / 'README.md')
@@ -175,7 +225,7 @@ def main():
         '普通用户说明见 install/README.md；host/ 仅在 Ubuntu x86_64 主机运行\n'
         '无需上传本地 .infra/ 或在板端安装 ROS、OpenCV、Ceres\n')
     print(json.dumps(dict(directory=str(output), archive=str(archive), archive_sha256=sha(archive),
-                          archive_bytes=archive.stat().st_size, verified_original_files=len(lineage)), indent=2))
+                          archive_bytes=archive.stat().st_size, verified_original_files=sum('base_sha256' not in item for item in lineage)), indent=2))
 
 
 if __name__ == '__main__':

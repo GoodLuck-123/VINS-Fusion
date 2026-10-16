@@ -2,7 +2,7 @@
 
 ## Quick Start
 
-本分支面向 RK3588 离线部署和日常实验。当前工具迭代为 v0.2，沿用 v0.1 算法二进制；主机已安装 vins-remote、配置免密 SSH 时：
+本分支面向 RK3588 离线部署和日常实验。当前补丁为 v0.2.1，修复线程停止，算法参数和标定保持不变；主机已安装 vins-remote、配置免密 SSH 时：
 
 ```bash
 vins-remote ./my-data --send             # 发送到默认实验目录，显示进度
@@ -39,6 +39,6 @@ run --bag data/euroc/MH_01_easy.bag --name euroc01
 
 ## 当前能力与边界
 
-完整 ARM64 install 包可在已验证的 RK3588S Ubuntu 22.04 镜像上离线运行，无需板端安装 ROS/OpenCV/Ceres。EuRoC 双目 + IMU 回放已经验证；真实设备接入、长期稳定性、实时性和完整健康诊断仍待实施。原版 VINS 停止时存在 −6 清理退出缺陷，日志如实保留，本轮 CLI 会将其报告为失败，节点修复仍待独立验收
+完整 ARM64 install 包可在已验证的 RK3588S Ubuntu 22.04 镜像上离线运行，无需板端安装 ROS/OpenCV/Ceres。EuRoC 双目 + IMU 回放已经验证；真实设备接入、长期稳定性、实时性和完整健康诊断仍待实施。v0.2.1 修复原版同步/后端线程的停止与 join；旧 v0.2 的 −6 记录保留，新版本按正常退出 0 验收
 
 本项目基于 HKUST Aerial Robotics Group 的 [VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion)，作者与论文引用见 [原论文书目](support_files/paper_bib.md)。源码遵循 [GPLv3](LICENCE)，原始功能与示例可从上游或历史版本查阅

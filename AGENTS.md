@@ -15,3 +15,5 @@
 - 每个目标独立提交，版本内部的小迭代不打 tag；每个验收完成的 v0.x 版本打 annotated tag，不移动旧 tag；按用户授权 push 生产分支。Markdown 自然段末不加中文句号
 
 - 后续通用 CLI 优先 Python，提供可执行 PATH 入口；v0.2 为独立板端 check/run，主机 deploy/run 联动后续单独设计，真实传感器模式先保留接口
+
+- v0.2.1 为停止修补，v0.2 tag/包保留不动，补丁只用 commit 和独立包追溯；修复需同时更新 vins_node/libvins_lib.so，构建及板端证据不匹配时拒绝打包

@@ -15,7 +15,7 @@ vins-remote --remote
 
 ## 当前交付
 
-仅 codex/rk3588-ros1 继续开发，核心与标定保持 ROS 1 参照 8c7c8d2 的行为。主机产物为 ../releases/ros1-v0.2/，板端版本目录为 ~/vins-workspace/releases/ros1-v0.2/install，install 链接选定该版本；完整工具箱为 ../releases/remote-tools/current/。源码、文档和工具只在主机 Git 中维护，板端只放部署文件、数据与输出
+仅 codex/rk3588-ros1 继续开发，算法与标定沿用 ROS 1 参照，fb4ad05 对同步/后端线程的停止与 join 单独修复。主机产物为 ../releases/ros1-v0.2.1/，板端版本目录为 ~/vins-workspace/releases/ros1-v0.2.1/install，install 链接选定该版本；完整工具箱为 ../releases/remote-tools/current/。源码、文档和工具只在主机 Git 中维护，板端只放部署文件、数据与输出
 
 联网 x86_64 主机下载与交叉构建，板端离线运行，固定 OpenCV 4.2.0、Ceres 1.14.0、Eigen 3.3.9、私有 Noetic/Python 3.8；不替换板端 glibc 或系统 Python。依赖见 [09](09_DEPENDENCIES.md)，构建和重新打包见 [08](08_RK3588_WORKFLOW.md)
 
@@ -27,7 +27,7 @@ vins-remote --remote
 
 ## 验证边界
 
-已验证完整包的校验、动态库和节点订阅就绪，以及一次 EuRoC 双目完整回放。原 VINS 同步线程停止时未 join，退出 −6；当前检查只接受已知日志特征，不能称节点正常退出。真实相机、长期稳定性、实时性、回环/GNSS 与完整自动健康诊断尚未验收
+已验证完整包的校验、动态库和节点订阅就绪，以及一次 EuRoC 双目完整回放。旧 v0.2 的原节点停止 −6 保留追溯；v0.2.1 同时更新节点和 libvins_lib.so，按停止退出 0 验收。真实相机、长期稳定性、实时性、回环/GNSS 与完整自动健康诊断尚未验收
 
 RUNNING 心跳只表示脚本存活。检查退出码、原始日志和轨迹，不用一次环境检查代替算法质量验收。板端墙上时钟未同步，跨主机耗时使用单调时钟与主机阶段记录；DDR/功耗没有有效接口
 
@@ -41,8 +41,14 @@ RUNNING 心跳只表示脚本存活。检查退出码、原始日志和轨迹，
 
 路线图统一在 [11 第 8 节](11_RK3588_USER_GUIDE.md#8-后续功能与版本计划)，不维护重复任务书
 
-## v0.2 本轮范围
+## 已发布 v0.2 的范围与历史边界
 
 独立 Python check/run 源码在 infra/board/，用户入口见 [13 板端 CLI](13_BOARD_CLI.md)。检查按选项组合，真实传感器仅预留接口，不接入主机 deploy.py/run.py 新联动。沿用原节点二进制，−6 清理退出不掩盖，新 run 将其报告为失败；按本轮收窄后的 CLI 范围验收，不宣称原完整 v0.2 停止修复计划已完成
 
-本轮正式包 4228 文件与 4206 个原运行文件核验通过，板端默认 install 已选择 releases/ros1-v0.2/install；默认远程环境可直接调用 check/run。9 项本机测试、7 项旧封装测试、实际输入与生命周期故障注入、一次完整回放复核见 [v0.2 小型证据](../infra/board/reference/v0.2/)。原 −6 仍明确报告失败；不增加性能收益或实时性结论
+本轮正式包 4228 文件与 4206 个原运行文件核验通过，板端默认 install 已选择 releases/ros1-v0.2.1/install；默认远程环境可直接调用 check/run。9 项本机测试、7 项旧封装测试、实际输入与生命周期故障注入、一次完整回放复核见 [v0.2 小型证据](../infra/board/reference/v0.2/)。原 −6 仍明确报告失败；不增加性能收益或实时性结论
+
+## v0.2.1 退出修复
+
+用户补充要求同时修复退出，已在 fb4ad05 最小修改两个 C++ 文件：同步线程随 ros::ok() 结束并 join，后端主循环/IMU 等待响应停止，析构只 join 可 join 的线程。交叉构建使用独立 ros1-shutdown-ws，不覆盖旧构建和运行库；节点与 libvins_lib.so 成对更新，其他依赖沿用冻结运行包
+
+旧 v0.2 tag/包不移动，v0.2.1 补丁用 commit 和独立安装目录追溯，不新增版本内修补 tag。用户操作仍见第 13 份指南；真实传感器、长期稳定性与主机联动未扩大范围

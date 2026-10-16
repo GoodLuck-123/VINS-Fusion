@@ -18,11 +18,11 @@ check --config --bag data/euroc/MH_01_easy.bag --output runs/euroc01
 run --bag data/euroc/MH_01_easy.bag --name euroc01
 ```
 
-组合检查项、JSON、可选时间戳扫描、取消和返回码见 [13 板端 CLI](13_BOARD_CLI.md)。本轮不新增主机 deploy.py/run.py 与板端 CLI 联动；旧主机工具仍保留原行为。原节点停止 −6 的缺陷仍保留，新 run 如实返回失败，不能把轨迹完成当正常退出
+组合检查项、JSON、可选时间戳扫描、取消和返回码见 [13 板端 CLI](13_BOARD_CLI.md)。本轮不新增主机 deploy.py/run.py 与板端 CLI 联动；旧主机工具仍保留原行为。v0.2.1 已修复停止线程，正常回放要求所有子进程退出 0；旧 v0.2 的 −6 仍保留历史记录
 
 ## 1. 交付与环境
 
-主机 `/home/eric/projects/releases/ros1-v0.2/` 包含完整 ARM64 install/、install-ros1-v0.2-linux-aarch64.tar.gz 和对应 .sha256。配套主机工具使用 `/home/eric/projects/releases/remote-tools/current/`，包含 vins-remote、配置、deploy.py、run.py；原 v0.1/host 和 remote-tools/v2 是冻结旧交付，日常使用 current
+主机 `/home/eric/projects/releases/ros1-v0.2.1/` 包含完整 ARM64 install/、install-ros1-v0.2.1-linux-aarch64.tar.gz 和对应 .sha256。配套主机工具使用 `/home/eric/projects/releases/remote-tools/current/`，包含 vins-remote、配置、deploy.py、run.py；原 v0.1/host 和 remote-tools/v2 是冻结旧交付，日常使用 current
 
 板端无需联网、安装 ROS/OpenCV/Ceres、pip、源码编译或 Docker。包内已有 VINS、私有 Noetic/Python 3.8、OpenCV 4.2.0、Ceres 1.14.0、Eigen 3.3.9 与示例标定，不替换系统 glibc/Python。仍需兼容 ARM64 Ubuntu/BSP 和 SSH、rsync、bash、tar、sha256sum、ldd、系统 Python 3；当前只验证 RK3588S / Ubuntu 22.04.5 / 厂商内核 5.10.110
 
@@ -32,8 +32,8 @@ run --bag data/euroc/MH_01_easy.bag --name euroc01
 
 ```text
 ~/vins-workspace/
-├── install -> releases/ros1-v0.2/install   当前包，自动加载其 env.sh
-├── releases/ros1-v0.2/install/             完整发布文件，保持只读使用
+├── install -> releases/ros1-v0.2.1/install   当前包，自动加载其 env.sh
+├── releases/ros1-v0.2.1/install/             完整发布文件，保持只读使用
 ├── projects/vins/                         默认上传、SSH、exec 与实验目录
 │   ├── data/euroc/MH_01_easy.bag           现有数据的稳定链接
 │   ├── config/                           自己的配置和标定
@@ -56,16 +56,16 @@ run --bag data/euroc/MH_01_easy.bag --name euroc01
 
 ```bash
 cd /home/eric/projects/releases/ros1-v0.2
-sha256sum -c install-ros1-v0.2-linux-aarch64.tar.gz.sha256
-python3 ../remote-tools/current/deploy.py install-ros1-v0.2-linux-aarch64.tar.gz \
-  --output /home/eric/projects/results/deploy-ros1-v0.2
+sha256sum -c install-ros1-v0.2.1-linux-aarch64.tar.gz.sha256
+python3 ../remote-tools/current/deploy.py install-ros1-v0.2.1-linux-aarch64.tar.gz \
+  --output /home/eric/projects/results/deploy-ros1-v0.2.1
 ```
 
 deploy.py 显示上传进度，校验压缩包、解压至 releases/ros1-版本/install、核对清单并做无数据节点检查，成功后才选择 install。相同版本拒绝覆盖，install 为真实目录也拒绝替换；当前板选择 v0.2；环境预检直接用板端 check，旧主机 run.py 仍是原冒烟入口。省略 --output 的部署日志仍有自动唯一编号；需要好记路径时如上明确指定
 
 包内 bin/vins 是自动初始化环境的入口，config/ 是示例标定，runtime/ 包含私有 ROS/Python/运行库，scripts/ 是检查与回放脚本，share/provenance/、release.json、SHA256SUMS 记录包来源
 
-Quick Start 的无数据检查回收 runtime-check/logs/validation.json、动态库映射、VINS/roscore 日志。subscriptions_ready: true 只证明订阅建立。原节点停止时存在 −6 清理 abort，外层仅接受匹配的已知缺陷并保留原始退出信息；其他错误不会忽略，环境检查通过不等于算法健康
+Quick Start 的无数据检查回收 runtime-check/logs/validation.json、动态库映射、VINS/roscore 日志。subscriptions_ready: true 只证明订阅建立。旧版 −6 清理 abort 仅作历史兼容；v0.2.1 退出修复的验收要求 VINS/master 为 0，其他错误不忽略，环境检查不等于算法健康
 
 ## 4. 数据回放与结果
 
@@ -99,7 +99,7 @@ vins node "$PWD/config/vio.yaml" > "$PWD/runs/my-camera01/vins.log" 2>&1
 rosbag play /绝对路径/recording.bag
 ```
 
-真实设备驱动的安装、权限与环境由项目提供。自己的 bag 若用 --clock，在 VINS 启动前先 rosparam set /use_sim_time true；真实传感器不启用仿真时间。默认板内通信，跨机器驱动需另配 ROS_MASTER_URI/ROS_IP。当前真实设备未验收，停止时已知 abort 仍会保留；先看初始化、轨迹持续输出与异常日志
+真实设备驱动的安装、权限与环境由项目提供。自己的 bag 若用 --clock，在 VINS 启动前先 rosparam set /use_sim_time true；真实传感器不启用仿真时间。默认板内通信，跨机器驱动需另配 ROS_MASTER_URI/ROS_IP。当前真实设备未验收，停止使用 Ctrl-C，v0.2.1 已验证线程正常收尾；先看初始化、轨迹持续输出与异常日志
 
 ## 6. 故障与恢复
 
@@ -111,7 +111,7 @@ rosbag play /绝对路径/recording.bag
 
 重新构建/打包见 [08](08_RK3588_WORKFLOW.md)，依赖补齐见 [09](09_DEPENDENCIES.md)，普通用户不需要接触 .infra 或 SDK。代码/文档只在主机提交；板端数据和日志回收后留在主机结果目录
 
-v0.1 是既有 annotated tag，固定已发布版本；GitHub Release 可给 tag 添加说明与附件。按最新约定，后续小迭代只提交，每个验收完成的 v0.x 版本打 tag，不移动旧 tag 或重写旧包；v0.2 只增加板端 CLI，算法二进制沿用 v0.1，原包保持冻结
+v0.1 是既有 annotated tag，固定已发布版本；GitHub Release 可给 tag 添加说明与附件。按最新约定，后续小迭代只提交，每个验收完成的 v0.x 版本打 tag，不移动旧 tag 或重写旧包；v0.2 固定独立 CLI 的首次交付；v0.2.1 修复节点/后端库退出，原包保持冻结，补丁按 commit 追溯
 
 ## 8. 后续功能与版本计划
 
@@ -121,6 +121,7 @@ v0.1 是既有 annotated tag，固定已发布版本；GitHub Release 可给 tag
 | --- | --- | --- | --- |
 | **v0.1 / 已发布** | 完整部署参照 | 单一 install 包、私有 ROS/运行库、固定板端路径、环境冒烟检查、EuRoC 双目回放、离线部署与日志回收 | 已在指定 RK3588 镜像验证；ROS 1 原清理 abort −6 单列，未承诺真实相机、长期稳定性或实时性 |
 | **v0.2 / 本轮独立 CLI** | 启动前检查与板端运行 | check 组合架构/依赖/清单/目录/配置/bag 检查，可选全量时间戳；独立 run 管理私有 master/VINS/回放器、订阅就绪、超时/取消和日志；sensor 仅预留接口 | 独立检查与故障注入通过；完整回放可记录轨迹与真实退出。主机联动、无参数一键全检和原节点 −6 修复未纳入本轮，不称正常清理已解决 |
+| **v0.2.1 / 退出修补** | 可靠停止 | 同步线程/后端线程响应停止并 join；节点和后端库成对交付 | 无输入、单线程、等待 IMU 均退出 0；完整串行 A/B 核对初始化、末帧、ATE/RPE 与所有退出，旧 v0.2 tag/包不改写 |
 | **v0.3 / 计划** | 输入与进程监控 | **进程**：启动失败、异常退出、超时及联动清理。**输入**：首条/持续无消息、实收计数、频率与间隔分布，图像尺寸/编码、IMU NaN/Inf、重复/倒退时间戳。**时序/状态**：分别记录消息时间与单调时钟，核查图像时刻前后的 IMU 覆盖；区分启动、初始化、运行、暂停、数据结束与排空 | 注入缺话题、暂停、时间戳异常和节点退出，异常分类、发生时间和关联进程正确；暂停/正常结束不误报断流，异常后日志与子进程都可收尾 |
 | **v0.4 / 计划** | VINS 状态与 profile | **算法**：初始化、跟踪特征数、处理队列、重置、轨迹停更/非有限值/位姿速度突变。**耗时**：跟踪、估计、求解、排队及端到端延迟的均值/P95/最大值。**资源**：各进程/线程 CPU、RSS/PSS、温度、CPU 频率；可选 perf/PMU 计数与带符号调用栈。**开销**：关闭/基础/详细三级，阈值按配置设置 | 可依据观测区分输入不足、处理积压与算法重置；频率变化及原因证据可追溯，不能确定时标未知；同配置串行 A/B 量化监控开销，满足实施前约定的 CPU、内存与延迟预算 |
 | **v0.5 / 计划** | 实验结果闭环 | **结束/质量**：数据源结束后等待处理完成，检查队列/末帧/退出；校验轨迹存在、数量、时间单调、有限值和时间覆盖。**精度**：有真值时统一 ATE/RPE、时间关联、坐标系/外参与尺度诊断。**归档**：独立运行目录保存版本/包哈希、数据标识、实际配置、系统信息、轨迹、资源、异常时间段和原始日志，生成 JSON 与简短报告 | 每次运行明确区分成功、执行失败、质量异常或取消；崩溃、未初始化、末帧未覆盖、排空超时不会判为成功；两次实验可直接比较精度、回放/排空耗时与资源，失败也有完整报告 |

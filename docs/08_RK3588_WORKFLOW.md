@@ -58,3 +58,28 @@ python3 infra/release/package.py --ros ros1 --version v0.2   --runtime ../.infra
 ## 4. 维护交付
 
 源码、脚本、文档、小型验证及 SHA256 纳入本分支，完整包/数据/SDK/日志留主机产物目录；板端不维护待 push 源码。普通小迭代提交并 push，不打 tag；每个验收完成的 v0.x 版本按用户约定打 tag，既有 tag 和已发布包不改写
+
+## 5. 线程退出修补与节点/库成对交付
+
+v0.2.1 不覆盖原编译工作区。主机仓库根、新 bash 中执行：
+
+```bash
+VINS_ROS1_WORKSPACE="$PWD/../.infra/rk3588/ros1-shutdown-ws" bash infra/rk3588/scripts/build_ros1_cross.sh
+python3 infra/rk3588/scripts/verify_ros1_cross.py \
+  --workspace ../.infra/rk3588/ros1-shutdown-ws --core-reference fb4ad05 \
+  --output ../results/new-build-validation.json
+```
+
+停止逻辑分别位于 vins_node 和 libvins_lib.so，两者必须来自同一次核验构建；只换入口会继续加载旧后端。板端先在隔离副本验证无输入、单线程、等待 IMU，再用同一 run/输入/配置串行 A/B，核对轨迹、精度和进程退出。探针为 infra/board/shutdown_edges.py、shutdown_ab.py，各进程 /proc 采样的最后 CPU 值标为下界，RSS/PSS 分别报告，不推断 DDR/功耗或性能收益
+
+打包必须同时提供构建与板端验收报告，记录文件 SHA256、源码提交和基包来源：
+
+```bash
+python3 infra/release/package.py --ros ros1 --version v0.2.1 \
+  --runtime ../.infra/rk3588/ros1-payload02 \
+  --ros1-build-validation ../results/v021/build-validation.json \
+  --ros1-runtime-validation ../results/v021/accepted-runtime.json \
+  --output ../releases/ros1-v0.2.1
+```
+
+该入口仅更新核验后的节点/后端库与来源记录，要求 SONAME 依赖不变；其他依赖沿用冻结包。依赖变化则停止，另做完整运行环境构建/验收；源码已变时禁止仅给旧二进制换版本号。v0.2.1 为版本内修补，不移动 v0.2 tag，也不新建补丁 tag

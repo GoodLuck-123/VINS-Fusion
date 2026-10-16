@@ -13,6 +13,7 @@ parser.add_argument('install',type=Path)
 parser.add_argument('logs',type=Path)
 parser.add_argument('bag',type=Path)
 parser.add_argument('--full',action='store_true')
+parser.add_argument('--expect-vins-exit',type=int,choices=[-6,0],default=-6)
 args=parser.parse_args();root=args.install;logs=args.logs
 sys.path.insert(0,str(Path(__file__).parent))
 from install import install
@@ -27,8 +28,9 @@ def run(name,options,expected):
     results[name]=dict(exit_code=p.returncode,report=report)
     return report
 if args.full:
-    report=run('full-replay',[],1)
-    assert report['known_issue'] and report['process_exits']==dict(vins=-6,roscore=0,playback=0),report
+    report=run('full-replay',[],0 if args.expect_vins_exit==0 else 1)
+    assert report['process_exits']==dict(vins=args.expect_vins_exit,roscore=0,playback=0),report
+    assert report['status']==('completed' if args.expect_vins_exit==0 else 'failed'),report
     assert report['trajectory_poses']>=1800,report
 else:
     output=logs/'cancelled'
