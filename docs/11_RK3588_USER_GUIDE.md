@@ -55,13 +55,13 @@ run --bag data/euroc/MH_01_easy.bag --name euroc01
 新板或新版本在主机执行：
 
 ```bash
-cd /home/eric/projects/releases/ros1-v0.2
+cd /home/eric/projects/releases/ros1-v0.2.1
 sha256sum -c install-ros1-v0.2.1-linux-aarch64.tar.gz.sha256
 python3 ../remote-tools/current/deploy.py install-ros1-v0.2.1-linux-aarch64.tar.gz \
   --output /home/eric/projects/results/deploy-ros1-v0.2.1
 ```
 
-deploy.py 显示上传进度，校验压缩包、解压至 releases/ros1-版本/install、核对清单并做无数据节点检查，成功后才选择 install。相同版本拒绝覆盖，install 为真实目录也拒绝替换；当前板选择 v0.2；环境预检直接用板端 check，旧主机 run.py 仍是原冒烟入口。省略 --output 的部署日志仍有自动唯一编号；需要好记路径时如上明确指定
+deploy.py 显示上传进度，校验压缩包、解压至 releases/ros1-版本/install、核对清单并做无数据节点检查，成功后才选择 install。相同版本拒绝覆盖，install 为真实目录也拒绝替换；当前板选择 v0.2.1；环境预检直接用板端 check，旧主机 run.py 仍是原冒烟入口。省略 --output 的部署日志仍有自动唯一编号；需要好记路径时如上明确指定
 
 包内 bin/vins 是自动初始化环境的入口，config/ 是示例标定，runtime/ 包含私有 ROS/Python/运行库，scripts/ 是检查与回放脚本，share/provenance/、release.json、SHA256SUMS 记录包来源
 
