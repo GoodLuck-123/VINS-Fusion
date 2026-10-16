@@ -1,0 +1,44 @@
+{
+  "ok": true,
+  "mode": "bag",
+  "install": "/home/firefly/vins-workspace/validation/v02/install",
+  "results": [
+    {
+      "check": "architecture",
+      "status": "pass",
+      "details": {
+        "machine": "aarch64",
+        "node": "/home/firefly/vins-workspace/validation/v02/install/bin/vins_node",
+        "version": "v0.2-candidate"
+      }
+    },
+    {
+      "check": "libraries",
+      "status": "pass",
+      "details": {
+        "elf_files": 283,
+        "skipped_non_loadable_elf_files": 1,
+        "scope": "ELF DT_NEEDED resolution; optional drivers/plugins are not loaded"
+      }
+    },
+    {
+      "check": "package_sha256",
+      "status": "pass",
+      "details": {
+        "manifest": "/home/firefly/vins-workspace/validation/v02/install/SHA256SUMS",
+        "verified_files": 4223
+      }
+    },
+    {
+      "check": "output_directory",
+      "status": "pass",
+      "details": {
+        "path": "/home/firefly/vins-workspace/jobs/1792142370539-99088/logs/prospective",
+        "checked_parent": "/home/firefly/vins-workspace/jobs/1792142370539-99088/logs",
+        "free_bytes": 92173848576,
+        "min_free_mb": 512,
+        "exists": false
+      }
+    }
+  ]
+}

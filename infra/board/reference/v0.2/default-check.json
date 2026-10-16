@@ -1,0 +1,35 @@
+{
+  "ok": true,
+  "mode": "bag",
+  "install": "/home/firefly/vins-workspace/releases/ros1-v0.2/install",
+  "results": [
+    {
+      "check": "architecture",
+      "status": "pass",
+      "details": {
+        "machine": "aarch64",
+        "node": "/home/firefly/vins-workspace/releases/ros1-v0.2/install/bin/vins_node",
+        "version": "v0.2"
+      }
+    },
+    {
+      "check": "package_sha256",
+      "status": "pass",
+      "details": {
+        "manifest": "/home/firefly/vins-workspace/releases/ros1-v0.2/install/SHA256SUMS",
+        "verified_files": 4228
+      }
+    },
+    {
+      "check": "output_directory",
+      "status": "pass",
+      "details": {
+        "path": "/home/firefly/vins-workspace/projects/vins/runs",
+        "checked_parent": "/home/firefly/vins-workspace/projects/vins/runs",
+        "free_bytes": 91675688960,
+        "min_free_mb": 512,
+        "exists": true
+      }
+    }
+  ]
+}

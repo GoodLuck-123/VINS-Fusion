@@ -1,0 +1,5 @@
+[PASS] architecture: {"machine": "aarch64", "node": "/home/firefly/vins-workspace/validation/v02/install/bin/vins_node", "version": "v0.2-candidate"}
+[FAIL] libraries: Invalid: /home/firefly/vins-workspace/validation/v02/install/runtime/python38/lib/python3.8/config-3.8-aarch64-linux-gnu/python.o: not a dynamic executable
+[PASS] package_sha256: {"manifest": "/home/firefly/vins-workspace/validation/v02/install/SHA256SUMS", "verified_files": 4223}
+[PASS] output_directory: {"path": "/home/firefly/vins-workspace/jobs/1792142229980-96936/logs/prospective", "checked_parent": "/home/firefly/vins-workspace/jobs/1792142229980-96936/logs", "free_bytes": 92174675968, "min_free_mb": 512, "exists": false}
+CHECK FAILED (4 checks)

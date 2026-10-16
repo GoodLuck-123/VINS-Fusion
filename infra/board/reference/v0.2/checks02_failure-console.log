@@ -1,0 +1,93 @@
+[PASS] architecture: {"machine": "aarch64", "node": "/home/firefly/vins-workspace/validation/v02/install/bin/vins_node", "version": "v0.2-candidate"}
+[PASS] libraries: {"elf_files": 283, "skipped_non_loadable_elf_files": 1, "scope": "ELF DT_NEEDED resolution; optional drivers/plugins are not loaded"}
+[PASS] package_sha256: {"manifest": "/home/firefly/vins-workspace/validation/v02/install/SHA256SUMS", "verified_files": 4223}
+[PASS] output_directory: {"path": "/home/firefly/vins-workspace/jobs/1792142281247-97698/logs/prospective", "checked_parent": "/home/firefly/vins-workspace/jobs/1792142281247-97698/logs", "free_bytes": 92174467072, "min_free_mb": 512, "exists": false}
+CHECK PASSED (4 checks)
+[PASS] configuration: {"path": "/home/firefly/vins-workspace/validation/v02/install/config/euroc/euroc_stereo_imu_config.yaml", "topics": {"/cam0/image_raw": "sensor_msgs/Image", "/cam1/image_raw": "sensor_msgs/Image", "/imu0": "sensor_msgs/Imu"}, "calibrations": ["/home/firefly/vins-workspace/validation/v02/install/config/euroc/cam0_mei.yaml", "/home/firefly/vins-workspace/validation/v02/install/config/euroc/cam1_mei.yaml"]}
+[PASS] bag: {"path": "/home/firefly/vins-workspace/datasets/euroc_20261014/MH_01_easy.bag", "duration_s": 186.88638639450073, "topics": {"/cam0/image_raw": {"type": "sensor_msgs/Image", "count": 3682, "first_ns": 1403636579763555500, "last_ns": 1403636763813555500}, "/cam1/image_raw": {"type": "sensor_msgs/Image", "count": 3682, "first_ns": 1403636579763555500, "last_ns": 1403636763813555500}, "/imu0": {"type": "sensor_msgs/Imu", "count": 36820, "first_ns": 1403636579758555500, "last_ns": 1403636763853555500}}, "overlap_ns": [1403636579763555500, 1403636763813555500], "timestamp_scan": "first/last headers only; interior timestamps not scanned"}
+CHECK PASSED (2 checks)
+Created /home/firefly/vins-workspace/jobs/1792142281247-97698/logs/fixtures
+[
+  {
+    "case": "valid-fast",
+    "exit_code": 0
+  },
+  {
+    "case": "valid-full",
+    "exit_code": 0
+  },
+  {
+    "case": "missing-imu-fast",
+    "exit_code": 1
+  },
+  {
+    "case": "wrong-type-fast",
+    "exit_code": 1
+  },
+  {
+    "case": "no-overlap-fast",
+    "exit_code": 1
+  },
+  {
+    "case": "duplicate-fast",
+    "exit_code": 0
+  },
+  {
+    "case": "duplicate-full",
+    "exit_code": 1
+  },
+  {
+    "case": "backwards-full",
+    "exit_code": 1
+  },
+  {
+    "options": [
+      "--arc",
+      "--dir",
+      "--min-free-mb",
+      "1e20"
+    ],
+    "exit_code": 1
+  },
+  {
+    "options": [
+      "--mode",
+      "sensor"
+    ],
+    "exit_code": 2
+  },
+  {
+    "options": [
+      "--timestamps"
+    ],
+    "exit_code": 2
+  }
+]
+Python path configuration:
+  PYTHONHOME = '/home/firefly/vins-workspace/validation/v02/install/runtime/python38'
+  PYTHONPATH = '/home/firefly/vins-workspace/validation/v02/install/runtime/ros/lib/python3/dist-packages:/home/firefly/vins-workspace/validation/v02/install/runtime/python'
+  program name = '/usr/bin/python3'
+  isolated = 0
+  environment = 1
+  user site = 0
+  import site = 1
+  sys._base_executable = '/usr/bin/python3'
+  sys.base_prefix = '/home/firefly/vins-workspace/validation/v02/install/runtime/python38'
+  sys.base_exec_prefix = '/home/firefly/vins-workspace/validation/v02/install/runtime/python38'
+  sys.platlibdir = 'lib'
+  sys.executable = '/usr/bin/python3'
+  sys.prefix = '/home/firefly/vins-workspace/validation/v02/install/runtime/python38'
+  sys.exec_prefix = '/home/firefly/vins-workspace/validation/v02/install/runtime/python38'
+  sys.path = [
+    '/home/firefly/vins-workspace/validation/v02/install/runtime/ros/lib/python3/dist-packages',
+    '/home/firefly/vins-workspace/validation/v02/install/runtime/python',
+    '/home/firefly/vins-workspace/validation/v02/install/runtime/python38/lib/python310.zip',
+    '/home/firefly/vins-workspace/validation/v02/install/runtime/python38/lib/python3.10',
+    '/home/firefly/vins-workspace/validation/v02/install/runtime/python38/lib/python3.10/lib-dynload',
+  ]
+Fatal Python error: init_fs_encoding: failed to get the Python codec of the filesystem encoding
+Python runtime state: core initialized
+ModuleNotFoundError: No module named 'encodings'
+
+Current thread 0x0000007f90caf860 (most recent call first):
+  <no Python frame>

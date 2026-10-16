@@ -1,0 +1,56 @@
+[
+  {
+    "case": "valid-fast",
+    "exit_code": 0
+  },
+  {
+    "case": "valid-full",
+    "exit_code": 0
+  },
+  {
+    "case": "missing-imu-fast",
+    "exit_code": 1
+  },
+  {
+    "case": "wrong-type-fast",
+    "exit_code": 1
+  },
+  {
+    "case": "no-overlap-fast",
+    "exit_code": 1
+  },
+  {
+    "case": "duplicate-fast",
+    "exit_code": 0
+  },
+  {
+    "case": "duplicate-full",
+    "exit_code": 1
+  },
+  {
+    "case": "backwards-full",
+    "exit_code": 1
+  },
+  {
+    "options": [
+      "--arc",
+      "--dir",
+      "--min-free-mb",
+      "1e20"
+    ],
+    "exit_code": 1
+  },
+  {
+    "options": [
+      "--mode",
+      "sensor"
+    ],
+    "exit_code": 2
+  },
+  {
+    "options": [
+      "--timestamps"
+    ],
+    "exit_code": 2
+  }
+]

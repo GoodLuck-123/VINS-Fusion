@@ -1,0 +1,36 @@
+{
+  "status": "accepted_with_documented_original_node_shutdown_defect",
+  "scope": "standalone board Python check/run; no host deploy/run integration",
+  "unit_tests": 9,
+  "existing_host_workflow_tests": 7,
+  "actual_bag_fixture_cases": 11,
+  "full_vio_replays": 1,
+  "full_input_result": {
+    "poses": 1831,
+    "matched": 1819,
+    "ate_rmse_m": 0.26538674026866177,
+    "rpe_rmse_m": 0.003111957832780654,
+    "last_timestamp_ns": 1403636763813555456,
+    "run_status": "failed",
+    "process_exits": {
+      "playback": 0,
+      "vins": -6,
+      "roscore": 0
+    },
+    "cli_exit_code": 1
+  },
+  "archive_sha256": "8d88b100606c09d162937d933e0e6c6ed9268b2c3355fc422cb41607c42f5003",
+  "verified_package_files": 4228,
+  "unchanged_original_files": 4206,
+  "algorithm_and_calibration_unchanged": true,
+  "host_deploy_run_and_remote_unchanged": true,
+  "old_tags_unchanged": 40,
+  "known_limitations": [
+    "Original VINS shutdown -6 is reported as failure, not fixed",
+    "sensor interface reserved",
+    "no automatic no-argument full check or host linkage",
+    "No performance/CPU/DDR/power claim from this functional verification"
+  ],
+  "full_logs": "/home/eric/projects/results/v02",
+  "board_install": "/home/firefly/vins-workspace/releases/ros1-v0.2/install"
+}

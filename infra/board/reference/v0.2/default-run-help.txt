@@ -1,0 +1,20 @@
+usage: run [-h] [--mode {bag,sensor}] [--bag BAG] [--config CONFIG]
+           [--name NAME] [--output OUTPUT] [--install INSTALL] [--rate RATE]
+           [--port PORT] [--timeout TIMEOUT] [--min-free-mb MIN_FREE_MB]
+
+Standalone board bag runner. It does not call the host deployment or run
+tools.
+
+options:
+  -h, --help            show this help message and exit
+  --mode {bag,sensor}
+  --bag BAG             ROS 1 bag; required in bag mode
+  --config CONFIG       Default: packaged EuRoC stereo + IMU configuration
+  --name NAME           Readable experiment name under ./runs/ (default run01)
+  --output OUTPUT       Override with a new explicit board result directory
+  --install INSTALL     Install root; default selected package
+  --rate RATE           Playback speed in (0,1]
+  --port PORT           Private loopback ROS master port; default
+                        automatically available port
+  --timeout TIMEOUT     Overall deadline in seconds; default bag/rate + 240
+  --min-free-mb MIN_FREE_MB
