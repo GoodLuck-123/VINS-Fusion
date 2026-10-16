@@ -1,6 +1,12 @@
 # RK3588 ROS 1 交叉编译与远端工作流
 
-更新日期：2026-10-14
+更新日期：2026-10-16
+
+## Quick Start
+
+日常操作统一使用已安装的 vins-remote 2：`vins-remote --remote` 进入默认开发目录和 ROS 1 环境，`vins-remote 文件 --send` 发送，自动实验用更新后工具箱的 run.py。双向进度、实时日志和任务恢复见 [第 12 份指南](12_VINS_REMOTE.md)
+
+下文保留主机交叉构建和早期验收流程；原 --run/--collect 调用仍兼容，当前传输后端为 rsync over SSH，不再用 scp。稳定默认入口为 ~/vins-workspace/install/env.sh，旧 jobs 内包只作历史追溯
 
 本分支 codex/rk3588-ros1 从 ROS 1 master 最新 8c7c8d2 继续。主机联网下载/交叉编译，板端离线运行；原 master 和 ROS 2 分支/tag 保留，不将 ROS 2 核心合入本分支。实测写第 05 份报告，依赖锁见第 09 份文档
 

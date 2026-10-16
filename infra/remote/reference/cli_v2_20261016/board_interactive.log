@@ -1,0 +1,8 @@
+[REMOTE_READY] firefly /home/firefly/vins-workspace/projects/vins
+printf "__REMOTE_OK__%s\n" "$VINS_INSTALL_ROOT"; pwd; command -v roscore; exit
+firefly@firefly:~/vins-workspace/projects/vins$ <"$VINS_INSTALL_ROOT"; pwd; command -v roscore; exit
+__REMOTE_OK__/home/firefly/vins-workspace/install
+/home/firefly/vins-workspace/projects/vins
+/home/firefly/vins-workspace/install/runtime/ros/bin/roscore
+exit
+Connection to 10.106.0.220 closed.

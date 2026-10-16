@@ -1,0 +1,13 @@
+{"job": "1792137399436-31207", "code": "JOB_STARTED", "message": "Remote script started", "utc": "2026-03-07T19:36:59Z", "monotonic_ns": 232058422777157, "pid": 115502, "timeout_s": 300}
+{"job": "1792137399436-31207", "code": "PROCESS_STARTED", "message": "Script process group", "utc": "2026-03-07T19:36:59Z", "monotonic_ns": 232058424771573, "pid": 115502, "child_pid": 115505}
+{"job": "1792137399436-31207", "code": "ARCHIVE_VERIFY", "message": "Verifying uploaded archive", "utc": "2026-03-07T19:36:59Z", "monotonic_ns": 232058534164376, "pid": 115506}
+{"job": "1792137399436-31207", "code": "ARCHIVE_VERIFIED", "message": "Archive SHA256 matched", "utc": "2026-03-07T19:37:00Z", "monotonic_ns": 232059270249825, "pid": 115571}
+{"job": "1792137399436-31207", "code": "UNPACK_STARTED", "message": "Extracting install package", "utc": "2026-03-07T19:37:00Z", "monotonic_ns": 232059396518963, "pid": 115574}
+{"job": "1792137399436-31207", "code": "RUNNING", "message": "Process is alive; this is not a health verdict", "utc": "2026-03-07T19:37:04Z", "monotonic_ns": 232063441625453, "pid": 115502, "elapsed_s": 5.0, "child_pid": 115505}
+{"job": "1792137399436-31207", "code": "UNPACK_NOTICE", "message": "tar diagnostics saved to unpack.stderr (724 lines)", "utc": "2026-03-07T19:37:04Z", "monotonic_ns": 232063719338647, "pid": 115579}
+{"job": "1792137399436-31207", "code": "PACKAGE_VERIFIED", "message": "All package files matched", "utc": "2026-03-07T19:37:06Z", "monotonic_ns": 232065791656814, "pid": 115584}
+{"job": "1792137399436-31207", "code": "CHECK_STARTED", "message": "Checking imports, linkage and node readiness", "utc": "2026-03-07T19:37:06Z", "monotonic_ns": 232065912201659, "pid": 115587}
+{"job": "1792137399436-31207", "code": "RUNNING", "message": "Process is alive; this is not a health verdict", "utc": "2026-03-07T19:37:09Z", "monotonic_ns": 232068457917623, "pid": 115502, "elapsed_s": 10.0, "child_pid": 115505}
+{"job": "1792137399436-31207", "code": "CHECK_PASSED", "message": "Runtime lifecycle probe passed; inspect recorded process exits", "utc": "2026-03-07T19:37:13Z", "monotonic_ns": 232072865978274, "pid": 115668}
+{"job": "1792137399436-31207", "code": "INSTALL_SELECTED", "message": "/home/firefly/vins-workspace/validation/deploy-cli-v2-20261016-r02/install", "utc": "2026-03-07T19:37:13Z", "monotonic_ns": 232073004872413, "pid": 115672}
+{"job": "1792137399436-31207", "code": "JOB_FINISHED", "message": "complete", "utc": "2026-03-07T19:37:13Z", "monotonic_ns": 232073074841045, "pid": 115502, "exit_code": 0, "script_exit_code": 0}

@@ -24,6 +24,11 @@ class WorkflowTest(unittest.TestCase):
         self.tool.write_text('''#!/usr/bin/env python3
 import os, pathlib, shutil, subprocess, sys, tempfile
 args=sys.argv[1:]
+if '--print-config' in args:
+ import json
+ root=args[args.index('--root')+1] if '--root' in args else 'vins-workspace'
+ print(json.dumps(dict(target='user@board',root=root,cwd=root+'/projects/vins',env=root+'/install/env.sh')))
+ sys.exit(0)
 output=pathlib.Path(args[args.index('--output')+1])
 job=pathlib.Path(tempfile.mkdtemp(dir=os.environ['HOME']))
 (job/'logs').mkdir()
@@ -88,6 +93,26 @@ sys.exit(code)
         result=self.invoke('deploy.py',self.archive,'--output',self.root/'unsafe')
         self.assertNotEqual(result.returncode,0)
         self.assertFalse((self.home/'vins-workspace').exists())
+
+    def test_default_host_and_custom_workspace(self):
+        root=self.home/"custom workspace ' quoted"
+        common=['--tool',str(self.tool),'--root',str(root)]
+        result=subprocess.run([sys.executable,str(HERE/'deploy.py'),str(self.archive),'--output',str(self.root/'custom deploy'),*common],
+                              env=dict(os.environ,HOME=str(self.home)),capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        self.assertEqual((root/'install').resolve(),root/'releases/ros1-v0.1/install')
+        result=subprocess.run([sys.executable,str(HERE/'run.py'),'--output',str(self.root/'custom run'),*common],
+                              env=dict(os.environ,HOME=str(self.home)),capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        self.assertTrue((self.root/'custom run/runtime-check/result').exists())
+
+    def test_real_install_directory_is_preserved(self):
+        real=self.home/'vins-workspace/install';real.mkdir(parents=True)
+        (real/'keep').write_text('preserve')
+        result=self.invoke('deploy.py',self.archive,'--output',self.root/'real directory')
+        self.assertNotEqual(result.returncode,0)
+        self.assertFalse(real.is_symlink())
+        self.assertEqual((real/'keep').read_text(),'preserve')
 
 
 if __name__ == '__main__':

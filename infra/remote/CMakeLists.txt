@@ -1,6 +1,16 @@
 cmake_minimum_required(VERSION 3.16)
 project(vins_remote LANGUAGES CXX)
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS remote_agent.py)
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/remote_agent.py" REMOTE_AGENT_SOURCE)
+configure_file(agent.hpp.in agent.hpp @ONLY)
 add_executable(vins-remote main.cpp)
+target_include_directories(vins-remote PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
 target_compile_features(vins-remote PRIVATE cxx_std_17)
 target_compile_options(vins-remote PRIVATE -Wall -Wextra -Wpedantic)
 install(TARGETS vins-remote RUNTIME DESTINATION bin)
+# Preserve the user's selected board/workspace when upgrading the executable.
+install(CODE "
+if(NOT EXISTS \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/bin/vins-remote.conf\")
+  file(INSTALL DESTINATION \"\${CMAKE_INSTALL_PREFIX}/bin\" TYPE FILE FILES \"${CMAKE_CURRENT_SOURCE_DIR}/vins-remote.conf\")
+endif()
+")

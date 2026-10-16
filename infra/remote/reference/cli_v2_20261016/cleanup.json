@@ -1,0 +1,8 @@
+{
+  "removed_validation_roots": [
+    "/home/firefly/vins-workspace/validation/deploy-cli-v2-20261016",
+    "/home/firefly/vins-workspace/validation/deploy-cli-v2-20261016-r02"
+  ],
+  "default_install": "/home/firefly/vins-workspace/releases/ros1-v0.1/install",
+  "no_vins_residual": true
+}

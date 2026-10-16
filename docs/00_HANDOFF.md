@@ -1,6 +1,17 @@
 # ROS 1 接手与完成状态
 
-更新日期：2026-10-15
+更新日期：2026-10-16
+
+## Quick Start
+
+当前开发目标仅 codex/rk3588-ros1。板端工作区固定 ~/vins-workspace，开发目录 projects/vins，环境入口 install/env.sh，install 链接指向选定的已验收版本。主机执行：
+
+```bash
+vins-remote --remote
+vins-remote --print-config
+```
+
+常用传输、自动任务、实时日志、取消和恢复见 [第 12 份指南](12_VINS_REMOTE.md)；普通实验及未来版本见 [第 11 份指南](11_RK3588_USER_GUIDE.md)。今后文档先 Quick Start，再写详细配置、行为和边界；默认路径统一读 vins-remote 配置，不再散写各脚本路径
 
 本分支 codex/rk3588-ros1 从 ROS 1 master 最新 8c7c8d2 独立建立，已完成 RK3588 主机交叉构建、离线运行环境和唯一双目配置一轮回放/评估。原 master、桌面 ros2-humble、板端 codex/rk3588-ros2 与历史 tag 保留，未合并 ROS 2 核心；2026-10-14 用户已授权核验后 push 所属分支和新增 tag
 
@@ -31,7 +42,7 @@ ROS 1 bag 左右图各 3682、IMU 36820，1831 姿态/1819 匹配、末帧覆盖
 | 主机运行包 | ../.infra/rk3588/ros1-payload02/；首次缺 rosversion 的 ros1-payload 仅追溯 |
 | 已部署运行包 | /home/firefly/vins-workspace/jobs/1791970072506-133971/ros1-payload02 |
 | 本分支 checkout | /home/eric/projects/VINS-Fusion-rk3588-ros1 |
-| 同源码 C++ 远端工具 | infra/remote/，../.infra/bin/vins-remote |
+| 主机 C++ 远端工具 v2 | infra/remote/，../.infra/bin/vins-remote |
 
 编译器/ARM binutils 主机库隔离，SDK 绝对链接与 Python/原生 CMake 导出重定位可重做；失败证据保留。cv_bridge C++ 下载源码不变，构建副本只关闭可选 Python 扩展，不提供目标 Python cv_bridge。C++ 算法/core/config 与 master 8c7c8d2 一致；运行包旧来源字段的 tag 对象与剥离提交对应关系在第 05 份报告说明，冻结包/哈希不改
 
@@ -58,3 +69,9 @@ ROS 1 当前版本定为 v0.1，完整交付目录 `/home/eric/projects/releases
 本分支完整 install 包已在上述固定目录部署验证，包内 SHA256、动态依赖和节点生命周期通过；主机调用/日志回收已通过，ROS 2 addon 已包含在单包内并分别核验两种 DDS。验收见 [v0.1 小型证据](../infra/release/reference/ros1-v0.1/)，未重放原实验或改写原统计
 
 后续正常实验与 profile 的 v0.2–v0.7 计划见 [第 11 份指南第 8 节](11_RK3588_USER_GUIDE.md#8-后续功能与版本计划)：优先启动前检查、统一入口和可靠停止，再做输入/进程监控、VINS/profile、结果闭环、批量回归和真实设备；均为待实施计划，ROS 2/共享传输与硬件优化保持独立预研
+
+## 远程工具 v2 验收（2026-10-16）
+
+rsync 双向进度、初始化 SSH 终端、远端命令、实时任务/事件、follow/stop/collect 已验收，12 项原生集成测试与 6 项发布脚本测试通过，真实板端环境和隔离完整部署通过。主机工具箱在 ../releases/remote-tools/v2/，版本 tag 为 milestone-rk3588-remote-cli-v2；这是远程工具迭代，不表示 VINS v0.2 功能已经完成
+
+默认 install 指向原 ros1-v0.1，4217 文件核验通过；原清理 −6 仍保留，没有新 VIO 回放或性能统计。隔离部署副本已在回收日志后清理，原始日志在 ../results/remote-cli-v2-20261016/，小型证据在 infra/remote/reference/cli_v2_20261016/。详细退出/断线/取消语义以第 12 份指南为准

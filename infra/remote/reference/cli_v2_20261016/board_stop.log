@@ -1,0 +1,7 @@
+[JOB_STARTED] Remote script started
+[PROCESS_STARTED] Script process group
+[STOP_READY] ready
+[CANCEL_REQUESTED] cancelled
+[JOB_FINISHED] cancelled exit=130
+              0   0%    0.00kB/s    0:00:00                8   0%    7.81kB/s    0:00:00 (xfr#1, to-chk=6/8)              8   0%    7.81kB/s    0:00:00 (xfr#2, to-chk=5/8)            902  88%  880.86kB/s    0:00:00 (xfr#3, to-chk=4/8)            906  88%  884.77kB/s    0:00:00 (xfr#4, to-chk=3/8)            906  88%  884.77kB/s    0:00:00 (xfr#5, to-chk=2/8)            981  96%  958.01kB/s    0:00:00 (xfr#6, to-chk=1/8)          1,018 100%  994.14kB/s    0:00:00 (xfr#7, to-chk=0/8)          1,018 100%  994.14kB/s    0:00:00 (xfr#7, to-chk=0/8)
+[COLLECT_OK] "/home/eric/projects/results/remote-cli-v2-20261016/board01/stop-start-board"; remote exit=130

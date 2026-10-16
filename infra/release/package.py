@@ -135,9 +135,15 @@ def main():
     (output / (archive.name + '.sha256')).write_text(f'{sha(archive)}  {archive.name}\n')
     host = output / 'host'
     host.mkdir()
+    subprocess.run([str(REPO.parent / '.infra/bin/vins-remote'), '--print-config'],
+                   check=True, stdout=subprocess.DEVNULL)
     shutil.copy2(REPO.parent / '.infra/bin/vins-remote', host / 'vins-remote')
-    for name in ['deploy.py', 'run.py']:
+    for name in ['deploy.py', 'run.py', 'remote_settings.py']:
         shutil.copy2(HERE / name, host / name)
+    config = REPO.parent / '.infra/bin/vins-remote.conf'
+    if config.exists():
+        shutil.copy2(config, host / config.name)
+    shutil.copy2(REPO / 'docs/12_VINS_REMOTE.md', host / 'README.md')
     (output / 'README.md').write_text(
         f'# {args.ros} {args.version}\n\n板端完整运行包：{archive.name}，解压顶层为 install/\n\n'
         '普通用户说明见 install/README.md；host/ 仅在 Ubuntu x86_64 主机运行\n'

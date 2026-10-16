@@ -1,0 +1,7 @@
+{"job": "1792137147478-30957", "code": "JOB_STARTED", "message": "Remote script started", "utc": "2026-03-07T19:32:45Z", "monotonic_ns": 231805070561369, "pid": 114147, "timeout_s": 180}
+{"job": "1792137147478-30957", "code": "PROCESS_STARTED", "message": "Script process group", "utc": "2026-03-07T19:32:45Z", "monotonic_ns": 231805072611494, "pid": 114147, "child_pid": 114150}
+{"job": "1792137147478-30957", "code": "INSTALL_SELECTED", "message": "/home/firefly/vins-workspace/install", "utc": "2026-03-07T19:32:45Z", "monotonic_ns": 231805144138668, "pid": 114151}
+{"job": "1792137147478-30957", "code": "CHECK_STARTED", "message": "Checking deployed runtime without data", "utc": "2026-03-07T19:32:46Z", "monotonic_ns": 231805278774182, "pid": 114154}
+{"job": "1792137147478-30957", "code": "RUNNING", "message": "Process is alive; this is not a health verdict", "utc": "2026-03-07T19:32:50Z", "monotonic_ns": 231810089729165, "pid": 114147, "elapsed_s": 5.0, "child_pid": 114150}
+{"job": "1792137147478-30957", "code": "CHECK_PASSED", "message": "Runtime lifecycle probe passed; inspect process exits", "utc": "2026-03-07T19:32:51Z", "monotonic_ns": 231810727205562, "pid": 114295}
+{"job": "1792137147478-30957", "code": "JOB_FINISHED", "message": "complete", "utc": "2026-03-07T19:32:51Z", "monotonic_ns": 231810793208777, "pid": 114147, "exit_code": 0, "script_exit_code": 0}

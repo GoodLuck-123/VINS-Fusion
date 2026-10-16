@@ -1,0 +1,4 @@
+INSTALL=/home/firefly/vins-workspace/install
+CWD=/home/firefly/vins-workspace/projects/vins
+/home/firefly/vins-workspace/install/runtime/ros/bin/roscore
+Python 3.8.10

@@ -1,0 +1,15 @@
+{
+  "tool_version": 2,
+  "source_branch": "codex/rk3588-ros1",
+  "source_tag": "milestone-rk3588-remote-cli-v2",
+  "target_architecture": "x86_64 host",
+  "remote_agent": "embedded; system /usr/bin/python3 on board",
+  "source_files_sha256": {
+    "infra/remote/main.cpp": "773c78e784c73248697236105c08b5eebda63c5c6239bfeed771f4e6fdf16475",
+    "infra/remote/remote_agent.py": "968116bda4c0bc74c50f6f5a7d6a3e9d28cc08e27e15ce33ac1138b9d320d492",
+    "infra/remote/CMakeLists.txt": "7a917428189072323d54095f9f5d75db7c56ad0b7055b46e6eeea44bed10d6ca",
+    "infra/release/deploy.py": "b08c48cc8cb88ea6315ff64433b4ddabc83ad10673c6a12005b9b23896d3c51b",
+    "infra/release/run.py": "22ce0808fe209ded0a7f77befc06939c6a098e66cbc68e18a090f1e84993e7f6",
+    "infra/release/remote_settings.py": "bb94729e868d36ee7e5103d8101665fcdf35f3fa5bae1c147a41a48271969822"
+  }
+}

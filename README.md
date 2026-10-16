@@ -1,5 +1,16 @@
 # VINS-Fusion
 
+## Quick Start
+
+日常开发使用默认板端路径和已初始化的 ROS 1 环境，主机执行：
+
+```bash
+vins-remote --remote
+# 手动终端中 exit 回主机；无需每次查找 install/env.sh
+```
+
+传文件、自动运行与实时日志见 [12 vins-remote 详细指南](docs/12_VINS_REMOTE.md)，完整部署与实验流程见 [11 用户指南](docs/11_RK3588_USER_GUIDE.md)。后续开发只在 codex/rk3588-ros1；ROS 2 分支和历史 tag 保留
+
 普通用户使用 ROS 1 v0.1 请先读 [11 RK3588 用户指南](docs/11_RK3588_USER_GUIDE.md)：完整 install 包、默认部署路径、运行与日志回收；无需在板端搭建 ROS 或编译依赖。以下上游说明中的源码安装步骤不属于 v0.1 二进制部署流程
 
 后续功能与验收计划见 [v0.2–v0.7 路线图](docs/11_RK3588_USER_GUIDE.md#8-后续功能与版本计划)，覆盖正常实验、profile、结果归档、批量回归和真实传感器，计划与当前已发布能力分开记录

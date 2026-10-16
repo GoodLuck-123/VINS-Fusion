@@ -1,0 +1,185 @@
+{
+  "status": "pass",
+  "ros2": {
+    "repo": "/home/eric/projects/VINS-Fusion",
+    "reference": "7d42fac",
+    "manifests": [
+      {
+        "path": "infra/rk3588/reference/baseline01_failure/SHA256SUMS",
+        "files": 7
+      },
+      {
+        "path": "infra/rk3588/reference/baseline_20261014/SHA256SUMS",
+        "files": 22
+      },
+      {
+        "path": "infra/rk3588/reference/components_20261014/SHA256SUMS",
+        "files": 83
+      },
+      {
+        "path": "infra/rk3588/reference/connection_20261014/SHA256SUMS",
+        "files": 4
+      },
+      {
+        "path": "infra/rk3588/reference/cross_sdk01_failure/SHA256SUMS",
+        "files": 3
+      },
+      {
+        "path": "infra/rk3588/reference/cross_sdk_20261014/SHA256SUMS",
+        "files": 13
+      },
+      {
+        "path": "infra/rk3588/reference/dependencies_20261014/SHA256SUMS",
+        "files": 23
+      },
+      {
+        "path": "infra/rk3588/reference/dma_heap_20261014/SHA256SUMS",
+        "files": 53
+      },
+      {
+        "path": "infra/rk3588/reference/fastrtps01_failure/SHA256SUMS",
+        "files": 3
+      },
+      {
+        "path": "infra/rk3588/reference/fastrtps_20261014/SHA256SUMS",
+        "files": 15
+      },
+      {
+        "path": "infra/rk3588/reference/final_handoff_20261014/SHA256SUMS",
+        "files": 8
+      },
+      {
+        "path": "infra/rk3588/reference/global_audit_20261014/SHA256SUMS",
+        "files": 6
+      },
+      {
+        "path": "infra/rk3588/reference/legacy01_failure/SHA256SUMS",
+        "files": 3
+      },
+      {
+        "path": "infra/rk3588/reference/legacy02_failure/SHA256SUMS",
+        "files": 3
+      },
+      {
+        "path": "infra/rk3588/reference/legacy03_failure/SHA256SUMS",
+        "files": 4
+      },
+      {
+        "path": "infra/rk3588/reference/legacy04_link_failure/SHA256SUMS",
+        "files": 7
+      },
+      {
+        "path": "infra/rk3588/reference/legacy_20261014/SHA256SUMS",
+        "files": 13
+      },
+      {
+        "path": "infra/rk3588/reference/perf_20261014/SHA256SUMS",
+        "files": 14
+      },
+      {
+        "path": "infra/rk3588/reference/pmu_20261014/SHA256SUMS",
+        "files": 36
+      },
+      {
+        "path": "infra/rk3588/reference/publication_check_20261014/SHA256SUMS",
+        "files": 10
+      },
+      {
+        "path": "infra/rk3588/reference/python_cross_20261014/SHA256SUMS",
+        "files": 4
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_comparison_20261014/SHA256SUMS",
+        "files": 10
+      },
+      {
+        "path": "infra/rk3588/reference/ros2_build01_failure/SHA256SUMS",
+        "files": 3
+      },
+      {
+        "path": "infra/rk3588/reference/ros2_build02_failure/SHA256SUMS",
+        "files": 4
+      },
+      {
+        "path": "infra/rk3588/reference/ros2_build03_mixed_libraries/SHA256SUMS",
+        "files": 5
+      },
+      {
+        "path": "infra/rk3588/reference/runtime_20261014/SHA256SUMS",
+        "files": 16
+      },
+      {
+        "path": "infra/rk3588/reference/shared_20261014/SHA256SUMS",
+        "files": 85
+      },
+      {
+        "path": "infra/rk3588/reference/shared_probe_20261014/SHA256SUMS",
+        "files": 17
+      }
+    ],
+    "manifest_entries": 474,
+    "original_decompressed_files": 134,
+    "core_config_unchanged": true
+  },
+  "ros1": {
+    "repo": "/home/eric/projects/VINS-Fusion-rk3588-ros1",
+    "reference": "8c7c8d2",
+    "manifests": [
+      {
+        "path": "infra/rk3588/reference/ros1_baseline01_evaluation_failure/SHA256SUMS",
+        "files": 5
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_baseline_20261014/SHA256SUMS",
+        "files": 34
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_build01_failure/SHA256SUMS",
+        "files": 3
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_compiler_parameters_20261014/SHA256SUMS",
+        "files": 2
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_cross_build_20261014/SHA256SUMS",
+        "files": 5
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_dependencies_20261014/SHA256SUMS",
+        "files": 6
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_legacy01_failure/SHA256SUMS",
+        "files": 3
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_legacy_board_20261014/SHA256SUMS",
+        "files": 11
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_legacy_build_20261014/SHA256SUMS",
+        "files": 4
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_package_host_20261014/SHA256SUMS",
+        "files": 5
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_runtime01_failure/SHA256SUMS",
+        "files": 14
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_runtime_20261014/SHA256SUMS",
+        "files": 21
+      },
+      {
+        "path": "infra/rk3588/reference/ros1_sdk_discovery_20261014/SHA256SUMS",
+        "files": 17
+      }
+    ],
+    "manifest_entries": 130,
+    "original_decompressed_files": 32,
+    "core_config_unchanged": true
+  }
+}

@@ -1,5 +1,9 @@
 # 原生 Ubuntu 22.04 EuRoC 复现实测
 
+## Quick Start：阅读与使用
+
+运行实验先读 [用户指南](11_RK3588_USER_GUIDE.md)，主机传输、终端和实时日志见 [远程工具指南](12_VINS_REMOTE.md)。本报告下方按验收阶段记录实测与边界；包/工具验证与完整 VIO 回放分别统计，历史归档保持原样
+
 本页只记录当前物理主机实测。WSL 原报告保存在历史 tag；历史归档及冻结哈希保持原样
 
 主机：Ubuntu 22.04.5、Linux 6.8.0-138-generic、AMD Ryzen 7 9800X3D，16 逻辑 CPU、约 30 GiB 内存
@@ -8,7 +12,7 @@
 
 DDR 流量不可用；CPU 能量节点默认不可读。GPU hwmon 功率不代表 CPU VIO 功耗
 
-本分支保留 master 的 ROS 1 四轮原生复现结果；桌面 ROS 2 和板端 ROS 2 结果分别记录在 ros2-humble、codex/rk3588-ros2 的同名报告。本分支后续续写 RK3588 ROS 1 实测，当前 SDK 已锁定、下载待完成，尚无板端 ROS 1 结果。历史桌面清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
+本分支记录 master 的 ROS 1 四轮原生复现、RK3588 一轮完整双目回放，以及 v0.1 安装包和远程工具 v2 验证；桌面 ROS 2 和板端 ROS 2 结果分别保留在 ros2-humble、codex/rk3588-ros2 的同名报告。工具/包装检查不增加 VIO 性能统计，真实相机尚未验收。历史桌面清单见 [第 07 份文档](07_NATIVE_UBUNTU_REPRODUCTION.md)
 
 <!-- native-phase:ros1 -->
 ## ROS 1 原版参照与资源对照（2026-10-13）
@@ -84,3 +88,11 @@ CPU/RSS/PSS 为 VINS 订阅就绪至排空，未采 rosbag，不当作合计 CPU
 打包复用原已验收运行文件，仅重排目录和增加环境/用户入口；完整包 4217 个文件 SHA256 通过，其中 4206 个原运行文件按哈希直接复用，284 个 ELF 全部 AArch64。上板解压、动态依赖来源、节点订阅及已有生命周期检查通过；ROS 2 两种 DDS 在同一 install 验证，ROS 1 原清理 −6 如实保留。主机四项部署工具检查通过；没有重放 EuRoC，没有新增性能/精度/实时/真实相机验收结论，原成功/失败统计均不变
 
 原核心/config 和历史归档哈希均未变，证据及压缩包 SHA256 见 [v0.1 安装包验收](../infra/release/reference/ros1-v0.1/)。原构建记录与新包装提交分层保留，不把旧二进制重新标为本次重建
+
+## 远程工具 v2 与固定工作区验收（2026-10-16）
+
+本次只在 codex/rk3588-ros1 迭代主机工具，不修改 VINS 算法/二进制、冻结 v0.1 安装包或 ROS 2 分支。默认板端开发目录 ~/vins-workspace/projects/vins，环境 ~/vins-workspace/install/env.sh；install 指向原已验收 ros1-v0.1。工具和 deploy.py/run.py 共用配置，主机命令可直接从 PATH 调用
+
+12 项原生 C++/真实 rsync 集成测试、6 项部署脚本测试和配置升级保留检查通过。真实 RK3588 验证默认环境与交互 PTY、双向传输 SHA256、任务结束前日志到达、失败码 7、超时 124、停止 130、detach/follow/collect 与默认 run.py。另在隔离根目录完整部署并核验 4217 个文件、ROS master/VINS 订阅就绪及自动回收；成功解压诊断完整保留，终端显示摘要
+
+没有输入 bag 或增加 VIO 性能统计。包内 VINS 原清理 −6 保留，外层检查 0 不当作原节点正常退出；RUNNING 事件仅表示脚本存活，不是算法健康结论。已有 core/config、历史归档和两套 v0.1 压缩包哈希均未变。全部功能与恢复语义见 [第 12 份说明](12_VINS_REMOTE.md)，小型证据见 [工具验收归档](../infra/remote/reference/cli_v2_20261016/)，完整日志留父工作区

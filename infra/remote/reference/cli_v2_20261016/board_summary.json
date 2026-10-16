@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "checks": {
+    "bootstrap": {
+      "exit_code": 0
+    },
+    "environment": {
+      "exit_code": 0
+    },
+    "send": {
+      "exit_code": 0
+    },
+    "receive": {
+      "exit_code": 0
+    },
+    "transfer_sha256": true,
+    "live_before_completion": true,
+    "failure": {
+      "exit_code": 7
+    },
+    "timeout": {
+      "exit_code": 124
+    },
+    "detached": {
+      "exit_code": 0
+    },
+    "reconnect": {
+      "exit_code": 0
+    },
+    "recollect": {
+      "exit_code": 0
+    },
+    "stop-start": {
+      "exit_code": 0
+    },
+    "stop": {
+      "exit_code": 130
+    },
+    "interactive_pty": true,
+    "runtime_default": {
+      "verified_files": 4217,
+      "vins_exit_code": -6,
+      "roscore_exit_code": 0
+    },
+    "no-vins-residual": {
+      "exit_code": 0
+    }
+  },
+  "settings": {
+    "target": "firefly@10.106.0.220",
+    "root": "vins-workspace",
+    "cwd": "vins-workspace/projects/vins",
+    "env": "vins-workspace/install/env.sh"
+  },
+  "no_vio_replay": true,
+  "root": "/home/eric/projects/results/remote-cli-v2-20261016/board01"
+}

@@ -1,0 +1,17 @@
+test_command_options_are_not_client_options (test_remote.RemoteTest.test_command_options_are_not_client_options) ... ok
+test_ctrl_c_detaches_only (test_remote.RemoteTest.test_ctrl_c_detaches_only) ... ok
+test_detach_stop_and_recollect_same_receipt (test_remote.RemoteTest.test_detach_stop_and_recollect_same_receipt) ... ok
+test_disconnect_reconnect_does_not_rerun (test_remote.RemoteTest.test_disconnect_reconnect_does_not_rerun) ... ok
+test_exec_environment_directory_arguments_and_exit (test_remote.RemoteTest.test_exec_environment_directory_arguments_and_exit) ... ok
+test_finished_exit_130_is_collected (test_remote.RemoteTest.test_finished_exit_130_is_collected) ... ok
+test_json_events_only (test_remote.RemoteTest.test_json_events_only) ... ok
+test_live_events_nested_logs_and_failure_collection (test_remote.RemoteTest.test_live_events_nested_logs_and_failure_collection) ... ok
+test_missing_environment_and_no_env_escape (test_remote.RemoteTest.test_missing_environment_and_no_env_escape) ... ok
+test_reject_existing_output_and_conflicting_modes (test_remote.RemoteTest.test_reject_existing_output_and_conflicting_modes) ... ok
+test_send_receive_trailing_slash_and_quotes (test_remote.RemoteTest.test_send_receive_trailing_slash_and_quotes) ... ok
+test_timeout_cleanup (test_remote.RemoteTest.test_timeout_cleanup) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 11.151s
+
+OK

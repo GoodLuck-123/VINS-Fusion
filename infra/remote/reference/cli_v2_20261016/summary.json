@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "date": "2026-10-16",
+  "tool_version": 2,
+  "native_integration_tests": 12,
+  "release_workflow_tests": 6,
+  "installer_config_preservation": true,
+  "board_checks": {
+    "bootstrap": {
+      "exit_code": 0
+    },
+    "environment": {
+      "exit_code": 0
+    },
+    "send": {
+      "exit_code": 0
+    },
+    "receive": {
+      "exit_code": 0
+    },
+    "transfer_sha256": true,
+    "live_before_completion": true,
+    "failure": {
+      "exit_code": 7
+    },
+    "timeout": {
+      "exit_code": 124
+    },
+    "detached": {
+      "exit_code": 0
+    },
+    "reconnect": {
+      "exit_code": 0
+    },
+    "recollect": {
+      "exit_code": 0
+    },
+    "stop-start": {
+      "exit_code": 0
+    },
+    "stop": {
+      "exit_code": 130
+    },
+    "interactive_pty": true,
+    "runtime_default": {
+      "verified_files": 4217,
+      "vins_exit_code": -6,
+      "roscore_exit_code": 0
+    },
+    "no-vins-residual": {
+      "exit_code": 0
+    }
+  },
+  "defaults": {
+    "target": "firefly@10.106.0.220",
+    "root": "vins-workspace",
+    "cwd": "vins-workspace/projects/vins",
+    "env": "vins-workspace/install/env.sh"
+  },
+  "isolated_full_deploy_exit": 0,
+  "package_files_checked": 4217,
+  "vins_original_cleanup_exit": -6,
+  "new_vio_replays": 0,
+  "ros2_branch_untouched": true,
+  "tool_sha256": "99940500337b6b197c9a53b73c5e94c28a4c8109d81e9c2a78843089c472060c",
+  "host_bundle": "/home/eric/projects/releases/remote-tools/v2",
+  "raw_logs": "/home/eric/projects/results/remote-cli-v2-20261016",
+  "known_limits": [
+    "No VINS health/profile implementation in this transport iteration",
+    "ROS1 original shutdown abort remains in frozen package",
+    "Processes creating new sessions need their own cleanup"
+  ],
+  "validation_deploy_roots_cleaned": true,
+  "user_path_entry": "/home/eric/.local/bin/vins-remote"
+}

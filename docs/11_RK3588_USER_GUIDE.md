@@ -1,6 +1,19 @@
 # RK3588 普通用户部署与运行
 
-更新日期：2026-10-15
+更新日期：2026-10-16
+
+## Quick Start
+
+日常统一使用更新后的远程工具箱；v0.1 原 host/ 和安装包保留作冻结交付。主机执行：
+
+```bash
+vins-remote --remote
+# 或从主机自动检查已选定的板端 install，并实时看日志、收结果
+cd /home/eric/projects/releases/remote-tools/v2
+python3 run.py --output /home/eric/projects/results/user-check01
+```
+
+默认板端工作区 ~/vins-workspace，开发目录 projects/vins，环境 install/env.sh；无需每次指定路径或 IP。完整远程功能、双向进度、日志接回与停止见 [第 12 份说明](12_VINS_REMOTE.md)，下方继续介绍安装包、实验和现场项目
 
 本文面向拿到安装包、准备在板上跑实验的用户。默认使用原生 CPU ROS 1 v0.1、开环 VIO；memfd、VGEM、DMA heap、ROS 2 组件等仍按预研入口管理，不是本指南的默认部署路径
 
@@ -36,10 +49,10 @@ releases/
 ```bash
 cd /home/eric/projects/releases/ros1-v0.1
 sha256sum -c install-ros1-v0.1-linux-aarch64.tar.gz.sha256
-python3 host/deploy.py firefly@10.106.0.220 install-ros1-v0.1-linux-aarch64.tar.gz
+python3 /home/eric/projects/releases/remote-tools/v2/deploy.py firefly@10.106.0.220 install-ros1-v0.1-linux-aarch64.tar.gz
 ```
 
-脚本调用已有 C++ 工具：scp 上传整个压缩包，校验 SHA256，在板端解压到固定版本目录，核对包内文件，再检查 Python 导入、动态库来源、ROS master 和 VINS 订阅就绪。日志自动回主机交付目录下新建的 `deploy-日期时间/`，无需手动再 scp 日志
+脚本调用统一 C++ 工具并实时显示阶段和各进程日志：rsync over SSH 上传整个压缩包并显示进度，校验 SHA256，在板端解压到固定版本目录，核对包内文件，再检查 Python 导入、动态库来源、ROS master 和 VINS 订阅就绪。日志自动回主机交付目录下新建的 `deploy-日期时间/`，无需手动再 scp 日志
 
 默认板端位置是：
 
@@ -67,7 +80,7 @@ python3 host/deploy.py firefly@10.106.0.220 install-ros1-v0.1-linux-aarch64.tar.
 主机执行，`--output` 必须是一个尚不存在的目录：
 
 ```bash
-python3 host/run.py firefly@10.106.0.220 \
+python3 /home/eric/projects/releases/remote-tools/v2/run.py firefly@10.106.0.220 \
   --output /home/eric/projects/results/user-ros1-check01
 ```
 
@@ -78,7 +91,7 @@ python3 host/run.py firefly@10.106.0.220 \
 第一次需要传 bag，可调用固定 scp 工具；当前板端已存在 MH_01_easy.bag，可直接跳过传输：
 
 ```bash
-host/vins-remote firefly@10.106.0.220 /home/eric/projects/data/euroc/MH_01_easy.bag \
+vins-remote firefly@10.106.0.220 /home/eric/projects/data/euroc/MH_01_easy.bag \
   --dest vins-workspace/datasets/euroc_20261014
 ```
 
@@ -87,7 +100,7 @@ host/vins-remote firefly@10.106.0.220 /home/eric/projects/data/euroc/MH_01_easy.
 然后从主机发起回放：
 
 ```bash
-python3 host/run.py firefly@10.106.0.220 \
+python3 /home/eric/projects/releases/remote-tools/v2/run.py firefly@10.106.0.220 \
   --bag /home/firefly/vins-workspace/datasets/euroc_20261014/MH_01_easy.bag \
   --output /home/eric/projects/results/user-ros1-euroc01
 ```
@@ -99,7 +112,7 @@ python3 host/run.py firefly@10.106.0.220 \
 当前脚本不自动做 ATE/RPE，也不安装 profile 工具；精度评估仍在主机使用维护者的锁定环境。若运行中 SSH 断开，板端任务可以继续；记录终端的 Remote job 路径，待结束后只回收，不重放：
 
 ```bash
-host/vins-remote firefly@10.106.0.220 vins-workspace/jobs/终端输出的任务编号 \
+vins-remote firefly@10.106.0.220 vins-workspace/jobs/终端输出的任务编号 \
   --collect /home/eric/projects/results/user-ros1-recovered01
 ```
 
@@ -142,7 +155,7 @@ ROS 2 安装包使用相同 host/deploy.py，默认目录为 `~/vins-workspace/r
 
 | 目录 | 用途 / 是否上板 |
 | --- | --- |
-| `.infra/bin/`、`remote-build/` | 主机 C++ 传输工具及其构建，不作为 ARM 程序上传 |
+| `.infra/bin/`、`.infra/build/remote-v2/` | 主机 C++ 传输工具及其构建，不作为 ARM 程序上传 |
 | `.infra/rk3588/ros1_ws/`、`ros2_ws_overlay/` | 有效项目交叉构建工作区，打包器提取运行文件 |
 | `.infra/rk3588/ros1-legacy/`、`legacy/` | 固定视觉库 ARM 前缀，打包器提取动态依赖 |
 | `.infra/rk3588/ros1-payload02/`、`ros2-payload/`、`fastrtps-payload/` | 历史已验收部署输入，发布包的哈希核验来源，不要求用户再分别上传 |
