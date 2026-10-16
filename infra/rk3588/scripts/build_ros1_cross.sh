@@ -2,7 +2,7 @@
 set -euo pipefail
 repo=$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)
 source "$repo/infra/rk3588/scripts/cross_env.sh"
-workspace="$(dirname "$repo")/.infra/rk3588/ros1_ws"
+workspace="${VINS_ROS1_WORKSPACE:-$(dirname "$repo")/.infra/rk3588/ros1_ws}"
 export VINS_ARM_ROS_PREFIX="$workspace/devel"
 ros="$VINS_ARM_SYSROOT/opt/ros/noetic"
 # Host Python runs pure catkin/empy helpers only, never target extension modules.

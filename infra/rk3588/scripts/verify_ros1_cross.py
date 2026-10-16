@@ -14,9 +14,12 @@ WORKSPACE = REPO.parent
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--workspace', type=Path, default=WORKSPACE / '.infra/rk3588/ros1_ws')
+    parser.add_argument('--core-reference', default='8c7c8d2', help='Committed core/config built in this workspace')
     args = parser.parse_args()
+    core_reference = subprocess.check_output(['git', '-C', str(REPO), 'rev-parse', args.core_reference+'^{commit}'], text=True).strip()
     sdk = REPO / 'dependencies/sysroots/ros1-noetic/root'
-    workspace = WORKSPACE / '.infra/rk3588/ros1_ws'
+    workspace = args.workspace.resolve()
     legacy = WORKSPACE / '.infra/rk3588/ros1-legacy'
     directories = [workspace / 'devel/lib', legacy / 'lib', sdk / 'opt/ros/noetic/lib',
                    workspace / 'build/global_fusion/ThirdParty/GeographicLib',
@@ -62,10 +65,10 @@ def main():
         if path.read_bytes() != (workspace / 'cv_bridge_source' / path.relative_to(source)).read_bytes():
             raise RuntimeError('cv_bridge C++ source changed')
     core = ['camera_models', 'vins_estimator', 'loop_fusion', 'global_fusion', 'config']
-    if subprocess.check_output(['git', '-C', str(REPO), 'diff', '8c7c8d2', '--', *core]):
+    if subprocess.check_output(['git', '-C', str(REPO), 'diff', core_reference, '--', *core]):
         raise RuntimeError('ROS 1 core/config differ from master reference')
     result = dict(status='pass', binaries=[str(p) for p in binaries], elf_files=elf_files,
-                  compile_commands=commands, core_reference='8c7c8d2',
+                  compile_commands=commands, core_reference=core_reference,
                   sdk_lock_sha256=(sdk / '.vins-lock-sha256').read_text().strip(),
                   builder_sha256=hashlib.sha256(Path(__file__).with_name('build_ros1_cross.sh').read_bytes()).hexdigest(),
                   cv_bridge_python_extension=False, board_validation='pending')

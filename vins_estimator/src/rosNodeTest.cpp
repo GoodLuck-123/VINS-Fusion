@@ -70,7 +70,7 @@ cv::Mat getImageFromMsg(const sensor_msgs::ImageConstPtr &img_msg)
 // extract images with same timestamp from two topics
 void sync_process()
 {
-    while(1)
+    while(ros::ok())
     {
         if(STEREO)
         {
@@ -267,6 +267,7 @@ int main(int argc, char **argv)
 
     std::thread sync_thread{sync_process};
     ros::spin();
+    sync_thread.join();
 
     return 0;
 }
