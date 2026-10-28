@@ -1,0 +1,46 @@
+{
+  "frame_pairing_verified": true,
+  "device_frame_ids_contiguous": true,
+  "bags": [
+    "capture_0.bag",
+    "capture_1.bag",
+    "capture_2.bag"
+  ],
+  "counts": {
+    "/usb_camera/gray/image_raw": 1209,
+    "/gnw_imu/data": 6245,
+    "/usb_camera/raw/image_raw": 1209,
+    "/usb_camera/frame_metadata": 1209,
+    "/gnw_imu/serial_raw": 12484
+  },
+  "timestamps": {
+    "/usb_camera/gray/image_raw": {
+      "first_ns": 1790075361096138766,
+      "last_ns": 1790075421496234585
+    },
+    "/usb_camera/raw/image_raw": {
+      "first_ns": 1790075361096138766,
+      "last_ns": 1790075421496234585
+    },
+    "/gnw_imu/data": {
+      "first_ns": 1790075361503368182,
+      "last_ns": 1790075423942852372
+    }
+  },
+  "dimensions": {
+    "/usb_camera/gray/image_raw": [
+      512,
+      512,
+      "mono8"
+    ],
+    "/usb_camera/raw/image_raw": [
+      1024,
+      768,
+      "mono8"
+    ]
+  },
+  "invalid": 0,
+  "header_clock": "host receive/parse",
+  "camera_trigger": "IMU external Line0",
+  "absolute_accuracy_verified": false
+}

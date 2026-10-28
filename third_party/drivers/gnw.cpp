@@ -26,9 +26,10 @@ int main(int argc,char** argv) {
         cfmakeraw(&options);cfsetispeed(&options,B115200);cfsetospeed(&options,B115200);
         options.c_cflag|=CLOCAL|CREAD;options.c_cflag&=~CRTSCTS;
         if(tcsetattr(fd,TCSANOW,&options))throw std::runtime_error("tcsetattr: "+std::string(strerror(errno)));
+        if(tcflush(fd,TCIFLUSH))throw std::runtime_error("Cannot clear stale serial input");
         auto pub=n.advertise<sensor_msgs::Imu>(topic,200);
         auto serial=n.advertise<std_msgs::UInt8MultiArray>(raw,200);
-        ROS_INFO("GNW ready %s baud=%d nominal=%d (not a device rate command); header=host parse time, no device clock",device.c_str(),baud,nominal);
+        ROS_INFO("GNW ready %s baud=%d nominal=%d (not a device rate command); stale UART input cleared; header=host parse time, no device clock",device.c_str(),baud,nominal);
         gnw::Parser parser;uint32_t seq=0;uint8_t bytes[1024];
         while(ros::ok() && running) {
             pollfd item{fd,POLLIN,0};int ready=poll(&item,1,200);

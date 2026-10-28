@@ -1,0 +1,8 @@
+{
+  "task": "field-motion-v02/001",
+  "finding": "camera process loaded /opt/spinnaker/lib/liblog4cpp_gcc9_v3_0.so",
+  "method": "read /proc/<owned camera pid>/maps during capture",
+  "test": "tests/capture_runtime_maps.py",
+  "result": "assertion failed; private dependency closure incomplete",
+  "interpretation": "hardware data and VINS outputs retained, environment decoupling not accepted"
+}

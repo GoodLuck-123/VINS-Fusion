@@ -65,11 +65,15 @@ def bundle(target):
         vendor=Path(hardware['sdk'])
         # The CTI is loaded via dlopen, absent from libSpinnaker's DT_NEEDED.
         copytree(vendor/'lib/flir-gentl',out/'spinnaker/lib/flir-gentl')
+        # GenApi also dlopens logging/math/XML backends by name. DT_NEEDED alone
+        # misses these and can silently fall back to a globally installed SDK.
+        for library in (vendor/'lib').glob('lib*.so'):
+            if library.name!='libSpinnaker.so':shutil.copy2(library,out/'lib'/library.name)
     copytree(ROOT/'runtime',out/'runtime')
     (out/'bin/vins').write_text('#!/usr/bin/env bash\nset -e\nroot=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)\nsource "$root/env.sh"\nexec python3 "$root/runtime/local.py" "$@"\n');(out/'bin/vins').chmod(0o755)
     (out/'env.sh').write_text('''#!/usr/bin/env bash
 export VINS_INSTALL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-unset PYTHONPATH PYTHONHOME ROS_PACKAGE_PATH AMENT_PREFIX_PATH CMAKE_PREFIX_PATH ROS_HOSTNAME VIRTUAL_ENV GENICAM_GENTL64_PATH FLIR_GENTL64_CTI
+unset PYTHONPATH PYTHONHOME ROS_PACKAGE_PATH AMENT_PREFIX_PATH CMAKE_PREFIX_PATH ROS_HOSTNAME VIRTUAL_ENV GENICAM_GENTL64_PATH FLIR_GENTL64_CTI GENICAM_ROOT_V3_0 GENICAM_LOG_CONFIG_V3_0 GENICAM_CACHE_V3_0
 export PYTHONNOUSERSITE=1 PYTHONHOME="$VINS_INSTALL_ROOT/python"
 export PYTHONPATH="$VINS_INSTALL_ROOT/ros/lib/python3/dist-packages:$VINS_INSTALL_ROOT/python-extra"
 export PATH="$VINS_INSTALL_ROOT/bin:$VINS_INSTALL_ROOT/python/bin:$VINS_INSTALL_ROOT/ros/bin:/usr/bin:/bin"

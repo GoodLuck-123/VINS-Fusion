@@ -1,0 +1,14 @@
+{
+  "camera.yaml": "2810c44e7a9ecdba3ada0e0ea9bb778838578a9f70ea8d4a6eb6c13793e96863",
+  "events.jsonl": "0f2f6ba7887a6cc4a461fce5491f78a1d4ed0845acf011e197348bb93394479d",
+  "extrinsic_parameter.csv": "90122bb87b1b9c2a22b61e386557c72def580c9976efd1b57f8f2bdf7ae4a873",
+  "logs.tar.gz": "42778d57ee375cd8e3a11d6ebc5cdc136ca72896332d32a25fd0639c8d7a356d",
+  "observation.json": "486e4201d4e503acb05fc364f797be3c1d645288963bd5054623434e15f1ba1e",
+  "project.json": "6fe973aa9d4650477c7f5e2ebf9b851e779329ed977956a6cead09f6e1e3582d",
+  "raw/capture_0.bag": "14de1b18e67a06c22404cab1f5231fa771e71f0e3abb15605e81586d022a1afc",
+  "raw/capture_1.bag": "e44a3be1adbbf69eab0492b584de29dd992feca18299bbb6bbf03143e828f50f",
+  "raw/capture_2.bag": "f63da7ee79b1acf032ad34cffbb8b428c8a96ea89262a48dfa55b4626584bdb1",
+  "recording.json": "333bdd37efaaced90e05f89cc0bfefd5cc70909129118cfabcebf805f62d9e44",
+  "vins.yaml": "73c544810d53a1fc407f57d3f18c4e73991a30fbc7e0ffead93140d67f724b35",
+  "vio.csv": "f5e3e0fec1c4a6b24adfe261c8f7bb03627f2b544b4e9a2c6f47ac997a31b415"
+}
