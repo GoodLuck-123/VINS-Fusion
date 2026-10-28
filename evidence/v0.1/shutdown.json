@@ -1,0 +1,10 @@
+{
+  "no-input": {
+    "vins_exit": 0,
+    "log_bytes": 858
+  },
+  "imu-wait": {
+    "vins_exit": 0,
+    "log_bytes": 17616
+  }
+}

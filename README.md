@@ -2,7 +2,7 @@
 
 面向学生的开环单目视觉惯性实验工程：一个 `./vins` 入口、一份用户配置，主机构建私有运行包，板端解包运行并回收实验数据
 
-**v0.1 候选已实现，正在完成主机/板端验收**。新分支 `codex/vins-platform` 从原生 VINS `be55a93` 建立；旧 ROS 1/ROS 2 分支、tag 与实验保留作参照
+**v0.1 已通过主机与 RK3588 播包验收**，版本标记为 `vins-platform-v0.1.0`。新分支 `codex/vins-platform` 从原生 VINS `be55a93` 建立；旧 ROS 1/ROS 2 分支、tag 与实验保留作参照
 
 ## Quick Start
 
@@ -17,7 +17,7 @@ cp project.example.yaml project.yaml
 
 传输和任务进展会直接显示在终端。Ctrl-C 只退出查看，任务继续；用 `./vins status --follow` 接续查看，`./vins stop` 正常停止，`./vins pull` 补收。`./vins remote` 进入已激活私有环境的板端终端
 
-首次主机需具备 Python 3.10、uv、CMake/编译器、OpenSSH、rsync、curl 和 dpkg-deb，且有联网与足够磁盘空间；板端无需安装 ROS/Python 包或编译环境。完整操作及兼容边界见 [03 使用指南](docs/03_USER_GUIDE.md)
+首次主机需具备 Python 3.10、uv、CMake/编译器、OpenSSH、rsync、curl 和 dpkg-deb，且有联网与足够磁盘空间；板端无需安装 ROS/Python 包或编译环境。完整操作及兼容边界见 [03 使用指南](docs/03_USER_GUIDE.md)，验收与边界见 [04 验收记录](docs/04_VALIDATION.md)
 
 ## 文件放在哪里
 

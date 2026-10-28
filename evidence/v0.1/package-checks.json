@@ -1,0 +1,41 @@
+{
+  "relocated_clean_check": {
+    "exit": 0,
+    "release": {
+      "version": "0.1.0",
+      "architecture": "x86_64",
+      "build": {
+        "id": "e932f4ee074da571",
+        "target": "host",
+        "stage": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/stage",
+        "legacy": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/libraries",
+        "sdk": "/home/eric/projects/VINS-Fusion/cache/host-env",
+        "source_fingerprint": "e932f4ee074da571"
+      },
+      "platform_commit": "b4afccf4bf4d79573d0a4c975bb00f361c661a13",
+      "system_libraries": [
+        "ld-linux-aarch64.so.1",
+        "ld-linux-x86-64.so.2",
+        "libanl.so.1",
+        "libc.so.6",
+        "libdl.so.2",
+        "libm.so.6",
+        "libnss_dns.so.2",
+        "libnss_files.so.2",
+        "libpthread.so.0",
+        "libresolv.so.2",
+        "librt.so.1",
+        "libutil.so.1"
+      ]
+    }
+  },
+  "corrupt_file": {
+    "exit": 1,
+    "error": "Package file missing/corrupt: /home/eric/projects/VINS-Fusion/build/package-validation/relocated install/bin/vins_observer"
+  },
+  "missing_library": {
+    "exit": 1,
+    "error": "Package file missing/corrupt: /home/eric/projects/VINS-Fusion/build/package-validation/relocated install/lib/libvins_lib.so"
+  },
+  "elfs_without_build_rpath": 270
+}

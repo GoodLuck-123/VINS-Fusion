@@ -1,0 +1,33 @@
+{
+  "seq": 5,
+  "monotonic_elapsed_s": 2.051099265,
+  "image": {
+    "count": 3,
+    "stamp_ns": 2000000000,
+    "age_s": 1.000002853,
+    "hz": 3.076918570420802,
+    "invalid": 2,
+    "nonincreasing": 1
+  },
+  "imu": {
+    "count": 3,
+    "stamp_ns": 2000000000,
+    "age_s": 0.9999983449999998,
+    "hz": 3.076909325505245,
+    "invalid": 1,
+    "nonincreasing": 1
+  },
+  "pose": {
+    "count": 3,
+    "stamp_ns": 2000000000,
+    "age_s": 0.999995199,
+    "hz": 3.07690283090245,
+    "invalid": 1,
+    "nonincreasing": 1
+  },
+  "position_m": [
+    0,
+    0,
+    0
+  ]
+}

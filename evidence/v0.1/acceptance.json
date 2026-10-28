@@ -1,0 +1,226 @@
+{
+  "implementation_commit": "2062e8232d12ba798e178c4f29781325f2372aae",
+  "core_fix_commit": "3d83b25924fa4d02b433cc7bdf97b6c0aadea666",
+  "runs": {
+    "reference-host": {
+      "path": "/home/eric/projects/VINS-Fusion/experiments/euroc-reference/host/001",
+      "state": "failed",
+      "ate_rmse_m": 0.18556436731026646,
+      "rpe_rmse_m": 0.002937960852876854,
+      "poses": 1831,
+      "vins_exit": -6,
+      "playback_wall_s": 185.78228752499854,
+      "drain_s": 5.06317022300027,
+      "child_cpu_s": 113.76647,
+      "vins_resource_samples": {
+        "cpu_s_lower_bound": 110.48,
+        "rss_kib_peak_observed": 84140,
+        "pss_kib_peak_observed": 76367
+      },
+      "observer_resource_samples": {
+        "cpu_s_lower_bound": 0.64,
+        "rss_kib_peak_observed": 19856,
+        "pss_kib_peak_observed": 13121
+      },
+      "trajectory_sha256": "dfa4aa463317805b3113214c4cab54fd6512e45d93cc7e0adf88c5e6773c85b7",
+      "state_sha256": "1f122736ddbd3283631f56ac1d96f1a560c4071ffc04ad1bff3f51ac1b74ced8",
+      "verified_files": 8,
+      "package": "/home/eric/projects/VINS-Fusion/build/host/workspace/releases/e1de369658ca3fa6/install"
+    },
+    "patched-host": {
+      "path": "/home/eric/projects/VINS-Fusion/experiments/euroc-mono/host/003",
+      "state": "completed",
+      "ate_rmse_m": 0.18556436731026646,
+      "rpe_rmse_m": 0.002937960852876854,
+      "poses": 1831,
+      "vins_exit": 0,
+      "playback_wall_s": 185.61695261899877,
+      "drain_s": 5.0831935400001385,
+      "child_cpu_s": 113.362402,
+      "vins_resource_samples": {
+        "cpu_s_lower_bound": 110.07,
+        "rss_kib_peak_observed": 84504,
+        "pss_kib_peak_observed": 76711
+      },
+      "observer_resource_samples": {
+        "cpu_s_lower_bound": 0.64,
+        "rss_kib_peak_observed": 19860,
+        "pss_kib_peak_observed": 13088
+      },
+      "trajectory_sha256": "dfa4aa463317805b3113214c4cab54fd6512e45d93cc7e0adf88c5e6773c85b7",
+      "state_sha256": "391e75d98db14af31097b2db60dd617b1a5f06ce27b8727a1aa5be78d4b8c303",
+      "verified_files": 8,
+      "package": "/home/eric/projects/VINS-Fusion/build/host/workspace/releases/6784ffd62574f6e6/install"
+    },
+    "reference-board": {
+      "path": "/home/eric/projects/VINS-Fusion/experiments/euroc-reference/board/001",
+      "state": "failed",
+      "ate_rmse_m": 0.16105118933418966,
+      "rpe_rmse_m": 0.0030186612819231053,
+      "poses": 1831,
+      "vins_exit": -6,
+      "playback_wall_s": 186.82304877200022,
+      "drain_s": 5.114475763999508,
+      "child_cpu_s": 542.571937,
+      "vins_resource_samples": {
+        "cpu_s_lower_bound": 510.92,
+        "rss_kib_peak_observed": 55776,
+        "pss_kib_peak_observed": 48422
+      },
+      "observer_resource_samples": {
+        "cpu_s_lower_bound": 7.0,
+        "rss_kib_peak_observed": 11732,
+        "pss_kib_peak_observed": 5435
+      },
+      "trajectory_sha256": "5b72c03af5e86f529cc4a8ff6d147c014703820da95dd6768d5a044517363ac9",
+      "state_sha256": "49abe91a79f74403120243028f3b23341c0312d41a8369a534bdf36a599a434a",
+      "verified_files": 8,
+      "package": "/home/firefly/vins-workspace/releases/0ae0245eca3a2f9c/install"
+    },
+    "patched-board": {
+      "path": "/home/eric/projects/VINS-Fusion/experiments/euroc-mono/board/002",
+      "state": "completed",
+      "ate_rmse_m": 0.16041138647493797,
+      "rpe_rmse_m": 0.003023487132316307,
+      "poses": 1831,
+      "vins_exit": 0,
+      "playback_wall_s": 186.9604435350002,
+      "drain_s": 5.159903601999758,
+      "child_cpu_s": 582.894137,
+      "vins_resource_samples": {
+        "cpu_s_lower_bound": 545.96,
+        "rss_kib_peak_observed": 55328,
+        "pss_kib_peak_observed": 48211
+      },
+      "observer_resource_samples": {
+        "cpu_s_lower_bound": 7.46,
+        "rss_kib_peak_observed": 13036,
+        "pss_kib_peak_observed": 5858
+      },
+      "trajectory_sha256": "17d6ed5aba0a2309ad2e5a33c246b22fc684face6e849a23302d493195dc8f0d",
+      "state_sha256": "33ee7cc414a6e5a49392c8ebed4d48ef3085a30b68651ad73ffe6962969ec6b4",
+      "verified_files": 8,
+      "package": "/home/firefly/vins-workspace/releases/dcca4b45220a4823/install"
+    },
+    "release-host": {
+      "path": "/home/eric/projects/VINS-Fusion/experiments/euroc-final/host/002",
+      "state": "completed",
+      "ate_rmse_m": 0.18556436731026646,
+      "rpe_rmse_m": 0.002937960852876854,
+      "poses": 1831,
+      "vins_exit": 0,
+      "playback_wall_s": 185.773787903001,
+      "drain_s": 5.089948009999716,
+      "child_cpu_s": 117.47667700000001,
+      "vins_resource_samples": {
+        "cpu_s_lower_bound": 113.49,
+        "rss_kib_peak_observed": 83760,
+        "pss_kib_peak_observed": 75999
+      },
+      "observer_resource_samples": {
+        "cpu_s_lower_bound": 0.84,
+        "rss_kib_peak_observed": 19840,
+        "pss_kib_peak_observed": 13126
+      },
+      "trajectory_sha256": "dfa4aa463317805b3113214c4cab54fd6512e45d93cc7e0adf88c5e6773c85b7",
+      "state_sha256": "2c92d3e65434183871b0fac3322f2c8375c24da04d905c076a01a4c9a2690acf",
+      "verified_files": 8,
+      "package": "/home/eric/projects/VINS-Fusion/build/host/workspace/releases/1d48b63d35135cfd/install"
+    },
+    "release-board": {
+      "path": "/home/eric/projects/VINS-Fusion/experiments/euroc-final/board/002",
+      "state": "completed",
+      "ate_rmse_m": 0.16045732869311655,
+      "rpe_rmse_m": 0.0030290401351544525,
+      "poses": 1831,
+      "vins_exit": 0,
+      "playback_wall_s": 186.8436260239996,
+      "drain_s": 5.212369982000382,
+      "child_cpu_s": 540.875949,
+      "vins_resource_samples": {
+        "cpu_s_lower_bound": 507.18,
+        "rss_kib_peak_observed": 55832,
+        "pss_kib_peak_observed": 48789
+      },
+      "observer_resource_samples": {
+        "cpu_s_lower_bound": 6.36,
+        "rss_kib_peak_observed": 11704,
+        "pss_kib_peak_observed": 5517
+      },
+      "trajectory_sha256": "2389752fc682b3e38b6836f9e349314f28bb2b78866deaeddd0737f6675313d1",
+      "state_sha256": "626d81731c4c33e61ced9b9848946f016ce67ba224277a81a7ec5fe69b975020",
+      "verified_files": 8,
+      "package": "/home/firefly/vins-workspace/releases/c1fb726ebf38bf4e/install"
+    }
+  },
+  "packages": {
+    "host": {
+      "id": "1d48b63d35135cfd",
+      "install": "/home/eric/projects/VINS-Fusion/releases/v0.1.0/host/1d48b63d35135cfd/install",
+      "archive": "/home/eric/projects/VINS-Fusion/releases/v0.1.0/host/1d48b63d35135cfd/vins-x86_64-0.1.0.tar.gz",
+      "sha256": "b412c67b5b6228bfa8ae8debe7952a586efd7b55a36cc971cc75f51154b20ae2",
+      "architecture": "x86_64",
+      "files": 4522,
+      "input_fingerprint": "ed67240585724cea53f7a3b843a5d08cba7f6e09370db7819720e02f207a94e9",
+      "manifest_sha256": "b1fef45cf700600d08e41c1e1e00111848b2e023026eb1bdee8379201e1871eb"
+    },
+    "board": {
+      "id": "c1fb726ebf38bf4e",
+      "install": "/home/eric/projects/VINS-Fusion/releases/v0.1.0/rk3588/c1fb726ebf38bf4e/install",
+      "archive": "/home/eric/projects/VINS-Fusion/releases/v0.1.0/rk3588/c1fb726ebf38bf4e/vins-aarch64-0.1.0.tar.gz",
+      "sha256": "8392ec53f69a8586ec8ab09e0d79ecd3ade3c3c06fc3cb6c23e45d5ff4ef1e42",
+      "architecture": "aarch64",
+      "files": 4366,
+      "input_fingerprint": "ed67240585724cea53f7a3b843a5d08cba7f6e09370db7819720e02f207a94e9",
+      "manifest_sha256": "50190ede5f13a291c98eb386373c26ef8612ef6e834ebe30353d21a88ab9ca9a"
+    }
+  },
+  "frozen_refs": {
+    "refs/heads/codex/rk3588-ros1": "d2be5d6f0f48a7bd25152537ba40125b2e712155",
+    "refs/heads/codex/rk3588-ros2": "c8a4df5a8c6240e5cdac8358e2a51da407dec961",
+    "refs/heads/codex/ubuntu22-ros1-reproduction": "f85e0f17a0f8cda10ba79f7fa3eadc81a799ed1f",
+    "refs/heads/master": "f151555288bbcb16dd25ab5b6f5f25ac8cdd98be",
+    "refs/heads/ros2-humble": "e4424155b07a1ea9aab092a1729d2d2794910a70",
+    "refs/tags/baseline-rk3588-ros1-v1": "912be6b174a0257b47361ed969e194e6b2b21fed",
+    "refs/tags/baseline-rk3588-ros2-v1": "31676da007fc210da1dfdcf9817354f5eb766ec9",
+    "refs/tags/baseline-ros1-euroc-v1": "14e1e0179e3a90a53b1cfcf858baf2d0ea81a848",
+    "refs/tags/baseline-ros1-native-ubuntu22-v1": "9fe8fbf9c5c85a1bb5f15ca12614ce85f5cbd4f3",
+    "refs/tags/baseline-ros2-humble-v1": "4f45532197fd6d6cece544380d90fdac8f9f6ed2",
+    "refs/tags/baseline-ros2-native-ubuntu22-v1": "28c93ea9c5355d98c0a43a3de6ac82dd0dd2de58",
+    "refs/tags/milestone-rk3588-components-v1": "02d17b349cc351cc18a4d4869cea872ec8cc1066",
+    "refs/tags/milestone-rk3588-cross-sdk-v1": "3b476a32261f9b041e1f8af3a09b8473ceec8c3b",
+    "refs/tags/milestone-rk3588-dependencies-v1": "7a850253b5ea1b4c736528cf70caaa4316e399d6",
+    "refs/tags/milestone-rk3588-dmabuf-v1": "eda3aa6b9028ee312530b4d1aee9d83864272389",
+    "refs/tags/milestone-rk3588-fastrtps-runtime-v1": "559e25c1ee7815050bcb86d52bf9534ed00a470e",
+    "refs/tags/milestone-rk3588-handoff-v1": "5184047b1d7bf31bb8eb53d33601d78165c98504",
+    "refs/tags/milestone-rk3588-legacy-libs-v1": "adad31fd32940fb39c09dfbf38744eb369629f52",
+    "refs/tags/milestone-rk3588-pmu-v1": "c596171e770fd603feeac878173fdc0f2e299548",
+    "refs/tags/milestone-rk3588-profile-tools-v1": "5234c9b74f532425d36cf415ba9c0b6569929b72",
+    "refs/tags/milestone-rk3588-remote-cli-v2": "57bc1d0516e861de5a7a3e5dbca6b8d2369abbcc",
+    "refs/tags/milestone-rk3588-remote-workflow-v1": "cc5eb35d778f9c820e471c6de59e79ca669fdbc1",
+    "refs/tags/milestone-rk3588-ros1-cross-build-v1": "329339700de632ce65c928d3dd229f1befa95a19",
+    "refs/tags/milestone-rk3588-ros1-dependencies-v1": "54dbe90f9274c360f01e1df1a7771d8cb7c9d3c1",
+    "refs/tags/milestone-rk3588-ros1-handoff-v1": "8c7dc82756d51eae576dbbbbb30c882d94806060",
+    "refs/tags/milestone-rk3588-ros1-legacy-libs-v1": "3caba72770989ee726ca5318ab45888d84a3cb17",
+    "refs/tags/milestone-rk3588-ros1-runtime-v1": "5bfae27c2437b22b4c878b71865bb7cbd739486a",
+    "refs/tags/milestone-rk3588-ros2-cross-build-v1": "bd03e5ad5adc5f24ac89edb23a1471b48041d6fa",
+    "refs/tags/milestone-rk3588-ros2-runtime-v1": "41dadead5762f6675fd2e0eb0c1278fe6ab3d5c7",
+    "refs/tags/milestone-rk3588-shared-memory-v1": "bd087cd2e4c9395b4063952b99916b0f0612bf9c",
+    "refs/tags/milestone-rk3588-shared-probe-v1": "627cd11ce4f03a0bab34a509f103a83e472ecc31",
+    "refs/tags/milestone-ros2-components-native-ubuntu22-v1": "94bb0d36ae83af762bde2f67b6496d67b245d57b",
+    "refs/tags/milestone-ros2-components-v1": "8168d9c2d86ef9f9a2de045667bf167eda0e2f54",
+    "refs/tags/milestone-ros2-desktop-handoff-native-ubuntu22-v1": "7bf6c962c5efd329c19c41d9a6ea5b05172c729a",
+    "refs/tags/milestone-ros2-desktop-handoff-v1": "fec8c22bfe96348111b2094e6c6cf0d94c157936",
+    "refs/tags/milestone-ros2-dmabuf-native-ubuntu22-v1": "8f8c905835d136a3958de50f376901d334e029ef",
+    "refs/tags/milestone-ros2-dmabuf-v1": "1ef5e053154874eeaee13589a1e728e15e144b1a",
+    "refs/tags/milestone-ros2-pmu-native-ubuntu22-v1": "e5d2976fba53e719d482e585cc00d0b08c4f3e8c",
+    "refs/tags/milestone-ros2-pmu-v1": "fa2fce3e2297b9af324c8a9fc8c590470f1bda9d",
+    "refs/tags/milestone-ros2-shared-memory-native-ubuntu22-v1": "9b462d7f649fda3dbc0744bf8985d655d07af937",
+    "refs/tags/milestone-ros2-shared-memory-v1": "444a63db01a5e6e6bf48f07dfcc7dc349d6a64fd",
+    "refs/tags/milestone-ros2-shared-repeats-native-ubuntu22-v1": "8361b13f9e77bc0beefa6404eaeb35bf702bf678",
+    "refs/tags/milestone-ros2-shared-repeats-v1": "16a2876e1f2c0bd66c63259f8bb0d1541fb453f1",
+    "refs/tags/v0.1": "1172878e0e24c9aa595b3be27793301a3c866f3d",
+    "refs/tags/v0.1-ros2-research": "50d614427c71695d4adb5ba605c65ca28b642fc2",
+    "refs/tags/v0.2": "81be40e743aa706d02f37ee0a4b267e13c13e235"
+  }
+}

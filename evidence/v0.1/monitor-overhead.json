@@ -1,0 +1,286 @@
+{
+  "off": {
+    "task": "monitor-off",
+    "phase": "completed",
+    "pid": 104597,
+    "install": "/home/eric/projects/VINS-Fusion/releases/v0.1.0/host/1d48b63d35135cfd/install",
+    "package": {
+      "version": "0.1.0",
+      "architecture": "x86_64",
+      "build": {
+        "id": "e932f4ee074da571",
+        "target": "host",
+        "stage": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/stage",
+        "legacy": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/libraries",
+        "sdk": "/home/eric/projects/VINS-Fusion/cache/host-env",
+        "source_fingerprint": "e932f4ee074da571"
+      },
+      "platform_commit": "2062e8232d12ba798e178c4f29781325f2372aae",
+      "system_libraries": [
+        "ld-linux-aarch64.so.1",
+        "ld-linux-x86-64.so.2",
+        "libanl.so.1",
+        "libc.so.6",
+        "libdl.so.2",
+        "libm.so.6",
+        "libnss_dns.so.2",
+        "libnss_files.so.2",
+        "libpthread.so.0",
+        "libresolv.so.2",
+        "librt.so.1",
+        "libutil.so.1"
+      ]
+    },
+    "events": [
+      {
+        "code": "master_start",
+        "message": "Private master http://127.0.0.1:50979",
+        "elapsed_s": 0.5198567229999753
+      },
+      {
+        "code": "playback_start",
+        "message": "VINS and observer subscribed",
+        "elapsed_s": 1.1330108389993256
+      },
+      {
+        "code": "source_ended",
+        "message": "Checking trajectory tail coverage; queue empty not directly instrumented",
+        "elapsed_s": 31.965805161999015
+      },
+      {
+        "code": "completed",
+        "message": "Tail coverage and process exit checks passed",
+        "elapsed_s": 37.93576699799996
+      }
+    ],
+    "warnings": {
+      "vins:warning": {
+        "count": 3,
+        "first_s": 1.1314419789996464,
+        "last_s": 3.4279087180002534,
+        "last": "[ WARN] [1793201359.699429135, 1403636580.877441769]: gyroscope bias initial calibration -0.00362679   0.0231133   0.0789586"
+      }
+    },
+    "process_exits": {
+      "playback": 0,
+      "vins": 0,
+      "master": 0
+    },
+    "resource_samples": {
+      "master": {
+        "cpu_s_lower_bound": 0.12,
+        "rss_kib_peak_observed": 40856,
+        "pss_kib_peak_observed": 31867
+      },
+      "vins": {
+        "cpu_s_lower_bound": 16.76,
+        "rss_kib_peak_observed": 73428,
+        "pss_kib_peak_observed": 66018
+      },
+      "playback": {
+        "cpu_s_lower_bound": 0.08,
+        "rss_kib_peak_observed": 40284,
+        "pss_kib_peak_observed": 30405
+      }
+    },
+    "elapsed_s": 37.960179599000185,
+    "heartbeat_monotonic": 9782.108799298,
+    "bag": {
+      "start_record_s": 1403636578.946206,
+      "end_record_s": 1403636608.946206,
+      "duration_s": 30.0,
+      "topics": {
+        "/cam0/image_raw": {
+          "type": "sensor_msgs/Image",
+          "first_ns": 1403636579763555500,
+          "last_ns": 1403636608863555500,
+          "bag_records_full_file": 3682
+        },
+        "/imu0": {
+          "type": "sensor_msgs/Imu",
+          "first_ns": 1403636579758555500,
+          "last_ns": 1403636608903555500,
+          "bag_records_full_file": 36820
+        }
+      }
+    },
+    "master_uri": "http://127.0.0.1:50979",
+    "child_pids": {
+      "master": 104599,
+      "vins": 104626,
+      "playback": 104645
+    },
+    "initialization_log_count": 1,
+    "playback_wall_s": 30.83271374299875,
+    "trajectory_poses": 281,
+    "last_pose_ns": 1403636608813555456,
+    "tail_s": 0.050000044,
+    "drain_s": 5.089845919999789,
+    "queue_empty_verified": false,
+    "child_cpu_s": 18.149843,
+    "exit_code": 0,
+    "supervisor_cpu_s_observed_lower_bound": 0.47
+  },
+  "on": {
+    "task": "monitor-on",
+    "phase": "completed",
+    "pid": 105539,
+    "install": "/home/eric/projects/VINS-Fusion/releases/v0.1.0/host/1d48b63d35135cfd/install",
+    "package": {
+      "version": "0.1.0",
+      "architecture": "x86_64",
+      "build": {
+        "id": "e932f4ee074da571",
+        "target": "host",
+        "stage": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/stage",
+        "legacy": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/libraries",
+        "sdk": "/home/eric/projects/VINS-Fusion/cache/host-env",
+        "source_fingerprint": "e932f4ee074da571"
+      },
+      "platform_commit": "2062e8232d12ba798e178c4f29781325f2372aae",
+      "system_libraries": [
+        "ld-linux-aarch64.so.1",
+        "ld-linux-x86-64.so.2",
+        "libanl.so.1",
+        "libc.so.6",
+        "libdl.so.2",
+        "libm.so.6",
+        "libnss_dns.so.2",
+        "libnss_files.so.2",
+        "libpthread.so.0",
+        "libresolv.so.2",
+        "librt.so.1",
+        "libutil.so.1"
+      ]
+    },
+    "events": [
+      {
+        "code": "master_start",
+        "message": "Private master http://127.0.0.1:56007",
+        "elapsed_s": 0.3038849989989103
+      },
+      {
+        "code": "playback_start",
+        "message": "VINS and observer subscribed",
+        "elapsed_s": 0.9195602849995339
+      },
+      {
+        "code": "source_ended",
+        "message": "Checking trajectory tail coverage; queue empty not directly instrumented",
+        "elapsed_s": 31.529555096998592
+      },
+      {
+        "code": "completed",
+        "message": "Tail coverage and process exit checks passed",
+        "elapsed_s": 37.69666368899925
+      }
+    ],
+    "warnings": {
+      "vins:warning": {
+        "count": 3,
+        "first_s": 0.7109830149984191,
+        "last_s": 3.477154647000134,
+        "last": "[ WARN] [1793201397.753128745, 1403636581.026095224]: gyroscope bias initial calibration -0.00276552   0.0224228   0.0776081"
+      }
+    },
+    "process_exits": {
+      "playback": 0,
+      "observer": 0,
+      "vins": 0,
+      "master": 0
+    },
+    "resource_samples": {
+      "master": {
+        "cpu_s_lower_bound": 0.08,
+        "rss_kib_peak_observed": 38384,
+        "pss_kib_peak_observed": 29118
+      },
+      "vins": {
+        "cpu_s_lower_bound": 16.88,
+        "rss_kib_peak_observed": 73480,
+        "pss_kib_peak_observed": 65743
+      },
+      "observer": {
+        "cpu_s_lower_bound": 0.15,
+        "rss_kib_peak_observed": 19864,
+        "pss_kib_peak_observed": 13126
+      },
+      "playback": {
+        "cpu_s_lower_bound": 0.07,
+        "rss_kib_peak_observed": 40384,
+        "pss_kib_peak_observed": 29761
+      }
+    },
+    "elapsed_s": 37.72145808299865,
+    "heartbeat_monotonic": 9820.00271401,
+    "bag": {
+      "start_record_s": 1403636578.946206,
+      "end_record_s": 1403636608.946206,
+      "duration_s": 30.0,
+      "topics": {
+        "/cam0/image_raw": {
+          "type": "sensor_msgs/Image",
+          "first_ns": 1403636579763555500,
+          "last_ns": 1403636608863555500,
+          "bag_records_full_file": 3682
+        },
+        "/imu0": {
+          "type": "sensor_msgs/Imu",
+          "first_ns": 1403636579758555500,
+          "last_ns": 1403636608903555500,
+          "bag_records_full_file": 36820
+        }
+      }
+    },
+    "master_uri": "http://127.0.0.1:56007",
+    "child_pids": {
+      "master": 105546,
+      "vins": 105560,
+      "observer": 105580,
+      "playback": 105587
+    },
+    "observation": {
+      "seq": 68,
+      "monotonic_elapsed_s": 35.401077843,
+      "image": {
+        "count": 583,
+        "stamp_ns": 1403636608863555500,
+        "age_s": 4.899985228000002,
+        "hz": 20.00003007184007,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "imu": {
+        "count": 5830,
+        "stamp_ns": 1403636608903555500,
+        "age_s": 4.899979227000003,
+        "hz": 204.6152339346276,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "pose": {
+        "count": 280,
+        "stamp_ns": 1403636608863555431,
+        "age_s": 4.849994097000003,
+        "hz": 9.9999912157972,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "position_m": [
+        0.1634793843013419,
+        -0.03876479171325731,
+        -0.3019688338567998
+      ]
+    },
+    "initialization_log_count": 1,
+    "playback_wall_s": 30.609893681999893,
+    "trajectory_poses": 280,
+    "last_pose_ns": 1403636608863555328,
+    "tail_s": 1.72e-07,
+    "drain_s": 5.07344817000012,
+    "queue_empty_verified": false,
+    "child_cpu_s": 18.318662,
+    "exit_code": 0,
+    "supervisor_cpu_s_observed_lower_bound": 0.47
+  }
+}

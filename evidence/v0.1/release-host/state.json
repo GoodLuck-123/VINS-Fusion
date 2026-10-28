@@ -1,0 +1,161 @@
+{
+  "task": "euroc-final/002",
+  "phase": "completed",
+  "pid": 106670,
+  "install": "/home/eric/projects/VINS-Fusion/build/host/workspace/releases/1d48b63d35135cfd/install",
+  "package": {
+    "version": "0.1.0",
+    "architecture": "x86_64",
+    "build": {
+      "id": "e932f4ee074da571",
+      "target": "host",
+      "stage": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/stage",
+      "legacy": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/libraries",
+      "sdk": "/home/eric/projects/VINS-Fusion/cache/host-env",
+      "source_fingerprint": "e932f4ee074da571"
+    },
+    "platform_commit": "2062e8232d12ba798e178c4f29781325f2372aae",
+    "system_libraries": [
+      "ld-linux-aarch64.so.1",
+      "ld-linux-x86-64.so.2",
+      "libanl.so.1",
+      "libc.so.6",
+      "libdl.so.2",
+      "libm.so.6",
+      "libnss_dns.so.2",
+      "libnss_files.so.2",
+      "libpthread.so.0",
+      "libresolv.so.2",
+      "librt.so.1",
+      "libutil.so.1"
+    ]
+  },
+  "events": [
+    {
+      "code": "master_start",
+      "message": "Private master http://127.0.0.1:50311",
+      "elapsed_s": 0.5130713920007111
+    },
+    {
+      "code": "playback_start",
+      "message": "VINS and observer subscribed",
+      "elapsed_s": 1.3332315070001641
+    },
+    {
+      "code": "source_ended",
+      "message": "Checking trajectory tail coverage; queue empty not directly instrumented",
+      "elapsed_s": 187.10714878
+    },
+    {
+      "code": "completed",
+      "message": "Tail coverage and process exit checks passed",
+      "elapsed_s": 193.1400493559995
+    }
+  ],
+  "warnings": {
+    "vins:warning": {
+      "count": 3,
+      "first_s": 1.1237543340012053,
+      "last_s": 3.6208128510006645,
+      "last": "[ WARN] [1793201585.205837624, 1403636580.865157380]: gyroscope bias initial calibration -0.00362679   0.0231133   0.0789586"
+    }
+  },
+  "process_exits": {
+    "playback": 0,
+    "observer": 0,
+    "vins": 0,
+    "master": 0
+  },
+  "resource_samples": {
+    "master": {
+      "cpu_s_lower_bound": 0.17,
+      "rss_kib_peak_observed": 40852,
+      "pss_kib_peak_observed": 31716
+    },
+    "vins": {
+      "cpu_s_lower_bound": 113.49,
+      "rss_kib_peak_observed": 83760,
+      "pss_kib_peak_observed": 75999
+    },
+    "observer": {
+      "cpu_s_lower_bound": 0.84,
+      "rss_kib_peak_observed": 19840,
+      "pss_kib_peak_observed": 13126
+    },
+    "playback": {
+      "cpu_s_lower_bound": 0.06,
+      "rss_kib_peak_observed": 40280,
+      "pss_kib_peak_observed": 30436
+    }
+  },
+  "elapsed_s": 193.28226672100027,
+  "heartbeat_monotonic": 10162.759316233,
+  "bag": {
+    "start_record_s": 1403636578.946206,
+    "end_record_s": 1403636763.8525136,
+    "duration_s": 184.90630745887756,
+    "topics": {
+      "/cam0/image_raw": {
+        "type": "sensor_msgs/Image",
+        "first_ns": 1403636579763555500,
+        "last_ns": 1403636763813555500,
+        "bag_records_full_file": 3682
+      },
+      "/imu0": {
+        "type": "sensor_msgs/Imu",
+        "first_ns": 1403636579758555500,
+        "last_ns": 1403636763853555500,
+        "bag_records_full_file": 36820
+      }
+    }
+  },
+  "master_uri": "http://127.0.0.1:50311",
+  "child_pids": {
+    "master": 106674,
+    "vins": 106699,
+    "observer": 106708,
+    "playback": 106715
+  },
+  "observation": {
+    "seq": 362,
+    "monotonic_elapsed_s": 191.00102229,
+    "image": {
+      "count": 3682,
+      "stamp_ns": 1403636763813555500,
+      "age_s": 5.549987680000015,
+      "hz": 20.00004508728133,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "imu": {
+      "count": 36820,
+      "stamp_ns": 1403636763853555500,
+      "age_s": 5.549981458000019,
+      "hz": 204.6136033228051,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "pose": {
+      "count": 1831,
+      "stamp_ns": 1403636763813555479,
+      "age_s": 5.54997933300001,
+      "hz": 10.00000364736974,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "position_m": [
+      -0.3070406786670717,
+      0.6671520430572154,
+      -0.3324341069949943
+    ]
+  },
+  "initialization_log_count": 1,
+  "playback_wall_s": 185.773787903001,
+  "trajectory_poses": 1831,
+  "last_pose_ns": 1403636763813555456,
+  "tail_s": 4.4e-08,
+  "drain_s": 5.089948009999716,
+  "queue_empty_verified": false,
+  "child_cpu_s": 117.47667700000001,
+  "exit_code": 0
+}

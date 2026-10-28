@@ -9,7 +9,7 @@ code='''import json,sys,os,platform
 from pathlib import Path
 s=json.loads(sys.argv[1]);out={'uname':list(platform.uname()),'processes':{}}
 for name,pid in s['child_pids'].items():
- root=Path('/proc/'+str(pid));maps=sorted(set(l.split()[-1] for l in (root/'maps').read_text().splitlines() if '/' in l))
+ root=Path('/proc/'+str(pid));maps=sorted(set(l.split(None,5)[5] for l in (root/'maps').read_text().splitlines() if '/' in l))
  env=dict(v.split('=',1) for v in (root/'environ').read_bytes().decode().split('\\0') if '=' in v)
  out['processes'][name]={'pid':pid,'maps':maps,'env':{k:env.get(k) for k in ['PATH','PYTHONPATH','PYTHONHOME','LD_LIBRARY_PATH','ROS_MASTER_URI','ROS_PACKAGE_PATH','OPENBLAS_NUM_THREADS','OMP_NUM_THREADS']}}
 try:out['temperature_millic']=Path('/sys/class/thermal/thermal_zone0/temp').read_text().strip()

@@ -1,0 +1,628 @@
+{
+  "duplicate": {
+    "exit": 1,
+    "error": "Active task exists: kill-vins"
+  },
+  "kill-vins": {
+    "task": "kill-vins",
+    "phase": "failed",
+    "pid": 101015,
+    "install": "/home/eric/projects/VINS-Fusion/releases/v0.1.0/host/9da73a9f7a58fbee/install",
+    "package": {
+      "version": "0.1.0",
+      "architecture": "x86_64",
+      "build": {
+        "id": "e932f4ee074da571",
+        "target": "host",
+        "stage": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/stage",
+        "legacy": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/libraries",
+        "sdk": "/home/eric/projects/VINS-Fusion/cache/host-env",
+        "source_fingerprint": "e932f4ee074da571"
+      },
+      "platform_commit": "b4afccf4bf4d79573d0a4c975bb00f361c661a13",
+      "system_libraries": [
+        "ld-linux-aarch64.so.1",
+        "ld-linux-x86-64.so.2",
+        "libanl.so.1",
+        "libc.so.6",
+        "libdl.so.2",
+        "libm.so.6",
+        "libnss_dns.so.2",
+        "libnss_files.so.2",
+        "libpthread.so.0",
+        "libresolv.so.2",
+        "librt.so.1",
+        "libutil.so.1"
+      ]
+    },
+    "events": [
+      {
+        "code": "master_start",
+        "message": "Private master http://127.0.0.1:54477",
+        "elapsed_s": 0.29982815100083826
+      },
+      {
+        "code": "playback_start",
+        "message": "VINS and observer subscribed",
+        "elapsed_s": 0.9131622900004004
+      },
+      {
+        "code": "failed",
+        "message": "vins exited: -9",
+        "elapsed_s": 3.2038802200004284
+      },
+      {
+        "code": "failed",
+        "message": "vins exited: -9",
+        "elapsed_s": 4.545708761001151
+      }
+    ],
+    "warnings": {
+      "vins:warning": {
+        "count": 2,
+        "first_s": 0.7061452260004444,
+        "last_s": 0.7061508460010373,
+        "last": "[ WARN] [1793201071.913181699]: waiting for image and imu..."
+      }
+    },
+    "process_exits": {
+      "playback": 0,
+      "observer": 0,
+      "vins": -9,
+      "master": 0
+    },
+    "resource_samples": {
+      "master": {
+        "cpu_s_lower_bound": 0.07,
+        "rss_kib_peak_observed": 38408,
+        "pss_kib_peak_observed": 29121
+      },
+      "vins": {
+        "cpu_s_lower_bound": 0.5,
+        "rss_kib_peak_observed": 53604,
+        "pss_kib_peak_observed": 45944
+      },
+      "observer": {
+        "cpu_s_lower_bound": 0.01,
+        "rss_kib_peak_observed": 19484,
+        "pss_kib_peak_observed": 12184
+      },
+      "playback": {
+        "cpu_s_lower_bound": 0.06,
+        "rss_kib_peak_observed": 40388,
+        "pss_kib_peak_observed": 29728
+      }
+    },
+    "elapsed_s": 4.548783162999825,
+    "heartbeat_monotonic": 9463.798134855,
+    "bag": {
+      "start_record_s": 1403636579.8092628,
+      "end_record_s": 1403636609.8092628,
+      "duration_s": 30.0,
+      "topics": {
+        "/cam0/image_raw": {
+          "type": "sensor_msgs/Image",
+          "first_ns": 1403636579763555500,
+          "last_ns": 1403636609763555500,
+          "bag_records_full_file": 3682
+        },
+        "/imu0": {
+          "type": "sensor_msgs/Imu",
+          "first_ns": 1403636579758555500,
+          "last_ns": 1403636609803555500,
+          "bag_records_full_file": 36820
+        }
+      }
+    },
+    "master_uri": "http://127.0.0.1:54477",
+    "child_pids": {
+      "master": 101018,
+      "vins": 101032,
+      "observer": 101052,
+      "playback": 101074
+    },
+    "observation": {
+      "seq": 5,
+      "monotonic_elapsed_s": 2.1009758,
+      "image": {
+        "count": 15,
+        "stamp_ns": 1403636580463555500,
+        "age_s": 5.910000000497462e-07,
+        "hz": 21.54179670570997,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "imu": {
+        "count": 150,
+        "stamp_ns": 1403636580503555500,
+        "age_s": 1.089100000006837e-05,
+        "hz": 212.8575421170755,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "pose": {
+        "count": 0,
+        "stamp_ns": 0,
+        "age_s": -1,
+        "hz": 0,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "position_m": [
+        0,
+        0,
+        0
+      ]
+    },
+    "error": "vins exited: -9",
+    "child_cpu_s": 1.567178,
+    "exit_code": 1
+  },
+  "kill-observer": {
+    "task": "kill-observer",
+    "phase": "failed",
+    "pid": 101178,
+    "install": "/home/eric/projects/VINS-Fusion/releases/v0.1.0/host/9da73a9f7a58fbee/install",
+    "package": {
+      "version": "0.1.0",
+      "architecture": "x86_64",
+      "build": {
+        "id": "e932f4ee074da571",
+        "target": "host",
+        "stage": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/stage",
+        "legacy": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/libraries",
+        "sdk": "/home/eric/projects/VINS-Fusion/cache/host-env",
+        "source_fingerprint": "e932f4ee074da571"
+      },
+      "platform_commit": "b4afccf4bf4d79573d0a4c975bb00f361c661a13",
+      "system_libraries": [
+        "ld-linux-aarch64.so.1",
+        "ld-linux-x86-64.so.2",
+        "libanl.so.1",
+        "libc.so.6",
+        "libdl.so.2",
+        "libm.so.6",
+        "libnss_dns.so.2",
+        "libnss_files.so.2",
+        "libpthread.so.0",
+        "libresolv.so.2",
+        "librt.so.1",
+        "libutil.so.1"
+      ]
+    },
+    "events": [
+      {
+        "code": "master_start",
+        "message": "Private master http://127.0.0.1:50521",
+        "elapsed_s": 0.2972034200010967
+      },
+      {
+        "code": "playback_start",
+        "message": "VINS and observer subscribed",
+        "elapsed_s": 0.9126748440012307
+      },
+      {
+        "code": "failed",
+        "message": "observer exited: -9",
+        "elapsed_s": 3.7406674060002842
+      },
+      {
+        "code": "failed",
+        "message": "observer exited: -9",
+        "elapsed_s": 4.9322160280007665
+      }
+    ],
+    "warnings": {
+      "vins:warning": {
+        "count": 3,
+        "first_s": 0.7036216960004822,
+        "last_s": 3.2324296060014603,
+        "last": "[ WARN] [1793201079.308724878, 1403636580.864876048]: gyroscope bias initial calibration -0.00362679   0.0231133   0.0789586"
+      }
+    },
+    "process_exits": {
+      "playback": 0,
+      "observer": -9,
+      "vins": 0,
+      "master": 0
+    },
+    "resource_samples": {
+      "master": {
+        "cpu_s_lower_bound": 0.07,
+        "rss_kib_peak_observed": 38524,
+        "pss_kib_peak_observed": 29180
+      },
+      "vins": {
+        "cpu_s_lower_bound": 1.03,
+        "rss_kib_peak_observed": 63204,
+        "pss_kib_peak_observed": 56062
+      },
+      "observer": {
+        "cpu_s_lower_bound": 0.01,
+        "rss_kib_peak_observed": 19396,
+        "pss_kib_peak_observed": 12138
+      },
+      "playback": {
+        "cpu_s_lower_bound": 0.06,
+        "rss_kib_peak_observed": 40284,
+        "pss_kib_peak_observed": 29735
+      }
+    },
+    "elapsed_s": 4.935843643001135,
+    "heartbeat_monotonic": 9468.935169281,
+    "bag": {
+      "start_record_s": 1403636579.8092628,
+      "end_record_s": 1403636609.8092628,
+      "duration_s": 30.0,
+      "topics": {
+        "/cam0/image_raw": {
+          "type": "sensor_msgs/Image",
+          "first_ns": 1403636579763555500,
+          "last_ns": 1403636609763555500,
+          "bag_records_full_file": 3682
+        },
+        "/imu0": {
+          "type": "sensor_msgs/Imu",
+          "first_ns": 1403636579758555500,
+          "last_ns": 1403636609803555500,
+          "bag_records_full_file": 36820
+        }
+      }
+    },
+    "master_uri": "http://127.0.0.1:50521",
+    "child_pids": {
+      "master": 101180,
+      "vins": 101194,
+      "observer": 101229,
+      "playback": 101236
+    },
+    "observation": {
+      "seq": 6,
+      "monotonic_elapsed_s": 2.551069779,
+      "image": {
+        "count": 20,
+        "stamp_ns": 1403636580913555500,
+        "age_s": 6.160999999949013e-06,
+        "hz": 20.00144050374508,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "imu": {
+        "count": 240,
+        "stamp_ns": 1403636580953555500,
+        "age_s": 3.900000002943216e-07,
+        "hz": 207.8227684786978,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "pose": {
+        "count": 1,
+        "stamp_ns": 1403636580813555479,
+        "age_s": 0.05001853100000009,
+        "hz": 0,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "position_m": [
+        -0.0080725109331381,
+        0.01426267418919555,
+        -0.1635598529541858
+      ]
+    },
+    "initialization_log_count": 1,
+    "error": "observer exited: -9",
+    "child_cpu_s": 1.976457,
+    "exit_code": 1
+  },
+  "timeout": {
+    "task": "timeout",
+    "phase": "failed",
+    "pid": 101302,
+    "install": "/home/eric/projects/VINS-Fusion/releases/v0.1.0/host/9da73a9f7a58fbee/install",
+    "package": {
+      "version": "0.1.0",
+      "architecture": "x86_64",
+      "build": {
+        "id": "e932f4ee074da571",
+        "target": "host",
+        "stage": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/stage",
+        "legacy": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/libraries",
+        "sdk": "/home/eric/projects/VINS-Fusion/cache/host-env",
+        "source_fingerprint": "e932f4ee074da571"
+      },
+      "platform_commit": "b4afccf4bf4d79573d0a4c975bb00f361c661a13",
+      "system_libraries": [
+        "ld-linux-aarch64.so.1",
+        "ld-linux-x86-64.so.2",
+        "libanl.so.1",
+        "libc.so.6",
+        "libdl.so.2",
+        "libm.so.6",
+        "libnss_dns.so.2",
+        "libnss_files.so.2",
+        "libpthread.so.0",
+        "libresolv.so.2",
+        "librt.so.1",
+        "libutil.so.1"
+      ]
+    },
+    "events": [
+      {
+        "code": "master_start",
+        "message": "Private master http://127.0.0.1:54871",
+        "elapsed_s": 0.2981628230008937
+      },
+      {
+        "code": "playback_start",
+        "message": "VINS and observer subscribed",
+        "elapsed_s": 0.9145500900012848
+      },
+      {
+        "code": "timeout",
+        "message": "Run timeout",
+        "elapsed_s": 6.0380255979998765
+      },
+      {
+        "code": "failed",
+        "message": "Run timeout",
+        "elapsed_s": 7.543374128001233
+      }
+    ],
+    "warnings": {
+      "vins:warning": {
+        "count": 3,
+        "first_s": 0.7054564350000874,
+        "last_s": 3.214078895000057,
+        "last": "[ WARN] [1793201084.449070293, 1403636580.864947626]: gyroscope bias initial calibration -0.00362679   0.0231133   0.0789586"
+      }
+    },
+    "process_exits": {
+      "playback": 0,
+      "observer": 0,
+      "vins": 0,
+      "master": 0
+    },
+    "resource_samples": {
+      "master": {
+        "cpu_s_lower_bound": 0.07,
+        "rss_kib_peak_observed": 38424,
+        "pss_kib_peak_observed": 29140
+      },
+      "vins": {
+        "cpu_s_lower_bound": 2.37,
+        "rss_kib_peak_observed": 66824,
+        "pss_kib_peak_observed": 57898
+      },
+      "observer": {
+        "cpu_s_lower_bound": 0.02,
+        "rss_kib_peak_observed": 19844,
+        "pss_kib_peak_observed": 12538
+      },
+      "playback": {
+        "cpu_s_lower_bound": 0.07,
+        "rss_kib_peak_observed": 40324,
+        "pss_kib_peak_observed": 29744
+      }
+    },
+    "elapsed_s": 7.548502116000236,
+    "heartbeat_monotonic": 9476.684421458,
+    "bag": {
+      "start_record_s": 1403636579.8092628,
+      "end_record_s": 1403636609.8092628,
+      "duration_s": 30.0,
+      "topics": {
+        "/cam0/image_raw": {
+          "type": "sensor_msgs/Image",
+          "first_ns": 1403636579763555500,
+          "last_ns": 1403636609763555500,
+          "bag_records_full_file": 3682
+        },
+        "/imu0": {
+          "type": "sensor_msgs/Imu",
+          "first_ns": 1403636579758555500,
+          "last_ns": 1403636609803555500,
+          "bag_records_full_file": 36820
+        }
+      }
+    },
+    "master_uri": "http://127.0.0.1:54871",
+    "child_pids": {
+      "master": 101304,
+      "vins": 101318,
+      "observer": 101338,
+      "playback": 101345
+    },
+    "observation": {
+      "seq": 10,
+      "monotonic_elapsed_s": 4.650997755,
+      "image": {
+        "count": 62,
+        "stamp_ns": 1403636582963555500,
+        "age_s": 0.04998948799999958,
+        "hz": 20.00006878998019,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "imu": {
+        "count": 660,
+        "stamp_ns": 1403636583053555500,
+        "age_s": 1.599999999157831e-07,
+        "hz": 204.5019756935872,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "pose": {
+        "count": 22,
+        "stamp_ns": 1403636582913555384,
+        "age_s": 0.05000330399999964,
+        "hz": 10.000000035,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "position_m": [
+        0.02309470785247998,
+        -0.01061831378507864,
+        0.1279800450431489
+      ]
+    },
+    "initialization_log_count": 1,
+    "error": "Run timeout",
+    "child_cpu_s": 3.5830529999999996,
+    "exit_code": 124
+  },
+  "stop": {
+    "task": "stop",
+    "phase": "cancelled",
+    "pid": 101498,
+    "install": "/home/eric/projects/VINS-Fusion/releases/v0.1.0/host/9da73a9f7a58fbee/install",
+    "package": {
+      "version": "0.1.0",
+      "architecture": "x86_64",
+      "build": {
+        "id": "e932f4ee074da571",
+        "target": "host",
+        "stage": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/stage",
+        "legacy": "/home/eric/projects/VINS-Fusion/build/host/e932f4ee074da571/libraries",
+        "sdk": "/home/eric/projects/VINS-Fusion/cache/host-env",
+        "source_fingerprint": "e932f4ee074da571"
+      },
+      "platform_commit": "b4afccf4bf4d79573d0a4c975bb00f361c661a13",
+      "system_libraries": [
+        "ld-linux-aarch64.so.1",
+        "ld-linux-x86-64.so.2",
+        "libanl.so.1",
+        "libc.so.6",
+        "libdl.so.2",
+        "libm.so.6",
+        "libnss_dns.so.2",
+        "libnss_files.so.2",
+        "libpthread.so.0",
+        "libresolv.so.2",
+        "librt.so.1",
+        "libutil.so.1"
+      ]
+    },
+    "events": [
+      {
+        "code": "master_start",
+        "message": "Private master http://127.0.0.1:37945",
+        "elapsed_s": 0.3010716080007114
+      },
+      {
+        "code": "playback_start",
+        "message": "VINS and observer subscribed",
+        "elapsed_s": 0.9270752299999003
+      },
+      {
+        "code": "cancelled",
+        "message": "Requested stop",
+        "elapsed_s": 1.177986962000432
+      },
+      {
+        "code": "cancelled",
+        "message": "Requested stop",
+        "elapsed_s": 2.633413345000008
+      }
+    ],
+    "warnings": {
+      "vins:warning": {
+        "count": 2,
+        "first_s": 0.7085748850004165,
+        "last_s": 0.7085809860000154,
+        "last": "[ WARN] [1793201089.542960452]: waiting for image and imu..."
+      }
+    },
+    "process_exits": {
+      "playback": 0,
+      "observer": 0,
+      "vins": 0,
+      "master": 0
+    },
+    "resource_samples": {
+      "master": {
+        "cpu_s_lower_bound": 0.07,
+        "rss_kib_peak_observed": 38468,
+        "pss_kib_peak_observed": 29118
+      },
+      "vins": {
+        "cpu_s_lower_bound": 0.02,
+        "rss_kib_peak_observed": 37536,
+        "pss_kib_peak_observed": 31672
+      },
+      "observer": {
+        "cpu_s_lower_bound": 0,
+        "rss_kib_peak_observed": 18280,
+        "pss_kib_peak_observed": 11547
+      },
+      "playback": {
+        "cpu_s_lower_bound": 0,
+        "rss_kib_peak_observed": 1360,
+        "pss_kib_peak_observed": 424
+      }
+    },
+    "elapsed_s": 2.6362509850005154,
+    "heartbeat_monotonic": 9479.512246034,
+    "bag": {
+      "start_record_s": 1403636579.8092628,
+      "end_record_s": 1403636609.8092628,
+      "duration_s": 30.0,
+      "topics": {
+        "/cam0/image_raw": {
+          "type": "sensor_msgs/Image",
+          "first_ns": 1403636579763555500,
+          "last_ns": 1403636609763555500,
+          "bag_records_full_file": 3682
+        },
+        "/imu0": {
+          "type": "sensor_msgs/Imu",
+          "first_ns": 1403636579758555500,
+          "last_ns": 1403636609803555500,
+          "bag_records_full_file": 36820
+        }
+      }
+    },
+    "master_uri": "http://127.0.0.1:37945",
+    "child_pids": {
+      "master": 101501,
+      "vins": 101515,
+      "observer": 101535,
+      "playback": 101542
+    },
+    "observation": {
+      "seq": 1,
+      "monotonic_elapsed_s": 0.00092642,
+      "image": {
+        "count": 0,
+        "stamp_ns": 0,
+        "age_s": -1,
+        "hz": 0,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "imu": {
+        "count": 0,
+        "stamp_ns": 0,
+        "age_s": -1,
+        "hz": 0,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "pose": {
+        "count": 0,
+        "stamp_ns": 0,
+        "age_s": -1,
+        "hz": 0,
+        "invalid": 0,
+        "nonincreasing": 0
+      },
+      "position_m": [
+        0,
+        0,
+        0
+      ]
+    },
+    "error": "Requested stop",
+    "child_cpu_s": 0.8552899999999999,
+    "exit_code": 130
+  }
+}

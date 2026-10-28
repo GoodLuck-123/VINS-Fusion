@@ -1,0 +1,10 @@
+{
+  "bag.json": "bb5597d735500be04c0f6e97228d2d720f625a6137782e3da42a2efdb0ad2db2",
+  "camera.yaml": "2ef09b247e46ff9e41c30918a2e2a64cb2e7275d67bd19e73ecbf9ce1586cb2c",
+  "events.jsonl": "6bceea143b9cd99e6008dc7701aaeb840d31096e6c25374ddab9d3a621eb75c9",
+  "logs.tar.gz": "148a53a19520d27e64294f1a10ed320a549c7fae126c89cd2b35e1c8ddd92a69",
+  "observation.json": "e12f7cee71d42e54b68ae91ceba29b675ac1a2c18fa857c977b648b42835f7c8",
+  "project.json": "44b8744a6adfa9ba139b0f0a1e4b9aff617b125c2300fb7a264c47878f5c7806",
+  "vins.yaml": "aea55a63e146f27f1a2a65d2d40e10a3ae5d36c9aac28b9d8ce7d4c7962f9482",
+  "vio.csv": "dfa4aa463317805b3113214c4cab54fd6512e45d93cc7e0adf88c5e6773c85b7"
+}

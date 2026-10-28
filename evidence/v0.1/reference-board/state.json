@@ -1,0 +1,164 @@
+{
+  "task": "euroc-reference/001",
+  "phase": "failed",
+  "pid": 39157,
+  "install": "/home/firefly/vins-workspace/releases/0ae0245eca3a2f9c/install",
+  "package": {
+    "version": "0.1.0",
+    "architecture": "aarch64",
+    "build": {
+      "id": "a3e8b02efb6aff81",
+      "target": "board",
+      "stage": "/home/eric/projects/VINS-Fusion/build/board/a3e8b02efb6aff81/stage",
+      "legacy": "/home/eric/projects/VINS-Fusion/build/board/a3e8b02efb6aff81/libraries",
+      "sdk": "/home/eric/projects/VINS-Fusion/cache/sysroot",
+      "source_fingerprint": "a3e8b02efb6aff81"
+    },
+    "platform_commit": "2a1c5817e261216fc8ab799f2db3365a61dbc3a5",
+    "system_libraries": [
+      "ld-linux-aarch64.so.1",
+      "ld-linux-x86-64.so.2",
+      "libanl.so.1",
+      "libc.so.6",
+      "libdl.so.2",
+      "libm.so.6",
+      "libnss_dns.so.2",
+      "libnss_files.so.2",
+      "libpthread.so.0",
+      "libresolv.so.2",
+      "librt.so.1",
+      "libutil.so.1"
+    ],
+    "variant": "pristine-upstream-reference",
+    "algorithm_commit": "be55a937a57436548ddfb1bd324bc1e9a9e828e0"
+  },
+  "events": [
+    {
+      "code": "master_start",
+      "message": "Private master http://127.0.0.1:54729",
+      "elapsed_s": 2.7919344050005748
+    },
+    {
+      "code": "playback_start",
+      "message": "VINS and observer subscribed",
+      "elapsed_s": 4.796680273000675
+    },
+    {
+      "code": "source_ended",
+      "message": "Checking trajectory tail coverage; queue empty not directly instrumented",
+      "elapsed_s": 191.62094267000066
+    },
+    {
+      "code": "failed",
+      "message": "Nonzero shutdown exit",
+      "elapsed_s": 198.4990495279999
+    }
+  ],
+  "warnings": {
+    "vins:warning": {
+      "count": 3,
+      "first_s": 4.493636909000088,
+      "last_s": 8.255231703999925,
+      "last": "\u001b[33m[WARN] [1790069650.428432601, 1403636580.988853030]: gyroscope bias initial calibration -0.00409299   0.0257571   0.0779794\u001b[0m"
+    }
+  },
+  "process_exits": {
+    "playback": 0,
+    "observer": 0,
+    "vins": -6,
+    "master": 0
+  },
+  "resource_samples": {
+    "master": {
+      "cpu_s_lower_bound": 1.33,
+      "rss_kib_peak_observed": 42952,
+      "pss_kib_peak_observed": 38011
+    },
+    "vins": {
+      "cpu_s_lower_bound": 510.92,
+      "rss_kib_peak_observed": 55776,
+      "pss_kib_peak_observed": 48422
+    },
+    "observer": {
+      "cpu_s_lower_bound": 7.0,
+      "rss_kib_peak_observed": 11732,
+      "pss_kib_peak_observed": 5435
+    },
+    "playback": {
+      "cpu_s_lower_bound": 0.63,
+      "rss_kib_peak_observed": 42176,
+      "pss_kib_peak_observed": 32808
+    }
+  },
+  "elapsed_s": 198.4996847780003,
+  "heartbeat_monotonic": 7678.579628206,
+  "bag": {
+    "start_record_s": 1403636579.8092628,
+    "end_record_s": 1403636763.8525136,
+    "duration_s": 184.04325079917908,
+    "topics": {
+      "/cam0/image_raw": {
+        "type": "sensor_msgs/Image",
+        "first_ns": 1403636579763555500,
+        "last_ns": 1403636763813555500,
+        "bag_records_full_file": 3682
+      },
+      "/imu0": {
+        "type": "sensor_msgs/Imu",
+        "first_ns": 1403636579758555500,
+        "last_ns": 1403636763853555500,
+        "bag_records_full_file": 36820
+      }
+    }
+  },
+  "master_uri": "http://127.0.0.1:54729",
+  "child_pids": {
+    "master": 39328,
+    "vins": 39505,
+    "observer": 39515,
+    "playback": 39522
+  },
+  "observation": {
+    "seq": 365,
+    "monotonic_elapsed_s": 191.673876967,
+    "image": {
+      "count": 3682,
+      "stamp_ns": 1403636763813555500,
+      "age_s": 5.249749319000017,
+      "hz": 19.99993731301717,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "imu": {
+      "count": 36820,
+      "stamp_ns": 1403636763853555500,
+      "age_s": 5.249673485000017,
+      "hz": 204.5890691103063,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "pose": {
+      "count": 1831,
+      "stamp_ns": 1403636763813555479,
+      "age_s": 5.149887184000022,
+      "hz": 10.0000367051348,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "position_m": [
+      -0.1544930932470259,
+      0.6858754136752478,
+      -0.3404236441135033
+    ]
+  },
+  "initialization_log_count": 1,
+  "playback_wall_s": 186.82304877200022,
+  "trajectory_poses": 1831,
+  "last_pose_ns": 1403636763813555456,
+  "tail_s": 4.4e-08,
+  "drain_s": 5.114475763999508,
+  "queue_empty_verified": false,
+  "error": "Nonzero shutdown exit",
+  "child_cpu_s": 542.571937,
+  "exit_code": 1
+}

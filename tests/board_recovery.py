@@ -7,21 +7,23 @@ from cli import control,rpc,workspace
 import yaml
 config=yaml.safe_load((ROOT/'project.yaml').read_text());config['run']['name']='reconnect-check';config['dataset'].update(duration_s=30,ground_truth=None)
 p=ROOT/'recovery-validation.yaml';p.write_text(yaml.safe_dump(config,sort_keys=False));c=load(p);c['_host']=False
-with (ROOT/'build/reconnect-view.log').open('w') as log:
- viewer=subprocess.Popen([ROOT/'vins','-c',p,'run'],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
- deadline=time.monotonic()+120
- while True:
-  text=(ROOT/'build/reconnect-view.log').read_text()
-  if '[replaying] reconnect-check/' in text:break
-  assert viewer.poll() is None,text[-2000:];assert time.monotonic()<deadline;time.sleep(.2)
- before=control(c,'status');os.killpg(viewer.pid,signal.SIGINT);assert viewer.wait(timeout=15)==0
-# No persistent SSH/viewer remains during this period.
-time.sleep(6);after=control(c,'status');assert after['phase']=='replaying',after
-assert after['observation']['image']['count']>before['observation']['image']['count']
-subprocess.run([ROOT/'vins','-c',p,'stop'],check=True);subprocess.run([ROOT/'vins','-c',p,'stop'],check=True)
-ended=control(c,'status');assert ended['phase']=='cancelled' and all(x==0 for x in ended['process_exits'].values()),ended
-report={'disconnect':{'before':before,'after':after,'stopped':ended,'viewer_exit':0,'second_stop_exit':0}}
-atomic(ROOT/'evidence/v0.1/board-disconnect.json',report)
+if '--relocate-only' in sys.argv:report=json.loads((ROOT/'evidence/v0.1/board-disconnect.json').read_text())
+else:
+ with (ROOT/'build/reconnect-view.log').open('w') as log:
+  viewer=subprocess.Popen([ROOT/'vins','-c',p,'run'],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+  deadline=time.monotonic()+120
+  while True:
+   text=(ROOT/'build/reconnect-view.log').read_text()
+   if '[replaying] reconnect-check/' in text:break
+   assert viewer.poll() is None,text[-2000:];assert time.monotonic()<deadline;time.sleep(.2)
+  before=control(c,'status');os.killpg(viewer.pid,signal.SIGINT);assert viewer.wait(timeout=15)==0
+ # No persistent SSH/viewer remains during this period.
+ time.sleep(6);after=control(c,'status');assert after['phase']=='replaying',after
+ assert after['observation']['image']['count']>before['observation']['image']['count']
+ subprocess.run([ROOT/'vins','-c',p,'stop'],check=True);subprocess.run([ROOT/'vins','-c',p,'stop'],check=True)
+ ended=control(c,'status');assert ended['phase']=='cancelled' and all(x==0 for x in ended['process_exits'].values()),ended
+ report={'disconnect':{'before':before,'after':after,'stopped':ended,'viewer_exit':0,'second_stop_exit':0}}
+ atomic(ROOT/'evidence/v0.1/board-disconnect.json',report)
 code='''import json,os,shutil,subprocess,sys,time,hashlib
 from pathlib import Path
 ws=Path(sys.argv[1]);source=(ws/'current').resolve();dest=ws/'validation/relocated install';dest.parent.mkdir(exist_ok=True)
@@ -43,7 +45,7 @@ limit=time.monotonic()+90;maps=None
 while True:
  s=json.loads((job/'state.json').read_text())
  if maps is None and s['phase']=='replaying' and s.get('observation',{}).get('image',{}).get('count',0)>5:
-  maps=sorted(set(l.split()[-1] for l in Path('/proc/'+str(s['child_pids']['vins'])+'/maps').read_text().splitlines() if '/' in l))
+  maps=sorted(set(l.split(None,5)[5] for l in Path('/proc/'+str(s['child_pids']['vins'])+'/maps').read_text().splitlines() if '/' in l))
  if s['phase'] in ['completed','failed','cancelled']:break
  assert time.monotonic()<limit,s;time.sleep(.3)
 assert s['phase']=='completed' and (job/'files.json').is_file(),s

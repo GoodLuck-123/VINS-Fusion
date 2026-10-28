@@ -1,0 +1,19 @@
+{
+  "start_record_s": 1403636578.946206,
+  "end_record_s": 1403636763.8525136,
+  "duration_s": 184.90630745887756,
+  "topics": {
+    "/cam0/image_raw": {
+      "type": "sensor_msgs/Image",
+      "first_ns": 1403636579763555500,
+      "last_ns": 1403636763813555500,
+      "bag_records_full_file": 3682
+    },
+    "/imu0": {
+      "type": "sensor_msgs/Imu",
+      "first_ns": 1403636579758555500,
+      "last_ns": 1403636763853555500,
+      "bag_records_full_file": 36820
+    }
+  }
+}

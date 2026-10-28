@@ -1,0 +1,683 @@
+{
+  "disconnect": {
+    "before": {
+      "task": "reconnect-check/002",
+      "phase": "replaying",
+      "pid": 84560,
+      "install": "/home/firefly/vins-workspace/releases/c1fb726ebf38bf4e/install",
+      "package": {
+        "version": "0.1.0",
+        "architecture": "aarch64",
+        "build": {
+          "id": "e932f4ee074da571",
+          "target": "board",
+          "stage": "/home/eric/projects/VINS-Fusion/build/board/e932f4ee074da571/stage",
+          "legacy": "/home/eric/projects/VINS-Fusion/build/board/e932f4ee074da571/libraries",
+          "sdk": "/home/eric/projects/VINS-Fusion/cache/sysroot",
+          "source_fingerprint": "e932f4ee074da571"
+        },
+        "platform_commit": "2062e8232d12ba798e178c4f29781325f2372aae",
+        "system_libraries": [
+          "ld-linux-aarch64.so.1",
+          "ld-linux-x86-64.so.2",
+          "libanl.so.1",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libnss_dns.so.2",
+          "libnss_files.so.2",
+          "libpthread.so.0",
+          "libresolv.so.2",
+          "librt.so.1",
+          "libutil.so.1"
+        ]
+      },
+      "events": [
+        {
+          "code": "master_start",
+          "message": "Private master http://127.0.0.1:40733",
+          "elapsed_s": 2.7261757740016037
+        },
+        {
+          "code": "playback_start",
+          "message": "VINS and observer subscribed",
+          "elapsed_s": 4.5055781610008125
+        }
+      ],
+      "warnings": {
+        "vins:warning": {
+          "count": 2,
+          "first_s": 4.217512132001502,
+          "last_s": 4.217558216001635,
+          "last": "\u001b[33m[WARN] [1790071383.191571079]: waiting for image and imu...\u001b[0m"
+        }
+      },
+      "process_exits": {},
+      "resource_samples": {
+        "master": {
+          "cpu_s_lower_bound": 0.61,
+          "rss_kib_peak_observed": 43152,
+          "pss_kib_peak_observed": 37560
+        },
+        "vins": {
+          "cpu_s_lower_bound": 2.69,
+          "rss_kib_peak_observed": 34584,
+          "pss_kib_peak_observed": 27804
+        },
+        "observer": {
+          "cpu_s_lower_bound": 0.08,
+          "rss_kib_peak_observed": 11732,
+          "pss_kib_peak_observed": 4755
+        },
+        "playback": {
+          "cpu_s_lower_bound": 0.54,
+          "rss_kib_peak_observed": 42660,
+          "pss_kib_peak_observed": 33087
+        }
+      },
+      "elapsed_s": 7.71979631800059,
+      "heartbeat_monotonic": 9224.62410584,
+      "bag": {
+        "start_record_s": 1403636578.946206,
+        "end_record_s": 1403636608.946206,
+        "duration_s": 30.0,
+        "topics": {
+          "/cam0/image_raw": {
+            "type": "sensor_msgs/Image",
+            "first_ns": 1403636579763555500,
+            "last_ns": 1403636608863555500,
+            "bag_records_full_file": 3682
+          },
+          "/imu0": {
+            "type": "sensor_msgs/Imu",
+            "first_ns": 1403636579758555500,
+            "last_ns": 1403636608903555500,
+            "bag_records_full_file": 36820
+          }
+        }
+      },
+      "master_uri": "http://127.0.0.1:40733",
+      "child_pids": {
+        "master": 84733,
+        "vins": 84900,
+        "observer": 84916,
+        "playback": 84924
+      },
+      "observation": {
+        "seq": 7,
+        "monotonic_elapsed_s": 3.024784846,
+        "image": {
+          "count": 16,
+          "stamp_ns": 1403636580513555500,
+          "age_s": 1.750000000022567e-06,
+          "hz": 21.43636673271039,
+          "invalid": 0,
+          "nonincreasing": 0
+        },
+        "imu": {
+          "count": 150,
+          "stamp_ns": 1403636580503555500,
+          "age_s": 0.0002867090000000516,
+          "hz": 212.8480755291253,
+          "invalid": 0,
+          "nonincreasing": 0
+        },
+        "pose": {
+          "count": 0,
+          "stamp_ns": 0,
+          "age_s": -1,
+          "hz": 0,
+          "invalid": 0,
+          "nonincreasing": 0
+        },
+        "position_m": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "after": {
+      "task": "reconnect-check/002",
+      "phase": "replaying",
+      "pid": 84560,
+      "install": "/home/firefly/vins-workspace/releases/c1fb726ebf38bf4e/install",
+      "package": {
+        "version": "0.1.0",
+        "architecture": "aarch64",
+        "build": {
+          "id": "e932f4ee074da571",
+          "target": "board",
+          "stage": "/home/eric/projects/VINS-Fusion/build/board/e932f4ee074da571/stage",
+          "legacy": "/home/eric/projects/VINS-Fusion/build/board/e932f4ee074da571/libraries",
+          "sdk": "/home/eric/projects/VINS-Fusion/cache/sysroot",
+          "source_fingerprint": "e932f4ee074da571"
+        },
+        "platform_commit": "2062e8232d12ba798e178c4f29781325f2372aae",
+        "system_libraries": [
+          "ld-linux-aarch64.so.1",
+          "ld-linux-x86-64.so.2",
+          "libanl.so.1",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libnss_dns.so.2",
+          "libnss_files.so.2",
+          "libpthread.so.0",
+          "libresolv.so.2",
+          "librt.so.1",
+          "libutil.so.1"
+        ]
+      },
+      "events": [
+        {
+          "code": "master_start",
+          "message": "Private master http://127.0.0.1:40733",
+          "elapsed_s": 2.7261757740016037
+        },
+        {
+          "code": "playback_start",
+          "message": "VINS and observer subscribed",
+          "elapsed_s": 4.5055781610008125
+        }
+      ],
+      "warnings": {
+        "vins:warning": {
+          "count": 3,
+          "first_s": 4.217512132001502,
+          "last_s": 7.975152552000509,
+          "last": "\u001b[33m[WARN] [1790071386.847665404, 1403636580.974221320]: gyroscope bias initial calibration -0.00409299   0.0257571   0.0779794\u001b[0m"
+        }
+      },
+      "process_exits": {},
+      "resource_samples": {
+        "master": {
+          "cpu_s_lower_bound": 0.64,
+          "rss_kib_peak_observed": 43152,
+          "pss_kib_peak_observed": 37560
+        },
+        "vins": {
+          "cpu_s_lower_bound": 24.35,
+          "rss_kib_peak_observed": 44204,
+          "pss_kib_peak_observed": 37172
+        },
+        "observer": {
+          "cpu_s_lower_bound": 0.33,
+          "rss_kib_peak_observed": 11732,
+          "pss_kib_peak_observed": 4755
+        },
+        "playback": {
+          "cpu_s_lower_bound": 0.54,
+          "rss_kib_peak_observed": 42660,
+          "pss_kib_peak_observed": 33087
+        }
+      },
+      "elapsed_s": 14.858022452001023,
+      "heartbeat_monotonic": 9231.762333432,
+      "bag": {
+        "start_record_s": 1403636578.946206,
+        "end_record_s": 1403636608.946206,
+        "duration_s": 30.0,
+        "topics": {
+          "/cam0/image_raw": {
+            "type": "sensor_msgs/Image",
+            "first_ns": 1403636579763555500,
+            "last_ns": 1403636608863555500,
+            "bag_records_full_file": 3682
+          },
+          "/imu0": {
+            "type": "sensor_msgs/Imu",
+            "first_ns": 1403636579758555500,
+            "last_ns": 1403636608903555500,
+            "bag_records_full_file": 36820
+          }
+        }
+      },
+      "master_uri": "http://127.0.0.1:40733",
+      "child_pids": {
+        "master": 84733,
+        "vins": 84900,
+        "observer": 84916,
+        "playback": 84924
+      },
+      "observation": {
+        "seq": 21,
+        "monotonic_elapsed_s": 10.524539766,
+        "image": {
+          "count": 166,
+          "stamp_ns": 1403636588013555500,
+          "age_s": 1.458999999925936e-06,
+          "hz": 20.00206112238938,
+          "invalid": 0,
+          "nonincreasing": 0
+        },
+        "imu": {
+          "count": 1650,
+          "stamp_ns": 1403636588003555500,
+          "age_s": 7.087500000046987e-05,
+          "hz": 204.5007931563263,
+          "invalid": 0,
+          "nonincreasing": 0
+        },
+        "pose": {
+          "count": 72,
+          "stamp_ns": 1403636587913555384,
+          "age_s": 0.0001009170000010329,
+          "hz": 10.25702815556639,
+          "invalid": 0,
+          "nonincreasing": 0
+        },
+        "position_m": [
+          0.04288630698420792,
+          -0.2678632874058202,
+          -0.06941668759552962
+        ]
+      },
+      "initialization_log_count": 1
+    },
+    "stopped": {
+      "task": "reconnect-check/002",
+      "phase": "cancelled",
+      "pid": 84560,
+      "install": "/home/firefly/vins-workspace/releases/c1fb726ebf38bf4e/install",
+      "package": {
+        "version": "0.1.0",
+        "architecture": "aarch64",
+        "build": {
+          "id": "e932f4ee074da571",
+          "target": "board",
+          "stage": "/home/eric/projects/VINS-Fusion/build/board/e932f4ee074da571/stage",
+          "legacy": "/home/eric/projects/VINS-Fusion/build/board/e932f4ee074da571/libraries",
+          "sdk": "/home/eric/projects/VINS-Fusion/cache/sysroot",
+          "source_fingerprint": "e932f4ee074da571"
+        },
+        "platform_commit": "2062e8232d12ba798e178c4f29781325f2372aae",
+        "system_libraries": [
+          "ld-linux-aarch64.so.1",
+          "ld-linux-x86-64.so.2",
+          "libanl.so.1",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libnss_dns.so.2",
+          "libnss_files.so.2",
+          "libpthread.so.0",
+          "libresolv.so.2",
+          "librt.so.1",
+          "libutil.so.1"
+        ]
+      },
+      "events": [
+        {
+          "code": "master_start",
+          "message": "Private master http://127.0.0.1:40733",
+          "elapsed_s": 2.7261757740016037
+        },
+        {
+          "code": "playback_start",
+          "message": "VINS and observer subscribed",
+          "elapsed_s": 4.5055781610008125
+        },
+        {
+          "code": "cancelled",
+          "message": "Requested stop",
+          "elapsed_s": 17.19724164500076
+        },
+        {
+          "code": "cancelled",
+          "message": "Requested stop",
+          "elapsed_s": 19.212766514001487
+        }
+      ],
+      "warnings": {
+        "vins:warning": {
+          "count": 3,
+          "first_s": 4.217512132001502,
+          "last_s": 7.975152552000509,
+          "last": "\u001b[33m[WARN] [1790071386.847665404, 1403636580.974221320]: gyroscope bias initial calibration -0.00409299   0.0257571   0.0779794\u001b[0m"
+        }
+      },
+      "process_exits": {
+        "playback": 0,
+        "observer": 0,
+        "vins": 0,
+        "master": 0
+      },
+      "resource_samples": {
+        "master": {
+          "cpu_s_lower_bound": 0.65,
+          "rss_kib_peak_observed": 43152,
+          "pss_kib_peak_observed": 37560
+        },
+        "vins": {
+          "cpu_s_lower_bound": 29.29,
+          "rss_kib_peak_observed": 44604,
+          "pss_kib_peak_observed": 37464
+        },
+        "observer": {
+          "cpu_s_lower_bound": 0.39,
+          "rss_kib_peak_observed": 11732,
+          "pss_kib_peak_observed": 4755
+        },
+        "playback": {
+          "cpu_s_lower_bound": 0.54,
+          "rss_kib_peak_observed": 42660,
+          "pss_kib_peak_observed": 33087
+        }
+      },
+      "elapsed_s": 19.268608270000186,
+      "heartbeat_monotonic": 9236.17291925,
+      "bag": {
+        "start_record_s": 1403636578.946206,
+        "end_record_s": 1403636608.946206,
+        "duration_s": 30.0,
+        "topics": {
+          "/cam0/image_raw": {
+            "type": "sensor_msgs/Image",
+            "first_ns": 1403636579763555500,
+            "last_ns": 1403636608863555500,
+            "bag_records_full_file": 3682
+          },
+          "/imu0": {
+            "type": "sensor_msgs/Imu",
+            "first_ns": 1403636579758555500,
+            "last_ns": 1403636608903555500,
+            "bag_records_full_file": 36820
+          }
+        }
+      },
+      "master_uri": "http://127.0.0.1:40733",
+      "child_pids": {
+        "master": 84733,
+        "vins": 84900,
+        "observer": 84916,
+        "playback": 84924
+      },
+      "observation": {
+        "seq": 25,
+        "monotonic_elapsed_s": 12.624626477,
+        "image": {
+          "count": 208,
+          "stamp_ns": 1403636590113555500,
+          "age_s": 4.66699999890352e-06,
+          "hz": 20.00183940915574,
+          "invalid": 0,
+          "nonincreasing": 0
+        },
+        "imu": {
+          "count": 2070,
+          "stamp_ns": 1403636590103555500,
+          "age_s": 0.0001347499999990731,
+          "hz": 204.513081065691,
+          "invalid": 0,
+          "nonincreasing": 0
+        },
+        "pose": {
+          "count": 93,
+          "stamp_ns": 1403636590013555527,
+          "age_s": 0.0001259999999998485,
+          "hz": 10.00089344981813,
+          "invalid": 0,
+          "nonincreasing": 0
+        },
+        "position_m": [
+          -0.1161575200711038,
+          0.202672985595293,
+          -0.06232580037293108
+        ]
+      },
+      "initialization_log_count": 1,
+      "error": "Requested stop",
+      "child_cpu_s": 37.779187,
+      "exit_code": 130
+    },
+    "viewer_exit": 0,
+    "second_stop_exit": 0
+  },
+  "package": {
+    "clean_relocated_check_exit": 0,
+    "corrupt_file": {
+      "exit": 1,
+      "error": "Package file missing/corrupt: /home/firefly/vins-workspace/validation/relocated install/bin/vins_observer"
+    },
+    "relocated_replay": {
+      "state": {
+        "task": "relocated/003",
+        "phase": "completed",
+        "pid": 88634,
+        "install": "/home/firefly/vins-workspace/validation/relocated install",
+        "package": {
+          "version": "0.1.0",
+          "architecture": "aarch64",
+          "build": {
+            "id": "e932f4ee074da571",
+            "target": "board",
+            "stage": "/home/eric/projects/VINS-Fusion/build/board/e932f4ee074da571/stage",
+            "legacy": "/home/eric/projects/VINS-Fusion/build/board/e932f4ee074da571/libraries",
+            "sdk": "/home/eric/projects/VINS-Fusion/cache/sysroot",
+            "source_fingerprint": "e932f4ee074da571"
+          },
+          "platform_commit": "2062e8232d12ba798e178c4f29781325f2372aae",
+          "system_libraries": [
+            "ld-linux-aarch64.so.1",
+            "ld-linux-x86-64.so.2",
+            "libanl.so.1",
+            "libc.so.6",
+            "libdl.so.2",
+            "libm.so.6",
+            "libnss_dns.so.2",
+            "libnss_files.so.2",
+            "libpthread.so.0",
+            "libresolv.so.2",
+            "librt.so.1",
+            "libutil.so.1"
+          ]
+        },
+        "events": [
+          {
+            "code": "master_start",
+            "message": "Private master http://127.0.0.1:51467",
+            "elapsed_s": 1.8989448159991298
+          },
+          {
+            "code": "playback_start",
+            "message": "VINS and observer subscribed",
+            "elapsed_s": 3.6772292030000244
+          },
+          {
+            "code": "source_ended",
+            "message": "Checking trajectory tail coverage; queue empty not directly instrumented",
+            "elapsed_s": 20.703680663998966
+          },
+          {
+            "code": "completed",
+            "message": "Tail coverage and process exit checks passed",
+            "elapsed_s": 27.2625637809997
+          }
+        ],
+        "warnings": {
+          "vins:warning": {
+            "count": 3,
+            "first_s": 3.3693161299997882,
+            "last_s": 6.949458031998802,
+            "last": "\u001b[33m[WARN] [1790071539.869158529, 1403636580.983116530]: gyroscope bias initial calibration -0.00409299   0.0257571   0.0779794\u001b[0m"
+          }
+        },
+        "process_exits": {
+          "playback": 0,
+          "observer": 0,
+          "vins": 0,
+          "master": 0
+        },
+        "resource_samples": {
+          "master": {
+            "cpu_s_lower_bound": 0.57,
+            "rss_kib_peak_observed": 42384,
+            "pss_kib_peak_observed": 36613
+          },
+          "vins": {
+            "cpu_s_lower_bound": 43.89,
+            "rss_kib_peak_observed": 45016,
+            "pss_kib_peak_observed": 37869
+          },
+          "observer": {
+            "cpu_s_lower_bound": 0.69,
+            "rss_kib_peak_observed": 11804,
+            "pss_kib_peak_observed": 5537
+          },
+          "playback": {
+            "cpu_s_lower_bound": 0.65,
+            "rss_kib_peak_observed": 42020,
+            "pss_kib_peak_observed": 32443
+          }
+        },
+        "elapsed_s": 27.33442987199851,
+        "heartbeat_monotonic": 9398.0709856,
+        "bag": {
+          "start_record_s": 1403636578.946206,
+          "end_record_s": 1403636593.946206,
+          "duration_s": 15.0,
+          "topics": {
+            "/cam0/image_raw": {
+              "type": "sensor_msgs/Image",
+              "first_ns": 1403636579763555500,
+              "last_ns": 1403636593863555500,
+              "bag_records_full_file": 3682
+            },
+            "/imu0": {
+              "type": "sensor_msgs/Imu",
+              "first_ns": 1403636579758555500,
+              "last_ns": 1403636593903555500,
+              "bag_records_full_file": 36820
+            }
+          }
+        },
+        "master_uri": "http://127.0.0.1:51467",
+        "child_pids": {
+          "master": 88659,
+          "vins": 88689,
+          "observer": 88698,
+          "playback": 88706
+        },
+        "observation": {
+          "seq": 43,
+          "monotonic_elapsed_s": 22.123995764,
+          "image": {
+            "count": 283,
+            "stamp_ns": 1403636593863555500,
+            "age_s": 5.749391118999998,
+            "hz": 19.99505690406317,
+            "invalid": 0,
+            "nonincreasing": 0
+          },
+          "imu": {
+            "count": 2830,
+            "stamp_ns": 1403636593903555500,
+            "age_s": 5.699999822999999,
+            "hz": 199.5134762375091,
+            "invalid": 0,
+            "nonincreasing": 0
+          },
+          "pose": {
+            "count": 131,
+            "stamp_ns": 1403636593813555479,
+            "age_s": 5.699989031000001,
+            "hz": 10.25759301474821,
+            "invalid": 0,
+            "nonincreasing": 0
+          },
+          "position_m": [
+            -0.1158405515937667,
+            0.09058135282463922,
+            -0.1248589885618265
+          ]
+        },
+        "initialization_log_count": 1,
+        "playback_wall_s": 17.02522237700032,
+        "trajectory_poses": 131,
+        "last_pose_ns": 1403636593813555456,
+        "tail_s": 0.050000044,
+        "drain_s": 5.000732794000214,
+        "queue_empty_verified": false,
+        "child_cpu_s": 51.445503,
+        "exit_code": 0
+      },
+      "maps": [
+        "/home/firefly/vins-workspace/validation/relocated install/bin/vins_node",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libactionlib.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libamd.so.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libapr-1.so.0",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libaprutil-1.so.0",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libblas.so.3",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libboost_chrono.so.1.71.0",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libboost_filesystem.so.1.71.0",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libboost_regex.so.1.71.0",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libboost_thread.so.1.71.0",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libcamd.so.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libcamera_models.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libccolamd.so.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libceres.so.1",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libcholmod.so.3",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libcolamd.so.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libconsole_bridge.so.0.4",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libcpp_common.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libcrypt.so.1",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libcv_bridge.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libcxsparse.so.3",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libexpat.so.1",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libgcc_s.so.1",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libgflags.so.2.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libgfortran.so.5",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libglog.so.0",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libgomp.so.1",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libicudata.so.66",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libicui18n.so.66",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libicuuc.so.66",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libjpeg.so.8",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/liblapack.so.3",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/liblog4cxx.so.10",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libmetis.so.5",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libopencv_calib3d.so.4.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libopencv_core.so.4.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libopencv_features2d.so.4.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libopencv_flann.so.4.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libopencv_imgcodecs.so.4.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libopencv_imgproc.so.4.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libopencv_video.so.4.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libpng16.so.16",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/librosconsole.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/librosconsole_backend_interface.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/librosconsole_log4cxx.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libroscpp.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libroscpp_serialization.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/librostime.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libspqr.so.2",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libstdc++.so.6",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libsuitesparseconfig.so.5",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libtf.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libtf2.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libtf2_ros.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libuuid.so.1",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libvins_lib.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libxmlrpcpp.so",
+        "/home/firefly/vins-workspace/validation/relocated install/lib/libz.so.1",
+        "/usr/lib/aarch64-linux-gnu/ld-2.31.so",
+        "/usr/lib/aarch64-linux-gnu/libc-2.31.so",
+        "/usr/lib/aarch64-linux-gnu/libdl-2.31.so",
+        "/usr/lib/aarch64-linux-gnu/libm-2.31.so",
+        "/usr/lib/aarch64-linux-gnu/libnss_files-2.31.so",
+        "/usr/lib/aarch64-linux-gnu/libpthread-2.31.so"
+      ],
+      "files": {
+        "bag.json": "51ecc568ed7310393d2e3b07695abca888869881aa781707f643429a795ec3cb",
+        "camera.yaml": "2ef09b247e46ff9e41c30918a2e2a64cb2e7275d67bd19e73ecbf9ce1586cb2c",
+        "events.jsonl": "a285d58c3ece961764156ec391c4e45fd9c8e4875e5825094d8d40ddc6cfc81e",
+        "logs.tar.gz": "4d5f9fa957d55bdb867cb1490823cdd744f5695c0964a812f43ea8ceebcb2f44",
+        "observation.json": "7deca67c6f426e68b92ae7eadc0f43f466187bd6ac62ea72505c726b32479c42",
+        "project.json": "62448646228192fee7bf7b4db359f7f6515c33e5788248135508f9b722c72121",
+        "vins.yaml": "25bbf741609369af0e3223c173dcb2ecd739b2f5e60099a7d782a1568bb6ce5a",
+        "vio.csv": "b636338c268bbf1b2597ed3ab444de637f3c5bec102d7fa50e4ed0d2f2191680"
+      }
+    }
+  }
+}

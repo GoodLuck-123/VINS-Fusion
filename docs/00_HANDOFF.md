@@ -4,7 +4,7 @@
 
 ## Quick Start
 
-新主线为 `codex/vins-platform`，v0.1 统一入口、构建和私有运行包已实现，当前处于候选验收阶段
+新主线为 `codex/vins-platform`，v0.1 已通过主机/板端完整播包与故障验收；版本标记 `vins-platform-v0.1.0`，实现提交 `2062e82`
 
 ```bash
 cp project.example.yaml project.yaml
@@ -19,6 +19,7 @@ cp project.example.yaml project.yaml
 - [01 平台设计](01_PLATFORM_DESIGN.md)：目的、用户流程、统一配置、目录、v0.1–v0.3 范围和验收
 - [02 板端探索](02_BOARD_DISCOVERY.md)：当前系统、真实硬件、工作区、短时收数和未验证事项
 - [03 使用指南](03_USER_GUIDE.md)：学生播包、远控、产物路径和故障处理
+- [04 验收记录](04_VALIDATION.md)：本次准确包位置、指标、故障回归及证据边界
 - [根目录配置模板](../project.example.yaml)：先覆盖开环单目 IMU 播包，后续在同一模板扩充硬件参数
 - [原生 VINS 说明](90_UPSTREAM_README.md)：上游背景与引用，不是新平台的操作指南
 
@@ -31,7 +32,9 @@ cp project.example.yaml project.yaml
 | 实际相机 | FLIR Blackfly S BFS-U3-31S4M-BD，SDK 10 张灰度图通过 |
 | 格纳威 IMU | UART 校验通过，现有 ROS 驱动约 100 Hz，785 条数值有限、时间递增 |
 | 配置与目录 | 移除旧场景配置，新增唯一模板；明确 releases/data/build/experiments/third_party 职责 |
-| 算法与正式工具 | 已实现统一 CLI、host/ARM64 源码构建和私有包；最小线程退出补丁正在同数据验收 |
+| 算法与正式工具 | 统一 CLI、host/ARM64 源码构建和私有包通过；主机原生/修复轨迹 SHA256 相同，退出 −6 → 0 |
+
+下一阶段为 v0.2：接入板上真实相机和 IMU，沿用现有任务/监控/回收，不启动旧分支计划
 
 用户已确认旧 IMU 的 `imu_rate=200` 使用习惯保留；硬件实际约 100 Hz 单独记录，不在本轮修复。旧相机/IMU 驱动疑点只登记，不展开修补
 
