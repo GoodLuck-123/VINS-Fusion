@@ -17,6 +17,8 @@ for target in ['host','board']:
     files=json.loads((install/'files.json').read_text())
     for name,want in files.items():assert digest(install/name)==want,name
     p['manifest_verified_files']=len(files);p['runtime_source_commit']=meta['platform_commit'];packages[target]=p
+atomic(E/'packages.json',packages)
+atomic(E/'final-audit.json',dict(status='pending'))
 maps=json.loads((E/'runtime-maps-private.json').read_text());assert maps['unexpected_external_libraries']==[]
 assert maps['install'].endswith('/'+packages['board']['id']+'/install')
 for target in ['host','board']:
@@ -46,8 +48,8 @@ print(json.dumps(alive))
 '''
 cleanup={}
 for target in ['host','board']:
-    c=load(ROOT/'field.yaml');c['_host']=target=='host';s=control(c,'status');assert s['phase']=='completed' and s['exit_code']==0,s
+    c=load(ROOT/'project.example.yaml');c['_host']=target=='host';s=control(c,'status');assert s['phase']=='completed' and s['exit_code']==0,s
     alive=rpc(c,code,[json.dumps(s)]);assert not alive,alive;cleanup[target]=dict(task=s['task'],phase=s['phase'],live_owned_processes=alive)
 atomic(E/'packages.json',packages)
-atomic(E/'final-audit.json',dict(frozen_refs_unchanged=len(frozen),core_and_observer_unchanged_since_v01=True,markdown_links='pass',no_generated_data_tracked=True,package_manifests_and_archives='pass',private_sdk_maps='pass',cleanup=cleanup))
+atomic(E/'final-audit.json',dict(status='pass',frozen_refs_unchanged=len(frozen),core_and_observer_unchanged_since_v01=True,markdown_links='pass',no_generated_data_tracked=True,package_manifests_and_archives='pass',private_sdk_maps='pass',cleanup=cleanup))
 print('V0.2 FINAL AUDIT PASSED')

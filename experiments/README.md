@@ -9,3 +9,5 @@
 运行中只轮询摘要；大文件和原文日志按配置回收、校验。输入数据归 data，构建归 build，最终包归 releases；生成结果不提交 Git
 
 已验收的完整回放为 `euroc-final/host/002/` 和 `euroc-final/board/002/`。故障/取消任务独立保留，不混入成功统计，小型记录见 evidence/v0.1
+
+新 v0.2 运动数据在 `field-motion-v02/board/001/raw/`，约1.27GB、三卷；对应双端离线回放在 `field-motion-replay-v02/{host/002,board/001}/`。硬件选项短测与 SDK/退出失败分别保留，小型证据见 evidence/hardware-v02

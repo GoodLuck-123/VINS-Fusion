@@ -1,0 +1,24 @@
+{
+  "host": {
+    "id": "b1e716cee0a1289f",
+    "install": "/home/eric/projects/VINS-Fusion/releases/v0.2.0/host/b1e716cee0a1289f/install",
+    "archive": "/home/eric/projects/VINS-Fusion/releases/v0.2.0/host/b1e716cee0a1289f/vins-x86_64-0.2.0.tar.gz",
+    "sha256": "8bccfb46893d9a61fe27891aca531b80878426c7853e62b1ebb53303296e227a",
+    "architecture": "x86_64",
+    "files": 4523,
+    "input_fingerprint": "c87366e073529659d84359697b529bb9a0b592370334836423a551dad9954cc4",
+    "manifest_verified_files": 4523,
+    "runtime_source_commit": "97b5515640c29361a9eeb4b818033d1c683f07b9"
+  },
+  "board": {
+    "id": "802ecb78f1287171",
+    "install": "/home/eric/projects/VINS-Fusion/releases/v0.2.0/rk3588/802ecb78f1287171/install",
+    "archive": "/home/eric/projects/VINS-Fusion/releases/v0.2.0/rk3588/802ecb78f1287171/vins-aarch64-0.2.0.tar.gz",
+    "sha256": "68cae69d5a0ecdd9bccb0243a095c4270c91bb7eee60ec67c3930ef173b1ba24",
+    "architecture": "aarch64",
+    "files": 4385,
+    "input_fingerprint": "c87366e073529659d84359697b529bb9a0b592370334836423a551dad9954cc4",
+    "manifest_verified_files": 4385,
+    "runtime_source_commit": "97b5515640c29361a9eeb4b818033d1c683f07b9"
+  }
+}

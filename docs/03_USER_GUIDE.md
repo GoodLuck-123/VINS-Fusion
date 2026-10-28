@@ -2,7 +2,7 @@
 
 ## Quick Start
 
-在主机仓库根目录复制唯一模板。当前模板对应板上的 FLIR 单目＋GNW IMU，保留 IMU→相机 Line0 硬触发、2×2 合并与旧安装标定初值。v0.2 正在真机验收；已验收的 v0.1 播包记录见第 04 份文档
+在主机仓库根目录复制唯一模板。当前模板对应板上的 FLIR 单目＋GNW IMU，保留 IMU→相机 Line0 硬触发、2×2 合并与旧安装标定初值。v0.2 验收/准确包见第05份文档；旧 v0.1 播包记录见第04份文档
 
 ```bash
 cp project.example.yaml field.yaml
@@ -27,7 +27,7 @@ cp project.example.yaml field.yaml
 
 主机交叉构建并携带私有 Python、ROS、C++ 库和 Spinnaker 用户态 SDK。板端只解包，不执行 apt/pip、厂商安装脚本，也不借用 `/opt/ros`、`/opt/spinnaker` 或旧 devel 环境。SDK 归档须先放入 `cache/archives`，来源及 SHA256 见第 05 份文档；闭源 SDK 不能从 Git clone 中取得
 
-最终交付是 `releases/v0.2.0/rk3588/<包指纹>/install/` 及同目录 tar.gz、SHA256SUMS；最新准确路径在 `releases/board.json`。host 包在同版本的 host 下。`build/` 是中间构建，`cache/` 是可重建环境，不能拿它们上板
+最终交付是 `releases/v0.2.0/rk3588/<包指纹>/install/` 及同目录 tar.gz、SHA256SUMS；最新准确路径在 `releases/board.json`。host 包在同版本的 host 下，主机直接使用该目录而不重复解包。`build/` 是中间构建，`cache/` 是可重建环境，不能拿它们上板
 
 ```text
 ~/vins-workspace/
@@ -49,7 +49,7 @@ cp project.example.yaml field.yaml
 | 参数 | 选项与用途 |
 | --- | --- |
 | serial | 设备序列号，默认 `25162247`，避免多相机时选错 |
-| binning | `1` 不合并、`2` 为 2×2；默认 2，改变后核对标定 |
+| binning | `1` 不合并、`2` 为 2×2；默认 2，改变后核对标定；1×1短测仅约2Hz，不作为20Hz默认配置 |
 | crop | 合并后原图上的 `[x,y,width,height]`；默认 `[256,128,512,512]` 中心裁剪 |
 | trigger | `hardware`：IMU→Line0；`software`：SDK 定时触发；`continuous`：自由运行 |
 | fps | 仅控制 software/continuous；hardware 的脉冲频率由 IMU 硬件决定 |

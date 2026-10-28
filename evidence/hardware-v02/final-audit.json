@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "frozen_refs_unchanged": 46,
+  "core_and_observer_unchanged_since_v01": true,
+  "markdown_links": "pass",
+  "no_generated_data_tracked": true,
+  "package_manifests_and_archives": "pass",
+  "private_sdk_maps": "pass",
+  "cleanup": {
+    "host": {
+      "task": "field-motion-replay-v02/002",
+      "phase": "completed",
+      "live_owned_processes": []
+    },
+    "board": {
+      "task": "field-motion-replay-v02/001",
+      "phase": "completed",
+      "live_owned_processes": []
+    }
+  }
+}

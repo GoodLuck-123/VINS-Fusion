@@ -6,7 +6,7 @@
 
 ## 目录
 
-`board.json` / `host.json` 记录最新产物准确路径。最终文件位于 `v0.1.0/rk3588/<包指纹>/` 或 `v0.1.0/host/<包指纹>/`，包含完整 install/、tar.gz、package.json 和 SHA256SUMS
+`board.json` / `host.json` 记录最新产物准确路径。最终文件位于 `v0.2.0/rk3588/<包指纹>/` 或 `v0.2.0/host/<包指纹>/`，包含完整 install/、tar.gz、package.json 和 SHA256SUMS
 
 部署整个 install，不单独取 bin。手动运行前 `source /实际路径/install/env.sh`，板端无需安装 ROS/Python 包。硬件/ABI 兼容边界及完整流程见 docs/03_USER_GUIDE.md
 

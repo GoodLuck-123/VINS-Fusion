@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT),str(ROOT/'runtime')]
 from common import load,atomic
 from cli import run,control,rpc,collect,follow
-c=load(ROOT/'field.yaml');c['_host']=False;c['results']['raw_data']='on_request';evidence=ROOT/'evidence/hardware-v02';rows=[]
+c=load(ROOT/'project.example.yaml');c['_host']=False;c['results']['raw_data']='on_request';evidence=ROOT/'evidence/hardware-v02';rows=[]
 def capture(name,change=None,maps=False):
     conf=copy.deepcopy(c);conf['run'].update(name=name,duration_s=30 if maps else 4)
     if change:change(conf['inputs']['camera']['device'])
