@@ -56,3 +56,5 @@ VINS 基线为原生 `be55a937a57436548ddfb1bd324bc1e9a9e828e0`。仅改 rosNode
 - 主机 euroc-mono/001：缺少 catkin 前缀标记，rosout 查找失败；补齐标记与必要可执行文件检查
 - 主机 euroc-mono/002：rosbag 动态插件不在 ELF DT_NEEDED 闭包中，读取 bag 失败；显式打包 pluginlib 声明的库，FATAL 作为失败信号，避免退出 0 但无数据时长等收尾
 - 旧候选发布 completed 早于日志归档和 files.json，首次 pull 遇到清单尚未出现；改为归档和清单完成后再发布最终状态，旧任务直接补收，不重跑算法
+
+- 短回放发现本 bag 的 chunk 起点为 1403636579.8092628，连接索引最早记录为 1403636578.946206。Python bag.get_start_time 使用 chunk，而 rosbag::View 播放器使用全连接索引；统一到索引起点计算 start/duration 和目标末帧，未改数据或放宽阈值。实现依据为 [ROS 官方播放器源码](https://github.com/ros/ros_comm/blob/noetic-devel/tools/rosbag/src/player.cpp)，并用 15/30 秒实际回放回归

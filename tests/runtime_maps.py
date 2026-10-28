@@ -21,6 +21,6 @@ out=rpc(c,code,[json.dumps(s)]);install=s['install'];bad=[]
 for name,row in out['processes'].items():
  for p in row['maps']:
   if not p.startswith(install+'/') and ('.so' in p or p.startswith('/opt/')):
-   if not Path(p).name.startswith(('libc.','libm.','libpthread.','libdl.','librt.','libresolv.','libutil.','libnss_','ld-','ld-linux','libanl.')):bad.append((name,p))
+   if not Path(p).name.startswith(('libc.','libc-','libm.','libm-','libpthread.','libpthread-','libdl.','libdl-','librt.','librt-','libresolv.','libresolv-','libutil.','libutil-','libnss_files','libnss_dns','ld-','ld-linux','libanl.','libanl-')):bad.append((name,p))
 assert not bad,bad
 atomic(ROOT/'evidence/v0.1'/('runtime-maps-'+sys.argv[1]+'.json'),out);print('PRIVATE RUNTIME MAPS VERIFIED',sys.argv[1])

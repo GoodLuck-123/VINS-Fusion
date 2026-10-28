@@ -131,15 +131,16 @@ def control(c,action,job=None):
 def collect(c):
     ws,install=installed(c);active=rpc(c,"import sys;print(open(sys.argv[1]+'/active.json').read())",[ws]);remote=active['job'];s=control(c,'status')
     if s['phase'] not in ['completed','failed','cancelled']:raise RuntimeError('任务仍在运行，先 stop 或等待结束')
-    target='host' if c.get('_host') else 'board';task=Path(s['task']);dest=Path(c['paths']['experiments'])/task.parent/target/task.name;dest.mkdir(parents=True,exist_ok=True)
-    print('[回收] '+str(dest),flush=True);sync(c,str(dest)+'/',remote+'/',True,c['results']['raw_logs']=='none')
+    submitted=rpc(c,"import sys;print(open(sys.argv[1]+'/project.json').read())",[remote])
+    target='host' if c.get('_host') else 'board';task=Path(s['task']);dest=Path(submitted['paths']['experiments'])/task.parent/target/task.name;dest.mkdir(parents=True,exist_ok=True)
+    print('[回收] '+str(dest),flush=True);sync(c,str(dest)+'/',remote+'/',True,submitted['results']['raw_logs']=='none')
     manifest=json.loads((dest/'files.json').read_text())
     for name,want in manifest.items():
         if digest(dest/name)!=want:raise RuntimeError('回传文件校验失败：'+name)
     atomic(dest/'transfer.json',dict(verified_files=len(manifest),source=remote,task=s['task']))
-    if c['dataset']['ground_truth']:
+    if submitted['dataset']['ground_truth']:
         from evaluate import evaluate
-        try:atomic(dest/'evaluation.json',evaluate(dest/'vio.csv',Path(c['dataset']['ground_truth'])))
+        try:atomic(dest/'evaluation.json',evaluate(dest/'vio.csv',Path(submitted['dataset']['ground_truth'])))
         except (ValueError,OSError) as e:
             atomic(dest/'evaluation.json',dict(status='unavailable',reason=str(e)))
             if s['phase']=='completed':raise RuntimeError('回收已完成，精度评估失败：'+str(e)) from e
@@ -182,7 +183,7 @@ def run(c,background=False):
         if rpc(c,hash_code,[remote])!=sha:raise RuntimeError('数据传输校验失败')
     name=c['run']['name'];job=rpc(c,"import os,sys,json;root=sys.argv[1];os.makedirs(root,exist_ok=True);i=1\nwhile True:\n p=root+'/'+str(i).zfill(3)\n try:os.mkdir(p);break\n except FileExistsError:i+=1\nprint(json.dumps(p))",[ws+'/experiments/'+name])
     submitted=json.loads(json.dumps(c));submitted['dataset']['bag']=remote;submitted.update(_workspace=ws,_task=name+'/'+Path(job).name)
-    taskfile=Path(c['paths']['cache'])/'submitted-project.json';atomic(taskfile,submitted);sync(c,taskfile,job+'/project.json');show(control(c,'start',job))
+    taskfile=Path(c['paths']['cache'])/'submissions'/(hashlib.sha256((ws+'|'+job).encode()).hexdigest()+'.json');atomic(taskfile,submitted);sync(c,taskfile,job+'/project.json');show(control(c,'start',job))
     return 0 if background else follow(c,True)
 
 def main():
@@ -206,8 +207,9 @@ def main():
         control(c,'stop');follow(c,True);return 0
     elif a.cmd=='pull':collect(c)
     else:
-        ws,install=installed(c,True);s=control(c,'status');install=s.get('install',install)
-        text='cd '+shlex.quote(ws+'/projects/vins')+' && source '+shlex.quote(install+'/env.sh')+' && export ROS_MASTER_URI='+shlex.quote(s.get('master_uri','http://127.0.0.1:11311'))+' && exec bash --noprofile --norc'
+        ws,install=installed(c,True);s=control(c,'status')
+        if s['phase'] not in ['idle','completed','failed','cancelled']:install=s.get('install',install)
+        text='cd '+shlex.quote(ws+'/projects/vins')+' && source '+shlex.quote(install+'/env.sh')+' && export ROS_MASTER_URI='+shlex.quote(s.get('master_uri','http://127.0.0.1:11311') if s['phase'] not in ['idle','completed','failed','cancelled'] else 'http://127.0.0.1:11311')+' && exec bash --noprofile --norc'
         call(['bash','-c',text] if c.get('_host') else [*transport(c),'-t',c['board']['target'],text])
     return 0
 if __name__=='__main__':

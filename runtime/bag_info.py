@@ -9,7 +9,9 @@ with rosbag.Bag(d['bag']) as bag:
         if not connections or any(x.datatype!=typ for x in connections):raise ValueError('Missing/wrong topic type: '+topic)
         indexes[topic]=[x for x in bag._get_indexes(connections) if x]
         if not indexes[topic]:raise ValueError('Empty topic: '+topic)
-    start=bag.get_start_time()+d['start_s'];selected_end=max(x[-1].time.to_sec() for lists in indexes.values() for x in lists)
+    # rosbag::View uses connection indexes; chunk start can differ in unordered bags.
+    bag_start=min(index[0].time.to_sec() for index in bag._get_indexes(None) if index)
+    start=bag_start+d['start_s'];selected_end=max(x[-1].time.to_sec() for lists in indexes.values() for x in lists)
     end=min(selected_end,start+d['duration_s']) if d['duration_s'] else selected_end
     if start>=end:raise ValueError('Dataset interval empty or past selected input EOF')
     info={}
