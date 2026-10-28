@@ -27,7 +27,7 @@ def load(path):
     if not path.is_file():raise ValueError('配置不存在：{}；先 cp project.example.yaml {}'.format(path,path.name))
     c=yaml.load(path.read_text(),Loader=Strict)
     try:
-        if c['schema_version']!=1 or c['run']['mode']!='replay':raise ValueError('v0.1 only supports schema 1 / replay')
+        if c['schema_version']!=1 or c['run']['mode'] not in ['replay','sensor']:raise ValueError('Expected schema 1 and run.mode replay/sensor')
         if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,63}',c['run']['name']):raise ValueError('run.name: use letters/digits/._-, 1..64 characters')
         for d in ['run','dataset','monitor','inputs','vins','board','paths','build','results']:
             if not isinstance(c[d],dict):raise ValueError(d+' must be a mapping')
@@ -51,6 +51,26 @@ def load(path):
             if not re.fullmatch(r'/[A-Za-z][A-Za-z0-9_/]*',stream['topic']):raise ValueError('Invalid input topic: '+str(stream['topic']))
             num(stream['expected_hz'],'inputs.*.expected_hz')
         if camera['topic']==imu['topic']:raise ValueError('Input topics must differ')
+        if c['run']['mode']=='sensor':
+            num(c['run']['duration_s'],'run.duration_s')
+            if c['run']['duration_s']>=c['run']['timeout_s']:raise ValueError('run.duration_s must be less than run.timeout_s')
+            hw=camera_settings(c);serial=imu['device'];rec=c['recording']
+            if not re.fullmatch(r'[0-9]+',str(hw['serial'])):raise ValueError('Camera serial must be numeric')
+            for key in ['binning','width','height']:
+                if type(hw[key]) is not int or hw[key]<1:raise ValueError('camera.device.'+key+' must be a positive integer')
+            crop=hw['crop']
+            if len(crop)!=4 or any(type(x) is not int for x in crop) or min(crop[:2])<0 or min(crop[2:])<1 or crop[0]+crop[2]>hw['width'] or crop[1]+crop[3]>hw['height']:raise ValueError('Camera crop outside raw frame')
+            if hw['trigger'] not in ['hardware','software','continuous']:raise ValueError('camera.device.trigger must be hardware/software/continuous')
+            if hw['exposure_auto'] not in ['Off','Continuous']:raise ValueError('camera.device.exposure_auto must be Off/Continuous')
+            num(hw['exposure_us'],'camera.device.exposure.time_us');num(hw['auto_max_us'],'camera.device.exposure.auto_max_us');num(hw['fps'],'camera.device.fps')
+            if not str(serial['port']).startswith('/dev/') or serial['baud']!=115200:raise ValueError('GNW needs a /dev/ path and verified 115200 baud')
+            num(serial['nominal_hz'],'imu.device.nominal_hz')
+            if type(rec['split_mib']) is not int or rec['split_mib']<32:raise ValueError('recording.split_mib must be integer >= 32')
+            topics=[camera['topic'],imu['topic'],hw['raw_topic'],hw['metadata_topic'],serial['raw_topic']]
+            if len(set(topics))!=5 or any(not re.fullmatch(r'/[A-Za-z][A-Za-z0-9_/]*',t) for t in topics):raise ValueError('Hardware topics must be valid and distinct')
+            if type(rec['enabled']) is not bool or not rec['enabled']:raise ValueError('v0.2 sensor tasks require recording.enabled=true')
+            if camera['calibration']['verified_for']=='euroc-cam0':raise ValueError('EuRoC calibration cannot be used for physical hardware')
+        if c['results']['raw_data'] not in ['always','on_request']:raise ValueError('results.raw_data must be always/on_request')
         v=c['vins']
         for k in ['multiple_thread','show_track','flow_back','estimate_td']:
             if type(v[k]) is not int or v[k] not in [0,1]:raise ValueError('vins.'+k+' must be 0 or 1')
@@ -105,8 +125,43 @@ def verify_install(root):
     for name,value in json.loads((root/'files.json').read_text()).items():
         p=root/name
         if not p.is_file() or digest(p)!=value:raise ValueError('Package file missing/corrupt: '+str(p))
-    for p in [root/'bin/vins_node',root/'bin/vins_observer',root/'python/bin/python3',root/'ros/lib/rosout/rosout',root/'ros/lib/rosbag/play']:
-        if not p.is_file() or not os.access(p,os.X_OK):raise ValueError('Required executable missing: '+str(p))
+    required=[root/'bin/vins_node',root/'bin/vins_observer',root/'python/bin/python3',root/'ros/lib/rosout/rosout',root/'ros/lib/rosbag/play']
+    if meta.get('sensors'):required += [root/'bin/vins_camera',root/'bin/vins_imu',root/'ros/lib/rosbag/record',root/'spinnaker/lib/flir-gentl/FLIR_GenTL.cti']
+    for p in required:
+        if not p.is_file() or (p.suffix!='.cti' and not os.access(p,os.X_OK)):raise ValueError('Required executable missing: '+str(p))
         r=subprocess.run(['ldd',str(p)],capture_output=True,text=True)
         if r.returncode or 'not found' in r.stdout:raise ValueError('Shared library failure: '+str(p)+'\n'+r.stdout+r.stderr)
     return meta
+
+
+def check_hardware(c,root):
+    """No device mutation: access and package checks; acquisition occurs in the task."""
+    import subprocess
+    root=Path(root);verify_install(root)
+    if not (root/'bin/vins_camera').is_file():raise ValueError('运行包不含 ARM64 相机/IMU 适配器；重新 build/deploy')
+    port=c['inputs']['imu']['device']['port']
+    if not os.access(port,os.R_OK|os.W_OK):raise ValueError('IMU 设备不存在或权限不足：'+port)
+    # Detect a busy serial device before starting any task-owned process.
+    result=subprocess.run(['fuser',port],capture_output=True,text=True)
+    if result.returncode==0:raise ValueError('IMU 串口已被占用：'+port+' PID '+result.stdout.strip())
+    free=shutil.disk_usage(c['_workspace']).free
+    cam=c['inputs']['camera'];estimated=(camera_settings(c)['width']*camera_settings(c)['height']+cam['width']*cam['height'])*cam['expected_hz']*c['run']['duration_s']*1.15
+    if free<estimated+c['run']['min_free_gib']*2**30:raise ValueError('录包空间不足：估计 {:.2f} GiB，另需保留 {:.2f} GiB'.format(estimated/2**30,c['run']['min_free_gib']))
+    return dict(serial=port,free_bytes=free,estimated_record_bytes=int(estimated),camera_serial=str(camera_settings(c)['serial']),camera_device_access='checked at acquisition')
+
+
+def camera_settings(c):
+    """Only experiment-facing SDK controls are user configurable; remaining policy is fixed."""
+    device=c['inputs']['camera']['device'];binning=device['binning']
+    if type(binning) is not int or binning not in [1,2]:raise ValueError('camera.device.binning must be 1 or 2')
+    if device['exposure']['mode'] not in ['auto','manual']:raise ValueError('camera.device.exposure.mode must be auto/manual')
+    settings=dict(serial=str(device['serial']),binning=binning,width=2048//binning,height=1536//binning,crop=device['crop'],trigger=device['trigger'],fps=device['fps'],exposure_auto='Continuous' if device['exposure']['mode']=='auto' else 'Off',exposure_us=device['exposure']['time_us'],auto_max_us=device['exposure']['auto_max_us'],raw_topic='/usb_camera/raw/image_raw',metadata_topic='/usb_camera/frame_metadata')
+    return settings
+
+
+def dataset_files(c):
+    p=Path(c['dataset']['bag'])
+    paths=sorted(p.glob('*.bag')) if p.is_dir() else [p]
+    if not paths or any(not x.is_file() for x in paths):raise ValueError('数据集不存在或目录没有 .bag：'+str(p))
+    if p.is_dir() and list(p.glob('*.active')):raise ValueError('数据目录含未正常关闭的 .active bag：'+str(p))
+    return paths

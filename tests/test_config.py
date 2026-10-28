@@ -5,7 +5,7 @@ import yaml
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'runtime'))
 from common import load,effective
 class ConfigTests(unittest.TestCase):
-    def setUp(self):self.source=yaml.safe_load((ROOT/'project.example.yaml').read_text())
+    def setUp(self):self.source=yaml.safe_load((ROOT/'tests/fixtures/euroc.yaml').read_text())
     def check_rejected(self,change):
         c=copy.deepcopy(self.source)
         for key in ['cache','build','releases']:c['paths'][key]=str(ROOT/key)
@@ -14,10 +14,13 @@ class ConfigTests(unittest.TestCase):
             p=Path(d)/'project.yaml';p.write_text(yaml.safe_dump(c))
             with self.assertRaises(ValueError):load(p)
     def test_real_transform_direction(self):
-        c=load(ROOT/'project.example.yaml')
+        c=copy.deepcopy(self.source)
+        for key in ['cache','build','releases']:c['paths'][key]=str(ROOT/key)
         with tempfile.TemporaryDirectory() as d:
             effective(c,Path(d));s=(Path(d)/'vins.yaml').read_text()
             self.assertIn('0.00981073058949',s);self.assertNotIn('-0.00981073058949',s)
+    def test_hardware_template(self):
+        c=load(ROOT/'project.example.yaml');self.assertEqual(c['run']['mode'],'sensor');self.assertEqual(c['inputs']['camera']['device']['trigger'],'hardware')
     def test_bad_rate(self):self.check_rejected(lambda c:c['dataset'].update(rate=float('nan')))
     def test_bad_start(self):self.check_rejected(lambda c:c['dataset'].update(start_s=float('nan')))
     def test_monitor_flag(self):self.check_rejected(lambda c:c['monitor'].update(enabled='yes'))

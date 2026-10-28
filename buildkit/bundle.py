@@ -2,6 +2,7 @@
 import json,os,re,shutil,subprocess,tarfile,hashlib
 from pathlib import Path
 from fetch import ROOT,sha,obtain,CACHE
+VERSION='0.2.0'
 SYSTEM={'libc.so.6','libm.so.6','libpthread.so.0','libdl.so.2','librt.so.1','libresolv.so.2','libutil.so.1','libanl.so.1','libnss_files.so.2','libnss_dns.so.2','ld-linux-aarch64.so.1','ld-linux-x86-64.so.2'}
 
 def copytree(src,dest):
@@ -56,15 +57,27 @@ def bundle(target):
     shutil.copy2(ros/'lib/librosbag_default_encryption_plugins.so',out/'ros/lib/librosbag_default_encryption_plugins.so')
     stage=Path(meta['stage'])
     shutil.copy2(stage/'lib/vins/vins_node',out/'bin/vins_node');shutil.copy2(work/'observer/vins_observer',out/'bin/vins_observer')
+    hardware=None
+    if not native:
+        hardware=json.loads((ROOT/'build/hardware/current.json').read_text())
+        if hardware['core_fingerprint']!=meta['source_fingerprint']:raise RuntimeError('Sensor adapters must be rebuilt against current core')
+        for name in ['vins_camera','vins_imu']:shutil.copy2(Path(hardware['stage'])/name,out/'bin'/name)
+        vendor=Path(hardware['sdk'])
+        # The CTI is loaded via dlopen, absent from libSpinnaker's DT_NEEDED.
+        copytree(vendor/'lib/flir-gentl',out/'spinnaker/lib/flir-gentl')
     copytree(ROOT/'runtime',out/'runtime')
     (out/'bin/vins').write_text('#!/usr/bin/env bash\nset -e\nroot=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)\nsource "$root/env.sh"\nexec python3 "$root/runtime/local.py" "$@"\n');(out/'bin/vins').chmod(0o755)
     (out/'env.sh').write_text('''#!/usr/bin/env bash
 export VINS_INSTALL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-unset PYTHONPATH PYTHONHOME ROS_PACKAGE_PATH AMENT_PREFIX_PATH CMAKE_PREFIX_PATH ROS_HOSTNAME VIRTUAL_ENV
+unset PYTHONPATH PYTHONHOME ROS_PACKAGE_PATH AMENT_PREFIX_PATH CMAKE_PREFIX_PATH ROS_HOSTNAME VIRTUAL_ENV GENICAM_GENTL64_PATH FLIR_GENTL64_CTI
 export PYTHONNOUSERSITE=1 PYTHONHOME="$VINS_INSTALL_ROOT/python"
 export PYTHONPATH="$VINS_INSTALL_ROOT/ros/lib/python3/dist-packages:$VINS_INSTALL_ROOT/python-extra"
 export PATH="$VINS_INSTALL_ROOT/bin:$VINS_INSTALL_ROOT/python/bin:$VINS_INSTALL_ROOT/ros/bin:/usr/bin:/bin"
 export LD_LIBRARY_PATH="$VINS_INSTALL_ROOT/lib:$VINS_INSTALL_ROOT/ros/lib"
+if [ -d "$VINS_INSTALL_ROOT/spinnaker" ]; then
+  export GENICAM_GENTL64_PATH="$VINS_INSTALL_ROOT/spinnaker/lib/flir-gentl"
+  export FLIR_GENTL64_CTI="$GENICAM_GENTL64_PATH/FLIR_GenTL.cti"
+fi
 export CMAKE_PREFIX_PATH="$VINS_INSTALL_ROOT/ros" ROS_PACKAGE_PATH="$VINS_INSTALL_ROOT/ros/share"
 export ROS_ROOT="$VINS_INSTALL_ROOT/ros/share/ros" ROS_ETC_DIR="$VINS_INSTALL_ROOT/ros/etc/ros"
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
@@ -72,6 +85,7 @@ export ROS_DISTRO=noetic ROS_VERSION=1 ROS_PYTHON_VERSION=3 ROS_IP=127.0.0.1
 ''')
     dirs=[stage/'lib',legacy/'lib',ros/'lib',sdk/'lib']
     if not native:dirs += [sdk/'usr/lib/aarch64-linux-gnu',sdk/'lib/aarch64-linux-gnu',sdk/'usr/lib/aarch64-linux-gnu/blas',sdk/'usr/lib/aarch64-linux-gnu/lapack']
+    if hardware:dirs.insert(0,Path(hardware['sdk'])/'lib')
     pending=[]
     for p in out.rglob('*'):
         if p.is_file() and elf(p):pending.extend(needed(p))
@@ -95,16 +109,17 @@ export ROS_DISTRO=noetic ROS_VERSION=1 ROS_PYTHON_VERSION=3 ROS_IP=127.0.0.1
     for name in ['opencv','ceres','eigen','vision_opencv']:
         for p in (ROOT/'third_party'/name).glob('*'):
             if p.is_file() and p.name.upper().startswith(('LICENSE','COPYING')):shutil.copy2(p,out/'licenses'/(name+'-'+p.name))
-    release=dict(version='0.1.0',architecture=arch,build=meta,platform_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),system_libraries=sorted(SYSTEM))
+    if hardware:copytree(Path(hardware['sdk'])/'licenses',out/'licenses/spinnaker')
+    release=dict(version=VERSION,sensors=hardware,architecture=arch,build=meta,platform_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),system_libraries=sorted(SYSTEM))
     (out/'release.json').write_text(json.dumps(release,indent=2)+'\n')
     manifest={str(p.relative_to(out)):sha(p) for p in sorted(out.rglob('*')) if p.is_file()}
     (out/'files.json').write_text(json.dumps(manifest,indent=2)+'\n')
     ident=hashlib.sha256(json.dumps(manifest,sort_keys=True).encode()).hexdigest()[:16]
-    dest=ROOT/'releases/v0.1.0'/('host' if native else 'rk3588')/ident
+    dest=ROOT/('releases/v'+VERSION)/('host' if native else 'rk3588')/ident
     dest.mkdir(parents=True,exist_ok=True)
     final=dest/'install'
     if not final.exists():shutil.copytree(out,final)
-    archive=dest/('vins-'+arch+'-0.1.0.tar.gz')
+    archive=dest/('vins-'+arch+'-'+VERSION+'.tar.gz')
     with tarfile.open(archive,'w:gz') as t:t.add(final,arcname='install')
     record=dict(id=ident,install=str(final),archive=str(archive),sha256=sha(archive),architecture=arch,files=len(manifest))
     (dest/'package.json').write_text(json.dumps(record,indent=2)+'\n');(dest/'SHA256SUMS').write_text(record['sha256']+'  '+archive.name+'\n')

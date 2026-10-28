@@ -1,97 +1,127 @@
-# 唯一用户配置模板，schema_version=1；v0.1 播包入口
-# 新项目：cp project.example.yaml project.yaml；另命名时使用 ./vins -c NAME.yaml ...
-# 当前数值仅对应 EuRoC 单目+IMU，不可直接套用到板上真实相机
+# 唯一用户配置：cp project.example.yaml field.yaml；./vins -c field.yaml run
+# sensor=真实硬件；replay=离线播包（填写 dataset.bag，复用同段数据的标定）
+# run.duration_s 为采集秒数；timeout_s 为整个任务上限，含启动/排空
+# 标定是旧安装的初值，尚不代表新软件链的精度验收
 schema_version: 1
-
 board:
   target: firefly@192.168.1.51
   ssh_port: 22
   workspace: ~/vins-workspace
-  # null 使用 OpenSSH 已配置身份；密码不进入本文件
   identity_file: null
-
 build:
   jobs: 4
-
 paths:
-  # 主机相对路径均相对于本配置文件，非调用者临时工作目录
-  # cache/build/releases 固定为本仓库对应目录；外部配置请写绝对路径
   cache: cache
   build: build
   releases: releases
   experiments: experiments
-
 run:
-  mode: replay                 # v0.1 仅 replay；sensor 到 v0.2 再实现
-  name: euroc-mono
+  mode: sensor
+  name: field-vio
   timeout_s: 600
   startup_timeout_s: 30
   drain_timeout_s: 120
   shutdown_timeout_s: 15
   min_free_gib: 4
-
+  duration_s: 60
 dataset:
   bag: data/euroc/MH_01_easy.bag
   rate: 1.0
   start_s: 0
-  duration_s: null             # null 回放到数据结束
-  ground_truth: null           # 可选真值文件；不影响无真值回放
-
+  duration_s: null
+  ground_truth: null
 inputs:
-  # 采集接口、串口/触发/曝光等在 v0.2 扩充本模板；不维护另一份硬件配置
   camera:
-    topic: /cam0/image_raw
-    expected_hz: 20.0          # 观察基准，不用于重写时间戳或强制丢帧
+    topic: /usb_camera/gray/image_raw
+    expected_hz: 20.0
     encoding: mono8
-    width: 752
-    height: 480
+    width: 512
+    height: 512
     calibration:
-      verified_for: euroc-cam0
-      model: MEI
-      xi: 3.6313355285286337
-      distortion: {k1: 1.1757726639872075, k2: 15.491281051140213, p1: -0.0008123717295455049, p2: 0.0006729768403031024}
-      projection: {gamma1: 2.1387619122017772e+03, gamma2: 2.1315886210259278e+03, u0: 3.6119856633263799e+02, v0: 2.4827644773395667e+02}
+      verified_for: flir-25162247-binning2-center512-historical
+      model: PINHOLE
+      distortion:
+        k1: 0.044568
+        k2: -0.038952
+        p1: -0.000865
+        p2: -4.4e-05
+      projection:
+        fx: 490.69074
+        fy: 490.65532
+        cx: 257.27195
+        cy: 260.70489
+    # SDK 仅开放以下实验参数，其余固定：Mono8、增益0、Gamma关闭、黑电平0、无抽样
+    device:
+      serial: '25162247'
+      binning: 2                 # 1=不合并，2=2×2；改变后须重新核对标定
+      # 合并后的原图上 [x,y,width,height]；默认中心512×512，再匹配上方输出尺寸
+      crop:
+      - 256
+      - 128
+      - 512
+      - 512
+      trigger: hardware          # hardware=IMU→Line0，software=SDK定时软触发，continuous=自由运行
+      fps: 20.0                  # 只控制 software/continuous；hardware 由 IMU 实际脉冲决定
+      exposure:
+        mode: auto               # auto=自动曝光，manual=固定曝光
+        time_us: 10000.0         # manual 生效，微秒
+        auto_max_us: 20000.0     # auto 生效，限制运动拖影，微秒
   imu:
-    enabled: true              # v0.1 仅支持单目+IMU，必须 true
-    topic: /imu0
-    expected_hz: 200.0         # EuRoC 基准；不代表真实 GNW 输出频率
+    enabled: true
+    topic: /gnw_imu/data
+    expected_hz: 100.0
     acceleration_unit: m/s^2
     angular_velocity_unit: rad/s
-
+    device:
+      port: /dev/ttyS7
+      baud: 115200
+      nominal_hz: 200
+      raw_topic: /gnw_imu/serial_raw
 vins:
-  # v0.1 固定单目+IMU、开环；num_of_cam=1 由适配器生成
   multiple_thread: 1
   max_cnt: 150
   min_dist: 30
   F_threshold: 1.0
-  show_track: 1               # 发布跟踪图，不会启动 RViz；按需要关闭
+  show_track: 1
   flow_back: 1
-  max_solver_time: 0.04       # 秒；不是毫秒
-  max_num_iterations: 8
+  max_solver_time: 0.08          # 秒
+  max_num_iterations: 10
   keyframe_parallax: 10.0
-  acc_n: 0.1
-  gyr_n: 0.01
-  acc_w: 0.001
-  gyr_w: 0.0001
+  acc_n: 0.30624429
+  gyr_n: 0.0076976367516
+  acc_w: 2.16072167e-05
+  gyr_w: 6.43825076e-07
   g_norm: 9.81007
-  estimate_extrinsic: 0        # 上游 0 固定、1 基于初值优化、2 无初值估计；须校验适用模式
-  # T_imu_camera：相机坐标点变换到 IMU 坐标，平移单位 m
+  estimate_extrinsic: 1
   body_T_cam0:
-    - [0.0148655429818, -0.999880929698, 0.00414029679422, -0.0216401454975]
-    - [0.999557249008, 0.0149672133247, 0.025715529948, -0.064676986768]
-    - [-0.0257744366974, 0.00375618835797, 0.999660727178, 0.00981073058949]
-    - [0.0, 0.0, 0.0, 1.0]
-  estimate_td: 0
-  td: 0.0                     # 秒；图像时间 + td 对应 IMU 时间
-
+  - - -0.9995259778949446
+    - 0.030493264351484684
+    - -0.004240323377392647
+    - -0.009224791523835678
+  - - 0.0034853556686375887
+    - -0.024769179444511607
+    - -0.9996871210761437
+    - -0.023804613937617278
+  - - -0.030588752982386926
+    - -0.9992280263177348
+    - 0.024651158434168114
+    - -0.014649622967390382
+  - - 0
+    - 0
+    - 0
+    - 1
+  estimate_td: 1
+  td: 0.0                       # 秒，图像时间+td对应IMU时间
 monitor:
-  enabled: true               # 关闭仅用于开销对照，轨迹和退出校验仍执行
+  enabled: true
   refresh_s: 2.0
   first_message_timeout_s: 15.0
   input_stall_s: 5.0
   repeat_notice_s: 10.0
-
 results:
   collect: true
-  raw_logs: compressed        # 结束时归档；运行中仅轮询摘要
-  raw_data: on_request        # v0.2 实采再扩展录包策略
+  raw_logs: compressed
+  raw_data: always              # always=自动收回bag；on_request=仅 pull --raw 时收回
+recording:
+  enabled: true
+  split_mib: 512

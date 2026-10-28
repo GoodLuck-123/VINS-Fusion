@@ -9,7 +9,7 @@ def call(args,**kw):
 
 def fingerprint():
     paths=[ROOT/'buildkit'/n for n in ['build.py','sources.lock.json','aarch64.cmake','native_cmake_overrides.cmake','opencv4_legacy_compat.h','locks/ros1-sdk.json','locks/toolchain.json','locks/host-linux-64.txt']]
-    for d in ['runtime/observer','camera_models','vins_estimator','third_party']:
+    for d in ['runtime/observer','camera_models','vins_estimator','third_party/opencv','third_party/ceres','third_party/eigen','third_party/vision_opencv']:
         paths += [p for p in (ROOT/d).rglob('*') if p.is_file() and '__pycache__' not in p.parts]
     return hashlib.sha256(json.dumps({str(p.relative_to(ROOT)):sha(p) for p in sorted(paths)},sort_keys=True).encode()).hexdigest()[:16]
 

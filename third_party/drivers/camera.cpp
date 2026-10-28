@@ -27,12 +27,12 @@ int main(int argc,char** argv) {
     ros::init(argc,argv,"vins_camera");ros::NodeHandle n,p("~");
     SystemPtr system;CameraList cameras;CameraPtr camera;bool initialized=false,acquiring=false;int result=0;
     try {
-        std::string serial,topic,raw,metadata,trigger,exposure_auto;int width,height,binning,ow,oh,x,y,cw,ch;double fps,exposure;
+        std::string serial,topic,raw,metadata,trigger,exposure_auto;int width,height,binning,ow,oh,x,y,cw,ch;double fps,exposure,auto_max;
         p.param<std::string>("serial",serial,"25162247");p.param<std::string>("topic",topic,"/usb_camera/gray/image_raw");
         p.param<std::string>("raw_topic",raw,"/usb_camera/raw/image_raw");p.param<std::string>("metadata_topic",metadata,"/usb_camera/frame_metadata");
         p.param("width",width,1024);p.param("height",height,768);p.param("binning",binning,2);
         p.param("output_width",ow,512);p.param("output_height",oh,512);p.param("crop_x",x,256);p.param("crop_y",y,128);p.param("crop_width",cw,512);p.param("crop_height",ch,512);
-        p.param<std::string>("trigger",trigger,"Line0");p.param("fps",fps,20.);p.param<std::string>("exposure_auto",exposure_auto,"Continuous");p.param("exposure_us",exposure,10000.);
+        p.param<std::string>("trigger",trigger,"hardware");p.param("fps",fps,20.);p.param<std::string>("exposure_auto",exposure_auto,"Continuous");p.param("exposure_us",exposure,10000.);p.param("auto_max_us",auto_max,20000.);
         if(x<0||y<0||cw<1||ch<1||x+cw>width||y+ch>height||ow<1||oh<1)throw std::runtime_error("Camera crop outside raw frame");
         auto pub=n.advertise<sensor_msgs::Image>(topic,4);auto rawpub=n.advertise<sensor_msgs::Image>(raw,4);
         auto info=n.advertise<std_msgs::UInt64MultiArray>(metadata,100);
@@ -45,17 +45,24 @@ int main(int argc,char** argv) {
         integer(map,"Width",8);integer(map,"Height",6);
         integer(map,"BinningHorizontal",binning);integer(map,"BinningVertical",binning);
         integer(map,"Width",width);integer(map,"Height",height);
+        integer(map,"DecimationHorizontal",1);integer(map,"DecimationVertical",1);
+        enumeration(map,"GainAuto","Off");CFloatPtr gain=map.GetNode("Gain");gain->SetValue(0.);
+        CBooleanPtr gamma=map.GetNode("GammaEnable");if(IsWritable(gamma))gamma->SetValue(false);
+        CFloatPtr black=map.GetNode("BlackLevel");if(IsWritable(black))black->SetValue(0.);
         enumeration(map,"PixelFormat","Mono8");enumeration(map,"AcquisitionMode","Continuous");
         enumeration(map,"ExposureAuto",exposure_auto);
+        if(exposure_auto=="Continuous") {CFloatPtr node=map.GetNode("AutoExposureExposureTimeUpperLimit");if(!IsWritable(node)||auto_max<node->GetMin()||auto_max>node->GetMax())throw std::runtime_error("Invalid automatic exposure upper limit");node->SetValue(auto_max);}
         if(exposure_auto=="Off") {CFloatPtr node=map.GetNode("ExposureTime");if(!IsWritable(node)||exposure<node->GetMin()||exposure>node->GetMax())throw std::runtime_error("Invalid camera exposure_us");node->SetValue(exposure);}
         CBooleanPtr rate=map.GetNode("AcquisitionFrameRateEnable");
         if(!IsWritable(rate))throw std::runtime_error("Camera frame rate control unavailable");
-        rate->SetValue(trigger=="Off");
-        if(trigger=="Off") {CFloatPtr node=map.GetNode("AcquisitionFrameRate");if(!IsWritable(node)||fps<node->GetMin()||fps>node->GetMax())throw std::runtime_error("Invalid camera fps");node->SetValue(fps);}
-        else {enumeration(map,"TriggerSelector","FrameStart");enumeration(map,"TriggerSource",trigger);enumeration(map,"TriggerMode","On");}
+        rate->SetValue(trigger=="continuous");
+        if(trigger=="continuous") {CFloatPtr node=map.GetNode("AcquisitionFrameRate");if(!IsWritable(node)||fps<node->GetMin()||fps>node->GetMax())throw std::runtime_error("Invalid camera fps");node->SetValue(fps);}
+        else {enumeration(map,"TriggerSelector","FrameStart");enumeration(map,"TriggerSource",trigger=="hardware"?"Line0":"Software");enumeration(map,"TriggerMode","On");}
         ROS_INFO("Camera serial=%s binning=%d raw=%dx%d crop=(%d,%d,%d,%d) output=%dx%d trigger=%s; timestamps=host receive, metadata retains device ns/frame ID",serial.c_str(),binning,width,height,x,y,cw,ch,ow,oh,trigger.c_str());
-        camera->BeginAcquisition();acquiring=true;uint32_t seq=0;
+        camera->BeginAcquisition();acquiring=true;uint32_t seq=0;ros::WallRate software_rate(fps);
+        ROS_INFO("Camera acquisition armed");
         while(ros::ok()) {
+            if(trigger=="software") {software_rate.sleep();CCommandPtr command=map.GetNode("TriggerSoftware");command->Execute();}
             ImagePtr image;
             try {image=camera->GetNextImage(500);}
             catch(const Spinnaker::Exception& e){if(e.GetError()==SPINNAKER_ERR_TIMEOUT){ROS_WARN_THROTTLE(5,"Camera waiting for frame/trigger");continue;}throw;}
