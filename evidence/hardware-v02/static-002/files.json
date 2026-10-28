@@ -1,0 +1,10 @@
+{
+  "camera.yaml": "2810c44e7a9ecdba3ada0e0ea9bb778838578a9f70ea8d4a6eb6c13793e96863",
+  "events.jsonl": "6ddf3718c2cc6c6d27dde3b5117751d524ee03bef25fc9688786feb7df8ade1e",
+  "logs.tar.gz": "3e85585e44b2dfe77f3911ab82df88b34c05e9071e33e8fac55ec3c9eadb26dd",
+  "observation.json": "a1a367371e3165ca0032d62274a6dd3be0a1fa38e60a2ba8b38ead868e5c9d57",
+  "project.json": "f2145ecebfe2a539b46cb2c6ed7c4fb3c9b3ec3c4ffcfc1caa45a5e25d2698df",
+  "raw/capture_0.bag": "fcb1ccec1663a0a7ed60911f315b2f34c7665e48878dc72dce9fe6ffc9190227",
+  "recording.json": "d8dc11f2d4bf0167a731166685106bd77f1ec23e1b64eb73d0b3581d9f555ad6",
+  "vins.yaml": "3d101129f016ec77fbd6714b0f1bfba894b0c9a05c0324d43cf32028e1c6f860"
+}

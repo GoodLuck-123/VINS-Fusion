@@ -106,7 +106,7 @@ def supervise(job,install):
             topics=inputs+[hw['raw_topic'],hw['metadata_topic'],im['raw_topic']]
             launch('recorder',['rosbag','record','--buffsize','256','--split','--size',c['recording']['split_mib'],'-O',raw/'capture',*topics,'__name:=vins_recorder'])
             until(lambda:all('/vins_recorder' in dict(master.getSystemState('/vins_platform')[2][1]).get(t,[]) for t in topics),c['run']['startup_timeout_s'],'recorder subscriptions')
-            params=dict(serial=hw['serial'],topic=inputs[0],raw_topic=hw['raw_topic'],metadata_topic=hw['metadata_topic'],width=hw['width'],height=hw['height'],binning=hw['binning'],output_width=cam['width'],output_height=cam['height'],crop_x=hw['crop'][0],crop_y=hw['crop'][1],crop_width=hw['crop'][2],crop_height=hw['crop'][3],trigger=hw['trigger'],fps=hw['fps'],auto_max_us=hw['auto_max_us'],exposure_auto=hw['exposure_auto'],exposure_us=hw['exposure_us'])
+            params=dict(minimum_subscribers=2 if record_only else 3,serial=hw['serial'],topic=inputs[0],raw_topic=hw['raw_topic'],metadata_topic=hw['metadata_topic'],width=hw['width'],height=hw['height'],binning=hw['binning'],output_width=cam['width'],output_height=cam['height'],crop_x=hw['crop'][0],crop_y=hw['crop'][1],crop_width=hw['crop'][2],crop_height=hw['crop'][3],trigger=hw['trigger'],fps=hw['fps'],auto_max_us=hw['auto_max_us'],exposure_auto=hw['exposure_auto'],exposure_us=hw['exposure_us'])
             camera_process=launch('camera',[install/'bin/vins_camera',*['_'+k+':='+str(v) for k,v in params.items()]])
             # Wait for acquisition to be armed before starting the IMU reader.
             # The IMU's physical trigger generator is independent of UART reading.

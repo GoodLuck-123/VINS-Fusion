@@ -1,0 +1,42 @@
+{
+  "bags": [
+    "capture_0.bag"
+  ],
+  "counts": {
+    "/usb_camera/gray/image_raw": 409,
+    "/gnw_imu/data": 2101,
+    "/usb_camera/raw/image_raw": 409,
+    "/usb_camera/frame_metadata": 409,
+    "/gnw_imu/serial_raw": 4198
+  },
+  "timestamps": {
+    "/usb_camera/raw/image_raw": {
+      "first_ns": 1790075097547526785,
+      "last_ns": 1790075117947978418
+    },
+    "/usb_camera/gray/image_raw": {
+      "first_ns": 1790075097547526785,
+      "last_ns": 1790075117947978418
+    },
+    "/gnw_imu/data": {
+      "first_ns": 1790075098244595647,
+      "last_ns": 1790075119244406882
+    }
+  },
+  "dimensions": {
+    "/usb_camera/raw/image_raw": [
+      1024,
+      768,
+      "mono8"
+    ],
+    "/usb_camera/gray/image_raw": [
+      512,
+      512,
+      "mono8"
+    ]
+  },
+  "invalid": 0,
+  "header_clock": "host receive/parse",
+  "camera_trigger": "IMU external Line0",
+  "absolute_accuracy_verified": false
+}

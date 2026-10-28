@@ -42,6 +42,12 @@ def package_fingerprint():
 
 def build(c):
     target='host' if c.get('_host') else 'board';log=Path(c['paths']['build'])/(target+'-build.log');log.parent.mkdir(parents=True,exist_ok=True)
+    from fetch import sources
+    sources()
+    if target=='board':
+        from hardware import prepare
+        prepare()
+    input_fingerprint=package_fingerprint()
     print('[构建] '+target+'；日志 '+str(log),flush=True)
     with log.open('w') as f:
         p=subprocess.Popen(['/usr/bin/python3',str(ROOT/'buildkit/build.py'),'--target',target,'--jobs',str(c['build']['jobs'])],stdout=f,stderr=subprocess.STDOUT)
@@ -56,7 +62,9 @@ def build(c):
         print('[构建] 相机/IMU 适配器',flush=True)
         with log.open('a') as f:call(['/usr/bin/python3',str(ROOT/'buildkit/hardware.py')],stdout=f,stderr=subprocess.STDOUT)
     from bundle import bundle
-    r=bundle(target);r['input_fingerprint']=package_fingerprint();atomic(ROOT/'releases'/(target+'.json'),r);return r
+    r=bundle(target)
+    if package_fingerprint()!=input_fingerprint:raise RuntimeError('构建期间源码发生变化；当前包保留供核查，请重新 build/run，避免部署混合版本')
+    r['input_fingerprint']=input_fingerprint;atomic(ROOT/'releases'/(target+'.json'),r);return r
 
 def ensure(c):
     target='host' if c.get('_host') else 'board';p=ROOT/'releases'/(target+'.json')

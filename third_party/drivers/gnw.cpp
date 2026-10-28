@@ -1,5 +1,8 @@
 #include "gnw_protocol.h"
 #include <ros/ros.h>
+#include <csignal>
+static volatile std::sig_atomic_t running=1;
+static void request_stop(int){running=0;}
 #include <sensor_msgs/Imu.h>
 #include <std_msgs/UInt8MultiArray.h>
 #include <cerrno>
@@ -10,7 +13,7 @@
 #include <stdexcept>
 
 int main(int argc,char** argv) {
-    ros::init(argc,argv,"vins_imu");ros::NodeHandle n,p("~");int fd=-1;
+    ros::init(argc,argv,"vins_imu",ros::init_options::NoSigintHandler);std::signal(SIGINT,request_stop);std::signal(SIGTERM,request_stop);ros::NodeHandle n,p("~");int fd=-1;
     try {
         std::string device,topic,raw;int baud,nominal;
         p.param<std::string>("device",device,"/dev/ttyS7");p.param<std::string>("topic",topic,"/gnw_imu/data");
@@ -27,7 +30,7 @@ int main(int argc,char** argv) {
         auto serial=n.advertise<std_msgs::UInt8MultiArray>(raw,200);
         ROS_INFO("GNW ready %s baud=%d nominal=%d (not a device rate command); header=host parse time, no device clock",device.c_str(),baud,nominal);
         gnw::Parser parser;uint32_t seq=0;uint8_t bytes[1024];
-        while(ros::ok()) {
+        while(ros::ok() && running) {
             pollfd item{fd,POLLIN,0};int ready=poll(&item,1,200);
             if(ready<0) {if(errno==EINTR)continue;throw std::runtime_error("serial poll failed");}
             if(item.revents&(POLLERR|POLLHUP|POLLNVAL))throw std::runtime_error("serial disconnected");
@@ -49,6 +52,6 @@ int main(int argc,char** argv) {
             if(parser.bad_checksum!=old)ROS_WARN_THROTTLE(5,"GNW checksum failures total=%lu",parser.bad_checksum);
             ros::spinOnce();
         }
-        close(fd);return 0;
+        close(fd);ros::WallDuration(.2).sleep();ros::shutdown();return 0;
     }catch(const std::exception& e){ROS_FATAL("%s",e.what());if(fd>=0)close(fd);return 1;}
 }

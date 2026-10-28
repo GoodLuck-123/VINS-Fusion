@@ -7,12 +7,12 @@
 新主线为 `codex/vins-platform`，v0.1 已通过主机/板端完整播包与故障验收；版本标记 `vins-platform-v0.1.0`，实现提交 `2062e82`
 
 ```bash
-cp project.example.yaml project.yaml
-./vins run --host
-./vins run
+cp project.example.yaml field.yaml
+./vins -c field.yaml record
+./vins -c field.yaml run
 ```
 
-复制模板后填写 dataset.bag；主机和板端使用同一份配置。查看、停止和补收用 status、stop、pull；操作细节见第 03 份指南
+v0.2 模板现对应现场真实设备，正在验收；离线回放切换 mode 并填写 dataset.bag，保留采集时的标定。查看、停止和补收用 status、stop、pull；操作细节见第 03 份指南
 
 ## 先读什么
 
@@ -21,6 +21,7 @@ cp project.example.yaml project.yaml
 - [03 使用指南](03_USER_GUIDE.md)：学生播包、远控、产物路径和故障处理
 - [04 验收记录](04_VALIDATION.md)：本次准确包位置、指标、故障回归及证据边界
 - [根目录配置模板](../project.example.yaml)：先覆盖开环单目 IMU 播包，后续在同一模板扩充硬件参数
+- [05 硬件接入](05_HARDWARE_V02.md)：v0.2 来源、阶段提交及真实验收进度
 - [原生 VINS 说明](90_UPSTREAM_README.md)：上游背景与引用，不是新平台的操作指南
 
 ## 已完成与下一步

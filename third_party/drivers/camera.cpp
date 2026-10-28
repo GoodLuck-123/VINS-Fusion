@@ -1,4 +1,7 @@
 #include <ros/ros.h>
+#include <csignal>
+static volatile std::sig_atomic_t running=1;
+static void request_stop(int){running=0;}
 #include <sensor_msgs/Image.h>
 #include <std_msgs/UInt64MultiArray.h>
 #include <opencv2/core.hpp>
@@ -24,7 +27,7 @@ static void enumeration(INodeMap& m,const char* key,const std::string& value) {
     node->SetIntValue(entry->GetValue());
 }
 int main(int argc,char** argv) {
-    ros::init(argc,argv,"vins_camera");ros::NodeHandle n,p("~");
+    ros::init(argc,argv,"vins_camera",ros::init_options::NoSigintHandler);std::signal(SIGINT,request_stop);std::signal(SIGTERM,request_stop);ros::NodeHandle n,p("~");
     SystemPtr system;CameraList cameras;CameraPtr camera;bool initialized=false,acquiring=false;int result=0;
     try {
         std::string serial,topic,raw,metadata,trigger,exposure_auto;int width,height,binning,ow,oh,x,y,cw,ch;double fps,exposure,auto_max;
@@ -59,9 +62,16 @@ int main(int argc,char** argv) {
         if(trigger=="continuous") {CFloatPtr node=map.GetNode("AcquisitionFrameRate");if(!IsWritable(node)||fps<node->GetMin()||fps>node->GetMax())throw std::runtime_error("Invalid camera fps");node->SetValue(fps);}
         else {enumeration(map,"TriggerSelector","FrameStart");enumeration(map,"TriggerSource",trigger=="hardware"?"Line0":"Software");enumeration(map,"TriggerMode","On");}
         ROS_INFO("Camera serial=%s binning=%d raw=%dx%d crop=(%d,%d,%d,%d) output=%dx%d trigger=%s; timestamps=host receive, metadata retains device ns/frame ID",serial.c_str(),binning,width,height,x,y,cw,ch,ow,oh,trigger.c_str());
+        int minimum_subscribers;p.param("minimum_subscribers",minimum_subscribers,2);
+        const auto deadline=ros::WallTime::now()+ros::WallDuration(10.);
+        while(ros::ok() && running && (pub.getNumSubscribers()<unsigned(minimum_subscribers)||rawpub.getNumSubscribers()<1||info.getNumSubscribers()<1)) {
+            if(ros::WallTime::now()>deadline)throw std::runtime_error("Camera recorder/observer connections not ready");
+            ros::spinOnce();ros::WallDuration(.01).sleep();
+        }
+        if(!running)throw std::runtime_error("Camera cancelled before acquisition");
         camera->BeginAcquisition();acquiring=true;uint32_t seq=0;ros::WallRate software_rate(fps);
         ROS_INFO("Camera acquisition armed");
-        while(ros::ok()) {
+        while(ros::ok() && running) {
             if(trigger=="software") {software_rate.sleep();CCommandPtr command=map.GetNode("TriggerSoftware");command->Execute();}
             ImagePtr image;
             try {image=camera->GetNextImage(500);}
@@ -86,5 +96,7 @@ int main(int argc,char** argv) {
     }catch(const std::exception& e){ROS_FATAL("%s",e.what());result=1;}
     try {if(acquiring)camera->EndAcquisition();if(initialized)camera->DeInit();camera=nullptr;cameras.Clear();if(system.IsValid())system->ReleaseInstance();}
     catch(const std::exception& e){ROS_ERROR("Camera cleanup: %s",e.what());result=1;}
+    // Finish publishing the current raw/metadata/processed trio before ROS closes TCP.
+    ros::WallDuration(.2).sleep();ros::shutdown();
     return result;
 }

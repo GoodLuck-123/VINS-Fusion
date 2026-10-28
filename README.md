@@ -6,13 +6,12 @@
 
 ## Quick Start
 
-先复制唯一配置模板，填写 dataset.bag；模板对应 EuRoC 单目 IMU，不对应板上实物标定
+v0.2 正在真实硬件验收，模板现在对应板上 FLIR 单目＋GNW IMU（2×2 binning、中心裁剪、IMU→Line0 硬触发），沿用旧安装标定初值
 
 ```bash
-cp project.example.yaml project.yaml
-# 编辑 project.yaml；也可另命名为 field.yaml
-./vins run --host              # 自动构建主机包并验证数据
-./vins run                     # 自动交叉构建、部署、板端回放与回收
+cp project.example.yaml field.yaml
+./vins -c field.yaml record    # 只采集原始数据
+./vins -c field.yaml run       # 真实硬件 VINS，自动部署、摘要监控与回收
 ```
 
 传输和任务进展会直接显示在终端。Ctrl-C 只退出查看，任务继续；用 `./vins status --follow` 接续查看，`./vins stop` 正常停止，`./vins pull` 补收。`./vins remote` 进入已激活私有环境的板端终端
@@ -24,7 +23,7 @@ cp project.example.yaml project.yaml
 | 目录 / 文件 | 含义 |
 | --- | --- |
 | [project.example.yaml](project.example.yaml) | 唯一用户参数模板，复制后修改 |
-| [third_party/](third_party/README.md) | 依赖源码的可见位置，后续加入驱动与 SDK |
+| [third_party/](third_party/README.md) | 依赖源码、传感器适配器及私有 SDK 的可见位置 |
 | [releases/](releases/README.md) | 最终 install、压缩包及文件清单 |
 | [data/](data/README.md) | 输入 bag 与真值 |
 | [experiments/](experiments/README.md) | 每次结果、日志、实际配置及实采原始数据 |
