@@ -1,0 +1,196 @@
+{
+  "task": "field-continuous-v02/001",
+  "phase": "completed",
+  "pid": 151002,
+  "install": "/home/firefly/vins-workspace/releases/802ecb78f1287171/install",
+  "package": {
+    "version": "0.2.0",
+    "sensors": {
+      "id": "b9fed63c8bde95d6",
+      "stage": "/home/eric/projects/VINS-Fusion/build/hardware/b9fed63c8bde95d6",
+      "sdk": "/home/eric/projects/VINS-Fusion/third_party/spinnaker/opt/spinnaker",
+      "core_fingerprint": "8fc8b2f282a59b29",
+      "sdk_lock_sha256": "f3f64f173b0f37f1c7df8a1df2a96e2032e21c4419f97e3526065d9cfc385b72"
+    },
+    "architecture": "aarch64",
+    "build": {
+      "id": "8fc8b2f282a59b29",
+      "target": "board",
+      "stage": "/home/eric/projects/VINS-Fusion/build/board/8fc8b2f282a59b29/stage",
+      "legacy": "/home/eric/projects/VINS-Fusion/build/board/8fc8b2f282a59b29/libraries",
+      "sdk": "/home/eric/projects/VINS-Fusion/cache/sysroot",
+      "source_fingerprint": "8fc8b2f282a59b29"
+    },
+    "platform_commit": "97b5515640c29361a9eeb4b818033d1c683f07b9",
+    "system_libraries": [
+      "ld-linux-aarch64.so.1",
+      "ld-linux-x86-64.so.2",
+      "libanl.so.1",
+      "libc.so.6",
+      "libdl.so.2",
+      "libm.so.6",
+      "libnss_dns.so.2",
+      "libnss_files.so.2",
+      "libpthread.so.0",
+      "libresolv.so.2",
+      "librt.so.1",
+      "libutil.so.1"
+    ]
+  },
+  "events": [
+    {
+      "code": "master_start",
+      "message": "Private master http://127.0.0.1:59565",
+      "elapsed_s": 0.9868295160013076
+    },
+    {
+      "code": "capture_start",
+      "message": "Recorder subscribed, IMU receiving, camera armed for continuous",
+      "elapsed_s": 6.588516829000582
+    },
+    {
+      "code": "source_ended",
+      "message": "Hardware sources closed; waiting for trajectory tail and recorder flush",
+      "elapsed_s": 12.439933708001263
+    },
+    {
+      "code": "completed",
+      "message": "Recording and process exit checks passed",
+      "elapsed_s": 15.000249257000178
+    }
+  ],
+  "warnings": {},
+  "process_exits": {
+    "camera": 0,
+    "imu": 0,
+    "recorder": 0,
+    "observer": 0,
+    "master": 0
+  },
+  "resource_samples": {
+    "master": {
+      "cpu_s_lower_bound": 0.69,
+      "rss_kib_peak_observed": 42484,
+      "pss_kib_peak_observed": 36331
+    },
+    "observer": {
+      "cpu_s_lower_bound": 0.24,
+      "rss_kib_peak_observed": 11068,
+      "pss_kib_peak_observed": 5332
+    },
+    "recorder": {
+      "cpu_s_lower_bound": 0.6,
+      "rss_kib_peak_observed": 42416,
+      "pss_kib_peak_observed": 32691
+    },
+    "imu": {
+      "cpu_s_lower_bound": 0.58,
+      "rss_kib_peak_observed": 10300,
+      "pss_kib_peak_observed": 3216
+    },
+    "camera": {
+      "cpu_s_lower_bound": 1.16,
+      "rss_kib_peak_observed": 69684,
+      "pss_kib_peak_observed": 62565
+    }
+  },
+  "elapsed_s": 15.089469808001013,
+  "heartbeat_monotonic": 13962.531900765,
+  "hardware_preflight": {
+    "serial": "/dev/ttyS7",
+    "free_bytes": 32320696320,
+    "estimated_record_bytes": 96468992,
+    "camera_serial": "25162247",
+    "camera_device_access": "checked at acquisition"
+  },
+  "record_only": true,
+  "master_uri": "http://127.0.0.1:59565",
+  "child_pids": {
+    "master": 151214,
+    "observer": 151392,
+    "recorder": 151470,
+    "imu": 151597,
+    "camera": 151734
+  },
+  "observation": {
+    "seq": 19,
+    "monotonic_elapsed_s": 9.468191451,
+    "image": {
+      "count": 88,
+      "stamp_ns": 1790076120412758560,
+      "age_s": 1.199951829,
+      "hz": 20.00009841048423,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "imu": {
+      "count": 787,
+      "stamp_ns": 1790076121629324223,
+      "age_s": 2.33299999941039e-06,
+      "hz": 101.0005474734676,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "pose": {
+      "count": 0,
+      "stamp_ns": 0,
+      "age_s": -1,
+      "hz": 0,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "position_m": [
+      0,
+      0,
+      0
+    ]
+  },
+  "stop_reason": "duration",
+  "capture_wall_s": 5.851044129000002,
+  "recording": {
+    "frame_pairing_verified": true,
+    "device_frame_ids_contiguous": true,
+    "bags": [
+      "capture_0.bag"
+    ],
+    "counts": {
+      "/usb_camera/gray/image_raw": 88,
+      "/gnw_imu/data": 787,
+      "/usb_camera/raw/image_raw": 88,
+      "/usb_camera/frame_metadata": 88,
+      "/gnw_imu/serial_raw": 1573
+    },
+    "timestamps": {
+      "/gnw_imu/data": {
+        "first_ns": 1790076113769254725,
+        "last_ns": 1790076121629324223
+      },
+      "/usb_camera/raw/image_raw": {
+        "first_ns": 1790076116062363664,
+        "last_ns": 1790076120412758560
+      },
+      "/usb_camera/gray/image_raw": {
+        "first_ns": 1790076116062363664,
+        "last_ns": 1790076120412758560
+      }
+    },
+    "dimensions": {
+      "/usb_camera/raw/image_raw": [
+        1024,
+        768,
+        "mono8"
+      ],
+      "/usb_camera/gray/image_raw": [
+        512,
+        512,
+        "mono8"
+      ]
+    },
+    "invalid": 0,
+    "header_clock": "host receive/parse",
+    "camera_trigger": "continuous",
+    "absolute_accuracy_verified": false
+  },
+  "child_cpu_s": 9.099368,
+  "exit_code": 0
+}

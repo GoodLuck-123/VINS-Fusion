@@ -1,13 +1,13 @@
 {
-  "task": "field-private-stop-v02/001",
+  "task": "field-private-stop-v02/002",
   "phase": "completed",
-  "pid": 135050,
-  "install": "/home/firefly/vins-workspace/releases/8d69078c0057cc0d/install",
+  "pid": 143226,
+  "install": "/home/firefly/vins-workspace/releases/802ecb78f1287171/install",
   "package": {
     "version": "0.2.0",
     "sensors": {
-      "id": "0d5c945de9b12725",
-      "stage": "/home/eric/projects/VINS-Fusion/build/hardware/0d5c945de9b12725",
+      "id": "b9fed63c8bde95d6",
+      "stage": "/home/eric/projects/VINS-Fusion/build/hardware/b9fed63c8bde95d6",
       "sdk": "/home/eric/projects/VINS-Fusion/third_party/spinnaker/opt/spinnaker",
       "core_fingerprint": "8fc8b2f282a59b29",
       "sdk_lock_sha256": "f3f64f173b0f37f1c7df8a1df2a96e2032e21c4419f97e3526065d9cfc385b72"
@@ -21,7 +21,7 @@
       "sdk": "/home/eric/projects/VINS-Fusion/cache/sysroot",
       "source_fingerprint": "8fc8b2f282a59b29"
     },
-    "platform_commit": "d2d326bee0f831349244a1ecf642a3ecf3a1c6d0",
+    "platform_commit": "97b5515640c29361a9eeb4b818033d1c683f07b9",
     "system_libraries": [
       "ld-linux-aarch64.so.1",
       "ld-linux-x86-64.so.2",
@@ -40,23 +40,23 @@
   "events": [
     {
       "code": "master_start",
-      "message": "Private master http://127.0.0.1:58687",
-      "elapsed_s": 1.1436181569988548
+      "message": "Private master http://127.0.0.1:32959",
+      "elapsed_s": 1.0022038089991838
     },
     {
       "code": "capture_start",
       "message": "Recorder subscribed, IMU receiving, camera armed for hardware",
-      "elapsed_s": 6.9119996939989505
+      "elapsed_s": 7.279412398000204
     },
     {
       "code": "source_ended",
       "message": "Hardware sources closed; waiting for trajectory tail and recorder flush",
-      "elapsed_s": 12.783471200998974
+      "elapsed_s": 12.454959377000705
     },
     {
       "code": "completed",
       "message": "Recording and process exit checks passed",
-      "elapsed_s": 15.143397396999717
+      "elapsed_s": 14.797293736999563
     }
   ],
   "warnings": {},
@@ -69,65 +69,65 @@
   },
   "resource_samples": {
     "master": {
-      "cpu_s_lower_bound": 1.29,
-      "rss_kib_peak_observed": 44960,
-      "pss_kib_peak_observed": 39412
+      "cpu_s_lower_bound": 1.31,
+      "rss_kib_peak_observed": 44848,
+      "pss_kib_peak_observed": 39180
     },
     "observer": {
-      "cpu_s_lower_bound": 0.21,
-      "rss_kib_peak_observed": 11344,
-      "pss_kib_peak_observed": 5283
+      "cpu_s_lower_bound": 0.17,
+      "rss_kib_peak_observed": 11076,
+      "pss_kib_peak_observed": 5189
     },
     "recorder": {
-      "cpu_s_lower_bound": 0.7,
-      "rss_kib_peak_observed": 43296,
-      "pss_kib_peak_observed": 33613
+      "cpu_s_lower_bound": 0.74,
+      "rss_kib_peak_observed": 43760,
+      "pss_kib_peak_observed": 33889
     },
     "imu": {
-      "cpu_s_lower_bound": 0.48,
-      "rss_kib_peak_observed": 10356,
-      "pss_kib_peak_observed": 3199
+      "cpu_s_lower_bound": 0.4,
+      "rss_kib_peak_observed": 10396,
+      "pss_kib_peak_observed": 3144
     },
     "camera": {
-      "cpu_s_lower_bound": 1.06,
-      "rss_kib_peak_observed": 69776,
-      "pss_kib_peak_observed": 62371
+      "cpu_s_lower_bound": 0.91,
+      "rss_kib_peak_observed": 69844,
+      "pss_kib_peak_observed": 62799
     }
   },
-  "elapsed_s": 15.22714715499933,
-  "heartbeat_monotonic": 13595.131359849,
+  "elapsed_s": 14.877590744999907,
+  "heartbeat_monotonic": 13884.850608876,
   "hardware_preflight": {
     "serial": "/dev/ttyS7",
-    "free_bytes": 33396731904,
+    "free_bytes": 32505274368,
     "estimated_record_bytes": 723517440,
     "camera_serial": "25162247",
     "camera_device_access": "checked at acquisition"
   },
   "record_only": true,
-  "master_uri": "http://127.0.0.1:58687",
+  "master_uri": "http://127.0.0.1:32959",
   "child_pids": {
-    "master": 135266,
-    "observer": 135585,
-    "recorder": 135594,
-    "imu": 135777,
-    "camera": 135844
+    "master": 143445,
+    "observer": 143764,
+    "recorder": 143776,
+    "imu": 143960,
+    "camera": 144044
   },
   "observation": {
-    "seq": 19,
-    "monotonic_elapsed_s": 9.465055826,
+    "seq": 18,
+    "monotonic_elapsed_s": 8.913533604,
     "image": {
-      "count": 80,
-      "stamp_ns": 1790075752894463716,
-      "age_s": 1.949939654,
-      "hz": 20.00072801649943,
+      "count": 74,
+      "stamp_ns": 1790076042992678531,
+      "age_s": 1.199846329,
+      "hz": 19.99986422656276,
       "invalid": 0,
       "nonincreasing": 0
     },
     "imu": {
-      "count": 759,
-      "stamp_ns": 1790075754431100870,
-      "age_s": 0.4000334150000011,
-      "hz": 100.0000483000234,
+      "count": 700,
+      "stamp_ns": 1790076044169604232,
+      "age_s": 0.04995200499999974,
+      "hz": 101.0033755328103,
       "invalid": 0,
       "nonincreasing": 0
     },
@@ -146,7 +146,7 @@
     ]
   },
   "stop_reason": "requested",
-  "capture_wall_s": 5.871064632001435,
+  "capture_wall_s": 5.175126978998378,
   "recording": {
     "frame_pairing_verified": true,
     "device_frame_ids_contiguous": true,
@@ -154,35 +154,35 @@
       "capture_0.bag"
     ],
     "counts": {
-      "/usb_camera/gray/image_raw": 80,
-      "/gnw_imu/data": 748,
-      "/usb_camera/raw/image_raw": 80,
-      "/usb_camera/frame_metadata": 80,
-      "/gnw_imu/serial_raw": 1496
+      "/usb_camera/gray/image_raw": 74,
+      "/gnw_imu/data": 699,
+      "/usb_camera/raw/image_raw": 74,
+      "/usb_camera/frame_metadata": 74,
+      "/gnw_imu/serial_raw": 1398
     },
     "timestamps": {
       "/gnw_imu/data": {
-        "first_ns": 1790075746961144536,
-        "last_ns": 1790075754431100870
-      },
-      "/usb_camera/gray/image_raw": {
-        "first_ns": 1790075748944649027,
-        "last_ns": 1790075752894463716
+        "first_ns": 1790076037189829823,
+        "last_ns": 1790076044169604232
       },
       "/usb_camera/raw/image_raw": {
-        "first_ns": 1790075748944649027,
-        "last_ns": 1790075752894463716
+        "first_ns": 1790076039331144538,
+        "last_ns": 1790076042992678531
+      },
+      "/usb_camera/gray/image_raw": {
+        "first_ns": 1790076039331144538,
+        "last_ns": 1790076042992678531
       }
     },
     "dimensions": {
-      "/usb_camera/gray/image_raw": [
-        512,
-        512,
-        "mono8"
-      ],
       "/usb_camera/raw/image_raw": [
         1024,
         768,
+        "mono8"
+      ],
+      "/usb_camera/gray/image_raw": [
+        512,
+        512,
         "mono8"
       ]
     },
@@ -191,6 +191,6 @@
     "camera_trigger": "IMU external Line0",
     "absolute_accuracy_verified": false
   },
-  "child_cpu_s": 6.467908,
+  "child_cpu_s": 8.776849,
   "exit_code": 0
 }

@@ -1,0 +1,167 @@
+{
+  "task": "field-motion-replay-v02/002",
+  "phase": "completed",
+  "pid": 142604,
+  "install": "/home/eric/projects/VINS-Fusion/releases/v0.2.0/host/b1e716cee0a1289f/install",
+  "package": {
+    "version": "0.2.0",
+    "sensors": null,
+    "architecture": "x86_64",
+    "build": {
+      "id": "8fc8b2f282a59b29",
+      "target": "host",
+      "stage": "/home/eric/projects/VINS-Fusion/build/host/8fc8b2f282a59b29/stage",
+      "legacy": "/home/eric/projects/VINS-Fusion/build/host/8fc8b2f282a59b29/libraries",
+      "sdk": "/home/eric/projects/VINS-Fusion/cache/host-env",
+      "source_fingerprint": "8fc8b2f282a59b29"
+    },
+    "platform_commit": "97b5515640c29361a9eeb4b818033d1c683f07b9",
+    "system_libraries": [
+      "ld-linux-aarch64.so.1",
+      "ld-linux-x86-64.so.2",
+      "libanl.so.1",
+      "libc.so.6",
+      "libdl.so.2",
+      "libm.so.6",
+      "libnss_dns.so.2",
+      "libnss_files.so.2",
+      "libpthread.so.0",
+      "libresolv.so.2",
+      "librt.so.1",
+      "libutil.so.1"
+    ]
+  },
+  "events": [
+    {
+      "code": "master_start",
+      "message": "Private master http://127.0.0.1:52895",
+      "elapsed_s": 0.252487060999556
+    },
+    {
+      "code": "playback_start",
+      "message": "VINS and observer subscribed",
+      "elapsed_s": 1.070734626000558
+    },
+    {
+      "code": "source_ended",
+      "message": "Checking trajectory tail coverage; queue empty not directly instrumented",
+      "elapsed_s": 65.53125460099909
+    },
+    {
+      "code": "completed",
+      "message": "Tail coverage and process exit checks passed",
+      "elapsed_s": 71.59041325599901
+    }
+  ],
+  "warnings": {
+    "vins:warning": {
+      "count": 3,
+      "first_s": 0.8624309120004909,
+      "last_s": 37.81350614400071,
+      "last": "[ WARN] [1793206529.098166372, 1790075396.482416137]: gyroscope bias initial calibration  0.0234867 0.00856002 0.00783561"
+    }
+  },
+  "process_exits": {
+    "playback": 0,
+    "observer": 0,
+    "vins": 0,
+    "master": 0
+  },
+  "resource_samples": {
+    "master": {
+      "cpu_s_lower_bound": 0.12,
+      "rss_kib_peak_observed": 40792,
+      "pss_kib_peak_observed": 31532
+    },
+    "vins": {
+      "cpu_s_lower_bound": 27.1,
+      "rss_kib_peak_observed": 75792,
+      "pss_kib_peak_observed": 69311
+    },
+    "observer": {
+      "cpu_s_lower_bound": 0.2,
+      "rss_kib_peak_observed": 19116,
+      "pss_kib_peak_observed": 12403
+    },
+    "playback": {
+      "cpu_s_lower_bound": 0.06,
+      "rss_kib_peak_observed": 40284,
+      "pss_kib_peak_observed": 30408
+    }
+  },
+  "elapsed_s": 71.62537737999992,
+  "heartbeat_monotonic": 14950.937879951,
+  "bag": {
+    "start_record_s": 1790075361.099406,
+    "end_record_s": 1790075423.9434106,
+    "duration_s": 62.84400463104248,
+    "topics": {
+      "/usb_camera/gray/image_raw": {
+        "type": "sensor_msgs/Image",
+        "first_ns": 1790075361096138766,
+        "last_ns": 1790075421496234585,
+        "bag_records_full_file": 1209
+      },
+      "/gnw_imu/data": {
+        "type": "sensor_msgs/Imu",
+        "first_ns": 1790075361503368182,
+        "last_ns": 1790075423942852372,
+        "bag_records_full_file": 6245
+      }
+    },
+    "files": [
+      "capture_0.bag",
+      "capture_1.bag",
+      "capture_2.bag"
+    ]
+  },
+  "master_uri": "http://127.0.0.1:52895",
+  "child_pids": {
+    "master": 142608,
+    "vins": 142633,
+    "observer": 142642,
+    "playback": 142649
+  },
+  "observation": {
+    "seq": 133,
+    "monotonic_elapsed_s": 69.351010237,
+    "image": {
+      "count": 1209,
+      "stamp_ns": 1790075421496234585,
+      "age_s": 7.549987738999995,
+      "hz": 19.9999829948862,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "imu": {
+      "count": 6245,
+      "stamp_ns": 1790075423942852372,
+      "age_s": 5.100006551999996,
+      "hz": 101.5001570714929,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "pose": {
+      "count": 251,
+      "stamp_ns": 1790075421446215391,
+      "age_s": 7.549996516,
+      "hz": 9.743632925372184,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "position_m": [
+      1.22811915455499,
+      0.1518465159600348,
+      -0.6431258754755959
+    ]
+  },
+  "initialization_log_count": 1,
+  "playback_wall_s": 64.46041804199922,
+  "trajectory_poses": 251,
+  "last_pose_ns": 1790075421446215424,
+  "tail_s": 0.050019161,
+  "drain_s": 5.065496442000949,
+  "queue_empty_verified": false,
+  "child_cpu_s": 28.758295000000004,
+  "exit_code": 0
+}

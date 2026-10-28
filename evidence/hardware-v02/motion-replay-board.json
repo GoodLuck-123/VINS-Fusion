@@ -1,0 +1,173 @@
+{
+  "task": "field-motion-replay-v02/001",
+  "phase": "completed",
+  "pid": 162211,
+  "install": "/home/firefly/vins-workspace/releases/802ecb78f1287171/install",
+  "package": {
+    "version": "0.2.0",
+    "sensors": {
+      "id": "b9fed63c8bde95d6",
+      "stage": "/home/eric/projects/VINS-Fusion/build/hardware/b9fed63c8bde95d6",
+      "sdk": "/home/eric/projects/VINS-Fusion/third_party/spinnaker/opt/spinnaker",
+      "core_fingerprint": "8fc8b2f282a59b29",
+      "sdk_lock_sha256": "f3f64f173b0f37f1c7df8a1df2a96e2032e21c4419f97e3526065d9cfc385b72"
+    },
+    "architecture": "aarch64",
+    "build": {
+      "id": "8fc8b2f282a59b29",
+      "target": "board",
+      "stage": "/home/eric/projects/VINS-Fusion/build/board/8fc8b2f282a59b29/stage",
+      "legacy": "/home/eric/projects/VINS-Fusion/build/board/8fc8b2f282a59b29/libraries",
+      "sdk": "/home/eric/projects/VINS-Fusion/cache/sysroot",
+      "source_fingerprint": "8fc8b2f282a59b29"
+    },
+    "platform_commit": "97b5515640c29361a9eeb4b818033d1c683f07b9",
+    "system_libraries": [
+      "ld-linux-aarch64.so.1",
+      "ld-linux-x86-64.so.2",
+      "libanl.so.1",
+      "libc.so.6",
+      "libdl.so.2",
+      "libm.so.6",
+      "libnss_dns.so.2",
+      "libnss_files.so.2",
+      "libpthread.so.0",
+      "libresolv.so.2",
+      "librt.so.1",
+      "libutil.so.1"
+    ]
+  },
+  "events": [
+    {
+      "code": "master_start",
+      "message": "Private master http://127.0.0.1:55597",
+      "elapsed_s": 1.3682311789998494
+    },
+    {
+      "code": "playback_start",
+      "message": "VINS and observer subscribed",
+      "elapsed_s": 3.13755052399938
+    },
+    {
+      "code": "source_ended",
+      "message": "Checking trajectory tail coverage; queue empty not directly instrumented",
+      "elapsed_s": 68.7098811959986
+    },
+    {
+      "code": "completed",
+      "message": "Tail coverage and process exit checks passed",
+      "elapsed_s": 75.36149303099955
+    }
+  ],
+  "warnings": {
+    "vins:warning": {
+      "count": 3,
+      "first_s": 2.8590640789989266,
+      "last_s": 40.275161088999084,
+      "last": "\u001b[33m[WARN] [1790076297.504944603, 1790075396.014367275]: gyroscope bias initial calibration  0.0162983 0.00965345  0.0178757\u001b[0m"
+    }
+  },
+  "process_exits": {
+    "playback": 0,
+    "observer": 0,
+    "vins": 0,
+    "master": 0
+  },
+  "resource_samples": {
+    "master": {
+      "cpu_s_lower_bound": 0.75,
+      "rss_kib_peak_observed": 42536,
+      "pss_kib_peak_observed": 36633
+    },
+    "vins": {
+      "cpu_s_lower_bound": 133.31,
+      "rss_kib_peak_observed": 48404,
+      "pss_kib_peak_observed": 41387
+    },
+    "observer": {
+      "cpu_s_lower_bound": 2.59,
+      "rss_kib_peak_observed": 11328,
+      "pss_kib_peak_observed": 5004
+    },
+    "playback": {
+      "cpu_s_lower_bound": 0.6,
+      "rss_kib_peak_observed": 42124,
+      "pss_kib_peak_observed": 32808
+    }
+  },
+  "elapsed_s": 75.59048276199974,
+  "heartbeat_monotonic": 14170.77707748,
+  "bag": {
+    "start_record_s": 1790075361.099406,
+    "end_record_s": 1790075423.9434106,
+    "duration_s": 62.84400463104248,
+    "topics": {
+      "/usb_camera/gray/image_raw": {
+        "type": "sensor_msgs/Image",
+        "first_ns": 1790075361096138766,
+        "last_ns": 1790075421496234585,
+        "bag_records_full_file": 1209
+      },
+      "/gnw_imu/data": {
+        "type": "sensor_msgs/Imu",
+        "first_ns": 1790075361503368182,
+        "last_ns": 1790075423942852372,
+        "bag_records_full_file": 6245
+      }
+    },
+    "files": [
+      "capture_0.bag",
+      "capture_1.bag",
+      "capture_2.bag"
+    ]
+  },
+  "master_uri": "http://127.0.0.1:55597",
+  "child_pids": {
+    "master": 162377,
+    "vins": 162409,
+    "observer": 162418,
+    "playback": 162428
+  },
+  "observation": {
+    "seq": 131,
+    "monotonic_elapsed_s": 70.658468433,
+    "image": {
+      "count": 1207,
+      "stamp_ns": 1790075421496234585,
+      "age_s": 7.999765470999996,
+      "hz": 19.99844469531699,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "imu": {
+      "count": 6245,
+      "stamp_ns": 1790075423942852372,
+      "age_s": 5.549871349999989,
+      "hz": 99.99373393112185,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "pose": {
+      "count": 257,
+      "stamp_ns": 1790075421446215391,
+      "age_s": 7.949964548999993,
+      "hz": 9.743833194511298,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "position_m": [
+      -0.01252925500478682,
+      -0.3336220272938265,
+      0.07622098962458013
+    ]
+  },
+  "initialization_log_count": 1,
+  "playback_wall_s": 65.57106542200017,
+  "trajectory_poses": 257,
+  "last_pose_ns": 1790075421446215424,
+  "tail_s": 0.050019161,
+  "drain_s": 5.131254056999751,
+  "queue_empty_verified": false,
+  "child_cpu_s": 148.323799,
+  "exit_code": 0
+}

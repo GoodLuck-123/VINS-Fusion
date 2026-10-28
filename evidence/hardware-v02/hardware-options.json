@@ -1,0 +1,277 @@
+[
+  {
+    "task": "field-private-stop-v02/002",
+    "recording": {
+      "frame_pairing_verified": true,
+      "device_frame_ids_contiguous": true,
+      "bags": [
+        "capture_0.bag"
+      ],
+      "counts": {
+        "/usb_camera/gray/image_raw": 74,
+        "/gnw_imu/data": 699,
+        "/usb_camera/raw/image_raw": 74,
+        "/usb_camera/frame_metadata": 74,
+        "/gnw_imu/serial_raw": 1398
+      },
+      "timestamps": {
+        "/gnw_imu/data": {
+          "first_ns": 1790076037189829823,
+          "last_ns": 1790076044169604232
+        },
+        "/usb_camera/raw/image_raw": {
+          "first_ns": 1790076039331144538,
+          "last_ns": 1790076042992678531
+        },
+        "/usb_camera/gray/image_raw": {
+          "first_ns": 1790076039331144538,
+          "last_ns": 1790076042992678531
+        }
+      },
+      "dimensions": {
+        "/usb_camera/raw/image_raw": [
+          1024,
+          768,
+          "mono8"
+        ],
+        "/usb_camera/gray/image_raw": [
+          512,
+          512,
+          "mono8"
+        ]
+      },
+      "invalid": 0,
+      "header_clock": "host receive/parse",
+      "camera_trigger": "IMU external Line0",
+      "absolute_accuracy_verified": false
+    },
+    "process_exits": {
+      "camera": 0,
+      "imu": 0,
+      "recorder": 0,
+      "observer": 0,
+      "master": 0
+    },
+    "stop_reason": "requested"
+  },
+  {
+    "task": "field-software-v02/002",
+    "recording": {
+      "frame_pairing_verified": true,
+      "device_frame_ids_contiguous": true,
+      "bags": [
+        "capture_0.bag"
+      ],
+      "counts": {
+        "/usb_camera/gray/image_raw": 86,
+        "/gnw_imu/data": 755,
+        "/usb_camera/raw/image_raw": 86,
+        "/usb_camera/frame_metadata": 86,
+        "/gnw_imu/serial_raw": 1509
+      },
+      "timestamps": {
+        "/gnw_imu/data": {
+          "first_ns": 1790076077959586711,
+          "last_ns": 1790076085499480593
+        },
+        "/usb_camera/raw/image_raw": {
+          "first_ns": 1790076080056691005,
+          "last_ns": 1790076084305766057
+        },
+        "/usb_camera/gray/image_raw": {
+          "first_ns": 1790076080056691005,
+          "last_ns": 1790076084305766057
+        }
+      },
+      "dimensions": {
+        "/usb_camera/raw/image_raw": [
+          1024,
+          768,
+          "mono8"
+        ],
+        "/usb_camera/gray/image_raw": [
+          512,
+          512,
+          "mono8"
+        ]
+      },
+      "invalid": 0,
+      "header_clock": "host receive/parse",
+      "camera_trigger": "software",
+      "absolute_accuracy_verified": false
+    },
+    "process_exits": {
+      "camera": 0,
+      "imu": 0,
+      "recorder": 0,
+      "observer": 0,
+      "master": 0
+    },
+    "stop_reason": "duration"
+  },
+  {
+    "task": "field-continuous-v02/001",
+    "recording": {
+      "frame_pairing_verified": true,
+      "device_frame_ids_contiguous": true,
+      "bags": [
+        "capture_0.bag"
+      ],
+      "counts": {
+        "/usb_camera/gray/image_raw": 88,
+        "/gnw_imu/data": 787,
+        "/usb_camera/raw/image_raw": 88,
+        "/usb_camera/frame_metadata": 88,
+        "/gnw_imu/serial_raw": 1573
+      },
+      "timestamps": {
+        "/gnw_imu/data": {
+          "first_ns": 1790076113769254725,
+          "last_ns": 1790076121629324223
+        },
+        "/usb_camera/raw/image_raw": {
+          "first_ns": 1790076116062363664,
+          "last_ns": 1790076120412758560
+        },
+        "/usb_camera/gray/image_raw": {
+          "first_ns": 1790076116062363664,
+          "last_ns": 1790076120412758560
+        }
+      },
+      "dimensions": {
+        "/usb_camera/raw/image_raw": [
+          1024,
+          768,
+          "mono8"
+        ],
+        "/usb_camera/gray/image_raw": [
+          512,
+          512,
+          "mono8"
+        ]
+      },
+      "invalid": 0,
+      "header_clock": "host receive/parse",
+      "camera_trigger": "continuous",
+      "absolute_accuracy_verified": false
+    },
+    "process_exits": {
+      "camera": 0,
+      "imu": 0,
+      "recorder": 0,
+      "observer": 0,
+      "master": 0
+    },
+    "stop_reason": "duration"
+  },
+  {
+    "task": "field-binning1-v02/001",
+    "recording": {
+      "frame_pairing_verified": true,
+      "device_frame_ids_contiguous": true,
+      "bags": [
+        "capture_0.bag"
+      ],
+      "counts": {
+        "/usb_camera/gray/image_raw": 9,
+        "/gnw_imu/data": 767,
+        "/usb_camera/raw/image_raw": 9,
+        "/usb_camera/frame_metadata": 9,
+        "/gnw_imu/serial_raw": 1530
+      },
+      "timestamps": {
+        "/gnw_imu/data": {
+          "first_ns": 1790076151218982613,
+          "last_ns": 1790076158878965758
+        },
+        "/usb_camera/gray/image_raw": {
+          "first_ns": 1790076153359545037,
+          "last_ns": 1790076157370086731
+        },
+        "/usb_camera/raw/image_raw": {
+          "first_ns": 1790076153359545037,
+          "last_ns": 1790076157370086731
+        }
+      },
+      "dimensions": {
+        "/usb_camera/gray/image_raw": [
+          512,
+          512,
+          "mono8"
+        ],
+        "/usb_camera/raw/image_raw": [
+          2048,
+          1536,
+          "mono8"
+        ]
+      },
+      "invalid": 0,
+      "header_clock": "host receive/parse",
+      "camera_trigger": "software",
+      "absolute_accuracy_verified": false
+    },
+    "process_exits": {
+      "camera": 0,
+      "imu": 0,
+      "recorder": 0,
+      "observer": 0,
+      "master": 0
+    },
+    "stop_reason": "duration"
+  },
+  {
+    "task": "field-hardware-restored-v02/001",
+    "recording": {
+      "frame_pairing_verified": true,
+      "device_frame_ids_contiguous": true,
+      "bags": [
+        "capture_0.bag"
+      ],
+      "counts": {
+        "/usb_camera/gray/image_raw": 87,
+        "/gnw_imu/data": 720,
+        "/usb_camera/raw/image_raw": 87,
+        "/usb_camera/frame_metadata": 87,
+        "/gnw_imu/serial_raw": 1437
+      },
+      "timestamps": {
+        "/gnw_imu/data": {
+          "first_ns": 1790076188269113336,
+          "last_ns": 1790076195458761767
+        },
+        "/usb_camera/gray/image_raw": {
+          "first_ns": 1790076190192671738,
+          "last_ns": 1790076194493548295
+        },
+        "/usb_camera/raw/image_raw": {
+          "first_ns": 1790076190192671738,
+          "last_ns": 1790076194493548295
+        }
+      },
+      "dimensions": {
+        "/usb_camera/gray/image_raw": [
+          512,
+          512,
+          "mono8"
+        ],
+        "/usb_camera/raw/image_raw": [
+          1024,
+          768,
+          "mono8"
+        ]
+      },
+      "invalid": 0,
+      "header_clock": "host receive/parse",
+      "camera_trigger": "IMU external Line0",
+      "absolute_accuracy_verified": false
+    },
+    "process_exits": {
+      "camera": 0,
+      "imu": 0,
+      "recorder": 0,
+      "observer": 0,
+      "master": 0
+    },
+    "stop_reason": "duration"
+  }
+]

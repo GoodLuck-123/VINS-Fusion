@@ -108,9 +108,14 @@ def preflight(c):
 
 def deploy(c):
     r=ensure(c);ws=workspace(c);ident=r['id'];archive=ws+'/incoming/'+ident+'.tar.gz';dest=ws+'/releases/'+ident
-    rpc(c,"import os,sys,json;os.makedirs(sys.argv[1],exist_ok=True);print('true')",[ws+'/incoming'])
-    print('[上传运行包] '+ident,flush=True);sync(c,r['archive'],archive)
-    code='''import hashlib,json,os,sys,tarfile,shutil
+    if c.get('_host'):
+        install=r['install']
+        if shutil.disk_usage(install).free<c['run']['min_free_gib']*2**30:raise ValueError('主机剩余空间不足，需保留 '+str(c['run']['min_free_gib'])+' GiB')
+        print('[主机运行包] 直接使用已校验的不可变 install，避免重复复制',flush=True)
+    else:
+        rpc(c,"import os,sys,json;os.makedirs(sys.argv[1],exist_ok=True);print('true')",[ws+'/incoming'])
+        print('[上传运行包] '+ident,flush=True);sync(c,r['archive'],archive)
+        code='''import hashlib,json,os,sys,tarfile,shutil
 archive,dest,want,reserve=sys.argv[1:];h=hashlib.sha256()
 with open(archive,'rb') as f:
  for b in iter(lambda:f.read(1048576),b''):h.update(b)
@@ -124,7 +129,7 @@ with tarfile.open(archive) as t:
   staging=dest+'.partial';os.makedirs(staging,exist_ok=True);t.extractall(staging);os.rename(staging,dest)
 print(json.dumps(dest+'/install'))
 '''
-    install=rpc(c,code,[archive,dest,r['sha256'],c['run']['min_free_gib']])
+        install=rpc(c,code,[archive,dest,r['sha256'],c['run']['min_free_gib']])
     print('[检查运行包] 文件校验与私有依赖',flush=True)
     shell(c,'source '+shlex.quote(install+'/env.sh')+' && python3 '+shlex.quote(install+'/runtime/local.py')+' check')
     rpc(c,"import os,sys,json;root,install=sys.argv[1:];tmp=root+'/current.new';\nif os.path.lexists(tmp):os.unlink(tmp)\nos.symlink(install,tmp);os.replace(tmp,root+'/current');os.makedirs(root+'/projects/vins',exist_ok=True);print('true')",[ws,install])
