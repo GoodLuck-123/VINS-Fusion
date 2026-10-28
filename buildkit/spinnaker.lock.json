@@ -1,0 +1,23 @@
+{
+  "version": "3.1.0.79",
+  "architecture": "aarch64",
+  "vendor": "Teledyne FLIR",
+  "vendor_url": "https://www.teledynevisionsolutions.com/products/spinnaker-sdk/",
+  "packages": [
+    {
+      "file": "libspinnaker_3.1.0.79_arm64.deb",
+      "sha256": "b22a8519932100667f30e972c18cc844ef0c73e840a285a74ab02f6ed911513e",
+      "board_seed": "/home/firefly/3rdparty/spinnaker-3.1.0.79-arm64/libspinnaker_3.1.0.79_arm64.deb"
+    },
+    {
+      "file": "libspinnaker-dev_3.1.0.79_arm64.deb",
+      "sha256": "d404316cfd8f77b4af3dea878735b90bcf3434488ba98f3b8a4b662dc78e0e1d",
+      "board_seed": "/home/firefly/3rdparty/spinnaker-3.1.0.79-arm64/libspinnaker-dev_3.1.0.79_arm64.deb"
+    },
+    {
+      "file": "libgentl_3.1.0.79_arm64.deb",
+      "sha256": "d58d0a52120d438ea6b84475fd3b7b7a684e342a2f04601450f8cdc7ea3c4326",
+      "board_seed": "/home/firefly/3rdparty/spinnaker-3.1.0.79-arm64/libgentl_3.1.0.79_arm64.deb"
+    }
+  ]
+}
