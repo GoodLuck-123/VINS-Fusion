@@ -1,4 +1,4 @@
-# 唯一用户配置模板，schema_version=1；当前是 v0.1 设计契约，CLI 尚未实现
+# 唯一用户配置模板，schema_version=1；v0.1 播包入口
 # 新项目：cp project.example.yaml project.yaml；另命名时使用 ./vins -c NAME.yaml ...
 # 当前数值仅对应 EuRoC 单目+IMU，不可直接套用到板上真实相机
 schema_version: 1
@@ -15,10 +15,10 @@ build:
 
 paths:
   # 主机相对路径均相对于本配置文件，非调用者临时工作目录
+  # cache/build/releases 固定为本仓库对应目录；外部配置请写绝对路径
   cache: cache
   build: build
   releases: releases
-  data: data
   experiments: experiments
 
 run:
@@ -85,6 +85,7 @@ vins:
   td: 0.0                     # 秒；图像时间 + td 对应 IMU 时间
 
 monitor:
+  enabled: true               # 关闭仅用于开销对照，轨迹和退出校验仍执行
   refresh_s: 2.0
   first_message_timeout_s: 15.0
   input_stall_s: 5.0

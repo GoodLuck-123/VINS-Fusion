@@ -5,7 +5,7 @@
 ## 当前任务
 
 - 新主线为 `codex/vins-platform`，起点为原生 VINS `be55a937a57436548ddfb1bd324bc1e9a9e828e0`；其余分支、tag 和历史产物封存为参照，不自动继续旧版 v0.3 计划
-- 当前阶段只完成分支、设计、配置模板和板端探索；`./vins`、新构建器和新 release 尚未实现，不能将计划命令描述为已可用
+- v0.1 工具、独立 host/ARM64 构建与私有包已实现，验收见 docs/04_VALIDATION.md；日常操作以 docs/03_USER_GUIDE.md 为准
 - 工程给学生户外实验与采数使用，用户至上、最小代码生产；实现前先明确当轮目的、最短操作路径和验收标准
 - v0.1 只做开环 VIO，构建 `camera_models` 与 VINS 主链；不构建回环、GNSS、KITTI、RViz，也不顺手修改历史驱动问题
 

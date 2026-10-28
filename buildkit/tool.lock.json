@@ -1,0 +1,6 @@
+{
+  "file": "patchelf_0.14.3-1_amd64.deb",
+  "url": "https://archive.ubuntu.com/ubuntu/pool/universe/p/patchelf/patchelf_0.14.3-1_amd64.deb",
+  "sha256": "357b874f4490c657195dcd5b8f3ec5b8bcd32710eb008347af972ad9002cf7a4",
+  "provenance": "Ubuntu Jammy APT package metadata; host tool, privately extracted"
+}

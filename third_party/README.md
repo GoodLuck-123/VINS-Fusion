@@ -1,15 +1,11 @@
-# 第三方源码、驱动与 SDK
+# 第三方源码、驱动和 SDK
 
 ## Quick Start
 
-本目录是新工程全部第三方组件的可见入口；当前只建立约定，尚未下载或迁入组件。后续统一由 `./vins` 准备，不要求用户逐个查找依赖
+无需手动 clone 依赖。执行 `./vins build --target board` 或 `./vins run`，构建器按 buildkit/sources.lock.json 的来源和 SHA256 补齐本目录，并在主机编译
 
-| 位置约定 | 内容 |
-| --- | --- |
-| opencv/、ceres/、eigen/ 等 | 锁定的开源依赖源码，按 host/ARM64 分别构建 |
-| drivers/ | 实际采用的相机、格纳威驱动及来源说明 |
-| sdk/ | 厂商 ARM64/x86_64 SDK，按厂商/版本/架构区分 |
+## 当前内容
 
-来源使用固定 commit 或 URL/版本/SHA256；开源子模块普通 clone 不下载实体，统一准备流程再补齐。闭源 SDK 使用厂商目标架构产物并记录条款，不宣称所有 SDK 都有源码可交叉编译
+OpenCV 4.2.0、Ceres 1.14.0、Eigen 3.3.9、vision_opencv 1.16.2 的可见源码放在 opencv/、ceres/、eigen/、vision_opencv/。下载内容 Git 忽略，归档在 cache/archives；重新 clone 后由相同命令补齐
 
-补丁集中且最少；下载缓存放根目录 cache，构建产物放 build，最终包放 releases，不混在源码目录。当前板端历史驱动只作探索参照，后续需要时再核实来源并集成
+v0.1 没有硬件驱动/SDK；v0.2 在此增加对应来源与锁，不借用板端现有工作区。集中补丁和兼容选项在 buildkit，构建时副本在 build，原始第三方下载内容不直接改写

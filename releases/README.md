@@ -2,10 +2,12 @@
 
 ## Quick Start
 
-当前新平台尚无已构建或验收的 release；不要将旧分支的 install 当作本分支产物
+执行 `./vins deploy` 自动构建或复用 ARM64 包，显示传输进度并在板端验包；正常实验直接 `./vins run` 即可
 
-v0.1 交付后，上板目录计划为 `releases/v0.1.0/rk3588/install/`，同目录提供压缩包、文件清单、SHA256 和构建来源；主机包与板端包按目标明确区分
+## 目录
 
-日常部署通过 `./vins deploy`，运行通过 `./vins run` 自动完成必要部署。手动解包也只需 source 包内 env.sh，无需在板端安装用户态依赖；系统兼容与设备权限仍须符合包说明。以上命令尚未实现
+`board.json` / `host.json` 记录最新产物准确路径。最终文件位于 `v0.1.0/rk3588/<包指纹>/` 或 `v0.1.0/host/<包指纹>/`，包含完整 install/、tar.gz、package.json 和 SHA256SUMS
 
-本目录生成内容 Git 忽略，版本/tag、清单与小型验收证据另行追踪；不能因目录存在就声称版本已发布
+部署整个 install，不单独取 bin。手动运行前 `source /实际路径/install/env.sh`，板端无需安装 ROS/Python 包。硬件/ABI 兼容边界及完整流程见 docs/03_USER_GUIDE.md
+
+目录名中的指纹用于版本追溯，日常不需要手动输入；CLI 统一管理板端 current 和不可变包目录。产物不纳入 Git
