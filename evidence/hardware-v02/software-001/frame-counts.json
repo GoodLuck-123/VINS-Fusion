@@ -1,0 +1,44 @@
+{
+  "/usb_camera/frame_metadata": {
+    "count": 85,
+    "first": [
+      0,
+      1,
+      2
+    ],
+    "last": [
+      82,
+      83,
+      84
+    ],
+    "gaps": []
+  },
+  "/usb_camera/raw/image_raw": {
+    "count": 85,
+    "first": [
+      0,
+      1,
+      2
+    ],
+    "last": [
+      82,
+      83,
+      84
+    ],
+    "gaps": []
+  },
+  "/usb_camera/gray/image_raw": {
+    "count": 84,
+    "first": [
+      0,
+      1,
+      2
+    ],
+    "last": [
+      81,
+      82,
+      83
+    ],
+    "gaps": []
+  }
+}

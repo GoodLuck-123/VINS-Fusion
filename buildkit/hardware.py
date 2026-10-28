@@ -3,11 +3,15 @@ import hashlib,json,os,subprocess
 from pathlib import Path
 from fetch import ROOT,CACHE,sha
 
-def prepare():
+def prepare(fetch_sdk=None):
     lock=ROOT/'buildkit/spinnaker.lock.json';meta=json.loads(lock.read_text());dest=ROOT/'third_party/spinnaker';marker=dest/'.vins-sdk'
     archives=[]
     for item in meta['packages']:
         p=CACHE/'archives'/item['file']
+        p.parent.mkdir(parents=True,exist_ok=True)
+        if not p.is_file() and fetch_sdk:
+            print('[SDK] 回收已锁定厂商归档 '+item['file'],flush=True)
+            fetch_sdk(item,p)
         if not p.is_file():raise ValueError('Missing vendor SDK: '+str(p)+'; obtain Spinnaker '+meta['version']+' ARM64 from '+meta['vendor_url']+' (see docs/05_HARDWARE_V02.md)')
         if sha(p)!=item['sha256']:raise ValueError('Vendor SDK SHA256 mismatch: '+str(p))
         archives.append(p)

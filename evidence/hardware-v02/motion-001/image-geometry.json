@@ -1,0 +1,10 @@
+{
+  "frame_seq": 100,
+  "crop_pixel_identity": true,
+  "width": 512,
+  "height": 512,
+  "mean_intensity": 46.565635681152344,
+  "std_intensity": 9.293652743944948,
+  "min_intensity": 14,
+  "max_intensity": 65
+}

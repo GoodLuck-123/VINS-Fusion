@@ -50,3 +50,9 @@
 用户配合的首轮运动采集已完成：1209组三路相机帧逐帧匹配、设备帧号连续，IMU6245；VINS初始化1次、轨迹257条、末帧差50ms，所有进程退出0。但运行中 maps 发现 GenApi 动态加载的 liblog4cpp 落到全局 /opt/spinnaker；该轮保留为“功能跑通、私有依赖验收失败”，不据此发布版本。打包器补齐厂商辅助 .so 后仍须重新检查实际 maps
 
 现场 IMU 触发器独立于串口读取工作。任务启动顺序进一步固定为先使录包器就绪、串口清空启动前旧缓冲并获得第一条 IMU，再接受相机图像，避免图像时间早于本次 IMU 覆盖；不向 IMU 发送改频或触发配置命令
+
+## SDK 首次准备
+
+`./vins build/run/record` 优先复用 cache/archives 的三个锁定归档；缺失时用当前配置的 SSH 身份从已知板上原始归档目录只读回收，再核对 SHA256。不会从已安装 `/opt/spinnaker` 抽取库，也不执行安装脚本
+
+如更换为没有原始归档的板子，应从 [FLIR 官方 SDK 页面](https://www.teledynevisionsolutions.com/products/spinnaker-sdk/) 获得同版本 ARM64 包，将 `libspinnaker_3.1.0.79_arm64.deb`、`libspinnaker-dev_3.1.0.79_arm64.deb`、`libgentl_3.1.0.79_arm64.deb` 放到 cache/archives 后重试。精确校验值与本次种子路径在 buildkit/spinnaker.lock.json

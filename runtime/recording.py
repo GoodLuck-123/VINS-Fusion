@@ -31,7 +31,7 @@ def inspect(job,config):
                 if topic==imu['topic']:
                     if not all(math.isfinite(x) for x in [msg.linear_acceleration.x,msg.linear_acceleration.y,msg.linear_acceleration.z,msg.angular_velocity.x,msg.angular_velocity.y,msg.angular_velocity.z]):invalid+=1
     if any(not x for x in counts.values()) or invalid:raise ValueError('录包不完整或数据异常：'+json.dumps(dict(counts=counts,invalid=invalid)))
-    if counts[cam['topic']]!=counts[hw['raw_topic']] or counts[cam['topic']]!=counts[hw['metadata_topic']]:raise ValueError('处理图、原图及 metadata 录包数量不一致')
+    if counts[cam['topic']]!=counts[hw['raw_topic']] or counts[cam['topic']]!=counts[hw['metadata_topic']]:raise ValueError('处理图、原图及 metadata 录包数量不一致：'+json.dumps(counts))
     if paired[cam['topic']]!=paired[hw['raw_topic']] or paired[cam['topic']]!=metadata:raise ValueError('相机原图/处理图/metadata 时间配对不一致')
     if any(b!=a+1 for a,b in zip(device_ids,device_ids[1:])):raise ValueError('相机设备帧号不连续')
     return dict(frame_pairing_verified=True,device_frame_ids_contiguous=True,bags=[p.name for p in bags],counts=counts,timestamps=stamps,dimensions=dimensions,invalid=invalid,header_clock='host receive/parse',camera_trigger='IMU external Line0' if hw['trigger']=='hardware' else hw['trigger'],absolute_accuracy_verified=False)

@@ -93,10 +93,13 @@ int main(int argc,char** argv) {
                 output.data.assign(processed.datastart,processed.dataend);pub.publish(output);ros::spinOnce();
             }catch(...){if(image.IsValid())image->Release();throw;}
         }
+        camera->EndAcquisition();acquiring=false;
+        // Publishers are scoped to this try block: flush BEFORE their destruction.
+        // Waiting after the block is too late (unadvertise drops queued output).
+        ros::WallDuration(.2).sleep();
     }catch(const std::exception& e){ROS_FATAL("%s",e.what());result=1;}
     try {if(acquiring)camera->EndAcquisition();if(initialized)camera->DeInit();camera=nullptr;cameras.Clear();if(system.IsValid())system->ReleaseInstance();}
     catch(const std::exception& e){ROS_ERROR("Camera cleanup: %s",e.what());result=1;}
-    // Finish publishing the current raw/metadata/processed trio before ROS closes TCP.
-    ros::WallDuration(.2).sleep();ros::shutdown();
+    ros::shutdown();
     return result;
 }

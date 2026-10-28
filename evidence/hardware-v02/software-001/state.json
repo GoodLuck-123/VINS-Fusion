@@ -1,0 +1,154 @@
+{
+  "task": "field-software-v02/001",
+  "phase": "failed",
+  "pid": 139275,
+  "install": "/home/firefly/vins-workspace/releases/8d69078c0057cc0d/install",
+  "package": {
+    "version": "0.2.0",
+    "sensors": {
+      "id": "0d5c945de9b12725",
+      "stage": "/home/eric/projects/VINS-Fusion/build/hardware/0d5c945de9b12725",
+      "sdk": "/home/eric/projects/VINS-Fusion/third_party/spinnaker/opt/spinnaker",
+      "core_fingerprint": "8fc8b2f282a59b29",
+      "sdk_lock_sha256": "f3f64f173b0f37f1c7df8a1df2a96e2032e21c4419f97e3526065d9cfc385b72"
+    },
+    "architecture": "aarch64",
+    "build": {
+      "id": "8fc8b2f282a59b29",
+      "target": "board",
+      "stage": "/home/eric/projects/VINS-Fusion/build/board/8fc8b2f282a59b29/stage",
+      "legacy": "/home/eric/projects/VINS-Fusion/build/board/8fc8b2f282a59b29/libraries",
+      "sdk": "/home/eric/projects/VINS-Fusion/cache/sysroot",
+      "source_fingerprint": "8fc8b2f282a59b29"
+    },
+    "platform_commit": "d2d326bee0f831349244a1ecf642a3ecf3a1c6d0",
+    "system_libraries": [
+      "ld-linux-aarch64.so.1",
+      "ld-linux-x86-64.so.2",
+      "libanl.so.1",
+      "libc.so.6",
+      "libdl.so.2",
+      "libm.so.6",
+      "libnss_dns.so.2",
+      "libnss_files.so.2",
+      "libpthread.so.0",
+      "libresolv.so.2",
+      "librt.so.1",
+      "libutil.so.1"
+    ]
+  },
+  "events": [
+    {
+      "code": "master_start",
+      "message": "Private master http://127.0.0.1:60185",
+      "elapsed_s": 1.0979973599987716
+    },
+    {
+      "code": "capture_start",
+      "message": "Recorder subscribed, IMU receiving, camera armed for software",
+      "elapsed_s": 5.91482280299897
+    },
+    {
+      "code": "source_ended",
+      "message": "Hardware sources closed; waiting for trajectory tail and recorder flush",
+      "elapsed_s": 12.101318007998998
+    },
+    {
+      "code": "failed",
+      "message": "Recording validation: 处理图、原图及 metadata 录包数量不一致",
+      "elapsed_s": 14.518102500998793
+    }
+  ],
+  "warnings": {},
+  "process_exits": {
+    "camera": 0,
+    "imu": 0,
+    "recorder": 0,
+    "observer": 0,
+    "master": 0
+  },
+  "resource_samples": {
+    "master": {
+      "cpu_s_lower_bound": 0.47,
+      "rss_kib_peak_observed": 42432,
+      "pss_kib_peak_observed": 36808
+    },
+    "observer": {
+      "cpu_s_lower_bound": 0.24,
+      "rss_kib_peak_observed": 10752,
+      "pss_kib_peak_observed": 5305
+    },
+    "recorder": {
+      "cpu_s_lower_bound": 0.5,
+      "rss_kib_peak_observed": 42948,
+      "pss_kib_peak_observed": 32945
+    },
+    "imu": {
+      "cpu_s_lower_bound": 0.56,
+      "rss_kib_peak_observed": 10348,
+      "pss_kib_peak_observed": 3196
+    },
+    "camera": {
+      "cpu_s_lower_bound": 1.24,
+      "rss_kib_peak_observed": 69616,
+      "pss_kib_peak_observed": 62760
+    }
+  },
+  "elapsed_s": 14.604983301000175,
+  "heartbeat_monotonic": 13637.177348116,
+  "hardware_preflight": {
+    "serial": "/dev/ttyS7",
+    "free_bytes": 33305010176,
+    "estimated_record_bytes": 96468992,
+    "camera_serial": "25162247",
+    "camera_device_access": "checked at acquisition"
+  },
+  "record_only": true,
+  "master_uri": "http://127.0.0.1:60185",
+  "child_pids": {
+    "master": 139487,
+    "observer": 139663,
+    "recorder": 139672,
+    "imu": 139853,
+    "camera": 139879
+  },
+  "observation": {
+    "seq": 19,
+    "monotonic_elapsed_s": 9.472657119,
+    "image": {
+      "count": 84,
+      "stamp_ns": 1790075794780770549,
+      "age_s": 1.650138208,
+      "hz": 20.00442021669992,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "imu": {
+      "count": 800,
+      "stamp_ns": 1790075796421219298,
+      "age_s": 0.05001442200000028,
+      "hz": 102.0381006124632,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "pose": {
+      "count": 0,
+      "stamp_ns": 0,
+      "age_s": -1,
+      "hz": 0,
+      "invalid": 0,
+      "nonincreasing": 0
+    },
+    "position_m": [
+      0,
+      0,
+      0
+    ]
+  },
+  "stop_reason": "duration",
+  "capture_wall_s": 6.186146080000981,
+  "recording_error": "处理图、原图及 metadata 录包数量不一致",
+  "error": "Recording validation: 处理图、原图及 metadata 录包数量不一致",
+  "child_cpu_s": 5.745698,
+  "exit_code": 1
+}

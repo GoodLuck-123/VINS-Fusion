@@ -46,7 +46,7 @@ def build(c):
     sources()
     if target=='board':
         from hardware import prepare
-        prepare()
+        prepare(lambda item,dest:sync(c,dest,item['board_seed'],True))
     input_fingerprint=package_fingerprint()
     print('[构建] '+target+'；日志 '+str(log),flush=True)
     with log.open('w') as f:
