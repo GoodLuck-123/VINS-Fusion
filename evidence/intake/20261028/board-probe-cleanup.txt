@@ -1,0 +1,52 @@
+auto-starting new master
+[1mprocess[master]: started with pid [10601][0m
+[1mROS_MASTER_URI=http://127.0.0.1:60941/[0m
+]2;roscore http://127.0.0.1:60941/
+[1msetting /run_id to 439185c6-b65d-11f1-9af1-e6958f187983[0m
+[1mprocess[rosout-1]: started with pid [10623][0m
+started core service [/rosout]
+[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+speed 9600 baud; rows 0; columns 0; line = 0;
+intr = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D; eol = <undef>;
+eol2 = <undef>; swtch = <undef>; start = ^Q; stop = ^S; susp = ^Z; rprnt = ^R;
+werase = ^W; lnext = ^V; discard = ^O; min = 1; time = 0;
+/home/firefly/sh_files/p600/record_disk.sh
+/home/firefly/sh_files/p600/loop.sh
+/home/firefly/sh_files/p600/imu_mavros_cam.sh
+/home/firefly/sh_files/p600/vins.sh
+/home/firefly/sh_files/p600/record.sh
+/home/firefly/sh_files/p600/record_ll.sh
+-rwxrwxr-x 1 firefly firefly 596 Sep 21  2023 /home/firefly/driver_ws/src/gnw_500/package.xml
+<?xml version="1.0"?>
+<package format="2">
+  <name>gnw_500</name>
+  <version>0.1.0</version>
+  <description>The gnw_ahrs package</description>
+
+
+  <maintainer email="luoxiaoyong@glonavin.com"> glonavin</maintainer>
+  <maintainer email="luoxiaoyong@glonavin.com">luoxiaoyong</maintainer>
+
+  <license>Robosense.ai</license>
+
+  <url type="website">http://www.glonavin.com</url>
+
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
+/home/firefly/driver_ws/src/blackfly_driver_3.0/src/readme.txt
+/home/firefly/ros_project/vins_fusion/devel/lib/vins/vins_node
+/home/firefly/ros_project/vins_fusion/devel/lib/vins/kitti_gps_test
+/home/firefly/ros_project/vins_fusion/devel/lib/vins/kitti_odom_test

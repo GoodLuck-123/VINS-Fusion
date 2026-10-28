@@ -1,0 +1,45 @@
+{
+  "probe": "existing_gnw500_ros_driver",
+  "workspace": "/tmp/vins-platform-intake-imu",
+  "master_port": 60941,
+  "requested_imu_rate": 200,
+  "baud": 115200,
+  "seconds": 8,
+  "observed": {
+    "count": 785,
+    "finite": 785,
+    "nonincreasing_stamp": 0,
+    "seq_gaps": 0,
+    "first_stamp": 1790064712888610784,
+    "last_stamp": 1790064720728713489,
+    "first_arrival": 2550.673499637,
+    "last_arrival": 2558.513440175,
+    "acc_norm_sum": 7710.235123928215,
+    "max_arrival_gap_s": 0.011561668000013015,
+    "sample": {
+      "frame_id": "imu_link",
+      "values": [
+        0.0959903821349144,
+        9.827486038208008,
+        -0.26053592562675476,
+        0.0023226481167598107,
+        -0.0009706789799773173,
+        0.00037124914223915555
+      ]
+    }
+  },
+  "arrival_hz": 100.00075844962915,
+  "header_hz": 99.998690004406,
+  "mean_acceleration_norm": 9.821955571883077,
+  "process_exits": {
+    "imu": {
+      "exit_code": 0,
+      "escalated_signals": []
+    },
+    "master": {
+      "exit_code": 0,
+      "escalated_signals": []
+    }
+  },
+  "serial_settings_restored": true
+}

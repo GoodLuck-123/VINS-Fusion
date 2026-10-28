@@ -1,0 +1,210 @@
+{
+  "recover_from": "be55a937a57436548ddfb1bd324bc1e9a9e828e0",
+  "scope": "old scene, visualization, loop descriptor config and obsolete Docker entry points; no C++ source removed",
+  "files": [
+    {
+      "path": "config/A3_ptgrey/a3_ptgrey_mono_imu_config.yaml",
+      "sha256": "665466543c79d659da6eadb18f696c136135f91eec405fb882b2693768179947"
+    },
+    {
+      "path": "config/A3_ptgrey/a3_ptgrey_stereo_config.yaml",
+      "sha256": "27c511243277358858804fcb30ad0326b0a7948b293e0f789af42dbf886622b1"
+    },
+    {
+      "path": "config/A3_ptgrey/a3_ptgrey_stereo_imu_config.yaml",
+      "sha256": "76a00b647b2d290df10a6d4da1ae7e683c71dc63bb4bfcdcfc96bffb0f768359"
+    },
+    {
+      "path": "config/A3_ptgrey/a3_ptgrey_stereo_imu_config_backup.yaml",
+      "sha256": "9f630402ae7f504aef09029127fca0e567bd3286e18fa56388a2199375fc27c1"
+    },
+    {
+      "path": "config/A3_ptgrey/left.yaml",
+      "sha256": "1dd087ab13587880dc919420bb947831f99b6aeac85a7ea22e91dcdd48e39a6b"
+    },
+    {
+      "path": "config/A3_ptgrey/right.yaml",
+      "sha256": "c8ed71d431df082ce978e5b5551b291518225507847bfa7c232f1f6bd748e64f"
+    },
+    {
+      "path": "config/euroc/cam0_mei.yaml",
+      "sha256": "cf80ecac499664460eb52159de38786058c7cfb5eee81ab6489dea37a5d64059"
+    },
+    {
+      "path": "config/euroc/cam0_pinhole.yaml",
+      "sha256": "04bf3968a3db62f0c40e4742709216b0766a7db3c2c03e0d713746ab0d9be9cb"
+    },
+    {
+      "path": "config/euroc/cam1_mei.yaml",
+      "sha256": "2a435db6a6fbd286c0fe0706792af4b08efd4ffdc6b7a22b8b261256d6e49963"
+    },
+    {
+      "path": "config/euroc/cam1_pinhole.yaml",
+      "sha256": "6bcaa1903db4451298405ba1452bc5bfb1f27ffe971b490fc852658187891533"
+    },
+    {
+      "path": "config/euroc/euroc_mono_imu_config.yaml",
+      "sha256": "2aea6be6b5377de1432e14a01f1eb6ccee4fb80c664701cd3b331adf9b2825a8"
+    },
+    {
+      "path": "config/euroc/euroc_stereo_config.yaml",
+      "sha256": "6d9c69c5fdb007368c7e61c04149201dbaf7cb4ea9a23ef3d25c11af825c9609"
+    },
+    {
+      "path": "config/euroc/euroc_stereo_imu_config.yaml",
+      "sha256": "e1b0f27840ba960f95bc570dca6722d65b77492d2976782f606e6ea5507e61fe"
+    },
+    {
+      "path": "config/extrinsic_parameter_example.pdf",
+      "sha256": "df3dbfe2e872f0a33e2e88c616247fd45e9dc1859b83cfef1ce018cc2075d70a"
+    },
+    {
+      "path": "config/fisheye_mask.jpg",
+      "sha256": "7e10b5dcf50e0a3249f4ebe67476f4e1b5e1c6f666aaa6e8ae0d359f9793a8d0"
+    },
+    {
+      "path": "config/fisheye_mask_752x480.jpg",
+      "sha256": "70279fe1692877bd9f8acc368a1a6e1116849b9d4c5e4cc351cdcd6e7039d641"
+    },
+    {
+      "path": "config/kitti_odom/cam00-02.yaml",
+      "sha256": "f35e092b6a8bfc0cd1affd2f6398ee86de714db9a35ebbf76c20693e0f0c6527"
+    },
+    {
+      "path": "config/kitti_odom/cam03.yaml",
+      "sha256": "12cfa0f79e3548a32e4b885bb579a7716f9f92e1ec8d9d640c9a20e3e21ecdbe"
+    },
+    {
+      "path": "config/kitti_odom/cam04-12.yaml",
+      "sha256": "756bf3e91b2ae784e0cf88f09ca7ac42e4a4f10fa7e03db1bb28e3542a3862f7"
+    },
+    {
+      "path": "config/kitti_odom/cam13-21.yaml",
+      "sha256": "f35e092b6a8bfc0cd1affd2f6398ee86de714db9a35ebbf76c20693e0f0c6527"
+    },
+    {
+      "path": "config/kitti_odom/kitti_config00-02.yaml",
+      "sha256": "a3ca9923f98e376ce4b7cba9f788e281d6a6117d2c900dd8c9130fc3c618be25"
+    },
+    {
+      "path": "config/kitti_odom/kitti_config03.yaml",
+      "sha256": "01c4ff7cf89ecc4cd198ff32b4e20fae6202de421891cf2ebd46c70661cdbf03"
+    },
+    {
+      "path": "config/kitti_odom/kitti_config04-12.yaml",
+      "sha256": "2c7c3f8616c0de8693a06a2e809aabaa962783b5a2bf7c4e01a0be0abc77d6bc"
+    },
+    {
+      "path": "config/kitti_odom/kitti_config13-21.yaml",
+      "sha256": "1033c4a8301a2f6c1a0e2079235c060bec1f73f44611534cdc2525ecf365d48a"
+    },
+    {
+      "path": "config/kitti_raw/cam_09_30.yaml",
+      "sha256": "3d8faeb3d6eca0fee6e4126dd25883c75ba5a305f7bc6dbf4c78dda4c44171ba"
+    },
+    {
+      "path": "config/kitti_raw/cam_10_03.yaml",
+      "sha256": "f35e092b6a8bfc0cd1affd2f6398ee86de714db9a35ebbf76c20693e0f0c6527"
+    },
+    {
+      "path": "config/kitti_raw/kitti_09_30_config.yaml",
+      "sha256": "eb0c713d8b1faf23fdb2dc460e793692ab5d09f6f8a87b32c8cb4b9fa5cfdff9"
+    },
+    {
+      "path": "config/kitti_raw/kitti_10_03_config.yaml",
+      "sha256": "e0c57b7fe6cb5a425899cb41cc1a5459c4f9043e867c91845f3616644d1b59a8"
+    },
+    {
+      "path": "config/mynteye/left_mei.yaml",
+      "sha256": "7d611f4ca09bce419f004c9d04a12c16c6ff3f9493b08eaf8bd0086626503efc"
+    },
+    {
+      "path": "config/mynteye/mynteye_mono_imu_config.yaml",
+      "sha256": "e1f4392b02a5ec74e65a3e849f97be5d70c1bbe97241be5264317b4dbe437d43"
+    },
+    {
+      "path": "config/mynteye/mynteye_stereo_config.yaml",
+      "sha256": "2f6866d018d4b9bd8a5de753e56915e1e41e7f6df3901f94d29206a21fd55125"
+    },
+    {
+      "path": "config/mynteye/mynteye_stereo_imu_config.yaml",
+      "sha256": "fd998bb68794d21f961c0d90335fc7851bde672c3cda07933175a2aa2e939b88"
+    },
+    {
+      "path": "config/mynteye/right_mei.yaml",
+      "sha256": "2cba9bbc6d7ab92b95946665da3823b9582bed46864677ea7557d36ce72f5c91"
+    },
+    {
+      "path": "config/realsense_d435i/left.yaml",
+      "sha256": "a0834015225f2a2aae3b6fd90dd9472211c259d8197f0cfe13caf60b1c420484"
+    },
+    {
+      "path": "config/realsense_d435i/realsense_stereo_imu_config.yaml",
+      "sha256": "d60877dd4bad8210b23dbc1e95c0f3622558a6ca95ff46836a0c509d47fa0c46"
+    },
+    {
+      "path": "config/realsense_d435i/right.yaml",
+      "sha256": "a0834015225f2a2aae3b6fd90dd9472211c259d8197f0cfe13caf60b1c420484"
+    },
+    {
+      "path": "config/realsense_d435i/rs_camera.launch",
+      "sha256": "6be8405d0006938184d47cfe6b5d6a87bd977adc4d8f06b1e8da79fc13e01c95"
+    },
+    {
+      "path": "config/simulation/cam0_mei.yaml",
+      "sha256": "055d56c65fc59a306ce4b50d92ba9c5b13e7b54333406751b4e18fe4827b3d49"
+    },
+    {
+      "path": "config/simulation/cam1_mei.yaml",
+      "sha256": "3d944d55fb35264f0dd502be54242d799d05451f92e2395be36270fc10f70dad"
+    },
+    {
+      "path": "config/simulation/simulation_config.yaml",
+      "sha256": "03ab30c24cb9866c1374708ab8b512ffc133ff5815732c2c16664e91569be560"
+    },
+    {
+      "path": "config/vi_car/cam0_mei.yaml",
+      "sha256": "c55ea95d8a1e6371c51fca3415715b3150a2b54ca93ccc234f2ca38197e0d483"
+    },
+    {
+      "path": "config/vi_car/cam0_pinhole.yaml",
+      "sha256": "36b0e5fcf0409eb2adf9247eeb8a9c7433645eca093adf4dba575050d66453f6"
+    },
+    {
+      "path": "config/vi_car/cam1_mei.yaml",
+      "sha256": "6ee8275cf87167646861915b64f79416dfd9f84772aa5d87064ab602f4a16104"
+    },
+    {
+      "path": "config/vi_car/cam1_pinhole.yaml",
+      "sha256": "a070bee12c17ca432c8b45687b8d8a6c5158d5b53d519e1d8b733d740778eb52"
+    },
+    {
+      "path": "config/vi_car/vi_car.yaml",
+      "sha256": "a3e9fcac068ffabb976142af8ff4c3b672ab3cf32652402e92d2a4b1838d24e9"
+    },
+    {
+      "path": "config/vins_rviz_config.rviz",
+      "sha256": "88d27b20f2d303e8996f433c527067b6e1cb6c34eadb32459e4ddcc94a32d0c0"
+    },
+    {
+      "path": "docker/Dockerfile",
+      "sha256": "50fc8ef95c1f01337f5c958fdf75bb4ee36c0cc54e5094fd477626c358a954f9"
+    },
+    {
+      "path": "docker/Makefile",
+      "sha256": "56cfa78a4d596b5c5d0ca897679a4c3b679ee9617286e28a60b6e0c1a1c09442"
+    },
+    {
+      "path": "docker/run.sh",
+      "sha256": "9f9d54e38271ebb1353a7042bb361632d90d7c5a687e167134345ddf46264c97"
+    },
+    {
+      "path": "support_files/brief_pattern.yml",
+      "sha256": "cb9e20bf47d7557cd22f7820524c3cb13b3a315c451d5665955336100177cafd"
+    },
+    {
+      "path": "vins_estimator/launch/vins_rviz.launch",
+      "sha256": "27a6eee9f2206bae62e634744018f38debb448aa3531c5fc6c918789261aca82"
+    }
+  ]
+}

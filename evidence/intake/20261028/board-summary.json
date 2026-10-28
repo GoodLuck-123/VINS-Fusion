@@ -1,0 +1,82 @@
+{
+  "host_recorded_date": "2026-10-28",
+  "scope": "design and existing-system exploration, not new platform release acceptance",
+  "ssh": {
+    "target": "firefly@192.168.1.51",
+    "host_key_fingerprint": "SHA256:vZWW/TE59CS8SfoNerG54y4S/DiMOAedWly+K9sCBa8",
+    "host_key_change_authorized_by_user": true,
+    "dedicated_public_key_added": true,
+    "ordinary_batch_mode_verified": true
+  },
+  "system": {
+    "model": "Firefly ROC-RK3588S-PC V12 MIPI(Linux)",
+    "architecture": "aarch64",
+    "os": "Ubuntu 20.04.6 LTS",
+    "kernel": "5.10.160",
+    "glibc": "2.31",
+    "ros_for_exploration": "Noetic at /opt/ros/noetic",
+    "python_for_exploration": "3.8.10",
+    "ram_gib_approx": 31,
+    "disk_free_gib_approx": 42,
+    "board_clock_synchronized": false,
+    "board_clock_observed_date": "2026-09-22",
+    "user_linger": false,
+    "governor": "interactive"
+  },
+  "camera": {
+    "vendor": "FLIR",
+    "model": "Blackfly S BFS-U3-31S4M-BD",
+    "serial": "25162247",
+    "usb_id": "1e10:4000",
+    "link": "USB3Vision SuperSpeed",
+    "sdk": "Spinnaker 3.1.0.79",
+    "sdk_enumeration_exit": 0,
+    "sdk_acquisition_exit": 0,
+    "images_saved_and_decoded": 10,
+    "image_size": [
+      1024,
+      768
+    ],
+    "decoded_image_channels": 1,
+    "stable_rate_verified": false,
+    "ros_driver_verified": false,
+    "calibration_verified": false
+  },
+  "imu": {
+    "vendor_family": "Glonavin GNW",
+    "exact_model_verified": false,
+    "path": "/dev/ttyS7",
+    "baud": 115200,
+    "driver_configured_imu_rate": 200,
+    "user_requested_to_preserve_configured_rate": true,
+    "observed_rate_hz": 100.00075844962915,
+    "uart_valid_finite_frames": 499,
+    "uart_bad_checksum_candidates": 0,
+    "ros_observed_messages": 785,
+    "ros_finite_messages": 785,
+    "ros_nonincreasing_stamp": 0,
+    "ros_observed_seq_gaps": 0,
+    "driver_exit": 0,
+    "master_exit": 0,
+    "serial_settings_restored": true,
+    "hardware_configuration_changed": false
+  },
+  "not_verified": [
+    "new platform CLI or release",
+    "new host/ARM64 algorithm build",
+    "new VINS dataset regression",
+    "camera ROS stream",
+    "real sensor VIO",
+    "camera/IMU extrinsic and intrinsic accuracy",
+    "hardware synchronization",
+    "physical host-network disconnection",
+    "long-run stability",
+    "driver fault recovery"
+  ],
+  "raw_archive": "experiments/platform-intake/001",
+  "board_probe_directories": [
+    "/tmp/vins-intake-sdk-ShpHTm",
+    "/tmp/vins-platform-intake-imu"
+  ],
+  "source_imported_into_third_party": false
+}

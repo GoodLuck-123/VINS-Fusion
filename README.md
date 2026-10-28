@@ -1,176 +1,45 @@
-# VINS-Fusion
-## An optimization-based multi-sensor state estimator
+# VINS 户外实验平台
 
-<img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/vins_logo.png" width = 55% height = 55% div align=left />
-<img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/kitti.png" width = 34% height = 34% div align=center />
+面向学生的开环单目视觉惯性实验工程：一个 `./vins` 入口、一份用户配置，主机构建私有运行包，板端解包运行并回收实验数据
 
-VINS-Fusion is an optimization-based multi-sensor state estimator, which achieves accurate self-localization for autonomous applications (drones, cars, and AR/VR). VINS-Fusion is an extension of [VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono), which supports multiple visual-inertial sensor types (mono camera + IMU, stereo cameras + IMU, even stereo cameras only). We also show a toy example of fusing VINS with GPS. 
-**Features:**
-- multiple sensors support (stereo cameras / mono camera+IMU / stereo cameras+IMU)
-- online spatial calibration (transformation between camera and IMU)
-- online temporal calibration (time offset between camera and IMU)
-- visual loop closure
+**当前是重设计阶段，尚无新 CLI 或新 release**。新分支 `codex/vins-platform` 从原生 VINS `be55a93` 建立；旧 ROS 1/ROS 2 分支、tag 与实验保留作参照
 
-<img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/kitti_rank.png" width = 80% height = 80% />
+## Quick Start
 
-We are the **top** open-sourced stereo algorithm on [KITTI Odometry Benchmark](http://www.cvlibs.net/datasets/kitti/eval_odometry.php) (12.Jan.2019).
+先复制唯一配置模板；模板当前对应 EuRoC 单目 IMU，不对应板上实物标定
 
-**Authors:** [Tong Qin](http://www.qintonguav.com), Shaozu Cao, Jie Pan, [Peiliang Li](https://peiliangli.github.io/), and [Shaojie Shen](http://www.ece.ust.hk/ece.php/profile/facultydetail/eeshaojie) from the [Aerial Robotics Group](http://uav.ust.hk/), [HKUST](https://www.ust.hk/)
-
-**Videos:**
-
-<a href="https://www.youtube.com/embed/1qye82aW7nI" target="_blank"><img src="http://img.youtube.com/vi/1qye82aW7nI/0.jpg" 
-alt="VINS" width="320" height="240" border="10" /></a>
-
-
-**Related Paper:** (paper is not exactly same with code)
-
-* **Online Temporal Calibration for Monocular Visual-Inertial Systems**, Tong Qin, Shaojie Shen, IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS, 2018), **best student paper award** [pdf](https://ieeexplore.ieee.org/abstract/document/8593603)
-
-* **VINS-Mono: A Robust and Versatile Monocular Visual-Inertial State Estimator**, Tong Qin, Peiliang Li, Shaojie Shen, IEEE Transactions on Robotics [pdf](https://ieeexplore.ieee.org/document/8421746/?arnumber=8421746&source=authoralert) 
-
-
-*If you use VINS-Fusion for your academic research, please cite our related papers. [bib](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/paper_bib.txt)*
-
-## 1. Prerequisites
-### 1.1 **Ubuntu** and **ROS**
-Ubuntu 64-bit 16.04 or 18.04.
-ROS Kinetic or Melodic. [ROS Installation](http://wiki.ros.org/ROS/Installation)
-
-
-### 1.2. **Ceres Solver**
-Follow [Ceres Installation](http://ceres-solver.org/installation.html).
-
-
-## 2. Build VINS-Fusion
-Clone the repository and catkin_make:
-```
-    cd ~/catkin_ws/src
-    git clone https://github.com/HKUST-Aerial-Robotics/VINS-Fusion.git
-    cd ../
-    catkin_make
-    source ~/catkin_ws/devel/setup.bash
-```
-(if you fail in this step, try to find another computer with clean system or reinstall Ubuntu and ROS)
-
-## 3. EuRoC Example
-Download [EuRoC MAV Dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets) to YOUR_DATASET_FOLDER. Take MH_01 for example, you can run VINS-Fusion with three sensor types (monocular camera + IMU, stereo cameras + IMU and stereo cameras). 
-Open four terminals, run vins odometry, visual loop closure(optional), rviz and play the bag file respectively. 
-Green path is VIO odometry; red path is odometry under visual loop closure.
-
-### 3.1 Monocualr camera + IMU
-
-```
-    roslaunch vins vins_rviz.launch
-    rosrun vins vins_node ~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_mono_imu_config.yaml 
-    (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_mono_imu_config.yaml 
-    rosbag play YOUR_DATASET_FOLDER/MH_01_easy.bag
+```bash
+cp project.example.yaml project.yaml
+# 编辑 project.yaml；也可另命名为 field.yaml
+ssh firefly@192.168.1.51        # 已配置免密
 ```
 
-### 3.2 Stereo cameras + IMU
+v0.1 计划提供以下统一操作，**当前尚不能执行**：
 
-```
-    roslaunch vins vins_rviz.launch
-    rosrun vins vins_node ~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_stereo_imu_config.yaml 
-    (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_stereo_imu_config.yaml 
-    rosbag play YOUR_DATASET_FOLDER/MH_01_easy.bag
-```
-
-### 3.3 Stereo cameras
-
-```
-    roslaunch vins vins_rviz.launch
-    rosrun vins vins_node ~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_stereo_config.yaml 
-    (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_stereo_config.yaml 
-    rosbag play YOUR_DATASET_FOLDER/MH_01_easy.bag
+```bash
+./vins run                    # 自动准备、部署、板端回放、摘要监控与回收
+./vins run --host             # 主机验证同一数据集
+./vins remote                # 进入已激活环境的板端终端
+./vins -c field.yaml run      # 使用另一个项目配置
 ```
 
-<img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/euroc.gif" width = 430 height = 240 />
+## 文件放在哪里
 
+| 目录 / 文件 | 含义 |
+| --- | --- |
+| [project.example.yaml](project.example.yaml) | 唯一用户参数模板，复制后修改 |
+| [third_party/](third_party/README.md) | 以后所有依赖源码、驱动与 SDK 的可见位置 |
+| [releases/](releases/README.md) | 最终上板 install 和压缩包；当前尚无新包 |
+| [data/](data/README.md) | 输入 bag 与真值 |
+| [experiments/](experiments/README.md) | 每次结果、日志、实际配置及实采原始数据 |
+| [build/](build/README.md) / [cache/](cache/README.md) | 历史/中间构建与可重建辅助环境，非部署入口 |
 
-## 4. KITTI Example
-### 4.1 KITTI Odometry (Stereo)
-Download [KITTI Odometry dataset](http://www.cvlibs.net/datasets/kitti/eval_odometry.php) to YOUR_DATASET_FOLDER. Take sequences 00 for example,
-Open two terminals, run vins and rviz respectively. 
-(We evaluated odometry on KITTI benchmark without loop closure funtion)
-```
-    roslaunch vins vins_rviz.launch
-    (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-Fusion/config/kitti_odom/kitti_config00-02.yaml
-    rosrun vins kitti_odom_test ~/catkin_ws/src/VINS-Fusion/config/kitti_odom/kitti_config00-02.yaml YOUR_DATASET_FOLDER/sequences/00/ 
-```
-### 4.2 KITTI GPS Fusion (Stereo + GPS)
-Download [KITTI raw dataset](http://www.cvlibs.net/datasets/kitti/raw_data.php) to YOUR_DATASET_FOLDER. Take [2011_10_03_drive_0027_synced](https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_10_03_drive_0027/2011_10_03_drive_0027_sync.zip) for example.
-Open three terminals, run vins, global fusion and rviz respectively. 
-Green path is VIO odometry; blue path is odometry under GPS global fusion.
-```
-    roslaunch vins vins_rviz.launch
-    rosrun vins kitti_gps_test ~/catkin_ws/src/VINS-Fusion/config/kitti_raw/kitti_10_03_config.yaml YOUR_DATASET_FOLDER/2011_10_03_drive_0027_sync/ 
-    rosrun global_fusion global_fusion_node
-```
+运行数据和生成产物 Git 忽略，源码、模板、依赖锁和小型证据纳入版本控制。新工程产物不生成到仓库同级隐藏目录
 
-<img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/kitti.gif" width = 430 height = 240 />
+## 设计与当前实测
 
-## 5. VINS-Fusion on car demonstration
-Download [car bag](https://drive.google.com/open?id=10t9H1u8pMGDOI6Q2w2uezEq5Ib-Z8tLz) to YOUR_DATASET_FOLDER.
-Open four terminals, run vins odometry, visual loop closure(optional), rviz and play the bag file respectively. 
-Green path is VIO odometry; red path is odometry under visual loop closure.
-```
-    roslaunch vins vins_rviz.launch
-    rosrun vins vins_node ~/catkin_ws/src/VINS-Fusion/config/vi_car/vi_car.yaml 
-    (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-Fusion/config/vi_car/vi_car.yaml 
-    rosbag play YOUR_DATASET_FOLDER/car.bag
-```
+从 [00 接手入口](docs/00_HANDOFF.md) 开始；[01 平台设计](docs/01_PLATFORM_DESIGN.md) 说明用户流程和 v0.1–v0.3 验收；[02 板端探索](docs/02_BOARD_DISCOVERY.md) 记录新板子的实际设备、工作区及短时验证
 
-<img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/car_gif.gif" width = 430 height = 240  />
+v0.1 做通信与干净回放闭环；v0.2 接真实相机/IMU；v0.3 补硬件与采数监控。当前相机已确认是 FLIR Blackfly S，IMU 实测约 100 Hz，用户要求保留历史 200 Hz 驱动配置的使用习惯；正式算法构建和现场标定尚未验收
 
-
-## 6. Run with your devices 
-VIO is not only a software algorithm, it heavily relies on hardware quality. For beginners, we recommend you to run VIO with professional equipment, which contains global shutter cameras and hardware synchronization.
-
-### 6.1 Configuration file
-Write a config file for your device. You can take config files of EuRoC and KITTI as the example. 
-
-### 6.2 Camera calibration
-VINS-Fusion support several camera models (pinhole, mei, equidistant). You can use [camera model](https://github.com/hengli/camodocal) to calibrate your cameras. We put some example data under /camera_models/calibrationdata to tell you how to calibrate.
-```
-cd ~/catkin_ws/src/VINS-Fusion/camera_models/camera_calib_example/
-rosrun camera_models Calibrations -w 12 -h 8 -s 80 -i calibrationdata --camera-model pinhole
-```
-
-## 7. Docker Support
-To further facilitate the building process, we add docker in our code. Docker environment is like a sandbox, thus makes our code environment-independent. To run with docker, first make sure [ros](http://wiki.ros.org/ROS/Installation) and [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) are installed on your machine. Then add your account to `docker` group by `sudo usermod -aG docker $YOUR_USER_NAME`. **Relaunch the terminal or logout and re-login if you get `Permission denied` error**, type:
-```
-cd ~/catkin_ws/src/VINS-Fusion/docker
-make build
-```
-Note that the docker building process may take a while depends on your network and machine. After VINS-Fusion successfully built, you can run vins estimator with script `run.sh`.
-Script `run.sh` can take several flags and arguments. Flag `-k` means KITTI, `-l` represents loop fusion, and `-g` stands for global fusion. You can get the usage details by `./run.sh -h`. Here are some examples with this script:
-```
-# Euroc Monocualr camera + IMU
-./run.sh ~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_mono_imu_config.yaml
-
-# Euroc Stereo cameras + IMU with loop fusion
-./run.sh -l ~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_mono_imu_config.yaml
-
-# KITTI Odometry (Stereo)
-./run.sh -k ~/catkin_ws/src/VINS-Fusion/config/kitti_odom/kitti_config00-02.yaml YOUR_DATASET_FOLDER/sequences/00/
-
-# KITTI Odometry (Stereo) with loop fusion
-./run.sh -kl ~/catkin_ws/src/VINS-Fusion/config/kitti_odom/kitti_config00-02.yaml YOUR_DATASET_FOLDER/sequences/00/
-
-#  KITTI GPS Fusion (Stereo + GPS)
-./run.sh -kg ~/catkin_ws/src/VINS-Fusion/config/kitti_raw/kitti_10_03_config.yaml YOUR_DATASET_FOLDER/2011_10_03_drive_0027_sync/
-
-```
-In Euroc cases, you need open another terminal and play your bag file. If you need modify the code, simply re-run `./run.sh` with proper auguments after your changes.
-
-
-## 8. Acknowledgements
-We use [ceres solver](http://ceres-solver.org/) for non-linear optimization and [DBoW2](https://github.com/dorian3d/DBoW2) for loop detection, a generic [camera model](https://github.com/hengli/camodocal) and [GeographicLib](https://geographiclib.sourceforge.io/).
-
-## 9. License
-The source code is released under [GPLv3](http://www.gnu.org/licenses/) license.
-
-We are still working on improving the code reliability. For any technical issues, please contact Tong Qin <qintonguavATgmail.com>.
-
-For commercial inquiries, please contact Shaojie Shen <eeshaojieATust.hk>.
+原生算法来自 HKUST Aerial Robotics 的 VINS-Fusion，作者、论文与上游说明保留在 [原版 README](docs/90_UPSTREAM_README.md)，许可见 [LICENCE](LICENCE)。原来的设备/场景配置与 Docker 操作入口已从新主线清理，可从原生提交恢复

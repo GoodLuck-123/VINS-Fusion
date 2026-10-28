@@ -1,0 +1,13 @@
+{
+  "schema_and_vins_mapping": "pass",
+  "all_native_vins_keys_accounted_for": 29,
+  "euroc_parameters": "exact parsed equality including calibration",
+  "local_markdown_links": "pass",
+  "frozen_refs_unchanged": 46,
+  "removed_configs_recoverable": 51,
+  "cpp_cmake_license_unchanged": true,
+  "original_readme_preserved_exactly": true,
+  "returned_board_files_sha256_match": 21,
+  "new_cli_implemented": false,
+  "new_release_built": false
+}

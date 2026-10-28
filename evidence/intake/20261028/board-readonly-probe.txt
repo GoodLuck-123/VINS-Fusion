@@ -1,0 +1,18 @@
+
+[SDK CAMERA ENUMERATION]
+camera_list_exit=124
+
+[UART PASSIVE SAMPLE]
+{
+  "mode": "passive_no_writes_no_baud_change",
+  "path": "/dev/ttyS7",
+  "termios_input_speed": 13,
+  "seconds": 5.176478103000136,
+  "bytes": 1158,
+  "header_hits": 0,
+  "valid_frames": 0,
+  "bad_checksum_candidates": 0,
+  "finite_frames": 0,
+  "sample": [],
+  "prefix_hex": "c858283d00ff94c7c10af8450f8225c0500ae0d4b7d100f97e3e49e9f437f90ae0d1279a07c0d7756ae0a935794e8025e57909d03c8f"
+}

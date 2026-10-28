@@ -1,0 +1,233 @@
+{
+  "host_recorded_utc": "2026-10-28T13:50:49.723683+00:00",
+  "new_branch": "codex/vins-platform",
+  "base": "be55a937a57436548ddfb1bd324bc1e9a9e828e0",
+  "nearest_ros1_ros2_common_ancestor": "5c575737e518351d0bc1abc3cdcdb11a96b8075d",
+  "frozen_refs": [
+    {
+      "ref": "refs/heads/codex/rk3588-ros1",
+      "object": "d2be5d6f0f48a7bd25152537ba40125b2e712155"
+    },
+    {
+      "ref": "refs/heads/codex/rk3588-ros2",
+      "object": "c8a4df5a8c6240e5cdac8358e2a51da407dec961"
+    },
+    {
+      "ref": "refs/heads/codex/ubuntu22-ros1-reproduction",
+      "object": "f85e0f17a0f8cda10ba79f7fa3eadc81a799ed1f"
+    },
+    {
+      "ref": "refs/heads/master",
+      "object": "f151555288bbcb16dd25ab5b6f5f25ac8cdd98be"
+    },
+    {
+      "ref": "refs/heads/ros2-humble",
+      "object": "e4424155b07a1ea9aab092a1729d2d2794910a70"
+    },
+    {
+      "ref": "refs/tags/baseline-rk3588-ros1-v1",
+      "object": "912be6b174a0257b47361ed969e194e6b2b21fed",
+      "peeled_commit": "2d76d3a6cad843d387c655b608fcb7bd81e50f63"
+    },
+    {
+      "ref": "refs/tags/baseline-rk3588-ros2-v1",
+      "object": "31676da007fc210da1dfdcf9817354f5eb766ec9",
+      "peeled_commit": "76d40f87e92f956acf2dfb6a96fb0c7767334692"
+    },
+    {
+      "ref": "refs/tags/baseline-ros1-euroc-v1",
+      "object": "14e1e0179e3a90a53b1cfcf858baf2d0ea81a848",
+      "peeled_commit": "f85e0f17a0f8cda10ba79f7fa3eadc81a799ed1f"
+    },
+    {
+      "ref": "refs/tags/baseline-ros1-native-ubuntu22-v1",
+      "object": "9fe8fbf9c5c85a1bb5f15ca12614ce85f5cbd4f3",
+      "peeled_commit": "2731068bc7d58888550ba787e664e34d17b40cc8"
+    },
+    {
+      "ref": "refs/tags/baseline-ros2-humble-v1",
+      "object": "4f45532197fd6d6cece544380d90fdac8f9f6ed2",
+      "peeled_commit": "9475686aedfb6280be43ce4d3bab288db09ab106"
+    },
+    {
+      "ref": "refs/tags/baseline-ros2-native-ubuntu22-v1",
+      "object": "28c93ea9c5355d98c0a43a3de6ac82dd0dd2de58",
+      "peeled_commit": "d198095c7e2f021bfbe17c355b2e99226eba291d"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-components-v1",
+      "object": "02d17b349cc351cc18a4d4869cea872ec8cc1066",
+      "peeled_commit": "a545a95ee13934e0202dcc1a09f659cb5daf41a4"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-cross-sdk-v1",
+      "object": "3b476a32261f9b041e1f8af3a09b8473ceec8c3b",
+      "peeled_commit": "7afa71e43cea27266c03436bb394e839da5a2bc1"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-dependencies-v1",
+      "object": "7a850253b5ea1b4c736528cf70caaa4316e399d6",
+      "peeled_commit": "8068c50bd3beb133f80b361a11cafbf85f85aa2a"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-dmabuf-v1",
+      "object": "eda3aa6b9028ee312530b4d1aee9d83864272389",
+      "peeled_commit": "4213e2a79d2b4a317c46011d55b05a7ee87f9327"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-fastrtps-runtime-v1",
+      "object": "559e25c1ee7815050bcb86d52bf9534ed00a470e",
+      "peeled_commit": "a29ee44df6b1ce2908ff31bde9f824cfb0c613c9"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-handoff-v1",
+      "object": "5184047b1d7bf31bb8eb53d33601d78165c98504",
+      "peeled_commit": "98b258cc493a61a05d906edbcae5b64408ce98d8"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-legacy-libs-v1",
+      "object": "adad31fd32940fb39c09dfbf38744eb369629f52",
+      "peeled_commit": "fb57978455b78bd79a99b8d768ac64b3de25560d"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-pmu-v1",
+      "object": "c596171e770fd603feeac878173fdc0f2e299548",
+      "peeled_commit": "af6c6357aee867b94e6d42142e23e56689be21b0"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-profile-tools-v1",
+      "object": "5234c9b74f532425d36cf415ba9c0b6569929b72",
+      "peeled_commit": "40e927826f99e9c39b08e33e3a14b86ad8baaeb4"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-remote-cli-v2",
+      "object": "57bc1d0516e861de5a7a3e5dbca6b8d2369abbcc",
+      "peeled_commit": "a97c2752f3ffc83c90f75eaac8187816176b9e3d"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-remote-workflow-v1",
+      "object": "cc5eb35d778f9c820e471c6de59e79ca669fdbc1",
+      "peeled_commit": "9e04d41949ae5eb1b878aaab090aa9146f968829"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-ros1-cross-build-v1",
+      "object": "329339700de632ce65c928d3dd229f1befa95a19",
+      "peeled_commit": "30790b0650b918045b020be9719a29bf5a334842"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-ros1-dependencies-v1",
+      "object": "54dbe90f9274c360f01e1df1a7771d8cb7c9d3c1",
+      "peeled_commit": "30b9d96899b5ff601d2b81cbedaeee14830ea448"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-ros1-handoff-v1",
+      "object": "8c7dc82756d51eae576dbbbbb30c882d94806060",
+      "peeled_commit": "9f91494ebb7402dba737b215bb0f093c589749d6"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-ros1-legacy-libs-v1",
+      "object": "3caba72770989ee726ca5318ab45888d84a3cb17",
+      "peeled_commit": "6c4703a8818c10d897e229d2def4d0c1e966c67d"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-ros1-runtime-v1",
+      "object": "5bfae27c2437b22b4c878b71865bb7cbd739486a",
+      "peeled_commit": "92b1bbbb1325f355c4150ae16db2dacd793f1c4f"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-ros2-cross-build-v1",
+      "object": "bd03e5ad5adc5f24ac89edb23a1471b48041d6fa",
+      "peeled_commit": "36ec5f435680f77b5a1a22094c7a6ff89ca9d2ee"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-ros2-runtime-v1",
+      "object": "41dadead5762f6675fd2e0eb0c1278fe6ab3d5c7",
+      "peeled_commit": "55fdcd8b9e3fee817577dea372dfe61302b963aa"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-shared-memory-v1",
+      "object": "bd087cd2e4c9395b4063952b99916b0f0612bf9c",
+      "peeled_commit": "5e685b1de671ecbd1d2bd4db2896c676ad9205a6"
+    },
+    {
+      "ref": "refs/tags/milestone-rk3588-shared-probe-v1",
+      "object": "627cd11ce4f03a0bab34a509f103a83e472ecc31",
+      "peeled_commit": "8f04c3fae986e5923f9687b2744fd49ccb1138c9"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-components-native-ubuntu22-v1",
+      "object": "94bb0d36ae83af762bde2f67b6496d67b245d57b",
+      "peeled_commit": "d03feafb9435c491a4c889f799d442877b47b4d0"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-components-v1",
+      "object": "8168d9c2d86ef9f9a2de045667bf167eda0e2f54",
+      "peeled_commit": "46894be7cb984510a65760bef68965a8274fd4a1"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-desktop-handoff-native-ubuntu22-v1",
+      "object": "7bf6c962c5efd329c19c41d9a6ea5b05172c729a",
+      "peeled_commit": "7d42fac4d329c317825f5f82db22897e56028e27"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-desktop-handoff-v1",
+      "object": "fec8c22bfe96348111b2094e6c6cf0d94c157936",
+      "peeled_commit": "b250dc09d1bcdd62a86dd916045aff0863be9a2e"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-dmabuf-native-ubuntu22-v1",
+      "object": "8f8c905835d136a3958de50f376901d334e029ef",
+      "peeled_commit": "511f08fb9d77e8b8c85873c4ad71a1bcf818b089"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-dmabuf-v1",
+      "object": "1ef5e053154874eeaee13589a1e728e15e144b1a",
+      "peeled_commit": "0fdd3ee24aacb9384c0cc7077a4250ed5cadd3f9"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-pmu-native-ubuntu22-v1",
+      "object": "e5d2976fba53e719d482e585cc00d0b08c4f3e8c",
+      "peeled_commit": "24fd3623776fc7f35486cd16db33e0b734c5a42d"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-pmu-v1",
+      "object": "fa2fce3e2297b9af324c8a9fc8c590470f1bda9d",
+      "peeled_commit": "8e81a2e77bcee071d588db7b733d8f29baf295b4"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-shared-memory-native-ubuntu22-v1",
+      "object": "9b462d7f649fda3dbc0744bf8985d655d07af937",
+      "peeled_commit": "dd68d8d03f3ad187219461ef56f04c386d15e69c"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-shared-memory-v1",
+      "object": "444a63db01a5e6e6bf48f07dfcc7dc349d6a64fd",
+      "peeled_commit": "9bd5cb23fa820d3ece4d0f75982bd2cf2352de36"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-shared-repeats-native-ubuntu22-v1",
+      "object": "8361b13f9e77bc0beefa6404eaeb35bf702bf678",
+      "peeled_commit": "13cfa87b318943c13acc2fb0b7ceda1220c71e15"
+    },
+    {
+      "ref": "refs/tags/milestone-ros2-shared-repeats-v1",
+      "object": "16a2876e1f2c0bd66c63259f8bb0d1541fb453f1",
+      "peeled_commit": "a7419739aa870dc8537f670df02f30aa5230a24b"
+    },
+    {
+      "ref": "refs/tags/v0.1",
+      "object": "1172878e0e24c9aa595b3be27793301a3c866f3d",
+      "peeled_commit": "dbe6b6e2e6d104e47b06cdf8f3ce1612799da034"
+    },
+    {
+      "ref": "refs/tags/v0.1-ros2-research",
+      "object": "50d614427c71695d4adb5ba605c65ca28b642fc2",
+      "peeled_commit": "daa814b619e353ec63683b5dd2d789a1436ed976"
+    },
+    {
+      "ref": "refs/tags/v0.2",
+      "object": "81be40e743aa706d02f37ee0a4b267e13c13e235",
+      "peeled_commit": "a5ab82dcbbf68a07a24a0915b0011ac3b2001dde"
+    }
+  ]
+}

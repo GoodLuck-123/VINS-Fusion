@@ -1,0 +1,96 @@
+# 唯一用户配置模板，schema_version=1；当前是 v0.1 设计契约，CLI 尚未实现
+# 新项目：cp project.example.yaml project.yaml；另命名时使用 ./vins -c NAME.yaml ...
+# 当前数值仅对应 EuRoC 单目+IMU，不可直接套用到板上真实相机
+schema_version: 1
+
+board:
+  target: firefly@192.168.1.51
+  ssh_port: 22
+  workspace: ~/vins-workspace
+  # null 使用 OpenSSH 已配置身份；密码不进入本文件
+  identity_file: null
+
+build:
+  jobs: 4
+
+paths:
+  # 主机相对路径均相对于本配置文件，非调用者临时工作目录
+  cache: cache
+  build: build
+  releases: releases
+  data: data
+  experiments: experiments
+
+run:
+  mode: replay                 # v0.1 仅 replay；sensor 到 v0.2 再实现
+  name: euroc-mono
+  timeout_s: 600
+  startup_timeout_s: 30
+  drain_timeout_s: 120
+  shutdown_timeout_s: 15
+  min_free_gib: 4
+
+dataset:
+  bag: data/euroc/MH_01_easy.bag
+  rate: 1.0
+  start_s: 0
+  duration_s: null             # null 回放到数据结束
+  ground_truth: null           # 可选真值文件；不影响无真值回放
+
+inputs:
+  # 采集接口、串口/触发/曝光等在 v0.2 扩充本模板；不维护另一份硬件配置
+  camera:
+    topic: /cam0/image_raw
+    expected_hz: 20.0          # 观察基准，不用于重写时间戳或强制丢帧
+    encoding: mono8
+    width: 752
+    height: 480
+    calibration:
+      verified_for: euroc-cam0
+      model: MEI
+      xi: 3.6313355285286337
+      distortion: {k1: 1.1757726639872075, k2: 15.491281051140213, p1: -0.0008123717295455049, p2: 0.0006729768403031024}
+      projection: {gamma1: 2.1387619122017772e+03, gamma2: 2.1315886210259278e+03, u0: 3.6119856633263799e+02, v0: 2.4827644773395667e+02}
+  imu:
+    enabled: true              # v0.1 仅支持单目+IMU，必须 true
+    topic: /imu0
+    expected_hz: 200.0         # EuRoC 基准；不代表真实 GNW 输出频率
+    acceleration_unit: m/s^2
+    angular_velocity_unit: rad/s
+
+vins:
+  # v0.1 固定单目+IMU、开环；num_of_cam=1 由适配器生成
+  multiple_thread: 1
+  max_cnt: 150
+  min_dist: 30
+  F_threshold: 1.0
+  show_track: 1               # 发布跟踪图，不会启动 RViz；按需要关闭
+  flow_back: 1
+  max_solver_time: 0.04       # 秒；不是毫秒
+  max_num_iterations: 8
+  keyframe_parallax: 10.0
+  acc_n: 0.1
+  gyr_n: 0.01
+  acc_w: 0.001
+  gyr_w: 0.0001
+  g_norm: 9.81007
+  estimate_extrinsic: 0        # 上游 0 固定、1 基于初值优化、2 无初值估计；须校验适用模式
+  # T_imu_camera：相机坐标点变换到 IMU 坐标，平移单位 m
+  body_T_cam0:
+    - [0.0148655429818, -0.999880929698, 0.00414029679422, -0.0216401454975]
+    - [0.999557249008, 0.0149672133247, 0.025715529948, -0.064676986768]
+    - [-0.0257744366974, 0.00375618835797, 0.999660727178, 0.00981073058949]
+    - [0.0, 0.0, 0.0, 1.0]
+  estimate_td: 0
+  td: 0.0                     # 秒；图像时间 + td 对应 IMU 时间
+
+monitor:
+  refresh_s: 2.0
+  first_message_timeout_s: 15.0
+  input_stall_s: 5.0
+  repeat_notice_s: 10.0
+
+results:
+  collect: true
+  raw_logs: compressed        # 结束时归档；运行中仅轮询摘要
+  raw_data: on_request        # v0.2 实采再扩展录包策略

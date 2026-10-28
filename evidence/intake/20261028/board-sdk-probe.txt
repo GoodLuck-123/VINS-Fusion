@@ -1,0 +1,231 @@
+probe_directory=/tmp/vins-intake-sdk-ShpHTm
+
+[ENUMERATION]
+enumeration_exit=0
+Application build date: Apr 25 2023 17:36:10
+
+Spinnaker library version: 3.1.0.79
+
+Number of interfaces detected: 3
+
+Number of cameras detected: 1
+
+
+*** QUERYING INTERFACES ***
+
+GEV Interface 0
+	No devices detected.
+
+GEV Interface 1
+	No devices detected.
+
+USB Interface 0
+	Device 0 FLIR Blackfly S BFS-U3-31S4M-BD
+
+
+Done! Press Enter to exit...
+
+[ACQUISITION]
+acquisition_exit=0
+Application build date: Apr 25 2023 17:35:57
+
+Spinnaker library version: 3.1.0.79
+
+Number of cameras detected: 1
+
+
+Running example for camera 0...
+
+*** DEVICE INFORMATION ***
+
+DeviceID : USB\VID_1E10&SRL_017FF207
+DeviceSerialNumber : 25162247
+DeviceUserID : 
+DeviceVendorName : FLIR
+DeviceModelName : Blackfly S BFS-U3-31S4M-BD
+DeviceVersion : 2110.0.318.0
+DeviceBootloaderVersion : Node not readable
+DeviceType : USB3Vision
+DeviceDisplayName : FLIR
+DeviceAccessStatus : OpenReadWrite
+DeviceDriverVersion : none : 0.0.0.0
+DeviceIsUpdater : 0
+DeviceInstanceId : USB\VID_1E10&SRL_017FF207
+DeviceLocation : 
+DeviceCurrentSpeed : SuperSpeed
+DeviceU3VProtocol : 1
+DevicePortId : 
+GenICamXMLLocation : Device
+GenICamXMLPath : 
+GUIXMLLocation : Device
+GUIXMLPath : Input.xml
+
+
+*** IMAGE ACQUISITION ***
+
+Acquisition mode set to continuous...
+Acquiring images...
+Device serial number retrieved as 25162247...
+
+Grabbed image 0, width = 1024, height = 768
+Image saved at Acquisition-25162247-0.jpg
+
+Grabbed image 1, width = 1024, height = 768
+Image saved at Acquisition-25162247-1.jpg
+
+Grabbed image 2, width = 1024, height = 768
+Image saved at Acquisition-25162247-2.jpg
+
+Grabbed image 3, width = 1024, height = 768
+Image saved at Acquisition-25162247-3.jpg
+
+Grabbed image 4, width = 1024, height = 768
+Image saved at Acquisition-25162247-4.jpg
+
+Grabbed image 5, width = 1024, height = 768
+Image saved at Acquisition-25162247-5.jpg
+
+Grabbed image 6, width = 1024, height = 768
+Image saved at Acquisition-25162247-6.jpg
+
+Grabbed image 7, width = 1024, height = 768
+Image saved at Acquisition-25162247-7.jpg
+
+Grabbed image 8, width = 1024, height = 768
+Image saved at Acquisition-25162247-8.jpg
+
+Grabbed image 9, width = 1024, height = 768
+Image saved at Acquisition-25162247-9.jpg
+
+Camera 0 example complete...
+
+
+Done! Press Enter to exit...
+
+[IMAGE FILES]
+45404 Acquisition-25162247-8.jpg
+14670 Acquisition-25162247-1.jpg
+30178 Acquisition-25162247-3.jpg
+36054 Acquisition-25162247-4.jpg
+14690 Acquisition-25162247-0.jpg
+40240 Acquisition-25162247-5.jpg
+44374 Acquisition-25162247-7.jpg
+46145 Acquisition-25162247-9.jpg
+42647 Acquisition-25162247-6.jpg
+1832 acquisition.log
+345 enumeration.log
+22554 Acquisition-25162247-2.jpg
+
+[IMAGE CONTENT]
+[
+  {
+    "file": "Acquisition-25162247-8.jpg",
+    "shape": [
+      768,
+      1024
+    ],
+    "min": 3,
+    "max": 255,
+    "mean": 107.89418284098308,
+    "std": 53.547957202257955
+  },
+  {
+    "file": "Acquisition-25162247-1.jpg",
+    "shape": [
+      768,
+      1024
+    ],
+    "min": 0,
+    "max": 143,
+    "mean": 12.986286163330078,
+    "std": 6.513446407293688
+  },
+  {
+    "file": "Acquisition-25162247-3.jpg",
+    "shape": [
+      768,
+      1024
+    ],
+    "min": 0,
+    "max": 255,
+    "mean": 53.82246780395508,
+    "std": 26.84902963731548
+  },
+  {
+    "file": "Acquisition-25162247-4.jpg",
+    "shape": [
+      768,
+      1024
+    ],
+    "min": 0,
+    "max": 255,
+    "mean": 73.11232121785481,
+    "std": 36.53182622389047
+  },
+  {
+    "file": "Acquisition-25162247-0.jpg",
+    "shape": [
+      768,
+      1024
+    ],
+    "min": 0,
+    "max": 143,
+    "mean": 12.983835856119791,
+    "std": 6.5134231197623125
+  },
+  {
+    "file": "Acquisition-25162247-5.jpg",
+    "shape": [
+      768,
+      1024
+    ],
+    "min": 1,
+    "max": 255,
+    "mean": 87.80323028564453,
+    "std": 43.75018206856447
+  },
+  {
+    "file": "Acquisition-25162247-7.jpg",
+    "shape": [
+      768,
+      1024
+    ],
+    "min": 2,
+    "max": 255,
+    "mean": 103.79136021931966,
+    "std": 51.50665424376249
+  },
+  {
+    "file": "Acquisition-25162247-9.jpg",
+    "shape": [
+      768,
+      1024
+    ],
+    "min": 2,
+    "max": 255,
+    "mean": 110.22554397583008,
+    "std": 54.74915965856174
+  },
+  {
+    "file": "Acquisition-25162247-6.jpg",
+    "shape": [
+      768,
+      1024
+    ],
+    "min": 1,
+    "max": 255,
+    "mean": 97.58943430582683,
+    "std": 48.47277083046362
+  },
+  {
+    "file": "Acquisition-25162247-2.jpg",
+    "shape": [
+      768,
+      1024
+    ],
+    "min": 0,
+    "max": 255,
+    "mean": 31.59466807047526,
+    "std": 15.784904996914236
+  }
+]
